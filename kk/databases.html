@@ -1,0 +1,521 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из databases.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Дерекқорлар: SQL, SQLite және Django ORM — PyWeb Guide</title>
+
+  <meta name="description" content="Сайт деректерді қалай сақтайды: SQLite мысалындағы SQL, SQL-инъекциядан қорғану, Django-дағы ORM және миграциялар. Білімді тексерумен.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/databases.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/databases.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/databases.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/databases.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Дерекқорлар: SQL, SQLite және Django ORM — PyWeb Guide">
+  <meta property="og:description" content="Сайт деректерді қалай сақтайды: SQLite мысалындағы SQL, SQL-инъекциядан қорғану, Django-дағы ORM және миграциялар. Білімді тексерумен.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/databases.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f9a21f">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="orange" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="project.html">Алғашқы жоба</a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="glossary.html">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">Python туралы</a></li>
+              <li><a href="frameworks.html">Фреймворктер</a></li>
+              <li><a href="databases.html" aria-current="page">Дерекқорлар</a></li>
+              <li><a href="../templates.html" hreflang="ru">Үлгілер мен формалар <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../auth.html" hreflang="ru">Авторизация <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Есептер</a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../databases.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="databases.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+      <div class="page-band"><div class="container page-hero page-hero--picture">
+        <nav class="breadcrumb" aria-label="Навигациялық тізбек">
+          <a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Дерекқорлар</span>
+        </nav>
+        <h1>Сайт деректерді қалай сақтайды</h1>
+        <p class="lead">
+          Пайдаланушылар, тапсырмалар, тауарлар, пікірлер — қойынды жабылғаннан кейін де сақталуы керек нәрсенің бәрі дерекқорда тұрады. SQL-ды SQLite мысалында талдап, Django-дағы ORM дәл осыны қалай жасайтынын көрсетеміз.
+        </p>
+        <p class="note">Енді ғана бастап жатырсыз ба? Алдымен <a href="start.html">«Нөлден» сабақтарын</a> өтіңіз, ал бейтаныс сөздерді <a href="glossary.html">сөздіктен</a> қараңыз.</p>
+      <img class="band-picture" src="../assets/img/card-catalog.jpg" width="900" height="675" alt="Конгресс кітапханасындағы карточкалық каталог жәшіктерінің қатарлары" decoding="async" fetchpriority="high">
+</div></div>
+
+      <section class="section" aria-labelledby="why-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="why-title">Серверге дерекқор не үшін керек</h2>
+            <p>Python-дағы айнымалылар бағдарлама жұмыс істеп тұрғанда ғана өмір сүреді. Дерекқор деректерді дискіде сақтайды және оларды тез таба алады.</p>
+          </div>
+
+          <div class="card-grid">
+            <article class="card reveal">
+              <h3>Кестелер</h3>
+              <p>Деректер кестелерде жатады: жол — бір жазба (тауар), баған — бір қасиет (атауы, бағасы).</p>
+            </article>
+
+            <article class="card reveal">
+              <h3>Бастапқы кілт</h3>
+              <p>Әр жолдың бірегей <code>id</code> нөмірі бар. Сол арқылы жазбаны табуға, өзгертуге немесе жоюға болады.</p>
+            </article>
+
+            <article class="card reveal">
+              <h3>SQL</h3>
+              <p>Дерекқорға сұрау тілі: <code>SELECT</code> оқиды, <code>INSERT</code> қосады, <code>UPDATE</code> өзгертеді, <code>DELETE</code> жояды.</p>
+            </article>
+
+            <article class="card reveal">
+              <h3>ORM</h3>
+              <p>Python кластарын кестелерге, ал әдістерді шақыруды SQL-сұрауларға айналдыратын аралық қабат.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="sql-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="sql-title">SQL іс жүзінде: sqlite3 модулі</h2>
+            <p>
+              SQLite — бір файлдағы дерекқор. Ол Python-ға кірістірілген, оған сервер қажет емес, сондықтан оқу жобалары үшін ең жақсы нұсқа. Кодты файлға сақтап, іске қосыңыз — ол <code>shop.db</code> файлын жасайды.
+            </p>
+          </div>
+
+          <div class="code-block reveal">
+            <div class="code-head">
+              <span>shop.py</span>
+              <button class="copy-btn" type="button">Көшіру</button>
+            </div>
+            <pre><code>import sqlite3
+
+conn = sqlite3.connect("shop.db")
+
+conn.execute("""
+    CREATE TABLE IF NOT EXISTS products (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL,
+        price INTEGER NOT NULL
+    )
+""")
+
+conn.execute("INSERT INTO products (name, price) VALUES (?, ?)", ("Тетрадь", 350))
+conn.execute("INSERT INTO products (name, price) VALUES (?, ?)", ("Ручка", 150))
+conn.commit()
+
+for name, price in conn.execute("SELECT name, price FROM products WHERE price &lt; ?", (300,)):
+    print(name, price)  # Ручка 150
+
+conn.execute("UPDATE products SET price = ? WHERE name = ?", (400, "Тетрадь"))
+conn.execute("DELETE FROM products WHERE name = ?", ("Ручка",))
+conn.commit()
+
+print(conn.execute("SELECT name, price FROM products").fetchall())  # [('Тетрадь', 400)]
+conn.close()</code></pre>
+          </div>
+
+          <p class="notice" role="note">
+            <strong><code>commit()</code> туралы ұмытпаңыз.</strong> Өзгерістер (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>) файлға тек <code>conn.commit()</code> шақырылғаннан кейін түседі. Онсыз байланыс жабылғанда деректер жоғалады.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="inject-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="inject-title">Басты ереже: f-жолдардың орнына параметрлер</h2>
+            <p>
+              Пайдаланушының мәтінін SQL-ға тікелей қойсаңыз, пайдаланушы сұраудың өзін өзгерте алады. Мұны SQL-инъекция деп атайды — сайттардың ең жиі кездесетін осалдықтарының бірі.
+            </p>
+          </div>
+
+          <div class="code-grid">
+            <div class="code-block reveal">
+              <div class="code-head">
+                <span>Қауіпті: f-жол</span>
+                <button class="copy-btn" type="button">Көшіру</button>
+              </div>
+              <pre><code>name = "' OR '1'='1"  # так может ввести пользователь
+
+rows = conn.execute(
+    f"SELECT * FROM products WHERE name = '{name}'"
+).fetchall()
+# вернутся ВСЕ товары: условие стало всегда истинным</code></pre>
+            </div>
+
+            <div class="code-block reveal">
+              <div class="code-head">
+                <span>Қауіпсіз: ? параметрі</span>
+                <button class="copy-btn" type="button">Көшіру</button>
+              </div>
+              <pre><code>name = "' OR '1'='1"
+
+rows = conn.execute(
+    "SELECT * FROM products WHERE name = ?", (name,)
+).fetchall()
+# вернётся пустой список: товара с таким названием нет</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="orm-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="orm-title">Дәл осы Django ORM арқылы</h2>
+            <p>
+              Django-да кестені класс-модельмен сипаттайды, ал сұрауларды Python әдістерімен жазады. SQL-ды Django өзі құрастырады және мәндерді әрқашан параметр ретінде қояды — мұнда инъекциядан қорқудың қажеті жоқ.
+            </p>
+          </div>
+
+          <div class="code-grid">
+            <div class="code-block reveal">
+              <div class="code-head">
+                <span>shop/models.py</span>
+                <button class="copy-btn" type="button">Көшіру</button>
+              </div>
+              <pre><code>from django.db import models
+
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.PositiveIntegerField()</code></pre>
+            </div>
+
+            <div class="code-block reveal">
+              <div class="code-head">
+                <span>python manage.py shell</span>
+                <button class="copy-btn" type="button">Көшіру</button>
+              </div>
+              <pre><code>from shop.models import Product
+
+Product.objects.create(name="Тетрадь", price=350)
+Product.objects.create(name="Ручка", price=150)
+
+print(Product.objects.filter(price__lt=300).values_list("name", flat=True))  # &lt;QuerySet ['Ручка']&gt;
+Product.objects.filter(name="Тетрадь").update(price=400)
+Product.objects.filter(name="Ручка").delete()</code></pre>
+            </div>
+          </div>
+
+          <div class="table-wrap reveal stack-gap" tabindex="0" role="region" aria-label="Кесте: SQL және Django ORM">
+            <table>
+              <caption>SQL-дағы және Django ORM-дағы бірдей операциялар</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Әрекет</th>
+                  <th scope="col">SQL</th>
+                  <th scope="col">ORM Django</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Қосу</td>
+                  <td><code>INSERT INTO products (name, price) VALUES (?, ?)</code></td>
+                  <td><code>Product.objects.create(name=…, price=…)</code></td>
+                </tr>
+                <tr>
+                  <td>Шарт бойынша табу</td>
+                  <td><code>SELECT … FROM products WHERE price &lt; 300</code></td>
+                  <td><code>Product.objects.filter(price__lt=300)</code></td>
+                </tr>
+                <tr>
+                  <td>Өзгерту</td>
+                  <td><code>UPDATE products SET price = 400 WHERE …</code></td>
+                  <td><code>Product.objects.filter(…).update(price=400)</code></td>
+                </tr>
+                <tr>
+                  <td>Жою</td>
+                  <td><code>DELETE FROM products WHERE …</code></td>
+                  <td><code>Product.objects.filter(…).delete()</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="migr-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="migr-title">Миграциялар: модель қалай кестеге айналады</h2>
+            <p>
+              Миграция — «дерекқорды қалай өзгерту керек» деген нұсқауы бар файл. Django оны модельдердегі өзгерістер бойынша жасап, содан кейін қолданады. Сөйтіп дерекқор құрылымы әрқашан кодпен сәйкес келеді, оны басқа компьютерде қайталау оңай.
+            </p>
+          </div>
+
+          <div class="code-grid">
+            <div class="code-block reveal">
+              <div class="code-head">
+                <span>Терминал</span>
+                <button class="copy-btn" type="button">Көшіру</button>
+              </div>
+              <pre><code>python manage.py makemigrations   # создать миграцию по моделям
+python manage.py migrate          # применить её к базе
+python manage.py sqlmigrate shop 0001   # показать SQL миграции</code></pre>
+            </div>
+
+            <div class="code-block reveal">
+              <div class="code-head">
+                <span>Django жасаған SQL</span>
+                <button class="copy-btn" type="button">Көшіру</button>
+              </div>
+              <pre><code>CREATE TABLE "shop_product" (
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" varchar(100) NOT NULL,
+    "price" integer unsigned NOT NULL CHECK ("price" &gt;= 0)
+);</code></pre>
+            </div>
+          </div>
+
+          <p class="note stack-gap">
+            Назар аударыңыз: <code>PositiveIntegerField</code> <code>CHECK ("price" &gt;= 0)</code> тексерісіне айналды — теріс бағаны сақтауға дерекқордың өзі жол бермейді. Нәтиже Django 6.1 және SQLite-та <code>sqlmigrate</code> командасымен алынған.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="choose-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="choose-title">Қандай дерекқорды таңдау керек</h2>
+            <p>Дерекқор ауысқанда ORM-мен жазылған код дерлік өзгермейді — қосылу баптаулары ғана өзгереді.</p>
+          </div>
+
+          <div class="table-wrap reveal" tabindex="0" role="region" aria-label="Кесте: дерекқорды таңдау">
+            <table>
+              <caption>Python жобаларына арналған танымал дерекқорлар</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Дерекқор</th>
+                  <th scope="col">Қашан қолдану керек</th>
+                  <th scope="col">Ерекшеліктері</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>SQLite</strong></td>
+                  <td>Оқу жобалары, прототиптер, шағын сайттар</td>
+                  <td>Бір файл, Python-ға кірістірілген, Django-дағы әдепкі дерекқор</td>
+                </tr>
+                <tr>
+                  <td><strong>PostgreSQL</strong></td>
+                  <td>Пайдаланушылары бар нақты жобалар</td>
+                  <td>Бөлек сервер, бір мезгілдегі сұраулар кезінде сенімді жұмыс</td>
+                </tr>
+                <tr>
+                  <td><strong>MySQL / MariaDB</strong></td>
+                  <td>Хостинг оны ұсынғанда</td>
+                  <td>Бөлек сервер, хостингтерде кең таралған</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="note stack-gap">
+            Flask-та өз ORM-ы жоқ. <a href="project.html#flask">Flask-тағы жобаның екінші қадамындағыдай</a> SQL-ды <code>sqlite3</code> арқылы жазуға немесе <a href="https://flask-sqlalchemy.readthedocs.io/en/stable/" rel="noopener">Flask-SQLAlchemy</a> кеңейтуін қосуға болады.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="check-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="check-title">Өзіңізді тексеріңіз</h2>
+            <p>Бөлім бойынша төрт сұрақ. Жауап бергеннен кейін түсіндірме шығады.</p>
+          </div>
+
+          <form class="quiz knowledge-check reveal" novalidate>
+            <fieldset data-answer="b">
+              <legend>1. Қай SQL командасы бар жазбаларды өзгертеді?</legend>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="db1" value="a"> <span>INSERT</span></label>
+                <label class="quiz-option"><input type="radio" name="db1" value="b"> <span>UPDATE</span></label>
+                <label class="quiz-option"><input type="radio" name="db1" value="c"> <span>SELECT</span></label>
+              </div>
+              <p class="check-explain" hidden>UPDATE бар жолдарды өзгертеді, INSERT жаңаларын қосады, SELECT тек оқиды.</p>
+            </fieldset>
+
+            <fieldset data-answer="a">
+              <legend>2. Пайдаланушы енгізген мәтінді sqlite3 сұрауына қалай қауіпсіз қоюға болады?</legend>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="db2" value="a"> <span><code>?</code> параметрі және мәндер кортежі арқылы</span></label>
+                <label class="quiz-option"><input type="radio" name="db2" value="b"> <span>f-жол арқылы</span></label>
+                <label class="quiz-option"><input type="radio" name="db2" value="c"> <span>Жолдарды қосу арқылы</span></label>
+              </div>
+              <p class="check-explain" hidden>Параметрлер сұрау мәтінінен бөлек беріледі, сондықтан пайдаланушы енгізгені SQL-ды өзгерте алмайды. F-жол мен жолдарды қосу SQL-инъекцияға жол ашады.</p>
+            </fieldset>
+
+            <fieldset data-answer="c">
+              <legend>3. Django моделіне өріс қостыңыз. Кесте өзгеруі үшін не істеу керек?</legend>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="db3" value="a"> <span>Ештеңе, Django кестені өзі жаңартады</span></label>
+                <label class="quiz-option"><input type="radio" name="db3" value="b"> <span>Дерекқор файлын жою</span></label>
+                <label class="quiz-option"><input type="radio" name="db3" value="c"> <span>makemigrations, содан кейін migrate орындау</span></label>
+              </div>
+              <p class="check-explain" hidden>makemigrations модельдің өзгерістері бойынша миграция файлын жасайды, migrate оны дерекқорға қолданады. Дерекқорды жоюдың қажеті жоқ — деректер сақталады.</p>
+            </fieldset>
+
+            <fieldset data-answer="b">
+              <legend>4. sqlite3-тегі өзгерістер неге сақталмауы мүмкін?</legend>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="db4" value="a"> <span>SQLite деректерді сақтай алмайды</span></label>
+                <label class="quiz-option"><input type="radio" name="db4" value="b"> <span><code>conn.commit()</code> шақыру ұмыт қалды</span></label>
+                <label class="quiz-option"><input type="radio" name="db4" value="c"> <span>Компьютерді қайта жүктеу керек</span></label>
+              </div>
+              <p class="check-explain" hidden>Өзгертетін сұраулар транзакцияда орындалады және файлға тек commit() кейін жазылады.</p>
+            </fieldset>
+
+            <div class="hero-actions">
+              <button class="btn btn-primary" type="submit">Жауаптарды тексеру</button>
+              <button class="btn btn-secondary" type="reset">Тастау</button>
+            </div>
+            <p class="check-score" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="sources-title">
+        <div class="container">
+          <div class="panel sources reveal">
+            <h2 id="sources-title">Дереккөздер</h2>
+            <p class="note">Мысалдар Python 3.13, SQLite және Django 6.1.3-те тексерілді, <time datetime="2026-11-06">06.11.2026</time>.</p>
+            <ul class="list">
+              <li><a href="https://docs.python.org/3/library/sqlite3.html" rel="noopener">Python: sqlite3 модулі</a> — қосылу, параметрлер, транзакциялар</li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/topics/db/models/" rel="noopener">Django 6.1: модельдер</a> — өрістер мен байланыстар</li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/topics/db/queries/" rel="noopener">Django 6.1: ORM арқылы сұраулар</a> — filter, update, delete</li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/topics/migrations/" rel="noopener">Django 6.1: миграциялар</a></li>
+              <li><a href="https://community.owasp.org/attacks/SQL_Injection" rel="noopener">OWASP: SQL-инъекция</a> — осалдықтың сипаттамасы</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Әрі қарай">
+        <div class="container">
+          <div class="cta-panel reveal">
+            <div>
+              <h2>Іс жүзінде байқап көріңіз</h2>
+              <p class="lead cta-lead">
+                Алғашқы жобада SQLite-ты Flask-қа қосып, Django-да модельмен жұмыс істейсіз.
+              </p>
+            </div>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="project.html">Алғашқы жобаны ашу</a>
+            </div>
+          </div>
+        </div>
+      </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="about.html">Python туралы</a></li><li><a href="frameworks.html">Фреймворктер</a></li><li><a href="databases.html">Дерекқорлар</a></li><li><a href="../templates.html" hreflang="ru">Үлгілер мен формалар <span class="ru-mark">(RU)</span></a></li><li><a href="../auth.html" hreflang="ru">Авторизация <span class="ru-mark">(RU)</span></a></li><li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li><li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="project.html">Алғашқы жоба</a></li><li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li><li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Есептер</a></li><li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="../contacts.html#authors" hreflang="ru">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-09">09.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Сурет: <a href="https://commons.wikimedia.org/wiki/File:Copyright_Card_Catalog_Files.jpg" rel="noopener">карточкалық каталог, Michael Holley</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Құпиялылық саясаты</a> · <a href="../terms.html" hreflang="ru">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="../contacts.html#no-github" hreflang="ru">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
