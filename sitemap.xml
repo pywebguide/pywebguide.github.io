@@ -98,6 +98,9 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/exam.html"/>
   </url>
   <url><loc>https://pywebguide.github.io/progress.html</loc><lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/progress.html"/>
+    <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/progress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/progress.html"/>
   </url>
   <url><loc>https://pywebguide.github.io/contacts.html</loc><lastmod>2026-11-09</lastmod>
   </url>
@@ -201,6 +204,11 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/exam.html"/>
     <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/exam.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/exam.html"/>
+  </url>
+  <url><loc>https://pywebguide.github.io/kk/progress.html</loc><lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/progress.html"/>
+    <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/progress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/progress.html"/>
   </url>
   <url><loc>https://pywebguide.github.io/en/</loc><lastmod>2026-11-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/"/>
