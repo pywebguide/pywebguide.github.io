@@ -255,6 +255,12 @@ def build(lang, slug, memory=None, write=True):
     page = re.sub(r'(<meta property="og:url" content=")' + re.escape(SITE), lambda m: f"{m.group(1)}{SITE}{lang}/", page, count=1)
     page = page.replace('<meta property="og:locale" content="ru_RU">', f'<meta property="og:locale" content="{LOCALE[lang]}">', 1)
     page = page.replace(PRELOAD_RU.replace('href="', 'href="../'), PRELOAD[lang], 1)
+    if "<!-- tasks:start -->" in page:
+        # Задачи на языке страницы собирает build_practice.py (тексты из tools/i18n/practice.json)
+        sys.path.insert(0, str(ROOT / "tools"))
+        import build_practice
+        page = re.sub(r"<!-- tasks:start -->.*?<!-- tasks:end -->",
+                      lambda m: "<!-- tasks:start -->\n" + build_practice.build(lang) + "\n<!-- tasks:end -->", page, flags=re.S)
     if "assets/i18n.js" not in page:
         page = page.replace('  <script src="../script.js"></script>', '  <script src="../assets/i18n.js"></script>\n  <script src="../script.js"></script>', 1)
     if write:

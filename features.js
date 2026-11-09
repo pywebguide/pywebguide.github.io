@@ -734,7 +734,9 @@
       const reset = node.querySelector("[data-reset]");
       const tests = node.querySelector('template[data-kind="tests"]').content.textContent;
       const starter = area.value;
-      const draftKey = "pyweb_task_" + id;
+      // Черновик у каждого языка свой: в казахской и английской версиях другие строки в коде и тестах.
+      // Отметка «решено» (pyweb_tasks) общая: сама задача одна и та же
+      const draftKey = "pyweb_task_" + (LANG === "ru" ? "" : LANG + "_") + id;
       const box = outputBox();
       const draft = readJson(draftKey, null);
 

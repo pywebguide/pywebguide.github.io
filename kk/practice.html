@@ -1,0 +1,721 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из practice.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Python мен веб-әзірлеу бойынша автоматты тексерілетін есептер — PyWeb Guide</title>
+
+  <meta name="description" content="Python, HTTP, SQL және Flask бойынша он алты есеп: тікелей браузерде, орнатусыз, лезде автоматты тексеріледі.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/practice.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/practice.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/practice.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/practice.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Python мен веб-әзірлеу бойынша автоматты тексерілетін есептер — PyWeb Guide">
+  <meta property="og:description" content="Python, HTTP, SQL және Flask бойынша он алты есеп: тікелей браузерде, орнатусыз, лезде автоматты тексеріледі.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/practice.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#a4f6f8">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="cyan" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="project.html">Алғашқы жоба</a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="glossary.html">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="../about.html" hreflang="ru">Python туралы <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../frameworks.html" hreflang="ru">Фреймворктер <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../databases.html" hreflang="ru">Дерекқорлар <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../templates.html" hreflang="ru">Үлгілер мен формалар <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../auth.html" hreflang="ru">Авторизация <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html" aria-current="page">Есептер</a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../practice.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="practice.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Навигациялық тізбек">
+<a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Есептер</span>
+</nav>
+<h1>Автоматты тексерілетін есептер</h1>
+<p class="lead">Шешіміңізді жазып, «Тексеру» батырмасын басыңыз. Код браузерде орындалып, жасырын тесттерден өтеді. Тест өтпесе, ол нені тексергенін, не күтілгенін және не шыққанын көресіз. Тығырыққа тірелсеңіз — кеңесті ашыңыз. Шешілген есептер осы браузерде есте сақталады.</p>
+<img class="band-picture" src="../assets/img/typing-class.jpg" width="1000" height="637" alt="Шамамен 1945 жыл, машинкада басу сыныбындағы оқушы қыздар" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" id="result" aria-labelledby="result-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="result-title">Сіздің нәтижеңіз</h2>
+<p>Алғашқы тексеру Python-ды жүктейді: шамамен 5 МБ, бұл бірнеше секундқа созылады.</p>
+</div>
+<div class="progress-box reveal">
+<p class="progress-label" role="status"><span data-tasks-total="16">16</span> есептің <span data-tasks-count>0</span> есебі шешілді</p>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill" data-tasks-fill></div></div>
+</div>
+</div>
+</section>
+<!-- tasks:start -->
+<section class="section" id="basics" aria-labelledby="basics-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="basics-title">Python негіздері</h2>
+<p>Функциялар, жолдар және сөздіктер: кез келген сұрау өңдегіші осыларға сүйенеді.</p>
+</div>
+<article class="task reveal" data-task="greet" data-level="easy">
+<div class="task-head"><h3>1. Сәлемдесу</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p><code>greet(name)</code> функциясын жазыңыз, ол <code>Сәлем, Есім!</code> жолын қайтарсын. Есімнің айналасындағы артық бос орындарды алып тастау керек. Есім бос болса, <code>Сәлем, қонақ!</code> қайтарыңыз.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Шешім: 1. Сәлемдесу">def greet(name):
+    # сіздің кодыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>Кеңес 1.</strong> Мәтінді айнымалымен f-жол арқылы біріктіру оңай: <code>f"Сәлем, {name}!"</code>.</li>
+<li hidden tabindex="-1"><strong>Кеңес 2.</strong> Шеттердегі бос орындарды <code>name.strip()</code> алып тастайды.</li>
+<li hidden tabindex="-1"><strong>Кеңес 3.</strong> Шартта бос жол жалған болып саналады: есім бос болса, <code>name or 'қонақ'</code> «қонақ» қайтарады.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>def greet(name):
+    name = name.strip()
+    return f"Сәлем, {name or 'қонақ'}!"</code></pre></details>
+<template data-kind="tests">case('greet("Анна")', "Сәлем, Анна!")
+case('greet("  Ерлан ")', "Сәлем, Ерлан!", "Есімнің айналасындағы бос орындарды алып тастаңыз: .strip() жарайды")
+case('greet("")', "Сәлем, қонақ!", "Бос есім үшін «Сәлем, қонақ!» жауабы керек")
+case('greet("   ")', "Сәлем, қонақ!", "Тек бос орындардан тұратын есім де бос болып саналады")</template>
+</article>
+<article class="task reveal" data-task="words" data-level="easy">
+<div class="task-head"><h3>2. Сөздерді санау</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p><code>count_words(text)</code> функциясын жазыңыз: кілті кіші әріппен жазылған сөз, ал мәні оның неше рет кездескені болатын сөздікті қайтарыңыз.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Шешім: 2. Сөздерді санау">def count_words(text):
+    # сіздің кодыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>Кеңес 1.</strong> Бос сөздіктен <code>counts = {}</code> бастап, сөздерді циклмен аралап шығыңыз.</li>
+<li hidden tabindex="-1"><strong>Кеңес 2.</strong> <code>text.lower().split()</code> мәтінді кіші әріпке айналдырып, кез келген бос орын мен жол ауыстыру бойынша бөледі.</li>
+<li hidden tabindex="-1"><strong>Кеңес 3.</strong> <code>counts.get(word, 0) + 1</code> сөз сөздікте әлі жоқ болса да санауышты арттырады.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>def count_words(text):
+    counts = {}
+    for word in text.lower().split():
+        counts[word] = counts.get(word, 0) + 1
+    return counts</code></pre></details>
+<template data-kind="tests">case('count_words("")', {}, "Бос жол үшін бос сөздік керек")
+case('count_words("Иә иә жоқ")', {"иә": 2, "жоқ": 1}, "Сөздерді кіші әріпке айналдырыңыз")
+case('count_words("a  b\\nb")', {"a": 1, "b": 2}, "Аргументсіз .split() арқылы бөліңіз")</template>
+</article>
+<article class="task reveal" data-task="strong" data-level="easy">
+<div class="task-head"><h3>3. Сенімді құпиясөз</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p><code>is_strong(password)</code> функциясын жазыңыз. Құпиясөзде кемінде 8 таңба, кемінде бір цифр және кемінде бір әріп болса, ол сенімді. <code>True</code> немесе <code>False</code> қайтарыңыз.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Шешім: 3. Сенімді құпиясөз">def is_strong(password):
+    # сіздің кодыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>Кеңес 1.</strong> Жолдың ұзындығын <code>len(password)</code> береді.</li>
+<li hidden tabindex="-1"><strong>Кеңес 2.</strong> Құпиясөзде цифр болса, <code>any(ch.isdigit() for ch in password)</code> <code>True</code> қайтарады.</li>
+<li hidden tabindex="-1"><strong>Кеңес 3.</strong> Әріптер үшін <code>ch.isalpha()</code> бар. Үш шартты <code>and</code> арқылы біріктіріңіз.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>def is_strong(password):
+    has_digit = any(ch.isdigit() for ch in password)
+    has_letter = any(ch.isalpha() for ch in password)
+    return len(password) &gt;= 8 and has_digit and has_letter</code></pre></details>
+<template data-kind="tests">case('is_strong("qwerty12")', True)
+case('is_strong("qwe12")', False, "Кемінде 8 таңба керек")
+case('is_strong("12345678")', False, "Әріпсіз құпиясөз сенімді емес")
+case('is_strong("password")', False, "Цифрсыз құпиясөз сенімді емес")
+case('is_strong("құпиясөз2026")', True, "Қазақ әріптері де әріп: .isalpha()")</template>
+</article>
+<article class="task reveal" data-task="slug" data-level="medium">
+<div class="task-head"><h3>4. Тақырыптан мекенжай жасау</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>Сайттар мақала тақырыбын мекенжайдың бір бөлігіне айналдырады: <code>Менің алғашқы сайтым</code> → <code>menin-algashky-saytym</code>. Латын әріптеріне арналған <code>slugify(title)</code> функциясын жазыңыз: әріптер мен цифрларды кіші әріппен қалдырыңыз, қалғанының бәрін сызықшамен ауыстырыңыз. Қатар тұрған бірнеше сызықшаны біреуге біріктіріп, шеттердегі сызықшаларды алып тастаңыз.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Шешім: 4. Тақырыптан мекенжай жасау">def slugify(title):
+    # сіздің кодыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>Кеңес 1.</strong> <code>title.lower()</code> таңбаларын аралаңыз: әріп немесе цифр (<code>ch.isalnum()</code>) қалады, қалғаны <code>"-"</code> болады.</li>
+<li hidden tabindex="-1"><strong>Кеңес 2.</strong> Бөліктерді артық сызықшасыз біріктіруге <code>split("-")</code> кейінгі бос емес бөліктер бойынша <code>"-".join(...)</code> көмектеседі.</li>
+<li hidden tabindex="-1"><strong>Кеңес 3.</strong> Егер <code>re</code> модулімен жазсаңыз: <code>re.sub(r"[^a-z0-9]+", "-", text).strip("-")</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>def slugify(title):
+    chars = [ch if ch.isalnum() else "-" for ch in title.lower()]
+    parts = "".join(chars).split("-")
+    return "-".join(part for part in parts if part)</code></pre></details>
+<template data-kind="tests">case('slugify("Hello World")', "hello-world")
+case('slugify("  Flask &amp; Django: 2 frameworks! ")', "flask-django-2-frameworks", "Қатар тұрған бірнеше таңба бір сызықша береді")
+case('slugify("---")', "", "Шеттердегі сызықшаларды алып тастау керек")
+case('slugify("Python3")', "python3", "Цифрлар қалады")</template>
+</article>
+</div>
+</section>
+<section class="section" id="http" aria-labelledby="http-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="http-title">HTTP және маршруттар</h2>
+<p>Фреймворк сіз үшін істейтін нәрсені қарапайым түрде жазу оңай.</p>
+</div>
+<article class="task reveal" data-task="query" data-level="medium">
+<div class="task-head"><h3>5. Мекенжайды талдау</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p><code>parse_query(query)</code> функциясын жазыңыз. Ол <code>a=1&amp;b=2</code> жолын <code>{"a": "1", "b": "2"}</code> сөздігіне айналдырады. <code>=</code> белгісі жоқ бөліктерді өткізіп жіберіңіз. Мәннің ішінде <code>=</code> болуы мүмкін.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Шешім: 5. Мекенжайды талдау">def parse_query(query):
+    # сіздің кодыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>Кеңес 1.</strong> Алдымен жолды жұптарға бөліңіз: <code>query.split("&amp;")</code>.</li>
+<li hidden tabindex="-1"><strong>Кеңес 2.</strong> <code>=</code> жоқ жұпты <code>if "=" in part</code> тексерісімен өткізіп жіберіңіз.</li>
+<li hidden tabindex="-1"><strong>Кеңес 3.</strong> <code>part.split("=", 1)</code> тек бірінші <code>=</code> белгісі бойынша бөледі, қалғандары мәнде қалады.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>def parse_query(query):
+    result = {}
+    for part in query.split("&amp;"):
+        if "=" in part:
+            key, value = part.split("=", 1)
+            result[key] = value
+    return result</code></pre></details>
+<template data-kind="tests">case('parse_query("")', {}, "Бос жол үшін бос сөздік керек")
+case('parse_query("a=1&amp;b=2")', {"a": "1", "b": "2"})
+case('parse_query("flag&amp;x=1")', {"x": "1"}, "= белгісі жоқ бөлікті өткізіп жіберу керек")
+case('parse_query("token=a=b")', {"token": "a=b"}, "Тек бірінші = бойынша бөліңіз: split('=', 1)")</template>
+</article>
+<article class="task reveal" data-task="router" data-level="medium">
+<div class="task-head"><h3>6. Қарапайым маршрутизатор</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p><code>handle(method, path)</code> функциясын аяқтаңыз. Ол <code>ROUTES</code> сөздігінен өңдегішті іздеп, «код, мәтін» жұбын қайтарады. Мекенжай жоқ болса, <code>(404, "Not Found")</code> қайтарыңыз. Мекенжай бар, бірақ әдіс сәйкес келмесе, <code>(405, "Method Not Allowed")</code> қайтарыңыз.</p>
+<textarea class="editor-area" rows="10" spellcheck="false" aria-label="Шешім: 6. Қарапайым маршрутизатор">ROUTES = {
+    "/": {"GET": "Басты бет"},
+    "/tasks": {"GET": "Тапсырмалар тізімі", "POST": "Тапсырма жасалды"},
+}
+
+def handle(method, path):
+    # сіздің кодыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>Кеңес 1.</strong> Ретімен тексеріңіз: алдымен мекенжай бар ма, содан кейін әдіс бар ма.</li>
+<li hidden tabindex="-1"><strong>Кеңес 2.</strong> <code>path not in ROUTES</code> мұндай мекенжайдың жоқ екенін білдіреді: бұл 404.</li>
+<li hidden tabindex="-1"><strong>Кеңес 3.</strong> Мекенжайдың әдістері <code>ROUTES[path]</code> ішінде жатыр. Әдіс онда болмаса — 405, әйтпесе <code>200</code> мен мәтінді қайтарыңыз.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>ROUTES = {
+    "/": {"GET": "Басты бет"},
+    "/tasks": {"GET": "Тапсырмалар тізімі", "POST": "Тапсырма жасалды"},
+}
+
+def handle(method, path):
+    if path not in ROUTES:
+        return 404, "Not Found"
+    if method not in ROUTES[path]:
+        return 405, "Method Not Allowed"
+    return 200, ROUTES[path][method]</code></pre></details>
+<template data-kind="tests">case('handle("GET", "/")', (200, "Басты бет"))
+case('handle("POST", "/tasks")', (200, "Тапсырма жасалды"))
+case('handle("GET", "/nope")', (404, "Not Found"), "Белгісіз мекенжай үшін 404 коды керек")
+case('handle("DELETE", "/")', (405, "Method Not Allowed"), "Сәйкес келмейтін әдіс үшін 405 коды керек")</template>
+</article>
+<article class="task reveal" data-task="validate" data-level="hard">
+<div class="task-head"><h3>7. Форма деректерін тексеру</h3><span class="level level-hard"><span class="visually-hidden">Деңгейі: </span>Күрделі</span></div>
+<p><code>validate_user(data)</code> функциясын жазыңыз. Функция сөздікті қабылдап, қателер тізімін қайтарады. <code>name</code> өрісі міндетті, <code>age</code> өрісі 1-ден 120-ға дейінгі бүтін сан болуы керек. Қате мәтіндері: <code>"name"</code> және <code>"age"</code>. Бәрі дұрыс болса, бос тізім қайтарыңыз.</p>
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Шешім: 7. Форма деректерін тексеру">def validate_user(data):
+    errors = []
+    # сіздің кодыңыз
+    return errors</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>Кеңес 1.</strong> Өріс болмауы мүмкін: <code>data.get("name", "")</code> қатенің орнына бос жол қайтарады.</li>
+<li hidden tabindex="-1"><strong>Кеңес 2.</strong> Бүтін санды <code>isinstance(age, int)</code>, ауқымды <code>1 &lt;= age &lt;= 120</code> тексереді.</li>
+<li hidden tabindex="-1"><strong>Кеңес 3.</strong> Python-да <code>True</code> да <code>int</code> болып саналады. Оны бөлек сүзіп тастаңыз: <code>isinstance(age, bool)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>def validate_user(data):
+    errors = []
+    if not str(data.get("name", "")).strip():
+        errors.append("name")
+    age = data.get("age")
+    if not isinstance(age, int) or isinstance(age, bool) or not 1 &lt;= age &lt;= 120:
+        errors.append("age")
+    return errors</code></pre></details>
+<template data-kind="tests">case('validate_user({"name": "Аружан", "age": 20})', [], "Дұрыс деректер қате бермеуі керек")
+case('validate_user({"age": 20})', ["name"], "Есім болмаса, name қатесі болуы керек")
+case('validate_user({"name": "  ", "age": 20})', ["name"], "Бос орындардан тұратын есім бос болып саналады")
+case('validate_user({"name": "A", "age": 0})', ["age"], "0 жасы жарамайды")
+case('validate_user({"name": "A", "age": "20"})', ["age"], "Жол сан болып саналмайды")
+case('validate_user({"name": "A", "age": True})', ["age"], "Python-да True да int: мұны бөлек тексеріңіз")
+case('validate_user({})', ["name", "age"], "Екі қатені де ретімен қайтару керек")</template>
+</article>
+<article class="task reveal" data-task="json" data-level="medium">
+<div class="task-head"><h3>8. JSON түріндегі жауап</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p><code>tasks_json(tasks)</code> функциясын жазыңыз. Функция сөздіктер тізімін алып, тек <code>done</code> мәні <code>False</code> болатын тапсырмалары бар JSON жолын қайтарады. Кирилл әріптері оқылатын күйде қалуы керек. Импорт бар.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Шешім: 8. JSON түріндегі жауап">import json
+
+def tasks_json(tasks):
+    # сіздің кодыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>Кеңес 1.</strong> Орындалмаған тапсырмаларды іріктеңіз: <code>[task for task in tasks if not task["done"]]</code>.</li>
+<li hidden tabindex="-1"><strong>Кеңес 2.</strong> Тізімді JSON жолына <code>json.dumps(...)</code> функциясы айналдырады.</li>
+<li hidden tabindex="-1"><strong>Кеңес 3.</strong> Кирилл әріптері <code>\u041a</code> сияқты кодтарға айналмауы үшін <code>ensure_ascii=False</code> қосыңыз.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>import json
+
+def tasks_json(tasks):
+    active = [task for task in tasks if not task["done"]]
+    return json.dumps(active, ensure_ascii=False)</code></pre></details>
+<template data-kind="tests">data = [{"title": "Код", "done": False}, {"title": "Ұйқы", "done": True}]
+case('type(tasks_json(data)).__name__', "str", "Тізімді емес, жолды қайтару керек")
+case('json.loads(tasks_json(data))', [{"title": "Код", "done": False}], "Жауапта тек орындалмаған тапсырмалар қалуы керек")
+case('"Код" in tasks_json(data)', True, "ensure_ascii=False қосыңыз, әйтпесе кирилл әріптері кодқа айналады")
+case('tasks_json([])', "[]", "Бос тізім үшін [] жолы керек")</template>
+</article>
+<article class="task reveal" data-task="render" data-level="medium">
+<div class="task-head"><h3>9. Өз үлгіңіз</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>Үлгі — бос орындары бар мәтін. <code>render(template, data)</code> функциясын жазыңыз: ол әр <code>{{ атау }}</code> бос орнын <code>data</code> сөздігіндегі мәнмен ауыстырады. Жақшаның ішінде бос орын болуы да, болмауы да мүмкін. Сөздікте кілт жоқ болса, бос жол қойыңыз.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Шешім: 9. Өз үлгіңіз">import re
+
+def render(template, data):
+    # сіздің кодыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>Кеңес 1.</strong> Барлық бос орындарды табуға <code>r"\{\{\s*(\w+)\s*\}\}"</code> тұрақты өрнегі көмектеседі.</li>
+<li hidden tabindex="-1"><strong>Кеңес 2.</strong> <code>re.sub(үлгі, функция, мәтін)</code> әр табылған бос орын үшін функцияны шақырып, оның жауабын қояды.</li>
+<li hidden tabindex="-1"><strong>Кеңес 3.</strong> Функцияның ішінде бос орынның атауы <code>match.group(1)</code> ішінде, ал мәнді <code>str(data.get(атау, ""))</code> алады.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>import re
+
+def render(template, data):
+    def value(match):
+        return str(data.get(match.group(1), ""))
+    return re.sub(r"\{\{\s*(\w+)\s*\}\}", value, template)</code></pre></details>
+<template data-kind="tests">case('render("Сәлем, {{ name }}!", {"name": "Дана"})', "Сәлем, Дана!")
+case('render("{{a}}+{{ b }}={{c}}", {"a": 1, "b": 2, "c": 3})', "1+2=3", "Жақша ішіндегі бос орындар міндетті емес, сандарды жолға айналдырыңыз")
+case('render("[{{ missing }}]", {})', "[]", "Белгісіз кілт бос жолмен ауыстырылады")
+case('render("бос орынсыз", {"x": 1})', "бос орынсыз")</template>
+</article>
+<article class="task reveal" data-task="paginate" data-level="medium">
+<div class="task-head"><h3>10. Тізім беттері</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>Ұзын тізімді бөліп-бөліп көрсетеді. <code>paginate(items, page, per_page)</code> функциясын жазыңыз: <code>page</code> нөмірлі беттің элементтерін қайтарыңыз (нөмірлеу 1-ден басталады). Мұндай нөмірлі бет болмаса немесе нөмір 1-ден кіші болса, бос тізім қайтарыңыз.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Шешім: 10. Тізім беттері">def paginate(items, page, per_page):
+    # сіздің кодыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>Кеңес 1.</strong> Беттің бірінші элементі <code>(page - 1) * per_page</code> орнында тұр.</li>
+<li hidden tabindex="-1"><strong>Кеңес 2.</strong> Элементтер аз болса, <code>items[start:start + per_page]</code> кесіндісі өзі қысқарады.</li>
+<li hidden tabindex="-1"><strong>Кеңес 3.</strong> 1-ден кіші бет нөмірін бөлек тексеріңіз, әйтпесе теріс кесінді артық нәрсе қайтарады.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>def paginate(items, page, per_page):
+    if page &lt; 1:
+        return []
+    start = (page - 1) * per_page
+    return items[start:start + per_page]</code></pre></details>
+<template data-kind="tests">letters = list("abcdefg")
+case('paginate(letters, 1, 3)', ["a", "b", "c"])
+case('paginate(letters, 3, 3)', ["g"], "Соңғы бетте элементтер азырақ болуы мүмкін")
+case('paginate(letters, 4, 3)', [], "Мұндай бет жоқ: бос тізім керек")
+case('paginate(letters, 0, 3)', [], "0 нөмірлі бет болмайды")</template>
+</article>
+</div>
+</section>
+<section class="section" id="sql" aria-labelledby="sql-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="sql-title">SQL</h2>
+<p>Нағыз SQLite дерекқоры тікелей браузерде жұмыс істейді.</p>
+</div>
+<article class="task reveal" data-task="add_task" data-level="medium">
+<div class="task-head"><h3>11. Қауіпсіз енгізу</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p><code>add_task(db, title)</code> функциясын жазыңыз: ол <code>tasks</code> кестесіне жол қосып, оның <code>id</code> мәнін қайтарады. <code>?</code> параметрін қолданыңыз: тырнақшасы бар мәтін сұрауды бұзбауы керек.</p>
+<textarea class="editor-area" rows="10" spellcheck="false" aria-label="Шешім: 11. Қауіпсіз енгізу">import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT)")
+
+def add_task(db, title):
+    # сіздің кодыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>Кеңес 1.</strong> Енгізу сұрауы: <code>INSERT INTO tasks (title) VALUES (?)</code>.</li>
+<li hidden tabindex="-1"><strong>Кеңес 2.</strong> Мәндер екінші аргумент ретінде кортежбен беріледі: <code>db.execute(сұрау, (title,))</code>. <code>title</code> кейінгі үтір міндетті.</li>
+<li hidden tabindex="-1"><strong>Кеңес 3.</strong> <code>execute</code> курсорды қайтарады, ал жаңа жолдың нөмірі <code>cursor.lastrowid</code> ішінде. <code>db.commit()</code> туралы ұмытпаңыз.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT)")
+
+def add_task(db, title):
+    cursor = db.execute("INSERT INTO tasks (title) VALUES (?)", (title,))
+    db.commit()
+    return cursor.lastrowid</code></pre></details>
+<template data-kind="tests">case('add_task(db, "Бірінші")', 1, "cursor.lastrowid қайтарыңыз")
+case('add_task(db, "Екінші")', 2, "Әр жаңа жол келесі id алады")
+evil = "x'); DROP TABLE tasks; --"
+case('add_task(db, evil)', 3, "Тырнақшасы бар мәтін сұрауды бұзбауы керек: ? қолданыңыз")
+case('db.execute("SELECT title FROM tasks WHERE id = 3").fetchone()', (evil,), "Тырнақшасы бар мәтін сол күйінде сақталуы керек")</template>
+</article>
+<article class="task reveal" data-task="select" data-level="easy">
+<div class="task-head"><h3>12. Шарт бойынша іріктеу</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p><code>active_titles(db)</code> функциясын жазыңыз: <code>done = 0</code> болатын, әліпби бойынша сұрыпталған тақырыптар тізімін қайтарыңыз.</p>
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Шешім: 12. Шарт бойынша іріктеу">import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks VALUES (?, ?)", [("Б", 0), ("А", 0), ("В", 1)])
+
+def active_titles(db):
+    # сіздің кодыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>Кеңес 1.</strong> <code>WHERE done = 0</code> шарты бар <code>SELECT title FROM tasks</code> сұрауы керек.</li>
+<li hidden tabindex="-1"><strong>Кеңес 2.</strong> Әліпби бойынша сұрыптауды сұраудың соңындағы <code>ORDER BY title</code> береді.</li>
+<li hidden tabindex="-1"><strong>Кеңес 3.</strong> Нәтиженің әр жолы — кортеж, тақырып онда бірінші: <code>[row[0] for row in rows]</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks VALUES (?, ?)", [("Б", 0), ("А", 0), ("В", 1)])
+
+def active_titles(db):
+    rows = db.execute("SELECT title FROM tasks WHERE done = 0 ORDER BY title")
+    return [row[0] for row in rows]</code></pre></details>
+<template data-kind="tests">case('active_titles(db)', ["А", "Б"], "WHERE мен ORDER BY қосып, жолдар тізімін қайтарыңыз")
+db.execute("UPDATE tasks SET done = 1")
+case('active_titles(db)', [], "Сәйкес жолдар болмаса, бос тізім қайтарыңыз")</template>
+</article>
+</div>
+</section>
+<section class="section" id="flask" aria-labelledby="flask-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="flask-title">Flask</h2>
+<p>Нағыз Flask. Алғашқы тексеру PyPI-дан пакетті қосымша жүктейді.</p>
+</div>
+<article class="task reveal" data-task="route" data-level="easy">
+<div class="task-head"><h3>13. Алғашқы маршрут</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p><code>GET /hello/&lt;name&gt;</code> маршрутын қосыңыз, ол <code>{"message": "Сәлем, есім!"}</code> JSON-ын қайтарсын.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Шешім: 13. Алғашқы маршрут">from flask import Flask
+
+app = Flask(__name__)
+
+# сіздің маршрутыңыз</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>Кеңес 1.</strong> Маршрутты функцияның үстіне декоратормен жариялайды: <code>@app.get("/hello/&lt;name&gt;")</code>.</li>
+<li hidden tabindex="-1"><strong>Кеңес 2.</strong> Мекенжайдың бұрыштық жақшасындағы атау мен функция аргументінің атауы сәйкес болуы керек: <code>def hello(name):</code>.</li>
+<li hidden tabindex="-1"><strong>Кеңес 3.</strong> Сөздікті қайтарсаңыз, Flask оны өзі JSON-ға айналдырады: <code>return {"message": f"Сәлем, {name}!"}</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+@app.get("/hello/&lt;name&gt;")
+def hello(name):
+    return {"message": f"Сәлем, {name}!"}</code></pre></details>
+<template data-kind="tests">client = app.test_client()
+case('client.get("/hello/Python").status_code', 200, "/hello/Python мекенжайы 200 кодымен ашылуы керек")
+case('client.get("/hello/Python").json', {"message": "Сәлем, Python!"})</template>
+</article>
+<article class="task reveal" data-task="filter" data-level="medium">
+<div class="task-head"><h3>14. Мекенжайдағы сүзгі</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p><code>TASKS</code> ішіндегі тапсырмалардың JSON тізімін қайтаратын <code>GET /tasks</code> жасаңыз. Мекенжайда <code>?done=1</code> болса, тек орындалғандарын, <code>?done=0</code> болса — тек орындалмағандарын қайтарыңыз. Параметр болмаса, бәрін қайтарыңыз.</p>
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Шешім: 14. Мекенжайдағы сүзгі">from flask import Flask, request
+
+app = Flask(__name__)
+TASKS = [
+    {"title": "Нан сатып алу", "done": True},
+    {"title": "Flask-ты үйрену", "done": False},
+]
+
+# сіздің маршрутыңыз</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>Кеңес 1.</strong> Мекенжайдағы параметрді <code>request.args.get("done")</code> оқиды. Ол болмаса, <code>None</code> болады.</li>
+<li hidden tabindex="-1"><strong>Кеңес 2.</strong> Параметр жол түрінде келеді: санмен емес, <code>"1"</code> жолымен салыстырыңыз.</li>
+<li hidden tabindex="-1"><strong>Кеңес 3.</strong> Сөздіктер тізімін функциядан қайтарсаңыз, Flask оны өзі JSON-ға айналдырады.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>from flask import Flask, request
+
+app = Flask(__name__)
+TASKS = [
+    {"title": "Нан сатып алу", "done": True},
+    {"title": "Flask-ты үйрену", "done": False},
+]
+
+@app.get("/tasks")
+def tasks():
+    done = request.args.get("done")
+    if done is None:
+        return TASKS
+    return [task for task in TASKS if task["done"] == (done == "1")]</code></pre></details>
+<template data-kind="tests">client = app.test_client()
+case('len(client.get("/tasks").json)', 2, "Параметр болмаса, барлық тапсырма керек")
+case('client.get("/tasks?done=1").json', [{"title": "Нан сатып алу", "done": True}], "?done=1 — тек орындалғандары")
+case('client.get("/tasks?done=0").json', [{"title": "Flask-ты үйрену", "done": False}], "?done=0 — тек орындалмағандары: параметр жол түрінде келеді")</template>
+</article>
+<article class="task reveal" data-task="post" data-level="hard">
+<div class="task-head"><h3>15. Жазба жасау</h3><span class="level level-hard"><span class="visually-hidden">Деңгейі: </span>Күрделі</span></div>
+<p><code>POST /items</code> жасаңыз. Ол <code>title</code> өрісі бар JSON-ды оқиды. Өріс жоқ немесе бос болса, 400 кодымен <code>{"error": "title"}</code> қайтарыңыз. Әйтпесе тақырыпты <code>items</code> тізіміне қосып, 201 кодымен <code>{"title": ...}</code> қайтарыңыз.</p>
+<textarea class="editor-area" rows="8" spellcheck="false" aria-label="Шешім: 15. Жазба жасау">from flask import Flask, request
+
+app = Flask(__name__)
+items = []
+
+# сіздің маршрутыңыз</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>Кеңес 1.</strong> Деректерді жіберуге арналған маршрут <code>@app.post("/items")</code> арқылы жарияланады.</li>
+<li hidden tabindex="-1"><strong>Кеңес 2.</strong> <code>request.get_json(silent=True) or {}</code> JSON емес нәрсе келсе де құламайды, бос сөздік береді.</li>
+<li hidden tabindex="-1"><strong>Кеңес 3.</strong> Жауап коды екінші мән ретінде қойылады: <code>return {"error": "title"}, 400</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>from flask import Flask, request
+
+app = Flask(__name__)
+items = []
+
+@app.post("/items")
+def create_item():
+    data = request.get_json(silent=True) or {}
+    title = str(data.get("title", "")).strip()
+    if not title:
+        return {"error": "title"}, 400
+    items.append(title)
+    return {"title": title}, 201</code></pre></details>
+<template data-kind="tests">client = app.test_client()
+case('client.post("/items", json={}).status_code', 400, "title болмаса, 400 коды керек")
+case('client.post("/items", json={"title": "  "}).status_code', 400, "Бос title да 400 береді")
+case('client.post("/items", data="json емес").status_code', 400, "Қате JSON құлауға әкелмеуі керек: get_json(silent=True)")
+case('client.post("/items", json={"title": "Кітап"}).status_code', 201, "Сәтті болса, 201 коды керек: return {...}, 201")
+case('items', ["Кітап"], "Тақырып items тізіміне түсуі керек")
+case('client.post("/items", json={"title": "Қалам"}).json', {"title": "Қалам"})</template>
+</article>
+<article class="task reveal" data-task="detail" data-level="hard">
+<div class="task-head"><h3>16. Бір жазба немесе 404</h3><span class="level level-hard"><span class="visually-hidden">Деңгейі: </span>Күрделі</span></div>
+<p><code>GET /tasks/&lt;int:task_id&gt;</code> жасаңыз. Мұндай нөмірлі тапсырма <code>TASKS</code> сөздігінде болса, оның JSON-ын қайтарыңыз. Болмаса, 404 кодымен <code>{"error": "not found"}</code> қайтарыңыз.</p>
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Шешім: 16. Бір жазба немесе 404">from flask import Flask
+
+app = Flask(__name__)
+TASKS = {
+    1: {"id": 1, "title": "Нан сатып алу"},
+    2: {"id": 2, "title": "Flask-ты үйрену"},
+}
+
+# сіздің маршрутыңыз</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>Кеңес 1.</strong> Мекенжайдағы <code>&lt;int:task_id&gt;</code> жолдың бір бөлігін санға айналдырып, функцияға береді.</li>
+<li hidden tabindex="-1"><strong>Кеңес 2.</strong> Мұндай тапсырма болмаса, <code>TASKS.get(task_id)</code> <code>None</code> қайтарады.</li>
+<li hidden tabindex="-1"><strong>Кеңес 3.</strong> Жоқ тапсырма үшін: <code>return {"error": "not found"}, 404</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>from flask import Flask
+
+app = Flask(__name__)
+TASKS = {
+    1: {"id": 1, "title": "Нан сатып алу"},
+    2: {"id": 2, "title": "Flask-ты үйрену"},
+}
+
+@app.get("/tasks/&lt;int:task_id&gt;")
+def task_detail(task_id):
+    task = TASKS.get(task_id)
+    if task is None:
+        return {"error": "not found"}, 404
+    return task</code></pre></details>
+<template data-kind="tests">client = app.test_client()
+case('client.get("/tasks/2").json', {"id": 2, "title": "Flask-ты үйрену"})
+case('client.get("/tasks/99").status_code', 404, "Жоқ тапсырма үшін 404 коды керек")
+case('client.get("/tasks/99").json', {"error": "not found"})
+case('client.get("/tasks/abc").status_code', 404, "&lt;int:...&gt; тек сандарды өткізеді")</template>
+</article>
+</div>
+</section>
+<!-- tasks:end -->
+<section class="section" aria-label="Әрі қарай">
+<div class="container">
+<div class="cta-panel reveal">
+<div>
+<h2>Көбіне дайынсыз ба?</h2>
+<p class="lead cta-lead">Дерекқоры мен тесттері бар блог API-ын жинаңыз.</p>
+</div>
+<div class="cta-actions"><a class="btn btn-primary" href="../project2.html" hreflang="ru">Бөлімді ашу</a></div>
+</div>
+</div>
+</section>
+
+
+</main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="../about.html" hreflang="ru">Python туралы <span class="ru-mark">(RU)</span></a></li><li><a href="../frameworks.html" hreflang="ru">Фреймворктер <span class="ru-mark">(RU)</span></a></li><li><a href="../databases.html" hreflang="ru">Дерекқорлар <span class="ru-mark">(RU)</span></a></li><li><a href="../templates.html" hreflang="ru">Үлгілер мен формалар <span class="ru-mark">(RU)</span></a></li><li><a href="../auth.html" hreflang="ru">Авторизация <span class="ru-mark">(RU)</span></a></li><li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li><li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="project.html">Алғашқы жоба</a></li><li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li><li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Есептер</a></li><li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="../contacts.html#authors" hreflang="ru">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-09">09.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Сурет: <a href="https://commons.wikimedia.org/wiki/File:Girls_in_Typing_Class(GN08967).jpg" rel="noopener">машинкада басу сыныбы, шамамен 1945, CC0</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Құпиялылық саясаты</a> · <a href="../terms.html" hreflang="ru">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="../contacts.html#no-github" hreflang="ru">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>

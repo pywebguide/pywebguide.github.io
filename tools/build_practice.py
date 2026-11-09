@@ -9,6 +9,7 @@
     python tools/check_tasks.py      # решения проходят тесты, стартовый код — нет
 """
 import html
+import json
 import re
 import sys
 from pathlib import Path
@@ -340,21 +341,39 @@ def pick(value, lang):
     return value
 
 
+# Переводы задач: tools/i18n/practice.json, {язык: {"tasks": {задача: {title, text, hints}}, "code": [[ru, перевод], ...]}}.
+# "code" — замены строк в коде и тестах (приветствия, примеры данных, подсказки проверок); имена в коде не меняются.
+PRACTICE_TR_PATH = ROOT / "tools" / "i18n" / "practice.json"
+PRACTICE_TR = json.loads(PRACTICE_TR_PATH.read_text(encoding="utf-8")) if PRACTICE_TR_PATH.exists() else {}
+
+
+def text_of(slug, field, lang):
+    translated = PRACTICE_TR.get(lang, {}).get("tasks", {}).get(slug, {}).get(field)
+    return translated if translated else pick(TASKS[slug][field], lang)
+
+
+def code_of(slug, field, lang):
+    code = pick(TASKS[slug][field], lang)
+    for ru, tr in PRACTICE_TR.get(lang, {}).get("code", []):
+        code = code.replace(ru, tr)
+    return code
+
+
 def esc(code):
     return html.escape(code, quote=False)
 
 
 def task_html(slug, number, lang):
     task = TASKS[slug]
-    title = f"{number}. {pick(task['title'], lang)}"
+    title = f"{number}. {text_of(slug, 'title', lang)}"
     level = task["level"]
-    hints = pick(task["hints"], lang)
-    rows = max(5, pick(task["starter"], lang).count("\n") + 3)
+    hints = text_of(slug, "hints", lang)
+    rows = max(5, code_of(slug, "starter", lang).count("\n") + 3)
     hint_items = "\n".join(f'<li hidden tabindex="-1"><strong>{pick(UI["hint"], lang)} {i}.</strong> {h}</li>' for i, h in enumerate(hints, 1))
     return f'''<article class="task reveal" data-task="{slug}" data-level="{level}">
 <div class="task-head"><h3>{title}</h3><span class="level level-{level}"><span class="visually-hidden">{pick(UI["level"], lang)}: </span>{LEVELS[level][lang]}</span></div>
-<p>{pick(task["text"], lang)}</p>
-<textarea class="editor-area" rows="{rows}" spellcheck="false" aria-label="{pick(UI["answer"], lang)}: {html.escape(title)}">{esc(pick(task["starter"], lang))}</textarea>
+<p>{text_of(slug, "text", lang)}</p>
+<textarea class="editor-area" rows="{rows}" spellcheck="false" aria-label="{pick(UI["answer"], lang)}: {html.escape(title)}">{esc(code_of(slug, "starter", lang))}</textarea>
 <div class="tool-row"><button class="btn btn-primary" type="button" data-check>{pick(UI["check"], lang)}</button><button class="btn btn-secondary" type="button" data-reset>{pick(UI["reset"], lang)}</button></div>
 <div data-output></div>
 <div class="hints" data-hints>
@@ -363,8 +382,8 @@ def task_html(slug, number, lang):
 {hint_items}
 </ol>
 </div>
-<details class="solution"><summary>{pick(UI["solution"], lang)}</summary><pre><code>{esc(pick(task["solution"], lang))}</code></pre></details>
-<template data-kind="tests">{esc(pick(task["tests"], lang))}</template>
+<details class="solution"><summary>{pick(UI["solution"], lang)}</summary><pre><code>{esc(code_of(slug, "solution", lang))}</code></pre></details>
+<template data-kind="tests">{esc(code_of(slug, "tests", lang))}</template>
 </article>'''
 
 
