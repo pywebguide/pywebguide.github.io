@@ -1,0 +1,315 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из exam.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Python-ның веб-әзірлеудегі рөлі бойынша қорытынды тест — PyWeb Guide</title>
+
+  <meta name="description" content="Бүкіл курс бойынша түсіндірмесі бар 15 сұрақ. 12 және одан көп сұраққа дұрыс жауап берсеңіз, оқу сертификатын жүктеп алуға болады.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/exam.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/exam.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/exam.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/exam.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Python-ның веб-әзірлеудегі рөлі бойынша қорытынды тест — PyWeb Guide">
+  <meta property="og:description" content="Бүкіл курс бойынша түсіндірмесі бар 15 сұрақ. 12 және одан көп сұраққа дұрыс жауап берсеңіз, оқу сертификатын жүктеп алуға болады.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/exam.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffd249">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="yellow" id="top" data-no-toc>
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="project.html">Алғашқы жоба</a></li>
+          <li><a class="nav-link" href="playground.html">Құмсалғыш</a></li>
+          <li><a class="nav-link" href="glossary.html">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">Python туралы</a></li>
+              <li><a href="frameworks.html">Фреймворктер</a></li>
+              <li><a href="databases.html">Дерекқорлар</a></li>
+              <li><a href="templates.html">Үлгілер мен формалар</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Тесттер</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="project2.html">Екінші жоба</a></li>
+              <li><a href="deploy.html">Жариялау</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Есептер</a></li>
+              <li><a href="cheatsheet.html">Қысқаша анықтама</a></li>
+              <li><a href="exam.html" aria-current="page">Қорытынды тест</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../exam.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="exam.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Навигациялық тізбек">
+<a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Қорытынды тест</span>
+</nav>
+<h1>Қорытынды тест</h1>
+<p class="lead">Бүкіл курс бойынша 15 сұрақ. 12 немесе одан көп сұраққа дұрыс жауап беріңіз, сонда оқу сертификатын жүктеп алуға болады. Әрекет саны шектелмеген.</p>
+<img class="band-picture" src="../assets/img/exam-cell.jpg" width="570" height="644" alt="Гравюра: үміткер емтихан жұмысын жеке бөлмеде жазып отыр, Пекин, 1873 жыл" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" id="test" aria-labelledby="test-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="test-title">Сұрақтар</h2>
+<p>Тексергеннен кейін әр сұрақтың астында түсіндірме шығады.</p>
+</div>
+<form class="quiz knowledge-check reveal" novalidate id="exam-form">
+<fieldset data-answer="b">
+<legend>1. Сайттың серверлік бөлігінің коды қайда орындалады?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex1" value="a"> <span>Пайдаланушының браузерінде</span></label>
+<label class="quiz-option"><input type="radio" name="ex1" value="b"> <span>Серверде</span></label>
+<label class="quiz-option"><input type="radio" name="ex1" value="c"> <span>Дерекқорда</span></label>
+</div>
+<p class="check-explain" hidden>Backend серверде жұмыс істейді: сұрауды қабылдайды, логиканы орындайды және жауап қайтарады.</p>
+</fieldset>
+<fieldset data-answer="c">
+<legend>2. Маршруттау не істейді?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex2" value="a"> <span>Беттердің жүктелуін жылдамдатады</span></label>
+<label class="quiz-option"><input type="radio" name="ex2" value="b"> <span>Деректерді дерекқорға сақтайды</span></label>
+<label class="quiz-option"><input type="radio" name="ex2" value="c"> <span>Мекенжайды оны өңдейтін функциямен байланыстырады</span></label>
+</div>
+<p class="check-explain" hidden>Flask-та бұл <code>@app.route</code> декораторы, Django-да — <code>urlpatterns</code> тізімі.</p>
+</fieldset>
+<fieldset data-answer="a">
+<legend>3. Виртуалды орта не үшін керек?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex3" value="a"> <span>Жобаның кітапханаларын жүйенің қалған бөлігінен бөлек сақтау үшін</span></label>
+<label class="quiz-option"><input type="radio" name="ex3" value="b"> <span>Код жылдамырақ жұмыс істеуі үшін</span></label>
+<label class="quiz-option"><input type="radio" name="ex3" value="c"> <span>Сайтты бұзудан қорғау үшін</span></label>
+</div>
+<p class="check-explain" hidden>Әр жобаның кітапханаларының өз нұсқалары болуы мүмкін, және олар бір-біріне кедергі келтірмейді.</p>
+</fieldset>
+<fieldset data-answer="b">
+<legend>4. Қай фреймворк ORM мен әкімші панелін бірден береді?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex4" value="a"> <span>Flask</span></label>
+<label class="quiz-option"><input type="radio" name="ex4" value="b"> <span>Django</span></label>
+<label class="quiz-option"><input type="radio" name="ex4" value="c"> <span>Jinja</span></label>
+</div>
+<p class="check-explain" hidden>Django ORM-мен және әкімші панелімен бірге келеді. Flask минималистік, ал Jinja — үлгілер тілі.</p>
+</fieldset>
+<fieldset data-answer="c">
+<legend>5. Django-дағы миграция деген не?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex5" value="a"> <span>Сайтты басқа хостингке көшіру</span></label>
+<label class="quiz-option"><input type="radio" name="ex5" value="b"> <span>Django-ның өзін жаңарту</span></label>
+<label class="quiz-option"><input type="radio" name="ex5" value="c"> <span>Дерекқор құрылымының өзгерісі сипатталған файл</span></label>
+</div>
+<p class="check-explain" hidden><code>makemigrations</code> командасы осындай файлды жасайды, ал <code>migrate</code> оны дерекқорға қолданады.</p>
+</fieldset>
+<fieldset data-answer="a">
+<legend>6. Пайдаланушыдан келген мәнді SQL-ға қалай дұрыс беру керек?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex6" value="a"> <span>Параметр арқылы: <code>execute("... WHERE id = ?", (user_id,))</code></span></label>
+<label class="quiz-option"><input type="radio" name="ex6" value="b"> <span>f-жол арқылы: <code>execute(f"... WHERE id = {user_id}")</code></span></label>
+<label class="quiz-option"><input type="radio" name="ex6" value="c"> <span>Жолдарды қосу белгісімен біріктіру</span></label>
+</div>
+<p class="check-explain" hidden>Параметрлер SQL-инъекциялардан қорғайды. Жолға қою сұраудың өзін өзгертуге мүмкіндік береді.</p>
+</fieldset>
+<fieldset data-answer="b">
+<legend>7. Jinja үлгісіндегі <code>{{ name }}</code> не істейді?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex7" value="a"> <span>Мәнді дайын HTML ретінде шығарады</span></label>
+<label class="quiz-option"><input type="radio" name="ex7" value="b"> <span>Мәнді шығарып, қауіпті таңбаларды экрандайды</span></label>
+<label class="quiz-option"><input type="radio" name="ex7" value="c"> <span>Мәнді дерекқорға сақтайды</span></label>
+</div>
+<p class="check-explain" hidden>Автоэкрандау XSS-тен қорғайды. Оны <code>|safe</code> сүзгісі өшіреді.</p>
+</fieldset>
+<fieldset data-answer="c">
+<legend>8. Форма сәтті жіберілгеннен кейін неге қайта бағыттау жасау керек?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex8" value="a"> <span>Бет жылдамырақ жүктелуі үшін</span></label>
+<label class="quiz-option"><input type="radio" name="ex8" value="b"> <span>Мұны HTML талап етеді</span></label>
+<label class="quiz-option"><input type="radio" name="ex8" value="c"> <span>Бетті жаңартқанда форма қайта жіберілмеуі үшін</span></label>
+</div>
+<p class="check-explain" hidden>Бұл тәсіл Post/Redirect/Get деп аталады.</p>
+</fieldset>
+<fieldset data-answer="a">
+<legend>9. Пайдаланушылардың құпиясөздерін қалай сақтау керек?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex9" value="a"> <span>Арнайы функциямен тұзы бар хеш түрінде</span></label>
+<label class="quiz-option"><input type="radio" name="ex9" value="b"> <span>Қорғалған кестеде кәдімгі мәтін түрінде</span></label>
+<label class="quiz-option"><input type="radio" name="ex9" value="c"> <span>Кәдімгі md5 түрінде</span></label>
+</div>
+<p class="check-explain" hidden>Хеш кері қайтарылмайды, ал тұз бен баяулату іріктеуді қиындатады. md5 сияқты жылдам хештер құпиясөзге жарамайды.</p>
+</fieldset>
+<fieldset data-answer="b">
+<legend>10. Формадағы CSRF токені неден қорғайды?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex10" value="a"> <span>Құпиясөзді іріктеп табудан</span></label>
+<label class="quiz-option"><input type="radio" name="ex10" value="b"> <span>Пайдаланушының атынан бөгде сайттан форма жіберуден</span></label>
+<label class="quiz-option"><input type="radio" name="ex10" value="c"> <span>SQL-инъекциялардан</span></label>
+</div>
+<p class="check-explain" hidden>Бөгде сайт құпия токенді білмейді, сондықтан оның сұрауы қабылданбайды.</p>
+</fieldset>
+<fieldset data-answer="b">
+<legend>11. Жазба сәтті жасалғаннан кейін қай жауап коды сәйкес келеді?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex11" value="a"> <span>200</span></label>
+<label class="quiz-option"><input type="radio" name="ex11" value="b"> <span>201</span></label>
+<label class="quiz-option"><input type="radio" name="ex11" value="c"> <span>404</span></label>
+</div>
+<p class="check-explain" hidden>201 Created жаңа ресурстың жасалғанын білдіреді.</p>
+</fieldset>
+<fieldset data-answer="c">
+<legend>12. REST API-да жазбаны әдетте қай HTTP әдісі жояды?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex12" value="a"> <span>GET</span></label>
+<label class="quiz-option"><input type="radio" name="ex12" value="b"> <span>POST</span></label>
+<label class="quiz-option"><input type="radio" name="ex12" value="c"> <span>DELETE</span></label>
+</div>
+<p class="check-explain" hidden>GET тек деректерді оқиды және ештеңені өзгертпеуі керек.</p>
+</fieldset>
+<fieldset data-answer="a">
+<legend>13. Flask-та <code>app.test_client()</code> не істейді?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex13" value="a"> <span>Қосымшаға нақты серверсіз сұрау жібереді</span></label>
+<label class="quiz-option"><input type="radio" name="ex13" value="b"> <span>Сайтты браузерде ашады</span></label>
+<label class="quiz-option"><input type="radio" name="ex13" value="c"> <span>Сайтты интернетке жариялайды</span></label>
+</div>
+<p class="check-explain" hidden>Сондықтан тесттер жылдам жұмыс істейді және серверді іске қосуды қажет етпейді.</p>
+</fieldset>
+<fieldset data-answer="c">
+<legend>14. <code>git commit</code> командасы не істейді?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex14" value="a"> <span>Кодты GitHub-қа жібереді</span></label>
+<label class="quiz-option"><input type="radio" name="ex14" value="b"> <span>GitHub-тан өзгерістерді жүктейді</span></label>
+<label class="quiz-option"><input type="radio" name="ex14" value="c"> <span>Дайындалған өзгерістердің суретін жергілікті тарихқа сақтайды</span></label>
+</div>
+<p class="check-explain" hidden>Кодты GitHub-қа <code>git push</code> жібереді.</p>
+</fieldset>
+<fieldset data-answer="b">
+<legend>15. Ашық серверде нені қалдыруға болмайды?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex15" value="a"> <span><code>requirements.txt</code> файлын</span></label>
+<label class="quiz-option"><input type="radio" name="ex15" value="b"> <span><code>DEBUG = True</code> және ашық репозиторийдегі құпия кілтті</span></label>
+<label class="quiz-option"><input type="radio" name="ex15" value="c"> <span>Статикалық файлдар қалтасын</span></label>
+</div>
+<p class="check-explain" hidden>Жөндеу режимінде келушілер баптаулар мен код үзінділерін көреді, ал ашылған кілт сессияларды жасауға мүмкіндік береді.</p>
+</fieldset>
+<div class="quiz-actions tool-row">
+<button class="btn btn-primary" type="submit">Жауаптарды тексеру</button>
+<button class="btn btn-secondary" type="reset">Қайта бастау</button>
+</div>
+<p class="check-score" role="status" aria-live="polite"></p>
+</form>
+<div class="panel stack-gap" id="certificate" hidden>
+<h3>Құттықтаймыз! Тест өтті</h3>
+<label class="cert-field" for="cert-name">Сертификаттағы есім <input id="cert-name" name="cert-name" type="text" maxlength="60" autocomplete="name" placeholder="Мысалы, Әйгерім Сейітова…"></label>
+<canvas class="cert-canvas" id="cert-canvas" width="1200" height="630" role="img" aria-label="Сертификатты алдын ала қарау"></canvas>
+<div class="tool-row"><button class="btn btn-primary" type="button" id="cert-print-btn">Басып шығару немесе PDF-ке сақтау</button><button class="btn btn-secondary" type="button" id="cert-download">PNG жүктеу</button></div>
+<p class="note">Сертификатты әрқашан <a href="../progress.html#certificate-section" hreflang="ru">«Менің прогресім»</a> бетінде қайта ашуға болады.</p>
+<p class="note stack-gap">Сертификат тікелей браузерде жасалады, ал есім ешқайда жіберілмейді және сақталмайды. Бұл ресми құжат емес, өзін-өзі тексеруге арналған оқу сертификаты.</p>
+</div>
+</div>
+</section>
+
+
+</main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="playground.html">Құмсалғыш</a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="about.html">Python туралы</a></li><li><a href="frameworks.html">Фреймворктер</a></li><li><a href="databases.html">Дерекқорлар</a></li><li><a href="templates.html">Үлгілер мен формалар</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесттер</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="project.html">Алғашқы жоба</a></li><li><a href="project2.html">Екінші жоба</a></li><li><a href="deploy.html">Жариялау</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Есептер</a></li><li><a href="cheatsheet.html">Қысқаша анықтама</a></li><li><a href="exam.html">Қорытынды тест</a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="../contacts.html#authors" hreflang="ru">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-09">09.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Сурет: <a href="https://commons.wikimedia.org/wiki/File:Sketches_in_China._(1873).jpg" rel="noopener">Пекиндегі емтихан, 1873 жылғы гравюра</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Құпиялылық саясаты</a> · <a href="../terms.html" hreflang="ru">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="../contacts.html#no-github" hreflang="ru">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>

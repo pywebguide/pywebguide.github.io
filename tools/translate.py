@@ -230,8 +230,29 @@ def build(lang, slug, memory=None, write=True):
     missing = []
     out = []
     last = 0
-    for kind, start, end, text, _ in parse(source):
+    units = parse(source)
+    texts = [(u[1], u[2]) for u in units if u[0] == "text"]
+
+    def inner_attrs(fragment):
+        # Атрибут тега внутри переводимого фрагмента (placeholder у <input> в <label>) переводится из памяти тут же
+        def fix(m):
+            name, value = m.group(1), html.unescape(m.group(2))
+            if name.lower() not in ATTRS or not CYRILLIC.search(value):
+                return m.group(0)
+            translated = memory.get(norm(value))
+            if translated is None:
+                missing.append(norm(value))
+                return m.group(0)
+            return f' {name}="{html.escape(translated, quote=True)}"'
+        return re.sub(r"<[a-zA-Z][^>]*>", lambda t: re.sub(r'\s([a-zA-Z:-]+)="([^"]*)"', fix, t.group(0)), fragment)
+
+    for kind, start, end, text, _ in units:
         key = norm(html.unescape(text)) if kind == "attr" else norm(text)
+        if kind == "attr" and any(s <= start < e for s, e in texts):
+            # Переведётся вместе с фрагментом, в который входит; в список на перевод попадает сам
+            if key not in memory and key not in missing:
+                missing.append(key)
+            continue
         value = memory.get(key)
         if value is None:
             missing.append(key)
@@ -240,7 +261,7 @@ def build(lang, slug, memory=None, write=True):
             value = html.escape(value, quote=True)
         else:
             dates = iter(TIME.findall(text))
-            value = re.sub(r"<time>", lambda m: next(dates), value)
+            value = inner_attrs(re.sub(r"<time>", lambda m: next(dates), value))
         out.append(source[last:start])
         out.append(value)
         last = end
