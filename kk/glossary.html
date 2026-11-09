@@ -1,0 +1,320 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из glossary.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Веб-әзірлеу сөздігі қарапайым тілмен — PyWeb Guide</title>
+
+  <meta name="description" content="Сервер, backend, фреймворк, дерекқор, API деген не және веб-әзірлеудегі басқа да сөздер. Жаңадан бастағандарға қарапайым тілмен түсіндірілген.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/glossary.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/glossary.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/glossary.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/glossary.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Веб-әзірлеу сөздігі қарапайым тілмен — PyWeb Guide">
+  <meta property="og:description" content="Сервер, backend, фреймворк, дерекқор, API деген не және веб-әзірлеудегі басқа да сөздер. Жаңадан бастағандарға қарапайым тілмен түсіндірілген.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/glossary.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffc4ef">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="pink" id="top" data-no-toc>
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="../project.html" hreflang="ru">Алғашқы жоба <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link active" href="glossary.html" aria-current="page">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="../about.html" hreflang="ru">Python туралы <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../frameworks.html" hreflang="ru">Фреймворктер <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../databases.html" hreflang="ru">Дерекқорлар <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../templates.html" hreflang="ru">Үлгілер мен формалар <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../auth.html" hreflang="ru">Авторизация <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="../practice.html" hreflang="ru">Есептер <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../glossary.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="glossary.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Навигациялық тізбек">
+<a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Сөздік</span>
+</nav>
+<h1>Қарапайым тілдегі сөздік</h1>
+<p class="lead">Осы сайтта кездесетін сөздердің мағынасы. Қайсыбірін ұмытып қалсаңыз, осында қараңыз.</p>
+<img class="band-picture" src="../assets/img/dictionary.jpg" width="1000" height="703" alt="Шоуэлл сөздігінің титул беті, 1885 жыл" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section glossary-search-band" aria-label="Сөздік бойынша іздеу">
+<div class="container">
+<div class="glossary-search">
+  <label for="glossary-filter">Сөзді табу</label>
+  <input id="glossary-filter" type="search" autocomplete="off" spellcheck="false" placeholder="Мысалы: порт, venv, 404…" data-glossary-filter>
+  <p class="note" role="status" aria-live="polite" data-glossary-count></p>
+</div>
+</div>
+</section>
+<section class="section" aria-label="Сайт қалай құрылған">
+<div class="container">
+<div class="section-head"><h2>Сайт қалай құрылған</h2></div>
+<div class="card-grid glossary-grid">
+  <article class="card">
+    <h3 id="browser">Браузер</h3>
+    <p>Сайттарды ашатын бағдарлама: Chrome, Safari, Firefox.</p>
+  </article>
+  <article class="card">
+    <h3 id="server">Сервер</h3>
+    <p>Әрдайым қосулы тұратын, интернетке қосылған компьютер. Сайттың бағдарламасы осында жұмыс істейді.</p>
+  </article>
+  <article class="card">
+    <h3 id="http">Сұрау, жауап және HTTP</h3>
+    <p>Браузер серверден бетті сұрайды — бұл сұрау. Сервер оны кері жібереді — бұл жауап. HTTP — олардың бір-бірімен сөйлесу ережелері.</p>
+  </article>
+  <article class="card">
+    <h3 id="frontend">Frontend</h3>
+    <p>Бетте көретін нәрсенің бәрі: мәтін, батырмалар, безендіру. Браузерде жұмыс істейді.</p>
+  </article>
+  <article class="card">
+    <h3 id="backend">Backend</h3>
+    <p>Сайттың көзге көрінбейтін бөлігі: сұрауды қабылдап, деректерді тауып, жауап дайындайтын сервердегі бағдарлама. Python осында жұмыс істейді.</p>
+  </article>
+  <article class="card">
+    <h3 id="route">Маршрут</h3>
+    <p>Қай мекенжай қай бетті ашатынын анықтайтын ереже. Мысалы, /contacts мекенжайы байланыс бетін ашады.</p>
+  </article>
+  <article class="card">
+    <h3 id="html">HTML</h3>
+    <p>Беттің мазмұны: тақырыптар, абзацтар, сілтемелер, суреттер.</p>
+  </article>
+  <article class="card">
+    <h3 id="css">CSS</h3>
+    <p>Беттің безендірілуі: түстер, қаріптер, блоктардың орналасуы.</p>
+  </article>
+  <article class="card">
+    <h3 id="javascript">JavaScript</h3>
+    <p>Браузерде жұмыс істейтін бағдарламалау тілі. Бетті жандандырады: батырмалар, мәзір, формаларды тексеру.</p>
+  </article>
+  <article class="card">
+    <h3 id="localhost">127.0.0.1, localhost және порт</h3>
+    <p>127.0.0.1 мекенжайы (оны localhost деп те атайды) «осы компьютер» дегенді білдіреді. Порт — бағдарлама күтіп тұрған «есіктің» нөмірі. http://127.0.0.1:5000 мекенжайы сіздің компьютеріңізде іске қосылған сайтты 5000 есігі арқылы ашады. Оны басқа адамдар көрмейді.</p>
+  </article>
+  <article class="card">
+    <h3 id="status-codes">Жауап кодтары: 200, 404, 405</h3>
+    <p>Сервер жауабының басындағы сан. 200 — бәрі жақсы, бет берілді. 404 — мұндай мекенжай жоқ. 405 — мекенжай бар, бірақ оған бұлай жүгінуге болмайды: мысалы, тек қарауға болатын жерге (GET) форма жіберу (POST).</p>
+  </article>
+  <article class="card">
+    <h3 id="json">JSON</h3>
+    <p>Бағдарламалар арасында деректер алмасуға арналған мәтіндік формат. Python сөздігіне ұқсайды: {&quot;title&quot;: &quot;Нан сатып алу&quot;, &quot;done&quot;: false}. API осылай жауап береді.</p>
+  </article>
+  <article class="card">
+    <h3 id="csrf">CSRF</h3>
+    <p>Бөгде сайт пайдаланушының атынан сіздің сайтыңызға форманы жасырын жіберетін шабуыл. Қорғаныс — әр формадағы құпия токен: Django оны {% csrf_token %} тегімен қосады.</p>
+  </article>
+</div>
+</div>
+</section>
+<section class="section" aria-label="Python және құралдар">
+<div class="container">
+<div class="section-head"><h2>Python және құралдар</h2></div>
+<div class="card-grid glossary-grid">
+  <article class="card">
+    <h3 id="python">Python</h3>
+    <p>Ережелері қарапайым бағдарламалау тілі. Онымен сайттар, деректерді талдау және автоматтандыру жазылады. <a href="start.html">Нөлден бастайтын сабақтар</a>.</p>
+  </article>
+  <article class="card">
+    <h3 id="framework">Фреймворк</h3>
+    <p>Сайт құрастыруға арналған дайын құралдар жиынтығы. Онымен бәрін өзіңіз жазудың қажеті жоқ. <a href="../frameworks.html" hreflang="ru">Фреймворктерді салыстыру</a>.</p>
+  </article>
+  <article class="card">
+    <h3 id="django">Django</h3>
+    <p>Үлкен фреймворк. Құпиясөзбен кіруді, басқару панелін және деректермен жұмысты бірден біледі. Гитарист Джанго Рейнхардттың құрметіне аталған.</p>
+  </article>
+  <article class="card">
+    <h3 id="flask">Flask</h3>
+    <p>Шағын фреймворк. Тек негізін береді, қалғаны қажетіне қарай қосылады. Алғашқы сайтқа жақсы.</p>
+  </article>
+  <article class="card">
+    <h3 id="terminal">Терминал</h3>
+    <p>Компьютерге тінтуірмен емес, мәтінмен команда беретін терезе. Windows-та бұл PowerShell немесе «Пәрмен жолы», macOS пен Linux-та — «Терминал».</p>
+  </article>
+  <article class="card">
+    <h3 id="pip">pip</h3>
+    <p>Python-ға арналған пакеттерді жүктеп, орнататын бағдарлама. pip install flask командасы Flask-ты орнатады.</p>
+  </article>
+  <article class="card">
+    <h3 id="venv">Виртуалды орта (venv)</h3>
+    <p>Бір жобаның пакеттері сақталатын жеке қалта. Әр жобаның пакеттері бір-біріне кедергі келтірмейді. python -m venv .venv командасымен жасалады.</p>
+  </article>
+  <article class="card">
+    <h3 id="view">Көрініс (view)</h3>
+    <p>Сұрауды қабылдап, жауап қайтаратын функция. Flask-та оны маршрут өңдегіші деп, Django-да view деп атайды.</p>
+  </article>
+  <article class="card">
+    <h3 id="template">Үлгі</h3>
+    <p>Бағдарлама деректермен толтыратын бос орындары бар HTML-бет. Мысалы, {{ title }} орнына тапсырманың атауы қойылады. <a href="../templates.html" hreflang="ru">Үлгілер туралы бөлім</a>.</p>
+  </article>
+</div>
+</div>
+</section>
+<section class="section" aria-label="Деректер">
+<div class="container">
+<div class="section-head"><h2>Деректер</h2></div>
+<div class="card-grid glossary-grid">
+  <article class="card">
+    <h3 id="database">Дерекқор</h3>
+    <p>Деректерді іздеуге және өзгертуге оңай жазбалар қоймасы: пайдаланушылар, тауарлар, тапсырыстар. <a href="../databases.html" hreflang="ru">Дерекқорлар туралы бөлім</a>.</p>
+  </article>
+  <article class="card">
+    <h3 id="sql">SQL</h3>
+    <p>Дерекқорға сұрау жазатын тіл. Мысалы: «әлі орындалмаған барлық тапсырмаларды көрсет».</p>
+  </article>
+  <article class="card">
+    <h3 id="sqlite">SQLite</h3>
+    <p>Бір файлда сақталатын қарапайым дерекқор. Оқуға және шағын жобаларға ыңғайлы.</p>
+  </article>
+  <article class="card">
+    <h3 id="orm">ORM</h3>
+    <p>SQL-сұрауларды қолмен жазбай-ақ, дерекқормен Python тілінде жұмыс істеу тәсілі.</p>
+  </article>
+  <article class="card">
+    <h3 id="model">Модель</h3>
+    <p>Дерекқордағы кестенің Python тіліндегі сипаттамасы: жазбаның қандай өрістері бар және олардың түрі қандай. Мысалы, тапсырманың атауы және «орындалды» белгісі бар.</p>
+  </article>
+  <article class="card">
+    <h3 id="migration">Миграция</h3>
+    <p>Дерекқордағы кестелерді қалай өзгерту керегі жазылған нұсқау: кесте немесе өріс қосу. Django-да оны makemigrations жасайды, ал migrate қолданады.</p>
+  </article>
+  <article class="card">
+    <h3 id="crud">CRUD</h3>
+    <p>Жазбалармен жасалатын төрт негізгі әрекет: құру, оқу, өзгерту және жою. Олар кез келген сайтта дерлік бар.</p>
+  </article>
+</div>
+</div>
+</section>
+<section class="section" aria-label="Жобамен жұмыс">
+<div class="container">
+<div class="section-head"><h2>Жобамен жұмыс</h2></div>
+<div class="card-grid glossary-grid">
+  <article class="card">
+    <h3 id="api">API және REST API</h3>
+    <p>Бағдарламалардың бір-бірімен байланысу тәсілі. Мысалы, ауа райы қосымшасы серверден деректерді API арқылы алады.</p>
+  </article>
+  <article class="card">
+    <h3 id="git">Git</h3>
+    <p>Коддағы өзгерістер тарихын сақтайтын бағдарлама. Кез келген нұсқаға қайта оралуға болады. <a href="../git.html" hreflang="ru">Git туралы бөлім</a>.</p>
+  </article>
+  <article class="card">
+    <h3 id="deploy">Deploy (жариялау)</h3>
+    <p>Басқа адамдар аша алуы үшін сайтты интернетке шығару. <a href="../deploy.html" hreflang="ru">Сайтты қалай жариялау керек</a>.</p>
+  </article>
+</div>
+</div>
+</section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="../about.html" hreflang="ru">Python туралы <span class="ru-mark">(RU)</span></a></li><li><a href="../frameworks.html" hreflang="ru">Фреймворктер <span class="ru-mark">(RU)</span></a></li><li><a href="../databases.html" hreflang="ru">Дерекқорлар <span class="ru-mark">(RU)</span></a></li><li><a href="../templates.html" hreflang="ru">Үлгілер мен формалар <span class="ru-mark">(RU)</span></a></li><li><a href="../auth.html" hreflang="ru">Авторизация <span class="ru-mark">(RU)</span></a></li><li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li><li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="../project.html" hreflang="ru">Алғашқы жоба <span class="ru-mark">(RU)</span></a></li><li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li><li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="../practice.html" hreflang="ru">Есептер <span class="ru-mark">(RU)</span></a></li><li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="../contacts.html#authors" hreflang="ru">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-09">09.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Сурет: <a href="https://commons.wikimedia.org/wiki/File:Showell%27s_Dictionary_of_Birmingham_-_title_page.jpg" rel="noopener">Шоуэлл сөздігінің титул беті, 1885</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Құпиялылық саясаты</a> · <a href="../terms.html" hreflang="ru">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="../contacts.html#no-github" hreflang="ru">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>

@@ -187,14 +187,16 @@ def relink_body(text, lang):
         return text
 
     def fix(m):
-        target = m.group(1)
-        return f'href="{target}"' if exists(lang, target.split("#")[0]) else m.group(0)
+        tag = m.group(0)
+        target = re.search(r'\shref="\.\./([a-z0-9]+\.html)(#[^"]*)?"', tag)
+        if 'hreflang="ru"' not in tag or not target or not exists(lang, target.group(1)):
+            return tag
+        tag = tag.replace(target.group(0), f' href="{target.group(1)}{target.group(2) or ""}"', 1)
+        return re.sub(r'\s+hreflang="ru"', "", tag, count=1)
 
-    def main(m):
-        return re.sub(r'href="\.\./([a-z0-9]+\.html(?:#[^"]*)?)"\s+hreflang="ru"', fix, m.group(0))
-
-    # Только внутри <main>: в шапке ссылка «РУС» должна вести на русскую страницу
-    return re.sub(r"<main.*?</main>", main, text, count=1, flags=re.S)
+    # Везде, кроме выбора языка: там ссылка «РУС» должна вести на русскую страницу
+    parts = re.split(r'(<li class="nav-lang".*?</li>)', text, maxsplit=1, flags=re.S)
+    return "".join(part if part.startswith('<li class="nav-lang"') else re.sub(r"<a\b[^>]*>", fix, part) for part in parts)
 
 
 def apply(path):

@@ -1,8 +1,8 @@
 /* Service worker PyWeb Guide: офлайн и быстрые повторные визиты.
    VERSION и PRECACHE вписывает tools/build_sw.py по содержимому файлов сайта: любая правка
    меняет версию, новый worker ставится, а кэш прошлой версии удаляется. Руками не править. */
-const VERSION = "pyweb-1cc9cd03ae";
-const PRECACHE = ["/", "/kk/", "/en/", "/about.html", "/api.html", "/auth.html", "/cheatsheet.html", "/contacts.html", "/course.html", "/databases.html", "/deploy.html", "/en/index.html", "/en/start.html", "/exam.html", "/frameworks.html", "/git.html", "/glossary.html", "/index.html", "/kk/index.html", "/kk/start.html", "/playground.html", "/practice.html", "/privacy.html", "/progress.html", "/project.html", "/project2.html", "/start.html", "/templates.html", "/terms.html", "/testing.html", "/styles.css", "/script.js", "/features.js", "/assets/i18n.js", "/assets/checker.py", "/assets/icon.svg", "/assets/icon-192.png", "/manifest.webmanifest"];
+const VERSION = "pyweb-37b477e620";
+const PRECACHE = ["/", "/kk/", "/en/", "/about.html", "/api.html", "/auth.html", "/cheatsheet.html", "/contacts.html", "/course.html", "/databases.html", "/deploy.html", "/en/index.html", "/en/start.html", "/exam.html", "/frameworks.html", "/git.html", "/glossary.html", "/index.html", "/kk/glossary.html", "/kk/index.html", "/kk/start.html", "/playground.html", "/practice.html", "/privacy.html", "/progress.html", "/project.html", "/project2.html", "/start.html", "/templates.html", "/terms.html", "/testing.html", "/styles.css", "/script.js", "/features.js", "/assets/i18n.js", "/assets/checker.py", "/assets/icon.svg", "/assets/icon-192.png", "/manifest.webmanifest"];
 
 const SITE_CACHE = "site-" + VERSION;
 // Pyodide и пакеты с PyPI лежат по адресам с номером версии и не меняются: им отдельный кэш без версии сайта

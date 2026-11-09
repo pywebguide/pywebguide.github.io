@@ -27,6 +27,8 @@ jobs:
         run: |
           python tools/sync_examples.py --check
           cd examples/flask-todo && python -m unittest test_app && cd ../django-todo && python manage.py test
+      - name: Переводы kk/ и en/ не отстали от русских страниц
+        run: python tools/translate.py check
       - name: Версия кэша service worker актуальна
         run: python tools/build_sw.py --check
       - name: Индекс поиска актуален
