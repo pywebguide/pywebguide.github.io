@@ -43,6 +43,7 @@
   <url><loc>https://pywebguide.github.io/databases.html</loc><lastmod>2026-11-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/databases.html"/>
     <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/databases.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/databases.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/databases.html"/>
   </url>
   <url><loc>https://pywebguide.github.io/templates.html</loc><lastmod>2026-11-09</lastmod>
@@ -165,6 +166,7 @@
   <url><loc>https://pywebguide.github.io/kk/databases.html</loc><lastmod>2026-11-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/databases.html"/>
     <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/databases.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/databases.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/databases.html"/>
   </url>
   <url><loc>https://pywebguide.github.io/kk/templates.html</loc><lastmod>2026-11-09</lastmod>
@@ -273,6 +275,12 @@
     <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/frameworks.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/frameworks.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/frameworks.html"/>
+  </url>
+  <url><loc>https://pywebguide.github.io/en/databases.html</loc><lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/databases.html"/>
+    <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/databases.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/databases.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/databases.html"/>
   </url>
   <url><loc>https://pywebguide.github.io/en/project.html</loc><lastmod>2026-11-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/project.html"/>
