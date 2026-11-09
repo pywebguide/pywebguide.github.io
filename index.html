@@ -93,25 +93,30 @@
           <li><a class="nav-link" href="glossary.html">Словарь</a></li>
           <li class="nav-more"><details>
           <summary class="nav-link">Ещё <span class="caret" aria-hidden="true"></span></summary>
-          <ul class="nav-more-list">
-            <li><a href="about.html">О Python</a></li>
-            <li><a href="frameworks.html">Фреймворки</a></li>
-            <li><a href="databases.html">Базы данных</a></li>
-            <li><a href="deploy.html">Публикация</a></li>
-            <li class="sep" role="presentation"></li>
-            <li><a href="templates.html">Шаблоны и формы</a></li>
-            <li><a href="auth.html">Авторизация</a></li>
-            <li><a href="api.html">REST API</a></li>
-            <li><a href="testing.html">Тесты</a></li>
-            <li><a href="git.html">Git</a></li>
-            <li><a href="project2.html">Второй проект</a></li>
-            <li class="sep" role="presentation"></li>
-            <li><a href="practice.html">Задачи</a></li>
-            <li><a href="cheatsheet.html">Шпаргалка</a></li>
-            <li><a href="exam.html">Финальный тест</a></li>
-            <li class="sep" role="presentation"></li>
-            <li><a href="contacts.html">Контакты</a></li>
-          </ul>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Понять</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">О Python</a></li>
+              <li><a href="frameworks.html">Фреймворки</a></li>
+              <li><a href="databases.html">Базы данных</a></li>
+              <li><a href="templates.html">Шаблоны и формы</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Тесты</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Сделать</p><ul aria-labelledby="nav-group-2">
+              <li><a href="project2.html">Второй проект</a></li>
+              <li><a href="deploy.html">Публикация</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Задачи</a></li>
+              <li><a href="cheatsheet.html">Шпаргалка</a></li>
+              <li><a href="exam.html">Финальный тест</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul></div>
+          </div>
         </details></li>
           <li class="nav-lang" aria-label="Язык сайта">
             <a href="index.html" hreflang="ru" lang="ru" aria-current="true">РУС</a>
@@ -176,8 +181,8 @@ print("Привет,", name)</code></pre>
       <section class="board" aria-labelledby="intro-title">
         <div class="container">
           <div class="board-grid">
-            <div class="tile tile-a field-ink reveal"><h2 id="intro-title" class="slogan"><span class="m"><span>Ничего не</span></span><span class="m"><span>нужно знать</span></span></h2></div>
-            <div class="tile tile-b field-cyan reveal"><p class="slogan"><span>7</span><span>уроков</span></p></div>
+            <div class="tile tile-a field-ink reveal"><h2 id="intro-title" class="slogan"><span class="m"><span>Ничего не</span></span> <span class="m"><span>нужно знать</span></span></h2></div>
+            <div class="tile tile-b field-cyan reveal"><p class="slogan"><span>7</span> <span>уроков</span></p></div>
             <div class="tile tile-c field-orange reveal"><img src="assets/img/eniac.jpg" width="900" height="617" alt="Две женщины настраивают компьютер ENIAC у панелей с кабелями, 1946 год" loading="lazy" decoding="async"></div>
           </div>
           <div class="tile tile-text field-white reveal">
@@ -218,7 +223,7 @@ print("Привет,", name)</code></pre>
               <span class="stage-block field-cyan">1 тест</span>
               <div class="timeline-content">
                 <h3>Выберите инструмент</h3>
-                <p>Готовых наборов для сборки сайта два: Flask и Django. <a href="frameworks.html#quiz">Мини-тест</a> подскажет, какой взять.</p>
+                <p>Для первого сайта подойдут два: Flask и Django. <a href="frameworks.html#quiz">Мини-тест</a> подскажет, какой взять.</p>
                 <label class="step-check"><input type="checkbox" data-step="3"> Шаг пройден</label>
               </div>
             </div>
@@ -254,8 +259,8 @@ print("Привет,", name)</code></pre>
               <span class="part-bar field-yellow"><strong>Маршрут</strong><span>Соединяет адрес с нужной страницей, как телефонистка соединяла звонки.</span></span>
             </a>
             <a class="part part-server field-cyan reveal" href="glossary.html#server">
-              <img src="assets/img/eniac.jpg" width="900" height="617" alt="Женщина настраивает панели компьютера ENIAC, 1946 год" loading="lazy" decoding="async">
-              <span class="part-bar field-cyan"><strong>Сервер</strong><span>Компьютер, на котором работает программа сайта. На снимке ENIAC, 1946 год.</span></span>
+              <img src="assets/img/ibm-704.jpg" width="900" height="713" alt="Сотрудники лаборатории NACA работают с вычислительной машиной IBM 704, 1957 год" loading="lazy" decoding="async">
+              <span class="part-bar field-cyan"><strong>Сервер</strong><span>Компьютер, на котором работает программа сайта. На снимке IBM 704, 1957 год.</span></span>
             </a>
             <a class="part part-base field-orange reveal" href="glossary.html#database">
               <img src="assets/img/card-catalog.jpg" width="900" height="675" alt="Ряды ящиков карточного каталога в Библиотеке Конгресса" loading="lazy" decoding="async">
@@ -323,9 +328,9 @@ print("Привет,", name)</code></pre>
           <h2 id="ideas-title" class="band-title reveal">Что можно сделать</h2>
           <div class="ideas">
             <article class="idea field-yellow reveal"><h3>Список задач</h3><p>Добавлять, удалять и отмечать дела: самый простой настоящий сайт. <a href="project.html">Пошаговая инструкция</a>.</p></article>
-            <article class="idea field-pink reveal"><h3>Мини-блог</h3><p>Статьи, рубрики и отдельная страница для каждой статьи.</p></article>
-            <article class="idea field-cyan reveal"><h3>Сокращатель ссылок</h3><p>Длинная ссылка превращается в короткую. Простая логика и база данных.</p></article>
-            <article class="idea field-orange reveal"><h3>Портфолио</h3><p>Личный сайт с проектами, контактами и красивой подачей материалов.</p></article>
+            <article class="idea field-pink reveal"><h3>Мини-блог</h3><p>Статьи, рубрики и отдельная страница для каждой статьи. <a href="project2.html">Второй проект по шагам</a>.</p></article>
+            <article class="idea field-cyan reveal"><h3>Сокращатель ссылок</h3><p>Длинная ссылка превращается в короткую. Простая логика и база данных.</p><p class="idea-tag">Идея для самостоятельной работы</p></article>
+            <article class="idea field-orange reveal"><h3>Портфолио</h3><p>Личный сайт с проектами, контактами и красивой подачей материалов.</p><p class="idea-tag">Идея для самостоятельной работы</p></article>
           </div>
         </div>
       </section>
@@ -405,15 +410,16 @@ print("Это моя первая программа")</code></pre>
       <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
       <div class="footer-links">
         <div><strong>Начать</strong><ul><li><a href="start.html">Python с нуля</a></li><li><a href="glossary.html">Словарь</a></li><li><a href="playground.html">Песочница</a></li></ul></div>
-        <div><strong>Понять</strong><ul><li><a href="about.html">О Python</a></li><li><a href="frameworks.html">Фреймворки</a></li><li><a href="databases.html">Базы данных</a></li></ul></div>
-        <div><strong>Сделать</strong><ul><li><a href="project.html">Первый проект</a></li><li><a href="deploy.html">Публикация</a></li><li><a href="practice.html">Задачи</a></li></ul></div>
-        <div><strong>Сайт</strong><ul><li><a href="course.html">Весь курс</a></li><li><a href="contacts.html">Контакты</a></li><li><a href="index.html">Главная</a></li></ul></div>
+        <div><strong>Понять</strong><ul><li><a href="about.html">О Python</a></li><li><a href="frameworks.html">Фреймворки</a></li><li><a href="databases.html">Базы данных</a></li><li><a href="templates.html">Шаблоны и формы</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесты</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Сделать</strong><ul><li><a href="project.html">Первый проект</a></li><li><a href="project2.html">Второй проект</a></li><li><a href="deploy.html">Публикация</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Задачи</a></li><li><a href="cheatsheet.html">Шпаргалка</a></li><li><a href="exam.html">Финальный тест</a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="course.html">Весь курс</a></li><li><a href="contacts.html">Контакты</a></li></ul></div>
       </div>
       <p class="footer-copy">© 2026 PyWeb Guide, учебный проект о Python в веб-разработке</p>
-      <p class="note footer-note">Автор: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Обновлено: <time datetime="2026-11-06">06.11.2026</time> · Версии в примерах: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Исходный код на GitHub</a></p>
-      <p class="note footer-note">Снимки: <a href="https://commons.wikimedia.org/wiki/File:Two_women_operating_ENIAC_(full_resolution).jpg" rel="noopener">ENIAC</a>, армия США; <a href="https://commons.wikimedia.org/wiki/File:Photograph_of_Women_Working_at_a_Bell_System_Telephone_Switchboard_(3660047829).jpg" rel="noopener">коммутатор Bell</a>, Национальный архив США; <a href="https://commons.wikimedia.org/wiki/File:Copyright_Card_Catalog_Files.jpg" rel="noopener">каталог</a>, Michael Holley; <a href="https://commons.wikimedia.org/wiki/File:Django_Reinhardt_(Gottlieb_07301).jpg" rel="noopener">Джанго Рейнхардт</a>, William P. Gottlieb, Библиотека Конгресса; <a href="https://www.rawpixel.com/image/13959871/image-paper-cartoon-art" rel="noopener">гравюра со змеями</a>, rawpixel, CC0. Остальные снимки в общественном достоянии.</p>
+      <p class="note footer-note">Автор: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Обновлено: <time datetime="2026-11-09">09.11.2026</time> · Версии в примерах: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Исходный код на GitHub</a></p>
+      <p class="note footer-note">Снимки: <a href="https://commons.wikimedia.org/wiki/File:Two_women_operating_ENIAC_(full_resolution).jpg" rel="noopener">ENIAC</a>, армия США; <a href="https://commons.wikimedia.org/wiki/File:IBM_Electronic_Data_Processing_Machine_-_GPN-2000-001881.jpg" rel="noopener">IBM 704</a>, NASA; <a href="https://commons.wikimedia.org/wiki/File:Photograph_of_Women_Working_at_a_Bell_System_Telephone_Switchboard_(3660047829).jpg" rel="noopener">коммутатор Bell</a>, Национальный архив США; <a href="https://commons.wikimedia.org/wiki/File:Copyright_Card_Catalog_Files.jpg" rel="noopener">каталог</a>, Michael Holley; <a href="https://commons.wikimedia.org/wiki/File:Django_Reinhardt_(Gottlieb_07301).jpg" rel="noopener">Джанго Рейнхардт</a>, William P. Gottlieb, Библиотека Конгресса; <a href="https://www.rawpixel.com/image/13959871/image-paper-cartoon-art" rel="noopener">гравюра со змеями</a>, rawpixel, CC0. Остальные снимки в общественном достоянии.</p>
       <p class="note footer-note"><a href="privacy.html">Политика конфиденциальности</a> · <a href="terms.html">Условия использования</a></p>
-      <p class="note footer-note">Сайт учебный. Сообщения с формы отправляются через публичный раздел Issues на GitHub.</p>
+      <p class="note footer-note">Сайт учебный. Сообщения с формы отправляются через публичный раздел Issues на GitHub. Без аккаунта GitHub можно <a href="contacts.html#no-github">написать напрямую</a>.</p>
     </div>
   </footer>
 

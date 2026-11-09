@@ -498,5 +498,29 @@
    "Кадрировано, переведено в чёрно-белое для печати по цветному полю."
   ],
   "saved": "2026-11-05T17:36:28.589Z"
+ },
+ {
+  "file": "assets/img/ibm-704.jpg",
+  "media": "image",
+  "ref": "commons:IBM_Electronic_Data_Processing_Machine_-_GPN-2000-001881.jpg",
+  "title": "IBM Electronic Data Processing Machine - GPN-2000-001881",
+  "creator": "NASA",
+  "creatorUrl": null,
+  "date": "1957-03-21",
+  "license": "public domain",
+  "licenseCode": "pd",
+  "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+  "creditRequired": false,
+  "page": "https://commons.wikimedia.org/wiki/File:IBM_Electronic_Data_Processing_Machine_-_GPN-2000-001881.jpg",
+  "via": "Wikimedia Commons",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/IBM_Electronic_Data_Processing_Machine_-_GPN-2000-001881.jpg?width=1280",
+  "width": 1280,
+  "height": 1014,
+  "bytes": null,
+  "credit": "\"IBM Electronic Data Processing Machine - GPN-2000-001881\" by NASA, public domain, via Wikimedia Commons",
+  "notes": [
+   "Man and woman working with IBM type 704 electronic data processing machine, Langley NACA, 1957. Converted to grayscale, resized to 900 px."
+  ],
+  "saved": "2026-11-09T00:00:00.000Z"
  }
 ]

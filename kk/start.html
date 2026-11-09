@@ -66,31 +66,36 @@
       <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
         <ul class="nav-menu">
           <li><a class="nav-link active" href="start.html" aria-current="page">Нөлден</a></li>
-          <li><a class="nav-link" href="../course.html" hreflang="ru">Бүкіл курс</a></li>
-          <li><a class="nav-link" href="../project.html" hreflang="ru">Алғашқы жоба</a></li>
-          <li><a class="nav-link" href="../playground.html" hreflang="ru">Құмсалғыш</a></li>
-          <li><a class="nav-link" href="../glossary.html" hreflang="ru">Сөздік</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="../project.html" hreflang="ru">Алғашқы жоба <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="../glossary.html" hreflang="ru">Сөздік <span class="ru-mark">(RU)</span></a></li>
           <li class="nav-more"><details>
           <summary class="nav-link">Тағы <span class="caret" aria-hidden="true"></span></summary>
-          <ul class="nav-more-list">
-            <li><a href="../about.html" hreflang="ru">Python туралы</a></li>
-            <li><a href="../frameworks.html" hreflang="ru">Фреймворктер</a></li>
-            <li><a href="../databases.html" hreflang="ru">Дерекқорлар</a></li>
-            <li><a href="../deploy.html" hreflang="ru">Жариялау</a></li>
-            <li class="sep" role="presentation"></li>
-            <li><a href="../templates.html" hreflang="ru">Үлгілер мен формалар</a></li>
-            <li><a href="../auth.html" hreflang="ru">Авторизация</a></li>
-            <li><a href="../api.html" hreflang="ru">REST API</a></li>
-            <li><a href="../testing.html" hreflang="ru">Тесттер</a></li>
-            <li><a href="../git.html" hreflang="ru">Git</a></li>
-            <li><a href="../project2.html" hreflang="ru">Екінші жоба</a></li>
-            <li class="sep" role="presentation"></li>
-            <li><a href="../practice.html" hreflang="ru">Есептер</a></li>
-            <li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама</a></li>
-            <li><a href="../exam.html" hreflang="ru">Қорытынды тест</a></li>
-            <li class="sep" role="presentation"></li>
-            <li><a href="../contacts.html" hreflang="ru">Байланыс</a></li>
-          </ul>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="../about.html" hreflang="ru">Python туралы <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../frameworks.html" hreflang="ru">Фреймворктер <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../databases.html" hreflang="ru">Дерекқорлар <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../templates.html" hreflang="ru">Үлгілер мен формалар <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../auth.html" hreflang="ru">Авторизация <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="../practice.html" hreflang="ru">Есептер <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
         </details></li>
           <li class="nav-lang" aria-label="Сайт тілі">
             <a href="../start.html" hreflang="ru" lang="ru">РУС</a>
@@ -302,16 +307,17 @@ print("Сайт жауап берді:", app.test_client().get("/").text)</code>
     <div class="container">
       <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
       <div class="footer-links">
-        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="../glossary.html" hreflang="ru">Сөздік</a></li><li><a href="../playground.html" hreflang="ru">Құмсалғыш</a></li></ul></div>
-        <div><strong>Түсіну</strong><ul><li><a href="../about.html" hreflang="ru">Python туралы</a></li><li><a href="../frameworks.html" hreflang="ru">Фреймворктер</a></li><li><a href="../databases.html" hreflang="ru">Дерекқорлар</a></li></ul></div>
-        <div><strong>Жасау</strong><ul><li><a href="../project.html" hreflang="ru">Алғашқы жоба</a></li><li><a href="../deploy.html" hreflang="ru">Жариялау</a></li><li><a href="../practice.html" hreflang="ru">Есептер</a></li></ul></div>
-        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс</a></li><li><a href="../contacts.html" hreflang="ru">Байланыс</a></li><li><a href="index.html">Басты бет</a></li></ul></div>
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="../glossary.html" hreflang="ru">Сөздік <span class="ru-mark">(RU)</span></a></li><li><a href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="../about.html" hreflang="ru">Python туралы <span class="ru-mark">(RU)</span></a></li><li><a href="../frameworks.html" hreflang="ru">Фреймворктер <span class="ru-mark">(RU)</span></a></li><li><a href="../databases.html" hreflang="ru">Дерекқорлар <span class="ru-mark">(RU)</span></a></li><li><a href="../templates.html" hreflang="ru">Үлгілер мен формалар <span class="ru-mark">(RU)</span></a></li><li><a href="../auth.html" hreflang="ru">Авторизация <span class="ru-mark">(RU)</span></a></li><li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li><li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="../project.html" hreflang="ru">Алғашқы жоба <span class="ru-mark">(RU)</span></a></li><li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li><li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="../practice.html" hreflang="ru">Есептер <span class="ru-mark">(RU)</span></a></li><li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li></ul></div>
       </div>
       <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
       <p class="note footer-note">Авторы: <a href="../contacts.html#authors" hreflang="ru">Жангужин Е. Е.</a> · Жаңартылған күні: <time datetime="2026-11-06">06.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
       <p class="note footer-note">Сурет: <a href="https://www.rawpixel.com/image/13959871/image-paper-cartoon-art" rel="noopener">жыландар бейнеленген гравюра, rawpixel, CC0</a>.</p>
       <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Құпиялылық саясаты</a> · <a href="../terms.html" hreflang="ru">Пайдалану шарттары</a></p>
-      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі.</p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="../contacts.html#no-github" hreflang="ru">тікелей жазуға</a> болады.</p>
     </div>
   </footer>
 

@@ -19,7 +19,8 @@
       menuButton.setAttribute("aria-label", isOpen ? t("Закрыть меню") : t("Открыть меню"));
     });
 
-    nav.querySelectorAll(".nav-link").forEach(function (link) {
+    // Закрывают меню только ссылки: «Ещё» (summary) раскрывает список внутри меню
+    nav.querySelectorAll("a:not([data-untranslated])").forEach(function (link) {
       link.addEventListener("click", closeMenu);
     });
 
@@ -28,6 +29,52 @@
       if (nav.classList.contains("open") && !nav.contains(event.target) && !menuButton.contains(event.target)) {
         closeMenu();
       }
+    });
+  }
+
+  /* Выбор языка: если перевода страницы нет, ученик остаётся на месте и видит подсказку.
+     Текст подсказки на том языке, который выбрали. Без JavaScript ссылка ведёт на главную языка. */
+  const LANG_HINTS = {
+    ru: { text: "Эта страница пока есть только на русском.", link: "Главная на русском" },
+    kk: { text: "Бұл бет әлі қазақ тіліне аударылмаған.", link: "Қазақша басты бетке өту" },
+    en: { text: "This page has not been translated into English yet.", link: "Go to the English home page" }
+  };
+  const langBox = document.querySelector(".nav-lang");
+
+  if (langBox) {
+    let hint = null;
+
+    function closeHint() {
+      if (hint) hint.remove();
+      hint = null;
+    }
+
+    langBox.addEventListener("click", function (event) {
+      const link = event.target.closest("a[data-untranslated]");
+      if (!link) return;
+      const words = LANG_HINTS[link.dataset.untranslated];
+      if (!words) return;
+
+      event.preventDefault();
+      closeHint();
+      hint = document.createElement("p");
+      hint.className = "lang-hint";
+      hint.setAttribute("role", "status");
+      hint.lang = link.dataset.untranslated;
+      hint.appendChild(document.createTextNode(words.text + " "));
+      const home = document.createElement("a");
+      home.href = link.getAttribute("href");
+      home.hreflang = link.dataset.untranslated;
+      home.textContent = words.link;
+      hint.appendChild(home);
+      langBox.appendChild(hint);
+    });
+
+    document.addEventListener("click", function (event) {
+      if (hint && !langBox.contains(event.target)) closeHint();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeHint();
     });
   }
 

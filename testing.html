@@ -68,30 +68,35 @@
           <li><a class="nav-link" href="glossary.html">Словарь</a></li>
           <li class="nav-more"><details>
           <summary class="nav-link active">Ещё <span class="caret" aria-hidden="true"></span></summary>
-          <ul class="nav-more-list">
-            <li><a href="about.html">О Python</a></li>
-            <li><a href="frameworks.html">Фреймворки</a></li>
-            <li><a href="databases.html">Базы данных</a></li>
-            <li><a href="deploy.html">Публикация</a></li>
-            <li class="sep" role="presentation"></li>
-            <li><a href="templates.html">Шаблоны и формы</a></li>
-            <li><a href="auth.html">Авторизация</a></li>
-            <li><a href="api.html">REST API</a></li>
-            <li><a href="testing.html" aria-current="page">Тесты</a></li>
-            <li><a href="git.html">Git</a></li>
-            <li><a href="project2.html">Второй проект</a></li>
-            <li class="sep" role="presentation"></li>
-            <li><a href="practice.html">Задачи</a></li>
-            <li><a href="cheatsheet.html">Шпаргалка</a></li>
-            <li><a href="exam.html">Финальный тест</a></li>
-            <li class="sep" role="presentation"></li>
-            <li><a href="contacts.html">Контакты</a></li>
-          </ul>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Понять</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">О Python</a></li>
+              <li><a href="frameworks.html">Фреймворки</a></li>
+              <li><a href="databases.html">Базы данных</a></li>
+              <li><a href="templates.html">Шаблоны и формы</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html" aria-current="page">Тесты</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Сделать</p><ul aria-labelledby="nav-group-2">
+              <li><a href="project2.html">Второй проект</a></li>
+              <li><a href="deploy.html">Публикация</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Задачи</a></li>
+              <li><a href="cheatsheet.html">Шпаргалка</a></li>
+              <li><a href="exam.html">Финальный тест</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul></div>
+          </div>
         </details></li>
           <li class="nav-lang" aria-label="Язык сайта">
             <a href="testing.html" hreflang="ru" lang="ru" aria-current="true">РУС</a>
-            <a href="kk/index.html" hreflang="kk" lang="kk">ҚАЗ</a>
-            <a href="en/index.html" hreflang="en" lang="en">ENG</a>
+            <a href="kk/index.html" hreflang="kk" lang="kk" data-untranslated="kk">ҚАЗ</a>
+            <a href="en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
           </li>
         </ul>
       </nav>
@@ -325,15 +330,16 @@ python manage.py test tasks</code></pre>
       <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
       <div class="footer-links">
         <div><strong>Начать</strong><ul><li><a href="start.html">Python с нуля</a></li><li><a href="glossary.html">Словарь</a></li><li><a href="playground.html">Песочница</a></li></ul></div>
-        <div><strong>Понять</strong><ul><li><a href="about.html">О Python</a></li><li><a href="frameworks.html">Фреймворки</a></li><li><a href="databases.html">Базы данных</a></li></ul></div>
-        <div><strong>Сделать</strong><ul><li><a href="project.html">Первый проект</a></li><li><a href="deploy.html">Публикация</a></li><li><a href="practice.html">Задачи</a></li></ul></div>
-        <div><strong>Сайт</strong><ul><li><a href="course.html">Весь курс</a></li><li><a href="contacts.html">Контакты</a></li><li><a href="index.html">Главная</a></li></ul></div>
+        <div><strong>Понять</strong><ul><li><a href="about.html">О Python</a></li><li><a href="frameworks.html">Фреймворки</a></li><li><a href="databases.html">Базы данных</a></li><li><a href="templates.html">Шаблоны и формы</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесты</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Сделать</strong><ul><li><a href="project.html">Первый проект</a></li><li><a href="project2.html">Второй проект</a></li><li><a href="deploy.html">Публикация</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Задачи</a></li><li><a href="cheatsheet.html">Шпаргалка</a></li><li><a href="exam.html">Финальный тест</a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="course.html">Весь курс</a></li><li><a href="contacts.html">Контакты</a></li></ul></div>
       </div>
       <p class="footer-copy">© 2026 PyWeb Guide, учебный проект о Python в веб-разработке</p>
-      <p class="note footer-note">Автор: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Обновлено: <time datetime="2026-11-06">06.11.2026</time> · Версии в примерах: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Исходный код на GitHub</a></p>
+      <p class="note footer-note">Автор: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Обновлено: <time datetime="2026-11-09">09.11.2026</time> · Версии в примерах: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Исходный код на GitHub</a></p>
       <p class="note footer-note">Снимок: <a href="https://commons.wikimedia.org/wiki/File:The_Forest_products_laboratory_-_a_decennial_record,_1910-1920_(1921)_(14784655265).jpg" rel="noopener">отчёт Лаборатории лесных материалов США за 1910–1920 годы, издан в 1921</a>.</p>
       <p class="note footer-note"><a href="privacy.html">Политика конфиденциальности</a> · <a href="terms.html">Условия использования</a></p>
-      <p class="note footer-note">Сайт учебный. Сообщения с формы отправляются через публичный раздел Issues на GitHub.</p>
+      <p class="note footer-note">Сайт учебный. Сообщения с формы отправляются через публичный раздел Issues на GitHub. Без аккаунта GitHub можно <a href="contacts.html#no-github">написать напрямую</a>.</p>
     </div>
   </footer>
 

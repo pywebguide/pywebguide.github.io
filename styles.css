@@ -407,8 +407,73 @@ main:focus {
   background: var(--surface-2);
 }
 
-.nav-more-list .sep {
-  height: 8px;
+/* Меню «Ещё» разбито на группы, как подвал: Понять, Сделать, Практика, Сайт */
+@media (min-width: 1181px) {
+  .nav-more-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    gap: 4px 8px;
+    min-width: 440px;
+  }
+}
+
+/* Самая длинная группа «Понять» занимает левую колонку, остальные идут справа друг под другом */
+.nav-more-list .nav-group:first-child {
+  grid-row: span 3;
+}
+
+.nav-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-group-title {
+  margin: 0;
+  padding: 10px 12px 4px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Пункт ведёт на русскую страницу: перевода пока нет */
+.ru-mark {
+  margin-left: 0.3em;
+  color: var(--muted);
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+/* Подсказка у выбора языка: перевода этой страницы пока нет */
+.nav-lang {
+  position: relative;
+}
+
+.lang-hint {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 70;
+  width: min(300px, calc(100vw - 32px));
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: var(--fs-small);
+  line-height: 1.45;
+  box-shadow: var(--float-shadow); /* taste-skill-ignore: тень есть только у всплывающего слоя */
+}
+
+.lang-hint a {
+  display: inline;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  color: var(--text);
+  font-size: inherit;
+  text-decoration: underline;
 }
 
 /* Выбор языка: РУС · ҚАЗ · ENG */
@@ -2403,9 +2468,39 @@ textarea[aria-invalid="true"] {
     min-height: 46px;
     font-size: var(--fs-body);
   }
+
+  .nav-lang {
+    flex-wrap: wrap;
+  }
+
+  /* В мобильном меню группы «Ещё» идут в две колонки, чтобы список был короче */
+  .nav-more details[open] .nav-more-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 4px;
+    box-shadow: none; /* taste-skill-ignore: в мобильном меню список стоит в потоке */
+  }
+
+  .nav-more-list a {
+    min-height: 44px;
+    padding-inline: 10px;
+  }
+
+  .lang-hint {
+    position: static;
+    flex-basis: 100%;
+    width: auto;
+    margin-top: 8px;
+    background: var(--surface-2);
+    box-shadow: none; /* taste-skill-ignore: в мобильном меню подсказка стоит в потоке */
+  }
 }
 
 @media (max-width: 1020px) {
+  .footer-links {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .hero-grid,
   .section-head,
   .contact-grid,
@@ -3291,6 +3386,15 @@ html[lang="kk"] .words {
   margin: 0;
 }
 
+/* Идея без инструкции на сайте: ученик делает её сам */
+.idea .idea-tag {
+  margin-top: 16px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 /* ---------- Вопросы: у каждого своя полоса ---------- */
 .faq-head {
   display: flex;
@@ -3431,7 +3535,7 @@ html[lang="kk"] .cta-open .band-title {
 
 .footer-links {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 24px;
   margin-bottom: 32px;
 }
@@ -4234,4 +4338,19 @@ html[lang="kk"] .cta-open .band-title {
   .rail-toggle {
     bottom: 52px;
   }
+}
+
+/* Связь без GitHub на странице «Контакты» */
+.no-github {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 2px solid var(--line, currentColor);
+}
+
+.no-github h3 {
+  margin: 0 0 8px;
+}
+
+.no-github p {
+  margin: 0;
 }

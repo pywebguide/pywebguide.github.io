@@ -65,31 +65,36 @@
       <nav id="site-nav" class="site-nav" aria-label="Main navigation">
         <ul class="nav-menu">
           <li><a class="nav-link active" href="start.html" aria-current="page">From scratch</a></li>
-          <li><a class="nav-link" href="../course.html" hreflang="ru">Full course</a></li>
-          <li><a class="nav-link" href="../project.html" hreflang="ru">First project</a></li>
-          <li><a class="nav-link" href="../playground.html" hreflang="ru">Sandbox</a></li>
-          <li><a class="nav-link" href="../glossary.html" hreflang="ru">Glossary</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Full course <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="../project.html" hreflang="ru">First project <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Sandbox <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="../glossary.html" hreflang="ru">Glossary <span class="ru-mark">(RU)</span></a></li>
           <li class="nav-more"><details>
           <summary class="nav-link">More <span class="caret" aria-hidden="true"></span></summary>
-          <ul class="nav-more-list">
-            <li><a href="../about.html" hreflang="ru">About Python</a></li>
-            <li><a href="../frameworks.html" hreflang="ru">Frameworks</a></li>
-            <li><a href="../databases.html" hreflang="ru">Databases</a></li>
-            <li><a href="../deploy.html" hreflang="ru">Deployment</a></li>
-            <li class="sep" role="presentation"></li>
-            <li><a href="../templates.html" hreflang="ru">Templates and forms</a></li>
-            <li><a href="../auth.html" hreflang="ru">Authentication</a></li>
-            <li><a href="../api.html" hreflang="ru">REST API</a></li>
-            <li><a href="../testing.html" hreflang="ru">Testing</a></li>
-            <li><a href="../git.html" hreflang="ru">Git</a></li>
-            <li><a href="../project2.html" hreflang="ru">Second project</a></li>
-            <li class="sep" role="presentation"></li>
-            <li><a href="../practice.html" hreflang="ru">Exercises</a></li>
-            <li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet</a></li>
-            <li><a href="../exam.html" hreflang="ru">Final test</a></li>
-            <li class="sep" role="presentation"></li>
-            <li><a href="../contacts.html" hreflang="ru">Contact</a></li>
-          </ul>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Understand</p><ul aria-labelledby="nav-group-1">
+              <li><a href="../about.html" hreflang="ru">About Python <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../frameworks.html" hreflang="ru">Frameworks <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../databases.html" hreflang="ru">Databases <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../templates.html" hreflang="ru">Templates and forms <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../auth.html" hreflang="ru">Authentication <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../testing.html" hreflang="ru">Testing <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Build</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Second project <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../deploy.html" hreflang="ru">Deployment <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Practice</p><ul aria-labelledby="nav-group-3">
+              <li><a href="../practice.html" hreflang="ru">Exercises <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Final test <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Site</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../contacts.html" hreflang="ru">Contact <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
         </details></li>
           <li class="nav-lang" aria-label="Site language">
             <a href="../start.html" hreflang="ru" lang="ru">РУС</a>
@@ -301,16 +306,17 @@ print("The site replied:", app.test_client().get("/").text)</code></pre>
     <div class="container">
       <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
       <div class="footer-links">
-        <div><strong>Start</strong><ul><li><a href="start.html">Python from scratch</a></li><li><a href="../glossary.html" hreflang="ru">Glossary</a></li><li><a href="../playground.html" hreflang="ru">Sandbox</a></li></ul></div>
-        <div><strong>Understand</strong><ul><li><a href="../about.html" hreflang="ru">About Python</a></li><li><a href="../frameworks.html" hreflang="ru">Frameworks</a></li><li><a href="../databases.html" hreflang="ru">Databases</a></li></ul></div>
-        <div><strong>Build</strong><ul><li><a href="../project.html" hreflang="ru">First project</a></li><li><a href="../deploy.html" hreflang="ru">Deployment</a></li><li><a href="../practice.html" hreflang="ru">Exercises</a></li></ul></div>
-        <div><strong>Site</strong><ul><li><a href="../course.html" hreflang="ru">Full course</a></li><li><a href="../contacts.html" hreflang="ru">Contact</a></li><li><a href="index.html">Home</a></li></ul></div>
+        <div><strong>Start</strong><ul><li><a href="start.html">Python from scratch</a></li><li><a href="../glossary.html" hreflang="ru">Glossary <span class="ru-mark">(RU)</span></a></li><li><a href="../playground.html" hreflang="ru">Sandbox <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Understand</strong><ul><li><a href="../about.html" hreflang="ru">About Python <span class="ru-mark">(RU)</span></a></li><li><a href="../frameworks.html" hreflang="ru">Frameworks <span class="ru-mark">(RU)</span></a></li><li><a href="../databases.html" hreflang="ru">Databases <span class="ru-mark">(RU)</span></a></li><li><a href="../templates.html" hreflang="ru">Templates and forms <span class="ru-mark">(RU)</span></a></li><li><a href="../auth.html" hreflang="ru">Authentication <span class="ru-mark">(RU)</span></a></li><li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li><li><a href="../testing.html" hreflang="ru">Testing <span class="ru-mark">(RU)</span></a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Build</strong><ul><li><a href="../project.html" hreflang="ru">First project <span class="ru-mark">(RU)</span></a></li><li><a href="../project2.html" hreflang="ru">Second project <span class="ru-mark">(RU)</span></a></li><li><a href="../deploy.html" hreflang="ru">Deployment <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Practice</strong><ul><li><a href="../practice.html" hreflang="ru">Exercises <span class="ru-mark">(RU)</span></a></li><li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Final test <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Site</strong><ul><li><a href="../course.html" hreflang="ru">Full course <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Contact <span class="ru-mark">(RU)</span></a></li></ul></div>
       </div>
       <p class="footer-copy">© 2026 PyWeb Guide, a learning project about Python in web development</p>
-      <p class="note footer-note">Author: <a href="../contacts.html#authors" hreflang="ru">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-06">06.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
+      <p class="note footer-note">Author: <a href="../contacts.html#authors" hreflang="ru">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-09">09.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
       <p class="note footer-note">Image: <a href="https://www.rawpixel.com/image/13959871/image-paper-cartoon-art" rel="noopener">engraving with snakes, rawpixel, CC0</a>.</p>
       <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Privacy policy</a> · <a href="../terms.html" hreflang="ru">Terms of use</a></p>
-      <p class="note footer-note">This is a learning site. Messages from the form are sent through the public Issues section on GitHub.</p>
+      <p class="note footer-note">This is a learning site. Messages from the form are sent through the public Issues section on GitHub. No GitHub account? <a href="../contacts.html#no-github" hreflang="ru">Write directly</a>.</p>
     </div>
   </footer>
 
