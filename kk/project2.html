@@ -1,0 +1,573 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из project2.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Екінші жоба: Flask пен SQLite-тағы блог API-ы — PyWeb Guide</title>
+
+  <meta name="description" content="Негіздерді өткендерге арналған қадамдық жоба: SQLite дерекқоры, деректерді тексеру, тесттер және JavaScript-тегі беті бар Flask-тағы блогтың REST API-ы.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/project2.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/project2.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/project2.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/project2.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Екінші жоба: Flask пен SQLite-тағы блог API-ы — PyWeb Guide">
+  <meta property="og:description" content="Негіздерді өткендерге арналған қадамдық жоба: SQLite дерекқоры, деректерді тексеру, тесттер және JavaScript-тегі беті бар Flask-тағы блогтың REST API-ы.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/project2.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffd249">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="yellow" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="project.html">Алғашқы жоба</a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="glossary.html">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">Python туралы</a></li>
+              <li><a href="frameworks.html">Фреймворктер</a></li>
+              <li><a href="databases.html">Дерекқорлар</a></li>
+              <li><a href="templates.html">Үлгілер мен формалар</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Тесттер</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="project2.html" aria-current="page">Екінші жоба</a></li>
+              <li><a href="deploy.html">Жариялау</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Есептер</a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../project2.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="project2.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Навигациялық тізбек">
+<a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Екінші жоба</span>
+</nav>
+<h1>Екінші жоба: блог API-ы</h1>
+<p class="lead">Flask пен SQLite-та блогқа арналған API жинаймыз: деректерді тексеру, тесттер және JavaScript-тегі қарапайым беті бар. Дерекқорлар мен REST API туралы бөлімдердегі білім керек болады. Шамамен бір сағат уақыт кетеді.</p>
+<img class="band-picture" src="../assets/img/newsboys.jpg" width="1000" height="870" alt="Бруклин көпірінде газет сатып тұрған балалар, 1908 жыл" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" id="plan" aria-labelledby="plan-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="plan-title">Не шығады</h2>
+<p>Бүкіл код бір <code>app.py</code> файлына сыяды. Соңғы мысалды тікелей осы бетте іске қосуға болады.</p>
+</div>
+<div class="progress-box reveal" data-progress="project-blog">
+<p class="progress-label" role="status" aria-live="polite">7 қадамның <span data-progress-count>0</span> қадамы өтілді</p>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
+<button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Прогресті тастау</button>
+</div>
+</div>
+</section>
+<section class="section" id="steps" aria-labelledby="steps-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="steps-title">Жоба қадамдары</h2>
+<p>Өткеніңізді белгілеңіз: прогресс браузерде сақталады.</p>
+</div>
+<ol class="project-steps" data-progress-list="project-blog">
+<li class="project-step reveal">
+<h3>1-қадам. Жоба жасаңыз</h3>
+<p>Алғашқы жобадағыдай жаңа қалта және өз ортасы.</p>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>Терминал</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>mkdir blog-api
+cd blog-api
+python -m venv .venv
+.venv\Scripts\activate
+pip install flask pytest</code></pre>
+</div>
+<p class="note">macOS пен Linux-та ортаны <code>source .venv/bin/activate</code> командасы іске қосады.</p>
+<label class="step-check"><input type="checkbox" data-step="1"> Қадам өтілді</label>
+</li>
+<li class="project-step reveal">
+<h3>2-қадам. Дерекқорды қосыңыз</h3>
+<p>Байланыс сұрау уақытына ашылып, соңында жабылады. Кесте әлі жоқ болса, алғаш іске қосқанда жасалады. <code>create_app</code> функциясы тесттерге бөлек дерекқорды қолдануға мүмкіндік береді.</p>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>app.py</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>import sqlite3
+
+from flask import Flask, g, jsonify, request
+
+SCHEMA = """
+CREATE TABLE IF NOT EXISTS posts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    body TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+)
+"""
+
+def create_app(database="blog.db"):
+    app = Flask(__name__)
+
+    def db():
+        if "db" not in g:
+            g.db = sqlite3.connect(database)
+            g.db.row_factory = sqlite3.Row
+            g.db.execute(SCHEMA)
+        return g.db
+
+    @app.teardown_appcontext
+    def close_db(error):
+        connection = g.pop("db", None)
+        if connection is not None:
+            connection.close()
+
+    # маршруты из следующих шагов идут здесь
+
+    return app</code></pre>
+</div>
+<label class="step-check"><input type="checkbox" data-step="2"> Қадам өтілді</label>
+</li>
+<li class="project-step reveal">
+<h3>3-қадам. Деректерді тексеруді қосыңыз</h3>
+<p>Функция не таза деректерді, не қате мәтінін қайтарады. Оны <code>create_app</code> үстіне шығарыңыз, сонда оны бөлек тексеру оңай болады.</p>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>app.py</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>def validate_post(data):
+    if not isinstance(data, dict):
+        return None, "Нужен JSON-объект"
+    title = str(data.get("title", "")).strip()
+    body = str(data.get("body", "")).strip()
+    if not title or len(title) &gt; 120:
+        return None, "Заголовок обязателен, не длиннее 120 символов"
+    if not body:
+        return None, "Текст обязателен"
+    return {"title": title, "body": body}, None</code></pre>
+</div>
+<label class="step-check"><input type="checkbox" data-step="3"> Қадам өтілді</label>
+</li>
+<li class="project-step reveal">
+<h3>4-қадам. Тізім мен жазба жасауды іске асырыңыз</h3>
+<p>Мәндер <code>?</code> белгілері арқылы беріледі. Сөйтіп дерекқор сұрауды SQL-инъекциялардан өзі қорғайды. Пайдаланушының деректерін SQL-ға ешқашан f-жол арқылы қоймаңыз.</p>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>app.py</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>    @app.get("/posts")
+    def list_posts():
+        rows = db().execute("SELECT * FROM posts ORDER BY id DESC").fetchall()
+        return jsonify([dict(row) for row in rows])
+
+    @app.post("/posts")
+    def create_post():
+        post, error = validate_post(request.get_json(silent=True))
+        if error:
+            return {"error": error}, 400
+        cursor = db().execute(
+            "INSERT INTO posts (title, body) VALUES (?, ?)",
+            (post["title"], post["body"]),
+        )
+        db().commit()
+        row = db().execute("SELECT * FROM posts WHERE id = ?", (cursor.lastrowid,)).fetchone()
+        return dict(row), 201</code></pre>
+</div>
+<label class="step-check"><input type="checkbox" data-step="4"> Қадам өтілді</label>
+</li>
+<li class="project-step reveal">
+<h3>5-қадам. Оқуды, өзгертуді және жоюды іске асырыңыз</h3>
+<p>Жазба жоқ болса, құламаймыз, 404 қатесін қайтарамыз.</p>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>app.py</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>    @app.get("/posts/&lt;int:post_id&gt;")
+    def get_post(post_id):
+        row = db().execute("SELECT * FROM posts WHERE id = ?", (post_id,)).fetchone()
+        if row is None:
+            return {"error": "Запись не найдена"}, 404
+        return dict(row)
+
+    @app.put("/posts/&lt;int:post_id&gt;")
+    def update_post(post_id):
+        post, error = validate_post(request.get_json(silent=True))
+        if error:
+            return {"error": error}, 400
+        cursor = db().execute(
+            "UPDATE posts SET title = ?, body = ? WHERE id = ?",
+            (post["title"], post["body"], post_id),
+        )
+        db().commit()
+        if cursor.rowcount == 0:
+            return {"error": "Запись не найдена"}, 404
+        return get_post(post_id)
+
+    @app.delete("/posts/&lt;int:post_id&gt;")
+    def delete_post(post_id):
+        cursor = db().execute("DELETE FROM posts WHERE id = ?", (post_id,))
+        db().commit()
+        if cursor.rowcount == 0:
+            return {"error": "Запись не найдена"}, 404
+        return "", 204</code></pre>
+</div>
+<p>Өз компьютеріңізде іске қосу: <code>flask --app "app:create_app()" run --debug</code>.</p>
+<label class="step-check"><input type="checkbox" data-step="5"> Қадам өтілді</label>
+</li>
+<li class="project-step reveal">
+<h3>6-қадам. Тесттер жазыңыз</h3>
+<p><code>pytest</code> командасымен іске қосыңыз. <code>tmp_path</code> фикстурасы уақытша қалта береді, сондықтан тесттер нақты дерекқорға тимейді.</p>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>test_app.py</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>import pytest
+
+from app import create_app
+
+@pytest.fixture
+def client(tmp_path):
+    return create_app(tmp_path / "test.db").test_client()
+
+def test_create_and_read(client):
+    created = client.post("/posts", json={"title": "Привет", "body": "Текст"})
+    assert created.status_code == 201
+    post_id = created.json["id"]
+    assert client.get(f"/posts/{post_id}").json["title"] == "Привет"
+
+def test_empty_title_rejected(client):
+    assert client.post("/posts", json={"title": " ", "body": "Текст"}).status_code == 400
+
+def test_delete(client):
+    post_id = client.post("/posts", json={"title": "А", "body": "Б"}).json["id"]
+    assert client.delete(f"/posts/{post_id}").status_code == 204
+    assert client.get(f"/posts/{post_id}").status_code == 404</code></pre>
+</div>
+<label class="step-check"><input type="checkbox" data-step="6"> Қадам өтілді</label>
+</li>
+<li class="project-step reveal">
+<h3>7-қадам. Бет қосыңыз</h3>
+<p>Файлды <code>static</code> қалтасына салыңыз, ол <code>/static/index.html</code> мекенжайында ашылады. Жазба мәтіні <code>textContent</code> арқылы шығарылады, сондықтан ол арқылы бөгде скрипт енгізу мүмкін емес.</p>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>static/index.html</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>&lt;!doctype html&gt;
+&lt;html lang="ru"&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;Блог&lt;/title&gt;
+&lt;h1&gt;Блог&lt;/h1&gt;
+&lt;form id="form"&gt;
+  &lt;input name="title" placeholder="Заголовок" required&gt;
+  &lt;textarea name="body" placeholder="Текст" required&gt;&lt;/textarea&gt;
+  &lt;button&gt;Опубликовать&lt;/button&gt;
+&lt;/form&gt;
+&lt;div id="posts"&gt;&lt;/div&gt;
+&lt;script&gt;
+  const posts = document.getElementById("posts");
+  const form = document.getElementById("form");
+
+  async function load() {
+    const items = await (await fetch("/posts")).json();
+    posts.replaceChildren(...items.map((post) =&gt; {
+      const article = document.createElement("article");
+      const title = document.createElement("h2");
+      const body = document.createElement("p");
+      title.textContent = post.title;
+      body.textContent = post.body;
+      article.append(title, body);
+      return article;
+    }));
+  }
+
+  form.addEventListener("submit", async (event) =&gt; {
+    event.preventDefault();
+    const response = await fetch("/posts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(Object.fromEntries(new FormData(form))),
+    });
+    if (response.ok) {
+      form.reset();
+      load();
+    }
+  });
+
+  load();
+&lt;/script&gt;
+&lt;/html&gt;</code></pre>
+</div>
+<label class="step-check"><input type="checkbox" data-step="7"> Қадам өтілді</label>
+</li>
+</ol>
+</div>
+</section>
+<section class="section" id="whole" aria-labelledby="whole-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="whole-title">Бүкіл код және іске қосу</h2>
+<p>Мұнда бүкіл <code>app.py</code> файлы және соңында қысқа тексеріс. Дерекқор уақытша файлда жасалады.</p>
+</div>
+<div class="code-block reveal" data-run="python">
+  <div class="code-head">
+    <span>app.py толығымен</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>import sqlite3
+import tempfile
+from pathlib import Path
+
+from flask import Flask, g, jsonify, request
+
+SCHEMA = """
+CREATE TABLE IF NOT EXISTS posts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    body TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+)
+"""
+
+def validate_post(data):
+    if not isinstance(data, dict):
+        return None, "Нужен JSON-объект"
+    title = str(data.get("title", "")).strip()
+    body = str(data.get("body", "")).strip()
+    if not title or len(title) &gt; 120:
+        return None, "Заголовок обязателен, не длиннее 120 символов"
+    if not body:
+        return None, "Текст обязателен"
+    return {"title": title, "body": body}, None
+
+def create_app(database="blog.db"):
+    app = Flask(__name__)
+
+    def db():
+        if "db" not in g:
+            g.db = sqlite3.connect(database)
+            g.db.row_factory = sqlite3.Row
+            g.db.execute(SCHEMA)
+        return g.db
+
+    @app.teardown_appcontext
+    def close_db(error):
+        connection = g.pop("db", None)
+        if connection is not None:
+            connection.close()
+
+    @app.get("/posts")
+    def list_posts():
+        rows = db().execute("SELECT * FROM posts ORDER BY id DESC").fetchall()
+        return jsonify([dict(row) for row in rows])
+
+    @app.post("/posts")
+    def create_post():
+        post, error = validate_post(request.get_json(silent=True))
+        if error:
+            return {"error": error}, 400
+        cursor = db().execute(
+            "INSERT INTO posts (title, body) VALUES (?, ?)",
+            (post["title"], post["body"]),
+        )
+        db().commit()
+        row = db().execute("SELECT * FROM posts WHERE id = ?", (cursor.lastrowid,)).fetchone()
+        return dict(row), 201
+
+    @app.get("/posts/&lt;int:post_id&gt;")
+    def get_post(post_id):
+        row = db().execute("SELECT * FROM posts WHERE id = ?", (post_id,)).fetchone()
+        if row is None:
+            return {"error": "Запись не найдена"}, 404
+        return dict(row)
+
+    @app.put("/posts/&lt;int:post_id&gt;")
+    def update_post(post_id):
+        post, error = validate_post(request.get_json(silent=True))
+        if error:
+            return {"error": error}, 400
+        cursor = db().execute(
+            "UPDATE posts SET title = ?, body = ? WHERE id = ?",
+            (post["title"], post["body"], post_id),
+        )
+        db().commit()
+        if cursor.rowcount == 0:
+            return {"error": "Запись не найдена"}, 404
+        return get_post(post_id)
+
+    @app.delete("/posts/&lt;int:post_id&gt;")
+    def delete_post(post_id):
+        cursor = db().execute("DELETE FROM posts WHERE id = ?", (post_id,))
+        db().commit()
+        if cursor.rowcount == 0:
+            return {"error": "Запись не найдена"}, 404
+        return "", 204
+
+    return app
+
+# Проверка без настоящего сервера
+with tempfile.TemporaryDirectory() as folder:
+    client = create_app(Path(folder) / "blog.db").test_client()
+    print("Пустой заголовок:", client.post("/posts", json={"title": "", "body": "x"}).status_code)
+    created = client.post("/posts", json={"title": "Первая запись", "body": "Привет!"})
+    print("Создана:", created.status_code, created.json["title"])
+    post_id = created.json["id"]
+    print("Изменена:", client.put(f"/posts/{post_id}", json={"title": "Новая", "body": "Текст"}).json["title"])
+    print("Список:", [post["title"] for post in client.get("/posts").json])
+    print("Удалена:", client.delete(f"/posts/{post_id}").status_code)
+    print("Снова читаем:", client.get(f"/posts/{post_id}").status_code)</code></pre>
+</div>
+</div>
+</section>
+<section class="section" id="further" aria-labelledby="further-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="further-title">Өз бетіңізше не қосуға болады</h2>
+<p>Бұл идеялар басқа бөлімдердегі материалды бекітеді.</p>
+</div>
+<div class="panel reveal stack-gap">
+<ul class="list">
+<li>Беттеп шығару: <code>?limit=10&amp;offset=20</code> параметрлері және <code>LIMIT ? OFFSET ?</code> SQL-ы.</li>
+<li>Автордың кіруі: жазбаларды тек <a href="auth.html">авторизациядан</a> кейін жасауға және жоюға болады.</li>
+<li><code>LIKE ?</code> арқылы тақырып бойынша іздеу.</li>
+<li>PythonAnywhere-де <a href="deploy.html">жариялау</a>: WSGI-файлда <code>application = create_app("/home/username/blog-api/blog.db")</code> деп көрсетіңіз.</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section" aria-labelledby="sources-title">
+<div class="container">
+<div class="panel sources reveal">
+<h2 id="sources-title">Дереккөздер</h2>
+<p class="note">Сілтемелер <time datetime="2026-11-06">06.11.2026</time> тексерілді.</p>
+<ul class="list">
+<li><a href="https://flask.palletsprojects.com/en/stable/patterns/sqlite3/" rel="noopener">Flask: SQLite</a></li>
+<li><a href="https://flask.palletsprojects.com/en/stable/patterns/appfactories/" rel="noopener">Flask: қосымша фабрикасы</a></li>
+<li><a href="https://docs.python.org/3/library/sqlite3.html#sqlite3-placeholders" rel="noopener">Python: sqlite3 сұрау параметрлері</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section" aria-label="Әрі қарай">
+<div class="container">
+<div class="cta-panel reveal">
+<div>
+<h2>Өзіңізді тексеріңіз</h2>
+<p class="lead cta-lead">Қорытынды тесттен өтіп, оқу сертификатын алыңыз.</p>
+</div>
+<div class="cta-actions"><a class="btn btn-primary" href="../exam.html" hreflang="ru">Бөлімді ашу</a></div>
+</div>
+</div>
+</section>
+
+
+</main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="about.html">Python туралы</a></li><li><a href="frameworks.html">Фреймворктер</a></li><li><a href="databases.html">Дерекқорлар</a></li><li><a href="templates.html">Үлгілер мен формалар</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесттер</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="project.html">Алғашқы жоба</a></li><li><a href="project2.html">Екінші жоба</a></li><li><a href="deploy.html">Жариялау</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Есептер</a></li><li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="../contacts.html#authors" hreflang="ru">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-09">09.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Сурет: <a href="https://commons.wikimedia.org/wiki/File:February_23rd_1908_Boys_Selling_Newspapers_on_Brooklyn_Bridge.jpg" rel="noopener">Бруклин көпіріндегі газет сатушылар, Lewis Hine, 1908</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Құпиялылық саясаты</a> · <a href="../terms.html" hreflang="ru">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="../contacts.html#no-github" hreflang="ru">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
