@@ -1,0 +1,254 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из playground.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Браузердегі Python құмсалғышы — PyWeb Guide</title>
+
+  <meta name="description" content="Python-ды орнатусыз тікелей браузерде іске қосыңыз: тілдің негіздері, SQLite және тесттік клиенті бар Flask қосымшасы.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/playground.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/playground.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/playground.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/playground.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Браузердегі Python құмсалғышы — PyWeb Guide">
+  <meta property="og:description" content="Python-ды орнатусыз тікелей браузерде іске қосыңыз: тілдің негіздері, SQLite және тесттік клиенті бар Flask қосымшасы.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/playground.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffc4ef">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="pink" id="top" data-no-toc>
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="project.html">Алғашқы жоба</a></li>
+          <li><a class="nav-link active" href="playground.html" aria-current="page">Құмсалғыш</a></li>
+          <li><a class="nav-link" href="glossary.html">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">Python туралы</a></li>
+              <li><a href="frameworks.html">Фреймворктер</a></li>
+              <li><a href="databases.html">Дерекқорлар</a></li>
+              <li><a href="templates.html">Үлгілер мен формалар</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Тесттер</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="project2.html">Екінші жоба</a></li>
+              <li><a href="deploy.html">Жариялау</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Есептер</a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../playground.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="playground.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Навигациялық тізбек">
+<a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Құмсалғыш</span>
+</nav>
+<h1>Python тікелей браузерде</h1>
+<p class="lead">Код жазып, «Іске қосу» батырмасын басыңыз. Ештеңе орнатудың қажеті жоқ: код сіздің құрылғыңызда орындалады және ешқайда жіберілмейді.</p>
+<img class="band-picture" src="../assets/img/sand-forts.jpg" width="1000" height="538" alt="Демалушылар жағажайда жалаушалары бар құм қамалдарын салған, Зильт аралы, 1890 жылдар" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" id="editor" aria-labelledby="editor-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="editor-title">Редактор</h2>
+<p>Ctrl+Enter тіркесімі кодты іске қосады. Жоба осы браузерде сақталады.</p>
+</div>
+<div id="playground" class="reveal">
+<div class="tool-row">
+<label for="sample">Мысал:</label>
+<select id="sample"></select>
+<button class="btn btn-primary" type="button" data-run-code>Іске қосу</button>
+<button class="btn btn-secondary" type="button" data-reset-code>Мысалға қайтару</button>
+</div>
+<textarea class="editor-area" rows="16" spellcheck="false" aria-label="Python-дағы код"></textarea>
+<div class="code-block stack-gap" data-output></div>
+<template data-sample="basics" data-title="Основы: функции и списки">
+def greet(name):
+    return f"Привет, {name}!"
+
+for name in ["Ернар", "Руслан", "мир"]:
+    print(greet(name))
+
+squares = [n * n for n in range(1, 6)]
+print("Квадраты:", squares)
+print("Сумма:", sum(squares))</template>
+<template data-sample="dict" data-title="Словари: подсчёт слов">
+text = "python для веба python для всех"
+
+counts = {}
+for word in text.split():
+    counts[word] = counts.get(word, 0) + 1
+
+for word, count in sorted(counts.items(), key=lambda item: -item[1]):
+    print(word, count)</template>
+<template data-sample="sql" data-title="SQLite: база данных в памяти">
+import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany(
+    "INSERT INTO tasks (title, done) VALUES (?, ?)",
+    [("Выучить SQL", 1), ("Сделать API", 0), ("Написать тесты", 0)],
+)
+
+for row in db.execute("SELECT title FROM tasks WHERE done = 0 ORDER BY title"):
+    print(row[0])</template>
+<template data-sample="flask" data-title="Flask: приложение и тестовый клиент">
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.get("/hello/&lt;name&gt;")
+def hello(name):
+    return {"message": f"Привет, {name}!", "lang": request.args.get("lang", "ru")}
+
+client = app.test_client()
+response = client.get("/hello/Python?lang=kk")
+print(response.status_code)
+print(response.json)
+print(client.get("/nope").status_code)</template>
+<template data-sample="error" data-title="Ошибка: как читать сообщение">
+def divide(a, b):
+    return a / b
+
+print(divide(10, 2))
+print(divide(1, 0))</template>
+</div>
+</div>
+</section>
+<section class="section" id="limits" aria-labelledby="limits-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="limits-title">Нені білу маңызды</h2>
+<p>Құмсалғыш Pyodide-та жұмыс істейді: бұл браузер үшін жиналған Python.</p>
+</div>
+<div class="panel reveal stack-gap">
+<ul class="list">
+<li>Алғаш іске қосқанда браузер jsDelivr сервисінен шамамен 5 МБ жүктейді. Flask мысалы үшін PyPI-дан пакеттер қосымша жүктеледі.</li>
+<li>Мұнда нақты серверді іске қосу мүмкін емес. Оның орнына Flask қосымшасы сұрауларды <code>test_client()</code> арқылы алады.</li>
+<li><code>input()</code> браузерде жұмыс істемейді. Мәндерді тікелей кодта беріңіз.</li>
+<li>Код 10 секундтан кейін тоқтайды, сондықтан шексіз цикл бетті қатырып тастамайды.</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section" aria-labelledby="sources-title">
+<div class="container">
+<div class="panel sources reveal">
+<h2 id="sources-title">Дереккөздер</h2>
+<p class="note">Сілтемелер <time datetime="2026-11-06">06.11.2026</time> тексерілді.</p>
+<ul class="list">
+<li><a href="https://pyodide.org/en/stable/" rel="noopener">Pyodide құжаттамасы</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+
+</main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="playground.html">Құмсалғыш</a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="about.html">Python туралы</a></li><li><a href="frameworks.html">Фреймворктер</a></li><li><a href="databases.html">Дерекқорлар</a></li><li><a href="templates.html">Үлгілер мен формалар</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесттер</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="project.html">Алғашқы жоба</a></li><li><a href="project2.html">Екінші жоба</a></li><li><a href="deploy.html">Жариялау</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Есептер</a></li><li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="../contacts.html#authors" hreflang="ru">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-09">09.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Сурет: <a href="https://commons.wikimedia.org/wiki/File:Building_sand_castles,_Westerland,_Sylt,_Schleswig-Holstein,_Germany-LCCN2002720670.tif" rel="noopener">Зильт жағажайындағы құм қамалдары, 1890 жылдар</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Құпиялылық саясаты</a> · <a href="../terms.html" hreflang="ru">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="../contacts.html#no-github" hreflang="ru">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
