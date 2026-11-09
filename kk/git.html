@@ -1,0 +1,324 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из git.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Жаңадан бастаған веб-әзірлеушілерге арналған Git және GitHub — PyWeb Guide</title>
+
+  <meta name="description" content="Git негіздері: коммиттер, тармақтар, біріктіру, өзгерістерді болдырмау және GitHub-пен жұмыс. Түсіндірмесі бар командалар және жиі кездесетін қателер.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/git.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/git.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/git.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/git.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Жаңадан бастаған веб-әзірлеушілерге арналған Git және GitHub — PyWeb Guide">
+  <meta property="og:description" content="Git негіздері: коммиттер, тармақтар, біріктіру, өзгерістерді болдырмау және GitHub-пен жұмыс. Түсіндірмесі бар командалар және жиі кездесетін қателер.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/git.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f9a21f">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="orange" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="project.html">Алғашқы жоба</a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="glossary.html">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">Python туралы</a></li>
+              <li><a href="frameworks.html">Фреймворктер</a></li>
+              <li><a href="databases.html">Дерекқорлар</a></li>
+              <li><a href="templates.html">Үлгілер мен формалар</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Тесттер</a></li>
+              <li><a href="git.html" aria-current="page">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="deploy.html">Жариялау</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Есептер</a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../git.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="git.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Навигациялық тізбек">
+<a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Git</span>
+</nav>
+<h1>Git: жобаңыздың тарихы</h1>
+<p class="lead">Git код нұсқаларын есте сақтайды, жұмыс істейтін күйге қайтуға және бірлесіп жұмыс істеуге мүмкіндік береді. GitHub — осындай жобалардың көшірмелері сақталатын сайт.</p>
+<img class="band-picture" src="../assets/img/ledger.jpg" width="1000" height="546" alt="Ескі есеп карточкасы: клиентпен болған оқиғаның бәрі күн бойынша жазылған" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" id="start" aria-labelledby="start-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="start-title">Алғашқы коммит</h2>
+<p>Коммит — жобаның түсінікті сипаттамасы бар сақталған суреті.</p>
+</div>
+<div class="code-grid">
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>Терминал: компьютерде бір рет</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>git config --global user.name "Ваше Имя"
+git config --global user.email "you@example.com"
+git config --global init.defaultBranch main</code></pre>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>Терминал: жоба қалтасында</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>git init
+git status
+git add app.py
+git commit -m "Добавить главную страницу"
+git log --oneline</code></pre>
+</div>
+</div>
+<div class="panel reveal stack-gap">
+<h3>Файлдың үш күйі</h3>
+<ol class="list">
+<li><strong>Өзгертілген:</strong> файлды түзеттіңіз, бірақ Git оны әлі сақтаған жоқ.</li>
+<li><strong>Дайындалған:</strong> <code>git add</code> командасы оны болашақ коммитке қосты.</li>
+<li><strong>Сақталған:</strong> <code>git commit</code> командасы суретті тарихқа жазды.</li>
+</ol>
+</div>
+</div>
+</section>
+<section class="section" id="ignore" aria-labelledby="ignore-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="ignore-title">Git-те нені сақтаудың қажеті жоқ</h2>
+<p><code>.gitignore</code> файлы Git бақыламауы керек нәрселерді тізіп шығады.</p>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>.gitignore</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>.venv/
+__pycache__/
+*.db
+db.sqlite3
+.env</code></pre>
+</div>
+<p class="note stack-gap">Құпиясөз немесе кілт GitHub-тағы коммитке түсіп қойса, файлды жай жою жеткіліксіз: ол тарихта қалады. Кілтті ашылған деп есептеп, жаңасына ауыстырыңыз.</p>
+</div>
+</section>
+<section class="section" id="branches" aria-labelledby="branches-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="branches-title">Тармақтар</h2>
+<p>Тармақ жаңа функцияны бөлек жасауға және жұмыс істейтін нұсқаны бұзбауға мүмкіндік береді.</p>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>Терминал</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>git switch -c search-form
+git add .
+git commit -m "Добавить форму поиска"
+git switch main
+git merge search-form
+git branch -d search-form</code></pre>
+</div>
+<div class="panel reveal stack-gap">
+<h3>Қақтығыс туындаса</h3>
+<p>Қақтығыс екі тармақтың бір жолды өзгерткенін білдіреді. Файлды ашып, қажетті нұсқаны қалдырыңыз да, <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code> және <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> белгілерін өшіріңіз, содан кейін <code>git add</code> және <code>git commit</code> орындаңыз.</p>
+</div>
+</div>
+</section>
+<section class="section" id="github" aria-labelledby="github-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="github-title">GitHub-пен жұмыс</h2>
+<p>Алдымен github.com сайтында бос репозиторий жасаңыз.</p>
+</div>
+<div class="code-grid">
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>Терминал: алғашқы жіберу</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>git remote add origin https://github.com/USER/REPO.git
+git push -u origin main</code></pre>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>Терминал: кәдімгі күн</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>git pull
+git add .
+git commit -m "Исправить форму входа"
+git push</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="undo" aria-labelledby="undo-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="undo-title">Өзгерістерді қалай болдырмауға болады</h2>
+<p>Болдырмас алдында ағымдағы күйді <code>git status</code> арқылы қараңыз.</p>
+</div>
+<div class="table-wrap reveal" tabindex="0" role="region" aria-label="Болдырмау командалары">
+<table>
+<caption>Әртүрлі жағдайларда не істеу керек</caption>
+<thead><tr><th scope="col">Жағдай</th><th scope="col">Команда</th><th scope="col">Маңызды</th></tr></thead>
+<tbody>
+<tr><td>Файлды дайындалғандардан алып тастау</td><td><code>git restore --staged app.py</code></td><td>Файлдағы түзетулер қалады</td></tr>
+<tr><td>Файлдағы түзетулерді болдырмау</td><td><code>git restore app.py</code></td><td>Сақталмаған түзетулер мүлдем жоғалады</td></tr>
+<tr><td>Жіберіліп қойған коммитті болдырмау</td><td><code>git revert abc1234</code></td><td>Жаңа коммит жасайды, тарих бұзылмайды</td></tr>
+<tr><td>Соңғы коммиттің мәтінін түзету</td><td><code>git commit --amend</code></td><td>Тек коммит әлі жіберілмеген болса</td></tr>
+</tbody>
+</table>
+</div>
+<p class="note stack-gap"><code>git reset --hard</code> және <code>git push --force</code> командалары жұмысты қайтарылмастай жоюы мүмкін. Жаңадан бастаушыға оларсыз жұмыс істеген дұрыс.</p>
+</div>
+</section>
+<section class="section" id="messages" aria-labelledby="messages-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="messages-title">Коммиттің жақсы мәтіні</h2>
+<p>Не өзгергенін және не үшін өзгергенін сипаттаңыз. Бір айдан кейін тарихты жобаның күнделігі сияқты оқитын боласыз.</p>
+</div>
+<div class="compare-grid">
+<article class="panel reveal"><h3>Түсінікті</h3><ul class="list"><li>Бос тапсырманы тексеруді қосу</li><li>Қате құпиясөзбен кіруді түзету</li></ul></article>
+<article class="panel reveal"><h3>Түсініксіз</h3><ul class="list"><li>түзетулер</li><li>fix</li><li>тағы бір рет</li></ul></article>
+</div>
+</div>
+</section>
+<section class="section" aria-labelledby="sources-title">
+<div class="container">
+<div class="panel sources reveal">
+<h2 id="sources-title">Дереккөздер</h2>
+<p class="note">Сілтемелер <time datetime="2026-11-06">06.11.2026</time> тексерілді.</p>
+<ul class="list">
+<li><a href="https://git-scm.com/book/ru/v2" rel="noopener">Pro Git кітабы (орыс тілінде)</a></li>
+<li><a href="https://docs.github.com/ru/get-started" rel="noopener">GitHub: жұмысты бастау</a></li>
+<li><a href="https://docs.github.com/ru/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository" rel="noopener">GitHub: репозиторийден құпия деректерді жою</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section" aria-label="Әрі қарай">
+<div class="container">
+<div class="cta-panel reveal">
+<div>
+<h2>Әрі қарай: жариялау</h2>
+<p class="lead cta-lead">GitHub-тағы код дайын. Сайтты интернетке шығару ғана қалды.</p>
+</div>
+<div class="cta-actions"><a class="btn btn-primary" href="deploy.html">Бөлімді ашу</a></div>
+</div>
+</div>
+</section>
+
+
+</main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="about.html">Python туралы</a></li><li><a href="frameworks.html">Фреймворктер</a></li><li><a href="databases.html">Дерекқорлар</a></li><li><a href="templates.html">Үлгілер мен формалар</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесттер</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="project.html">Алғашқы жоба</a></li><li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li><li><a href="deploy.html">Жариялау</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Есептер</a></li><li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="../contacts.html#authors" hreflang="ru">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-09">09.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Сурет: <a href="https://commons.wikimedia.org/wiki/File:How_to_collect_money_by_mail;_how_to_write_effective_collection_letters-testing_copy-planning_a_series-retail,_instalment_and_dealer_accounts-credit_system-collection_schemes_and_legal_steps-how_(14764762284).jpg" rel="noopener">іскерлік хаттар туралы кітаптағы есеп карточкасы, 1913</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Құпиялылық саясаты</a> · <a href="../terms.html" hreflang="ru">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="../contacts.html#no-github" hreflang="ru">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
