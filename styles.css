@@ -4354,3 +4354,93 @@ html[lang="kk"] .cta-open .band-title {
 .no-github p {
   margin: 0;
 }
+
+/* Поиск по словарю */
+.glossary-search-band {
+  padding-bottom: 0;
+}
+
+.glossary-search {
+  display: grid;
+  gap: 8px;
+  max-width: 560px;
+}
+
+.glossary-search label {
+  font-weight: 700;
+}
+
+.glossary-search .note {
+  min-height: 1.5em;
+  margin: 0;
+}
+
+/* Текст только для скринридеров */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Задачи: уровень и подсказки */
+.task-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+}
+
+.task-head h3 {
+  margin-bottom: 0;
+}
+
+.level {
+  flex: none;
+  padding: 2px 10px;
+  color: #0a0a0a;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.level-easy { background: #b9f3c4; }
+.level-medium { background: #ffd249; }
+.level-hard { background: #ffc4ef; }
+
+.hints {
+  margin-top: 12px;
+}
+
+.hint-list {
+  display: grid;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hint-list li {
+  padding: 10px 14px;
+  background: var(--surface-2);
+}
+
+.hint-list li:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.hint-list li[hidden] {
+  display: none;
+}
+
+.task .solution {
+  margin-top: 12px;
+}

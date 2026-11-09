@@ -21,7 +21,7 @@ def check(code, tests, lang="ru"):
     # exec и eval здесь намеренно: это код самого ученика и тесты с сайта, всё выполняется
     # в его браузере (Pyodide) или в CI, чужие данные сюда не попадают
     ns: dict[str, object] = {"__name__": "__main__"}
-    exec(compile(code, "<exec>", "exec"), ns)
+    exec(compile(code, "<code>", "exec"), ns)
 
     def case(expr, expected, hint=""):
         try:

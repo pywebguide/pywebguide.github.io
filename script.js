@@ -1,6 +1,9 @@
 (function () {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const t = window.pywebT || function (text) { return text; };
+  // Без assets/i18n.js (русские страницы) строка остаётся русской, но числа {n} подставляются
+  const t = window.pywebT || function (text, vars) {
+    return vars ? text.replace(/\{(\w+)\}/g, function (match, key) { return key in vars ? String(vars[key]) : match; }) : text;
+  };
 
   const menuButton = document.querySelector(".burger");
   const nav = document.getElementById("site-nav");

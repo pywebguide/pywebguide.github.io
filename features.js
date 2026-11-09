@@ -2,7 +2,10 @@
 (function () {
   "use strict";
 
-  const t = window.pywebT || function (text) { return text; };
+  // Без assets/i18n.js (русские страницы) строка остаётся русской, но числа {n} подставляются
+  const t = window.pywebT || function (text, vars) {
+    return vars ? text.replace(/\{(\w+)\}/g, function (match, key) { return key in vars ? String(vars[key]) : match; }) : text;
+  };
   // Корень сайта (здесь лежит features.js): страницы на казахском и английском находятся в kk/ и en/
   const ROOT = document.currentScript ? new URL(".", document.currentScript.src).href : "";
   const LANG = window.pywebLang || "ru";
@@ -256,6 +259,40 @@
 
   setupToc();
 
+  /* ---------- Поиск по словарю: фильтр карточек терминов ---------- */
+  const glossaryFilter = document.querySelector("[data-glossary-filter]");
+
+  if (glossaryFilter) {
+    const cards = Array.prototype.slice.call(document.querySelectorAll(".glossary-grid .card"));
+    const count = document.querySelector("[data-glossary-count]");
+
+    function filterTerms() {
+      const words = normalize(glossaryFilter.value).split(/\s+/).filter(Boolean);
+      let shown = 0;
+      cards.forEach(function (card) {
+        const text = normalize(card.textContent + " " + card.querySelector("h3").id);
+        const match = words.every(function (word) { return text.indexOf(word) !== -1; });
+        card.hidden = !match;
+        if (match) shown++;
+      });
+      // Раздел без подходящих терминов прячется целиком
+      document.querySelectorAll(".glossary-grid").forEach(function (grid) {
+        grid.closest("section").hidden = !grid.querySelector(".card:not([hidden])");
+      });
+      count.textContent = words.length
+        ? (shown ? t("Найдено терминов: {n}", { n: shown }) : t("Такого слова в словаре пока нет. Напишите нам, и мы добавим."))
+        : "";
+    }
+
+    glossaryFilter.addEventListener("input", filterTerms);
+    glossaryFilter.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && glossaryFilter.value) {
+        glossaryFilter.value = "";
+        filterTerms();
+      }
+    });
+  }
+
   /* ---------- Python в браузере (Pyodide в отдельном потоке) ---------- */
   const WORKER_SOURCE = [
     'importScripts("' + PYODIDE + 'pyodide.js");',
@@ -282,8 +319,15 @@
     '    postMessage({ type: "started" });',
     '    const ns = py.globals.get("dict")();',
     '    ns.set("__name__", "__main__");',
-    '    await py.runPythonAsync(job.code, { globals: ns });',
-    '    if (job.tests) await py.runPythonAsync(job.tests, { globals: ns });',
+    // Задача: проверка через assets/checker.py, она покажет, какой тест не прошёл
+    '    if (job.tests && job.checker) {',
+    '      await py.runPythonAsync(job.checker, { globals: ns });',
+    '      ns.set("__code", job.code); ns.set("__tests", job.tests); ns.set("__lang", job.lang || "ru");',
+    '      await py.runPythonAsync("check(__code, __tests, __lang)", { globals: ns });',
+    '    } else {',
+    '      await py.runPythonAsync(job.code, { globals: ns });',
+    '      if (job.tests) await py.runPythonAsync(job.tests, { globals: ns });',
+    '    }',
     '    ns.destroy();',
     '    postMessage({ type: "done", ok: true });',
     '  } catch (error) {',
@@ -306,12 +350,14 @@
 
     function cleanError(text) {
       // Проверки задач: ученику важен только текст подсказки
-      const assertion = text.match(/AssertionError: ?([\s\S]*)$/);
+      const assertion = text.match(/(?:AssertionError|CaseFailed): ?([\s\S]*)$/);
       if (assertion) return assertion[1].trim() || t("Проверка не пройдена.");
 
-      // Внутренние строки Pyodide убираем: оставляем всё, начиная с первой строки кода ученика
+      // Внутренние строки Pyodide и проверки убираем: оставляем всё, начиная с первой строки кода ученика.
+      // В задачах код ученика называется <code>, в песочнице и примерах — <exec>
       const lines = text.split("\n");
-      const first = lines.findIndex(function (line) { return line.indexOf('File "<exec>"') !== -1; });
+      let first = lines.findIndex(function (line) { return line.indexOf('File "<code>"') !== -1; });
+      if (first === -1) first = lines.findIndex(function (line) { return line.indexOf('File "<exec>"') !== -1; });
       const shown = (first === -1 ? text : "Traceback (most recent call last):\n" + lines.slice(first).join("\n")).trim();
 
       if (/EOFError|I\/O error/.test(shown)) {
@@ -576,6 +622,18 @@
   }
 
   /* Задачи с автопроверкой */
+  // Код проверки один для браузера и для CI: assets/checker.py. Если файл не загрузился, тесты
+  // запускаются как обычный код, и ученик увидит только текст ошибки
+  let checkerPromise = null;
+  function checkerSource() {
+    if (!checkerPromise) {
+      checkerPromise = fetch(ROOT + "assets/checker.py")
+        .then(function (response) { return response.ok ? response.text() : ""; })
+        .catch(function () { return ""; });
+    }
+    return checkerPromise;
+  }
+
   const taskNodes = document.querySelectorAll(".task[data-task]");
 
   if (taskNodes.length) {
@@ -612,8 +670,28 @@
         try { localStorage.removeItem(draftKey); } catch (error) { /* черновик просто останется */ }
       });
 
+      // Подсказки открываются по одной, перед решением
+      const hintButton = node.querySelector("[data-hint-next]");
+      if (hintButton) {
+        const hintItems = node.querySelectorAll(".hint-list li");
+        let opened = 0;
+        hintButton.addEventListener("click", function () {
+          if (opened >= hintItems.length) return;
+          hintItems[opened].hidden = false;
+          hintItems[opened].focus();
+          opened++;
+          if (opened >= hintItems.length) {
+            hintButton.hidden = true;
+          } else {
+            hintButton.textContent = t("Подсказка") + " " + (opened + 1) + " / " + hintItems.length;
+          }
+        });
+      }
+
       check.addEventListener("click", function () {
-        runInto(box, { code: area.value, tests: tests }, check).then(function (result) {
+        checkerSource().then(function (checker) {
+          return runInto(box, { code: area.value, tests: tests, checker: checker, lang: LANG }, check);
+        }).then(function (result) {
           const status = box.querySelector(".run-status");
           if (result.ok) {
             status.textContent = t("Верно! Все проверки пройдены.");

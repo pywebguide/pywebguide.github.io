@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Задачи по Python и веб-разработке с автопроверкой — PyWeb Guide</title>
 
-  <meta name="description" content="Десять задач по Python, HTTP, SQL и Flask с мгновенной автопроверкой прямо в браузере, без установки.">
+  <meta name="description" content="Шестнадцать задач по Python, HTTP, SQL и Flask с мгновенной автопроверкой прямо в браузере, без установки.">
   <link rel="canonical" href="https://pywebguide.github.io/practice.html">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:site_name" content="PyWeb Guide">
   <meta property="og:title" content="Задачи по Python и веб-разработке с автопроверкой — PyWeb Guide">
-  <meta property="og:description" content="Десять задач по Python, HTTP, SQL и Flask с мгновенной автопроверкой прямо в браузере, без установки.">
+  <meta property="og:description" content="Шестнадцать задач по Python, HTTP, SQL и Flask с мгновенной автопроверкой прямо в браузере, без установки.">
   <meta property="og:url" content="https://pywebguide.github.io/practice.html">
   <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -116,7 +116,7 @@
 <span>Задачи</span>
 </nav>
 <h1>Задачи с автопроверкой</h1>
-<p class="lead">Напишите решение и нажмите «Проверить». Код выполнится в браузере и пройдёт скрытые тесты. Решённые задачи запоминаются в этом браузере.</p>
+<p class="lead">Напишите решение и нажмите «Проверить». Код выполнится в браузере и пройдёт скрытые тесты. Если тест не пройден, вы увидите, что он проверял, что ожидалось и что получилось. Застряли — откройте подсказку. Решённые задачи запоминаются в этом браузере.</p>
 <img class="band-picture" src="assets/img/typing-class.jpg" width="1000" height="637" alt="Ученицы занимаются в классе машинописи, около 1945 года" decoding="async" fetchpriority="high">
 </div></div>
 <section class="section" id="result" aria-labelledby="result-title">
@@ -126,49 +126,117 @@
 <p>Первая проверка загрузит Python: около 5 МБ, это занимает несколько секунд.</p>
 </div>
 <div class="progress-box reveal">
-<p class="progress-label" role="status"><span data-tasks-count>0</span> из 10 задач решено</p>
+<p class="progress-label" role="status"><span data-tasks-count>0</span> из <span data-tasks-total="16">16</span> задач решено</p>
 <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-tasks-fill></div></div>
 </div>
 </div>
 </section>
+<!-- tasks:start -->
 <section class="section" id="basics" aria-labelledby="basics-title">
 <div class="container">
 <div class="section-head reveal">
 <h2 id="basics-title">Основы Python</h2>
 <p>Функции, строки и словари: на них держится любой обработчик запросов.</p>
 </div>
-<article class="task reveal" data-task="greet">
-<h3>1. Приветствие</h3>
+<article class="task reveal" data-task="greet" data-level="easy">
+<div class="task-head"><h3>1. Приветствие</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
 <p>Напишите функцию <code>greet(name)</code>, которая возвращает строку <code>Привет, Имя!</code>. Лишние пробелы вокруг имени нужно убрать. Если имя пустое, верните <code>Привет, гость!</code>.</p>
-<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Решение: 1. Приветствие">def greet(name):
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 1. Приветствие">def greet(name):
     # ваш код
     pass</textarea>
 <div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
 <div data-output></div>
-<details><summary>Показать решение</summary><pre><code>def greet(name):
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Склеить текст с переменной проще всего f-строкой: <code>f"Привет, {name}!"</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Пробелы по краям убирает <code>name.strip()</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Пустая строка в условии считается ложью: <code>name or 'гость'</code> вернёт «гость», если имя пустое.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def greet(name):
     name = name.strip()
     return f"Привет, {name or 'гость'}!"</code></pre></details>
-<template data-kind="tests">assert greet("Анна") == "Привет, Анна!", 'greet("Анна") должна вернуть "Привет, Анна!"'
-assert greet("  Ерлан ") == "Привет, Ерлан!", "Уберите пробелы вокруг имени: подойдёт .strip()"
-assert greet("") == "Привет, гость!", 'Для пустого имени нужен ответ "Привет, гость!"'
-assert greet("   ") == "Привет, гость!", "Имя из одних пробелов тоже считается пустым"</template>
+<template data-kind="tests">case('greet("Анна")', "Привет, Анна!")
+case('greet("  Ерлан ")', "Привет, Ерлан!", "Уберите пробелы вокруг имени: подойдёт .strip()")
+case('greet("")', "Привет, гость!", "Для пустого имени нужен ответ «Привет, гость!»")
+case('greet("   ")', "Привет, гость!", "Имя из одних пробелов тоже считается пустым")</template>
 </article>
-<article class="task reveal" data-task="words">
-<h3>2. Подсчёт слов</h3>
+<article class="task reveal" data-task="words" data-level="easy">
+<div class="task-head"><h3>2. Подсчёт слов</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
 <p>Напишите <code>count_words(text)</code>: верните словарь, где ключ — слово в нижнем регистре, а значение — сколько раз оно встретилось.</p>
-<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Решение: 2. Подсчёт слов">def count_words(text):
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 2. Подсчёт слов">def count_words(text):
     # ваш код
     pass</textarea>
 <div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
 <div data-output></div>
-<details><summary>Показать решение</summary><pre><code>def count_words(text):
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Начните с пустого словаря <code>counts = {}</code> и пройдите циклом по словам.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> <code>text.lower().split()</code> переводит текст в нижний регистр и делит его по любым пробелам и переносам строк.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> <code>counts.get(word, 0) + 1</code> увеличивает счётчик, даже если слова ещё нет в словаре.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def count_words(text):
     counts = {}
     for word in text.lower().split():
         counts[word] = counts.get(word, 0) + 1
     return counts</code></pre></details>
-<template data-kind="tests">assert count_words("") == {}, "Для пустой строки нужен пустой словарь"
-assert count_words("Да да нет") == {"да": 2, "нет": 1}, 'Ожидается {"да": 2, "нет": 1}: приведите слова к нижнему регистру'
-assert count_words("a  b\nb") == {"a": 1, "b": 2}, "Разделяйте через .split() без аргументов"</template>
+<template data-kind="tests">case('count_words("")', {}, "Для пустой строки нужен пустой словарь")
+case('count_words("Да да нет")', {"да": 2, "нет": 1}, "Приведите слова к нижнему регистру")
+case('count_words("a  b\\nb")', {"a": 1, "b": 2}, "Разделяйте через .split() без аргументов")</template>
+</article>
+<article class="task reveal" data-task="strong" data-level="easy">
+<div class="task-head"><h3>3. Надёжный пароль</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Напишите <code>is_strong(password)</code>. Пароль надёжный, если в нём не меньше 8 символов, есть хотя бы одна цифра и хотя бы одна буква. Верните <code>True</code> или <code>False</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 3. Надёжный пароль">def is_strong(password):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Длину строки даёт <code>len(password)</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> <code>any(ch.isdigit() for ch in password)</code> вернёт <code>True</code>, если в пароле есть цифра.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Для букв есть <code>ch.isalpha()</code>. Соедините три условия через <code>and</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def is_strong(password):
+    has_digit = any(ch.isdigit() for ch in password)
+    has_letter = any(ch.isalpha() for ch in password)
+    return len(password) &gt;= 8 and has_digit and has_letter</code></pre></details>
+<template data-kind="tests">case('is_strong("qwerty12")', True)
+case('is_strong("qwe12")', False, "Нужно не меньше 8 символов")
+case('is_strong("12345678")', False, "Без букв пароль не надёжный")
+case('is_strong("password")', False, "Без цифр пароль не надёжный")
+case('is_strong("пароль2026")', True, "Русские буквы тоже буквы: .isalpha()")</template>
+</article>
+<article class="task reveal" data-task="slug" data-level="medium">
+<div class="task-head"><h3>4. Адрес из заголовка</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Сайты превращают заголовок статьи в часть адреса: <code>Мой первый сайт</code> → <code>moy-pervyy-sayt</code>. Напишите <code>slugify(title)</code> для латиницы: оставьте буквы и цифры в нижнем регистре, всё остальное замените дефисом. Несколько дефисов подряд склейте в один, дефисы по краям уберите.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 4. Адрес из заголовка">def slugify(title):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Пройдите по символам <code>title.lower()</code>: буква или цифра (<code>ch.isalnum()</code>) остаётся, остальное становится <code>"-"</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Склеить части без лишних дефисов поможет <code>"-".join(...)</code> по непустым кускам после <code>split("-")</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Если пишете через модуль <code>re</code>: <code>re.sub(r"[^a-z0-9]+", "-", text).strip("-")</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def slugify(title):
+    chars = [ch if ch.isalnum() else "-" for ch in title.lower()]
+    parts = "".join(chars).split("-")
+    return "-".join(part for part in parts if part)</code></pre></details>
+<template data-kind="tests">case('slugify("Hello World")', "hello-world")
+case('slugify("  Flask &amp; Django: 2 frameworks! ")', "flask-django-2-frameworks", "Несколько знаков подряд дают один дефис")
+case('slugify("---")', "", "Дефисы по краям нужно убрать")
+case('slugify("Python3")', "python3", "Цифры остаются")</template>
 </article>
 </div>
 </section>
@@ -178,30 +246,38 @@ assert count_words("a  b\nb") == {"a": 1, "b": 2}, "Разделяйте чер�
 <h2 id="http-title">HTTP и маршруты</h2>
 <p>То, что фреймворк делает за вас, легко написать в простом виде.</p>
 </div>
-<article class="task reveal" data-task="query">
-<h3>3. Разбор адреса</h3>
+<article class="task reveal" data-task="query" data-level="medium">
+<div class="task-head"><h3>5. Разбор адреса</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
 <p>Напишите <code>parse_query(query)</code>. Она превращает строку <code>a=1&amp;b=2</code> в словарь <code>{"a": "1", "b": "2"}</code>. Части без знака <code>=</code> пропускайте. Значение может содержать <code>=</code>.</p>
-<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Решение: 3. Разбор адреса">def parse_query(query):
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 5. Разбор адреса">def parse_query(query):
     # ваш код
     pass</textarea>
 <div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
 <div data-output></div>
-<details><summary>Показать решение</summary><pre><code>def parse_query(query):
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Сначала разделите строку на пары: <code>query.split("&amp;")</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Пару без <code>=</code> пропустите проверкой <code>if "=" in part</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> <code>part.split("=", 1)</code> делит только по первому знаку <code>=</code>, остальные остаются в значении.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def parse_query(query):
     result = {}
     for part in query.split("&amp;"):
         if "=" in part:
             key, value = part.split("=", 1)
             result[key] = value
     return result</code></pre></details>
-<template data-kind="tests">assert parse_query("") == {}, "Для пустой строки нужен пустой словарь"
-assert parse_query("a=1&amp;b=2") == {"a": "1", "b": "2"}, 'Ожидается {"a": "1", "b": "2"}'
-assert parse_query("flag&amp;x=1") == {"x": "1"}, "Часть без = нужно пропустить"
-assert parse_query("token=a=b") == {"token": "a=b"}, "Делите только по первому =: split('=', 1) или partition"</template>
+<template data-kind="tests">case('parse_query("")', {}, "Для пустой строки нужен пустой словарь")
+case('parse_query("a=1&amp;b=2")', {"a": "1", "b": "2"})
+case('parse_query("flag&amp;x=1")', {"x": "1"}, "Часть без = нужно пропустить")
+case('parse_query("token=a=b")', {"token": "a=b"}, "Делите только по первому =: split('=', 1)")</template>
 </article>
-<article class="task reveal" data-task="router">
-<h3>4. Простой маршрутизатор</h3>
+<article class="task reveal" data-task="router" data-level="medium">
+<div class="task-head"><h3>6. Простой маршрутизатор</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
 <p>Допишите <code>handle(method, path)</code>. Она ищет обработчик в словаре <code>ROUTES</code> и возвращает пару «код, текст». Если адреса нет, верните <code>(404, "Not Found")</code>. Если адрес есть, но метод не подходит, верните <code>(405, "Method Not Allowed")</code>.</p>
-<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Решение: 4. Простой маршрутизатор">ROUTES = {
+<textarea class="editor-area" rows="10" spellcheck="false" aria-label="Решение: 6. Простой маршрутизатор">ROUTES = {
     "/": {"GET": "Главная"},
     "/tasks": {"GET": "Список задач", "POST": "Задача создана"},
 }
@@ -211,7 +287,15 @@ def handle(method, path):
     pass</textarea>
 <div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
 <div data-output></div>
-<details><summary>Показать решение</summary><pre><code>ROUTES = {
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Проверьте по порядку: сначала есть ли адрес, потом есть ли метод.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> <code>path not in ROUTES</code> означает, что такого адреса нет: это 404.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Методы адреса лежат в <code>ROUTES[path]</code>. Если метода там нет — 405, иначе верните <code>200</code> и текст.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>ROUTES = {
     "/": {"GET": "Главная"},
     "/tasks": {"GET": "Список задач", "POST": "Задача создана"},
 }
@@ -222,21 +306,29 @@ def handle(method, path):
     if method not in ROUTES[path]:
         return 405, "Method Not Allowed"
     return 200, ROUTES[path][method]</code></pre></details>
-<template data-kind="tests">assert handle("GET", "/") == (200, "Главная"), 'GET / должен вернуть (200, "Главная")'
-assert handle("POST", "/tasks") == (200, "Задача создана"), 'POST /tasks должен вернуть (200, "Задача создана")'
-assert handle("GET", "/nope") == (404, "Not Found"), "Для неизвестного адреса нужен код 404"
-assert handle("DELETE", "/") == (405, "Method Not Allowed"), "Для неподходящего метода нужен код 405"</template>
+<template data-kind="tests">case('handle("GET", "/")', (200, "Главная"))
+case('handle("POST", "/tasks")', (200, "Задача создана"))
+case('handle("GET", "/nope")', (404, "Not Found"), "Для неизвестного адреса нужен код 404")
+case('handle("DELETE", "/")', (405, "Method Not Allowed"), "Для неподходящего метода нужен код 405")</template>
 </article>
-<article class="task reveal" data-task="validate">
-<h3>5. Проверка данных формы</h3>
+<article class="task reveal" data-task="validate" data-level="hard">
+<div class="task-head"><h3>7. Проверка данных формы</h3><span class="level level-hard"><span class="visually-hidden">Уровень: </span>Сложная</span></div>
 <p>Напишите <code>validate_user(data)</code>. Функция принимает словарь и возвращает список ошибок. Поле <code>name</code> обязательно, поле <code>age</code> должно быть целым числом от 1 до 120. Тексты ошибок: <code>"name"</code> и <code>"age"</code>. Если всё верно, верните пустой список.</p>
-<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Решение: 5. Проверка данных формы">def validate_user(data):
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Решение: 7. Проверка данных формы">def validate_user(data):
     errors = []
     # ваш код
     return errors</textarea>
 <div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
 <div data-output></div>
-<details><summary>Показать решение</summary><pre><code>def validate_user(data):
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Поля может не быть: <code>data.get("name", "")</code> вернёт пустую строку вместо ошибки.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Целое число проверяет <code>isinstance(age, int)</code>, диапазон — <code>1 &lt;= age &lt;= 120</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> В Python <code>True</code> тоже считается <code>int</code>. Отсейте его отдельно: <code>isinstance(age, bool)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def validate_user(data):
     errors = []
     if not str(data.get("name", "")).strip():
         errors.append("name")
@@ -244,34 +336,98 @@ assert handle("DELETE", "/") == (405, "Method Not Allowed"), "Для непод�
     if not isinstance(age, int) or isinstance(age, bool) or not 1 &lt;= age &lt;= 120:
         errors.append("age")
     return errors</code></pre></details>
-<template data-kind="tests">assert validate_user({"name": "Аружан", "age": 20}) == [], "Верные данные не должны давать ошибок"
-assert validate_user({"age": 20}) == ["name"], "Без имени должна быть ошибка name"
-assert validate_user({"name": "  ", "age": 20}) == ["name"], "Имя из пробелов считается пустым"
-assert validate_user({"name": "A", "age": 0}) == ["age"], "Возраст 0 не подходит"
-assert validate_user({"name": "A", "age": "20"}) == ["age"], "Строка не считается числом"
-assert validate_user({"name": "A", "age": True}) == ["age"], "True в Python тоже int: проверьте это отдельно"
-assert validate_user({}) == ["name", "age"], "Нужно вернуть обе ошибки по порядку"</template>
+<template data-kind="tests">case('validate_user({"name": "Аружан", "age": 20})', [], "Верные данные не должны давать ошибок")
+case('validate_user({"age": 20})', ["name"], "Без имени должна быть ошибка name")
+case('validate_user({"name": "  ", "age": 20})', ["name"], "Имя из пробелов считается пустым")
+case('validate_user({"name": "A", "age": 0})', ["age"], "Возраст 0 не подходит")
+case('validate_user({"name": "A", "age": "20"})', ["age"], "Строка не считается числом")
+case('validate_user({"name": "A", "age": True})', ["age"], "True в Python тоже int: проверьте это отдельно")
+case('validate_user({})', ["name", "age"], "Нужно вернуть обе ошибки по порядку")</template>
 </article>
-<article class="task reveal" data-task="json">
-<h3>6. Ответ в JSON</h3>
+<article class="task reveal" data-task="json" data-level="medium">
+<div class="task-head"><h3>8. Ответ в JSON</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
 <p>Напишите <code>tasks_json(tasks)</code>. Функция получает список словарей и возвращает строку JSON только с задачами, у которых <code>done</code> равно <code>False</code>. Кириллица должна остаться читаемой. Импорт уже есть.</p>
-<textarea class="editor-area" rows="8" spellcheck="false" aria-label="Решение: 6. Ответ в JSON">import json
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Решение: 8. Ответ в JSON">import json
 
 def tasks_json(tasks):
     # ваш код
     pass</textarea>
 <div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
 <div data-output></div>
-<details><summary>Показать решение</summary><pre><code>import json
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Отберите невыполненные задачи: <code>[task for task in tasks if not task["done"]]</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Список превращается в строку JSON функцией <code>json.dumps(...)</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Чтобы кириллица не стала кодами вида <code>\u041a</code>, добавьте <code>ensure_ascii=False</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>import json
 
 def tasks_json(tasks):
     active = [task for task in tasks if not task["done"]]
     return json.dumps(active, ensure_ascii=False)</code></pre></details>
 <template data-kind="tests">data = [{"title": "Код", "done": False}, {"title": "Сон", "done": True}]
-assert isinstance(tasks_json(data), str), "Нужно вернуть строку, а не список"
-assert json.loads(tasks_json(data)) == [{"title": "Код", "done": False}], "В ответе должны остаться только невыполненные задачи"
-assert "Код" in tasks_json(data), "Добавьте ensure_ascii=False, иначе кириллица превратится в коды"
-assert tasks_json([]) == "[]", "Для пустого списка нужна строка []"</template>
+case('type(tasks_json(data)).__name__', "str", "Нужно вернуть строку, а не список")
+case('json.loads(tasks_json(data))', [{"title": "Код", "done": False}], "В ответе должны остаться только невыполненные задачи")
+case('"Код" in tasks_json(data)', True, "Добавьте ensure_ascii=False, иначе кириллица превратится в коды")
+case('tasks_json([])', "[]", "Для пустого списка нужна строка []")</template>
+</article>
+<article class="task reveal" data-task="render" data-level="medium">
+<div class="task-head"><h3>9. Свой шаблон</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Шаблон — текст с пропусками. Напишите <code>render(template, data)</code>: она заменяет каждый пропуск <code>{{ имя }}</code> на значение из словаря <code>data</code>. Пробелы внутри скобок могут быть или не быть. Если ключа в словаре нет, подставьте пустую строку.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Решение: 9. Свой шаблон">import re
+
+def render(template, data):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Найти все пропуски поможет регулярное выражение <code>r"\{\{\s*(\w+)\s*\}\}"</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> <code>re.sub(шаблон, функция, текст)</code> вызывает функцию для каждого найденного пропуска и подставляет её ответ.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Внутри функции имя пропуска лежит в <code>match.group(1)</code>, а значение достаёт <code>str(data.get(имя, ""))</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>import re
+
+def render(template, data):
+    def value(match):
+        return str(data.get(match.group(1), ""))
+    return re.sub(r"\{\{\s*(\w+)\s*\}\}", value, template)</code></pre></details>
+<template data-kind="tests">case('render("Привет, {{ name }}!", {"name": "Дана"})', "Привет, Дана!")
+case('render("{{a}}+{{ b }}={{c}}", {"a": 1, "b": 2, "c": 3})', "1+2=3", "Пробелы внутри скобок необязательны, числа превратите в строку")
+case('render("[{{ missing }}]", {})', "[]", "Неизвестный ключ заменяется пустой строкой")
+case('render("без пропусков", {"x": 1})', "без пропусков")</template>
+</article>
+<article class="task reveal" data-task="paginate" data-level="medium">
+<div class="task-head"><h3>10. Страницы списка</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Длинный список показывают по частям. Напишите <code>paginate(items, page, per_page)</code>: верните элементы страницы номер <code>page</code> (нумерация с 1). Если страницы с таким номером нет или номер меньше 1, верните пустой список.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 10. Страницы списка">def paginate(items, page, per_page):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Первый элемент страницы стоит на месте <code>(page - 1) * per_page</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Срез <code>items[start:start + per_page]</code> сам обрежется, если элементов меньше.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Номер страницы меньше 1 проверьте отдельно, иначе отрицательный срез вернёт лишнее.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def paginate(items, page, per_page):
+    if page &lt; 1:
+        return []
+    start = (page - 1) * per_page
+    return items[start:start + per_page]</code></pre></details>
+<template data-kind="tests">letters = list("abcdefg")
+case('paginate(letters, 1, 3)', ["a", "b", "c"])
+case('paginate(letters, 3, 3)', ["g"], "На последней странице может быть меньше элементов")
+case('paginate(letters, 4, 3)', [], "Такой страницы нет: нужен пустой список")
+case('paginate(letters, 0, 3)', [], "Страницы с номером 0 не бывает")</template>
 </article>
 </div>
 </section>
@@ -281,10 +437,10 @@ assert tasks_json([]) == "[]", "Для пустого списка нужна с
 <h2 id="sql-title">SQL</h2>
 <p>Настоящая база SQLite работает прямо в браузере.</p>
 </div>
-<article class="task reveal" data-task="add_task">
-<h3>7. Безопасная вставка</h3>
+<article class="task reveal" data-task="add_task" data-level="medium">
+<div class="task-head"><h3>11. Безопасная вставка</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
 <p>Напишите <code>add_task(db, title)</code>: она добавляет строку в таблицу <code>tasks</code> и возвращает её <code>id</code>. Используйте параметр <code>?</code>: текст с кавычкой не должен ломать запрос.</p>
-<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Решение: 7. Безопасная вставка">import sqlite3
+<textarea class="editor-area" rows="10" spellcheck="false" aria-label="Решение: 11. Безопасная вставка">import sqlite3
 
 db = sqlite3.connect(":memory:")
 db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT)")
@@ -294,7 +450,15 @@ def add_task(db, title):
     pass</textarea>
 <div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
 <div data-output></div>
-<details><summary>Показать решение</summary><pre><code>import sqlite3
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Запрос на вставку: <code>INSERT INTO tasks (title) VALUES (?)</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Значения передаются вторым аргументом кортежем: <code>db.execute(запрос, (title,))</code>. Запятая после <code>title</code> обязательна.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> <code>execute</code> возвращает курсор, а номер новой строки лежит в <code>cursor.lastrowid</code>. Не забудьте <code>db.commit()</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>import sqlite3
 
 db = sqlite3.connect(":memory:")
 db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT)")
@@ -303,17 +467,16 @@ def add_task(db, title):
     cursor = db.execute("INSERT INTO tasks (title) VALUES (?)", (title,))
     db.commit()
     return cursor.lastrowid</code></pre></details>
-<template data-kind="tests">first = add_task(db, "Первая")
-second = add_task(db, "Вторая")
-assert isinstance(first, int) and second == first + 1, "Верните cursor.lastrowid"
+<template data-kind="tests">case('add_task(db, "Первая")', 1, "Верните cursor.lastrowid")
+case('add_task(db, "Вторая")', 2, "Каждая новая строка получает следующий id")
 evil = "x'); DROP TABLE tasks; --"
-add_task(db, evil)
-assert db.execute("SELECT title FROM tasks WHERE title = ?", (evil,)).fetchone() == (evil,), "Текст с кавычкой должен сохраниться как есть: используйте ?"</template>
+case('add_task(db, evil)', 3, "Текст с кавычкой не должен ломать запрос: используйте ?")
+case('db.execute("SELECT title FROM tasks WHERE id = 3").fetchone()', (evil,), "Текст с кавычкой должен сохраниться как есть")</template>
 </article>
-<article class="task reveal" data-task="select">
-<h3>8. Выборка с условием</h3>
+<article class="task reveal" data-task="select" data-level="easy">
+<div class="task-head"><h3>12. Выборка с условием</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
 <p>Напишите <code>active_titles(db)</code>: верните список заголовков, у которых <code>done = 0</code>, отсортированный по алфавиту.</p>
-<textarea class="editor-area" rows="12" spellcheck="false" aria-label="Решение: 8. Выборка с условием">import sqlite3
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Решение: 12. Выборка с условием">import sqlite3
 
 db = sqlite3.connect(":memory:")
 db.execute("CREATE TABLE tasks (title TEXT, done INTEGER)")
@@ -324,7 +487,15 @@ def active_titles(db):
     pass</textarea>
 <div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
 <div data-output></div>
-<details><summary>Показать решение</summary><pre><code>import sqlite3
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Нужен запрос <code>SELECT title FROM tasks</code> с условием <code>WHERE done = 0</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Сортировку по алфавиту даёт <code>ORDER BY title</code> в конце запроса.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Каждая строка результата — кортеж, заголовок в нём первый: <code>[row[0] for row in rows]</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>import sqlite3
 
 db = sqlite3.connect(":memory:")
 db.execute("CREATE TABLE tasks (title TEXT, done INTEGER)")
@@ -333,9 +504,9 @@ db.executemany("INSERT INTO tasks VALUES (?, ?)", [("Б", 0), ("А", 0), ("В", 
 def active_titles(db):
     rows = db.execute("SELECT title FROM tasks WHERE done = 0 ORDER BY title")
     return [row[0] for row in rows]</code></pre></details>
-<template data-kind="tests">assert active_titles(db) == ["А", "Б"], 'Ожидается ["А", "Б"]: добавьте WHERE и ORDER BY и верните список строк'
+<template data-kind="tests">case('active_titles(db)', ["А", "Б"], "Добавьте WHERE и ORDER BY и верните список строк")
 db.execute("UPDATE tasks SET done = 1")
-assert active_titles(db) == [], "Если подходящих строк нет, верните пустой список"</template>
+case('active_titles(db)', [], "Если подходящих строк нет, верните пустой список")</template>
 </article>
 </div>
 </section>
@@ -345,17 +516,25 @@ assert active_titles(db) == [], "Если подходящих строк нет
 <h2 id="flask-title">Flask</h2>
 <p>Настоящий Flask. Первая проверка дополнительно загрузит пакет с PyPI.</p>
 </div>
-<article class="task reveal" data-task="route">
-<h3>9. Первый маршрут</h3>
+<article class="task reveal" data-task="route" data-level="easy">
+<div class="task-head"><h3>13. Первый маршрут</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
 <p>Добавьте маршрут <code>GET /hello/&lt;name&gt;</code>, который возвращает JSON <code>{"message": "Привет, имя!"}</code>.</p>
-<textarea class="editor-area" rows="8" spellcheck="false" aria-label="Решение: 9. Первый маршрут">from flask import Flask
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Решение: 13. Первый маршрут">from flask import Flask
 
 app = Flask(__name__)
 
 # ваш маршрут</textarea>
 <div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
 <div data-output></div>
-<details><summary>Показать решение</summary><pre><code>from flask import Flask
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Маршрут объявляют декоратором над функцией: <code>@app.get("/hello/&lt;name&gt;")</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Имя в угловых скобках адреса и имя аргумента функции должны совпадать: <code>def hello(name):</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Если вернуть словарь, Flask сам превратит его в JSON: <code>return {"message": f"Привет, {name}!"}</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>from flask import Flask
 
 app = Flask(__name__)
 
@@ -363,14 +542,54 @@ app = Flask(__name__)
 def hello(name):
     return {"message": f"Привет, {name}!"}</code></pre></details>
 <template data-kind="tests">client = app.test_client()
-response = client.get("/hello/Python")
-assert response.status_code == 200, "Адрес /hello/Python должен открываться с кодом 200"
-assert response.json == {"message": "Привет, Python!"}, 'Верните словарь {"message": "Привет, Python!"}'</template>
+case('client.get("/hello/Python").status_code', 200, "Адрес /hello/Python должен открываться с кодом 200")
+case('client.get("/hello/Python").json', {"message": "Привет, Python!"})</template>
 </article>
-<article class="task reveal" data-task="post">
-<h3>10. Создание записи</h3>
+<article class="task reveal" data-task="filter" data-level="medium">
+<div class="task-head"><h3>14. Фильтр в адресе</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Сделайте <code>GET /tasks</code>, который возвращает JSON-список задач из <code>TASKS</code>. Если в адресе есть <code>?done=1</code>, верните только выполненные, если <code>?done=0</code> — только невыполненные. Без параметра верните все.</p>
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Решение: 14. Фильтр в адресе">from flask import Flask, request
+
+app = Flask(__name__)
+TASKS = [
+    {"title": "Купить хлеб", "done": True},
+    {"title": "Выучить Flask", "done": False},
+]
+
+# ваш маршрут</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Параметр из адреса читает <code>request.args.get("done")</code>. Если его нет, будет <code>None</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Параметр приходит строкой: сравнивайте с <code>"1"</code>, а не с числом.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Список словарей Flask превращает в JSON сам, если вернуть его из функции.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>from flask import Flask, request
+
+app = Flask(__name__)
+TASKS = [
+    {"title": "Купить хлеб", "done": True},
+    {"title": "Выучить Flask", "done": False},
+]
+
+@app.get("/tasks")
+def tasks():
+    done = request.args.get("done")
+    if done is None:
+        return TASKS
+    return [task for task in TASKS if task["done"] == (done == "1")]</code></pre></details>
+<template data-kind="tests">client = app.test_client()
+case('len(client.get("/tasks").json)', 2, "Без параметра нужны все задачи")
+case('client.get("/tasks?done=1").json', [{"title": "Купить хлеб", "done": True}], "?done=1 — только выполненные")
+case('client.get("/tasks?done=0").json', [{"title": "Выучить Flask", "done": False}], "?done=0 — только невыполненные: параметр приходит строкой")</template>
+</article>
+<article class="task reveal" data-task="post" data-level="hard">
+<div class="task-head"><h3>15. Создание записи</h3><span class="level level-hard"><span class="visually-hidden">Уровень: </span>Сложная</span></div>
 <p>Сделайте <code>POST /items</code>. Он читает JSON с полем <code>title</code>. Если поля нет или оно пустое, верните <code>{"error": "title"}</code> с кодом 400. Иначе добавьте заголовок в список <code>items</code> и верните <code>{"title": ...}</code> с кодом 201.</p>
-<textarea class="editor-area" rows="9" spellcheck="false" aria-label="Решение: 10. Создание записи">from flask import Flask, request
+<textarea class="editor-area" rows="8" spellcheck="false" aria-label="Решение: 15. Создание записи">from flask import Flask, request
 
 app = Flask(__name__)
 items = []
@@ -378,7 +597,15 @@ items = []
 # ваш маршрут</textarea>
 <div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
 <div data-output></div>
-<details><summary>Показать решение</summary><pre><code>from flask import Flask, request
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Маршрут для отправки данных объявляют через <code>@app.post("/items")</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> <code>request.get_json(silent=True) or {}</code> не падает, если прислали не JSON, а даёт пустой словарь.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Код ответа ставится вторым значением: <code>return {"error": "title"}, 400</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>from flask import Flask, request
 
 app = Flask(__name__)
 items = []
@@ -392,16 +619,58 @@ def create_item():
     items.append(title)
     return {"title": title}, 201</code></pre></details>
 <template data-kind="tests">client = app.test_client()
-assert client.post("/items", json={}).status_code == 400, "Без title нужен код 400"
-assert client.post("/items", json={"title": "  "}).status_code == 400, "Пустой title тоже даёт 400"
-assert client.post("/items", data="не json").status_code == 400, "Неверный JSON не должен приводить к падению: get_json(silent=True)"
-good = client.post("/items", json={"title": "Книга"})
-assert good.status_code == 201, "При успехе нужен код 201: return {...}, 201"
-assert good.json == {"title": "Книга"}, 'Верните {"title": "Книга"}'
-assert items == ["Книга"], "Заголовок должен попасть в список items"</template>
+case('client.post("/items", json={}).status_code', 400, "Без title нужен код 400")
+case('client.post("/items", json={"title": "  "}).status_code', 400, "Пустой title тоже даёт 400")
+case('client.post("/items", data="не json").status_code', 400, "Неверный JSON не должен приводить к падению: get_json(silent=True)")
+case('client.post("/items", json={"title": "Книга"}).status_code', 201, "При успехе нужен код 201: return {...}, 201")
+case('items', ["Книга"], "Заголовок должен попасть в список items")
+case('client.post("/items", json={"title": "Ручка"}).json', {"title": "Ручка"})</template>
+</article>
+<article class="task reveal" data-task="detail" data-level="hard">
+<div class="task-head"><h3>16. Одна запись или 404</h3><span class="level level-hard"><span class="visually-hidden">Уровень: </span>Сложная</span></div>
+<p>Сделайте <code>GET /tasks/&lt;int:task_id&gt;</code>. Если задача с таким номером есть в словаре <code>TASKS</code>, верните её JSON. Если нет, верните <code>{"error": "not found"}</code> с кодом 404.</p>
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Решение: 16. Одна запись или 404">from flask import Flask
+
+app = Flask(__name__)
+TASKS = {
+    1: {"id": 1, "title": "Купить хлеб"},
+    2: {"id": 2, "title": "Выучить Flask"},
+}
+
+# ваш маршрут</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> <code>&lt;int:task_id&gt;</code> в адресе превращает часть пути в число и передаёт его в функцию.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> <code>TASKS.get(task_id)</code> вернёт <code>None</code>, если такой задачи нет.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Для отсутствующей задачи: <code>return {"error": "not found"}, 404</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>from flask import Flask
+
+app = Flask(__name__)
+TASKS = {
+    1: {"id": 1, "title": "Купить хлеб"},
+    2: {"id": 2, "title": "Выучить Flask"},
+}
+
+@app.get("/tasks/&lt;int:task_id&gt;")
+def task_detail(task_id):
+    task = TASKS.get(task_id)
+    if task is None:
+        return {"error": "not found"}, 404
+    return task</code></pre></details>
+<template data-kind="tests">client = app.test_client()
+case('client.get("/tasks/2").json', {"id": 2, "title": "Выучить Flask"})
+case('client.get("/tasks/99").status_code', 404, "Для несуществующей задачи нужен код 404")
+case('client.get("/tasks/99").json', {"error": "not found"})
+case('client.get("/tasks/abc").status_code', 404, "&lt;int:...&gt; пропускает только числа")</template>
 </article>
 </div>
 </section>
+<!-- tasks:end -->
 <section class="section" aria-label="Дальше">
 <div class="container">
 <div class="cta-panel reveal">

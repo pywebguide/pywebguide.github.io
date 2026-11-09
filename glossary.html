@@ -118,6 +118,15 @@
 <p class="lead">Что значат слова, которые встречаются на этом сайте. Если забыли какое-то из них, загляните сюда.</p>
 <img class="band-picture" src="assets/img/dictionary.jpg" width="1000" height="703" alt="Титульный лист словаря Шоуэлла, 1885 год" decoding="async" fetchpriority="high">
 </div></div>
+<section class="section glossary-search-band" aria-label="Поиск по словарю">
+<div class="container">
+<div class="glossary-search">
+  <label for="glossary-filter">Найти слово</label>
+  <input id="glossary-filter" type="search" autocomplete="off" spellcheck="false" placeholder="Например: порт, venv, 404…" data-glossary-filter>
+  <p class="note" role="status" aria-live="polite" data-glossary-count></p>
+</div>
+</div>
+</section>
 <section class="section" aria-label="Как устроен сайт">
 <div class="container">
 <div class="section-head"><h2>Как устроен сайт</h2></div>
@@ -158,6 +167,22 @@
     <h3 id="javascript">JavaScript</h3>
     <p>Язык программирования, который работает в браузере. Оживляет страницу: кнопки, меню, проверку форм.</p>
   </article>
+  <article class="card">
+    <h3 id="localhost">127.0.0.1, localhost и порт</h3>
+    <p>Адрес 127.0.0.1 (он же localhost) означает «этот же компьютер». Порт — номер «двери», за которой ждёт программа. Адрес http://127.0.0.1:5000 открывает сайт, запущенный у вас, через дверь 5000. Другие люди его не видят.</p>
+  </article>
+  <article class="card">
+    <h3 id="status-codes">Коды ответа: 200, 404, 405</h3>
+    <p>Число в начале ответа сервера. 200 — всё хорошо, страница отдана. 404 — такого адреса нет. 405 — адрес есть, но так к нему обращаться нельзя: например, отправить форму (POST) туда, где можно только смотреть (GET).</p>
+  </article>
+  <article class="card">
+    <h3 id="json">JSON</h3>
+    <p>Текстовый формат для обмена данными между программами. Похож на словарь Python: {&quot;title&quot;: &quot;Купить хлеб&quot;, &quot;done&quot;: false}. Так отвечают API.</p>
+  </article>
+  <article class="card">
+    <h3 id="csrf">CSRF</h3>
+    <p>Атака, при которой чужой сайт тайком отправляет форму на ваш сайт от имени пользователя. Защита — секретный токен в каждой форме: Django добавляет его тегом {% csrf_token %}.</p>
+  </article>
 </div>
 </div>
 </section>
@@ -181,6 +206,26 @@
     <h3 id="flask">Flask</h3>
     <p>Маленький фреймворк. Даёт только основу, а остальное подключается по мере необходимости. Хорош для первого сайта.</p>
   </article>
+  <article class="card">
+    <h3 id="terminal">Терминал</h3>
+    <p>Окно, в котором компьютеру дают команды текстом, а не мышкой. В Windows это PowerShell или «Командная строка», в macOS и Linux — «Терминал».</p>
+  </article>
+  <article class="card">
+    <h3 id="pip">pip</h3>
+    <p>Программа, которая скачивает и устанавливает пакеты для Python. Команда pip install flask ставит Flask.</p>
+  </article>
+  <article class="card">
+    <h3 id="venv">Виртуальное окружение (venv)</h3>
+    <p>Отдельная папка с пакетами для одного проекта. Пакеты разных проектов не мешают друг другу. Создаётся командой python -m venv .venv.</p>
+  </article>
+  <article class="card">
+    <h3 id="view">Представление (view)</h3>
+    <p>Функция, которая принимает запрос и возвращает ответ. Во Flask её называют обработчиком маршрута, в Django — view.</p>
+  </article>
+  <article class="card">
+    <h3 id="template">Шаблон</h3>
+    <p>HTML-страница с пропусками, которые программа заполняет данными. Например, вместо {{ title }} подставится заголовок задачи. <a href="templates.html">Раздел о шаблонах</a>.</p>
+  </article>
 </div>
 </div>
 </section>
@@ -203,6 +248,14 @@
   <article class="card">
     <h3 id="orm">ORM</h3>
     <p>Способ работать с базой данных на Python, не составляя SQL-запросы вручную.</p>
+  </article>
+  <article class="card">
+    <h3 id="model">Модель</h3>
+    <p>Описание таблицы в базе данных на языке Python: какие у записи поля и какого они типа. Например, у задачи есть заголовок и отметка «сделано».</p>
+  </article>
+  <article class="card">
+    <h3 id="migration">Миграция</h3>
+    <p>Записанная инструкция, как изменить таблицы в базе данных: добавить таблицу или поле. В Django её создаёт makemigrations, а применяет migrate.</p>
   </article>
   <article class="card">
     <h3 id="crud">CRUD</h3>
