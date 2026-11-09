@@ -1,0 +1,31 @@
+<svg viewBox="0 0 720 360" width="720" height="360" xmlns="http://www.w3.org/2000/svg">
+  <title>Request path: browser, Python server, Django or Flask, database</title>
+  <style>
+    .km-n { fill: #121a28; stroke: #ffd43b; stroke-width: 2; }
+    .km-t { fill: #f4f7fb; font: 600 16px "Segoe UI", Arial, sans-serif; text-anchor: middle; }
+    .km-s { fill: #a9b4c6; font: 13px "Segoe UI", Arial, sans-serif; text-anchor: middle; }
+    .km-l { stroke: #ffd43b; stroke-width: 2; fill: none; }
+  </style>
+  <defs>
+    <marker id="km-ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#ffd43b"/>
+    </marker>
+  </defs>
+  <rect class="km-n" x="30" y="140" width="140" height="70"/>
+  <text class="km-t" x="100" y="170">Browser</text><text class="km-s" x="100" y="192">request</text>
+  <rect class="km-n" x="290" y="140" width="140" height="70"/>
+  <text class="km-t" x="360" y="170">Python server</text><text class="km-s" x="360" y="192">routes</text>
+  <rect class="km-n" x="550" y="30" width="140" height="70"/>
+  <text class="km-t" x="620" y="60">Django</text><text class="km-s" x="620" y="82">batteries included</text>
+  <rect class="km-n" x="550" y="145" width="140" height="70"/>
+  <text class="km-t" x="620" y="175">Flask</text><text class="km-s" x="620" y="197">flexibility</text>
+  <rect class="km-n" x="290" y="270" width="140" height="70"/>
+  <text class="km-t" x="360" y="300">Database</text><text class="km-s" x="360" y="322">storage</text>
+  <path class="km-l" d="M170 165 H288" marker-end="url(#km-ar)"/>
+  <path class="km-l" d="M430 155 C490 120 500 80 548 70" marker-end="url(#km-ar)"/>
+  <path class="km-l" d="M430 180 H548" marker-end="url(#km-ar)"/>
+  <path class="km-l" d="M360 210 V268" marker-end="url(#km-ar)"/>
+  <path class="km-l" d="M290 195 C220 230 160 230 120 212" marker-end="url(#km-ar)"/>
+  <text class="km-s" x="225" y="150">1. request</text>
+  <text class="km-s" x="190" y="250">2. response</text>
+</svg>
