@@ -1,0 +1,320 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из glossary.html. Правьте tools/i18n/en.json, а не этот файл. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web development glossary in plain words — PyWeb Guide</title>
+
+  <meta name="description" content="What a server, backend, framework, database, API and other web development words mean. Plain explanations for beginners.">
+  <link rel="canonical" href="https://pywebguide.github.io/en/glossary.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/glossary.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/glossary.html">
+  <link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/glossary.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/glossary.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Web development glossary in plain words — PyWeb Guide">
+  <meta property="og:description" content="What a server, backend, framework, database, API and other web development words mean. Plain explanations for beginners.">
+  <meta property="og:url" content="https://pywebguide.github.io/en/glossary.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide poster: your first website with Python, a free course for people who have never programmed">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffc4ef">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/sofia-sans-extra-condensed-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="pink" id="top" data-no-toc>
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">From scratch</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Full course <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="../project.html" hreflang="ru">First project <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Sandbox <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link active" href="glossary.html" aria-current="page">Glossary</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link">More <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Understand</p><ul aria-labelledby="nav-group-1">
+              <li><a href="../about.html" hreflang="ru">About Python <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../frameworks.html" hreflang="ru">Frameworks <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../databases.html" hreflang="ru">Databases <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../templates.html" hreflang="ru">Templates and forms <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../auth.html" hreflang="ru">Authentication <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../testing.html" hreflang="ru">Testing <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Build</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Second project <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../deploy.html" hreflang="ru">Deployment <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Practice</p><ul aria-labelledby="nav-group-3">
+              <li><a href="../practice.html" hreflang="ru">Exercises <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Final test <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Site</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">My progress <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Contact <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Site language">
+            <a href="../glossary.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="../kk/glossary.html" hreflang="kk" lang="kk">ҚАЗ</a>
+            <a href="glossary.html" hreflang="en" lang="en" aria-current="true">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Light theme">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Breadcrumb">
+<a href="index.html">Home</a> <span aria-hidden="true">/</span> <span>Glossary</span>
+</nav>
+<h1>Glossary in plain words</h1>
+<p class="lead">What the words on this site mean. If you forget one of them, look here.</p>
+<img class="band-picture" src="../assets/img/dictionary.jpg" width="1000" height="703" alt="Title page of Showell&#x27;s Dictionary, 1885" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section glossary-search-band" aria-label="Search the glossary">
+<div class="container">
+<div class="glossary-search">
+  <label for="glossary-filter">Find a word</label>
+  <input id="glossary-filter" type="search" autocomplete="off" spellcheck="false" placeholder="For example: port, venv, 404…" data-glossary-filter>
+  <p class="note" role="status" aria-live="polite" data-glossary-count></p>
+</div>
+</div>
+</section>
+<section class="section" aria-label="How a website works">
+<div class="container">
+<div class="section-head"><h2>How a website works</h2></div>
+<div class="card-grid glossary-grid">
+  <article class="card">
+    <h3 id="browser">Browser</h3>
+    <p>The program you open websites in: Chrome, Safari, Firefox.</p>
+  </article>
+  <article class="card">
+    <h3 id="server">Server</h3>
+    <p>A computer that is always on and connected to the internet. The website's program runs on it.</p>
+  </article>
+  <article class="card">
+    <h3 id="http">Request, response and HTTP</h3>
+    <p>The browser asks the server for a page: that is a request. The server sends it back: that is a response. HTTP is the set of rules they use to talk.</p>
+  </article>
+  <article class="card">
+    <h3 id="frontend">Frontend</h3>
+    <p>Everything you see on the page: text, buttons, design. It runs in the browser.</p>
+  </article>
+  <article class="card">
+    <h3 id="backend">Backend</h3>
+    <p>The hidden part of a website: a program on the server that receives the request, finds the data and prepares the response. This is where Python works.</p>
+  </article>
+  <article class="card">
+    <h3 id="route">Route</h3>
+    <p>A rule for which address opens which page. For example, the address /contacts opens the contact page.</p>
+  </article>
+  <article class="card">
+    <h3 id="html">HTML</h3>
+    <p>The content of a page: headings, paragraphs, links, images.</p>
+  </article>
+  <article class="card">
+    <h3 id="css">CSS</h3>
+    <p>The look of a page: colours, fonts, layout of blocks.</p>
+  </article>
+  <article class="card">
+    <h3 id="javascript">JavaScript</h3>
+    <p>A programming language that runs in the browser. It brings the page to life: buttons, menus, form checks.</p>
+  </article>
+  <article class="card">
+    <h3 id="localhost">127.0.0.1, localhost and port</h3>
+    <p>The address 127.0.0.1 (also called localhost) means “this same computer”. A port is the number of the “door” a program is waiting behind. The address http://127.0.0.1:5000 opens the site running on your machine through door 5000. Other people cannot see it.</p>
+  </article>
+  <article class="card">
+    <h3 id="status-codes">Status codes: 200, 404, 405</h3>
+    <p>A number at the start of the server's response. 200 means all is well and the page was sent. 404 means there is no such address. 405 means the address exists but cannot be used this way: for example, sending a form (POST) to a place you can only view (GET).</p>
+  </article>
+  <article class="card">
+    <h3 id="json">JSON</h3>
+    <p>A text format for exchanging data between programs. It looks like a Python dictionary: {&quot;title&quot;: &quot;Buy bread&quot;, &quot;done&quot;: false}. This is how APIs respond.</p>
+  </article>
+  <article class="card">
+    <h3 id="csrf">CSRF</h3>
+    <p>An attack in which another site secretly submits a form to your site on behalf of a user. The defence is a secret token in every form: Django adds it with the {% csrf_token %} tag.</p>
+  </article>
+</div>
+</div>
+</section>
+<section class="section" aria-label="Python and tools">
+<div class="container">
+<div class="section-head"><h2>Python and tools</h2></div>
+<div class="card-grid glossary-grid">
+  <article class="card">
+    <h3 id="python">Python</h3>
+    <p>A programming language with simple rules. It is used for websites, data analysis and automation. <a href="start.html">Lessons from scratch</a>.</p>
+  </article>
+  <article class="card">
+    <h3 id="framework">Framework</h3>
+    <p>A ready-made set of tools for building a website. With it you do not have to write everything yourself. <a href="../frameworks.html" hreflang="ru">Framework comparison</a>.</p>
+  </article>
+  <article class="card">
+    <h3 id="django">Django</h3>
+    <p>A big framework. It can do password login, an admin panel and data handling right away. Named after the guitarist Django Reinhardt.</p>
+  </article>
+  <article class="card">
+    <h3 id="flask">Flask</h3>
+    <p>A small framework. It gives you only the basics, and everything else is added as needed. Good for a first website.</p>
+  </article>
+  <article class="card">
+    <h3 id="terminal">Terminal</h3>
+    <p>A window where you give the computer commands as text instead of with the mouse. On Windows it is PowerShell or Command Prompt, on macOS and Linux it is Terminal.</p>
+  </article>
+  <article class="card">
+    <h3 id="pip">pip</h3>
+    <p>A program that downloads and installs packages for Python. The command pip install flask installs Flask.</p>
+  </article>
+  <article class="card">
+    <h3 id="venv">Virtual environment (venv)</h3>
+    <p>A separate folder with the packages of one project. Packages of different projects do not get in each other's way. Created with the command python -m venv .venv.</p>
+  </article>
+  <article class="card">
+    <h3 id="view">View</h3>
+    <p>A function that receives a request and returns a response. In Flask it is called a route handler, in Django a view.</p>
+  </article>
+  <article class="card">
+    <h3 id="template">Template</h3>
+    <p>An HTML page with gaps that the program fills with data. For example, the title of a task is put in place of {{ title }}. <a href="../templates.html" hreflang="ru">Section on templates</a>.</p>
+  </article>
+</div>
+</div>
+</section>
+<section class="section" aria-label="Data">
+<div class="container">
+<div class="section-head"><h2>Data</h2></div>
+<div class="card-grid glossary-grid">
+  <article class="card">
+    <h3 id="database">Database</h3>
+    <p>A store of records where data is easy to find and change: users, products, orders. <a href="../databases.html" hreflang="ru">Section on databases</a>.</p>
+  </article>
+  <article class="card">
+    <h3 id="sql">SQL</h3>
+    <p>A language for querying a database. For example: “show all tasks that are not done yet”.</p>
+  </article>
+  <article class="card">
+    <h3 id="sqlite">SQLite</h3>
+    <p>A simple database stored in a single file. Handy for learning and small projects.</p>
+  </article>
+  <article class="card">
+    <h3 id="orm">ORM</h3>
+    <p>A way to work with a database in Python without writing SQL queries by hand.</p>
+  </article>
+  <article class="card">
+    <h3 id="model">Model</h3>
+    <p>A description of a database table in Python: which fields a record has and of what type. For example, a task has a title and a “done” mark.</p>
+  </article>
+  <article class="card">
+    <h3 id="migration">Migration</h3>
+    <p>A written instruction for how to change the tables in a database: add a table or a field. In Django, makemigrations creates it and migrate applies it.</p>
+  </article>
+  <article class="card">
+    <h3 id="crud">CRUD</h3>
+    <p>The four basic actions with records: create, read, update and delete. Almost every website has them.</p>
+  </article>
+</div>
+</div>
+</section>
+<section class="section" aria-label="Working on a project">
+<div class="container">
+<div class="section-head"><h2>Working on a project</h2></div>
+<div class="card-grid glossary-grid">
+  <article class="card">
+    <h3 id="api">API and REST API</h3>
+    <p>The way programs talk to each other. For example, a weather app gets data from a server through an API.</p>
+  </article>
+  <article class="card">
+    <h3 id="git">Git</h3>
+    <p>A program that keeps the history of changes in your code. You can go back to any version. <a href="../git.html" hreflang="ru">Section on Git</a>.</p>
+  </article>
+  <article class="card">
+    <h3 id="deploy">Deploy</h3>
+    <p>Putting a website on the internet so other people can open it. <a href="../deploy.html" hreflang="ru">How to publish a site</a>.</p>
+  </article>
+</div>
+</div>
+</section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Start</strong><ul><li><a href="start.html">Python from scratch</a></li><li><a href="glossary.html">Glossary</a></li><li><a href="../playground.html" hreflang="ru">Sandbox <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Understand</strong><ul><li><a href="../about.html" hreflang="ru">About Python <span class="ru-mark">(RU)</span></a></li><li><a href="../frameworks.html" hreflang="ru">Frameworks <span class="ru-mark">(RU)</span></a></li><li><a href="../databases.html" hreflang="ru">Databases <span class="ru-mark">(RU)</span></a></li><li><a href="../templates.html" hreflang="ru">Templates and forms <span class="ru-mark">(RU)</span></a></li><li><a href="../auth.html" hreflang="ru">Authentication <span class="ru-mark">(RU)</span></a></li><li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li><li><a href="../testing.html" hreflang="ru">Testing <span class="ru-mark">(RU)</span></a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Build</strong><ul><li><a href="../project.html" hreflang="ru">First project <span class="ru-mark">(RU)</span></a></li><li><a href="../project2.html" hreflang="ru">Second project <span class="ru-mark">(RU)</span></a></li><li><a href="../deploy.html" hreflang="ru">Deployment <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Practice</strong><ul><li><a href="../practice.html" hreflang="ru">Exercises <span class="ru-mark">(RU)</span></a></li><li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Final test <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Site</strong><ul><li><a href="../course.html" hreflang="ru">Full course <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">My progress <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Contact <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, a learning project about Python in web development</p>
+      <p class="note footer-note">Author: <a href="../contacts.html#authors" hreflang="ru">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-09">09.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
+      <p class="note footer-note">Photo: <a href="https://commons.wikimedia.org/wiki/File:Showell%27s_Dictionary_of_Birmingham_-_title_page.jpg" rel="noopener">title page of Showell's Dictionary, 1885</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Privacy policy</a> · <a href="../terms.html" hreflang="ru">Terms of use</a></p>
+      <p class="note footer-note">This is a learning site. Messages from the form are sent through the public Issues section on GitHub. No GitHub account? <a href="../contacts.html#no-github" hreflang="ru">Write directly</a>.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
