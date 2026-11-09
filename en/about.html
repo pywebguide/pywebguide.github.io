@@ -1,0 +1,574 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из about.html. Правьте tools/i18n/en.json, а не этот файл. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Python — PyWeb Guide</title>
+
+  <meta name="description" content="Python as a server-side language: what backend means, the path of an HTTP request, Flask and SQLite code examples and a mini glossary.">
+  <link rel="canonical" href="https://pywebguide.github.io/en/about.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/about.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/about.html">
+  <link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/about.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/about.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="About Python — PyWeb Guide">
+  <meta property="og:description" content="Python as a server-side language: what backend means, the path of an HTTP request, Flask and SQLite code examples and a mini glossary.">
+  <meta property="og:url" content="https://pywebguide.github.io/en/about.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide poster: your first website with Python, a free course for people who have never programmed">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffc4ef">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/sofia-sans-extra-condensed-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="pink" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">From scratch</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Full course <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="project.html">First project</a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Sandbox <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="glossary.html">Glossary</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">More <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Understand</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html" aria-current="page">About Python</a></li>
+              <li><a href="../frameworks.html" hreflang="ru">Frameworks <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../databases.html" hreflang="ru">Databases <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../templates.html" hreflang="ru">Templates and forms <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../auth.html" hreflang="ru">Authentication <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../testing.html" hreflang="ru">Testing <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Build</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Second project <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../deploy.html" hreflang="ru">Deployment <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Practice</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Exercises</a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Final test <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Site</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">My progress <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Contact <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Site language">
+            <a href="../about.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="../kk/about.html" hreflang="kk" lang="kk">ҚАЗ</a>
+            <a href="about.html" hreflang="en" lang="en" aria-current="true">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Light theme">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+      <div class="page-band"><div class="container page-hero page-hero--picture">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a> <span aria-hidden="true">/</span> <span>About Python</span>
+        </nav>
+        <h1>How a website works</h1>
+        <p class="lead">
+          Simple syntax, a powerful ecosystem and mature frameworks make Python a convenient language to start web development with.
+        </p>
+        <p class="note">Just starting out? First go through the <a href="start.html">“From scratch” lessons</a>, and look up unfamiliar words in the <a href="glossary.html">glossary</a>.</p>
+      <img class="band-picture" src="../assets/img/switchboard.jpg" width="900" height="715" alt="Operators at an international Bell System switchboard connecting calls" decoding="async" fetchpriority="high">
+</div></div>
+
+      <section class="section" aria-label="What backend is">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>What backend development is</h2>
+            <p>
+              The backend is the part of an application that runs on the server: it receives requests, handles the logic, talks to the database and sends a response.
+            </p>
+          </div>
+
+          <div class="card-grid">
+            <article class="card reveal">
+              <h3>Handling requests</h3>
+              <p>The framework receives an HTTP request and decides which code should handle it.</p>
+            </article>
+
+            <article class="card reveal">
+              <h3>Database</h3>
+              <p>The application reads and saves users, products, articles and other data through an ORM or SQL.</p>
+            </article>
+
+            <article class="card reveal">
+              <h3>Building the response</h3>
+              <p>The server returns HTML, JSON or a file: what the user finally sees.</p>
+            </article>
+
+            <article class="card reveal">
+              <h3>Logic and security</h3>
+              <p>Checking data, access rights, handling errors and preparing a correct response.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Python&#x27;s jobs on the server">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>What Python does on the server</h2>
+            <p>The server receives requests, works with data and returns responses. This is what Python code does for that.</p>
+          </div>
+
+          <div class="panel reveal">
+            <ul class="check-list">
+              <li>Matches the page address to the right function (routing).</li>
+              <li>Checks the data the user sent, for example from a form.</li>
+              <li>Reads and writes data in the database.</li>
+              <li>Checks access rights and user logins.</li>
+              <li>Builds HTML pages from templates.</li>
+              <li>Gives data in JSON format to other programs.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="How a request travels">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>How a user's request travels</h2>
+            <p>A simplified chain from the click to the server's response.</p>
+          </div>
+
+          <div class="steps">
+            <article class="step reveal">
+              <strong>1</strong>
+              <h3>Browser</h3>
+              <p>The user opens a page or submits a form.</p>
+            </article>
+
+            <article class="step reveal">
+              <strong>2</strong>
+              <h3>HTTP request</h3>
+              <p>The request goes to the server: method, address and data.</p>
+            </article>
+
+            <article class="step reveal">
+              <strong>3</strong>
+              <h3>Framework</h3>
+              <p>Django or Flask finds the right route and handler.</p>
+            </article>
+
+            <article class="step reveal">
+              <strong>4</strong>
+              <h3>Logic and DB</h3>
+              <p>The code checks the data and reads or saves information.</p>
+            </article>
+
+            <article class="step reveal">
+              <strong>5</strong>
+              <h3>Response</h3>
+              <p>The server returns a page, JSON or an error.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="flow" aria-labelledby="flow-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="flow-title">The request's path step by step</h2>
+            <p>What happens in a split second after you press the “Add task” button.</p>
+          </div>
+          <div class="panel reveal" data-flow>
+            <div class="flow-map" aria-hidden="true">
+              <span class="flow-dot"></span>
+              <div class="flow-node" data-node="browser">Browser<small>HTML, CSS, JS</small></div>
+              <div class="flow-node" data-node="server">Web server<small>nginx, WSGI</small></div>
+              <div class="flow-node" data-node="app">Application<small>Flask, Django</small></div>
+              <div class="flow-node" data-node="db">Database<small>SQLite, PostgreSQL</small></div>
+            </div>
+            <ol class="flow-steps">
+              <li data-flow-step="browser"><strong>The browser sends a request.</strong> The form becomes a <code>POST /tasks</code> request with headers, cookies and the form data.</li>
+              <li data-flow-step="server"><strong>The web server receives it.</strong> It terminates the HTTPS connection, serves static files itself and passes the rest to the application through WSGI.</li>
+              <li data-flow-step="app"><strong>The framework finds the route.</strong> The address <code>/tasks</code> and the POST method point to your function, which receives the request object.</li>
+              <li data-flow-step="app"><strong>The function checks the data.</strong> Is the user logged in, is there a CSRF token, is the title empty? On an error it returns a 400 or 403 response right away.</li>
+              <li data-flow-step="db"><strong>The database saves the record.</strong> An <code>INSERT INTO tasks ...</code> with parameters runs, and the database returns the new row's number.</li>
+              <li data-flow-step="app"><strong>The application prepares the response.</strong> This is a redirect to the list, HTML from a template or JSON for an API.</li>
+              <li data-flow-step="server"><strong>The web server sends the response.</strong> The status code, headers and body travel back over the network.</li>
+              <li data-flow-step="browser"><strong>The browser shows the result.</strong> It follows the redirect, builds the page and loads the CSS, JavaScript and images.</li>
+            </ol>
+            <div class="flow-controls" hidden>
+              <button class="btn btn-primary" type="button" data-flow-play>Show the whole path</button>
+              <button class="btn btn-secondary" type="button" data-flow-prev>Back</button>
+              <button class="btn btn-secondary" type="button" data-flow-next>Next</button>
+              <span class="flow-count" data-flow-count aria-live="polite"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Python&#x27;s strengths">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Python's strengths on the web</h2>
+            <p>The main reasons the language stays a popular choice for server-side development.</p>
+          </div>
+
+          <div class="table-wrap reveal" tabindex="0" role="region" aria-label="Table: Python&#x27;s strengths">
+            <table>
+              <caption>Why Python is good for starting web development</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Feature</th>
+                  <th scope="col">Why it matters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Readable syntax</td>
+                  <td>Code is easier to maintain and review in a team, and beginners get in more easily.</td>
+                </tr>
+                <tr>
+                  <td>Ready-made frameworks</td>
+                  <td>Django and Flask cover most typical server-side tasks.</td>
+                </tr>
+                <tr>
+                  <td>Library ecosystem</td>
+                  <td>It is easy to add a database, authentication, API tools and analytics.</td>
+                </tr>
+                <tr>
+                  <td>Link to data analysis</td>
+                  <td>One language can be used for the web, automation and data analysis.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Code examples">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Code examples</h2>
+            <p>A minimal Flask server and basic work with SQLite: two important entry points.</p>
+          </div>
+
+          <div class="code-grid">
+            <div class="code-block reveal">
+              <div class="code-head">
+                <span>Flask: a minimal server</span>
+                <button class="copy-btn" type="button">Copy</button>
+              </div>
+              <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Привет, это Python-сервер!"
+
+if __name__ == "__main__":
+    app.run()</code></pre>
+            </div>
+
+            <div class="code-block reveal">
+              <div class="code-head">
+                <span>SQLite: basic work with data</span>
+                <button class="copy-btn" type="button">Copy</button>
+              </div>
+              <pre><code>import sqlite3
+
+conn = sqlite3.connect("app.db")
+cursor = conn.cursor()
+
+cursor.execute(
+    "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT)"
+)
+
+cursor.execute(
+    "INSERT INTO users (name) VALUES ('Айгерим')"
+)
+
+conn.commit()
+conn.close()</code></pre>
+            </div>
+          </div>
+
+          <p class="notice" role="note"><strong>Note:</strong> the examples are for learning, and no server runs in this project. Here you can only read and copy the code.</p>
+        </div>
+      </section>
+
+      <section class="section faq" aria-label="Glossary of terms">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>A mini glossary</h2>
+            <p>Terms that help you read web development material with more confidence.</p>
+          </div>
+
+          <details class="reveal">
+            <summary>Backend</summary>
+            <p>The server side of an application, which handles requests, stores data and returns responses.</p>
+          </details>
+
+          <details class="reveal">
+            <summary>Frontend</summary>
+            <p>The client side of a website: the interface, buttons, forms and everything the user sees in the browser.</p>
+          </details>
+
+          <details class="reveal">
+            <summary>HTTP</summary>
+            <p>The protocol the browser and server use to exchange requests and responses.</p>
+          </details>
+
+          <details class="reveal">
+            <summary>ORM</summary>
+            <p>A tool that lets you work with a database through objects and code instead of hand-written SQL queries.</p>
+          </details>
+
+          <details class="reveal">
+            <summary>API</summary>
+            <p>An interface through which one program can get data or functions from another program.</p>
+          </details>
+
+          <details class="reveal">
+            <summary>SQLite</summary>
+            <p>A lightweight database often used for learning and small projects.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Practical checklist">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Practical checklist</h2>
+            <p>What you can do after studying this section.</p>
+          </div>
+
+          <div class="panel reveal">
+            <ul class="check-list">
+              <li>Explain how a server differs from a browser.</li>
+              <li>Understand why an application needs a database.</li>
+              <li>Start a simple Flask server.</li>
+              <li>Create one route and return some text.</li>
+              <li>Make a table in SQLite and add a record to it.</li>
+              <li>Compare which tasks are better solved with a framework than by hand.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="check-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="check-title">Test yourself</h2>
+            <p>Four questions on this section. An explanation appears after you answer.</p>
+          </div>
+
+          <form class="quiz knowledge-check reveal" novalidate>
+            <fieldset data-answer="b">
+              <legend>1. Where does the backend code of a website run?</legend>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="ab1" value="a"> <span>In the user's browser</span></label>
+                <label class="quiz-option"><input type="radio" name="ab1" value="b"> <span>On the server</span></label>
+                <label class="quiz-option"><input type="radio" name="ab1" value="c"> <span>In the database</span></label>
+              </div>
+              <p class="check-explain" hidden>The backend runs on the server: it receives the request, runs the logic and returns a response. The frontend runs in the browser: HTML, CSS and JavaScript.</p>
+            </fieldset>
+
+            <fieldset data-answer="c">
+              <legend>2. What does routing do in a framework?</legend>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="ab2" value="a"> <span>Makes pages load faster</span></label>
+                <label class="quiz-option"><input type="radio" name="ab2" value="b"> <span>Saves data to the database</span></label>
+                <label class="quiz-option"><input type="radio" name="ab2" value="c"> <span>Matches the page address to the function that handles it</span></label>
+              </div>
+              <p class="check-explain" hidden>A route links an address (for example, <code>/</code> or <code>/about</code>) to a Python function. In Flask it is the <code>@app.route</code> decorator, in Django the <code>urlpatterns</code> list.</p>
+            </fieldset>
+
+            <fieldset data-answer="a">
+              <legend>3. In what format does a server usually give data to other programs?</legend>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="ab3" value="a"> <span>JSON</span></label>
+                <label class="quiz-option"><input type="radio" name="ab3" value="b"> <span>A PNG image</span></label>
+                <label class="quiz-option"><input type="radio" name="ab3" value="c"> <span>A Word document</span></label>
+              </div>
+              <p class="check-explain" hidden>JSON is a “key: value” text format that both JavaScript and mobile apps read easily. This is how APIs work.</p>
+            </fieldset>
+
+            <fieldset data-answer="b">
+              <legend>4. What happens first when a user opens a page?</legend>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="ab4" value="a"> <span>The server queries the database</span></label>
+                <label class="quiz-option"><input type="radio" name="ab4" value="b"> <span>The browser sends an HTTP request to the server</span></label>
+                <label class="quiz-option"><input type="radio" name="ab4" value="c"> <span>The framework builds the response</span></label>
+              </div>
+              <p class="check-explain" hidden>The chain starts in the browser: request → the framework finds the route → logic and database → response. See the “How a user's request travels” diagram above.</p>
+            </fieldset>
+
+            <div class="hero-actions">
+              <button class="btn btn-primary" type="submit">Check answers</button>
+              <button class="btn btn-secondary" type="reset">Reset</button>
+            </div>
+            <p class="check-score" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="sources-title">
+        <div class="container">
+          <div class="panel sources reveal">
+            <h2 id="sources-title">Sources</h2>
+            <p class="note">Checked on <time datetime="2026-11-06">06.11.2026</time>. The examples are for Python 3.12 and newer.</p>
+            <ul class="list">
+              <li><a href="https://developer.mozilla.org/ru/docs/Web/HTTP/Guides/Overview" rel="noopener">MDN: an overview of HTTP</a> — request, response, methods</li>
+              <li><a href="https://docs.python.org/3/library/sqlite3.html" rel="noopener">Python: the sqlite3 module</a> — working with SQLite from the standard library</li>
+              <li><a href="https://flask.palletsprojects.com/en/stable/quickstart/" rel="noopener">Flask 3.1: Quickstart</a> — a minimal app and routes</li>
+              <li><a href="https://docs.python.org/3/howto/" rel="noopener">Python HOWTO</a> — guides on individual topics of the language</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Next">
+        <div class="container">
+          <div class="cta-panel reveal">
+            <div>
+              <h2>Where to go next?</h2>
+              <p class="lead cta-lead">
+                Once the basics are clear, the next step is to choose a framework: Django or Flask.
+              </p>
+            </div>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="../frameworks.html" hreflang="ru">Compare Django and Flask</a>
+            </div>
+          </div>
+        </div>
+      </section>
+  <section class="section" aria-label="Knowledge map">
+        <div class="container">
+          <div class="section-head">
+            <h2>How it all connects</h2>
+            <p>You open a page, the browser sends a request to the server, a Python program finds the data and sends back a response. Below is the same as a list.</p>
+          </div>
+
+          <div class="panel">
+            <div class="map-scroll" tabindex="0" role="region" aria-label="Diagram of the request path, scrolls horizontally">
+              <img src="../assets/knowledge-map.svg" width="720" height="360" loading="lazy" decoding="async"
+                alt="Diagram: the browser sends a request to the server, the Python server uses Django or Flask, queries the database and returns the page to the user.">
+            </div>
+          </div>
+
+          <div class="panel tree reveal stack-gap" role="group" aria-label="Knowledge tree of Python and web development">
+            <ul class="tree-root">
+              <li>
+                <span class="tree-node strong">Python</span>
+                <ul>
+                  <li>
+                    <span class="tree-node">The server side of a website (backend)</span>
+                    <ul>
+                      <li>Handling requests</li>
+                      <li>Working with a database</li>
+                      <li>Building the response</li>
+                      <li>Which address opens which page</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <span class="tree-node">Django</span>
+                    <ul>
+                      <li>Admin panel and data handling</li>
+                      <li>A ready project structure</li>
+                      <li>A quick start for sites with records</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <span class="tree-node">Flask</span>
+                    <ul>
+                      <li>Only the essentials</li>
+                      <li>Everything else is added as needed</li>
+                      <li>Good for small services</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Start</strong><ul><li><a href="start.html">Python from scratch</a></li><li><a href="glossary.html">Glossary</a></li><li><a href="../playground.html" hreflang="ru">Sandbox <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Understand</strong><ul><li><a href="about.html">About Python</a></li><li><a href="../frameworks.html" hreflang="ru">Frameworks <span class="ru-mark">(RU)</span></a></li><li><a href="../databases.html" hreflang="ru">Databases <span class="ru-mark">(RU)</span></a></li><li><a href="../templates.html" hreflang="ru">Templates and forms <span class="ru-mark">(RU)</span></a></li><li><a href="../auth.html" hreflang="ru">Authentication <span class="ru-mark">(RU)</span></a></li><li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li><li><a href="../testing.html" hreflang="ru">Testing <span class="ru-mark">(RU)</span></a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Build</strong><ul><li><a href="project.html">First project</a></li><li><a href="../project2.html" hreflang="ru">Second project <span class="ru-mark">(RU)</span></a></li><li><a href="../deploy.html" hreflang="ru">Deployment <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Practice</strong><ul><li><a href="practice.html">Exercises</a></li><li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Final test <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Site</strong><ul><li><a href="../course.html" hreflang="ru">Full course <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">My progress <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Contact <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, a learning project about Python in web development</p>
+      <p class="note footer-note">Author: <a href="../contacts.html#authors" hreflang="ru">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-09">09.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
+      <p class="note footer-note">Photo: <a href="https://commons.wikimedia.org/wiki/File:Photograph_of_Women_Working_at_a_Bell_System_Telephone_Switchboard_(3660047829).jpg" rel="noopener">Bell System switchboard, U.S. National Archives</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Privacy policy</a> · <a href="../terms.html" hreflang="ru">Terms of use</a></p>
+      <p class="note footer-note">This is a learning site. Messages from the form are sent through the public Issues section on GitHub. No GitHub account? <a href="../contacts.html#no-github" hreflang="ru">Write directly</a>.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
