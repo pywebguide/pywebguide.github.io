@@ -296,7 +296,10 @@
   /* ---------- Python в браузере (Pyodide в отдельном потоке) ---------- */
   const WORKER_SOURCE = [
     'importScripts("' + PYODIDE + 'pyodide.js");',
-    'let py = null; let hasFlask = false;',
+    'let py = null; let hasFlask = false; let appNs = null; let appCode = null;',
+    // «Попробовать в браузере»: приложение Flask живёт между запросами, каждый запрос идёт через test_client
+    'const REQUEST = "__r = __client.open(__req[\\"path\\"], method=__req[\\"method\\"], data=__req.get(\\"form\\") or None)\\n" +',
+    '  "{\\"status\\": __r.status_code, \\"location\\": __r.headers.get(\\"Location\\"), \\"type\\": __r.content_type, \\"body\\": __r.get_data(as_text=True)}";',
     'const ready = loadPyodide({ indexURL: "' + PYODIDE + '" }).then(function (m) { py = m; postMessage({ type: "ready" }); });',
     'onmessage = async function (event) {',
     '  const job = event.data;',
@@ -317,6 +320,24 @@
     '    py.setStdout({ batched: function (s) { postMessage({ type: "out", text: s }); } });',
     '    py.setStderr({ batched: function (s) { postMessage({ type: "out", text: s }); } });',
     '    postMessage({ type: "started" });',
+    '    if (job.kind === "app") {',
+    '      if (!appNs || appCode !== job.code) {',
+    '        if (appNs) appNs.destroy();',
+    '        appNs = py.globals.get("dict")();',
+    '        appNs.set("__name__", "app");',
+    // У кода из файла есть __file__: шаг 5 кладёт tasks.db рядом с app.py (в памяти браузера)
+    '        appNs.set("__file__", "/home/pyodide/app.py");',
+    '        await py.runPythonAsync(job.code, { globals: appNs });',
+    '        await py.runPythonAsync("__client = app.test_client()", { globals: appNs });',
+    '        appCode = job.code;',
+    '      }',
+    '      appNs.set("__req", py.toPy(job.request));',
+    '      const answer = await py.runPythonAsync(REQUEST, { globals: appNs });',
+    '      const response = answer.toJs({ dict_converter: Object.fromEntries });',
+    '      answer.destroy();',
+    '      postMessage({ type: "done", ok: true, response: response });',
+    '      return;',
+    '    }',
     '    const ns = py.globals.get("dict")();',
     '    ns.set("__name__", "__main__");',
     // Задача: проверка через assets/checker.py, она покажет, какой тест не прошёл
@@ -407,7 +428,7 @@
               finish({ ok: false, error: t("Код выполнялся дольше 10 секунд и был остановлен. Возможно, в нём бесконечный цикл.") });
             }, TIME_LIMIT);
           } else if (data.type === "done") {
-            finish({ ok: data.ok, error: data.error ? cleanError(data.error) : "" });
+            finish({ ok: data.ok, error: data.error ? cleanError(data.error) : "", response: data.response });
           }
         };
 
@@ -709,6 +730,175 @@
 
     updateTasks();
   }
+
+  /* ---------- Вкладки Windows / macOS и Linux для команд терминала ---------- */
+  // Выбор один на весь сайт (pyweb_os). Без JavaScript видны обе версии команд с подписями
+  const osGroups = document.querySelectorAll("[data-os-tabs]");
+
+  if (osGroups.length) {
+    const guess = /Win/i.test(navigator.userAgentData ? navigator.userAgentData.platform : navigator.platform || navigator.userAgent) ? "win" : "unix";
+    let current = readJson("pyweb_os", null);
+    if (current !== "win" && current !== "unix") current = guess;
+
+    function applyOs(os, focusIn) {
+      current = os;
+      osGroups.forEach(function (group) {
+        group.querySelectorAll('[role="tab"]').forEach(function (tab) {
+          const selected = tab.dataset.os === os;
+          tab.setAttribute("aria-selected", String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+          if (selected && focusIn === group) tab.focus();
+        });
+        group.querySelectorAll("[data-os-panel]").forEach(function (panel) {
+          panel.hidden = panel.dataset.osPanel !== os;
+        });
+      });
+    }
+
+    osGroups.forEach(function (group, groupIndex) {
+      const list = group.querySelector('[role="tablist"]');
+      const tabs = Array.prototype.slice.call(group.querySelectorAll('[role="tab"]'));
+      list.hidden = false;
+      group.classList.add("is-tabbed");
+      tabs.forEach(function (tab, index) {
+        const panel = group.querySelector('[data-os-panel="' + tab.dataset.os + '"]');
+        tab.id = "os-tab-" + groupIndex + "-" + tab.dataset.os;
+        panel.id = "os-panel-" + groupIndex + "-" + tab.dataset.os;
+        tab.setAttribute("aria-controls", panel.id);
+        panel.setAttribute("aria-labelledby", tab.id);
+        tab.addEventListener("click", function () {
+          applyOs(tab.dataset.os, null);
+          writeJson("pyweb_os", tab.dataset.os);
+        });
+        tab.addEventListener("keydown", function (event) {
+          if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+          event.preventDefault();
+          const next = tabs[(index + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length];
+          applyOs(next.dataset.os, group);
+          writeJson("pyweb_os", next.dataset.os);
+        });
+      });
+    });
+
+    applyOs(current, null);
+  }
+
+  /* ---------- «Попробовать в браузере»: приложение Flask из шага прямо на странице ---------- */
+  // Pyodide и Flask грузятся только после нажатия. Ответ показывается в iframe без скриптов
+  // (sandbox без allow-scripts), а ссылки и формы внутри перехватываются и уходят во Flask.
+  document.querySelectorAll("[data-try-app]").forEach(function (holder) {
+    const source = holder.closest("li, section").querySelector(".code-block pre code");
+    const start = holder.querySelector("[data-try-start]");
+    if (!source || !start) return;
+
+    const HOST = "http://127.0.0.1:5000";
+    let history = [];
+    let frame = null;
+    let address = null;
+    let back = null;
+    let status = null;
+
+    function build() {
+      const form = el("form", { class: "mb-address" });
+      address = el("input", { type: "text", value: "/", spellcheck: "false", autocomplete: "off", "aria-label": t("Адрес страницы") });
+      back = el("button", { type: "button", class: "mb-back", "aria-label": t("Назад"), text: "←" });
+      form.appendChild(el("span", { class: "mb-host", "aria-hidden": "true", text: "127.0.0.1:5000" }));
+      form.appendChild(address);
+      form.appendChild(el("button", { type: "submit", class: "mb-go", text: t("Открыть") }));
+      frame = el("iframe", { sandbox: "allow-same-origin allow-forms", title: t("Окно браузера с приложением Flask") });
+      status = el("p", { class: "mb-status", role: "status", "aria-live": "polite" });
+      const bar = el("div", { class: "mb-bar" }, [back, form]);
+      holder.appendChild(el("div", { class: "mini-browser" }, [bar, frame, status]));
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        request("GET", address.value.trim() || "/", null, true);
+      });
+      back.addEventListener("click", function () {
+        if (history.length < 2) return;
+        history.pop();
+        request("GET", history.pop(), null, true);
+      });
+      frame.addEventListener("load", wire);
+    }
+
+    function resolve(href, base) {
+      const url = new URL(href, HOST + (base || "/"));
+      return url.origin === HOST ? url.pathname + url.search : null;
+    }
+
+    // Ссылки и формы внутри окна: браузер их не выполняет, запрос уходит во Flask
+    function wire() {
+      const doc = frame.contentDocument;
+      if (!doc) return;
+      const here = history[history.length - 1] || "/";
+      doc.addEventListener("click", function (event) {
+        const link = event.target.closest("a[href]");
+        if (!link) return;
+        event.preventDefault();
+        const path = resolve(link.getAttribute("href"), here);
+        if (path) request("GET", path, null, true);
+        else status.textContent = t("Внешние ссылки в учебном окне не открываются.");
+      });
+      doc.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const formEl = event.target;
+        const method = (formEl.getAttribute("method") || "GET").toUpperCase();
+        const path = resolve(formEl.getAttribute("action") || here, here);
+        const data = {};
+        new FormData(formEl, event.submitter).forEach(function (value, key) { data[key] = String(value); });
+        if (!path) return;
+        if (method === "GET") {
+          request("GET", path.split("?")[0] + "?" + new URLSearchParams(data).toString(), null, true);
+        } else {
+          request(method, path, data, true);
+        }
+      });
+    }
+
+    function request(method, path, form, remember, trail) {
+      const steps = trail || [];
+      address.value = path;
+      status.textContent = t("Запрос {m} {p}…", { m: method, p: path });
+      return Py.run({ kind: "app", code: source.textContent, request: { method: method, path: path, form: form } }, function (type, value) {
+        if (type === "status") status.textContent = value;
+      }).then(function (result) {
+        if (!result.ok) {
+          status.textContent = t("Ошибка");
+          frame.srcdoc = "<pre style=\"white-space:pre-wrap;font:14px monospace;padding:12px\"></pre>";
+          frame.addEventListener("load", function show() {
+            frame.removeEventListener("load", show);
+            frame.contentDocument.querySelector("pre").textContent = result.error;
+          });
+          return;
+        }
+        const r = result.response;
+        steps.push(method + " " + path + " → " + r.status);
+        // Перенаправление после POST: как настоящий браузер, сразу открываем новый адрес через GET
+        if (r.status >= 300 && r.status < 400 && r.location && steps.length < 5) {
+          const next = resolve(r.location, path);
+          if (next) return request("GET", next, null, remember, steps);
+        }
+        if (remember) history.push(path);
+        back.disabled = history.length < 2;
+        status.textContent = steps.join(", ");
+        frame.srcdoc = /html/.test(r.type || "") ? r.body : "<pre style=\"white-space:pre-wrap;font:14px monospace;padding:12px\">" + escapeText(r.body) + "</pre>";
+      });
+    }
+
+    function escapeText(text) {
+      return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    start.addEventListener("click", function () {
+      start.disabled = true;
+      if (!frame) build();
+      request("GET", "/", null, true).then(function () {
+        start.hidden = true;
+        holder.querySelector("[data-try-note]").hidden = true;
+      });
+    });
+  });
 
   /* ---------- Схема пути запроса ---------- */
   document.querySelectorAll("[data-flow]").forEach(function (flow) {

@@ -15,10 +15,18 @@ jobs:
       - run: pip install -r tools/requirements.txt
       - name: Ссылки, заголовки, карта сайта
         run: python tools/check_site.py
+      - name: Шапка и подвал совпадают с tools/layout.py
+        run: python tools/layout.py --check
       - name: Примеры кода
         run: python tools/check_examples.py
+      - name: Эталонные решения задач проходят тесты
+        run: python tools/check_tasks.py
       - name: Примеры Django в настоящем проекте
         run: python tools/check_django.py
+      - name: Полный код первого проекта совпадает со страницей и проходит тесты
+        run: |
+          python tools/sync_examples.py --check
+          cd examples/flask-todo && python -m unittest test_app && cd ../django-todo && python manage.py test
       - name: Индекс поиска актуален
         run: |
           python tools/build_search.py

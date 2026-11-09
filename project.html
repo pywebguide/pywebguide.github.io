@@ -185,6 +185,7 @@
           <div class="section-head reveal">
             <h2 id="flask-title">Вариант 1. Список задач на Flask</h2>
             <p>Flask 3.1, около 30 минут. Одно приложение в одном файле: страница со списком и форма добавления задачи.</p>
+            <p class="download-row"><a class="btn btn-secondary" href="examples/flask-todo.zip" download>Скачать полный код (zip, 3 КБ)</a> <a href="https://github.com/pywebguide/pywebguide.github.io/tree/main/examples/flask-todo" rel="noopener">Посмотреть на GitHub</a></p>
           </div>
 
           <div class="progress-box reveal" data-progress="project-flask">
@@ -196,8 +197,15 @@
           <ol class="project-steps" data-progress-list="project-flask">
             <li class="project-step reveal">
               <h3>Шаг 1. Создайте окружение и установите Flask</h3>
-              <p>Виртуальное окружение хранит библиотеки проекта отдельно от остальной системы.</p>
-              <div class="code-block">
+              <p>Виртуальное окружение хранит библиотеки проекта отдельно от остальной системы. Команды немного отличаются для Windows и для macOS с Linux: выберите свою систему, сайт запомнит выбор.</p>
+              <div class="os-tabs" data-os-tabs>
+                <div class="os-tablist" role="tablist" aria-label="Система компьютера" hidden>
+                  <button type="button" role="tab" data-os="win">Windows</button>
+                  <button type="button" role="tab" data-os="unix">macOS и Linux</button>
+                </div>
+                <div role="tabpanel" data-os-panel="win">
+                  <p class="os-caption">Windows (PowerShell или командная строка)</p>
+                  <div class="code-block">
                 <div class="code-head">
                   <span>Терминал</span>
                   <button class="copy-btn" type="button">Копировать</button>
@@ -205,6 +213,20 @@
                 <pre><code>python -m venv .venv
 .venv\Scripts\activate
 pip install flask</code></pre>
+              </div>
+                </div>
+                <div role="tabpanel" data-os-panel="unix">
+                  <p class="os-caption">macOS и Linux (Терминал)</p>
+                  <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Копировать</button>
+                </div>
+                <pre><code>python3 -m venv .venv
+source .venv/bin/activate
+pip install flask</code></pre>
+              </div>
+                </div>
               </div>
               <label class="step-check"><input type="checkbox" data-step="1"> Шаг пройден</label>
             </li>
@@ -265,6 +287,11 @@ def index():
                 Обратите внимание: после перезапуска сервера список очищается — данные жили только в памяти.
                 Сохранять их между запусками умеет база данных, это следующий шаг.
               </p>
+              <figure class="shot">
+                <p class="shot-title">Как должно выглядеть</p>
+                <img src="assets/img/project/flask-step4.webp" width="1120" height="340" alt="Страница «Мои задачи» в браузере: поле «Новая задача», кнопка «Добавить» и две задачи списком" loading="lazy" decoding="async">
+                <figcaption>Две задачи добавлены через форму. Оформления пока нет: это чистый HTML без CSS.</figcaption>
+              </figure>
               <label class="step-check"><input type="checkbox" data-step="4"> Шаг пройден</label>
             </li>
 
@@ -337,6 +364,10 @@ def delete(task_id):
     query("DELETE FROM tasks WHERE id = ?", (task_id,))
     return redirect(url_for("index"))</code></pre>
               </div>
+              <div class="try-app" data-try-app>
+                <button class="btn btn-primary" type="button" data-try-start>Попробовать в браузере</button>
+                <p class="note" data-try-note>Этот же код запустится прямо здесь: Python и Flask загрузятся в браузер (около 15 МБ, только при первом нажатии). Добавляйте и удаляйте задачи в окне ниже, как на своём компьютере.</p>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="5"> Шаг пройден</label>
             </li>
 
@@ -348,6 +379,11 @@ def delete(task_id):
                 Удаление сделано через <code>POST</code>, а не обычную ссылку: изменяющие данные действия
                 не должны выполняться простым переходом по адресу.
               </p>
+              <figure class="shot">
+                <p class="shot-title">Как должно выглядеть</p>
+                <img src="assets/img/project/flask-step6.webp" width="1120" height="427" alt="Страница «Мои задачи»: у каждой задачи кнопка «Удалить»" loading="lazy" decoding="async">
+                <figcaption>Три задачи добавлены, одна удалена. После перезапуска сервера список тот же.</figcaption>
+              </figure>
               <label class="step-check"><input type="checkbox" data-step="6"> Шаг пройден</label>
             </li>
           </ol>
@@ -369,6 +405,7 @@ def delete(task_id):
           <div class="section-head reveal">
             <h2 id="django-title">Вариант 2. Список задач на Django</h2>
             <p>Django 6.1, около 60 минут. Задачи хранятся в базе данных SQLite, а добавлять их можно через встроенную админ-панель.</p>
+            <p class="download-row"><a class="btn btn-secondary" href="examples/django-todo.zip" download>Скачать полный код (zip, 8 КБ)</a> <a href="https://github.com/pywebguide/pywebguide.github.io/tree/main/examples/django-todo" rel="noopener">Посмотреть на GitHub</a></p>
           </div>
 
           <div class="progress-box reveal" data-progress="project-django">
@@ -381,7 +418,14 @@ def delete(task_id):
             <li class="project-step reveal">
               <h3>Шаг 1. Установите Django и создайте проект</h3>
               <p>Точка в конце команды создаёт проект в текущей папке. Затем создаём приложение <code>tasks</code>.</p>
-              <div class="code-block">
+              <div class="os-tabs" data-os-tabs>
+                <div class="os-tablist" role="tablist" aria-label="Система компьютера" hidden>
+                  <button type="button" role="tab" data-os="win">Windows</button>
+                  <button type="button" role="tab" data-os="unix">macOS и Linux</button>
+                </div>
+                <div role="tabpanel" data-os-panel="win">
+                  <p class="os-caption">Windows (PowerShell или командная строка)</p>
+                  <div class="code-block">
                 <div class="code-head">
                   <span>Терминал</span>
                   <button class="copy-btn" type="button">Копировать</button>
@@ -391,6 +435,22 @@ def delete(task_id):
 pip install django
 django-admin startproject mysite .
 python manage.py startapp tasks</code></pre>
+              </div>
+                </div>
+                <div role="tabpanel" data-os-panel="unix">
+                  <p class="os-caption">macOS и Linux (Терминал)</p>
+                  <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Копировать</button>
+                </div>
+                <pre><code>python3 -m venv .venv
+source .venv/bin/activate
+pip install django
+django-admin startproject mysite .
+python manage.py startapp tasks</code></pre>
+              </div>
+                </div>
               </div>
               <label class="step-check"><input type="checkbox" data-step="1"> Шаг пройден</label>
             </li>
@@ -532,6 +592,11 @@ urlpatterns = [
                 </div>
                 <pre><code>python manage.py runserver</code></pre>
               </div>
+              <figure class="shot">
+                <p class="shot-title">Как должно выглядеть</p>
+                <img src="assets/img/project/django-admin.webp" width="1766" height="840" alt="Админка Django: раздел Tasks со списком из трёх задач и кнопкой Add task" loading="lazy" decoding="async">
+                <figcaption>Админка по адресу /admin/: три задачи добавлены кнопкой Add task. Админка на английском, язык меняет настройка LANGUAGE_CODE.</figcaption>
+              </figure>
               <label class="step-check"><input type="checkbox" data-step="6"> Шаг пройден</label>
             </li>
 
@@ -671,6 +736,11 @@ urlpatterns = [
                 Попробуйте добавить пустую задачу: форма покажет ошибку, а в базу ничего не попадёт.
                 Миграции делать не нужно — модель не менялась.
               </p>
+              <figure class="shot">
+                <p class="shot-title">Как должно выглядеть</p>
+                <img src="assets/img/project/django-step10.webp" width="1120" height="769" alt="Страница «Мои задачи» на Django: первая задача зачёркнута, у каждой кнопки «Готово» или «Вернуть» и «Удалить»" loading="lazy" decoding="async">
+                <figcaption>Первая задача отмечена кнопкой «Готово» и стала зачёркнутой.</figcaption>
+              </figure>
               <label class="step-check"><input type="checkbox" data-step="10"> Шаг пройден</label>
             </li>
           </ol>
