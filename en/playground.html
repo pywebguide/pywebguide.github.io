@@ -1,0 +1,254 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из playground.html. Правьте tools/i18n/en.json, а не этот файл. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Python sandbox in the browser — PyWeb Guide</title>
+
+  <meta name="description" content="Run Python right in the browser with nothing to install: language basics, SQLite and a Flask app with the test client.">
+  <link rel="canonical" href="https://pywebguide.github.io/en/playground.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/playground.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/playground.html">
+  <link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/playground.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/playground.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Python sandbox in the browser — PyWeb Guide">
+  <meta property="og:description" content="Run Python right in the browser with nothing to install: language basics, SQLite and a Flask app with the test client.">
+  <meta property="og:url" content="https://pywebguide.github.io/en/playground.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide poster: your first website with Python, a free course for people who have never programmed">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffc4ef">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/sofia-sans-extra-condensed-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="pink" id="top" data-no-toc>
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">From scratch</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Full course <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="project.html">First project</a></li>
+          <li><a class="nav-link active" href="playground.html" aria-current="page">Sandbox</a></li>
+          <li><a class="nav-link" href="glossary.html">Glossary</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link">More <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Understand</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">About Python</a></li>
+              <li><a href="frameworks.html">Frameworks</a></li>
+              <li><a href="databases.html">Databases</a></li>
+              <li><a href="templates.html">Templates and forms</a></li>
+              <li><a href="auth.html">Authentication</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Testing</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Build</p><ul aria-labelledby="nav-group-2">
+              <li><a href="project2.html">Second project</a></li>
+              <li><a href="deploy.html">Deployment</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Practice</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Exercises</a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Final test <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Site</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">My progress <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Contact <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Site language">
+            <a href="../playground.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="../kk/playground.html" hreflang="kk" lang="kk">ҚАЗ</a>
+            <a href="playground.html" hreflang="en" lang="en" aria-current="true">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Light theme">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Breadcrumb">
+<a href="index.html">Home</a> <span aria-hidden="true">/</span> <span>Sandbox</span>
+</nav>
+<h1>Python right in the browser</h1>
+<p class="lead">Write code and press “Run”. Nothing to install: the code runs on your device and is not sent anywhere.</p>
+<img class="band-picture" src="../assets/img/sand-forts.jpg" width="1000" height="538" alt="Holidaymakers have built sand forts with flags on the beach, Sylt island, 1890s" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" id="editor" aria-labelledby="editor-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="editor-title">Editor</h2>
+<p>Ctrl+Enter runs the code. Your draft is saved in this browser.</p>
+</div>
+<div id="playground" class="reveal">
+<div class="tool-row">
+<label for="sample">Example:</label>
+<select id="sample"></select>
+<button class="btn btn-primary" type="button" data-run-code>Run</button>
+<button class="btn btn-secondary" type="button" data-reset-code>Reset to the example</button>
+</div>
+<textarea class="editor-area" rows="16" spellcheck="false" aria-label="Python code"></textarea>
+<div class="code-block stack-gap" data-output></div>
+<template data-sample="basics" data-title="Основы: функции и списки">
+def greet(name):
+    return f"Привет, {name}!"
+
+for name in ["Ернар", "Руслан", "мир"]:
+    print(greet(name))
+
+squares = [n * n for n in range(1, 6)]
+print("Квадраты:", squares)
+print("Сумма:", sum(squares))</template>
+<template data-sample="dict" data-title="Словари: подсчёт слов">
+text = "python для веба python для всех"
+
+counts = {}
+for word in text.split():
+    counts[word] = counts.get(word, 0) + 1
+
+for word, count in sorted(counts.items(), key=lambda item: -item[1]):
+    print(word, count)</template>
+<template data-sample="sql" data-title="SQLite: база данных в памяти">
+import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany(
+    "INSERT INTO tasks (title, done) VALUES (?, ?)",
+    [("Выучить SQL", 1), ("Сделать API", 0), ("Написать тесты", 0)],
+)
+
+for row in db.execute("SELECT title FROM tasks WHERE done = 0 ORDER BY title"):
+    print(row[0])</template>
+<template data-sample="flask" data-title="Flask: приложение и тестовый клиент">
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.get("/hello/&lt;name&gt;")
+def hello(name):
+    return {"message": f"Привет, {name}!", "lang": request.args.get("lang", "ru")}
+
+client = app.test_client()
+response = client.get("/hello/Python?lang=kk")
+print(response.status_code)
+print(response.json)
+print(client.get("/nope").status_code)</template>
+<template data-sample="error" data-title="Ошибка: как читать сообщение">
+def divide(a, b):
+    return a / b
+
+print(divide(10, 2))
+print(divide(1, 0))</template>
+</div>
+</div>
+</section>
+<section class="section" id="limits" aria-labelledby="limits-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="limits-title">What to know</h2>
+<p>The sandbox runs on Pyodide: Python built for the browser.</p>
+</div>
+<div class="panel reveal stack-gap">
+<ul class="list">
+<li>On the first run the browser downloads about 5 MB from jsDelivr. The Flask example also loads packages from PyPI.</li>
+<li>A real server cannot be started here. Instead, the Flask app receives requests through <code>test_client()</code>.</li>
+<li><code>input()</code> does not work in the browser. Set the values right in the code.</li>
+<li>Code stops after 10 seconds, so an infinite loop will not freeze the page.</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section" aria-labelledby="sources-title">
+<div class="container">
+<div class="panel sources reveal">
+<h2 id="sources-title">Sources</h2>
+<p class="note">Links checked on <time datetime="2026-11-06">06.11.2026</time>.</p>
+<ul class="list">
+<li><a href="https://pyodide.org/en/stable/" rel="noopener">Pyodide documentation</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+
+</main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Start</strong><ul><li><a href="start.html">Python from scratch</a></li><li><a href="glossary.html">Glossary</a></li><li><a href="playground.html">Sandbox</a></li></ul></div>
+        <div><strong>Understand</strong><ul><li><a href="about.html">About Python</a></li><li><a href="frameworks.html">Frameworks</a></li><li><a href="databases.html">Databases</a></li><li><a href="templates.html">Templates and forms</a></li><li><a href="auth.html">Authentication</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Testing</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Build</strong><ul><li><a href="project.html">First project</a></li><li><a href="project2.html">Second project</a></li><li><a href="deploy.html">Deployment</a></li></ul></div>
+        <div><strong>Practice</strong><ul><li><a href="practice.html">Exercises</a></li><li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Final test <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Site</strong><ul><li><a href="../course.html" hreflang="ru">Full course <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">My progress <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Contact <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, a learning project about Python in web development</p>
+      <p class="note footer-note">Author: <a href="../contacts.html#authors" hreflang="ru">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-09">09.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
+      <p class="note footer-note">Photo: <a href="https://commons.wikimedia.org/wiki/File:Building_sand_castles,_Westerland,_Sylt,_Schleswig-Holstein,_Germany-LCCN2002720670.tif" rel="noopener">sand forts on the beach of Sylt, 1890s</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Privacy policy</a> · <a href="../terms.html" hreflang="ru">Terms of use</a></p>
+      <p class="note footer-note">This is a learning site. Messages from the form are sent through the public Issues section on GitHub. No GitHub account? <a href="../contacts.html#no-github" hreflang="ru">Write directly</a>.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
