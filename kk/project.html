@@ -1,0 +1,851 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из project.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flask пен Django-дағы алғашқы жоба — PyWeb Guide</title>
+
+  <meta name="description" content="Қадамдық нұсқаулық: Flask 3.1 және Django 6.1 бойынша тапсырмалар тізімі — орнатудан бастап жұмыс істейтін қосымшаға дейін. Өткен қадамдарды белгілеп отырыңыз.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/project.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/project.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/project.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/project.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Flask пен Django-дағы алғашқы жоба — PyWeb Guide">
+  <meta property="og:description" content="Қадамдық нұсқаулық: Flask 3.1 және Django 6.1 бойынша тапсырмалар тізімі — орнатудан бастап жұмыс істейтін қосымшаға дейін. Өткен қадамдарды белгілеп отырыңыз.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/project.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffd249">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LearningResource",
+      "name": "Первый проект: список задач на Flask и Django",
+      "description": "Пошаговое создание списка задач на Flask 3.1 и Django 6.1: от установки до базы данных и формы.",
+      "url": "https://pywebguide.github.io/project.html",
+      "inLanguage": "ru",
+      "educationalLevel": "Начальный",
+      "learningResourceType": "Пошаговое руководство",
+      "timeRequired": "PT1H",
+      "dateModified": "2026-10-28",
+      "isPartOf": { "@type": "WebSite", "name": "PyWeb Guide", "url": "https://pywebguide.github.io/" },
+      "author": { "@type": "Person", "name": "Жангужин Е. Е." }
+    }
+  </script>
+</head>
+
+<body data-band="yellow" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link active" href="project.html" aria-current="page">Алғашқы жоба</a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="glossary.html">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="../about.html" hreflang="ru">Python туралы <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../frameworks.html" hreflang="ru">Фреймворктер <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../databases.html" hreflang="ru">Дерекқорлар <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../templates.html" hreflang="ru">Үлгілер мен формалар <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../auth.html" hreflang="ru">Авторизация <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="../practice.html" hreflang="ru">Есептер <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../project.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="project.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+      <div class="page-band"><div class="container page-hero page-hero--picture">
+        <nav class="breadcrumb" aria-label="Навигациялық тізбек">
+          <a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Алғашқы жоба</span>
+        </nav>
+        <h1>Алғашқы жоба: тапсырмалар тізімі</h1>
+        <p class="lead">
+          Бір қосымшаны — тапсырмалар тізімін — екі тәсілмен жасаймыз: Flask-та және Django-да. Бір нұсқаны таңдап, оны соңына дейін өтіңіз. Әрқайсысында екі бөлім бар: алдымен ең қарапайым тізім, содан кейін дерекқор, жою және «орындалды» белгісі. Flask-қа шамамен 30 минут, Django-ға шамамен бір сағат кетеді.
+        </p>
+        <p class="note">Енді ғана бастап жатырсыз ба? Алдымен <a href="start.html">«Нөлден» сабақтарын</a> өтіңіз, ал бейтаныс сөздерді <a href="glossary.html">сөздіктен</a> қараңыз.</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#flask">Flask нұсқасы</a> <a class="btn btn-secondary" href="#django">Django нұсқасы</a>
+        </div>
+
+        <nav class="page-toc" aria-label="Бет мазмұны">
+          <a href="#prep">Не қажет болады</a> <a href="#flask">Flask: 6 қадам</a> <a href="#django">Django: 10 қадам</a> <a href="#errors">Жиі кездесетін қателер</a> <a href="#sources">Дереккөздер</a>
+        </nav>
+      <img class="band-picture" src="../assets/img/eniac.jpg" width="900" height="617" alt="Екі әйел кабель панельдерінің жанында ENIAC компьютерін баптап жатыр, 1946 жыл" decoding="async" fetchpriority="high">
+</div></div>
+
+      <section class="section" id="prep" aria-labelledby="prep-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="prep-title">Не қажет болады</h2>
+            <p>Бастамас бұрын мыналарды тексеріңіз — сонда қадамдар қатесіз өтеді.</p>
+          </div>
+
+          <div class="panel reveal">
+            <ul class="check-list">
+              <li>Python 3.12 немесе одан жаңасы: терминалдағы <code>python --version</code> командасы.</li>
+              <li>Код редакторы, мысалы VS Code.</li>
+              <li>Жобаға арналған, терминалда ашылған бөлек бос қалта.</li>
+              <li>Python негіздері: функциялар, тізімдер, сөздіктер (<a href="index.html">жол картасының</a> 1-қадамы).</li>
+            </ul>
+          </div>
+
+          <p class="notice" role="note">
+            <strong>Командалар Windows-қа арналған.</strong> macOS пен Linux-та <code>python</code> орнына <code>python3</code> деп жазыңыз, ал виртуалды ортаны <code>source .venv/bin/activate</code> командасымен іске қосыңыз. Белгіленген қадамдар осы браузерде сақталады — кейін оралып, жалғастыра беруге болады. Бірдеңе дұрыс болмаса, беттің төменгі жағындағы <a href="#errors">жиі кездесетін қателерге</a> қараңыз.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================= FLASK ============================= -->
+      <section class="section project-track" id="flask" aria-labelledby="flask-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="flask-title">1-нұсқа. Flask-тағы тапсырмалар тізімі</h2>
+            <p>Flask 3.1, шамамен 30 минут. Бір файлдағы бір қосымша: тізімі бар бет және тапсырма қосатын форма.</p>
+            <p class="download-row"><a class="btn btn-secondary" href="../examples/flask-todo.zip" download>Толық кодты жүктеу (zip, 3 КБ)</a> <a href="https://github.com/pywebguide/pywebguide.github.io/tree/main/examples/flask-todo" rel="noopener">GitHub-та қарау</a></p>
+          </div>
+
+          <div class="progress-box reveal" data-progress="project-flask">
+            <p class="progress-label" role="status" aria-live="polite">6 қадамның <span data-progress-count>0</span> қадамы өтілді</p>
+            <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
+            <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Прогресті тастау</button>
+          </div>
+
+          <ol class="project-steps" data-progress-list="project-flask">
+            <li class="project-step reveal">
+              <h3>1-қадам. Орта жасап, Flask-ты орнатыңыз</h3>
+              <p>Виртуалды орта жобаның кітапханаларын жүйенің қалған бөлігінен бөлек сақтайды. Командалар Windows үшін және macOS пен Linux үшін сәл өзгеше: өз жүйеңізді таңдаңыз, сайт таңдауыңызды есте сақтайды.</p>
+              <div class="os-tabs" data-os-tabs>
+                <div class="os-tablist" role="tablist" aria-label="Компьютер жүйесі" hidden>
+                  <button type="button" role="tab" data-os="win">Windows</button>
+                  <button type="button" role="tab" data-os="unix">macOS және Linux</button>
+                </div>
+                <div role="tabpanel" data-os-panel="win">
+                  <p class="os-caption">Windows (PowerShell немесе пәрмен жолы)</p>
+                  <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>python -m venv .venv
+.venv\Scripts\activate
+pip install flask</code></pre>
+              </div>
+                </div>
+                <div role="tabpanel" data-os-panel="unix">
+                  <p class="os-caption">macOS және Linux (Терминал)</p>
+                  <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>python3 -m venv .venv
+source .venv/bin/activate
+pip install flask</code></pre>
+              </div>
+                </div>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="1"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>2-қадам. Қосымшаны жазыңыз</h3>
+              <p><code>app.py</code> файлын жасаңыз. Әзірге тапсырмалар кәдімгі тізімде — сервердің жадында сақталады.</p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>app.py</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>from flask import Flask, redirect, render_template_string, request, url_for
+
+app = Flask(__name__)
+tasks = []
+
+PAGE = """
+&lt;!doctype html&gt;
+&lt;title&gt;Мои задачи&lt;/title&gt;
+&lt;h1&gt;Мои задачи&lt;/h1&gt;
+&lt;form method="post"&gt;
+  &lt;input name="title" placeholder="Новая задача" required&gt;
+  &lt;button&gt;Добавить&lt;/button&gt;
+&lt;/form&gt;
+&lt;ul&gt;
+  {% for task in tasks %}&lt;li&gt;{{ task }}&lt;/li&gt;{% endfor %}
+&lt;/ul&gt;
+"""
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    if request.method == "POST":
+        tasks.append(request.form["title"])
+        return redirect(url_for("index"))
+    return render_template_string(PAGE, tasks=tasks)</code></pre>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="2"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>3-қадам. Серверді іске қосыңыз</h3>
+              <p><code>--debug</code> жалаушасы файлды әр сақтаған сайын серверді қайта іске қосады және қателерді түсінікті етіп көрсетеді.</p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>flask --app app run --debug</code></pre>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="3"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>4-қадам. Нәтижені тексеріңіз</h3>
+              <p>
+                Браузерде <code>http://127.0.0.1:5000/</code> мекенжайын ашып, бірнеше тапсырма қосыңыз. Назар аударыңыз: сервер қайта іске қосылғаннан кейін тізім тазаланады — деректер тек жадта болды. Оларды іске қосулар арасында сақтауды дерекқор біледі, бұл келесі қадам.
+              </p>
+              <figure class="shot">
+                <p class="shot-title">Қалай көрінуі керек</p>
+                <img src="../assets/img/project/flask-step4.webp" width="1120" height="340" alt="Браузердегі «Мои задачи» беті: «Новая задача» өрісі, «Добавить» батырмасы және тізімдегі екі тапсырма" loading="lazy" decoding="async">
+                <figcaption>Екі тапсырма форма арқылы қосылды. Әзірге безендіру жоқ: бұл CSS-сіз таза HTML.</figcaption>
+              </figure>
+              <label class="step-check"><input type="checkbox" data-step="4"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step project-part reveal">
+              <p class="part-title">2-бөлім. Дерекқор және жою</p>
+              <h3>5-қадам. Тапсырмаларды SQLite-та сақтаңыз</h3>
+              <p>
+                <code>app.py</code> файлын толығымен осы кодпен ауыстырыңыз. <code>sqlite3</code> модулі Python-ның құрамында бар, ештеңе орнатудың қажеті жоқ. <code>tasks.db</code> дерекқор файлы алғаш іске қосқанда <code>app.py</code> жанында пайда болады. Сұраулардағы <code>?</code> белгілері — параметрлер: мәндерді Python өзі қауіпсіз қояды, сондықтан пайдаланушы енгізген мәтін SQL-сұраудың өзін өзгерте алмайды. Толығырақ — <a href="../databases.html" hreflang="ru">«Дерекқорлар»</a> бөлімінде.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>app.py</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>import sqlite3
+from pathlib import Path
+
+from flask import Flask, redirect, render_template_string, request, url_for
+
+app = Flask(__name__)
+DB = Path(__file__).with_name("tasks.db")
+
+PAGE = """
+&lt;!doctype html&gt;
+&lt;title&gt;Мои задачи&lt;/title&gt;
+&lt;h1&gt;Мои задачи&lt;/h1&gt;
+&lt;form method="post" action="{{ url_for('add') }}"&gt;
+  &lt;input name="title" placeholder="Новая задача" required&gt;
+  &lt;button&gt;Добавить&lt;/button&gt;
+&lt;/form&gt;
+&lt;ul&gt;
+  {% for task in tasks %}
+    &lt;li&gt;
+      {{ task["title"] }}
+      &lt;form method="post" action="{{ url_for('delete', task_id=task['id']) }}"&gt;
+        &lt;button&gt;Удалить&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;
+"""
+
+def query(sql, params=()):
+    conn = sqlite3.connect(DB)
+    conn.row_factory = sqlite3.Row
+    try:
+        rows = conn.execute(sql, params).fetchall()
+        conn.commit()
+        return rows
+    finally:
+        conn.close()
+
+query("CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY, title TEXT NOT NULL)")
+
+@app.get("/")
+def index():
+    tasks = query("SELECT id, title FROM tasks ORDER BY id")
+    return render_template_string(PAGE, tasks=tasks)
+
+@app.post("/add")
+def add():
+    query("INSERT INTO tasks (title) VALUES (?)", (request.form["title"],))
+    return redirect(url_for("index"))
+
+@app.post("/delete/&lt;int:task_id&gt;")
+def delete(task_id):
+    query("DELETE FROM tasks WHERE id = ?", (task_id,))
+    return redirect(url_for("index"))</code></pre>
+              </div>
+              <div class="try-app" data-try-app>
+                <button class="btn btn-primary" type="button" data-try-start>Браузерде байқап көру</button>
+                <p class="note" data-try-note>Дәл осы код осында іске қосылады: Python мен Flask браузерге жүктеледі (шамамен 15 МБ, тек алғаш басқанда). Төмендегі терезеде тапсырмаларды өз компьютеріңіздегідей қосып, жойыңыз.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="5"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>6-қадам. Деректердің сақталатынын тексеріңіз</h3>
+              <p>
+                Серверді сол командамен іске қосып, бірнеше тапсырма қосыңыз да, біреуін жойыңыз. Содан кейін серверді тоқтатып (<kbd>Ctrl</kbd> + <kbd>C</kbd>), қайта іске қосыңыз — тапсырмалар орнында қалады. Жою кәдімгі сілтеме арқылы емес, <code>POST</code> арқылы жасалған: деректерді өзгертетін әрекеттер мекенжайға жай өту арқылы орындалмауы керек.
+              </p>
+              <figure class="shot">
+                <p class="shot-title">Қалай көрінуі керек</p>
+                <img src="../assets/img/project/flask-step6.webp" width="1120" height="427" alt="«Мои задачи» беті: әр тапсырманың жанында «Удалить» батырмасы бар" loading="lazy" decoding="async">
+                <figcaption>Үш тапсырма қосылды, біреуі жойылды. Сервер қайта іске қосылғаннан кейін де тізім сол күйі.</figcaption>
+              </figure>
+              <label class="step-check"><input type="checkbox" data-step="6"> Қадам өтілді</label>
+            </li>
+          </ol>
+
+          <div class="panel reveal stack-gap">
+            <h3>Әрі қарай не бар</h3>
+            <ul class="list">
+              <li>HTML-ді <code>templates/index.html</code> үлгісіне шығарып, <code>render_template</code> қолданыңыз.</li>
+              <li>«Орындалды» белгісін қосыңыз: <code>done INTEGER DEFAULT 0</code> бағаны және <code>UPDATE</code> сұрауы.</li>
+              <li>Қосымшаны интернетке жариялаңыз — нұсқаулық <a href="../deploy.html" hreflang="ru">«Жариялау»</a> бөлімінде.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================= DJANGO ============================= -->
+      <section class="section project-track" id="django" aria-labelledby="django-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="django-title">2-нұсқа. Django-дағы тапсырмалар тізімі</h2>
+            <p>Django 6.1, шамамен 60 минут. Тапсырмалар SQLite дерекқорында сақталады, ал оларды кірістірілген әкімші панелі арқылы қосуға болады.</p>
+            <p class="download-row"><a class="btn btn-secondary" href="../examples/django-todo.zip" download>Толық кодты жүктеу (zip, 8 КБ)</a> <a href="https://github.com/pywebguide/pywebguide.github.io/tree/main/examples/django-todo" rel="noopener">GitHub-та қарау</a></p>
+          </div>
+
+          <div class="progress-box reveal" data-progress="project-django">
+            <p class="progress-label" role="status" aria-live="polite">10 қадамның <span data-progress-count>0</span> қадамы өтілді</p>
+            <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
+            <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Прогресті тастау</button>
+          </div>
+
+          <ol class="project-steps" data-progress-list="project-django">
+            <li class="project-step reveal">
+              <h3>1-қадам. Django-ны орнатып, жоба жасаңыз</h3>
+              <p>Команданың соңындағы нүкте жобаны ағымдағы қалтада жасайды. Содан кейін <code>tasks</code> қосымшасын жасаймыз.</p>
+              <div class="os-tabs" data-os-tabs>
+                <div class="os-tablist" role="tablist" aria-label="Компьютер жүйесі" hidden>
+                  <button type="button" role="tab" data-os="win">Windows</button>
+                  <button type="button" role="tab" data-os="unix">macOS және Linux</button>
+                </div>
+                <div role="tabpanel" data-os-panel="win">
+                  <p class="os-caption">Windows (PowerShell немесе пәрмен жолы)</p>
+                  <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>python -m venv .venv
+.venv\Scripts\activate
+pip install django
+django-admin startproject mysite .
+python manage.py startapp tasks</code></pre>
+              </div>
+                </div>
+                <div role="tabpanel" data-os-panel="unix">
+                  <p class="os-caption">macOS және Linux (Терминал)</p>
+                  <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>python3 -m venv .venv
+source .venv/bin/activate
+pip install django
+django-admin startproject mysite .
+python manage.py startapp tasks</code></pre>
+              </div>
+                </div>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="1"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>2-қадам. Қосымшаны қосыңыз</h3>
+              <p><code>mysite/settings.py</code> файлында <code>INSTALLED_APPS</code> тізімінің соңына <code>'tasks',</code> жолын қосыңыз.</p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>mysite/settings.py</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'tasks',
+]</code></pre>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="2"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>3-қадам. Модельді сипаттап, оны әкімші панеліне тіркеңіз</h3>
+              <p>Модель — Python класымен сипатталған дерекқор кестесі. Ол үшін SQL-ді ORM өзі жасайды.</p>
+              <div class="code-grid">
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/models.py</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>from django.db import models
+
+class Task(models.Model):
+    title = models.CharField(max_length=200)
+    done = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/admin.py</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>from django.contrib import admin
+
+from .models import Task
+
+admin.site.register(Task)</code></pre>
+                </div>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="3"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>4-қадам. Кестелер мен әкімшіні жасаңыз</h3>
+              <p>Миграциялар модельдерді дерекқорға көшіреді. Соңғы команда әкімші панеліне кіру үшін логин мен құпиясөзді сұрайды.</p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser</code></pre>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="4"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>5-қадам. Тізімі бар бет жасаңыз</h3>
+              <p>
+                Көрініс тапсырмаларды дерекқордан алады, үлгі оларды тізім етіп шығарады, маршрут мекенжайды көрініспен байланыстырады. Үлгіні <code>tasks/templates/tasks/</code> қалтасына салыңыз — Django оны өзі табады.
+              </p>
+              <div class="code-grid">
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/views.py</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>from django.shortcuts import render
+
+from .models import Task
+
+def index(request):
+    return render(request, "tasks/index.html", {"tasks": Task.objects.all()})</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/templates/tasks/index.html</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>&lt;h1&gt;Мои задачи&lt;/h1&gt;
+&lt;ul&gt;
+  {% for task in tasks %}
+    &lt;li&gt;{{ task.title }}{% if task.done %} (готово){% endif %}&lt;/li&gt;
+  {% empty %}
+    &lt;li&gt;Задач пока нет — добавьте их в админке.&lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>mysite/urls.py</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>from django.contrib import admin
+from django.urls import path
+
+from tasks import views
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", views.index),
+]</code></pre>
+                </div>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="5"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>6-қадам. Іске қосып, тексеріңіз</h3>
+              <p>
+                <code>http://127.0.0.1:8000/admin/</code> мекенжайын ашып, кіріңіз де, бірнеше тапсырма қосыңыз. Содан кейін <code>http://127.0.0.1:8000/</code> мекенжайын ашыңыз — тапсырмалар тізімде пайда болады және сервер қайта іске қосылғаннан кейін де сақталады.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>python manage.py runserver</code></pre>
+              </div>
+              <figure class="shot">
+                <p class="shot-title">Қалай көрінуі керек</p>
+                <img src="../assets/img/project/django-admin.webp" width="1766" height="840" alt="Django әкімші панелі: үш тапсырмадан тұратын тізімі және Add task батырмасы бар Tasks бөлімі" loading="lazy" decoding="async">
+                <figcaption>/admin/ мекенжайындағы әкімші панелі: үш тапсырма Add task батырмасымен қосылды. Әкімші панелі ағылшын тілінде, тілін LANGUAGE_CODE баптауы өзгертеді.</figcaption>
+              </figure>
+              <label class="step-check"><input type="checkbox" data-step="6"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step project-part reveal">
+              <p class="part-title">2-бөлім. Әкімші панелінсіз жұмыс</p>
+              <h3>7-қадам. Форма жасаңыз</h3>
+              <p>
+                <code>ModelForm</code> форманы тікелей модель бойынша құрады: атаудың ұзындығын өзі тексеріп, тапсырманы дерекқорға сақтайды. Жаңа <code>tasks/forms.py</code> файлын жасаңыз.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>tasks/forms.py</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>from django import forms
+
+from .models import Task
+
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ["title"]</code></pre>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="7"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>8-қадам. Көріністер мен маршруттарды қосыңыз</h3>
+              <p>
+                <code>tasks/views.py</code> және <code>mysite/urls.py</code> файлдарын толығымен ауыстырыңыз. <code>@require_POST</code> декораторы деректерді сілтемеге өту арқылы емес, тек форма жіберу арқылы өзгертуге рұқсат береді. Маршрут атаулары (<code>name="index"</code>) оларға үлгіден сілтеме жасау үшін қажет.
+              </p>
+              <div class="code-grid">
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/views.py</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
+
+from .forms import TaskForm
+from .models import Task
+
+def index(request):
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("index")
+    else:
+        form = TaskForm()
+    return render(request, "tasks/index.html", {"tasks": Task.objects.all(), "form": form})
+
+@require_POST
+def toggle(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.done = not task.done
+    task.save()
+    return redirect("index")
+
+@require_POST
+def delete(request, pk):
+    get_object_or_404(Task, pk=pk).delete()
+    return redirect("index")</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>mysite/urls.py</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>from django.contrib import admin
+from django.urls import path
+
+from tasks import views
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", views.index, name="index"),
+    path("tasks/&lt;int:pk&gt;/toggle/", views.toggle, name="toggle"),
+    path("tasks/&lt;int:pk&gt;/delete/", views.delete, name="delete"),
+]</code></pre>
+                </div>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="8"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>9-қадам. Үлгіні жаңартыңыз</h3>
+              <p>
+                <code>{% csrf_token %}</code> тегі <code>method="post"</code> бар әр формада міндетті: ол бөгде сайттардан жасалған жалған сұраулардан қорғайды. Онсыз Django 403 қатесімен жауап береді.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>tasks/templates/tasks/index.html</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>&lt;h1&gt;Мои задачи&lt;/h1&gt;
+
+&lt;form method="post"&gt;
+  {% csrf_token %}
+  {{ form.title }}
+  &lt;button&gt;Добавить&lt;/button&gt;
+  {{ form.title.errors }}
+&lt;/form&gt;
+
+&lt;ul&gt;
+  {% for task in tasks %}
+    &lt;li&gt;
+      {% if task.done %}&lt;s&gt;{{ task.title }}&lt;/s&gt;{% else %}{{ task.title }}{% endif %}
+      &lt;form method="post" action="{% url 'toggle' task.pk %}"&gt;
+        {% csrf_token %}
+        &lt;button&gt;{% if task.done %}Вернуть{% else %}Готово{% endif %}&lt;/button&gt;
+      &lt;/form&gt;
+      &lt;form method="post" action="{% url 'delete' task.pk %}"&gt;
+        {% csrf_token %}
+        &lt;button&gt;Удалить&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/li&gt;
+  {% empty %}
+    &lt;li&gt;Задач пока нет.&lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;</code></pre>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="9"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>10-қадам. Тексеріңіз</h3>
+              <p>
+                <code>python manage.py runserver</code> командасын іске қосып, <code>http://127.0.0.1:8000/</code> мекенжайын ашыңыз. Тапсырма қосып, оны «Готово» батырмасымен белгілеңіз — ол сызылған болады, — содан кейін жойыңыз. Бос тапсырма қосып көріңіз: форма қатені көрсетеді, ал дерекқорға ештеңе түспейді. Миграция жасаудың қажеті жоқ — модель өзгерген жоқ.
+              </p>
+              <figure class="shot">
+                <p class="shot-title">Қалай көрінуі керек</p>
+                <img src="../assets/img/project/django-step10.webp" width="1120" height="769" alt="Django-дағы «Мои задачи» беті: бірінші тапсырма сызылған, әрқайсысында «Готово» немесе «Вернуть» және «Удалить» батырмалары бар" loading="lazy" decoding="async">
+                <figcaption>Бірінші тапсырма «Готово» батырмасымен белгіленіп, сызылған болды.</figcaption>
+              </figure>
+              <label class="step-check"><input type="checkbox" data-step="10"> Қадам өтілді</label>
+            </li>
+          </ol>
+
+          <div class="panel reveal stack-gap">
+            <h3>Әрі қарай не бар</h3>
+            <ul class="list">
+              <li>Алдымен орындалмаған тапсырмаларды көрсетіңіз: <code>Task.objects.order_by("done", "-id")</code>.</li>
+              <li>Django-ның ресми нұсқаулығын өтіңіз — ол дәл осы логиканы сауалнамалар мысалында жалғастырады.</li>
+              <li>Қосымшаны интернетке жариялаңыз — нұсқаулық <a href="../deploy.html" hreflang="ru">«Жариялау»</a> бөлімінде.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section faq" id="errors" aria-labelledby="errors-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="errors-title">Жиі кездесетін қателер және оларды қалай түзету керек</h2>
+            <p>Хабарламалар Windows, Flask және Django көрсететіндей берілген. Шешімін көру үшін қатені басыңыз.</p>
+          </div>
+
+          <details class="reveal">
+            <summary>python командасы Microsoft Store-ды ашады немесе «Python was not found» деп жазады</summary>
+            <p>
+              <code class="error-text">Python was not found; run without arguments to install from the Microsoft Store…</code> Python орнатылмаған немесе PATH-қа қосылмаған, сондықтан Windows өз бітеуішін қояды. Python-ды <a href="https://www.python.org/downloads/" rel="noopener">python.org</a> сайтынан орнатып, «Add python.exe to PATH» тармағын белгілеңіз. Егер Python бұрыннан орнатылған болса, <code>py</code> командасын қолданыңыз: <code>py -m venv .venv</code>. Орта іске қосылғаннан кейін <code>python</code> командасы жұмыс істей бастайды.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>PowerShell ортаны іске қосуға мүмкіндік бермейді: «сценарийлерді орындау өшірілген»</summary>
+            <p>
+              Орыс тіліндегі Windows-та: <code class="error-text">Невозможно загрузить файл …\.venv\Scripts\Activate.ps1, так как выполнение сценариев отключено в этой системе.</code> Ағылшын тіліндегі Windows-та: <code class="error-text">…Activate.ps1 cannot be loaded because running scripts is disabled on this system.</code> Өз тіркелгіңіз үшін жергілікті скриптерді іске қосуға бір рет рұқсат беріңіз: <code>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</code>. Басқа жолы — PowerShell орнына «Пәрмен жолы» (cmd) терминалын ашу.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>«flask» немесе «django-admin» командлет атауы ретінде танылмады</summary>
+            <p>
+              Орыс тіліндегі PowerShell-де: <code class="error-text">Имя "flask" не распознано как имя командлета, функции, файла сценария или выполняемой программы.</code> Орта іске қосылмаған немесе пакет орнатылмаған. Ортаны іске қосыңыз (терминал жолының басында <code>(.venv)</code> пайда болады) да, <code>pip install flask</code> немесе <code>pip install django</code> командасын қайталаңыз.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>Django: «no such table: tasks_task»</summary>
+            <p>
+              <code class="error-text">django.db.utils.OperationalError: no such table: tasks_task</code> Модельге арналған кесте әлі жасалмаған. 4-қадамды орындаңыз: <code>python manage.py makemigrations</code> және <code>python manage.py migrate</code>. Егер команда «No changes detected» деп жазса, <code>'tasks'</code> <code>INSTALLED_APPS</code> тізіміне қосылғанын тексеріңіз (2-қадам).
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>Django: «TemplateDoesNotExist at /»</summary>
+            <p>
+              <code class="error-text">TemplateDoesNotExist at / — tasks/index.html</code> Django үлгіні таппады. Жол дәл осындай болуы керек: <code>tasks/templates/tasks/index.html</code> — <code>templates</code> ішіндегі <code>tasks</code> қалтасы әдейі қайталанады. Сондай-ақ қосымшаның <code>INSTALLED_APPS</code> тізімінде бар екенін тексеріңіз.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>Django: «Forbidden (403) CSRF verification failed»</summary>
+            <p>
+              <code class="error-text">Forbidden (403) CSRF verification failed. Request aborted.</code> Формада <code>{% csrf_token %}</code> тегі жетіспейді. Ол <code>method="post"</code> бар әр формада қажет — үлгіңізді 9-қадаммен салыстырыңыз.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="sources" aria-labelledby="sources-title">
+        <div class="container">
+          <div class="panel sources reveal">
+            <h2 id="sources-title">Дереккөздер</h2>
+            <p class="note">Код Flask 3.1 және Django 6.1 нұсқаларына арналған, дереккөздер <time datetime="2026-11-06">06.11.2026</time> тексерілді.</p>
+            <ul class="list">
+              <li><a href="https://flask.palletsprojects.com/en/stable/installation/" rel="noopener">Flask: орнату және виртуалды орта</a></li>
+              <li><a href="https://flask.palletsprojects.com/en/stable/quickstart/" rel="noopener">Flask: Quickstart — маршруттар, формалар, үлгілер</a></li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/intro/tutorial01/" rel="noopener">Django 6.1: ресми нұсқаулық, 1-бөлім</a> — жоба, қосымша, маршруттар</li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/intro/tutorial02/" rel="noopener">Django 6.1: нұсқаулық, 2-бөлім</a> — модельдер, миграциялар, әкімші панелі</li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/topics/forms/modelforms/" rel="noopener">Django 6.1: ModelForm</a> — модельдерге негізделген формалар</li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/howto/csrf/" rel="noopener">Django 6.1: CSRF-тен қорғау</a> — csrf_token не үшін керек</li>
+              <li><a href="https://docs.python.org/3/library/sqlite3.html" rel="noopener">Python: sqlite3 модулі</a> — сұрау параметрлері және қосылу</li>
+              <li><a href="https://docs.python.org/3/library/venv.html" rel="noopener">Python: venv модулі</a> — виртуалды орталар</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Әрі қарай">
+        <div class="container">
+          <div class="cta-panel reveal">
+            <div>
+              <h2>Шықпады ма?</h2>
+              <p class="lead cta-lead">
+                Қате қай қадамда пайда болғанын кері байланыс формасы арқылы жазыңыз — және жоғарыдағы дереккөздермен салыстырыңыз.
+              </p>
+            </div>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="../contacts.html" hreflang="ru">Сұрақ қою</a>
+            </div>
+          </div>
+        </div>
+      </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="../about.html" hreflang="ru">Python туралы <span class="ru-mark">(RU)</span></a></li><li><a href="../frameworks.html" hreflang="ru">Фреймворктер <span class="ru-mark">(RU)</span></a></li><li><a href="../databases.html" hreflang="ru">Дерекқорлар <span class="ru-mark">(RU)</span></a></li><li><a href="../templates.html" hreflang="ru">Үлгілер мен формалар <span class="ru-mark">(RU)</span></a></li><li><a href="../auth.html" hreflang="ru">Авторизация <span class="ru-mark">(RU)</span></a></li><li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li><li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="project.html">Алғашқы жоба</a></li><li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li><li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="../practice.html" hreflang="ru">Есептер <span class="ru-mark">(RU)</span></a></li><li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="../contacts.html#authors" hreflang="ru">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-09">09.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Сурет: <a href="https://commons.wikimedia.org/wiki/File:Two_women_operating_ENIAC_(full_resolution).jpg" rel="noopener">ENIAC, АҚШ армиясы, 1946</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Құпиялылық саясаты</a> · <a href="../terms.html" hreflang="ru">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="../contacts.html#no-github" hreflang="ru">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
