@@ -1,0 +1,369 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из api.html. Правьте tools/i18n/en.json, а не этот файл. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>REST API with Flask and Django for beginners — PyWeb Guide</title>
+
+  <meta name="description" content="What a REST API is, which HTTP methods and status codes exist, how to make a JSON API with Flask and Django and call it from the browser.">
+  <link rel="canonical" href="https://pywebguide.github.io/en/api.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/api.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/api.html">
+  <link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/api.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/api.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="REST API with Flask and Django for beginners — PyWeb Guide">
+  <meta property="og:description" content="What a REST API is, which HTTP methods and status codes exist, how to make a JSON API with Flask and Django and call it from the browser.">
+  <meta property="og:url" content="https://pywebguide.github.io/en/api.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide poster: your first website with Python, a free course for people who have never programmed">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffc4ef">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/sofia-sans-extra-condensed-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="pink" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">From scratch</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Full course <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="project.html">First project</a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Sandbox <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="glossary.html">Glossary</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">More <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Understand</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">About Python</a></li>
+              <li><a href="frameworks.html">Frameworks</a></li>
+              <li><a href="databases.html">Databases</a></li>
+              <li><a href="templates.html">Templates and forms</a></li>
+              <li><a href="auth.html">Authentication</a></li>
+              <li><a href="api.html" aria-current="page">REST API</a></li>
+              <li><a href="../testing.html" hreflang="ru">Testing <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Build</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Second project <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../deploy.html" hreflang="ru">Deployment <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Practice</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Exercises</a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Final test <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Site</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">My progress <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Contact <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Site language">
+            <a href="../api.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="../kk/api.html" hreflang="kk" lang="kk">ҚАЗ</a>
+            <a href="api.html" hreflang="en" lang="en" aria-current="true">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Light theme">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Breadcrumb">
+<a href="index.html">Home</a> <span aria-hidden="true">/</span> <span>REST API</span>
+</nav>
+<h1>REST API: a site that returns data</h1>
+<p class="lead">You need an API when the server answers not with a page but with data: for a JavaScript site, a mobile app or another program.</p>
+<img class="band-picture" src="../assets/img/telegraphists.jpg" width="1000" height="662" alt="Telegraph operators at work at a signal office in Boulogne, 1919" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" id="rest" aria-labelledby="rest-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="rest-title">The main rules of REST</h2>
+<p>The address names the data, and the HTTP method names the action on it.</p>
+</div>
+<div class="table-wrap reveal" tabindex="0" role="region" aria-label="HTTP methods">
+<table>
+<caption>HTTP methods for a task list</caption>
+<thead><tr><th scope="col">Request</th><th scope="col">What it does</th><th scope="col">Successful response</th></tr></thead>
+<tbody>
+<tr><td><code>GET /tasks</code></td><td>Returns the list</td><td>200 OK</td></tr>
+<tr><td><code>POST /tasks</code></td><td>Creates a task</td><td>201 Created</td></tr>
+<tr><td><code>GET /tasks/5</code></td><td>Returns one task</td><td>200 OK</td></tr>
+<tr><td><code>PATCH /tasks/5</code></td><td>Changes some fields</td><td>200 OK</td></tr>
+<tr><td><code>DELETE /tasks/5</code></td><td>Deletes</td><td>204 No Content</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="section" id="status" aria-labelledby="status-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="status-title">Status codes</h2>
+<p>The client looks at the code first and only then reads the response body.</p>
+</div>
+<div class="compare-grid">
+<article class="panel reveal">
+<h3>All good or a client error</h3>
+<ul class="list">
+<li><code>200</code> — success</li>
+<li><code>201</code> — created</li>
+<li><code>204</code> — success, no response body</li>
+<li><code>400</code> — invalid data</li>
+<li><code>401</code> — you need to log in</li>
+<li><code>403</code> — no permission</li>
+<li><code>404</code> — not found</li>
+</ul>
+</article>
+<article class="panel reveal">
+<h3>Server error</h3>
+<ul class="list">
+<li><code>500</code> — an error in the application code</li>
+<li><code>502</code> — the web server got no proper response from the application</li>
+<li><code>503</code> — the service is temporarily unavailable</li>
+</ul>
+<p class="note">A 5xx error means the cause must be looked for on the server, not in the request.</p>
+</article>
+</div>
+</div>
+</section>
+<section class="section" id="flask" aria-labelledby="flask-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="flask-title">An API in Flask</h2>
+<p>Flask turns a dictionary into JSON itself. A list is better passed through <code>jsonify</code>.</p>
+</div>
+<div class="code-block reveal" data-run="python">
+  <div class="code-head">
+    <span>Flask: a JSON API with a task list</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+tasks = {}
+next_id = 1
+
+@app.get("/tasks")
+def list_tasks():
+    return jsonify(list(tasks.values()))
+
+@app.post("/tasks")
+def create_task():
+    global next_id
+    data = request.get_json(silent=True) or {}
+    title = str(data.get("title", "")).strip()
+    if not title:
+        return {"error": "Поле title обязательно"}, 400
+    task = {"id": next_id, "title": title, "done": False}
+    tasks[next_id] = task
+    next_id += 1
+    return task, 201
+
+@app.patch("/tasks/&lt;int:task_id&gt;")
+def update_task(task_id):
+    task = tasks.get(task_id)
+    if task is None:
+        return {"error": "Задача не найдена"}, 404
+    data = request.get_json(silent=True) or {}
+    if "done" in data:
+        task["done"] = bool(data["done"])
+    return task
+
+@app.delete("/tasks/&lt;int:task_id&gt;")
+def delete_task(task_id):
+    if tasks.pop(task_id, None) is None:
+        return {"error": "Задача не найдена"}, 404
+    return "", 204
+
+client = app.test_client()
+print(client.post("/tasks", json={}).status_code, "пустая задача")
+created = client.post("/tasks", json={"title": "Написать API"})
+print(created.status_code, created.json)
+print(client.patch("/tasks/1", json={"done": True}).json)
+print(client.get("/tasks").json)
+print(client.delete("/tasks/1").status_code, "удалена")
+print(client.delete("/tasks/1").status_code, "повторное удаление")</code></pre>
+</div>
+</div>
+</section>
+<section class="section" id="django" aria-labelledby="django-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="django-title">An API in Django</h2>
+<p>A simple JSON response can be returned with built-in tools. For a large API people usually take <a href="https://www.django-rest-framework.org/" rel="noopener">Django REST framework</a>.</p>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>tasks/views.py</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>import json
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+
+from .models import Task
+
+@csrf_exempt  # только для учебного примера: настоящему API нужна авторизация
+@require_http_methods(["GET", "POST"])
+def tasks(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            title = str(data.get("title", "")).strip()
+        except (json.JSONDecodeError, AttributeError):
+            return JsonResponse({"error": "Неверный JSON"}, status=400)
+        if not title:
+            return JsonResponse({"error": "Поле title обязательно"}, status=400)
+        task = Task.objects.create(title=title)
+        return JsonResponse({"id": task.id, "title": task.title}, status=201)
+    return JsonResponse(list(Task.objects.values("id", "title")), safe=False)</code></pre>
+</div>
+<p class="note stack-gap">The <code>safe=False</code> parameter is needed because by default <code>JsonResponse</code> accepts only a dictionary.</p>
+</div>
+</section>
+<section class="section" id="client" aria-labelledby="client-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="client-title">How to call an API from the browser</h2>
+<p>On a page this is done by the <code>fetch</code> function. Check the status code: <code>fetch</code> does not treat 404 as an error.</p>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>JavaScript</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>async function addTask(title) {
+  const response = await fetch("/tasks", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title }),
+  });
+
+  if (!response.ok) {
+    const problem = await response.json();
+    throw new Error(problem.error);
+  }
+
+  return response.json();
+}</code></pre>
+</div>
+<p class="note stack-gap">If the site and the API live at different addresses, the browser blocks the response until the server allows it with CORS headers. Flask has the Flask-CORS extension for this.</p>
+</div>
+</section>
+<section class="section" id="fastapi" aria-labelledby="fastapi-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="fastapi-title">Where FastAPI fits</h2>
+<p>If the project is only an API, have a look at <a href="frameworks.html">FastAPI</a>: it checks data against type hints and builds documentation itself. The REST principles stay the same.</p>
+</div>
+</div>
+</section>
+<section class="section" aria-labelledby="sources-title">
+<div class="container">
+<div class="panel sources reveal">
+<h2 id="sources-title">Sources</h2>
+<p class="note">Links checked on <time datetime="2026-11-06">06.11.2026</time>.</p>
+<ul class="list">
+<li><a href="https://developer.mozilla.org/ru/docs/Web/HTTP/Reference/Methods" rel="noopener">MDN: HTTP methods</a></li>
+<li><a href="https://developer.mozilla.org/ru/docs/Web/HTTP/Reference/Status" rel="noopener">MDN: HTTP status codes</a></li>
+<li><a href="https://flask.palletsprojects.com/en/stable/patterns/javascript/" rel="noopener">Flask: JSON and JavaScript</a></li>
+<li><a href="https://docs.djangoproject.com/en/6.1/ref/request-response/#jsonresponse-objects" rel="noopener">Django 6.1: JsonResponse</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section" aria-label="Next">
+<div class="container">
+<div class="cta-panel reveal">
+<div>
+<h2>Next: the second project</h2>
+<p class="lead cta-lead">Build a blog API with a real database.</p>
+</div>
+<div class="cta-actions"><a class="btn btn-primary" href="../project2.html" hreflang="ru">Open the section</a></div>
+</div>
+</div>
+</section>
+
+
+</main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Start</strong><ul><li><a href="start.html">Python from scratch</a></li><li><a href="glossary.html">Glossary</a></li><li><a href="../playground.html" hreflang="ru">Sandbox <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Understand</strong><ul><li><a href="about.html">About Python</a></li><li><a href="frameworks.html">Frameworks</a></li><li><a href="databases.html">Databases</a></li><li><a href="templates.html">Templates and forms</a></li><li><a href="auth.html">Authentication</a></li><li><a href="api.html">REST API</a></li><li><a href="../testing.html" hreflang="ru">Testing <span class="ru-mark">(RU)</span></a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Build</strong><ul><li><a href="project.html">First project</a></li><li><a href="../project2.html" hreflang="ru">Second project <span class="ru-mark">(RU)</span></a></li><li><a href="../deploy.html" hreflang="ru">Deployment <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Practice</strong><ul><li><a href="practice.html">Exercises</a></li><li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Final test <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Site</strong><ul><li><a href="../course.html" hreflang="ru">Full course <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">My progress <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Contact <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, a learning project about Python in web development</p>
+      <p class="note footer-note">Author: <a href="../contacts.html#authors" hreflang="ru">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-09">09.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
+      <p class="note footer-note">Photo: <a href="https://commons.wikimedia.org/wiki/File:Olive_Edis;_Iwm_Photographer_of_the_Women%27s_Services_in_France_1919_Q7971.jpg" rel="noopener">telegraph operators in Boulogne, Olive Edis, 1919</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Privacy policy</a> · <a href="../terms.html" hreflang="ru">Terms of use</a></p>
+      <p class="note footer-note">This is a learning site. Messages from the form are sent through the public Issues section on GitHub. No GitHub account? <a href="../contacts.html#no-github" hreflang="ru">Write directly</a>.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>

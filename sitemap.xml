@@ -61,6 +61,7 @@
   <url><loc>https://pywebguide.github.io/api.html</loc><lastmod>2026-11-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/api.html"/>
     <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/api.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/api.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/api.html"/>
   </url>
   <url><loc>https://pywebguide.github.io/testing.html</loc><lastmod>2026-11-09</lastmod>
@@ -186,6 +187,7 @@
   <url><loc>https://pywebguide.github.io/kk/api.html</loc><lastmod>2026-11-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/api.html"/>
     <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/api.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/api.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/api.html"/>
   </url>
   <url><loc>https://pywebguide.github.io/kk/testing.html</loc><lastmod>2026-11-09</lastmod>
@@ -297,6 +299,12 @@
     <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/auth.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/auth.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/auth.html"/>
+  </url>
+  <url><loc>https://pywebguide.github.io/en/api.html</loc><lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/api.html"/>
+    <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/api.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/api.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/api.html"/>
   </url>
   <url><loc>https://pywebguide.github.io/en/project.html</loc><lastmod>2026-11-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/project.html"/>
