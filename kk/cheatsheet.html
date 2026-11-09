@@ -1,0 +1,319 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из cheatsheet.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Қысқаша анықтама: Python, Flask, Django, SQL, Git — PyWeb Guide</title>
+
+  <meta name="description" content="Жиі қолданылатын командалар бір бетте: виртуалды орта, Flask, Django, SQL, HTTP кодтары және Git. Басып шығаруға ыңғайлы.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/cheatsheet.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/cheatsheet.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/cheatsheet.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/cheatsheet.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Қысқаша анықтама: Python, Flask, Django, SQL, Git — PyWeb Guide">
+  <meta property="og:description" content="Жиі қолданылатын командалар бір бетте: виртуалды орта, Flask, Django, SQL, HTTP кодтары және Git. Басып шығаруға ыңғайлы.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/cheatsheet.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f9a21f">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="orange" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="project.html">Алғашқы жоба</a></li>
+          <li><a class="nav-link" href="playground.html">Құмсалғыш</a></li>
+          <li><a class="nav-link" href="glossary.html">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">Python туралы</a></li>
+              <li><a href="frameworks.html">Фреймворктер</a></li>
+              <li><a href="databases.html">Дерекқорлар</a></li>
+              <li><a href="templates.html">Үлгілер мен формалар</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Тесттер</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="project2.html">Екінші жоба</a></li>
+              <li><a href="deploy.html">Жариялау</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Есептер</a></li>
+              <li><a href="cheatsheet.html" aria-current="page">Қысқаша анықтама</a></li>
+              <li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../cheatsheet.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="cheatsheet.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Навигациялық тізбек">
+<a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Қысқаша анықтама</span>
+</nav>
+<h1>Қысқаша анықтама</h1>
+<p class="lead">Ең жиі қолданылатын командалар бір бетте. Іске қосу командалары Windows үшін берілген; macOS пен Linux үшін бөлек жол бар.</p>
+<img class="band-picture" src="../assets/img/blackboard.jpg" width="1000" height="930" alt="Физик Энрико Ферми формулалары бар тақтаның жанында" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" id="env" aria-labelledby="env-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="env-title">Орта және пакеттер</h2>
+<p>Әр жобаға өз ортасын жасаңыз.</p>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>Терминал</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>python -m venv .venv
+.venv\Scripts\activate         # Windows
+source .venv/bin/activate      # macOS и Linux
+pip install flask
+pip freeze &gt; requirements.txt
+pip install -r requirements.txt
+deactivate</code></pre>
+</div>
+</div>
+</section>
+<section class="section" id="flask" aria-labelledby="flask-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="flask-title">Flask</h2>
+<p>Ең қарапайым қосымша және ең қажетті функциялар.</p>
+</div>
+<div class="cheat-grid">
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>Терминал</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>flask --app app run --debug
+flask --app app routes</code></pre>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>app.py</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>from flask import Flask, jsonify, redirect, render_template, request, url_for
+
+app = Flask(__name__)
+
+@app.route("/items/&lt;int:item_id&gt;", methods=["GET", "POST"])
+def item(item_id):
+    request.args.get("q")          # параметр адреса ?q=
+    request.form.get("title")      # поле формы
+    request.get_json(silent=True)  # тело JSON
+    return render_template("item.html", item_id=item_id)
+
+def examples():
+    redirect(url_for("item", item_id=1))
+    return jsonify([1, 2, 3]), 200</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="django" aria-labelledby="django-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="django-title">Django</h2>
+<p><code>manage.py</code> командалары және ORM негіздері.</p>
+</div>
+<div class="cheat-grid">
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>Терминал</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>pip install django
+django-admin startproject mysite .
+python manage.py startapp tasks
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+python manage.py test
+python manage.py shell</code></pre>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>ORM Django</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>Task.objects.all()
+Task.objects.filter(done=False).order_by("-id")
+Task.objects.get(pk=1)
+Task.objects.create(title="Новая")
+Task.objects.filter(done=True).delete()
+Task.objects.count()</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="sql" aria-labelledby="sql-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="sql-title">SQL</h2>
+<p>Негізгі сұраулар. Пайдаланушыдан келген мәндерді тек параметрлер арқылы беріңіз.</p>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>SQL</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>SELECT id, title FROM tasks WHERE done = 0 ORDER BY id DESC LIMIT 10;
+INSERT INTO tasks (title, done) VALUES ('Купить хлеб', 0);
+UPDATE tasks SET done = 1 WHERE id = 5;
+DELETE FROM tasks WHERE id = 5;
+SELECT done, COUNT(*) FROM tasks GROUP BY done;
+SELECT t.title, u.name FROM tasks t JOIN users u ON u.id = t.user_id;</code></pre>
+</div>
+</div>
+</section>
+<section class="section" id="http" aria-labelledby="http-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="http-title">HTTP жауап кодтары</h2>
+<p>Толығырақ <a href="api.html">REST API</a> бөлімінде.</p>
+</div>
+<div class="table-wrap reveal" tabindex="0" role="region" aria-label="HTTP жауап кодтары">
+<table>
+<caption>Жиі кездесетін жауап кодтары</caption>
+<thead><tr><th scope="col">Код</th><th scope="col">Мағынасы</th><th scope="col">Код</th><th scope="col">Мағынасы</th></tr></thead>
+<tbody>
+<tr><td>200</td><td>Сәтті</td><td>401</td><td>Кіру керек</td></tr>
+<tr><td>201</td><td>Жасалды</td><td>403</td><td>Құқық жоқ</td></tr>
+<tr><td>204</td><td>Сәтті, денесіз</td><td>404</td><td>Табылмады</td></tr>
+<tr><td>301/302</td><td>Қайта бағыттау</td><td>405</td><td>Әдіске рұқсат жоқ</td></tr>
+<tr><td>400</td><td>Қате сұрау</td><td>500</td><td>Сервер қатесі</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="section" id="git" aria-labelledby="git-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="git-title">Git</h2>
+<p>Толығырақ <a href="git.html">Git</a> бөлімінде.</p>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>Терминал</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>git status
+git add .
+git commit -m "Описание изменения"
+git switch -c new-feature
+git switch main
+git merge new-feature
+git pull
+git push
+git log --oneline
+git restore --staged app.py
+git revert abc1234</code></pre>
+</div>
+</div>
+</section>
+
+
+</main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="playground.html">Құмсалғыш</a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="about.html">Python туралы</a></li><li><a href="frameworks.html">Фреймворктер</a></li><li><a href="databases.html">Дерекқорлар</a></li><li><a href="templates.html">Үлгілер мен формалар</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесттер</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="project.html">Алғашқы жоба</a></li><li><a href="project2.html">Екінші жоба</a></li><li><a href="deploy.html">Жариялау</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Есептер</a></li><li><a href="cheatsheet.html">Қысқаша анықтама</a></li><li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="../contacts.html#authors" hreflang="ru">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-09">09.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Сурет: <a href="https://commons.wikimedia.org/wiki/File:Enrico_Fermi_at_the_blackboard.jpg" rel="noopener">Энрико Ферми тақта жанында, Смитсон институты</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Құпиялылық саясаты</a> · <a href="../terms.html" hreflang="ru">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="../contacts.html#no-github" hreflang="ru">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>

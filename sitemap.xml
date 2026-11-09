@@ -85,6 +85,9 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/practice.html"/>
   </url>
   <url><loc>https://pywebguide.github.io/cheatsheet.html</loc><lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/cheatsheet.html"/>
+    <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/cheatsheet.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/cheatsheet.html"/>
   </url>
   <url><loc>https://pywebguide.github.io/exam.html</loc><lastmod>2026-11-09</lastmod>
   </url>
@@ -177,6 +180,11 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/practice.html"/>
     <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/practice.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/practice.html"/>
+  </url>
+  <url><loc>https://pywebguide.github.io/kk/cheatsheet.html</loc><lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/cheatsheet.html"/>
+    <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/cheatsheet.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/cheatsheet.html"/>
   </url>
   <url><loc>https://pywebguide.github.io/en/</loc><lastmod>2026-11-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/"/>
