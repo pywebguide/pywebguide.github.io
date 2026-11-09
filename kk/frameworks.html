@@ -1,0 +1,588 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из frameworks.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Django, Flask әлде FastAPI — PyWeb Guide</title>
+
+  <meta name="description" content="Django 6.1, Flask 3.1 және FastAPI салыстыру: критерийлер кестесі, әртүрлі фреймворктегі бір бет және алғашқы фреймворкті таңдауға арналған шағын тест.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/frameworks.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/frameworks.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/frameworks.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/frameworks.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Django, Flask әлде FastAPI — PyWeb Guide">
+  <meta property="og:description" content="Django 6.1, Flask 3.1 және FastAPI салыстыру: критерийлер кестесі, әртүрлі фреймворктегі бір бет және алғашқы фреймворкті таңдауға арналған шағын тест.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/frameworks.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#a4f6f8">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="cyan" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="project.html">Алғашқы жоба</a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="glossary.html">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">Python туралы</a></li>
+              <li><a href="frameworks.html" aria-current="page">Фреймворктер</a></li>
+              <li><a href="../databases.html" hreflang="ru">Дерекқорлар <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../templates.html" hreflang="ru">Үлгілер мен формалар <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../auth.html" hreflang="ru">Авторизация <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Есептер</a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../frameworks.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="frameworks.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+      <div class="page-band"><div class="container page-hero page-hero--picture">
+        <nav class="breadcrumb" aria-label="Навигациялық тізбек">
+          <a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Фреймворктер</span>
+        </nav>
+        <h1>Django әлде Flask: қайсысын таңдау керек</h1>
+        <p class="lead">
+          Екі фреймворк та бір міндетті шешеді — сайттың серверлік бөлігін құрады, бірақ мұны әртүрлі жолмен жасайды: дайын архитектура арқылы немесе икемді шағын өзек арқылы. Беттің соңында — үшінші танымал нұсқа, FastAPI туралы қысқаша.
+        </p>
+        <p class="note">Енді ғана бастап жатырсыз ба? Алдымен <a href="start.html">«Нөлден» сабақтарын</a> өтіңіз, ал бейтаныс сөздерді <a href="glossary.html">сөздіктен</a> қараңыз.</p>
+        <p class="note">Салыстыру Django 6.1 және Flask 3.1 үшін өзекті (2026 жылғы қараша).</p>
+      <img class="band-picture" src="../assets/img/reinhardt.jpg" width="900" height="945" alt="Django өз атын алған гитарист Джанго Рейнхардт, шамамен 1946 жыл" decoding="async" fetchpriority="high">
+</div></div>
+
+      <section class="section" aria-labelledby="two-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="two-title">Екі тәсіл</h2>
+            <p>Басты айырмашылық — фреймворк бірден қанша дайын шешім береді.</p>
+          </div>
+
+          <div class="compare-grid">
+            <article class="compare-card django reveal">
+              <h3>Django</h3>
+              <p class="subtitle">«Batteries included» — құралдардың толық жиынтығы бар фреймворк.</p>
+              <ul class="list">
+                <li>Дерекқормен жұмысқа арналған кірістірілген ORM</li>
+                <li>Мазмұнды басқаруға арналған дайын әкімші панелі</li>
+                <li>Жобаның қатаң құрылымы және кодтың бірыңғай стилі</li>
+                <li>Орта және ірі қосымшаларға жақсы келеді</li>
+                <li>Типтік міндеттер үшін қолмен жасалатын шешімдер аз</li>
+              </ul>
+            </article>
+
+            <article class="compare-card flask reveal">
+              <h3>Flask</h3>
+              <p class="subtitle">Микрофреймворк — шағын өзек және барынша икемділік.</p>
+              <ul class="list">
+                <li>Таңылатын құрылым барынша аз</li>
+                <li>Кеңейтулер қажетіне қарай қосылады</li>
+                <li>Нөлден түсіну және сервердің жұмысын ұғыну оңайырақ</li>
+                <li>Шағын сервистерге, оқу жобаларына және API-ға жақсы</li>
+                <li>Архитектураны көбірек бақылауға болады</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Критерийлер бойынша салыстыру кестесі">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Критерийлер бойынша салыстыру</h2>
+            <p>Фреймворкті жиі таңдайтын жеті параметр.</p>
+          </div>
+
+          <div class="table-wrap reveal" tabindex="0" role="region" aria-label="Django мен Flask-ты салыстыру кестесі">
+            <table>
+              <caption>Django және Flask: критерийлер бойынша салыстыру</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Критерий</th>
+                  <th scope="col">Django</th>
+                  <th scope="col">Flask</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Фреймворк деңгейі</strong></td>
+                  <td>Толық функционалды («бәрі кірістірілген»)</td>
+                  <td>Шағын өзегі бар микрофреймворк</td>
+                </tr>
+                <tr>
+                  <td><strong>Бастау жылдамдығы</strong></td>
+                  <td>Жоба құрылымын үйрену керек, есесіне көп нәрсе дайын</td>
+                  <td>Алғашқы қосымша — бірнеше жол кодпен</td>
+                </tr>
+                <tr>
+                  <td><strong>Дерекқор</strong></td>
+                  <td>Кірістірілген ORM және миграциялар</td>
+                  <td>Кеңейтулер мен кітапханалар арқылы қосылады</td>
+                </tr>
+                <tr>
+                  <td><strong>Әкімші панелі</strong></td>
+                  <td>Бірден бар</td>
+                  <td>Жоқ, бөлек қосылады</td>
+                </tr>
+                <tr>
+                  <td><strong>Икемділік</strong></td>
+                  <td>Орташа: «дұрыс жол» бар</td>
+                  <td>Жоғары: құрылымды өзіңіз таңдайсыз</td>
+                </tr>
+                <tr>
+                  <td><strong>Неге жақсы келеді</strong></td>
+                  <td>Пайдаланушылары мен деректері бар ірі сайттарға</td>
+                  <td>Шағын сервистерге, прототиптерге және API-ға</td>
+                </tr>
+                <tr>
+                  <td><strong>Қолдану мысалы</strong></td>
+                  <td>Интернет-дүкен, жаңалықтар порталы</td>
+                  <td>Жазбалар сервисі, оқу API-ы</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Жаңадан бастаушы нені таңдауы керек">
+        <div class="container">
+          <div class="compare-grid">
+            <article class="panel reveal">
+              <h3>Жаңадан бастаушы нені таңдауы керек</h3>
+              <p class="note note-gap">Алғашқы жобаға қысқа кеңес.</p>
+              <ul class="list">
+                <li>Сервердің қалай жұмыс істейтінін тез түсінгіңіз келсе — Flask-тан бастаңыз: онда «сиқыр» аз.</li>
+                <li>Пайдаланушылары мен әкімші панелі бар сайт керек болса — Django-ны алыңыз.</li>
+                <li>Екі нұсқа да жақсы. Ең бастысы — алғашқы оқу жобасын соңына дейін жеткізу.</li>
+              </ul>
+            </article>
+
+            <article class="panel reveal">
+              <h3>Таңдаудағы типтік қателер</h3>
+              <p class="note note-gap">Неден аулақ болған дұрыс.</p>
+              <ul class="list">
+                <li>Міндетке қарап емес, сәнге қарап таңдау.</li>
+                <li>Үлкен жобаға Flask-ты алып, Django-да бұрыннан бар нәрсені қолмен жинау.</li>
+                <li>Өте кішкентай бет үшін Django-ны алу.</li>
+                <li>Алғашқы жобаны аяқтамай, фреймворкті ауыстыру.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Қашан нені қолдану керек">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Қашан нені қолдану керек</h2>
+            <p>Міндетке қарай фреймворк таңдауға арналған қысқа практикалық кесте.</p>
+          </div>
+
+          <div class="table-wrap reveal" tabindex="0" role="region" aria-label="Фреймворк таңдау бойынша ұсыныстар кестесі">
+            <table>
+              <caption>Django мен Flask арасында таңдау бойынша ұсыныстар</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Міндет</th>
+                  <th scope="col">Ұсыныс</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Оқу жобасы және backend-пен алғашқы танысу</td>
+                  <td>Flask — бәрінің іштей қалай жұмыс істейтінін көру оңайырақ.</td>
+                </tr>
+                <tr>
+                  <td>Әкімші панелі және деректер модельдері көп сайт</td>
+                  <td>Django — әкімші панелі мен ORM уақытты үнемдейді.</td>
+                </tr>
+                <tr>
+                  <td>Шағын REST API</td>
+                  <td>Flask — артық код барынша аз.</td>
+                </tr>
+                <tr>
+                  <td>Өсетін және командамен қолдау көрсетілетін жоба</td>
+                  <td>Django — бірыңғай құрылым кодтағы ретсіздікті азайтады.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Django мен Flask-тағы код мысалдары">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Екі фреймворктегі бір бет</h2>
+            <p>Код ең қарапайым маршрут үшін үлгілік код көлеміндегі айырмашылықты көрсетеді.</p>
+          </div>
+
+          <div class="code-grid">
+            <div class="code-block reveal">
+              <div class="code-head">
+                <span>Flask</span>
+                <button class="copy-btn" type="button">Көшіру</button>
+              </div>
+              <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Главная страница"</code></pre>
+            </div>
+
+            <div class="code-block reveal">
+              <div class="code-head">
+                <span>Django: views.py</span>
+                <button class="copy-btn" type="button">Көшіру</button>
+              </div>
+              <pre><code>from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Главная страница")</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="quiz" aria-label="Шағын тест">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Шағын тест: сізге не жақын?</h2>
+            <p>Бес сұраққа жауап беріп, фреймворк таңдау бойынша ұсыныс алыңыз. Мұнда дұрыс жауап жоқ — тест бағытты ғана көрсетеді.</p>
+          </div>
+
+          <form id="quiz-form" class="quiz reveal" novalidate>
+            <h3>Әр сұрақта бір нұсқаны таңдаңыз</h3>
+
+            <fieldset>
+              <legend>1. Бастағанда не маңыздырақ?</legend>
+              <div class="quiz-options">
+                <label class="quiz-option">
+                  <input type="radio" name="q1" value="flask">
+                  <span>Сервердің іштей қалай жұмыс істейтінін түсіну</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q1" value="django">
+                  <span>Дайын нәтижені тезірек алу</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>2. Дайын әкімші панелі керек пе?</legend>
+              <div class="quiz-options">
+                <label class="quiz-option">
+                  <input type="radio" name="q2" value="flask">
+                  <span>Жоқ, қажетті бөліктерді өзім жинаймын</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q2" value="django">
+                  <span>Иә, бұл уақытты көп үнемдейді</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>3. Қандай жоба жасағыңыз келеді?</legend>
+              <div class="quiz-options">
+                <label class="quiz-option">
+                  <input type="radio" name="q3" value="django">
+                  <span>Пайдаланушылары, мазмұны және дерекқоры бар сайт</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q3" value="flask">
+                  <span>Шағын сервис, API немесе оқу мысалы</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>4. Жобаның дайын құрылымына қалай қарайсыз?</legend>
+              <div class="quiz-options">
+                <label class="quiz-option">
+                  <input type="radio" name="q4" value="django">
+                  <span>Дайын ережелер мен тәртіп керек</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q4" value="flask">
+                  <span>Бәрін қалай құратынымды өзім шешкім келеді</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>5. Деректермен қалай жұмыс істейсіз?</legend>
+              <div class="quiz-options">
+                <label class="quiz-option">
+                  <input type="radio" name="q5" value="flask">
+                  <span>Қажетті кітапханаларды өзім таңдаймын</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q5" value="django">
+                  <span>Дерекқорға арналған кірістірілген құралдар керек</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="hero-actions">
+              <button class="btn btn-primary" type="submit">Нәтижені көрсету</button>
+              <button class="btn btn-secondary" type="reset">Тастау</button>
+            </div>
+
+            <p id="quiz-result" class="quiz-result" role="status" aria-live="polite"></p>
+
+            <div id="quiz-next" class="quiz-next" hidden>
+              <p class="note">Әрі қарай не істеу керек:</p>
+              <div class="cta-actions">
+                <a id="quiz-next-project" class="btn btn-primary" href="project.html">Алғашқы жобаны жасау</a> <a id="quiz-next-docs" class="btn btn-secondary" href="https://flask.palletsprojects.com/en/stable/" rel="noopener">Ресми құжаттама</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="fastapi-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="fastapi-title">Ал FastAPI ше?</h2>
+            <p>
+              FastAPI — үшінші танымал Python-фреймворк. Ол ең алдымен API үшін жасалған: сервер деректерді JSON түрінде береді, ал интерфейс бөлек құрылады (JavaScript-тегі сайт немесе мобильді қосымша).
+            </p>
+          </div>
+
+          <div class="compare-grid">
+            <article class="panel reveal">
+              <h3>Айырмашылығы неде</h3>
+              <ul class="list">
+                <li>Кіріс деректерін Python типтерінің аннотациялары бойынша тексеру (Pydantic кітапханасы)</li>
+                <li><code>/docs</code> мекенжайындағы автоматты интерактивті API құжаттамасы</li>
+                <li>Асинхронды кодты (<code>async def</code>) бірден қолдау</li>
+                <li>Кірістірілген ORM мен әкімші панелі жоқ — Flask-тағыдай, олар бөлек қосылады</li>
+              </ul>
+            </article>
+
+            <div class="code-block reveal">
+              <div class="code-head">
+                <span>FastAPI: main.py</span>
+                <button class="copy-btn" type="button">Көшіру</button>
+              </div>
+              <pre><code>from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def home():
+    return {"message": "Главная страница"}
+
+# Установка: pip install "fastapi[standard]"
+# Запуск:    fastapi dev main.py</code></pre>
+            </div>
+          </div>
+
+          <div class="table-wrap reveal stack-gap" tabindex="0" role="region" aria-label="Кесте: FastAPI-ды қашан таңдау керек">
+            <table>
+              <caption>Django, Flask және FastAPI: міндетке қарай не таңдау керек</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Міндет</th>
+                  <th scope="col">Django</th>
+                  <th scope="col">Flask</th>
+                  <th scope="col">FastAPI</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>HTML-беттері мен әкімші панелі бар сайт</td>
+                  <td>Ең жақсы таңдау</td>
+                  <td>Жарайды</td>
+                  <td>Негізгі мақсаты емес</td>
+                </tr>
+                <tr>
+                  <td>Фронтендке немесе мобильді қосымшаға арналған JSON API</td>
+                  <td>Жарайды (Django REST framework-пен)</td>
+                  <td>Жарайды</td>
+                  <td>Ең жақсы таңдау</td>
+                </tr>
+                <tr>
+                  <td>Backend-пен алғашқы танысу</td>
+                  <td>Жарайды</td>
+                  <td>Ең жақсы таңдау</td>
+                  <td>Тип аннотацияларын білсеңіз, жарайды</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="sources-title">
+        <div class="container">
+          <div class="panel sources reveal">
+            <h2 id="sources-title">Дереккөздер</h2>
+            <p class="note">Нұсқалар PyPI бойынша <time datetime="2026-11-06">06.11.2026</time> тексерілді.</p>
+            <ul class="list">
+              <li><a href="https://docs.djangoproject.com/en/6.1/" rel="noopener">Django 6.1 құжаттамасы</a> — өзекті нұсқасы 6.1.3, Python 3.12+ керек</li>
+              <li><a href="https://flask.palletsprojects.com/en/stable/" rel="noopener">Flask 3.1 құжаттамасы</a> — өзекті нұсқасы 3.1.3</li>
+              <li><a href="https://fastapi.tiangolo.com/" rel="noopener">FastAPI құжаттамасы</a> — өзекті нұсқасы 0.162.0</li>
+              <li><a href="https://www.django-rest-framework.org/" rel="noopener">Django REST framework</a> — Django-да API құру</li>
+              <li><a href="https://endoflife.date/django" rel="noopener">Django нұсқаларын қолдау мерзімдері</a> — қай нұсқалар түзетулер алады</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section faq" aria-label="Жиі қойылатын сұрақтар">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Жиі қойылатын сұрақтар</h2>
+            <p>Жаңадан бастағандардың типтік сұрақтарына қысқа жауаптар.</p>
+          </div>
+
+          <details class="reveal">
+            <summary>Алдымен қайсысын үйрену оңайырақ?</summary>
+            <p>
+              Сервердің қалай жұмыс істейтінін тез түсінгіңіз келсе, Flask-тан бастаған дұрыс. Дайын әкімші панелі мен дерекқоры бар жоба керек болса — Django-дан бастау ыңғайлы.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>SQL-ды білу керек пе?</summary>
+            <p>
+              Білген жөн. ORM қолданғанда да SQL-ды негізінен түсіну деректермен жақсы жұмыс істеуге және сұрауларды жөндеуге көмектеседі.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>Кейін Flask-тан Django-ға ауысуға бола ма?</summary>
+            <p>
+              Иә. Python сол күйі қалады, сондықтан ауысуға болады, бірақ жобаның басқа архитектурасын және Django-ның кірістірілген құралдарын үйренуге тура келеді.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Байланысқа өту">
+        <div class="container">
+          <div class="cta-panel reveal">
+            <div>
+              <h2>Сұрақтарыңыз қалды ма?</h2>
+              <p class="lead cta-lead">
+                Кері байланыс формасы арқылы жазыңыз — фреймворк таңдау, дерекқор немесе алғашқы жоба туралы сұрауға болады.
+              </p>
+            </div>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="../contacts.html" hreflang="ru">Байланысқа өту</a>
+            </div>
+          </div>
+        </div>
+      </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="about.html">Python туралы</a></li><li><a href="frameworks.html">Фреймворктер</a></li><li><a href="../databases.html" hreflang="ru">Дерекқорлар <span class="ru-mark">(RU)</span></a></li><li><a href="../templates.html" hreflang="ru">Үлгілер мен формалар <span class="ru-mark">(RU)</span></a></li><li><a href="../auth.html" hreflang="ru">Авторизация <span class="ru-mark">(RU)</span></a></li><li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li><li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="project.html">Алғашқы жоба</a></li><li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li><li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Есептер</a></li><li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="../contacts.html#authors" hreflang="ru">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-09">09.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Сурет: <a href="https://commons.wikimedia.org/wiki/File:Django_Reinhardt_(Gottlieb_07301).jpg" rel="noopener">Джанго Рейнхардт, William P. Gottlieb, Конгресс кітапханасы</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Құпиялылық саясаты</a> · <a href="../terms.html" hreflang="ru">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="../contacts.html#no-github" hreflang="ru">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
