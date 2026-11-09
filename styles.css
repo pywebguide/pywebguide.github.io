@@ -4604,3 +4604,84 @@ html[lang="kk"] .cta-open .band-title {
   font-size: 0.8125rem;
   overflow-wrap: anywhere;
 }
+
+/* Сертификат: тот же лист в предпросмотре и при печати */
+.cert-sheet {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  padding: clamp(20px, 4vw, 48px) 16px;
+  border: 3px solid #0a0a0a;
+  background: #ffd249;
+  color: #0a0a0a;
+  text-align: center;
+}
+
+.cert-sheet p {
+  margin: 0;
+}
+
+.cert-brand {
+  font-family: var(--display);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.cert-kind {
+  font-family: var(--display);
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 900;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.cert-name {
+  width: 100%;
+  padding: 10px 8px;
+  background: #ffc4ef;
+  font-family: var(--display);
+  font-size: clamp(1.75rem, 5vw, 3.25rem);
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.cert-text,
+.cert-score {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+.cert-note {
+  font-size: 0.8125rem;
+}
+
+#cert-print {
+  display: none;
+}
+
+@page cert {
+  size: A4 landscape;
+  margin: 12mm;
+}
+
+@media print {
+  html.print-cert body > *:not(#cert-print) {
+    display: none !important;
+  }
+
+  html.print-cert body {
+    background: #ffffff;
+  }
+
+  html.print-cert #cert-print {
+    display: block;
+    page: cert;
+  }
+
+  html.print-cert .cert-sheet {
+    min-height: 180mm;
+    align-content: center;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

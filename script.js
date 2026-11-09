@@ -702,6 +702,25 @@
 
   applyTheme(document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark");
 
+  // Офлайн и быстрые повторные визиты: sw.js лежит в корне сайта рядом со script.js
+  const swAllowed = location.protocol === "https:" || /^(127\.0\.0\.1|localhost)$/.test(location.hostname);
+  if ("serviceWorker" in navigator && swAllowed && document.currentScript) {
+    navigator.serviceWorker.register(new URL("sw.js", document.currentScript.src).href).catch(function () {
+      // Без service worker сайт работает как обычно, только без офлайна
+    });
+  }
+
+  // Пока ученик сам не выбрал тему, она следует за системой и меняется вместе с ней
+  if (window.matchMedia) {
+    const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+    const followSystem = function () {
+      let saved = null;
+      try { saved = localStorage.getItem("pyweb_theme"); } catch (error) { /* без localStorage следуем системе */ }
+      if (saved !== "light" && saved !== "dark") applyTheme(systemDark.matches ? "dark" : "light");
+    };
+    if (systemDark.addEventListener) systemDark.addEventListener("change", followSystem);
+  }
+
   if (themeToggle) {
     themeToggle.addEventListener("click", function () {
       const next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";

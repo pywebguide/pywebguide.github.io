@@ -27,6 +27,7 @@
   <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
   <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
 
   <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -39,7 +40,8 @@
       var theme;
       try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
       if (theme !== "light" && theme !== "dark") {
-        theme = "light";
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       }
       document.documentElement.setAttribute("data-theme", theme);
     })();
@@ -105,6 +107,7 @@
               <li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li>
             </ul></div>
             <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li>
               <li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li>
             </ul></div>
           </div>
@@ -123,7 +126,7 @@
     </div>
   </header>
 
-  <main id="content" class="page" tabindex="-1">
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
       <div class="lang-note"><div class="container">Сайт қазақ тіліне аударылып жатыр. Кейбір бөлімдер әзірге тек орыс тілінде.</div></div>
 
       <div class="poster-hero field-yellow">
@@ -405,7 +408,7 @@ print("Бұл менің алғашқы бағдарламам")</code></pre>
         <div><strong>Түсіну</strong><ul><li><a href="../about.html" hreflang="ru">Python туралы <span class="ru-mark">(RU)</span></a></li><li><a href="../frameworks.html" hreflang="ru">Фреймворктер <span class="ru-mark">(RU)</span></a></li><li><a href="../databases.html" hreflang="ru">Дерекқорлар <span class="ru-mark">(RU)</span></a></li><li><a href="../templates.html" hreflang="ru">Үлгілер мен формалар <span class="ru-mark">(RU)</span></a></li><li><a href="../auth.html" hreflang="ru">Авторизация <span class="ru-mark">(RU)</span></a></li><li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li><li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
         <div><strong>Жасау</strong><ul><li><a href="../project.html" hreflang="ru">Алғашқы жоба <span class="ru-mark">(RU)</span></a></li><li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li><li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li></ul></div>
         <div><strong>Практика</strong><ul><li><a href="../practice.html" hreflang="ru">Есептер <span class="ru-mark">(RU)</span></a></li><li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li></ul></div>
-        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li></ul></div>
       </div>
       <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
       <p class="note footer-note">Авторы: <a href="../contacts.html#authors" hreflang="ru">Жангужин Е. Е.</a> · Жаңартылған күні: <time datetime="2026-11-06">06.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>

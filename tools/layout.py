@@ -204,6 +204,13 @@ def apply(path):
     stamp = f'<time datetime="{UPDATED.isoformat()}">{UPDATED.strftime("%d.%m.%Y")}</time>'
     new = re.sub("(" + "|".join(UI["updated"]) + r'): <time datetime="[^"]+">[^<]+</time>', lambda m: f"{m.group(1)}: {stamp}", new)
     new = relink_body(new, lang)
+    # Манифест PWA: сайт можно установить как приложение (sw.js регистрирует script.js)
+    if 'rel="manifest"' not in new:
+        prefix = "../" if lang != "ru" else ""
+        new = re.sub(r'(\n  <link rel="apple-touch-icon" href="[^"]+">)', lambda m: m.group(1) + f'\n  <link rel="manifest" href="{prefix}manifest.webmanifest">', new, count=1)
+    # Pagefind индексирует только содержимое <main>: меню и подвал в результаты не попадают
+    if slug != "404.html":
+        new = re.sub(r'<main id="content"(?![^>]*data-pagefind-body)', '<main id="content" data-pagefind-body', new, count=1)
     return text, new
 
 

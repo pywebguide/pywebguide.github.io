@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Весь курс и мой прогресс — PyWeb Guide</title>
+  <title>Весь курс — PyWeb Guide</title>
 
   <meta name="description" content="Все разделы курса PyWeb Guide по порядку, сводка прогресса и перенос его на другое устройство файлом.">
   <link rel="canonical" href="https://pywebguide.github.io/course.html">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="Весь курс и мой прогресс — PyWeb Guide">
+  <meta property="og:title" content="Весь курс — PyWeb Guide">
   <meta property="og:description" content="Все разделы курса PyWeb Guide по порядку, сводка прогресса и перенос его на другое устройство файлом.">
   <meta property="og:url" content="https://pywebguide.github.io/course.html">
   <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
@@ -24,6 +24,7 @@
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="icon" href="assets/icon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
 
   <link rel="preload" href="assets/fonts/sofia-sans-extra-condensed-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
@@ -34,7 +35,8 @@
       var theme;
       try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
       if (theme !== "light" && theme !== "dark") {
-        theme = "light";
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       }
       document.documentElement.setAttribute("data-theme", theme);
     })();
@@ -88,6 +90,7 @@
               <li><a href="exam.html">Финальный тест</a></li>
             </ul></div>
             <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="progress.html">Мой прогресс</a></li>
               <li><a href="contacts.html">Контакты</a></li>
             </ul></div>
           </div>
@@ -107,30 +110,25 @@
   </header>
 
 
-  <main id="content" class="page" tabindex="-1">
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
 <div class="page-band"><div class="container page-hero page-hero--picture">
 <nav class="breadcrumb" aria-label="Хлебные крошки">
 <a href="index.html">Главная</a>
 <span aria-hidden="true">/</span>
 <span>Весь курс</span>
 </nav>
-<h1>Весь курс и мой прогресс</h1>
+<h1>Весь курс</h1>
 <p class="lead">Все разделы в рекомендуемом порядке. Прогресс хранится только в этом браузере, но его можно перенести на другое устройство файлом.</p>
 <img class="band-picture" src="assets/img/reading-room.jpg" width="1000" height="667" alt="Главный читальный зал Библиотеки Конгресса" decoding="async" fetchpriority="high">
 </div></div>
 <section class="section" id="dash" aria-labelledby="dash-title">
 <div class="container">
-<div class="section-head reveal">
+<div class="cta-panel reveal">
+<div>
 <h2 id="dash-title">Мой прогресс</h2>
-<p>Сводка по проектам, задачам и тесту.</p>
+<p class="lead cta-lead">Сводка по урокам, проектам, задачам и тесту, перенос файлом и сертификат.</p>
 </div>
-<div class="panel reveal" id="progress-dash" data-tasks="16">
-<div data-dash-rows><p class="note">Для сводки нужен JavaScript.</p></div>
-<div class="tool-row">
-<button class="btn btn-secondary" type="button" data-dash-export>Скачать прогресс</button>
-<label class="btn btn-secondary file-btn">Загрузить из файла<input type="file" accept="application/json,.json" data-dash-file aria-label="Файл прогресса"></label>
-</div>
-<p class="note" role="status" data-dash-message>Файл содержит только отметки прогресса, без личных данных. Загрузка заменит текущий прогресс.</p>
+<div class="cta-actions"><a class="btn btn-primary" href="progress.html">Открыть мой прогресс</a></div>
 </div>
 </div>
 </section>
@@ -165,7 +163,7 @@
 </div>
 <div class="compare-grid">
 <article class="panel reveal"><h3><a href="playground.html">Песочница</a></h3><p>Пишите и запускайте Python прямо в браузере.</p></article>
-<article class="panel reveal"><h3><a href="practice.html">Задачи</a></h3><p>Десять заданий с мгновенной автопроверкой.</p></article>
+<article class="panel reveal"><h3><a href="practice.html">Задачи</a></h3><p>Шестнадцать заданий с подсказками и мгновенной автопроверкой.</p></article>
 <article class="panel reveal"><h3><a href="cheatsheet.html">Шпаргалка</a></h3><p>Частые команды на одной странице, удобно распечатать.</p></article>
 <article class="panel reveal"><h3><a href="contacts.html">Контакты</a></h3><p>Задать вопрос автору.</p></article>
 </div>
@@ -183,7 +181,7 @@
         <div><strong>Понять</strong><ul><li><a href="about.html">О Python</a></li><li><a href="frameworks.html">Фреймворки</a></li><li><a href="databases.html">Базы данных</a></li><li><a href="templates.html">Шаблоны и формы</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесты</a></li><li><a href="git.html">Git</a></li></ul></div>
         <div><strong>Сделать</strong><ul><li><a href="project.html">Первый проект</a></li><li><a href="project2.html">Второй проект</a></li><li><a href="deploy.html">Публикация</a></li></ul></div>
         <div><strong>Практика</strong><ul><li><a href="practice.html">Задачи</a></li><li><a href="cheatsheet.html">Шпаргалка</a></li><li><a href="exam.html">Финальный тест</a></li></ul></div>
-        <div><strong>Сайт</strong><ul><li><a href="course.html">Весь курс</a></li><li><a href="contacts.html">Контакты</a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="course.html">Весь курс</a></li><li><a href="progress.html">Мой прогресс</a></li><li><a href="contacts.html">Контакты</a></li></ul></div>
       </div>
       <p class="footer-copy">© 2026 PyWeb Guide, учебный проект о Python в веб-разработке</p>
       <p class="note footer-note">Автор: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Обновлено: <time datetime="2026-11-09">09.11.2026</time> · Версии в примерах: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Исходный код на GitHub</a></p>

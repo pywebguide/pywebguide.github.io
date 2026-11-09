@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Мой прогресс — PyWeb Guide</title>
+
+  <meta name="description" content="Сводка по урокам, проектам, задачам и финальному тесту, перенос прогресса файлом и учебный сертификат, который можно распечатать или сохранить в PDF.">
+  <link rel="canonical" href="https://pywebguide.github.io/progress.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Мой прогресс — PyWeb Guide">
+  <meta property="og:description" content="Сводка по урокам, проектам, задачам и финальному тесту, перенос прогресса файлом и учебный сертификат, который можно распечатать или сохранить в PDF.">
+  <meta property="og:url" content="https://pywebguide.github.io/progress.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Плакат PyWeb Guide: первый сайт на Python, бесплатный курс для тех, кто никогда не программировал">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f8a11f">
+
+
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <link rel="preload" href="assets/fonts/sofia-sans-extra-condensed-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="orange" id="top" data-no-toc>
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Основная навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">С нуля</a></li>
+          <li><a class="nav-link" href="course.html">Весь курс</a></li>
+          <li><a class="nav-link" href="project.html">Первый проект</a></li>
+          <li><a class="nav-link" href="playground.html">Песочница</a></li>
+          <li><a class="nav-link" href="glossary.html">Словарь</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">Ещё <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Понять</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">О Python</a></li>
+              <li><a href="frameworks.html">Фреймворки</a></li>
+              <li><a href="databases.html">Базы данных</a></li>
+              <li><a href="templates.html">Шаблоны и формы</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Тесты</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Сделать</p><ul aria-labelledby="nav-group-2">
+              <li><a href="project2.html">Второй проект</a></li>
+              <li><a href="deploy.html">Публикация</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Задачи</a></li>
+              <li><a href="cheatsheet.html">Шпаргалка</a></li>
+              <li><a href="exam.html">Финальный тест</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="progress.html" aria-current="page">Мой прогресс</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Язык сайта">
+            <a href="progress.html" hreflang="ru" lang="ru" aria-current="true">РУС</a>
+            <a href="kk/index.html" hreflang="kk" lang="kk" data-untranslated="kk">ҚАЗ</a>
+            <a href="en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Светлая тема">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Хлебные крошки">
+<a href="index.html">Главная</a>
+<span aria-hidden="true">/</span>
+<span>Мой прогресс</span>
+</nav>
+<h1>Мой прогресс</h1>
+<p class="lead">Все отметки в одном месте: уроки, шаги проектов, задачи и финальный тест. Прогресс хранится только в этом браузере, но его можно перенести на другое устройство файлом.</p>
+<img class="band-picture" src="assets/img/ledger.jpg" width="1000" height="546" alt="Старая учётная карточка: по датам записано всё, что происходило с клиентом" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" id="dash" aria-labelledby="dash-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="dash-title">Сводка</h2>
+<p data-dash-total>Отмечайте шаги галочками «Шаг пройден» и решайте задачи: здесь появится, сколько уже сделано.</p>
+</div>
+<div class="panel reveal" id="progress-dash" data-tasks="16">
+<div data-dash-rows><p class="note">Для сводки нужен JavaScript.</p></div>
+</div>
+</div>
+</section>
+<section class="section" id="transfer" aria-labelledby="transfer-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="transfer-title">Перенести на другое устройство</h2>
+<p>Скачайте файл здесь и загрузите его на этой же странице на телефоне или другом компьютере.</p>
+</div>
+<div class="panel reveal" data-dash-transfer>
+<div class="tool-row">
+<button class="btn btn-secondary" type="button" data-dash-export>Скачать прогресс</button>
+<label class="btn btn-secondary file-btn">Загрузить из файла<input type="file" accept="application/json,.json" data-dash-file aria-label="Файл прогресса"></label>
+</div>
+<p class="note" role="status" data-dash-message>Файл содержит только отметки прогресса, без личных данных. Загрузка заменит текущий прогресс.</p>
+</div>
+</div>
+</section>
+<section class="section" id="certificate-section" aria-labelledby="cert-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="cert-title">Сертификат</h2>
+<p data-cert-locked>Сертификат откроется, когда вы наберёте в <a href="exam.html">финальном тесте</a> не меньше 12 баллов из 15.</p>
+</div>
+<div class="panel reveal stack-gap" data-cert-box hidden>
+<label class="cert-field" for="cert-print-name">Имя для сертификата
+<input id="cert-print-name" name="cert-print-name" type="text" maxlength="60" autocomplete="name" placeholder="Например, Аня Иванова…"></label>
+<div data-cert-preview></div>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-cert-print>Распечатать или сохранить в PDF</button></div>
+<p class="note">В окне печати выберите принтер или «Сохранить как PDF». Имя никуда не отправляется. Это учебный сертификат для самопроверки, а не официальный документ.</p>
+</div>
+</div>
+</section>
+</main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Начать</strong><ul><li><a href="start.html">Python с нуля</a></li><li><a href="glossary.html">Словарь</a></li><li><a href="playground.html">Песочница</a></li></ul></div>
+        <div><strong>Понять</strong><ul><li><a href="about.html">О Python</a></li><li><a href="frameworks.html">Фреймворки</a></li><li><a href="databases.html">Базы данных</a></li><li><a href="templates.html">Шаблоны и формы</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесты</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Сделать</strong><ul><li><a href="project.html">Первый проект</a></li><li><a href="project2.html">Второй проект</a></li><li><a href="deploy.html">Публикация</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Задачи</a></li><li><a href="cheatsheet.html">Шпаргалка</a></li><li><a href="exam.html">Финальный тест</a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="course.html">Весь курс</a></li><li><a href="progress.html">Мой прогресс</a></li><li><a href="contacts.html">Контакты</a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, учебный проект о Python в веб-разработке</p>
+      <p class="note footer-note">Автор: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Обновлено: <time datetime="2026-11-09">09.11.2026</time> · Версии в примерах: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Исходный код на GitHub</a></p>
+      <p class="note footer-note">Снимок: <a href="https://commons.wikimedia.org/wiki/File:How_to_collect_money_by_mail;_how_to_write_effective_collection_letters-testing_copy-planning_a_series-retail,_instalment_and_dealer_accounts-credit_system-collection_schemes_and_legal_steps-how_(14764762284).jpg" rel="noopener">учётная карточка из книги о деловых письмах, 1913</a>.</p>
+      <p class="note footer-note"><a href="privacy.html">Политика конфиденциальности</a> · <a href="terms.html">Условия использования</a></p>
+      <p class="note footer-note">Сайт учебный. Сообщения с формы отправляются через публичный раздел Issues на GitHub. Без аккаунта GitHub можно <a href="contacts.html#no-github">написать напрямую</a>.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Прокрутить наверх">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="script.js"></script>
+  <script src="features.js"></script>
+</body>
+</html>

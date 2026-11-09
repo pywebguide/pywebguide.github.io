@@ -81,6 +81,63 @@
     document.body.appendChild(dialog);
 
     let index = null;
+    // Основной поиск — Pagefind: индекс собирает GitHub Actions при публикации (.github/workflows/pages.yml).
+    // Если папки pagefind/ нет (локальный запуск без сборки), работает прежний индекс assets/search-index*.js
+    let pagefind = null;
+    let pagefindTried = false;
+    let searchRun = 0;
+
+    function loadPagefind() {
+      if (pagefindTried) return Promise.resolve(pagefind);
+      pagefindTried = true;
+      return import(ROOT + "pagefind/pagefind.js").then(function (module) {
+        return module.init().then(function () { pagefind = module; return module; });
+      }).catch(function () { return null; });
+    }
+
+    // Отрывок Pagefind приходит строкой с <mark>: собираем узлы сами, без innerHTML
+    function excerptNodes(text) {
+      const box = el("span", {});
+      text.split(/(<mark>[\s\S]*?<\/mark>)/).forEach(function (part) {
+        const marked = part.match(/^<mark>([\s\S]*)<\/mark>$/);
+        const plain = (marked ? marked[1] : part).replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&#39;/g, "'").replace(/&amp;/g, "&");
+        box.appendChild(marked ? el("mark", { text: plain }) : document.createTextNode(plain));
+      });
+      return box;
+    }
+
+    function renderPagefind() {
+      const query = input.value.trim();
+      const run = ++searchRun;
+      list.textContent = "";
+      if (!query) {
+        status.textContent = t("Начните вводить запрос.");
+        return;
+      }
+      pagefind.debouncedSearch(query, {}, 200).then(function (search) {
+        if (!search || run !== searchRun) return null;
+        return Promise.all(search.results.slice(0, 10).map(function (r) { return r.data(); }));
+      }).then(function (pages) {
+        if (!pages || run !== searchRun) return;
+        status.textContent = pages.length ? t("Найдено: {n}", { n: pages.length }) : t("Ничего не найдено. Попробуйте другое слово.");
+        pages.forEach(function (page) {
+          // Если совпадение внутри раздела страницы, ведём сразу к его заголовку
+          const sub = (page.sub_results || []).filter(function (s) { return s.url !== page.url; })[0];
+          const link = el("a", { href: sub ? sub.url : page.url }, [
+            el("strong", { text: sub ? sub.title : page.meta.title }),
+            el("small", { text: page.meta.title }),
+            excerptNodes(sub ? sub.excerpt : page.excerpt)
+          ]);
+          link.addEventListener("click", function () { dialog.close(); });
+          list.appendChild(el("li", {}, [link]));
+        });
+      });
+    }
+
+    function render() {
+      if (pagefind) renderPagefind();
+      else renderLocal();
+    }
 
     function loadIndex() {
       if (index) return Promise.resolve(index);
@@ -103,7 +160,7 @@
       return (start > 0 ? "…" : "") + text.slice(start, start + 150) + (text.length > start + 150 ? "…" : "");
     }
 
-    function render() {
+    function renderLocal() {
       const words = normalize(input.value).split(/\s+/).filter(Boolean);
       list.textContent = "";
 
@@ -136,14 +193,16 @@
       dialog.showModal();
       input.focus();
       status.textContent = t("Загружаю индекс…");
-      loadIndex().then(render).catch(function () {
+      loadPagefind().then(function (found) {
+        return found || loadIndex();
+      }).then(render).catch(function () {
         status.textContent = t("Не удалось загрузить индекс поиска.");
       });
     }
 
     open.addEventListener("click", show);
     close.addEventListener("click", function () { dialog.close(); });
-    input.addEventListener("input", function () { if (index) render(); });
+    input.addEventListener("input", function () { if (pagefind || index) render(); });
     dialog.addEventListener("click", function (event) { if (event.target === dialog) dialog.close(); });
 
     input.addEventListener("keydown", function (event) {
@@ -957,6 +1016,82 @@
     show(0);
   });
 
+  /* ---------- Сертификат для печати и PDF ---------- */
+  // Лист сертификата — обычный HTML. При печати остаётся только он (html.print-cert в styles.css),
+  // а в окне печати браузера его можно сохранить как PDF
+  const certificatePrint = (function () {
+    function sheet(name, score, date) {
+      return el("div", { class: "cert-sheet", lang: document.documentElement.lang }, [
+        el("p", { class: "cert-brand", text: "PYWEB GUIDE" }),
+        el("p", { class: "cert-kind", text: t("Сертификат о прохождении") }),
+        el("p", { class: "cert-name", text: name || t("Ваше имя") }),
+        el("p", { class: "cert-text", text: t("прошёл(ла) финальный тест курса «Python для веб-разработки»") }),
+        el("p", { class: "cert-score", text: t("Результат: {s} из 15 · {d}", { s: score, d: date }) }),
+        el("p", { class: "cert-note", text: t("Учебный сертификат для самопроверки. Не является официальным документом.") })
+      ]);
+    }
+
+    function print(name, score, date) {
+      const old = document.getElementById("cert-print");
+      if (old) old.remove();
+      const root = el("div", { id: "cert-print", "aria-hidden": "true" }, [sheet(name, score, date)]);
+      document.body.appendChild(root);
+      document.documentElement.classList.add("print-cert");
+      const done = function () {
+        document.documentElement.classList.remove("print-cert");
+        root.remove();
+        window.removeEventListener("afterprint", done);
+      };
+      window.addEventListener("afterprint", done);
+      window.print();
+    }
+
+    return { sheet: sheet, print: print };
+  })();
+
+  // Страница «Мой прогресс»: сертификат открывается, если лучший результат теста не меньше 12
+  const certBox = document.querySelector("[data-cert-box]");
+
+  if (certBox) {
+    const nameField = document.getElementById("cert-print-name");
+    const preview = certBox.querySelector("[data-cert-preview]");
+    const locked = document.querySelector("[data-cert-locked]");
+
+    function examResult() {
+      const exam = readJson("pyweb_exam", null);
+      return exam && typeof exam.best === "number" && exam.best >= 12 ? exam : null;
+    }
+
+    function dateOf(exam) {
+      const date = exam.date ? new Date(exam.date) : new Date();
+      return (isNaN(date) ? new Date() : date).toLocaleDateString(window.pywebLocale || "ru-RU");
+    }
+
+    function refresh() {
+      const exam = examResult();
+      certBox.hidden = !exam;
+      if (locked) locked.hidden = Boolean(exam);
+      if (!exam) return;
+      preview.textContent = "";
+      preview.appendChild(certificatePrint.sheet(nameField.value.trim(), exam.best, dateOf(exam)));
+    }
+
+    nameField.addEventListener("input", refresh);
+    certBox.querySelector("[data-cert-print]").addEventListener("click", function () {
+      const exam = examResult();
+      if (!exam) return;
+      if (!nameField.value.trim()) {
+        nameField.focus();
+        nameField.setAttribute("aria-invalid", "true");
+        return;
+      }
+      nameField.removeAttribute("aria-invalid");
+      certificatePrint.print(nameField.value.trim(), exam.best, dateOf(exam));
+    });
+    window.pywebCertificate = { refresh: refresh };
+    refresh();
+  }
+
   /* ---------- Мой прогресс: сводка, экспорт, импорт ---------- */
   const dash = document.getElementById("progress-dash");
 
@@ -969,8 +1104,9 @@
       "project-blog": { name: t("Второй проект: API блога"), total: 7, url: "project2.html" }
     };
     const body = dash.querySelector("[data-dash-rows]");
-    const message = dash.querySelector("[data-dash-message]");
-    const file = dash.querySelector("[data-dash-file]");
+    const message = document.querySelector("[data-dash-message]");
+    const file = document.querySelector("[data-dash-file]");
+    const totalLine = document.querySelector("[data-dash-total]");
     const TASK_TOTAL = Number(dash.dataset.tasks) || 0;
 
     function row(name, url, done, total) {
@@ -989,15 +1125,28 @@
       const exam = readJson("pyweb_exam", null);
 
       body.textContent = "";
+      let done = 0;
+      let total = 0;
       Object.keys(TRACKS).forEach(function (key) {
-        const steps = Array.isArray(progress[key]) ? progress[key].length : 0;
+        const steps = Array.isArray(progress[key]) ? Math.min(progress[key].length, TRACKS[key].total) : 0;
+        done += steps;
+        total += TRACKS[key].total;
         body.appendChild(row(TRACKS[key].name, TRACKS[key].url, steps, TRACKS[key].total));
       });
-      body.appendChild(row(t("Задачи с автопроверкой"), "practice.html", Object.keys(tasks).length, TASK_TOTAL));
+      const solved = Math.min(Object.keys(tasks).length, TASK_TOTAL);
+      done += solved;
+      total += TASK_TOTAL;
+      body.appendChild(row(t("Задачи с автопроверкой"), "practice.html", solved, TASK_TOTAL));
+      const passed = exam && typeof exam.best === "number" && exam.best >= 12;
+      total += 1;
+      if (passed) done += 1;
+      body.appendChild(row(t("Финальный тест"), "exam.html", passed ? 1 : 0, 1));
       body.appendChild(el("p", {
         class: "note",
         text: exam && typeof exam.best === "number" ? t("Лучший результат финального теста: {b} из 15.", { b: exam.best }) : t("Финальный тест пока не пройден.")
       }));
+      if (totalLine) totalLine.textContent = t("Пройдено {p}% курса: {d} из {n} отметок.", { p: Math.round(done / total * 100), d: done, n: total });
+      if (window.pywebCertificate) window.pywebCertificate.refresh();
     }
 
     function validBackup(data) {
@@ -1011,7 +1160,7 @@
       return progressOk && tasksOk && examOk;
     }
 
-    dash.querySelector("[data-dash-export]").addEventListener("click", function () {
+    document.querySelector("[data-dash-export]").addEventListener("click", function () {
       const backup = {
         format: "pyweb-progress-1",
         exported: new Date().toISOString(),
@@ -1140,6 +1289,13 @@
 
     examForm.addEventListener("reset", function () { certificate.hidden = true; });
     nameInput.addEventListener("input", draw);
+
+    const printButton = document.getElementById("cert-print-btn");
+    if (printButton) {
+      printButton.addEventListener("click", function () {
+        certificatePrint.print(nameInput.value.trim(), score, new Date().toLocaleDateString(window.pywebLocale || "ru-RU"));
+      });
+    }
 
     download.addEventListener("click", function () {
       draw();
