@@ -1,0 +1,360 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из testing.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flask пен Django-ға арналған тесттер: pytest және тесттік клиент — PyWeb Guide</title>
+
+  <meta name="description" content="Тесттер не үшін керек, оларды pytest пен unittest-те қалай жазу керек, Flask пен Django-да беттер мен API-ды серверді іске қоспай қалай тексеруге болады.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/testing.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/testing.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/testing.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/testing.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Flask пен Django-ға арналған тесттер: pytest және тесттік клиент — PyWeb Guide">
+  <meta property="og:description" content="Тесттер не үшін керек, оларды pytest пен unittest-те қалай жазу керек, Flask пен Django-да беттер мен API-ды серверді іске қоспай қалай тексеруге болады.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/testing.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#a4f6f8">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="cyan" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="project.html">Алғашқы жоба</a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="glossary.html">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">Python туралы</a></li>
+              <li><a href="frameworks.html">Фреймворктер</a></li>
+              <li><a href="databases.html">Дерекқорлар</a></li>
+              <li><a href="templates.html">Үлгілер мен формалар</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html" aria-current="page">Тесттер</a></li>
+              <li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="deploy.html">Жариялау</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Есептер</a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../testing.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="testing.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Навигациялық тізбек">
+<a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Тесттер</span>
+</nav>
+<h1>Кодты бұзбай қалай өзгертуге болады</h1>
+<p class="lead">Тест — сіздің бағдарламаңызды тексеретін шағын бағдарлама. Қолмен басып шығуға тура келетін нәрсені ол бірнеше секундта табады.</p>
+<img class="band-picture" src="../assets/img/laboratory.jpg" width="1000" height="548" alt="Зертханашы үлгілерді сынақ камерасына салып жатыр. АҚШ Орман материалдары зертханасының 1910–1920 жылдардағы есебінен алынған сурет" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" id="why" aria-labelledby="why-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="why-title">Тест қалай құрылған</h2>
+<p>Кез келген тест дерлік үш бөліктен тұрады: деректерді дайындау, әрекетті орындау, нәтижені тексеру.</p>
+</div>
+<div class="code-block reveal" data-run="python">
+  <div class="code-head">
+    <span>assert арқылы ең қарапайым тексерістер</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>def add_vat(price, rate=0.12):
+    return round(price * (1 + rate), 2)
+
+def test_add_vat():
+    assert add_vat(100) == 112.0
+
+def test_custom_rate():
+    assert add_vat(200, rate=0.2) == 240.0
+
+test_add_vat()
+test_custom_rate()
+print("Все тесты прошли")</code></pre>
+</div>
+<p class="note stack-gap">Мысалдағы күтілетін мәнді өзгертіп, қайта іске қосыңыз: құлаған тесттің қалай көрінетінін көресіз.</p>
+</div>
+</section>
+<section class="section" id="pytest" aria-labelledby="pytest-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="pytest-title">pytest</h2>
+<p>Python-дағы ең танымал тест кітапханасы. Ол <code>test_*.py</code> файлдарын және <code>test_*</code> функцияларын өзі табады.</p>
+</div>
+<div class="code-grid">
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>Терминал</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>pip install pytest
+pytest
+pytest -k vat
+pytest -x</code></pre>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>test_prices.py</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>import pytest
+
+from prices import add_vat
+
+@pytest.mark.parametrize("price, expected", [
+    (100, 112.0),
+    (0, 0.0),
+    (19.99, 22.39),
+])
+def test_add_vat(price, expected):
+    assert add_vat(price) == expected
+
+def test_negative_price():
+    with pytest.raises(ValueError):
+        add_vat(-1)</code></pre>
+</div>
+</div>
+<p class="note stack-gap"><code>parametrize</code> бір тестті әртүрлі деректермен іске қосады. <code>raises</code> кодтың қате туралы дұрыс хабарлайтынын тексереді. Екінші тестте функция теріс бағаны өзі қабылдамауы керек.</p>
+</div>
+</section>
+<section class="section" id="flask" aria-labelledby="flask-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="flask-title">Flask тесттері</h2>
+<p>Тесттік клиент қосымшаға серверсіз және браузерсіз сұрау жібереді.</p>
+</div>
+<div class="code-block reveal" data-run="python">
+  <div class="code-head">
+    <span>Flask: бет пен API-ды тексеру</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+@app.get("/")
+def home():
+    return "Главная"
+
+@app.get("/api/ping")
+def ping():
+    return {"status": "ok"}
+
+def test_home():
+    response = app.test_client().get("/")
+    assert response.status_code == 200
+    assert "Главная" in response.text
+
+def test_ping():
+    assert app.test_client().get("/api/ping").json == {"status": "ok"}
+
+def test_unknown_page():
+    assert app.test_client().get("/nope").status_code == 404
+
+test_home()
+test_ping()
+test_unknown_page()
+print("Все тесты прошли")</code></pre>
+</div>
+<p class="note stack-gap">Нақты жобада бұл функциялар <code>test_app.py</code> файлында жатады, ал оларды <code>pytest</code> командасы іске қосады.</p>
+</div>
+</section>
+<section class="section" id="django" aria-labelledby="django-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="django-title">Django тесттері</h2>
+<p>Django бөлек уақытша дерекқор жасайды, сондықтан нақты деректер зардап шекпейді.</p>
+</div>
+<div class="code-grid">
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>tasks/tests.py</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>from django.test import TestCase
+from django.urls import reverse
+
+from .models import Task
+
+class TaskTests(TestCase):
+    def test_list_shows_task(self):
+        Task.objects.create(title="Проверить тесты")
+        response = self.client.get(reverse("index"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Проверить тесты")
+
+    def test_add_task(self):
+        response = self.client.post(reverse("index"), {"title": "Новая"})
+        self.assertRedirects(response, reverse("index"))
+        self.assertEqual(Task.objects.count(), 1)</code></pre>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>Терминал</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>python manage.py test
+python manage.py test tasks</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="what" aria-labelledby="what-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="what-title">Алдымен нені тестілеу керек</h2>
+<p>Мақсат — жүз пайыз қамту емес, маңызды нәрсені қорғау.</p>
+</div>
+<div class="compare-grid">
+<article class="panel reveal">
+<h3>Тексерген жөн</h3>
+<ul class="list">
+<li>Негізгі сценарий: құру, өзгерту, жою</li>
+<li>Қате және бос деректер</li>
+<li>Қол жеткізу: бөтен деректер және кірусіз беттер</li>
+<li>Табылған әр қате: алдымен тест, содан кейін түзету</li>
+</ul>
+</article>
+<article class="panel reveal">
+<h3>Тексермеуге болады</h3>
+<ul class="list">
+<li>Фреймворктің өз коды</li>
+<li>Логикасы жоқ қарапайым баптаулар</li>
+<li>Беттегі элементтердің дәл орналасуы</li>
+</ul>
+</article>
+</div>
+</div>
+</section>
+<section class="section" aria-labelledby="sources-title">
+<div class="container">
+<div class="panel sources reveal">
+<h2 id="sources-title">Дереккөздер</h2>
+<p class="note">Сілтемелер <time datetime="2026-11-06">06.11.2026</time> тексерілді.</p>
+<ul class="list">
+<li><a href="https://docs.pytest.org/en/stable/getting-started.html" rel="noopener">pytest: жұмысты бастау</a></li>
+<li><a href="https://flask.palletsprojects.com/en/stable/testing/" rel="noopener">Flask: тестілеу</a></li>
+<li><a href="https://docs.djangoproject.com/en/6.1/topics/testing/overview/" rel="noopener">Django 6.1: тестілеу</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section" aria-label="Әрі қарай">
+<div class="container">
+<div class="cta-panel reveal">
+<div>
+<h2>Әрі қарай: Git</h2>
+<p class="lead cta-lead">Жаңа өзгерістер алдында кодтың жұмыс істейтін нұсқасын сақтаңыз.</p>
+</div>
+<div class="cta-actions"><a class="btn btn-primary" href="../git.html" hreflang="ru">Бөлімді ашу</a></div>
+</div>
+</div>
+</section>
+
+
+</main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="about.html">Python туралы</a></li><li><a href="frameworks.html">Фреймворктер</a></li><li><a href="databases.html">Дерекқорлар</a></li><li><a href="templates.html">Үлгілер мен формалар</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесттер</a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="project.html">Алғашқы жоба</a></li><li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li><li><a href="deploy.html">Жариялау</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Есептер</a></li><li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="../contacts.html#authors" hreflang="ru">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-09">09.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Сурет: <a href="https://commons.wikimedia.org/wiki/File:The_Forest_products_laboratory_-_a_decennial_record,_1910-1920_(1921)_(14784655265).jpg" rel="noopener">АҚШ Орман материалдары зертханасының 1910–1920 жылдардағы есебі, 1921 жылы басылған</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Құпиялылық саясаты</a> · <a href="../terms.html" hreflang="ru">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="../contacts.html#no-github" hreflang="ru">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
