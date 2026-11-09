@@ -63,6 +63,9 @@
   <url><loc>https://pywebguide.github.io/project2.html</loc><lastmod>2026-11-09</lastmod>
   </url>
   <url><loc>https://pywebguide.github.io/deploy.html</loc><lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/deploy.html"/>
+    <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/deploy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/deploy.html"/>
   </url>
   <url><loc>https://pywebguide.github.io/practice.html</loc><lastmod>2026-11-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/practice.html"/>
@@ -132,6 +135,11 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/project.html"/>
     <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/project.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/project.html"/>
+  </url>
+  <url><loc>https://pywebguide.github.io/kk/deploy.html</loc><lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/deploy.html"/>
+    <xhtml:link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/deploy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/deploy.html"/>
   </url>
   <url><loc>https://pywebguide.github.io/kk/practice.html</loc><lastmod>2026-11-09</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/practice.html"/>
