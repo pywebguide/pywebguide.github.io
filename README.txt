@@ -110,3 +110,15 @@ PyWeb Guide — учебный веб-ресурс о Python в веб-разр�
   Новый перевод кладите в kk/ или en/ под тем же именем файла, что и русская страница,
   поменяйте в меню русской страницы ссылки «ҚАЗ» и «ENG» на него, добавьте hreflang,
   строку в sitemap.xml и запустите tools/build_search.py и tools/check_site.py.
+
+ДОРАБОТКА 10 (09.11.2026, ветка improvements)
+  - сайт полностью на трёх языках: kk/ и en/ собираются из русских страниц;
+  - меню, подвал, hreflang, sitemap.xml, дата «Обновлено» и код GoatCounter — tools/layout.py;
+  - переводы — tools/translate.py с памятью tools/i18n/kk.json и en.json
+    (после правки русской страницы: translate.py missing kk <стр.>, перевести, add, build);
+  - задачи — tools/build_practice.py (тексты переводов в tools/i18n/practice.json),
+    проверка решений — tools/check_tasks.py и assets/checker.py;
+  - полный код первого проекта — examples/, синхронизация со страницей — tools/sync_examples.py;
+  - офлайн — sw.js, версия кэша — tools/build_sw.py; поиск — Pagefind (.github/workflows/pages.yml);
+  - страница «Мой прогресс» с сертификатом для печати и PDF.
+  Перед коммитом: python tools/layout.py && python tools/build_sw.py, затем проверки из checks.yml.
