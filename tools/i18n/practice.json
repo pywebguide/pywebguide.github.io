@@ -218,5 +218,233 @@
    ["\"Для несуществующей задачи нужен код 404\"", "\"Жоқ тапсырма үшін 404 коды керек\""],
    ["\"<int:...> пропускает только числа\"", "\"<int:...> тек сандарды өткізеді\""]
   ]
+ },
+ "en": {
+  "tasks": {
+   "greet": {
+    "title": "Greeting",
+    "text": "Write a function <code>greet(name)</code> that returns the string <code>Hello, Name!</code>. Extra spaces around the name must be removed. If the name is empty, return <code>Hello, guest!</code>.",
+    "hints": [
+     "The easiest way to join text and a variable is an f-string: <code>f\"Hello, {name}!\"</code>.",
+     "<code>name.strip()</code> removes the spaces at both ends.",
+     "An empty string counts as false in a condition: <code>name or 'guest'</code> gives “guest” when the name is empty."
+    ]
+   },
+   "words": {
+    "title": "Word count",
+    "text": "Write <code>count_words(text)</code>: return a dictionary where the key is a word in lower case and the value is how many times it appears.",
+    "hints": [
+     "Start with an empty dictionary <code>counts = {}</code> and loop over the words.",
+     "<code>text.lower().split()</code> lowercases the text and splits it on any spaces and line breaks.",
+     "<code>counts.get(word, 0) + 1</code> increases the counter even when the word is not in the dictionary yet."
+    ]
+   },
+   "strong": {
+    "title": "Strong password",
+    "text": "Write <code>is_strong(password)</code>. A password is strong if it has at least 8 characters, at least one digit and at least one letter. Return <code>True</code> or <code>False</code>.",
+    "hints": [
+     "<code>len(password)</code> gives the length of the string.",
+     "<code>any(ch.isdigit() for ch in password)</code> returns <code>True</code> if the password contains a digit.",
+     "For letters there is <code>ch.isalpha()</code>. Join the three conditions with <code>and</code>."
+    ]
+   },
+   "slug": {
+    "title": "An address from a title",
+    "text": "Websites turn an article title into part of the address: <code>My First Site</code> → <code>my-first-site</code>. Write <code>slugify(title)</code> for Latin letters: keep letters and digits in lower case and replace everything else with a hyphen. Merge several hyphens in a row into one and remove hyphens at the ends.",
+    "hints": [
+     "Go through the characters of <code>title.lower()</code>: a letter or digit (<code>ch.isalnum()</code>) stays, anything else becomes <code>\"-\"</code>.",
+     "<code>\"-\".join(...)</code> over the non-empty pieces after <code>split(\"-\")</code> joins them without extra hyphens.",
+     "With the <code>re</code> module: <code>re.sub(r\"[^a-z0-9]+\", \"-\", text).strip(\"-\")</code>."
+    ]
+   },
+   "query": {
+    "title": "Parsing an address",
+    "text": "Write <code>parse_query(query)</code>. It turns the string <code>a=1&amp;b=2</code> into the dictionary <code>{\"a\": \"1\", \"b\": \"2\"}</code>. Skip parts without an <code>=</code> sign. A value may contain <code>=</code>.",
+    "hints": [
+     "First split the string into pairs: <code>query.split(\"&amp;\")</code>.",
+     "Skip a pair without <code>=</code> with the check <code>if \"=\" in part</code>.",
+     "<code>part.split(\"=\", 1)</code> splits only on the first <code>=</code>, the rest stay in the value."
+    ]
+   },
+   "router": {
+    "title": "A simple router",
+    "text": "Finish <code>handle(method, path)</code>. It looks up a handler in the <code>ROUTES</code> dictionary and returns a “code, text” pair. If there is no such address, return <code>(404, \"Not Found\")</code>. If the address exists but the method does not match, return <code>(405, \"Method Not Allowed\")</code>.",
+    "hints": [
+     "Check in order: first whether the address exists, then whether the method does.",
+     "<code>path not in ROUTES</code> means there is no such address: that is 404.",
+     "The address's methods are in <code>ROUTES[path]</code>. If the method is not there, it is 405; otherwise return <code>200</code> and the text."
+    ]
+   },
+   "validate": {
+    "title": "Checking form data",
+    "text": "Write <code>validate_user(data)</code>. The function takes a dictionary and returns a list of errors. The <code>name</code> field is required, and <code>age</code> must be a whole number from 1 to 120. Error texts: <code>\"name\"</code> and <code>\"age\"</code>. If everything is correct, return an empty list.",
+    "hints": [
+     "The field may be missing: <code>data.get(\"name\", \"\")</code> returns an empty string instead of an error.",
+     "<code>isinstance(age, int)</code> checks for a whole number, <code>1 &lt;= age &lt;= 120</code> checks the range.",
+     "In Python <code>True</code> also counts as an <code>int</code>. Filter it out separately: <code>isinstance(age, bool)</code>."
+    ]
+   },
+   "json": {
+    "title": "A JSON response",
+    "text": "Write <code>tasks_json(tasks)</code>. The function takes a list of dictionaries and returns a JSON string with only the tasks whose <code>done</code> is <code>False</code>. Non-English letters (like é) must stay readable. The import is already there.",
+    "hints": [
+     "Pick the unfinished tasks: <code>[task for task in tasks if not task[\"done\"]]</code>.",
+     "<code>json.dumps(...)</code> turns the list into a JSON string.",
+     "Add <code>ensure_ascii=False</code> so letters like é do not become codes such as <code>\\u00e9</code>."
+    ]
+   },
+   "render": {
+    "title": "Your own template",
+    "text": "A template is text with gaps. Write <code>render(template, data)</code>: it replaces every gap <code>{{ name }}</code> with the value from the <code>data</code> dictionary. There may or may not be spaces inside the braces. If the key is not in the dictionary, put an empty string.",
+    "hints": [
+     "The regular expression <code>r\"\\{\\{\\s*(\\w+)\\s*\\}\\}\"</code> finds all the gaps.",
+     "<code>re.sub(pattern, function, text)</code> calls the function for every gap it finds and puts in its answer.",
+     "Inside the function the gap's name is <code>match.group(1)</code>, and <code>str(data.get(name, \"\"))</code> gets the value."
+    ]
+   },
+   "paginate": {
+    "title": "Pages of a list",
+    "text": "A long list is shown in parts. Write <code>paginate(items, page, per_page)</code>: return the items of page number <code>page</code> (numbering starts at 1). If there is no page with that number, or the number is less than 1, return an empty list.",
+    "hints": [
+     "The first item of the page is at position <code>(page - 1) * per_page</code>.",
+     "The slice <code>items[start:start + per_page]</code> shortens itself if there are fewer items.",
+     "Check a page number below 1 separately, otherwise a negative slice returns extra items."
+    ]
+   },
+   "add_task": {
+    "title": "Safe insert",
+    "text": "Write <code>add_task(db, title)</code>: it adds a row to the <code>tasks</code> table and returns its <code>id</code>. Use the <code>?</code> parameter: text with a quote must not break the query.",
+    "hints": [
+     "The insert query: <code>INSERT INTO tasks (title) VALUES (?)</code>.",
+     "The values are passed as the second argument, a tuple: <code>db.execute(query, (title,))</code>. The comma after <code>title</code> is required.",
+     "<code>execute</code> returns a cursor, and the new row's number is in <code>cursor.lastrowid</code>. Do not forget <code>db.commit()</code>."
+    ]
+   },
+   "select": {
+    "title": "Selecting with a condition",
+    "text": "Write <code>active_titles(db)</code>: return the list of titles with <code>done = 0</code>, sorted alphabetically.",
+    "hints": [
+     "You need the query <code>SELECT title FROM tasks</code> with the condition <code>WHERE done = 0</code>.",
+     "<code>ORDER BY title</code> at the end of the query sorts alphabetically.",
+     "Each result row is a tuple with the title first: <code>[row[0] for row in rows]</code>."
+    ]
+   },
+   "route": {
+    "title": "The first route",
+    "text": "Add a route <code>GET /hello/&lt;name&gt;</code> that returns the JSON <code>{\"message\": \"Hello, name!\"}</code>.",
+    "hints": [
+     "A route is declared with a decorator above the function: <code>@app.get(\"/hello/&lt;name&gt;\")</code>.",
+     "The name in the angle brackets of the address and the function's argument must match: <code>def hello(name):</code>.",
+     "If you return a dictionary, Flask turns it into JSON itself: <code>return {\"message\": f\"Hello, {name}!\"}</code>."
+    ]
+   },
+   "filter": {
+    "title": "A filter in the address",
+    "text": "Make <code>GET /tasks</code> that returns the JSON list of tasks from <code>TASKS</code>. If the address has <code>?done=1</code>, return only the finished ones; with <code>?done=0</code>, only the unfinished ones. Without the parameter, return them all.",
+    "hints": [
+     "<code>request.args.get(\"done\")</code> reads the parameter from the address. If it is missing, you get <code>None</code>.",
+     "The parameter arrives as a string: compare it with <code>\"1\"</code>, not with a number.",
+     "If you return a list of dictionaries from the function, Flask turns it into JSON itself."
+    ]
+   },
+   "post": {
+    "title": "Creating a record",
+    "text": "Make <code>POST /items</code>. It reads JSON with a <code>title</code> field. If the field is missing or empty, return <code>{\"error\": \"title\"}</code> with code 400. Otherwise add the title to the <code>items</code> list and return <code>{\"title\": ...}</code> with code 201.",
+    "hints": [
+     "A route for sending data is declared with <code>@app.post(\"/items\")</code>.",
+     "<code>request.get_json(silent=True) or {}</code> does not crash on something that is not JSON, it gives an empty dictionary.",
+     "The response code goes second: <code>return {\"error\": \"title\"}, 400</code>."
+    ]
+   },
+   "detail": {
+    "title": "One record or 404",
+    "text": "Make <code>GET /tasks/&lt;int:task_id&gt;</code>. If a task with that number is in the <code>TASKS</code> dictionary, return its JSON. If not, return <code>{\"error\": \"not found\"}</code> with code 404.",
+    "hints": [
+     "<code>&lt;int:task_id&gt;</code> in the address turns part of the path into a number and passes it to the function.",
+     "<code>TASKS.get(task_id)</code> returns <code>None</code> if there is no such task.",
+     "For a missing task: <code>return {\"error\": \"not found\"}, 404</code>."
+    ]
+   }
+  },
+  "code": [
+   ["# ваш код", "# your code"],
+   ["# ваш маршрут", "# your route"],
+   ["\"Уберите пробелы вокруг имени: подойдёт .strip()\"", "\"Remove the spaces around the name: .strip() will do\""],
+   ["\"Для пустого имени нужен ответ «Привет, гость!»\"", "\"An empty name needs the answer “Hello, guest!”\""],
+   ["\"Имя из одних пробелов тоже считается пустым\"", "\"A name made only of spaces also counts as empty\""],
+   ["Привет, ", "Hello, "],
+   ["'гость'", "'guest'"],
+   ["\"Hello, гость!\"", "\"Hello, guest!\""],
+   ["Анна", "Anna"],
+   ["Ерлан", "Erlan"],
+   ["Дана", "Dana"],
+   ["Аружан", "Aruzhan"],
+   ["\"Для пустой строки нужен пустой словарь\"", "\"An empty string needs an empty dictionary\""],
+   ["\"Да да нет\"", "\"Yes yes no\""],
+   ["{\"да\": 2, \"нет\": 1}", "{\"yes\": 2, \"no\": 1}"],
+   ["\"Приведите слова к нижнему регистру\"", "\"Convert the words to lower case\""],
+   ["\"Разделяйте через .split() без аргументов\"", "\"Split with .split() without arguments\""],
+   ["\"Нужно не меньше 8 символов\"", "\"At least 8 characters are needed\""],
+   ["\"Без букв пароль не надёжный\"", "\"A password without letters is not strong\""],
+   ["\"Без цифр пароль не надёжный\"", "\"A password without digits is not strong\""],
+   ["\"пароль2026\"", "\"pässwort2026\""],
+   ["\"Русские буквы тоже буквы: .isalpha()\"", "\"Letters like ä are letters too: .isalpha()\""],
+   ["\"Несколько знаков подряд дают один дефис\"", "\"Several signs in a row give one hyphen\""],
+   ["\"Дефисы по краям нужно убрать\"", "\"Hyphens at the ends must be removed\""],
+   ["\"Цифры остаются\"", "\"Digits stay\""],
+   ["\"Часть без = нужно пропустить\"", "\"A part without = must be skipped\""],
+   ["\"Делите только по первому =: split('=', 1)\"", "\"Split only on the first =: split('=', 1)\""],
+   ["\"Главная\"", "\"Home\""],
+   ["\"Список задач\"", "\"Task list\""],
+   ["\"Задача создана\"", "\"Task created\""],
+   ["\"Для неизвестного адреса нужен код 404\"", "\"An unknown address needs code 404\""],
+   ["\"Для неподходящего метода нужен код 405\"", "\"A wrong method needs code 405\""],
+   ["\"Верные данные не должны давать ошибок\"", "\"Correct data must not give errors\""],
+   ["\"Без имени должна быть ошибка name\"", "\"Without a name there must be a name error\""],
+   ["\"Имя из пробелов считается пустым\"", "\"A name made of spaces counts as empty\""],
+   ["\"Возраст 0 не подходит\"", "\"Age 0 is not allowed\""],
+   ["\"Строка не считается числом\"", "\"A string does not count as a number\""],
+   ["\"True в Python тоже int: проверьте это отдельно\"", "\"In Python True is an int too: check for it separately\""],
+   ["\"Нужно вернуть обе ошибки по порядку\"", "\"Return both errors in order\""],
+   ["\"Код\"", "\"Café\""],
+   ["\"Сон\"", "\"Sleep\""],
+   ["\"Нужно вернуть строку, а не список\"", "\"Return a string, not a list\""],
+   ["\"В ответе должны остаться только невыполненные задачи\"", "\"Only unfinished tasks must remain in the answer\""],
+   ["\"Добавьте ensure_ascii=False, иначе кириллица превратится в коды\"", "\"Add ensure_ascii=False, otherwise é turns into a code\""],
+   ["\"Для пустого списка нужна строка []\"", "\"An empty list needs the string []\""],
+   ["\"Пробелы внутри скобок необязательны, числа превратите в строку\"", "\"Spaces inside the braces are optional, turn numbers into strings\""],
+   ["\"Неизвестный ключ заменяется пустой строкой\"", "\"An unknown key is replaced with an empty string\""],
+   ["\"без пропусков\"", "\"no gaps\""],
+   ["\"На последней странице может быть меньше элементов\"", "\"The last page may have fewer items\""],
+   ["\"Такой страницы нет: нужен пустой список\"", "\"There is no such page: an empty list is needed\""],
+   ["\"Страницы с номером 0 не бывает\"", "\"There is no page number 0\""],
+   ["\"Первая\"", "\"First\""],
+   ["\"Вторая\"", "\"Second\""],
+   ["\"Верните cursor.lastrowid\"", "\"Return cursor.lastrowid\""],
+   ["\"Каждая новая строка получает следующий id\"", "\"Every new row gets the next id\""],
+   ["\"Текст с кавычкой не должен ломать запрос: используйте ?\"", "\"Text with a quote must not break the query: use ?\""],
+   ["\"Текст с кавычкой должен сохраниться как есть\"", "\"Text with a quote must be saved as it is\""],
+   ["\"Б\"", "\"B\""],
+   ["\"А\"", "\"A\""],
+   ["\"В\"", "\"C\""],
+   ["\"Добавьте WHERE и ORDER BY и верните список строк\"", "\"Add WHERE and ORDER BY and return a list of strings\""],
+   ["\"Если подходящих строк нет, верните пустой список\"", "\"If no rows match, return an empty list\""],
+   ["\"Адрес /hello/Python должен открываться с кодом 200\"", "\"The address /hello/Python must open with code 200\""],
+   ["\"Купить хлеб\"", "\"Buy bread\""],
+   ["\"Выучить Flask\"", "\"Learn Flask\""],
+   ["\"Без параметра нужны все задачи\"", "\"Without the parameter all tasks are needed\""],
+   ["\"?done=1 — только выполненные\"", "\"?done=1 — only finished ones\""],
+   ["\"?done=0 — только невыполненные: параметр приходит строкой\"", "\"?done=0 — only unfinished ones: the parameter arrives as a string\""],
+   ["\"Без title нужен код 400\"", "\"Without a title code 400 is needed\""],
+   ["\"Пустой title тоже даёт 400\"", "\"An empty title also gives 400\""],
+   ["\"не json\"", "\"not json\""],
+   ["\"Неверный JSON не должен приводить к падению: get_json(silent=True)\"", "\"Invalid JSON must not cause a crash: get_json(silent=True)\""],
+   ["\"При успехе нужен код 201: return {...}, 201\"", "\"On success code 201 is needed: return {...}, 201\""],
+   ["\"Книга\"", "\"Book\""],
+   ["\"Заголовок должен попасть в список items\"", "\"The title must go into the items list\""],
+   ["\"Ручка\"", "\"Pen\""],
+   ["\"Для несуществующей задачи нужен код 404\"", "\"A task that does not exist needs code 404\""],
+   ["\"<int:...> пропускает только числа\"", "\"<int:...> lets only numbers through\""]
+  ]
  }
 }
