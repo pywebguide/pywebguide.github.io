@@ -21,6 +21,7 @@ class Page(HTMLParser):
         self.in_title = False
         self.h2_count = 0
         self.in_main = False
+        self.lang = ""
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -28,6 +29,8 @@ class Page(HTMLParser):
             if attrs["id"] in self.ids:
                 self.duplicates.append(attrs["id"])
             self.ids.add(attrs["id"])
+        if tag == "html":
+            self.lang = attrs.get("lang", "")
         if tag == "main":
             self.in_main = True
         if tag == "h1":
@@ -73,6 +76,10 @@ def main():
 
     errors = []
     for name, page in pages.items():
+        # Язык страницы совпадает с папкой: kk/ — казахский, en/ — английский, корень — русский
+        expected_lang = name.split("/")[0] if "/" in name else "ru"
+        if page.lang != expected_lang:
+            errors.append(f"{name}: <html lang=\"{page.lang}\">, а нужен {expected_lang}")
         if page.h1 != 1:
             errors.append(f"{name}: заголовков h1 — {page.h1}, нужен один")
         for duplicate in page.duplicates:

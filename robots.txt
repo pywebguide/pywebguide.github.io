@@ -1,0 +1,7 @@
+# PyWeb Guide: учебный сайт, индексировать можно всё
+User-agent: *
+Allow: /
+Disallow: /tools/
+Disallow: /docs/
+
+Sitemap: https://pywebguide.github.io/sitemap.xml

@@ -20,6 +20,12 @@ SITE = "https://pywebguide.github.io/"
 LANGS = ("ru", "kk", "en")
 UPDATED = date(2026, 11, 9)
 
+# Статистика GoatCounter без cookies (описана в privacy.html).
+# TODO(автор): проверьте код счётчика — адрес вида https://<код>.goatcounter.com.
+# Пустая строка убирает счётчик со всех страниц. После правки: python tools/layout.py
+GOATCOUNTER = "pywebguide"
+GOATCOUNTER_SRI = "sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"
+
 # slug: (ru, kk, en)
 NAMES = {
     "index.html": ("Главная", "Басты бет", "Home"),
@@ -204,6 +210,10 @@ def apply(path):
     stamp = f'<time datetime="{UPDATED.isoformat()}">{UPDATED.strftime("%d.%m.%Y")}</time>'
     new = re.sub("(" + "|".join(UI["updated"]) + r'): <time datetime="[^"]+">[^<]+</time>', lambda m: f"{m.group(1)}: {stamp}", new)
     new = relink_body(new, lang)
+    # Счётчик GoatCounter: один код на все страницы
+    counter = (f'<script data-goatcounter="https://{GOATCOUNTER}.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" '
+               f'crossorigin="anonymous" integrity="{GOATCOUNTER_SRI}"></script>') if GOATCOUNTER else ""
+    new = re.sub(r'  <script data-goatcounter="[^"]*"[^>]*></script>\n', lambda m: ("  " + counter + "\n") if counter else "", new)
     # Манифест PWA: сайт можно установить как приложение (sw.js регистрирует script.js)
     if 'rel="manifest"' not in new:
         prefix = "../" if lang != "ru" else ""
@@ -218,6 +228,31 @@ def pages():
     return sorted([*ROOT.glob("*.html"), *ROOT.glob("kk/*.html"), *ROOT.glob("en/*.html")])
 
 
+def sitemap_xml():
+    """Карта сайта: все страницы трёх языков, у переведённых — ссылки на другие языки (hreflang)."""
+    def url(lang, slug):
+        return SITE + ("" if lang == "ru" else lang + "/") + ("" if slug == "index.html" else slug)
+
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
+    order = list(NAMES)
+    slugs = sorted((p.name for p in ROOT.glob("*.html") if p.name != "404.html"),
+                   key=lambda s: (order.index(s) if s in order else len(order), s))
+    for lang in LANGS:
+        for slug in slugs:
+            if not exists(lang, slug):
+                continue
+            lines.append(f"  <url><loc>{url(lang, slug)}</loc><lastmod>{UPDATED.isoformat()}</lastmod>")
+            langs = [l for l in LANGS if exists(l, slug)]
+            if len(langs) > 1:
+                for other in langs:
+                    lines.append(f'    <xhtml:link rel="alternate" hreflang="{other}" href="{url(other, slug)}"/>')
+                lines.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{url("ru", slug)}"/>')
+            lines.append("  </url>")
+    lines.append("</urlset>")
+    return "\n".join(lines) + "\n"
+
+
 def main():
     check = "--check" in sys.argv
     changed = []
@@ -227,6 +262,11 @@ def main():
             changed.append(path.relative_to(ROOT).as_posix())
             if not check:
                 path.write_text(new, encoding="utf-8", newline="\n")
+    sitemap = ROOT / "sitemap.xml"
+    if sitemap.read_text(encoding="utf-8").replace("\r\n", "\n") != sitemap_xml():
+        changed.append("sitemap.xml")
+        if not check:
+            sitemap.write_text(sitemap_xml(), encoding="utf-8", newline="\n")
     if check and changed:
         print("Шапка или подвал не совпадают с tools/layout.py. Запустите python tools/layout.py:")
         print("\n".join("  " + c for c in changed))
