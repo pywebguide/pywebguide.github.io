@@ -1,0 +1,404 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из templates.html. Правьте tools/i18n/en.json, а не этот файл. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jinja templates and forms in Flask and Django — PyWeb Guide</title>
+
+  <meta name="description" content="How to separate HTML from code: Jinja templates, inheritance, forms, data validation and CSRF protection in Flask and Django.">
+  <link rel="canonical" href="https://pywebguide.github.io/en/templates.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/templates.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/templates.html">
+  <link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/templates.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/templates.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Jinja templates and forms in Flask and Django — PyWeb Guide">
+  <meta property="og:description" content="How to separate HTML from code: Jinja templates, inheritance, forms, data validation and CSRF protection in Flask and Django.">
+  <meta property="og:url" content="https://pywebguide.github.io/en/templates.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide poster: your first website with Python, a free course for people who have never programmed">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f9a21f">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/sofia-sans-extra-condensed-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="orange" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">From scratch</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Full course <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="project.html">First project</a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Sandbox <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="glossary.html">Glossary</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">More <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Understand</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">About Python</a></li>
+              <li><a href="frameworks.html">Frameworks</a></li>
+              <li><a href="databases.html">Databases</a></li>
+              <li><a href="templates.html" aria-current="page">Templates and forms</a></li>
+              <li><a href="../auth.html" hreflang="ru">Authentication <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../testing.html" hreflang="ru">Testing <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Build</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Second project <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../deploy.html" hreflang="ru">Deployment <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Practice</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Exercises</a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Final test <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Site</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">My progress <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Contact <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Site language">
+            <a href="../templates.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="../kk/templates.html" hreflang="kk" lang="kk">ҚАЗ</a>
+            <a href="templates.html" hreflang="en" lang="en" aria-current="true">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Light theme">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Breadcrumb">
+<a href="index.html">Home</a> <span aria-hidden="true">/</span> <span>Templates and forms</span>
+</nav>
+<h1>How the server builds pages</h1>
+<p class="lead">A template is HTML with places for data. A form is a way to get data from the user. We look at both; examples with a “Run” button execute right in the browser.</p>
+<img class="band-picture" src="../assets/img/typecase.jpg" width="1000" height="524" alt="The composing room of a newspaper in Medan: rows of type cases, 1898" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" id="jinja" aria-labelledby="jinja-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="jinja-title">Jinja templates</h2>
+<p>Flask uses Jinja, and Django's template language is very similar to it.</p>
+</div>
+<div class="panel reveal stack-gap">
+<ul class="list">
+<li><code>{{ value }}</code> outputs data and escapes HTML automatically.</li>
+<li><code>{% if %}</code> and <code>{% for %}</code> add conditions and loops.</li>
+<li><code>{% extends %}</code> and <code>{% block %}</code> give all pages a shared frame.</li>
+</ul>
+</div>
+<div class="code-block reveal" data-run="python">
+  <div class="code-head">
+    <span>Flask: a loop and a condition in a template</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>from flask import Flask, render_template_string
+
+app = Flask(__name__)
+
+PAGE = """
+&lt;h1&gt;Задачи: {{ tasks|length }}&lt;/h1&gt;
+{% for task in tasks %}
+  &lt;p&gt;{{ loop.index }}. {{ task.title }}{% if task.done %} (готово){% endif %}&lt;/p&gt;
+{% else %}
+  &lt;p&gt;Задач пока нет&lt;/p&gt;
+{% endfor %}
+"""
+
+@app.route("/")
+def index():
+    tasks = [
+        {"title": "Купить ракетку", "done": True},
+        {"title": "Прочитать про шаблоны", "done": False},
+    ]
+    return render_template_string(PAGE, tasks=tasks)
+
+print(app.test_client().get("/").text)</code></pre>
+</div>
+<p class="note stack-gap"><code>test_client()</code> sends a request to the app without a real server. Tests are written the same way.</p>
+</div>
+</section>
+<section class="section" id="inherit" aria-labelledby="inherit-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="inherit-title">Template inheritance</h2>
+<p>The header and footer are described once, and pages replace only their own block.</p>
+</div>
+<div class="code-grid">
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>templates/base.html</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>&lt;!doctype html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;&lt;title&gt;{% block title %}Сайт{% endblock %}&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+  &lt;nav&gt;&lt;a href="/"&gt;Главная&lt;/a&gt;&lt;/nav&gt;
+  {% block content %}{% endblock %}
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>templates/index.html</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>{% extends "base.html" %}
+
+{% block title %}Задачи{% endblock %}
+
+{% block content %}
+  &lt;h1&gt;Мои задачи&lt;/h1&gt;
+{% endblock %}</code></pre>
+</div>
+</div>
+<p class="note stack-gap">In Flask the files live in the <code>templates</code> folder, and <code>render_template("index.html")</code> returns the page. In Django <code>render(request, "index.html")</code> does the same.</p>
+</div>
+</section>
+<section class="section" id="escape" aria-labelledby="escape-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="escape-title">Why escaping matters</h2>
+<p>If you output the user's text as it is, they can put their own script on the page. This is called XSS.</p>
+</div>
+<div class="code-block reveal" data-run="python">
+  <div class="code-head">
+    <span>Escaping and the dangerous safe filter</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>from flask import Flask, render_template_string, request
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    name = request.args.get("name", "гость")
+    safe = render_template_string("&lt;p&gt;{{ name }}&lt;/p&gt;", name=name)
+    danger = render_template_string("&lt;p&gt;{{ name|safe }}&lt;/p&gt;", name=name)
+    return f"Правильно: {safe}\nОпасно:    {danger}"
+
+response = app.test_client().get("/", query_string={"name": "&lt;script&gt;alert(1)&lt;/script&gt;"})
+print(response.text)</code></pre>
+</div>
+<p class="note stack-gap">The <code>|safe</code> filter turns the protection off. Use it only for HTML you wrote yourself.</p>
+</div>
+</section>
+<section class="section" id="forms" aria-labelledby="forms-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="forms-title">Forms in Flask</h2>
+<p>Form data is in <code>request.form</code>. The server must check it itself: checks in the browser are easy to bypass.</p>
+</div>
+<div class="code-block reveal" data-run="python">
+  <div class="code-head">
+    <span>Flask: checking form data</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>from flask import Flask, redirect, render_template_string, request, url_for
+
+app = Flask(__name__)
+tasks = []
+
+PAGE = """
+{% if error %}&lt;p&gt;{{ error }}&lt;/p&gt;{% endif %}
+&lt;form method="post"&gt;&lt;input name="title"&gt;&lt;button&gt;Добавить&lt;/button&gt;&lt;/form&gt;
+&lt;ul&gt;{% for task in tasks %}&lt;li&gt;{{ task }}&lt;/li&gt;{% endfor %}&lt;/ul&gt;
+"""
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    error = None
+    if request.method == "POST":
+        title = request.form.get("title", "").strip()
+        if not title:
+            error = "Введите название"
+        elif len(title) &gt; 100:
+            error = "Слишком длинное название"
+        else:
+            tasks.append(title)
+            return redirect(url_for("index"))
+    return render_template_string(PAGE, tasks=tasks, error=error)
+
+client = app.test_client()
+print("Пустая форма:", "Введите название" in client.post("/", data={"title": " "}).text)
+response = client.post("/", data={"title": "Первая задача"})
+print("После добавления статус:", response.status_code, "переход на", response.location)
+print("Задачи:", tasks)</code></pre>
+</div>
+<p class="note stack-gap">After a successful POST, send a redirect. Otherwise, when the page is refreshed, the browser repeats the submission and the task is added again.</p>
+</div>
+</section>
+<section class="section" id="csrf" aria-labelledby="csrf-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="csrf-title">CSRF protection</h2>
+<p>Another site can quietly submit a form on behalf of a logged-in user. The defence is a secret token in every form.</p>
+</div>
+<div class="compare-grid">
+<article class="panel reveal">
+<h3>Django</h3>
+<p>Protection is on by default. Add the <code>{% csrf_token %}</code> tag to every POST form, otherwise the server responds with error 403.</p>
+</article>
+<article class="panel reveal">
+<h3>Flask</h3>
+<p>There is no built-in protection. The usual choice is the <a href="https://flask-wtf.readthedocs.io/en/latest/csrf/" rel="noopener">Flask-WTF</a> extension: <code>CSRFProtect(app)</code> and a hidden token field in the form.</p>
+</article>
+</div>
+</div>
+</section>
+<section class="section" id="djforms" aria-labelledby="djforms-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="djforms-title">Forms in Django</h2>
+<p>A form class describes the fields, checks the data and can render itself as HTML.</p>
+</div>
+<div class="code-grid">
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>tasks/forms.py</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>from django import forms
+
+class TaskForm(forms.Form):
+    title = forms.CharField(label="Задача", max_length=100)</code></pre>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>tasks/views.py</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>from django.shortcuts import redirect, render
+
+from .forms import TaskForm
+from .models import Task
+
+def index(request):
+    form = TaskForm(request.POST or None)
+    if form.is_valid():
+        Task.objects.create(title=form.cleaned_data["title"])
+        return redirect("index")
+    return render(request, "index.html", {"form": form, "tasks": Task.objects.all()})</code></pre>
+</div>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>templates/index.html</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>&lt;form method="post"&gt;
+  {% csrf_token %}
+  {{ form.as_p }}
+  &lt;button&gt;Добавить&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+</div>
+</div>
+</section>
+<section class="section" aria-labelledby="sources-title">
+<div class="container">
+<div class="panel sources reveal">
+<h2 id="sources-title">Sources</h2>
+<p class="note">Links checked on <time datetime="2026-11-06">06.11.2026</time>.</p>
+<ul class="list">
+<li><a href="https://jinja.palletsprojects.com/en/stable/templates/" rel="noopener">Jinja: template documentation</a></li>
+<li><a href="https://flask.palletsprojects.com/en/stable/templating/" rel="noopener">Flask: templates</a></li>
+<li><a href="https://docs.djangoproject.com/en/6.1/topics/forms/" rel="noopener">Django 6.1: forms</a></li>
+<li><a href="https://docs.djangoproject.com/en/6.1/ref/csrf/" rel="noopener">Django 6.1: CSRF protection</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section" aria-label="Next">
+<div class="container">
+<div class="cta-panel reveal">
+<div>
+<h2>Next: authentication</h2>
+<p class="lead cta-lead">We have forms; now let us learn to recognise the user.</p>
+</div>
+<div class="cta-actions"><a class="btn btn-primary" href="../auth.html" hreflang="ru">Open the section</a></div>
+</div>
+</div>
+</section>
+
+
+</main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Start</strong><ul><li><a href="start.html">Python from scratch</a></li><li><a href="glossary.html">Glossary</a></li><li><a href="../playground.html" hreflang="ru">Sandbox <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Understand</strong><ul><li><a href="about.html">About Python</a></li><li><a href="frameworks.html">Frameworks</a></li><li><a href="databases.html">Databases</a></li><li><a href="templates.html">Templates and forms</a></li><li><a href="../auth.html" hreflang="ru">Authentication <span class="ru-mark">(RU)</span></a></li><li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li><li><a href="../testing.html" hreflang="ru">Testing <span class="ru-mark">(RU)</span></a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Build</strong><ul><li><a href="project.html">First project</a></li><li><a href="../project2.html" hreflang="ru">Second project <span class="ru-mark">(RU)</span></a></li><li><a href="../deploy.html" hreflang="ru">Deployment <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Practice</strong><ul><li><a href="practice.html">Exercises</a></li><li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Final test <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Site</strong><ul><li><a href="../course.html" hreflang="ru">Full course <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">My progress <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Contact <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, a learning project about Python in web development</p>
+      <p class="note footer-note">Author: <a href="../contacts.html#authors" hreflang="ru">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-09">09.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
+      <p class="note footer-note">Photo: <a href="https://commons.wikimedia.org/wiki/File:Zetterij_van_de_Deli_Courant_te_Medan,_NG-1990-14-11.jpg" rel="noopener">composing room of the Deli Courant, Rijksmuseum, CC0</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Privacy policy</a> · <a href="../terms.html" hreflang="ru">Terms of use</a></p>
+      <p class="note footer-note">This is a learning site. Messages from the form are sent through the public Issues section on GitHub. No GitHub account? <a href="../contacts.html#no-github" hreflang="ru">Write directly</a>.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
