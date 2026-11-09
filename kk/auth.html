@@ -1,0 +1,347 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из auth.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flask пен Django-дағы авторизация: құпиясөздер мен сессиялар — PyWeb Guide</title>
+
+  <meta name="description" content="Құпиясөздерді қалай қауіпсіз сақтауға болады, сессия деген не және Flask пен Django-да беттерге кіруді қалай шектеуге болады.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/auth.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/auth.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/auth.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/auth.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Flask пен Django-дағы авторизация: құпиясөздер мен сессиялар — PyWeb Guide">
+  <meta property="og:description" content="Құпиясөздерді қалай қауіпсіз сақтауға болады, сессия деген не және Flask пен Django-да беттерге кіруді қалай шектеуге болады.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/auth.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffd249">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="yellow" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="project.html">Алғашқы жоба</a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="glossary.html">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">Python туралы</a></li>
+              <li><a href="frameworks.html">Фреймворктер</a></li>
+              <li><a href="databases.html">Дерекқорлар</a></li>
+              <li><a href="templates.html">Үлгілер мен формалар</a></li>
+              <li><a href="auth.html" aria-current="page">Авторизация</a></li>
+              <li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Есептер</a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../auth.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="auth.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Навигациялық тізбек">
+<a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Авторизация</span>
+</nav>
+<h1>Сайт пайдаланушыны қалай таниды</h1>
+<p class="lead">Аутентификация «бұл кім?» деген сұраққа, авторизация «оған не рұқсат?» деген сұраққа жауап береді. Құпиясөздерді сақтауды, сессияларды және жабық беттерді талдаймыз.</p>
+<img class="band-picture" src="../assets/img/vault.jpg" width="812" height="890" alt="1887 жылғы сурет: 1869 жылы тоналған Нью-Йорктегі Ocean National Bank банкі қоймасының есігі" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" id="passwords" aria-labelledby="passwords-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="passwords-title">Құпиясөздер тек хеш түрінде сақталады</h2>
+<p>Хеш — кері қайтарылмайтын із. Дерекқорды ұрласа да, онда нақты құпиясөздер болмайды.</p>
+</div>
+<div class="code-block reveal" data-run="python">
+  <div class="code-head">
+    <span>Құпиясөзді хештеу</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>from werkzeug.security import check_password_hash, generate_password_hash
+
+stored = generate_password_hash("секрет123", method="pbkdf2:sha256")
+
+print("В базе лежит:", stored[:40] + "...")
+print("Верный пароль:", check_password_hash(stored, "секрет123"))
+print("Неверный пароль:", check_password_hash(stored, "qwerty"))
+print("Два хеша разные:", stored != generate_password_hash("секрет123", method="pbkdf2:sha256"))</code></pre>
+</div>
+<p class="note stack-gap">Кездейсоқ «тұздың» арқасында бір құпиясөздің хештері әртүрлі болады. Сондықтан бірдей құпиясөздер дерекқорда бірдей көрінбейді. Тұзсыз және баяулатусыз кәдімгі <code>md5</code> немесе <code>sha256</code> құпиясөздерге жарамайды. Нақты қосымшада әдісті көрсетпеуге болады: кітапхана әдепкі бойынша сенімді нұсқаны таңдайды.</p>
+</div>
+</section>
+<section class="section" id="session" aria-labelledby="session-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="session-title">Сессия: сайт кіргеніңізді қалай есте сақтайды</h2>
+<p>HTTP бұрынғы сұрауларды есте сақтамайды. Кіргеннен кейін сервер браузерге cookie береді, ал браузер оны келесі сұрауларға қоса жібереді.</p>
+</div>
+<div class="code-block reveal" data-run="python">
+  <div class="code-head">
+    <span>Flask: кіру, жабық бет және шығу</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>from functools import wraps
+
+from flask import Flask, abort, redirect, request, session, url_for
+from werkzeug.security import check_password_hash, generate_password_hash
+
+app = Flask(__name__)
+app.secret_key = "только-для-примера"  # в реальном проекте берите из переменной окружения
+
+USERS = {"ernar": generate_password_hash("секрет123", method="pbkdf2:sha256")}
+
+def login_required(view):
+    @wraps(view)
+    def wrapper(*args, **kwargs):
+        if "user" not in session:
+            return redirect(url_for("login"))
+        return view(*args, **kwargs)
+    return wrapper
+
+@app.route("/login", methods=["POST"])
+def login():
+    name = request.form.get("name", "")
+    stored = USERS.get(name)
+    if stored is None or not check_password_hash(stored, request.form.get("password", "")):
+        abort(401)
+    session["user"] = name
+    return redirect(url_for("profile"))
+
+@app.route("/logout", methods=["POST"])
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
+
+@app.route("/profile")
+@login_required
+def profile():
+    return f"Привет, {session['user']}!"
+
+client = app.test_client()
+print("Без входа:", client.get("/profile").status_code)
+print("Неверный пароль:", client.post("/login", data={"name": "ernar", "password": "x"}).status_code)
+client.post("/login", data={"name": "ernar", "password": "секрет123"})
+print("После входа:", client.get("/profile").text)
+client.post("/logout")
+print("После выхода:", client.get("/profile").status_code)</code></pre>
+</div>
+<div class="panel reveal stack-gap">
+<h3>Неге назар аудару керек</h3>
+<ul class="list">
+<li>Flask сессиясы <code>secret_key</code> кілтімен қол қойылған, бірақ шифрланбаған: онда құпия нәрселерді сақтамаңыз.</li>
+<li>Логин қате болғанда да, құпиясөз қате болғанда да жауап бірдей, сонда бар логиндерді іріктеп табу мүмкін болмайды.</li>
+<li>Шығу POST арқылы орындалады, сонда оны бөгде сайттан жай сілтемемен шақыру мүмкін болмайды.</li>
+<li>Нақты сайтта кіру тек HTTPS арқылы жұмыс істеуі керек, ал әрекет санын шектеген жөн.</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section" id="django" aria-labelledby="django-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="django-title">Django-дағы авторизация</h2>
+<p>Django-да пайдаланушылар, құпиясөздерді хештеу, сессиялар және дайын кіру беттері бұрыннан бар.</p>
+</div>
+<div class="code-grid">
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>mysite/urls.py</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("accounts/", include("django.contrib.auth.urls")),
+]</code></pre>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>tasks/views.py</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
+@login_required
+def profile(request):
+    return render(request, "profile.html", {"user": request.user})</code></pre>
+</div>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>mysite/settings.py</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "profile"
+LOGOUT_REDIRECT_URL = "login"</code></pre>
+</div>
+<p class="note stack-gap">Кіру үлгісін өзіңіз жасауыңыз керек: <code>templates/registration/login.html</code>. Django-ның қазіргі нұсқаларында шығу тек POST арқылы жұмыс істейді, сондықтан оны сілтеме емес, батырмасы бар форма етіп жасаңыз.</p>
+</div>
+</section>
+<section class="section" id="roles" aria-labelledby="roles-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="roles-title">Қол жеткізу құқықтары</h2>
+<p>Кіргеннен кейін пайдаланушының дәл өз деректерімен жұмыс істеп жатқанын тексеру маңызды.</p>
+</div>
+<div class="panel reveal stack-gap">
+<p>Жиі қате — тек кірудің өзін тексеру. Егер <code>/tasks/5/delete</code> мекенжайы кез келген кірген адамға қолжетімді болса, нөмірді ауыстыра салып, біреудің тапсырмасын жоюға болады. Иесін әрқашан серверде тексеріңіз:</p>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>Django: тек өз тапсырмалары</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect
+from django.views.decorators.http import require_POST
+
+from .models import Task
+
+@login_required
+@require_POST
+def delete_task(request, pk):
+    task = get_object_or_404(Task, pk=pk, owner=request.user)
+    task.delete()
+    return redirect("index")</code></pre>
+</div>
+</div>
+</section>
+<section class="section" aria-labelledby="sources-title">
+<div class="container">
+<div class="panel sources reveal">
+<h2 id="sources-title">Дереккөздер</h2>
+<p class="note">Сілтемелер <time datetime="2026-11-06">06.11.2026</time> тексерілді.</p>
+<ul class="list">
+<li><a href="https://flask.palletsprojects.com/en/stable/quickstart/#sessions" rel="noopener">Flask: сессиялар</a></li>
+<li><a href="https://werkzeug.palletsprojects.com/en/stable/utils/#module-werkzeug.security" rel="noopener">Werkzeug: құпиясөздерді хештеу</a></li>
+<li><a href="https://docs.djangoproject.com/en/6.1/topics/auth/default/" rel="noopener">Django 6.1: пайдаланушылар жүйесі</a></li>
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html" rel="noopener">OWASP: құпиясөздерді сақтау</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section" aria-label="Әрі қарай">
+<div class="container">
+<div class="cta-panel reveal">
+<div>
+<h2>Әрі қарай: REST API</h2>
+<p class="lead cta-lead">Сервер тек беттерді ғана емес, деректерді де бере алады.</p>
+</div>
+<div class="cta-actions"><a class="btn btn-primary" href="../api.html" hreflang="ru">Бөлімді ашу</a></div>
+</div>
+</div>
+</section>
+
+
+</main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="about.html">Python туралы</a></li><li><a href="frameworks.html">Фреймворктер</a></li><li><a href="databases.html">Дерекқорлар</a></li><li><a href="templates.html">Үлгілер мен формалар</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li><li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="project.html">Алғашқы жоба</a></li><li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li><li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Есептер</a></li><li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="../contacts.html#authors" hreflang="ru">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-09">09.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Сурет: <a href="https://commons.wikimedia.org/wiki/File:Ocean_National_Bank_vault_door.png" rel="noopener">1869 жылы тоналған Ocean National Bank қоймасының есігі; 1887 жылғы басылым</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Құпиялылық саясаты</a> · <a href="../terms.html" hreflang="ru">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="../contacts.html#no-github" hreflang="ru">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
