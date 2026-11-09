@@ -1,0 +1,347 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из auth.html. Правьте tools/i18n/en.json, а не этот файл. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Authentication in Flask and Django: passwords and sessions — PyWeb Guide</title>
+
+  <meta name="description" content="How to store passwords safely, what a session is and how to restrict access to pages in Flask and Django.">
+  <link rel="canonical" href="https://pywebguide.github.io/en/auth.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/auth.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/auth.html">
+  <link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/auth.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/auth.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Authentication in Flask and Django: passwords and sessions — PyWeb Guide">
+  <meta property="og:description" content="How to store passwords safely, what a session is and how to restrict access to pages in Flask and Django.">
+  <meta property="og:url" content="https://pywebguide.github.io/en/auth.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide poster: your first website with Python, a free course for people who have never programmed">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffd249">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/sofia-sans-extra-condensed-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="yellow" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">From scratch</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Full course <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="project.html">First project</a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Sandbox <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="glossary.html">Glossary</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">More <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Understand</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">About Python</a></li>
+              <li><a href="frameworks.html">Frameworks</a></li>
+              <li><a href="databases.html">Databases</a></li>
+              <li><a href="templates.html">Templates and forms</a></li>
+              <li><a href="auth.html" aria-current="page">Authentication</a></li>
+              <li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../testing.html" hreflang="ru">Testing <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Build</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Second project <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../deploy.html" hreflang="ru">Deployment <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Practice</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Exercises</a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Final test <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Site</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">My progress <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Contact <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Site language">
+            <a href="../auth.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="../kk/auth.html" hreflang="kk" lang="kk">ҚАЗ</a>
+            <a href="auth.html" hreflang="en" lang="en" aria-current="true">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Light theme">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Breadcrumb">
+<a href="index.html">Home</a> <span aria-hidden="true">/</span> <span>Authentication</span>
+</nav>
+<h1>How a website recognises a user</h1>
+<p class="lead">Authentication answers the question “who is this?”, authorisation answers “what are they allowed to do?”. We look at storing passwords, sessions and protected pages.</p>
+<img class="band-picture" src="../assets/img/vault.jpg" width="812" height="890" alt="An 1887 illustration: the vault door of the Ocean National Bank in New York, robbed in 1869" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" id="passwords" aria-labelledby="passwords-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="passwords-title">Passwords are stored only as a hash</h2>
+<p>A hash is an irreversible fingerprint. If the database is stolen, it contains no real passwords.</p>
+</div>
+<div class="code-block reveal" data-run="python">
+  <div class="code-head">
+    <span>Hashing a password</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>from werkzeug.security import check_password_hash, generate_password_hash
+
+stored = generate_password_hash("секрет123", method="pbkdf2:sha256")
+
+print("В базе лежит:", stored[:40] + "...")
+print("Верный пароль:", check_password_hash(stored, "секрет123"))
+print("Неверный пароль:", check_password_hash(stored, "qwerty"))
+print("Два хеша разные:", stored != generate_password_hash("секрет123", method="pbkdf2:sha256"))</code></pre>
+</div>
+<p class="note stack-gap">Hashes of the same password differ because of a random “salt”, so identical passwords do not look the same in the database. A plain <code>md5</code> or <code>sha256</code> without salt and slowing down is not suitable for passwords. In a real application you can leave out the method: the library picks a strong default.</p>
+</div>
+</section>
+<section class="section" id="session" aria-labelledby="session-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="session-title">Session: how a site remembers your login</h2>
+<p>HTTP does not remember earlier requests. After you log in, the server gives the browser a cookie, and the browser attaches it to the next requests.</p>
+</div>
+<div class="code-block reveal" data-run="python">
+  <div class="code-head">
+    <span>Flask: login, a protected page and logout</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>from functools import wraps
+
+from flask import Flask, abort, redirect, request, session, url_for
+from werkzeug.security import check_password_hash, generate_password_hash
+
+app = Flask(__name__)
+app.secret_key = "только-для-примера"  # в реальном проекте берите из переменной окружения
+
+USERS = {"ernar": generate_password_hash("секрет123", method="pbkdf2:sha256")}
+
+def login_required(view):
+    @wraps(view)
+    def wrapper(*args, **kwargs):
+        if "user" not in session:
+            return redirect(url_for("login"))
+        return view(*args, **kwargs)
+    return wrapper
+
+@app.route("/login", methods=["POST"])
+def login():
+    name = request.form.get("name", "")
+    stored = USERS.get(name)
+    if stored is None or not check_password_hash(stored, request.form.get("password", "")):
+        abort(401)
+    session["user"] = name
+    return redirect(url_for("profile"))
+
+@app.route("/logout", methods=["POST"])
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
+
+@app.route("/profile")
+@login_required
+def profile():
+    return f"Привет, {session['user']}!"
+
+client = app.test_client()
+print("Без входа:", client.get("/profile").status_code)
+print("Неверный пароль:", client.post("/login", data={"name": "ernar", "password": "x"}).status_code)
+client.post("/login", data={"name": "ernar", "password": "секрет123"})
+print("После входа:", client.get("/profile").text)
+client.post("/logout")
+print("После выхода:", client.get("/profile").status_code)</code></pre>
+</div>
+<div class="panel reveal stack-gap">
+<h3>What to watch out for</h3>
+<ul class="list">
+<li>A Flask session is signed with <code>secret_key</code> but not encrypted: do not keep secrets in it.</li>
+<li>A wrong username and a wrong password get the same response, so nobody can find out which usernames exist.</li>
+<li>Logout is done with POST, so it cannot be triggered by a simple link on another site.</li>
+<li>On a real site, login must work only over HTTPS, and it is worth limiting the number of attempts.</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section" id="django" aria-labelledby="django-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="django-title">Authentication in Django</h2>
+<p>Django already has users, password hashing, sessions and ready login pages.</p>
+</div>
+<div class="code-grid">
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>mysite/urls.py</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("accounts/", include("django.contrib.auth.urls")),
+]</code></pre>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>tasks/views.py</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
+@login_required
+def profile(request):
+    return render(request, "profile.html", {"user": request.user})</code></pre>
+</div>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>mysite/settings.py</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "profile"
+LOGOUT_REDIRECT_URL = "login"</code></pre>
+</div>
+<p class="note stack-gap">You create the login template yourself: <code>templates/registration/login.html</code>. In current Django versions logout works only with POST, so make it a form with a button, not a link.</p>
+</div>
+</section>
+<section class="section" id="roles" aria-labelledby="roles-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="roles-title">Access rights</h2>
+<p>After login it is important to check that the user works only with their own data.</p>
+</div>
+<div class="panel reveal stack-gap">
+<p>A common mistake is to check only the login itself. If the address <code>/tasks/5/delete</code> is open to anyone logged in, someone else's task can be deleted just by changing the number. Always check the owner on the server:</p>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>Django: only your own tasks</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect
+from django.views.decorators.http import require_POST
+
+from .models import Task
+
+@login_required
+@require_POST
+def delete_task(request, pk):
+    task = get_object_or_404(Task, pk=pk, owner=request.user)
+    task.delete()
+    return redirect("index")</code></pre>
+</div>
+</div>
+</section>
+<section class="section" aria-labelledby="sources-title">
+<div class="container">
+<div class="panel sources reveal">
+<h2 id="sources-title">Sources</h2>
+<p class="note">Links checked on <time datetime="2026-11-06">06.11.2026</time>.</p>
+<ul class="list">
+<li><a href="https://flask.palletsprojects.com/en/stable/quickstart/#sessions" rel="noopener">Flask: sessions</a></li>
+<li><a href="https://werkzeug.palletsprojects.com/en/stable/utils/#module-werkzeug.security" rel="noopener">Werkzeug: password hashing</a></li>
+<li><a href="https://docs.djangoproject.com/en/6.1/topics/auth/default/" rel="noopener">Django 6.1: the user system</a></li>
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html" rel="noopener">OWASP: password storage</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section" aria-label="Next">
+<div class="container">
+<div class="cta-panel reveal">
+<div>
+<h2>Next: REST API</h2>
+<p class="lead cta-lead">A server can return not only pages but data too.</p>
+</div>
+<div class="cta-actions"><a class="btn btn-primary" href="../api.html" hreflang="ru">Open the section</a></div>
+</div>
+</div>
+</section>
+
+
+</main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Start</strong><ul><li><a href="start.html">Python from scratch</a></li><li><a href="glossary.html">Glossary</a></li><li><a href="../playground.html" hreflang="ru">Sandbox <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Understand</strong><ul><li><a href="about.html">About Python</a></li><li><a href="frameworks.html">Frameworks</a></li><li><a href="databases.html">Databases</a></li><li><a href="templates.html">Templates and forms</a></li><li><a href="auth.html">Authentication</a></li><li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li><li><a href="../testing.html" hreflang="ru">Testing <span class="ru-mark">(RU)</span></a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Build</strong><ul><li><a href="project.html">First project</a></li><li><a href="../project2.html" hreflang="ru">Second project <span class="ru-mark">(RU)</span></a></li><li><a href="../deploy.html" hreflang="ru">Deployment <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Practice</strong><ul><li><a href="practice.html">Exercises</a></li><li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Final test <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Site</strong><ul><li><a href="../course.html" hreflang="ru">Full course <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">My progress <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Contact <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, a learning project about Python in web development</p>
+      <p class="note footer-note">Author: <a href="../contacts.html#authors" hreflang="ru">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-09">09.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
+      <p class="note footer-note">Illustration: <a href="https://commons.wikimedia.org/wiki/File:Ocean_National_Bank_vault_door.png" rel="noopener">vault door of the Ocean National Bank, robbed in 1869; published in 1887</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Privacy policy</a> · <a href="../terms.html" hreflang="ru">Terms of use</a></p>
+      <p class="note footer-note">This is a learning site. Messages from the form are sent through the public Issues section on GitHub. No GitHub account? <a href="../contacts.html#no-github" hreflang="ru">Write directly</a>.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
