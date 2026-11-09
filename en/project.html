@@ -1,0 +1,851 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из project.html. Правьте tools/i18n/en.json, а не этот файл. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>First project with Flask and Django — PyWeb Guide</title>
+
+  <meta name="description" content="A step-by-step guide: a to-do list with Flask 3.1 and with Django 6.1, from installation to a working app. Tick off the steps as you go.">
+  <link rel="canonical" href="https://pywebguide.github.io/en/project.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/project.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/project.html">
+  <link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/project.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/project.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="First project with Flask and Django — PyWeb Guide">
+  <meta property="og:description" content="A step-by-step guide: a to-do list with Flask 3.1 and with Django 6.1, from installation to a working app. Tick off the steps as you go.">
+  <meta property="og:url" content="https://pywebguide.github.io/en/project.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide poster: your first website with Python, a free course for people who have never programmed">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffd249">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/sofia-sans-extra-condensed-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LearningResource",
+      "name": "Первый проект: список задач на Flask и Django",
+      "description": "Пошаговое создание списка задач на Flask 3.1 и Django 6.1: от установки до базы данных и формы.",
+      "url": "https://pywebguide.github.io/project.html",
+      "inLanguage": "ru",
+      "educationalLevel": "Начальный",
+      "learningResourceType": "Пошаговое руководство",
+      "timeRequired": "PT1H",
+      "dateModified": "2026-10-28",
+      "isPartOf": { "@type": "WebSite", "name": "PyWeb Guide", "url": "https://pywebguide.github.io/" },
+      "author": { "@type": "Person", "name": "Жангужин Е. Е." }
+    }
+  </script>
+</head>
+
+<body data-band="yellow" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">From scratch</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Full course <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link active" href="project.html" aria-current="page">First project</a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Sandbox <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="glossary.html">Glossary</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link">More <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Understand</p><ul aria-labelledby="nav-group-1">
+              <li><a href="../about.html" hreflang="ru">About Python <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../frameworks.html" hreflang="ru">Frameworks <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../databases.html" hreflang="ru">Databases <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../templates.html" hreflang="ru">Templates and forms <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../auth.html" hreflang="ru">Authentication <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../testing.html" hreflang="ru">Testing <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Build</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Second project <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../deploy.html" hreflang="ru">Deployment <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Practice</p><ul aria-labelledby="nav-group-3">
+              <li><a href="../practice.html" hreflang="ru">Exercises <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Final test <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Site</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">My progress <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Contact <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Site language">
+            <a href="../project.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="../kk/project.html" hreflang="kk" lang="kk">ҚАЗ</a>
+            <a href="project.html" hreflang="en" lang="en" aria-current="true">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Light theme">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+      <div class="page-band"><div class="container page-hero page-hero--picture">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a> <span aria-hidden="true">/</span> <span>First project</span>
+        </nav>
+        <h1>First project: a to-do list</h1>
+        <p class="lead">
+          We will build the same app — a to-do list — in two ways: with Flask and with Django. Pick one option and follow it to the end. Each has two parts: first the simplest list, then a database, deleting and a “done” mark. Flask takes about 30 minutes, Django about an hour.
+        </p>
+        <p class="note">Just starting out? First go through the <a href="start.html">“From scratch” lessons</a>, and look up unfamiliar words in the <a href="glossary.html">glossary</a>.</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#flask">Flask option</a> <a class="btn btn-secondary" href="#django">Django option</a>
+        </div>
+
+        <nav class="page-toc" aria-label="On this page">
+          <a href="#prep">What you need</a> <a href="#flask">Flask: 6 steps</a> <a href="#django">Django: 10 steps</a> <a href="#errors">Common errors</a> <a href="#sources">Sources</a>
+        </nav>
+      <img class="band-picture" src="../assets/img/eniac.jpg" width="900" height="617" alt="Two women setting up the ENIAC computer at its cable panels, 1946" decoding="async" fetchpriority="high">
+</div></div>
+
+      <section class="section" id="prep" aria-labelledby="prep-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="prep-title">What you need</h2>
+            <p>Check these before you start, and the steps will go without errors.</p>
+          </div>
+
+          <div class="panel reveal">
+            <ul class="check-list">
+              <li>Python 3.12 or newer: the command <code>python --version</code> in the terminal.</li>
+              <li>A code editor, for example VS Code.</li>
+              <li>A separate empty folder for the project, opened in the terminal.</li>
+              <li>Basic Python: functions, lists, dictionaries (step 1 of the <a href="index.html">roadmap</a>).</li>
+            </ul>
+          </div>
+
+          <p class="notice" role="note">
+            <strong>The commands are for Windows.</strong> On macOS and Linux type <code>python3</code> instead of <code>python</code>, and activate the virtual environment with <code>source .venv/bin/activate</code>. Your ticked steps are saved in this browser, so you can come back later and continue. If something goes wrong, see the <a href="#errors">common errors</a> at the bottom of the page.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================= FLASK ============================= -->
+      <section class="section project-track" id="flask" aria-labelledby="flask-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="flask-title">Option 1. A to-do list with Flask</h2>
+            <p>Flask 3.1, about 30 minutes. One app in one file: a page with the list and a form for adding a task.</p>
+            <p class="download-row"><a class="btn btn-secondary" href="../examples/flask-todo.zip" download>Download the full code (zip, 3 KB)</a> <a href="https://github.com/pywebguide/pywebguide.github.io/tree/main/examples/flask-todo" rel="noopener">View on GitHub</a></p>
+          </div>
+
+          <div class="progress-box reveal" data-progress="project-flask">
+            <p class="progress-label" role="status" aria-live="polite"><span data-progress-count>0</span> of 6 steps done</p>
+            <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
+            <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Reset progress</button>
+          </div>
+
+          <ol class="project-steps" data-progress-list="project-flask">
+            <li class="project-step reveal">
+              <h3>Step 1. Create an environment and install Flask</h3>
+              <p>A virtual environment keeps the project's libraries separate from the rest of the system. The commands differ slightly between Windows and macOS or Linux: choose your system, and the site will remember it.</p>
+              <div class="os-tabs" data-os-tabs>
+                <div class="os-tablist" role="tablist" aria-label="Your computer&#x27;s system" hidden>
+                  <button type="button" role="tab" data-os="win">Windows</button>
+                  <button type="button" role="tab" data-os="unix">macOS and Linux</button>
+                </div>
+                <div role="tabpanel" data-os-panel="win">
+                  <p class="os-caption">Windows (PowerShell or Command Prompt)</p>
+                  <div class="code-block">
+                <div class="code-head">
+                  <span>Terminal</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre><code>python -m venv .venv
+.venv\Scripts\activate
+pip install flask</code></pre>
+              </div>
+                </div>
+                <div role="tabpanel" data-os-panel="unix">
+                  <p class="os-caption">macOS and Linux (Terminal)</p>
+                  <div class="code-block">
+                <div class="code-head">
+                  <span>Terminal</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre><code>python3 -m venv .venv
+source .venv/bin/activate
+pip install flask</code></pre>
+              </div>
+                </div>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="1"> Step done</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Step 2. Write the app</h3>
+              <p>Create the file <code>app.py</code>. For now the tasks are kept in an ordinary list, in the server's memory.</p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>app.py</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre><code>from flask import Flask, redirect, render_template_string, request, url_for
+
+app = Flask(__name__)
+tasks = []
+
+PAGE = """
+&lt;!doctype html&gt;
+&lt;title&gt;Мои задачи&lt;/title&gt;
+&lt;h1&gt;Мои задачи&lt;/h1&gt;
+&lt;form method="post"&gt;
+  &lt;input name="title" placeholder="Новая задача" required&gt;
+  &lt;button&gt;Добавить&lt;/button&gt;
+&lt;/form&gt;
+&lt;ul&gt;
+  {% for task in tasks %}&lt;li&gt;{{ task }}&lt;/li&gt;{% endfor %}
+&lt;/ul&gt;
+"""
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    if request.method == "POST":
+        tasks.append(request.form["title"])
+        return redirect(url_for("index"))
+    return render_template_string(PAGE, tasks=tasks)</code></pre>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="2"> Step done</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Step 3. Start the server</h3>
+              <p>The <code>--debug</code> flag restarts the server every time you save the file and shows clear error messages.</p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>Terminal</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre><code>flask --app app run --debug</code></pre>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="3"> Step done</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Step 4. Check the result</h3>
+              <p>
+                Open <code>http://127.0.0.1:5000/</code> in the browser and add a couple of tasks. Note that the list is cleared after the server restarts: the data lived only in memory. Keeping it between runs is what a database does, and that is the next step.
+              </p>
+              <figure class="shot">
+                <p class="shot-title">What it should look like</p>
+                <img src="../assets/img/project/flask-step4.webp" width="1120" height="340" alt="The “Мои задачи” page in the browser: a “Новая задача” field, an “Добавить” button and two tasks in a list" loading="lazy" decoding="async">
+                <figcaption>Two tasks added through the form. There is no styling yet: this is plain HTML without CSS.</figcaption>
+              </figure>
+              <label class="step-check"><input type="checkbox" data-step="4"> Step done</label>
+            </li>
+
+            <li class="project-step project-part reveal">
+              <p class="part-title">Part 2. Database and deleting</p>
+              <h3>Step 5. Store the tasks in SQLite</h3>
+              <p>
+                Replace the whole of <code>app.py</code> with this code. The <code>sqlite3</code> module comes with Python, so there is nothing to install. The database file <code>tasks.db</code> appears next to <code>app.py</code> on the first run. The <code>?</code> marks in the queries are parameters: Python inserts the values safely itself, so user input cannot change the SQL query. More in the <a href="../databases.html" hreflang="ru">“Databases”</a> section.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>app.py</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre><code>import sqlite3
+from pathlib import Path
+
+from flask import Flask, redirect, render_template_string, request, url_for
+
+app = Flask(__name__)
+DB = Path(__file__).with_name("tasks.db")
+
+PAGE = """
+&lt;!doctype html&gt;
+&lt;title&gt;Мои задачи&lt;/title&gt;
+&lt;h1&gt;Мои задачи&lt;/h1&gt;
+&lt;form method="post" action="{{ url_for('add') }}"&gt;
+  &lt;input name="title" placeholder="Новая задача" required&gt;
+  &lt;button&gt;Добавить&lt;/button&gt;
+&lt;/form&gt;
+&lt;ul&gt;
+  {% for task in tasks %}
+    &lt;li&gt;
+      {{ task["title"] }}
+      &lt;form method="post" action="{{ url_for('delete', task_id=task['id']) }}"&gt;
+        &lt;button&gt;Удалить&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;
+"""
+
+def query(sql, params=()):
+    conn = sqlite3.connect(DB)
+    conn.row_factory = sqlite3.Row
+    try:
+        rows = conn.execute(sql, params).fetchall()
+        conn.commit()
+        return rows
+    finally:
+        conn.close()
+
+query("CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY, title TEXT NOT NULL)")
+
+@app.get("/")
+def index():
+    tasks = query("SELECT id, title FROM tasks ORDER BY id")
+    return render_template_string(PAGE, tasks=tasks)
+
+@app.post("/add")
+def add():
+    query("INSERT INTO tasks (title) VALUES (?)", (request.form["title"],))
+    return redirect(url_for("index"))
+
+@app.post("/delete/&lt;int:task_id&gt;")
+def delete(task_id):
+    query("DELETE FROM tasks WHERE id = ?", (task_id,))
+    return redirect(url_for("index"))</code></pre>
+              </div>
+              <div class="try-app" data-try-app>
+                <button class="btn btn-primary" type="button" data-try-start>Try it in the browser</button>
+                <p class="note" data-try-note>This same code will run right here: Python and Flask load into the browser (about 15 MB, only on the first click). Add and delete tasks in the window below, just like on your own computer.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="5"> Step done</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Step 6. Check that the data is kept</h3>
+              <p>
+                Start the server with the same command, add a couple of tasks and delete one. Then stop the server (<kbd>Ctrl</kbd> + <kbd>C</kbd>) and start it again: the tasks are still there. Deleting is done with <code>POST</code>, not an ordinary link: actions that change data must not run just because someone opened an address.
+              </p>
+              <figure class="shot">
+                <p class="shot-title">What it should look like</p>
+                <img src="../assets/img/project/flask-step6.webp" width="1120" height="427" alt="The “Мои задачи” page: each task has an “Удалить” button" loading="lazy" decoding="async">
+                <figcaption>Three tasks added and one deleted. The list is the same after the server restarts.</figcaption>
+              </figure>
+              <label class="step-check"><input type="checkbox" data-step="6"> Step done</label>
+            </li>
+          </ol>
+
+          <div class="panel reveal stack-gap">
+            <h3>What's next</h3>
+            <ul class="list">
+              <li>Move the HTML into a <code>templates/index.html</code> template and use <code>render_template</code>.</li>
+              <li>Add a “done” mark: a <code>done INTEGER DEFAULT 0</code> column and an <code>UPDATE</code> query.</li>
+              <li>Put the app online: the guide is in the <a href="../deploy.html" hreflang="ru">“Deployment”</a> section.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================= DJANGO ============================= -->
+      <section class="section project-track" id="django" aria-labelledby="django-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="django-title">Option 2. A to-do list with Django</h2>
+            <p>Django 6.1, about 60 minutes. The tasks are stored in an SQLite database, and you can add them through the built-in admin panel.</p>
+            <p class="download-row"><a class="btn btn-secondary" href="../examples/django-todo.zip" download>Download the full code (zip, 8 KB)</a> <a href="https://github.com/pywebguide/pywebguide.github.io/tree/main/examples/django-todo" rel="noopener">View on GitHub</a></p>
+          </div>
+
+          <div class="progress-box reveal" data-progress="project-django">
+            <p class="progress-label" role="status" aria-live="polite"><span data-progress-count>0</span> of 10 steps done</p>
+            <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
+            <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Reset progress</button>
+          </div>
+
+          <ol class="project-steps" data-progress-list="project-django">
+            <li class="project-step reveal">
+              <h3>Step 1. Install Django and create a project</h3>
+              <p>The dot at the end of the command creates the project in the current folder. Then we create the <code>tasks</code> app.</p>
+              <div class="os-tabs" data-os-tabs>
+                <div class="os-tablist" role="tablist" aria-label="Your computer&#x27;s system" hidden>
+                  <button type="button" role="tab" data-os="win">Windows</button>
+                  <button type="button" role="tab" data-os="unix">macOS and Linux</button>
+                </div>
+                <div role="tabpanel" data-os-panel="win">
+                  <p class="os-caption">Windows (PowerShell or Command Prompt)</p>
+                  <div class="code-block">
+                <div class="code-head">
+                  <span>Terminal</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre><code>python -m venv .venv
+.venv\Scripts\activate
+pip install django
+django-admin startproject mysite .
+python manage.py startapp tasks</code></pre>
+              </div>
+                </div>
+                <div role="tabpanel" data-os-panel="unix">
+                  <p class="os-caption">macOS and Linux (Terminal)</p>
+                  <div class="code-block">
+                <div class="code-head">
+                  <span>Terminal</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre><code>python3 -m venv .venv
+source .venv/bin/activate
+pip install django
+django-admin startproject mysite .
+python manage.py startapp tasks</code></pre>
+              </div>
+                </div>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="1"> Step done</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Step 2. Connect the app</h3>
+              <p>In <code>mysite/settings.py</code>, add the line <code>'tasks',</code> to the end of the <code>INSTALLED_APPS</code> list.</p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>mysite/settings.py</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre><code>INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'tasks',
+]</code></pre>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="2"> Step done</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Step 3. Describe the model and register it in the admin</h3>
+              <p>A model is a database table described as a Python class. The ORM creates the SQL for it.</p>
+              <div class="code-grid">
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/models.py</span>
+                    <button class="copy-btn" type="button">Copy</button>
+                  </div>
+                  <pre><code>from django.db import models
+
+class Task(models.Model):
+    title = models.CharField(max_length=200)
+    done = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/admin.py</span>
+                    <button class="copy-btn" type="button">Copy</button>
+                  </div>
+                  <pre><code>from django.contrib import admin
+
+from .models import Task
+
+admin.site.register(Task)</code></pre>
+                </div>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="3"> Step done</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Step 4. Create the tables and an administrator</h3>
+              <p>Migrations carry the models over into the database. The last command asks for a username and password for the admin.</p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>Terminal</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre><code>python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser</code></pre>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="4"> Step done</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Step 5. Make the list page</h3>
+              <p>
+                The view gets the tasks from the database, the template shows them as a list, and the route links the address to the view. Put the template in the <code>tasks/templates/tasks/</code> folder, and Django will find it.
+              </p>
+              <div class="code-grid">
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/views.py</span>
+                    <button class="copy-btn" type="button">Copy</button>
+                  </div>
+                  <pre><code>from django.shortcuts import render
+
+from .models import Task
+
+def index(request):
+    return render(request, "tasks/index.html", {"tasks": Task.objects.all()})</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/templates/tasks/index.html</span>
+                    <button class="copy-btn" type="button">Copy</button>
+                  </div>
+                  <pre><code>&lt;h1&gt;Мои задачи&lt;/h1&gt;
+&lt;ul&gt;
+  {% for task in tasks %}
+    &lt;li&gt;{{ task.title }}{% if task.done %} (готово){% endif %}&lt;/li&gt;
+  {% empty %}
+    &lt;li&gt;Задач пока нет — добавьте их в админке.&lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>mysite/urls.py</span>
+                    <button class="copy-btn" type="button">Copy</button>
+                  </div>
+                  <pre><code>from django.contrib import admin
+from django.urls import path
+
+from tasks import views
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", views.index),
+]</code></pre>
+                </div>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="5"> Step done</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Step 6. Run it and check</h3>
+              <p>
+                Open <code>http://127.0.0.1:8000/admin/</code>, log in and add a few tasks. Then open <code>http://127.0.0.1:8000/</code>: the tasks appear in the list and stay after the server restarts.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>Terminal</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre><code>python manage.py runserver</code></pre>
+              </div>
+              <figure class="shot">
+                <p class="shot-title">What it should look like</p>
+                <img src="../assets/img/project/django-admin.webp" width="1766" height="840" alt="The Django admin: the Tasks section with a list of three tasks and an Add task button" loading="lazy" decoding="async">
+                <figcaption>The admin at /admin/: three tasks added with the Add task button. The LANGUAGE_CODE setting changes the admin's language.</figcaption>
+              </figure>
+              <label class="step-check"><input type="checkbox" data-step="6"> Step done</label>
+            </li>
+
+            <li class="project-step project-part reveal">
+              <p class="part-title">Part 2. Working without the admin</p>
+              <h3>Step 7. Create a form</h3>
+              <p>
+                <code>ModelForm</code> builds a form straight from the model: it checks the title length and saves the task to the database itself. Create a new file <code>tasks/forms.py</code>.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>tasks/forms.py</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre><code>from django import forms
+
+from .models import Task
+
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ["title"]</code></pre>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="7"> Step done</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Step 8. Add views and routes</h3>
+              <p>
+                Replace <code>tasks/views.py</code> and <code>mysite/urls.py</code> completely. The <code>@require_POST</code> decorator allows changing data only by submitting a form, not by following a link. Route names (<code>name="index"</code>) let you refer to them from the template.
+              </p>
+              <div class="code-grid">
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/views.py</span>
+                    <button class="copy-btn" type="button">Copy</button>
+                  </div>
+                  <pre><code>from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
+
+from .forms import TaskForm
+from .models import Task
+
+def index(request):
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("index")
+    else:
+        form = TaskForm()
+    return render(request, "tasks/index.html", {"tasks": Task.objects.all(), "form": form})
+
+@require_POST
+def toggle(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.done = not task.done
+    task.save()
+    return redirect("index")
+
+@require_POST
+def delete(request, pk):
+    get_object_or_404(Task, pk=pk).delete()
+    return redirect("index")</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>mysite/urls.py</span>
+                    <button class="copy-btn" type="button">Copy</button>
+                  </div>
+                  <pre><code>from django.contrib import admin
+from django.urls import path
+
+from tasks import views
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", views.index, name="index"),
+    path("tasks/&lt;int:pk&gt;/toggle/", views.toggle, name="toggle"),
+    path("tasks/&lt;int:pk&gt;/delete/", views.delete, name="delete"),
+]</code></pre>
+                </div>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="8"> Step done</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Step 9. Update the template</h3>
+              <p>
+                The <code>{% csrf_token %}</code> tag is required in every form with <code>method="post"</code>: it protects against forged requests from other sites. Without it Django responds with error 403.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>tasks/templates/tasks/index.html</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre><code>&lt;h1&gt;Мои задачи&lt;/h1&gt;
+
+&lt;form method="post"&gt;
+  {% csrf_token %}
+  {{ form.title }}
+  &lt;button&gt;Добавить&lt;/button&gt;
+  {{ form.title.errors }}
+&lt;/form&gt;
+
+&lt;ul&gt;
+  {% for task in tasks %}
+    &lt;li&gt;
+      {% if task.done %}&lt;s&gt;{{ task.title }}&lt;/s&gt;{% else %}{{ task.title }}{% endif %}
+      &lt;form method="post" action="{% url 'toggle' task.pk %}"&gt;
+        {% csrf_token %}
+        &lt;button&gt;{% if task.done %}Вернуть{% else %}Готово{% endif %}&lt;/button&gt;
+      &lt;/form&gt;
+      &lt;form method="post" action="{% url 'delete' task.pk %}"&gt;
+        {% csrf_token %}
+        &lt;button&gt;Удалить&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/li&gt;
+  {% empty %}
+    &lt;li&gt;Задач пока нет.&lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;</code></pre>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="9"> Step done</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Step 10. Check</h3>
+              <p>
+                Run <code>python manage.py runserver</code> and open <code>http://127.0.0.1:8000/</code>. Add a task, mark it with the “Готово” button so it gets crossed out, then delete it. Try adding an empty task: the form shows an error and nothing reaches the database. No migrations are needed because the model has not changed.
+              </p>
+              <figure class="shot">
+                <p class="shot-title">What it should look like</p>
+                <img src="../assets/img/project/django-step10.webp" width="1120" height="769" alt="The “Мои задачи” page in Django: the first task is crossed out, each has “Готово” or “Вернуть” and “Удалить” buttons" loading="lazy" decoding="async">
+                <figcaption>The first task was marked with the “Готово” button and is now crossed out.</figcaption>
+              </figure>
+              <label class="step-check"><input type="checkbox" data-step="10"> Step done</label>
+            </li>
+          </ol>
+
+          <div class="panel reveal stack-gap">
+            <h3>What's next</h3>
+            <ul class="list">
+              <li>Show unfinished tasks first: <code>Task.objects.order_by("done", "-id")</code>.</li>
+              <li>Work through the official Django tutorial: it continues the same logic with a polls example.</li>
+              <li>Put the app online: the guide is in the <a href="../deploy.html" hreflang="ru">“Deployment”</a> section.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section faq" id="errors" aria-labelledby="errors-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="errors-title">Common errors and how to fix them</h2>
+            <p>The messages are shown as Windows, Flask and Django print them. Click an error to see the fix.</p>
+          </div>
+
+          <details class="reveal">
+            <summary>The python command opens the Microsoft Store or says “Python was not found”</summary>
+            <p>
+              <code class="error-text">Python was not found; run without arguments to install from the Microsoft Store…</code> Python is not installed or not on PATH, so Windows shows its own stub. Install Python from <a href="https://www.python.org/downloads/" rel="noopener">python.org</a> and tick “Add python.exe to PATH”. If Python is already installed, use the <code>py</code> command: <code>py -m venv .venv</code>. Once the environment is activated, the <code>python</code> command works.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>PowerShell will not activate the environment: “running scripts is disabled”</summary>
+            <p>
+              <code class="error-text">…Activate.ps1 cannot be loaded because running scripts is disabled on this system.</code> On Russian-language Windows the same error reads: <code class="error-text">Невозможно загрузить файл …\.venv\Scripts\Activate.ps1, так как выполнение сценариев отключено в этой системе.</code> Allow local scripts for your account, once: <code>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</code>. Another option is to open Command Prompt (cmd) instead of PowerShell.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>“flask” or “django-admin” is not recognized as the name of a cmdlet</summary>
+            <p>
+              <code class="error-text">flask : The term 'flask' is not recognized as the name of a cmdlet, function, script file, or operable program.</code> The environment is not activated or the package is not installed. Activate the environment (<code>(.venv)</code> appears at the start of the terminal line) and run <code>pip install flask</code> or <code>pip install django</code> again.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>Django: «no such table: tasks_task»</summary>
+            <p>
+              <code class="error-text">django.db.utils.OperationalError: no such table: tasks_task</code> The table for the model has not been created yet. Do step 4: <code>python manage.py makemigrations</code> and <code>python manage.py migrate</code>. If the command says “No changes detected”, check that <code>'tasks'</code> is in <code>INSTALLED_APPS</code> (step 2).
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>Django: «TemplateDoesNotExist at /»</summary>
+            <p>
+              <code class="error-text">TemplateDoesNotExist at / — tasks/index.html</code> Django could not find the template. The path must be exactly <code>tasks/templates/tasks/index.html</code>: the <code>tasks</code> folder inside <code>templates</code> is repeated on purpose. Also check that the app is in <code>INSTALLED_APPS</code>.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>Django: «Forbidden (403) CSRF verification failed»</summary>
+            <p>
+              <code class="error-text">Forbidden (403) CSRF verification failed. Request aborted.</code> The form is missing the <code>{% csrf_token %}</code> tag. It is needed in every form with <code>method="post"</code>: compare your template with step 9.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="sources" aria-labelledby="sources-title">
+        <div class="container">
+          <div class="panel sources reveal">
+            <h2 id="sources-title">Sources</h2>
+            <p class="note">The code is written for Flask 3.1 and Django 6.1, sources checked on <time datetime="2026-11-06">06.11.2026</time>.</p>
+            <ul class="list">
+              <li><a href="https://flask.palletsprojects.com/en/stable/installation/" rel="noopener">Flask: installation and virtual environment</a></li>
+              <li><a href="https://flask.palletsprojects.com/en/stable/quickstart/" rel="noopener">Flask: Quickstart — routes, forms, templates</a></li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/intro/tutorial01/" rel="noopener">Django 6.1: official tutorial, part 1</a> — project, app, routes</li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/intro/tutorial02/" rel="noopener">Django 6.1: tutorial, part 2</a> — models, migrations, admin</li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/topics/forms/modelforms/" rel="noopener">Django 6.1: ModelForm</a> — forms based on models</li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/howto/csrf/" rel="noopener">Django 6.1: CSRF protection</a> — why csrf_token is needed</li>
+              <li><a href="https://docs.python.org/3/library/sqlite3.html" rel="noopener">Python: the sqlite3 module</a> — query parameters and connecting</li>
+              <li><a href="https://docs.python.org/3/library/venv.html" rel="noopener">Python: the venv module</a> — virtual environments</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Next">
+        <div class="container">
+          <div class="cta-panel reveal">
+            <div>
+              <h2>Didn't work?</h2>
+              <p class="lead cta-lead">
+                Describe the step where the error appeared through the feedback form, and compare with the sources above.
+              </p>
+            </div>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="../contacts.html" hreflang="ru">Ask a question</a>
+            </div>
+          </div>
+        </div>
+      </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Start</strong><ul><li><a href="start.html">Python from scratch</a></li><li><a href="glossary.html">Glossary</a></li><li><a href="../playground.html" hreflang="ru">Sandbox <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Understand</strong><ul><li><a href="../about.html" hreflang="ru">About Python <span class="ru-mark">(RU)</span></a></li><li><a href="../frameworks.html" hreflang="ru">Frameworks <span class="ru-mark">(RU)</span></a></li><li><a href="../databases.html" hreflang="ru">Databases <span class="ru-mark">(RU)</span></a></li><li><a href="../templates.html" hreflang="ru">Templates and forms <span class="ru-mark">(RU)</span></a></li><li><a href="../auth.html" hreflang="ru">Authentication <span class="ru-mark">(RU)</span></a></li><li><a href="../api.html" hreflang="ru">REST API <span class="ru-mark">(RU)</span></a></li><li><a href="../testing.html" hreflang="ru">Testing <span class="ru-mark">(RU)</span></a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Build</strong><ul><li><a href="project.html">First project</a></li><li><a href="../project2.html" hreflang="ru">Second project <span class="ru-mark">(RU)</span></a></li><li><a href="../deploy.html" hreflang="ru">Deployment <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Practice</strong><ul><li><a href="../practice.html" hreflang="ru">Exercises <span class="ru-mark">(RU)</span></a></li><li><a href="../cheatsheet.html" hreflang="ru">Cheat sheet <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Final test <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Site</strong><ul><li><a href="../course.html" hreflang="ru">Full course <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">My progress <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Contact <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, a learning project about Python in web development</p>
+      <p class="note footer-note">Author: <a href="../contacts.html#authors" hreflang="ru">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-09">09.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
+      <p class="note footer-note">Photo: <a href="https://commons.wikimedia.org/wiki/File:Two_women_operating_ENIAC_(full_resolution).jpg" rel="noopener">ENIAC, U.S. Army, 1946</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Privacy policy</a> · <a href="../terms.html" hreflang="ru">Terms of use</a></p>
+      <p class="note footer-note">This is a learning site. Messages from the form are sent through the public Issues section on GitHub. No GitHub account? <a href="../contacts.html#no-github" hreflang="ru">Write directly</a>.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
