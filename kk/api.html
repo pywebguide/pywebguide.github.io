@@ -1,0 +1,369 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из api.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Жаңадан бастағандарға арналған Flask пен Django-дағы REST API — PyWeb Guide</title>
+
+  <meta name="description" content="REST API деген не, HTTP-дің қандай әдістері мен жауап кодтары бар, Flask пен Django-да JSON API-ды қалай жасап, оны браузерден қалай шақыруға болады.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/api.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/api.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/api.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/api.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Жаңадан бастағандарға арналған Flask пен Django-дағы REST API — PyWeb Guide">
+  <meta property="og:description" content="REST API деген не, HTTP-дің қандай әдістері мен жауап кодтары бар, Flask пен Django-да JSON API-ды қалай жасап, оны браузерден қалай шақыруға болады.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/api.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffc4ef">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="pink" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="project.html">Алғашқы жоба</a></li>
+          <li><a class="nav-link" href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li>
+          <li><a class="nav-link" href="glossary.html">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">Python туралы</a></li>
+              <li><a href="frameworks.html">Фреймворктер</a></li>
+              <li><a href="databases.html">Дерекқорлар</a></li>
+              <li><a href="templates.html">Үлгілер мен формалар</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html" aria-current="page">REST API</a></li>
+              <li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Есептер</a></li>
+              <li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li>
+              <li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../api.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="api.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Навигациялық тізбек">
+<a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>REST API</span>
+</nav>
+<h1>REST API: сайт деректерді береді</h1>
+<p class="lead">Сервер бетпен емес, деректермен жауап бергенде API керек: JavaScript-тегі сайтқа, мобильді қосымшаға немесе басқа бағдарламаға.</p>
+<img class="band-picture" src="../assets/img/telegraphists.jpg" width="1000" height="662" alt="Булоньдағы байланыс торабында жұмыс істеп отырған телеграфшы әйелдер, 1919 жыл" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" id="rest" aria-labelledby="rest-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="rest-title">REST-тің негізгі ережелері</h2>
+<p>Мекенжай деректерді, ал HTTP әдісі олармен жасалатын әрекетті білдіреді.</p>
+</div>
+<div class="table-wrap reveal" tabindex="0" role="region" aria-label="HTTP әдістері">
+<table>
+<caption>Тапсырмалар тізіміне арналған HTTP әдістері</caption>
+<thead><tr><th scope="col">Сұрау</th><th scope="col">Не істейді</th><th scope="col">Сәтті жауап</th></tr></thead>
+<tbody>
+<tr><td><code>GET /tasks</code></td><td>Тізімді қайтарады</td><td>200 OK</td></tr>
+<tr><td><code>POST /tasks</code></td><td>Тапсырма жасайды</td><td>201 Created</td></tr>
+<tr><td><code>GET /tasks/5</code></td><td>Бір тапсырманы қайтарады</td><td>200 OK</td></tr>
+<tr><td><code>PATCH /tasks/5</code></td><td>Өрістердің бір бөлігін өзгертеді</td><td>200 OK</td></tr>
+<tr><td><code>DELETE /tasks/5</code></td><td>Жояды</td><td>204 No Content</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="section" id="status" aria-labelledby="status-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="status-title">Жауап кодтары</h2>
+<p>Клиент алдымен кодқа қарайды, содан кейін ғана жауаптың денесін оқиды.</p>
+</div>
+<div class="compare-grid">
+<article class="panel reveal">
+<h3>Бәрі жақсы немесе клиент қатесі</h3>
+<ul class="list">
+<li><code>200</code> — сәтті</li>
+<li><code>201</code> — жасалды</li>
+<li><code>204</code> — сәтті, жауап денесі жоқ</li>
+<li><code>400</code> — деректер қате</li>
+<li><code>401</code> — кіру керек</li>
+<li><code>403</code> — құқық жоқ</li>
+<li><code>404</code> — табылмады</li>
+</ul>
+</article>
+<article class="panel reveal">
+<h3>Сервер қатесі</h3>
+<ul class="list">
+<li><code>500</code> — қосымша кодындағы қате</li>
+<li><code>502</code> — веб-сервер қосымшадан дұрыс жауап алмады</li>
+<li><code>503</code> — сервис уақытша қолжетімсіз</li>
+</ul>
+<p class="note">5xx қатесі себепті сұраудан емес, серверден іздеу керек екенін білдіреді.</p>
+</article>
+</div>
+</div>
+</section>
+<section class="section" id="flask" aria-labelledby="flask-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="flask-title">Flask-тағы API</h2>
+<p>Flask сөздікті JSON-ға өзі айналдырады. Тізімді <code>jsonify</code> арқылы берген дұрыс.</p>
+</div>
+<div class="code-block reveal" data-run="python">
+  <div class="code-head">
+    <span>Flask: тапсырмалар тізімі бар JSON API</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+tasks = {}
+next_id = 1
+
+@app.get("/tasks")
+def list_tasks():
+    return jsonify(list(tasks.values()))
+
+@app.post("/tasks")
+def create_task():
+    global next_id
+    data = request.get_json(silent=True) or {}
+    title = str(data.get("title", "")).strip()
+    if not title:
+        return {"error": "Поле title обязательно"}, 400
+    task = {"id": next_id, "title": title, "done": False}
+    tasks[next_id] = task
+    next_id += 1
+    return task, 201
+
+@app.patch("/tasks/&lt;int:task_id&gt;")
+def update_task(task_id):
+    task = tasks.get(task_id)
+    if task is None:
+        return {"error": "Задача не найдена"}, 404
+    data = request.get_json(silent=True) or {}
+    if "done" in data:
+        task["done"] = bool(data["done"])
+    return task
+
+@app.delete("/tasks/&lt;int:task_id&gt;")
+def delete_task(task_id):
+    if tasks.pop(task_id, None) is None:
+        return {"error": "Задача не найдена"}, 404
+    return "", 204
+
+client = app.test_client()
+print(client.post("/tasks", json={}).status_code, "пустая задача")
+created = client.post("/tasks", json={"title": "Написать API"})
+print(created.status_code, created.json)
+print(client.patch("/tasks/1", json={"done": True}).json)
+print(client.get("/tasks").json)
+print(client.delete("/tasks/1").status_code, "удалена")
+print(client.delete("/tasks/1").status_code, "повторное удаление")</code></pre>
+</div>
+</div>
+</section>
+<section class="section" id="django" aria-labelledby="django-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="django-title">Django-дағы API</h2>
+<p>Қарапайым JSON жауабын кірістірілген құралдармен беруге болады. Үлкен API үшін әдетте <a href="https://www.django-rest-framework.org/" rel="noopener">Django REST framework</a> алады.</p>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>tasks/views.py</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>import json
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+
+from .models import Task
+
+@csrf_exempt  # только для учебного примера: настоящему API нужна авторизация
+@require_http_methods(["GET", "POST"])
+def tasks(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            title = str(data.get("title", "")).strip()
+        except (json.JSONDecodeError, AttributeError):
+            return JsonResponse({"error": "Неверный JSON"}, status=400)
+        if not title:
+            return JsonResponse({"error": "Поле title обязательно"}, status=400)
+        task = Task.objects.create(title=title)
+        return JsonResponse({"id": task.id, "title": task.title}, status=201)
+    return JsonResponse(list(Task.objects.values("id", "title")), safe=False)</code></pre>
+</div>
+<p class="note stack-gap"><code>safe=False</code> параметрі керек, өйткені әдепкі бойынша <code>JsonResponse</code> тек сөздікті қабылдайды.</p>
+</div>
+</section>
+<section class="section" id="client" aria-labelledby="client-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="client-title">API-ды браузерден қалай шақыруға болады</h2>
+<p>Бетте мұны <code>fetch</code> функциясы жасайды. Жауап кодын тексеріңіз: <code>fetch</code> 404-ті қате деп санамайды.</p>
+</div>
+<div class="code-block reveal">
+  <div class="code-head">
+    <span>JavaScript</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>async function addTask(title) {
+  const response = await fetch("/tasks", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title }),
+  });
+
+  if (!response.ok) {
+    const problem = await response.json();
+    throw new Error(problem.error);
+  }
+
+  return response.json();
+}</code></pre>
+</div>
+<p class="note stack-gap">Сайт пен API әртүрлі мекенжайларда болса, сервер CORS тақырыптарымен рұқсат бермейінше, браузер жауапты бұғаттайды. Flask-та бұл үшін Flask-CORS кеңейтуі бар.</p>
+</div>
+</section>
+<section class="section" id="fastapi" aria-labelledby="fastapi-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="fastapi-title">Мұнда FastAPI қайда</h2>
+<p>Жоба тек API болса, <a href="frameworks.html">FastAPI</a>-ға қараңыз: ол деректерді тип кеңестері бойынша тексеріп, құжаттаманы өзі жасайды. REST қағидаттары сол күйі қалады.</p>
+</div>
+</div>
+</section>
+<section class="section" aria-labelledby="sources-title">
+<div class="container">
+<div class="panel sources reveal">
+<h2 id="sources-title">Дереккөздер</h2>
+<p class="note">Сілтемелер <time datetime="2026-11-06">06.11.2026</time> тексерілді.</p>
+<ul class="list">
+<li><a href="https://developer.mozilla.org/ru/docs/Web/HTTP/Reference/Methods" rel="noopener">MDN: HTTP әдістері</a></li>
+<li><a href="https://developer.mozilla.org/ru/docs/Web/HTTP/Reference/Status" rel="noopener">MDN: HTTP жауап кодтары</a></li>
+<li><a href="https://flask.palletsprojects.com/en/stable/patterns/javascript/" rel="noopener">Flask: JSON және JavaScript</a></li>
+<li><a href="https://docs.djangoproject.com/en/6.1/ref/request-response/#jsonresponse-objects" rel="noopener">Django 6.1: JsonResponse</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section" aria-label="Әрі қарай">
+<div class="container">
+<div class="cta-panel reveal">
+<div>
+<h2>Әрі қарай: екінші жоба</h2>
+<p class="lead cta-lead">Нағыз дерекқоры бар блог API-ын жинаңыз.</p>
+</div>
+<div class="cta-actions"><a class="btn btn-primary" href="../project2.html" hreflang="ru">Бөлімді ашу</a></div>
+</div>
+</div>
+</section>
+
+
+</main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="../playground.html" hreflang="ru">Құмсалғыш <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="about.html">Python туралы</a></li><li><a href="frameworks.html">Фреймворктер</a></li><li><a href="databases.html">Дерекқорлар</a></li><li><a href="templates.html">Үлгілер мен формалар</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="../testing.html" hreflang="ru">Тесттер <span class="ru-mark">(RU)</span></a></li><li><a href="../git.html" hreflang="ru">Git <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="project.html">Алғашқы жоба</a></li><li><a href="../project2.html" hreflang="ru">Екінші жоба <span class="ru-mark">(RU)</span></a></li><li><a href="../deploy.html" hreflang="ru">Жариялау <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Есептер</a></li><li><a href="../cheatsheet.html" hreflang="ru">Қысқаша анықтама <span class="ru-mark">(RU)</span></a></li><li><a href="../exam.html" hreflang="ru">Қорытынды тест <span class="ru-mark">(RU)</span></a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="../course.html" hreflang="ru">Бүкіл курс <span class="ru-mark">(RU)</span></a></li><li><a href="../progress.html" hreflang="ru">Менің прогресім <span class="ru-mark">(RU)</span></a></li><li><a href="../contacts.html" hreflang="ru">Байланыс <span class="ru-mark">(RU)</span></a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="../contacts.html#authors" hreflang="ru">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-09">09.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Сурет: <a href="https://commons.wikimedia.org/wiki/File:Olive_Edis;_Iwm_Photographer_of_the_Women%27s_Services_in_France_1919_Q7971.jpg" rel="noopener">Булоньдағы телеграфшы әйелдер, Olive Edis, 1919</a>.</p>
+      <p class="note footer-note"><a href="../privacy.html" hreflang="ru">Құпиялылық саясаты</a> · <a href="../terms.html" hreflang="ru">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="../contacts.html#no-github" hreflang="ru">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
