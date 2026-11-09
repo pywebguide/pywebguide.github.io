@@ -1,0 +1,217 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из privacy.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Құпиялылық саясаты — PyWeb Guide</title>
+
+  <meta name="description" content="PyWeb Guide сайтын пайдаланғанда қандай деректер өңделеді: браузерде не сақталады және GitHub Pages хостингі не жазады.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/privacy.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/privacy.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/privacy.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/privacy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Құпиялылық саясаты — PyWeb Guide">
+  <meta property="og:description" content="PyWeb Guide сайтын пайдаланғанда қандай деректер өңделеді: браузерде не сақталады және GitHub Pages хостингі не жазады.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/privacy.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#eeeeee">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="white" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="course.html">Бүкіл курс</a></li>
+          <li><a class="nav-link" href="project.html">Алғашқы жоба</a></li>
+          <li><a class="nav-link" href="playground.html">Құмсалғыш</a></li>
+          <li><a class="nav-link" href="glossary.html">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">Python туралы</a></li>
+              <li><a href="frameworks.html">Фреймворктер</a></li>
+              <li><a href="databases.html">Дерекқорлар</a></li>
+              <li><a href="templates.html">Үлгілер мен формалар</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Тесттер</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="project2.html">Екінші жоба</a></li>
+              <li><a href="deploy.html">Жариялау</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Есептер</a></li>
+              <li><a href="cheatsheet.html">Қысқаша анықтама</a></li>
+              <li><a href="exam.html">Қорытынды тест</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="progress.html">Менің прогресім</a></li>
+              <li><a href="contacts.html">Байланыс</a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../privacy.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="privacy.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+      <div class="page-band"><div class="container page-hero">
+        <nav class="breadcrumb" aria-label="Навигациялық тізбек">
+          <a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Құпиялылық саясаты</span>
+        </nav>
+        <h1>Құпиялылық саясаты</h1>
+        <p class="lead">Қысқаша: сайттың өз дерекқоры жоқ. Форма арқылы жіберілген хабарламалар GitHub-та жарияланады және оларды бәрі көреді, ал хостинг келушілердің IP-мекенжайларын жазады.</p>
+      </div></div>
+
+      <section class="section" aria-label="Құпиялылық саясаты">
+        <div class="container">
+          <div class="panel reveal stack-gap">
+            <h2>Сайтқа кім жауап береді</h2>
+            <p>PyWeb Guide — оқу жобасы. Авторы: <a href="contacts.html#authors">Жангужин Е. Е.</a> Онымен <a href="https://github.com/pywebguide/pywebguide.github.io/issues" rel="noopener">GitHub-тағы Issues бөлімі</a> арқылы байланысуға болады; ондағы хабарламаларды бәрі көреді, сондықтан оларда жеке деректерді көрсетпеңіз. GitHub аккаунты болмаса, <a href="contacts.html#no-github">тікелей жазуға</a> болады: мұндай хатты тек автор көреді.</p>
+          </div>
+
+          <div class="panel reveal stack-gap">
+            <h2>Браузеріңізде не сақталады</h2>
+            <p>Сайт localStorage — браузеріңіздің қоймасын пайдаланады. Бұл жазбалар серверге жіберілмейді, автор оларды көрмейді:</p>
+            <ul>
+            <li><code>pyweb_messages</code> — «Байланыс» бетіндегі формадан жіберілген хабарламалардың көшірмелері;</li>
+            <li><code>pyweb_progress</code> — оқудың белгіленген қадамдары;</li>
+            <li><code>pyweb_theme</code> — таңдалған безендіру тақырыбы;</li>
+            <li><code>pyweb_tasks</code> және <code>pyweb_task_*</code> — шешілген есептер және шешімдердің жобалары;</li>
+            <li><code>pyweb_playground</code> — құмсалғыштағы код жобасы;</li>
+            <li><code>pyweb_exam</code> — қорытынды тесттің ең жақсы нәтижесі;</li>
+            <li><code>pyweb_os</code> — командалары бар қойындыларда қай жүйені (Windows немесе macOS пен Linux) таңдағаныңыз.</li>
+            </ul>
+            <p>Хабарламаларды <a href="contacts.html">«Байланыс»</a> бетіндегі «Сақталған хабарламаларды тазалау» батырмасы жояды. Қалғанының бәрі, соның ішінде кэш те, браузер баптауларында осы сайттың деректерін тазалау арқылы жойылады.</p>
+            <p>Сонымен қатар браузер сайт интернетсіз әрі жылдамырақ ашылуы үшін беттердің, стильдердің, скриптердің және Python файлдарының көшірмелерін өз кэшінде (Cache Storage) сақтайды. Бұл сайттың кәдімгі файлдары, оларда сіздің деректеріңіз жоқ.</p>
+            <p><a href="progress.html">«Менің прогресім»</a> бетіндегі прогресс файлы тікелей браузерде жасалады және тек белгілерді қамтиды. Сертификаттағы есім сақталмайды: басып шығаратын парақ браузерде жиналады және ешқайда жіберілмейді.</p>
+          </div>
+
+          <div class="panel reveal stack-gap">
+            <h2>Форманы жібергенде не болады</h2>
+            <p>Форма есіміңіз бен мәтініңіз көрсетілген <a href="https://github.com/pywebguide/pywebguide.github.io/issues" rel="noopener">GitHub Issues</a> бөлімінде жазба жасау бетін ашады. GitHub-та жасауды растамайынша, ештеңе жарияланбайды. Содан кейін хабарлама мен GitHub профиліңізді бәрі көреді, ал оларды GitHub өз ережелері бойынша өңдейді.</p>
+          </div>
+
+          <div class="panel reveal stack-gap">
+            <h2>Хостинг не жазады</h2>
+            <p>Сайт GitHub Pages-те орналасқан. GitHub деректері бойынша, сайтқа кіргенде келушінің IP-мекенжайы қауіпсіздік мақсатында жазылып, сақталады. Дереккөз — <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection" rel="noopener">GitHub Pages анықтамасы</a>, толығырақ — <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub құпиялылық саясатында</a>.</p>
+          </div>
+
+          <div class="panel reveal stack-gap">
+            <h2>Python-ды браузерде іске қосу</h2>
+            <p>Кодты іске қосу немесе тексеру батырмасын басқаннан кейін ғана браузер Python-ды (Pyodide) jsDelivr сервисінен, ал Flask мысалдары үшін PyPI-дан пакеттерді де жүктейді. Бұл сервистер кез келген сайт сияқты IP-мекенжайыңызды және браузер деректерін алады. Кодтың өзі сіздің құрылғыңызда орындалады және ешқайда жіберілмейді. Сертификаттағы есім де браузерде қалады және сақталмайды.</p>
+          </div>
+
+          <div class="panel reveal stack-gap">
+            <h2>Cookies және кіру статистикасы</h2>
+            <p>Сайт cookies орнатпайды және жарнама көрсетпейді.</p>
+            <p>Қандай беттерді оқитынын және курсты қай жерде тастап кететінін түсіну үшін сайт кірулерді <a href="https://www.goatcounter.com/" rel="noopener">GoatCounter</a> арқылы санайды. Ол cookies пайдаланбайды және келесі кірулерде сізді танымайды. Ашылған беттің мекенжайы мен тақырыбы, сіз келген сайт, IP-мекенжай бойынша ел, экран өлшемі, браузер және операциялық жүйе есепке алынады. IP-мекенжайдың өзі сақталмайды. Толығырақ — <a href="https://www.goatcounter.com/help/privacy" rel="noopener">GoatCounter саясатында</a>.</p>
+            <p>Браузерде бақылауға тыйым салу немесе жарнама бұғаттағышы қосулы болса, кіру есепке алынбауы мүмкін, ал сайт бұдан бұрынғыдай жұмыс істейді.</p>
+          </div>
+
+          <div class="panel reveal stack-gap">
+            <h2>Сайт бойынша іздеу</h2>
+            <p>Іздеу сіздің браузеріңізде жұмыс істейді: индекс осы сайттан жүктеледі, ал сұраулар ешқайда жіберілмейді.</p>
+          </div>
+
+          <div class="panel reveal stack-gap">
+            <h2>Сыртқы сілтемелер</h2>
+            <p>Сайтта құжаттамаға және басқа сыртқы ресурстарға сілтемелер бар. Өткеннен кейін сол ресурстардың ережелері қолданылады.</p>
+          </div>
+
+          <div class="panel reveal stack-gap">
+            <h2>Өзгерістер</h2>
+            <p>Саясат өзгерсе, біз осы мәтінді және беттің соңындағы күнді жаңартамыз.</p>
+          </div>
+
+          <p class="note stack-gap"><time datetime="2026-11-03">3 ноября 2026 года</time> бастап күшіне енді. <time datetime="2026-11-09">9 ноября 2026 года</time> жаңартылды: интернетсіз жұмыс істеуге арналған кэш, қойындылардағы жүйе таңдауы, жергілікті іздеу, прогресс файлы және GitHub-сыз байланыс қосылды.</p>
+        </div>
+      </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="playground.html">Құмсалғыш</a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="about.html">Python туралы</a></li><li><a href="frameworks.html">Фреймворктер</a></li><li><a href="databases.html">Дерекқорлар</a></li><li><a href="templates.html">Үлгілер мен формалар</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесттер</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="project.html">Алғашқы жоба</a></li><li><a href="project2.html">Екінші жоба</a></li><li><a href="deploy.html">Жариялау</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Есептер</a></li><li><a href="cheatsheet.html">Қысқаша анықтама</a></li><li><a href="exam.html">Қорытынды тест</a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="course.html">Бүкіл курс</a></li><li><a href="progress.html">Менің прогресім</a></li><li><a href="contacts.html">Байланыс</a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-09">09.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note"><a href="privacy.html">Құпиялылық саясаты</a> · <a href="../terms.html" hreflang="ru">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="contacts.html#no-github">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
