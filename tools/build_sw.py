@@ -23,10 +23,14 @@ CORE = ["styles.css", "script.js", "features.js", "assets/i18n.js", "assets/chec
 
 
 def site_files():
-    for path in sorted(ROOT.rglob("*")):
+    names = []
+    for path in ROOT.rglob("*"):
         rel = path.relative_to(ROOT)
         if path.is_file() and not (set(rel.parts) & SKIP_DIRS) and rel.as_posix() not in SKIP_FILES:
-            yield rel.as_posix()
+            names.append(rel.as_posix())
+    # Сортируем строки, а не пути: пути Windows сравниваются без учёта регистра, и версия
+    # получалась бы разной на компьютере автора и в CI на Linux
+    return sorted(names)
 
 
 def build():
