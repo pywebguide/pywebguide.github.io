@@ -5,6 +5,21 @@
     return vars ? text.replace(/\{(\w+)\}/g, function (match, key) { return key in vars ? String(vars[key]) : match; }) : text;
   };
 
+  /* События для воронки GoatCounter: «урок пройден», «первый запуск кода», «задача решена».
+     Без cookies и без имён; каждое событие отправляется один раз на браузер (ключ pyweb_events) */
+  window.pywebTrack = function (name) {
+    try {
+      let sent = JSON.parse(localStorage.getItem("pyweb_events") || "[]");
+      if (!Array.isArray(sent)) sent = [];
+      if (sent.indexOf(name) !== -1 || !window.goatcounter || !window.goatcounter.count) return;
+      window.goatcounter.count({ path: name, title: name, event: true });
+      sent.push(name);
+      localStorage.setItem("pyweb_events", JSON.stringify(sent));
+    } catch (error) {
+      // Статистика не должна мешать учёбе
+    }
+  };
+
   const menuButton = document.querySelector(".burger");
   const nav = document.getElementById("site-nav");
 
@@ -413,6 +428,7 @@
       input.addEventListener("change", function () {
         save();
         update();
+        if (input.checked) window.pywebTrack("step-" + key + "-" + input.dataset.step);
       });
     });
 
@@ -866,5 +882,24 @@
     });
 
     continueBox.hidden = unfinished === 0;
+  }
+
+  /* Переводы: ссылка «Нашли ошибку в переводе?» в подвале страниц kk/ и en/ */
+  const pageLang = (document.documentElement.lang || "ru").slice(0, 2);
+  const footerBox = document.querySelector(".footer .container");
+
+  if (pageLang !== "ru" && footerBox) {
+    const pageName = pageLang + "/" + (location.pathname.split("/").pop() || "index.html");
+    const report = document.createElement("a");
+    const line = document.createElement("p");
+
+    report.href = "https://github.com/pywebguide/pywebguide.github.io/issues/new" +
+      "?title=" + encodeURIComponent(t("Ошибка в переводе: ") + pageName) +
+      "&body=" + encodeURIComponent(t("Страница: ") + location.href + "\n\n" + t("Что написано сейчас:") + "\n\n\n" + t("Как правильно:") + "\n\n");
+    report.rel = "noopener";
+    report.textContent = t("Нашли ошибку в переводе? Напишите нам");
+    line.className = "note footer-note";
+    line.appendChild(report);
+    footerBox.appendChild(line);
   }
 })();

@@ -158,7 +158,7 @@
           <a href="#errors">Частые ошибки</a>
           <a href="#sources">Источники</a>
         </nav>
-      <img class="band-picture" src="assets/img/eniac.jpg" width="900" height="617" alt="Две женщины настраивают компьютер ENIAC у панелей с кабелями, 1946 год" decoding="async" fetchpriority="high">
+      <img class="band-picture" src="assets/img/eniac.webp" width="900" height="617" alt="Две женщины настраивают компьютер ENIAC у панелей с кабелями, 1946 год" decoding="async" fetchpriority="high">
 </div></div>
 
       <section class="section" id="prep" aria-labelledby="prep-title">
@@ -267,7 +267,9 @@ PAGE = """
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        tasks.append(request.form["title"])
+        title = request.form.get("title", "").strip()
+        if title:
+            tasks.append(title)
         return redirect(url_for("index"))
     return render_template_string(PAGE, tasks=tasks)</code></pre>
               </div>
@@ -363,7 +365,9 @@ def index():
 
 @app.post("/add")
 def add():
-    query("INSERT INTO tasks (title) VALUES (?)", (request.form["title"],))
+    title = request.form.get("title", "").strip()
+    if title:
+        query("INSERT INTO tasks (title) VALUES (?)", (title,))
     return redirect(url_for("index"))
 
 @app.post("/delete/&lt;int:task_id&gt;")
@@ -386,6 +390,7 @@ def delete(task_id):
                 Удаление сделано через <code>POST</code>, а не обычную ссылку: изменяющие данные действия
                 не должны выполняться простым переходом по адресу.
               </p>
+              <p>Проверка пустой задачи стоит в двух местах. Атрибут <code>required</code> останавливает пустую форму в браузере, но запрос можно отправить и в обход формы, поэтому функция <code>add</code> сама убирает пробелы и не сохраняет пустой заголовок. А вот защиты от подделки запросов (CSRF) в этом примере нет: для настоящего сайта подключите Flask-WTF или сделайте проект на Django, где она включена сразу.</p>
               <figure class="shot">
                 <p class="shot-title">Как должно выглядеть</p>
                 <img src="assets/img/project/flask-step6.webp" width="1120" height="427" alt="Страница «Мои задачи»: у каждой задачи кнопка «Удалить»" loading="lazy" decoding="async">
@@ -881,7 +886,7 @@ urlpatterns = [
         <div><strong>Сайт</strong><ul><li><a href="course.html">Весь курс</a></li><li><a href="progress.html">Мой прогресс</a></li><li><a href="contacts.html">Контакты</a></li></ul></div>
       </div>
       <p class="footer-copy">© 2026 PyWeb Guide, учебный проект о Python в веб-разработке</p>
-      <p class="note footer-note">Автор: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Обновлено: <time datetime="2026-11-09">09.11.2026</time> · Версии в примерах: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Исходный код на GitHub</a></p>
+      <p class="note footer-note">Автор: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Обновлено: <time datetime="2026-11-11">11.11.2026</time> · Версии в примерах: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Исходный код на GitHub</a></p>
       <p class="note footer-note">Снимок: <a href="https://commons.wikimedia.org/wiki/File:Two_women_operating_ENIAC_(full_resolution).jpg" rel="noopener">ENIAC, армия США, 1946</a>.</p>
       <p class="note footer-note"><a href="privacy.html">Политика конфиденциальности</a> · <a href="terms.html">Условия использования</a></p>
       <p class="note footer-note">Сайт учебный. Сообщения с формы отправляются через публичный раздел Issues на GitHub. Без аккаунта GitHub можно <a href="contacts.html#no-github">написать напрямую</a>.</p>

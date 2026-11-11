@@ -123,7 +123,7 @@
 </nav>
 <h1>Exercises with automatic checking</h1>
 <p class="lead">Write a solution and press “Check”. The code runs in the browser and goes through hidden tests. If a test fails, you will see what it checked, what was expected and what came out. Stuck? Open a hint. Solved exercises are remembered in this browser.</p>
-<img class="band-picture" src="../assets/img/typing-class.jpg" width="1000" height="637" alt="Schoolgirls in a typing class, around 1945" decoding="async" fetchpriority="high">
+<img class="band-picture" src="../assets/img/typing-class.webp" width="1000" height="637" alt="Schoolgirls in a typing class, around 1945" decoding="async" fetchpriority="high">
 </div></div>
 <section class="section" id="result" aria-labelledby="result-title">
 <div class="container">
@@ -132,7 +132,7 @@
 <p>The first check loads Python: about 5 MB, which takes a few seconds.</p>
 </div>
 <div class="progress-box reveal">
-<p class="progress-label" role="status"><span data-tasks-count>0</span> of <span data-tasks-total="16">16</span> exercises solved</p>
+<p class="progress-label" role="status"><span data-tasks-count>0</span> of <span data-tasks-total="40">40</span> exercises solved</p>
 <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-tasks-fill></div></div>
 </div>
 </div>
@@ -244,6 +244,146 @@ case('slugify("  Flask &amp; Django: 2 frameworks! ")', "flask-django-2-framewor
 case('slugify("---")', "", "Hyphens at the ends must be removed")
 case('slugify("Python3")', "python3", "Digits stay")</template>
 </article>
+<article class="task reveal" data-task="total" data-level="easy">
+<div class="task-head"><h3>5. Shopping total</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Write <code>total(prices)</code>: the function takes a list of prices and returns their sum. For an empty list return <code>0</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 5. Shopping total">def total(prices):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> Create a variable <code>result = 0</code> and add every price to it in a <code>for</code> loop.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> A shortcut: the built-in <code>sum(prices)</code> does the same.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>def total(prices):
+    result = 0
+    for price in prices:
+        result += price
+    return result</code></pre></details>
+<template data-kind="tests">case('total([100, 250, 50])', 400)
+case('total([])', 0)
+case('total([1.5, 2.5])', 4.0)</template>
+</article>
+<article class="task reveal" data-task="evens" data-level="easy">
+<div class="task-head"><h3>6. Even numbers only</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Write <code>only_even(numbers)</code>: return a new list that keeps only the even numbers, in the same order.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 6. Even numbers only">def only_even(numbers):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> A number is even when the remainder of dividing by 2 is zero: <code>n % 2 == 0</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Start with an empty list and add matching numbers with <code>.append(n)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>def only_even(numbers):
+    return [n for n in numbers if n % 2 == 0]</code></pre></details>
+<template data-kind="tests">case('only_even([1, 2, 3, 4])', [2, 4])
+case('only_even([7, 9])', [])
+case('only_even([0, -2, 5])', [0, -2])</template>
+</article>
+<article class="task reveal" data-task="truncate" data-level="easy">
+<div class="task-head"><h3>7. Short teaser</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Write <code>truncate(text, limit)</code>. If the text is no longer than <code>limit</code> characters, return it unchanged. Otherwise return the first <code>limit</code> characters followed by three dots <code>...</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 7. Short teaser">def truncate(text, limit):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> A slice gives the first characters of a string: <code>text[:limit]</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Check the length first: <code>if len(text) &lt;= limit</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>def truncate(text, limit):
+    if len(text) &lt;= limit:
+        return text
+    return text[:limit] + "..."</code></pre></details>
+<template data-kind="tests">case('truncate("Python", 10)', "Python")
+case('truncate("Python for the web", 6)', "Python...")
+case('truncate("Flask", 5)', "Flask")</template>
+</article>
+<article class="task reveal" data-task="longest" data-level="medium">
+<div class="task-head"><h3>8. Longest word</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Write <code>longest(words)</code>: return the longest word in the list. If there are several, return the first one. For an empty list return an empty string.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 8. Longest word">def longest(words):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> Keep the best word in a variable <code>best = ""</code> and compare lengths with <code>len()</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> To keep the first word when lengths are equal, compare strictly: <code>len(word) &gt; len(best)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>def longest(words):
+    best = ""
+    for word in words:
+        if len(word) &gt; len(best):
+            best = word
+    return best</code></pre></details>
+<template data-kind="tests">case('longest(["api", "python", "web"])', "python")
+case('longest(["html", "json"])', "html")
+case('longest([])', "")</template>
+</article>
+<article class="task reveal" data-task="unique" data-level="medium">
+<div class="task-head"><h3>9. No duplicates</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Write <code>unique(items)</code>: return the list without duplicates. The order of first appearances must be kept.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 9. No duplicates">def unique(items):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> You can check whether an item is already in the list with <code>item not in result</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> <code>set()</code> removes duplicates but may change the order, so a loop is needed here.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>def unique(items):
+    result = []
+    for item in items:
+        if item not in result:
+            result.append(item)
+    return result</code></pre></details>
+<template data-kind="tests">case('unique(["a", "b", "a", "c", "b"])', ["a", "b", "c"])
+case('unique([3, 3, 3])', [3])
+case('unique([])', [])</template>
+</article>
+<article class="task reveal" data-task="initials" data-level="medium">
+<div class="task-head"><h3>10. Initials</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Write <code>initials(full_name)</code>: turn a first and last name into initials. <code>Aru Bekova</code> must become <code>A. B.</code> Make the letters capital and ignore extra spaces.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 10. Initials">def initials(full_name):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> <code>full_name.split()</code> splits the string into words and drops extra spaces itself.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> The first letter of a word is <code>part[0]</code>, and <code>.upper()</code> makes it capital. Join the parts with <code>" ".join(...)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>def initials(full_name):
+    parts = full_name.split()
+    return " ".join(part[0].upper() + "." for part in parts)</code></pre></details>
+<template data-kind="tests">case('initials("Aru Bekova")', "A. B.")
+case('initials("  dana   ali ")', "D. A.")
+case('initials("Python")', "P.")</template>
+</article>
 </div>
 </section>
 <section class="section" id="http" aria-labelledby="http-title">
@@ -253,9 +393,9 @@ case('slugify("Python3")', "python3", "Digits stay")</template>
 <p>What a framework does for you is easy to write in a simple form.</p>
 </div>
 <article class="task reveal" data-task="query" data-level="medium">
-<div class="task-head"><h3>5. Parsing an address</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<div class="task-head"><h3>11. Parsing an address</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
 <p>Write <code>parse_query(query)</code>. It turns the string <code>a=1&amp;b=2</code> into the dictionary <code>{"a": "1", "b": "2"}</code>. Skip parts without an <code>=</code> sign. A value may contain <code>=</code>.</p>
-<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 5. Parsing an address">def parse_query(query):
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 11. Parsing an address">def parse_query(query):
     # your code
     pass</textarea>
 <div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
@@ -281,9 +421,9 @@ case('parse_query("flag&amp;x=1")', {"x": "1"}, "A part without = must be skippe
 case('parse_query("token=a=b")', {"token": "a=b"}, "Split only on the first =: split('=', 1)")</template>
 </article>
 <article class="task reveal" data-task="router" data-level="medium">
-<div class="task-head"><h3>6. A simple router</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<div class="task-head"><h3>12. A simple router</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
 <p>Finish <code>handle(method, path)</code>. It looks up a handler in the <code>ROUTES</code> dictionary and returns a “code, text” pair. If there is no such address, return <code>(404, "Not Found")</code>. If the address exists but the method does not match, return <code>(405, "Method Not Allowed")</code>.</p>
-<textarea class="editor-area" rows="10" spellcheck="false" aria-label="Solution: 6. A simple router">ROUTES = {
+<textarea class="editor-area" rows="10" spellcheck="false" aria-label="Solution: 12. A simple router">ROUTES = {
     "/": {"GET": "Home"},
     "/tasks": {"GET": "Task list", "POST": "Task created"},
 }
@@ -318,9 +458,9 @@ case('handle("GET", "/nope")', (404, "Not Found"), "An unknown address needs cod
 case('handle("DELETE", "/")', (405, "Method Not Allowed"), "A wrong method needs code 405")</template>
 </article>
 <article class="task reveal" data-task="validate" data-level="hard">
-<div class="task-head"><h3>7. Checking form data</h3><span class="level level-hard"><span class="visually-hidden">Level: </span>Hard</span></div>
+<div class="task-head"><h3>13. Checking form data</h3><span class="level level-hard"><span class="visually-hidden">Level: </span>Hard</span></div>
 <p>Write <code>validate_user(data)</code>. The function takes a dictionary and returns a list of errors. The <code>name</code> field is required, and <code>age</code> must be a whole number from 1 to 120. Error texts: <code>"name"</code> and <code>"age"</code>. If everything is correct, return an empty list.</p>
-<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Solution: 7. Checking form data">def validate_user(data):
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Solution: 13. Checking form data">def validate_user(data):
     errors = []
     # your code
     return errors</textarea>
@@ -351,9 +491,9 @@ case('validate_user({"name": "A", "age": True})', ["age"], "In Python True is an
 case('validate_user({})', ["name", "age"], "Return both errors in order")</template>
 </article>
 <article class="task reveal" data-task="json" data-level="medium">
-<div class="task-head"><h3>8. A JSON response</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<div class="task-head"><h3>14. A JSON response</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
 <p>Write <code>tasks_json(tasks)</code>. The function takes a list of dictionaries and returns a JSON string with only the tasks whose <code>done</code> is <code>False</code>. Non-English letters (like é) must stay readable. The import is already there.</p>
-<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Solution: 8. A JSON response">import json
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Solution: 14. A JSON response">import json
 
 def tasks_json(tasks):
     # your code
@@ -380,9 +520,9 @@ case('"Café" in tasks_json(data)', True, "Add ensure_ascii=False, otherwise é 
 case('tasks_json([])', "[]", "An empty list needs the string []")</template>
 </article>
 <article class="task reveal" data-task="render" data-level="medium">
-<div class="task-head"><h3>9. Your own template</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<div class="task-head"><h3>15. Your own template</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
 <p>A template is text with gaps. Write <code>render(template, data)</code>: it replaces every gap <code>{{ name }}</code> with the value from the <code>data</code> dictionary. There may or may not be spaces inside the braces. If the key is not in the dictionary, put an empty string.</p>
-<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Solution: 9. Your own template">import re
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Solution: 15. Your own template">import re
 
 def render(template, data):
     # your code
@@ -409,9 +549,9 @@ case('render("[{{ missing }}]", {})', "[]", "An unknown key is replaced with an 
 case('render("no gaps", {"x": 1})', "no gaps")</template>
 </article>
 <article class="task reveal" data-task="paginate" data-level="medium">
-<div class="task-head"><h3>10. Pages of a list</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<div class="task-head"><h3>16. Pages of a list</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
 <p>A long list is shown in parts. Write <code>paginate(items, page, per_page)</code>: return the items of page number <code>page</code> (numbering starts at 1). If there is no page with that number, or the number is less than 1, return an empty list.</p>
-<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 10. Pages of a list">def paginate(items, page, per_page):
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 16. Pages of a list">def paginate(items, page, per_page):
     # your code
     pass</textarea>
 <div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
@@ -435,6 +575,258 @@ case('paginate(letters, 3, 3)', ["g"], "The last page may have fewer items")
 case('paginate(letters, 4, 3)', [], "There is no such page: an empty list is needed")
 case('paginate(letters, 0, 3)', [], "There is no page number 0")</template>
 </article>
+<article class="task reveal" data-task="status" data-level="easy">
+<div class="task-head"><h3>17. Status text</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Write <code>status_text(code)</code>: return the name of a response code. <code>200</code> is <code>OK</code>, <code>201</code> is <code>Created</code>, <code>404</code> is <code>Not Found</code>, <code>500</code> is <code>Internal Server Error</code>. For any other code return <code>Unknown</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 17. Status text">def status_text(code):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> It is handy to keep the pairs in a dictionary: <code>{200: "OK", 404: "Not Found"}</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> <code>names.get(code, "Unknown")</code> returns a fallback when the code is not in the dictionary.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>def status_text(code):
+    names = {200: "OK", 201: "Created", 404: "Not Found", 500: "Internal Server Error"}
+    return names.get(code, "Unknown")</code></pre></details>
+<template data-kind="tests">case('status_text(200)', "OK")
+case('status_text(201)', "Created")
+case('status_text(404)', "Not Found")
+case('status_text(500)', "Internal Server Error")
+case('status_text(418)', "Unknown")</template>
+</article>
+<article class="task reveal" data-task="mime" data-level="medium">
+<div class="task-head"><h3>18. File type</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>A server tells the browser the file type in the <code>Content-Type</code> header. Write <code>content_type(filename)</code>: for <code>.html</code> return <code>text/html</code>, for <code>.css</code> <code>text/css</code>, for <code>.js</code> <code>text/javascript</code>, for <code>.json</code> <code>application/json</code>, and for anything else <code>application/octet-stream</code>. Letter case in the name does not matter.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 18. File type">def content_type(filename):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The extension is the part after the last dot: <code>filename.rsplit(".", 1)[-1]</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Lowercase the name with <code>.lower()</code> and take the type from a dictionary with <code>.get()</code> and a fallback.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>def content_type(filename):
+    types = {"html": "text/html", "css": "text/css", "js": "text/javascript", "json": "application/json"}
+    extension = filename.lower().rsplit(".", 1)[-1]
+    return types.get(extension, "application/octet-stream")</code></pre></details>
+<template data-kind="tests">case('content_type("index.html")', "text/html")
+case('content_type("styles.css")', "text/css")
+case('content_type("app.min.js")', "text/javascript")
+case('content_type("DATA.JSON")', "application/json")
+case('content_type("photo.png")', "application/octet-stream")</template>
+</article>
+<article class="task reveal" data-task="build_url" data-level="medium">
+<div class="task-head"><h3>19. Address with parameters</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Write <code>build_url(path, params)</code>: add the parameters from a dictionary to the path. <code>"/search"</code> and <code>{"q": "flask", "page": 2}</code> must give <code>/search?q=flask&amp;page=2</code>. If the dictionary is empty, return the path without a question mark.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 19. Address with parameters">def build_url(path, params):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> <code>params.items()</code> gives key and value pairs. Turn each one into a string <code>f"{key}={value}"</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Join the pairs with <code>"&amp;".join(pairs)</code> and add them to the path after <code>?</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>def build_url(path, params):
+    if not params:
+        return path
+    pairs = [f"{key}={value}" for key, value in params.items()]
+    return path + "?" + "&amp;".join(pairs)</code></pre></details>
+<template data-kind="tests">case('build_url("/search", {"q": "flask", "page": 2})', "/search?q=flask&amp;page=2")
+case('build_url("/tasks", {})', "/tasks")
+case('build_url("/", {"lang": "kk"})', "/?lang=kk")</template>
+</article>
+<article class="task reveal" data-task="cookie" data-level="medium">
+<div class="task-head"><h3>20. Parsing a cookie</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Write <code>parse_cookie(header)</code>: turn the header string <code>theme=dark; lang=kk</code> into the dictionary <code>{"theme": "dark", "lang": "kk"}</code>. For an empty string return an empty dictionary. A value may contain the <code>=</code> sign.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 20. Parsing a cookie">def parse_cookie(header):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> First split the string on <code>;</code>, then strip the spaces from each part with <code>.strip()</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> <code>part.split("=", 1)</code> splits only on the first equals sign, so the value <code>a=b</code> stays whole.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>def parse_cookie(header):
+    result = {}
+    for part in header.split(";"):
+        if "=" in part:
+            key, value = part.strip().split("=", 1)
+            result[key] = value
+    return result</code></pre></details>
+<template data-kind="tests">case('parse_cookie("theme=dark; lang=kk")', {"theme": "dark", "lang": "kk"})
+case('parse_cookie("")', {})
+case('parse_cookie("token=a=b")', {"token": "a=b"})</template>
+</article>
+<article class="task reveal" data-task="redirect" data-level="medium">
+<div class="task-head"><h3>21. Safe redirect</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>After login a site sends the person back to the address from the <code>next</code> parameter. Write <code>is_safe_redirect(url)</code>: return <code>True</code> only if the address leads to the same site, that is, starts with a single slash <code>/</code>. The browser treats <code>//evil.example</code> as another site.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 21. Safe redirect">def is_safe_redirect(url):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> <code>url.startswith("/")</code> checks the start of a string.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Add a second condition with <code>and not</code>: the address must not start with <code>//</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>def is_safe_redirect(url):
+    return url.startswith("/") and not url.startswith("//")</code></pre></details>
+<template data-kind="tests">case('is_safe_redirect("/profile")', True)
+case('is_safe_redirect("https://evil.example")', False)
+case('is_safe_redirect("//evil.example")', False)
+case('is_safe_redirect("")', False)</template>
+</article>
+</div>
+</section>
+<section class="section" id="forms" aria-labelledby="forms-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="forms-title">Forms and data checks</h2>
+<p>The server checks everything a user sends on its own.</p>
+</div>
+<article class="task reveal" data-task="clean" data-level="easy">
+<div class="task-head"><h3>22. Clean title</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Write <code>clean_title(value)</code>: remove the spaces at both ends and replace several spaces in a row inside with one. <code>"  Buy   bread "</code> must become <code>Buy bread</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 22. Clean title">def clean_title(value):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> <code>value.split()</code> without arguments splits on any whitespace and drops empty parts.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Put the words back together with <code>" ".join(...)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>def clean_title(value):
+    return " ".join(value.split())</code></pre></details>
+<template data-kind="tests">case('clean_title("  Buy   bread ")', "Buy bread")
+case('clean_title("Flask")', "Flask")
+case('clean_title("   ")', "")</template>
+</article>
+<article class="task reveal" data-task="to_int" data-level="medium">
+<div class="task-head"><h3>23. A number from a form</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Form fields always arrive as strings. Write <code>to_int(value, default)</code>: turn the string into a whole number. Spaces at the ends are fine. If the string is not a number, return <code>default</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 23. A number from a form">def to_int(value, default):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> <code>int("abc")</code> raises <code>ValueError</code>. A <code>try</code> / <code>except ValueError</code> block catches it.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> In the <code>except</code> block simply return the fallback: <code>return default</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>def to_int(value, default):
+    try:
+        return int(value.strip())
+    except ValueError:
+        return default</code></pre></details>
+<template data-kind="tests">case('to_int("42", 0)', 42)
+case('to_int(" 7 ", 0)', 7)
+case('to_int("abc", 1)', 1)
+case('to_int("", 5)', 5)
+case('to_int("-3", 0)', -3)</template>
+</article>
+<article class="task reveal" data-task="missing" data-level="medium">
+<div class="task-head"><h3>24. Required fields</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Write <code>missing_fields(data, required)</code>. <code>data</code> is a dictionary with form data, <code>required</code> is a list of required fields. Return the list of fields that are missing from the dictionary or empty. A string of spaces is empty too. Keep the order of <code>required</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 24. Required fields">def missing_fields(data, required):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> <code>data.get(name, "")</code> returns an empty string when the field is missing.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> <code>not value.strip()</code> checks for emptiness: nothing is left of a string of spaces after <code>.strip()</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>def missing_fields(data, required):
+    return [name for name in required if not str(data.get(name, "")).strip()]</code></pre></details>
+<template data-kind="tests">case('missing_fields({"name": "Aru", "email": ""}, ["name", "email"])', ["email"])
+case('missing_fields({}, ["name", "email"])', ["name", "email"])
+case('missing_fields({"name": "  "}, ["name"])', ["name"])
+case('missing_fields({"name": "Aru"}, ["name"])', [])</template>
+</article>
+<article class="task reveal" data-task="escape" data-level="medium">
+<div class="task-head"><h3>25. Safe output</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Write <code>escape_html(text)</code>: replace <code>&amp;</code> with <code>&amp;amp;</code>, <code>&lt;</code> with <code>&amp;lt;</code> and <code>&gt;</code> with <code>&amp;gt;</code>. Then text from a user shows up on the page as text and does not become a tag.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 25. Safe output">def escape_html(text):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> <code>text.replace("&lt;", "&amp;lt;")</code> does a replacement. Save the result: strings do not change in place.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Start with <code>&amp;</code>. Otherwise it gets replaced a second time inside the finished <code>&amp;lt;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>def escape_html(text):
+    text = text.replace("&amp;", "&amp;amp;")
+    text = text.replace("&lt;", "&amp;lt;")
+    return text.replace("&gt;", "&amp;gt;")</code></pre></details>
+<template data-kind="tests">case('escape_html("&lt;b&gt;hi&lt;/b&gt;")', "&amp;lt;b&amp;gt;hi&amp;lt;/b&amp;gt;")
+case('escape_html("Tom &amp; Jerry")', "Tom &amp;amp; Jerry")
+case('escape_html("a &lt; b")', "a &amp;lt; b")
+case('escape_html("&amp;lt;")', "&amp;amp;lt;")</template>
+</article>
+<article class="task reveal" data-task="email" data-level="hard">
+<div class="task-head"><h3>26. Looks like an email</h3><span class="level level-hard"><span class="visually-hidden">Level: </span>Hard</span></div>
+<p>Write <code>is_email(value)</code>: a rough check of an email address. The address has no spaces, exactly one <code>@</code> sign, at least one character before it, and after it a dot that is neither first nor last.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: 26. Looks like an email">def is_email(value):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> <code>value.count("@")</code> counts how many times a character appears.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Split the address into two parts: <code>name, domain = value.split("@")</code>, and check each one separately.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>def is_email(value):
+    if " " in value or value.count("@") != 1:
+        return False
+    name, domain = value.split("@")
+    if not name or "." not in domain:
+        return False
+    return not domain.startswith(".") and not domain.endswith(".")</code></pre></details>
+<template data-kind="tests">case('is_email("aru@example.com")', True)
+case('is_email("aru.example.com")', False)
+case('is_email("a@b@example.com")', False)
+case('is_email("@example.com")', False)
+case('is_email("aru@example")', False)
+case('is_email("aru @example.com")', False)
+case('is_email("aru@example.")', False)</template>
+</article>
 </div>
 </section>
 <section class="section" id="sql" aria-labelledby="sql-title">
@@ -444,9 +836,9 @@ case('paginate(letters, 0, 3)', [], "There is no page number 0")</template>
 <p>A real SQLite database runs right in the browser.</p>
 </div>
 <article class="task reveal" data-task="add_task" data-level="medium">
-<div class="task-head"><h3>11. Safe insert</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<div class="task-head"><h3>27. Safe insert</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
 <p>Write <code>add_task(db, title)</code>: it adds a row to the <code>tasks</code> table and returns its <code>id</code>. Use the <code>?</code> parameter: text with a quote must not break the query.</p>
-<textarea class="editor-area" rows="10" spellcheck="false" aria-label="Solution: 11. Safe insert">import sqlite3
+<textarea class="editor-area" rows="10" spellcheck="false" aria-label="Solution: 27. Safe insert">import sqlite3
 
 db = sqlite3.connect(":memory:")
 db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT)")
@@ -480,9 +872,9 @@ case('add_task(db, evil)', 3, "Text with a quote must not break the query: use ?
 case('db.execute("SELECT title FROM tasks WHERE id = 3").fetchone()', (evil,), "Text with a quote must be saved as it is")</template>
 </article>
 <article class="task reveal" data-task="select" data-level="easy">
-<div class="task-head"><h3>12. Selecting with a condition</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<div class="task-head"><h3>28. Selecting with a condition</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
 <p>Write <code>active_titles(db)</code>: return the list of titles with <code>done = 0</code>, sorted alphabetically.</p>
-<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Solution: 12. Selecting with a condition">import sqlite3
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Solution: 28. Selecting with a condition">import sqlite3
 
 db = sqlite3.connect(":memory:")
 db.execute("CREATE TABLE tasks (title TEXT, done INTEGER)")
@@ -514,6 +906,147 @@ def active_titles(db):
 db.execute("UPDATE tasks SET done = 1")
 case('active_titles(db)', [], "If no rows match, return an empty list")</template>
 </article>
+<article class="task reveal" data-task="count" data-level="easy">
+<div class="task-head"><h3>29. How many are left</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Write <code>count_active(db)</code>: return the number of tasks where <code>done = 0</code>. The database must do the counting, not Python.</p>
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Solution: 29. How many are left">import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks (title, done) VALUES (?, ?)", [("Buy bread", 1), ("Learn Flask", 0), ("Write tests", 0)])
+
+def count_active(db):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The query <code>SELECT COUNT(*) FROM tasks WHERE done = 0</code> counts rows.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> <code>.fetchone()</code> returns one row as a tuple, and the number is first in it: <code>row[0]</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks (title, done) VALUES (?, ?)", [("Buy bread", 1), ("Learn Flask", 0), ("Write tests", 0)])
+
+def count_active(db):
+    row = db.execute("SELECT COUNT(*) FROM tasks WHERE done = 0").fetchone()
+    return row[0]</code></pre></details>
+<template data-kind="tests">case('count_active(db)', 2)
+db.execute("UPDATE tasks SET done = 1")
+case('count_active(db)', 0)</template>
+</article>
+<article class="task reveal" data-task="delete_done" data-level="easy">
+<div class="task-head"><h3>30. Delete the finished</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Write <code>delete_done(db)</code>: delete every finished task (<code>done = 1</code>) and return how many rows were deleted.</p>
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Solution: 30. Delete the finished">import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks (title, done) VALUES (?, ?)", [("Buy bread", 1), ("Learn Flask", 0), ("Write tests", 0)])
+
+def delete_done(db):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The delete query: <code>DELETE FROM tasks WHERE done = 1</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> The number of deleted rows is in <code>cursor.rowcount</code>. Do not forget <code>db.commit()</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks (title, done) VALUES (?, ?)", [("Buy bread", 1), ("Learn Flask", 0), ("Write tests", 0)])
+
+def delete_done(db):
+    cursor = db.execute("DELETE FROM tasks WHERE done = 1")
+    db.commit()
+    return cursor.rowcount</code></pre></details>
+<template data-kind="tests">case('delete_done(db)', 1)
+case('db.execute("SELECT COUNT(*) FROM tasks").fetchone()', (2,))
+case('delete_done(db)', 0)</template>
+</article>
+<article class="task reveal" data-task="mark_done" data-level="medium">
+<div class="task-head"><h3>31. Mark as done</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Write <code>mark_done(db, task_id)</code>: set <code>done = 1</code> for the task with this number. Return <code>True</code> if there was such a task and <code>False</code> if there was not. Other tasks must stay unchanged.</p>
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Solution: 31. Mark as done">import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks (title, done) VALUES (?, ?)", [("Buy bread", 1), ("Learn Flask", 0), ("Write tests", 0)])
+
+def mark_done(db, task_id):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The update query: <code>UPDATE tasks SET done = 1 WHERE id = ?</code>. Without <code>WHERE</code> every row changes.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> <code>cursor.rowcount</code> shows how many rows changed.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks (title, done) VALUES (?, ?)", [("Buy bread", 1), ("Learn Flask", 0), ("Write tests", 0)])
+
+def mark_done(db, task_id):
+    cursor = db.execute("UPDATE tasks SET done = 1 WHERE id = ?", (task_id,))
+    db.commit()
+    return cursor.rowcount == 1</code></pre></details>
+<template data-kind="tests">case('mark_done(db, 2)', True)
+case('db.execute("SELECT done FROM tasks WHERE id = 2").fetchone()', (1,))
+case('db.execute("SELECT done FROM tasks WHERE id = 3").fetchone()', (0,))
+case('mark_done(db, 99)', False)</template>
+</article>
+<article class="task reveal" data-task="search" data-level="hard">
+<div class="task-head"><h3>32. Text search</h3><span class="level level-hard"><span class="visually-hidden">Level: </span>Hard</span></div>
+<p>Write <code>search(db, text)</code>: return the titles of tasks that contain <code>text</code>, ordered by <code>id</code>. Pass the text through a <code>?</code> parameter so that a quote in the search cannot break the query.</p>
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Solution: 32. Text search">import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks (title, done) VALUES (?, ?)", [("Buy bread", 1), ("Learn Flask", 0), ("Write tests", 0)])
+
+def search(db, text):
+    # your code
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> <code>WHERE title LIKE ?</code> searches by part of a string, and <code>%</code> means “any characters”.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Add the percent signs to the value, not to the query: <code>("%" + text + "%",)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks (title, done) VALUES (?, ?)", [("Buy bread", 1), ("Learn Flask", 0), ("Write tests", 0)])
+
+def search(db, text):
+    rows = db.execute("SELECT title FROM tasks WHERE title LIKE ? ORDER BY id", ("%" + text + "%",))
+    return [row[0] for row in rows]</code></pre></details>
+<template data-kind="tests">case('search(db, "Flask")', ["Learn Flask"])
+case('search(db, "e")', ["Buy bread", "Learn Flask", "Write tests"])
+case('search(db, "django")', [])
+case('search(db, "x\'; DROP TABLE tasks; --")', [])
+case('db.execute("SELECT COUNT(*) FROM tasks").fetchone()', (3,))</template>
+</article>
 </div>
 </section>
 <section class="section" id="flask" aria-labelledby="flask-title">
@@ -523,9 +1056,9 @@ case('active_titles(db)', [], "If no rows match, return an empty list")</templat
 <p>Real Flask. The first check also downloads the package from PyPI.</p>
 </div>
 <article class="task reveal" data-task="route" data-level="easy">
-<div class="task-head"><h3>13. The first route</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<div class="task-head"><h3>33. The first route</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
 <p>Add a route <code>GET /hello/&lt;name&gt;</code> that returns the JSON <code>{"message": "Hello, name!"}</code>.</p>
-<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Solution: 13. The first route">from flask import Flask
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Solution: 33. The first route">from flask import Flask
 
 app = Flask(__name__)
 
@@ -552,9 +1085,9 @@ case('client.get("/hello/Python").status_code', 200, "The address /hello/Python 
 case('client.get("/hello/Python").json', {"message": "Hello, Python!"})</template>
 </article>
 <article class="task reveal" data-task="filter" data-level="medium">
-<div class="task-head"><h3>14. A filter in the address</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<div class="task-head"><h3>34. A filter in the address</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
 <p>Make <code>GET /tasks</code> that returns the JSON list of tasks from <code>TASKS</code>. If the address has <code>?done=1</code>, return only the finished ones; with <code>?done=0</code>, only the unfinished ones. Without the parameter, return them all.</p>
-<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Solution: 14. A filter in the address">from flask import Flask, request
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Solution: 34. A filter in the address">from flask import Flask, request
 
 app = Flask(__name__)
 TASKS = [
@@ -593,9 +1126,9 @@ case('client.get("/tasks?done=1").json', [{"title": "Buy bread", "done": True}],
 case('client.get("/tasks?done=0").json', [{"title": "Learn Flask", "done": False}], "?done=0 — only unfinished ones: the parameter arrives as a string")</template>
 </article>
 <article class="task reveal" data-task="post" data-level="hard">
-<div class="task-head"><h3>15. Creating a record</h3><span class="level level-hard"><span class="visually-hidden">Level: </span>Hard</span></div>
+<div class="task-head"><h3>35. Creating a record</h3><span class="level level-hard"><span class="visually-hidden">Level: </span>Hard</span></div>
 <p>Make <code>POST /items</code>. It reads JSON with a <code>title</code> field. If the field is missing or empty, return <code>{"error": "title"}</code> with code 400. Otherwise add the title to the <code>items</code> list and return <code>{"title": ...}</code> with code 201.</p>
-<textarea class="editor-area" rows="8" spellcheck="false" aria-label="Solution: 15. Creating a record">from flask import Flask, request
+<textarea class="editor-area" rows="8" spellcheck="false" aria-label="Solution: 35. Creating a record">from flask import Flask, request
 
 app = Flask(__name__)
 items = []
@@ -633,9 +1166,9 @@ case('items', ["Book"], "The title must go into the items list")
 case('client.post("/items", json={"title": "Pen"}).json', {"title": "Pen"})</template>
 </article>
 <article class="task reveal" data-task="detail" data-level="hard">
-<div class="task-head"><h3>16. One record or 404</h3><span class="level level-hard"><span class="visually-hidden">Level: </span>Hard</span></div>
+<div class="task-head"><h3>36. One record or 404</h3><span class="level level-hard"><span class="visually-hidden">Level: </span>Hard</span></div>
 <p>Make <code>GET /tasks/&lt;int:task_id&gt;</code>. If a task with that number is in the <code>TASKS</code> dictionary, return its JSON. If not, return <code>{"error": "not found"}</code> with code 404.</p>
-<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Solution: 16. One record or 404">from flask import Flask
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Solution: 36. One record or 404">from flask import Flask
 
 app = Flask(__name__)
 TASKS = {
@@ -674,6 +1207,133 @@ case('client.get("/tasks/99").status_code', 404, "A task that does not exist nee
 case('client.get("/tasks/99").json', {"error": "not found"})
 case('client.get("/tasks/abc").status_code', 404, "&lt;int:...&gt; lets only numbers through")</template>
 </article>
+<article class="task reveal" data-task="health" data-level="easy">
+<div class="task-head"><h3>37. Health check</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Add a route <code>GET /health</code> that returns the JSON <code>{"status": "ok"}</code>. Such an address is made to check that the server is alive. It must not answer <code>POST</code>.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Solution: 37. Health check">from flask import Flask
+
+app = Flask(__name__)
+
+# your route</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> A GET-only route is declared like this: <code>@app.get("/health")</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Return a dictionary from the function: Flask turns it into JSON itself.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}</code></pre></details>
+<template data-kind="tests">client = app.test_client()
+case('client.get("/health").status_code', 200)
+case('client.get("/health").json', {"status": "ok"})
+case('client.post("/health").status_code', 405)</template>
+</article>
+<article class="task reveal" data-task="square" data-level="easy">
+<div class="task-head"><h3>38. A number in the address</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Make <code>GET /square/&lt;int:n&gt;</code>: return JSON with the number and its square, for example <code>{"n": 4, "square": 16}</code>. The address <code>/square/abc</code> must give 404.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Solution: 38. A number in the address">from flask import Flask
+
+app = Flask(__name__)
+
+# your route</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> <code>&lt;int:n&gt;</code> in the address lets only numbers through and passes a number, not a string, to the function.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> The function must take an argument with the same name: <code>def square(n):</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+@app.get("/square/&lt;int:n&gt;")
+def square(n):
+    return {"n": n, "square": n * n}</code></pre></details>
+<template data-kind="tests">client = app.test_client()
+case('client.get("/square/4").json', {"n": 4, "square": 16})
+case('client.get("/square/0").json', {"n": 0, "square": 0})
+case('client.get("/square/abc").status_code', 404)</template>
+</article>
+<article class="task reveal" data-task="search_q" data-level="medium">
+<div class="task-head"><h3>39. Required parameter</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Make <code>GET /search</code>. If the address has a non-empty <code>q</code> parameter, return <code>{"q": value}</code>. If the parameter is missing or made of spaces, return <code>{"error": "q"}</code> with code 400.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Solution: 39. Required parameter">from flask import Flask, request
+
+app = Flask(__name__)
+
+# your route</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> <code>request.args.get("q", "")</code> reads the parameter: the second value comes back when it is missing.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> The response code goes second: <code>return {"error": "q"}, 400</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.get("/search")
+def search():
+    q = request.args.get("q", "").strip()
+    if not q:
+        return {"error": "q"}, 400
+    return {"q": q}</code></pre></details>
+<template data-kind="tests">client = app.test_client()
+case('client.get("/search?q=flask").json', {"q": "flask"})
+case('client.get("/search").status_code', 400)
+case('client.get("/search").json', {"error": "q"})
+case('client.get("/search?q=%20").status_code', 400)</template>
+</article>
+<article class="task reveal" data-task="remove" data-level="hard">
+<div class="task-head"><h3>40. Delete by number</h3><span class="level level-hard"><span class="visually-hidden">Level: </span>Hard</span></div>
+<p>Make <code>DELETE /tasks/&lt;int:task_id&gt;</code>. If the task is in the <code>TASKS</code> dictionary, delete it and return an empty response with code 204. If it is not there, return <code>{"error": "not found"}</code> with code 404.</p>
+<textarea class="editor-area" rows="8" spellcheck="false" aria-label="Solution: 40. Delete by number">from flask import Flask
+
+app = Flask(__name__)
+TASKS = {1: "Buy bread", 2: "Learn Flask"}
+
+# your route</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> A delete route is declared with <code>@app.delete(...)</code>. <code>del TASKS[task_id]</code> removes an item from a dictionary.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> An empty response with a code: <code>return "", 204</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show solution</summary><pre><code>from flask import Flask
+
+app = Flask(__name__)
+TASKS = {1: "Buy bread", 2: "Learn Flask"}
+
+@app.delete("/tasks/&lt;int:task_id&gt;")
+def delete_task(task_id):
+    if task_id not in TASKS:
+        return {"error": "not found"}, 404
+    del TASKS[task_id]
+    return "", 204</code></pre></details>
+<template data-kind="tests">client = app.test_client()
+case('client.delete("/tasks/1").status_code', 204)
+case('TASKS', {2: "Learn Flask"})
+case('client.delete("/tasks/1").status_code', 404)
+case('client.delete("/tasks/9").json', {"error": "not found"})
+case('client.get("/tasks/2").status_code', 405)</template>
+</article>
 </div>
 </section>
 <!-- tasks:end -->
@@ -703,7 +1363,7 @@ case('client.get("/tasks/abc").status_code', 404, "&lt;int:...&gt; lets only num
         <div><strong>Site</strong><ul><li><a href="course.html">Full course</a></li><li><a href="progress.html">My progress</a></li><li><a href="contacts.html">Contact</a></li></ul></div>
       </div>
       <p class="footer-copy">© 2026 PyWeb Guide, a learning project about Python in web development</p>
-      <p class="note footer-note">Author: <a href="contacts.html#authors">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-09">09.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
+      <p class="note footer-note">Author: <a href="contacts.html#authors">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-11">11.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
       <p class="note footer-note">Photo: <a href="https://commons.wikimedia.org/wiki/File:Girls_in_Typing_Class(GN08967).jpg" rel="noopener">typing class, around 1945, CC0</a>.</p>
       <p class="note footer-note"><a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of use</a></p>
       <p class="note footer-note">This is a learning site. Messages from the form are sent through the public Issues section on GitHub. No GitHub account? <a href="contacts.html#no-github">Write directly</a>.</p>

@@ -352,6 +352,83 @@
     });
   }
 
+  /* ---------- Объяснения частых ошибок Python простыми словами ---------- */
+  // Порядок важен: сначала частные случаи, потом общий. {x} — имя или тип из сообщения Python.
+  // Переводы строк — в assets/i18n.js
+  const ERROR_HINTS = [
+    // Flask, шаблоны Jinja и SQLite
+    [/^TemplateNotFound: (.+)$/, "Flask не нашёл шаблон {x}. Файл должен лежать в папке templates рядом с app.py, а имя в render_template должно совпадать с именем файла."],
+    [/^UndefinedError: '([^']+)' is undefined/, "В шаблоне используется {x}, но это значение в шаблон не передали. Добавьте его в вызов render_template, например render_template(\"page.html\", tasks=tasks)."],
+    [/^TemplateSyntaxError/, "В шаблоне ошибка разметки Jinja. Проверьте, что у каждого {% for %} есть {% endfor %}, у каждого {% if %} есть {% endif %}, а двойные фигурные скобки закрыты."],
+    [/^BuildError: Could not build url for endpoint '([^']+)'/, "url_for не нашёл функцию {x}. В url_for пишут имя функции-обработчика, а не адрес: url_for(\"index\"). Проверьте имя и обязательные параметры маршрута."],
+    [/^BadRequestKeyError/, "В форме нет поля с таким именем. Имя в request.form[...] должно совпадать с атрибутом name у поля в HTML. Через request.form.get(\"title\") ошибки не будет."],
+    [/^OperationalError: no such table: (\S+)/, "В базе нет таблицы {x}. Сначала создайте её запросом CREATE TABLE и проверьте, что имя написано одинаково."],
+    [/^OperationalError: no such column: (\S+)/, "В таблице нет столбца {x}. Проверьте имя столбца. Если это текст, передайте его через параметр ?, а не вставляйте в запрос."],
+    [/^OperationalError: near /, "В SQL-запросе опечатка. Проверьте слова SELECT, FROM, WHERE, запятые между столбцами и скобки."],
+    [/^IntegrityError: (?:NOT NULL|UNIQUE) constraint failed: (\S+)/, "База не приняла строку из-за столбца {x}: значение пустое там, где оно обязательно, или повторяется там, где должно быть единственным."],
+    [/^ProgrammingError: Incorrect number of bindings/, "Число знаков ? в запросе не совпадает с числом значений. Одно значение передают кортежем с запятой: (title,)."],
+    [/^RuntimeError: Working outside of (?:request|application) context/, "request и url_for работают только внутри функции-обработчика, пока Flask отвечает на запрос. Перенесите этот код внутрь функции с @app.get или @app.post."],
+    [/^JSONDecodeError/, "Текст не является правильным JSON. В JSON строки и ключи пишут в двойных кавычках, а после последнего элемента нет запятой."],
+    // Python
+    [/^SyntaxError: expected ':'/, "Python ждал двоеточие. Строка с if, else, for, while, def или class заканчивается двоеточием, например: if x > 5:"],
+    [/^SyntaxError: .*was never closed/, "Скобка открыта, но не закрыта. Посчитайте скобки в этой строке и в строке выше: у каждой открывающей должна быть закрывающая."],
+    [/^SyntaxError: (?:unterminated string literal|EOL while scanning)/, "Текст не закрыт кавычкой. Строка текста начинается и заканчивается одинаковыми кавычками: \"Привет\"."],
+    [/^SyntaxError: Missing parentheses in call to 'print'/, "print — это функция, после неё нужны скобки: print(\"Привет\")."],
+    [/^SyntaxError: invalid syntax\. Maybe you meant '=='/, "В условии сравнивают двумя знаками равно: if x == 5. Один знак = записывает значение в переменную."],
+    [/^SyntaxError: .*forgot a comma/, "Похоже, пропущена запятая. Значения в списке, словаре и в скобках функции разделяют запятыми."],
+    [/^SyntaxError/, "Python не смог прочитать эту строку. Чаще всего забыты двоеточие, скобка, кавычка или запятая. Посмотрите на строку из сообщения и на строку перед ней."],
+    [/^IndentationError: expected an indented block/, "После строки с двоеточием нужен отступ. Строки внутри if, for и def сдвигают на 4 пробела вправо."],
+    [/^(?:IndentationError|TabError)/, "Отступы не совпадают. Строки одного блока начинаются на одном уровне: 4 пробела на каждый уровень, без смеси пробелов и Tab."],
+    [/^NameError: name '([^']+)' is not defined/, "Python не знает имя {x}. Проверьте, нет ли опечатки и создана ли переменная выше по коду. Если это текст, возьмите его в кавычки."],
+    [/^UnboundLocalError: .*'([^']+)'/, "Переменная {x} используется внутри функции раньше, чем получила значение. Задайте её в начале функции или передайте как параметр."],
+    [/^TypeError: (?:can only concatenate str|unsupported operand type\(s\) for \+: '(?:int|float)' and 'str')/, "Текст и число нельзя сложить напрямую. Превратите число в текст через str(), например str(5), или вставьте его в f-строку."],
+    [/^TypeError: .*missing \d+ required positional argument/, "Функцию вызвали без нужных значений в скобках. Посмотрите, сколько параметров в строке def, и передайте столько же."],
+    [/^TypeError: .*takes \d+ positional arguments? but \d+ (?:was|were) given/, "В функцию передали больше значений, чем у неё параметров. Сравните вызов со строкой def."],
+    [/^TypeError: '([^']+)' object is not callable/, "После значения типа {x} стоят круглые скобки, как будто это функция. Возможно, переменная названа так же, как функция (list, str, print), или здесь нужны квадратные скобки."],
+    [/^TypeError: 'NoneType' object is not (?:subscriptable|iterable)/, "Здесь значение None, то есть «ничего». Скорее всего, функция ничего не вернула: проверьте, что в ней есть return."],
+    [/^TypeError: '([^']+)' object is not subscriptable/, "У значения типа {x} нельзя взять элемент в квадратных скобках. Так работают списки, словари и строки."],
+    [/^TypeError/, "Действие не подходит к этому типу данных. Проверьте, что лежит в переменных: число, текст или список. Тип покажет print(type(x))."],
+    [/^ValueError: invalid literal for int\(\)/, "int() превращает в число только текст из цифр. Проверьте, что в строке нет букв, пробелов внутри и точки."],
+    [/^ValueError: (?:not enough|too many) values to unpack/, "Слева и справа от знака = разное число значений. Сколько переменных слева, столько значений должно быть справа."],
+    [/^ValueError/, "Тип значения подходит, а само значение нет. Выведите его через print() и посмотрите, что в нём."],
+    [/^IndexError/, "Элемента с таким номером нет. Счёт идёт с нуля: в списке из 3 элементов номера 0, 1 и 2. Длину покажет len()."],
+    [/^KeyError: (.+)$/, "В словаре нет ключа {x}. Проверьте, как он написан. Чтобы ошибки не было, берите значение через .get(), например data.get(\"name\")."],
+    [/^AttributeError: 'NoneType' object has no attribute '([^']+)'/, "Вы обращаетесь к .{x} у значения None, то есть «ничего». Скорее всего, функция выше ничего не вернула: проверьте return."],
+    [/^AttributeError: .*has no attribute '([^']+)'/, "У этого значения нет .{x}. Проверьте опечатку в названии и тип значения: у строки одни методы, у списка другие."],
+    [/^ZeroDivisionError/, "Делить на ноль нельзя. Перед делением проверьте делитель, например: if count != 0:"],
+    [/^ModuleNotFoundError: No module named '([^']+)'/, "Python не нашёл модуль {x}. Проверьте название в строке import: возможно, в нём опечатка."],
+    [/^ImportError: cannot import name '([^']+)'/, "В модуле нет имени {x}. Проверьте написание и большие буквы, например: from flask import Flask."],
+    [/^RecursionError/, "Функция вызывает сама себя без остановки. Добавьте условие, при котором она возвращает ответ и больше себя не вызывает."],
+    [/^FileNotFoundError/, "Файла с таким именем нет. Проверьте имя и папку. В браузере есть только те файлы, которые создал ваш код."]
+  ];
+
+  function explainError(text) {
+    const whole = String(text || "");
+    // Flask: две функции с одним именем. Проверка задач оставляет от AssertionError только текст
+    const endpoint = whole.match(/View function mapping is overwriting an existing endpoint function: (\S+)/);
+    if (endpoint) return t("Две функции-обработчика называются одинаково: {x}. У каждого маршрута должна быть функция со своим именем.", { x: endpoint[1] });
+
+    // Ищем последнюю строку вида «NameError: …»; в проверке задач она идёт после слова «ошибка».
+    // Перед именем может стоять модуль: sqlite3.OperationalError, jinja2.exceptions.TemplateNotFound
+    const lines = whole.split("\n");
+    for (let i = lines.length - 1; i >= 0; i--) {
+      const found = lines[i].match(/(?:^|[\s:])((?:[A-Za-z_0-9]+\.)*(?:[A-Z][A-Za-z]*Error|TemplateNotFound)\b.*)$/);
+      if (!found) continue;
+      const message = found[1].replace(/^(?:[A-Za-z_0-9]+\.)+/, "");
+      for (let k = 0; k < ERROR_HINTS.length; k++) {
+        const match = message.match(ERROR_HINTS[k][0]);
+        if (match) return t(ERROR_HINTS[k][1], { x: match[1] || "" });
+      }
+      return "";
+    }
+    return "";
+  }
+
+  // Событие для воронки GoatCounter (см. script.js); без счётчика ничего не делает
+  function track(name) {
+    if (window.pywebTrack) window.pywebTrack(name);
+  }
+
   /* ---------- Python в браузере (Pyodide в отдельном потоке) ---------- */
   const WORKER_SOURCE = [
     'importScripts("' + PYODIDE + 'pyodide.js");',
@@ -508,7 +585,13 @@
     const status = box.querySelector(".run-status");
     const text = box.querySelector(".run-text");
     const label = button.textContent;
+    let explain = box.querySelector(".run-explain");
 
+    if (!explain) {
+      explain = el("p", { class: "run-explain" });
+      box.appendChild(explain);
+    }
+    explain.hidden = true;
     box.hidden = false;
     box.classList.remove("is-error", "is-ok");
     text.textContent = "";
@@ -523,9 +606,15 @@
       button.textContent = label;
       status.textContent = result.ok ? (text.textContent ? t("Готово.") : t("Готово, код ничего не вывел. Добавьте print().")) : t("Ошибка");
       if (!result.ok) {
+        const hint = explainError(result.error);
         text.textContent += result.error + "\n";
         box.classList.add("is-error");
+        if (hint) {
+          explain.textContent = t("Что это значит: ") + hint;
+          explain.hidden = false;
+        }
       }
+      track("run-code");
       return result;
     });
   }
@@ -699,6 +788,28 @@
     area.addEventListener("keydown", function (event) {
       if ((event.ctrlKey || event.metaKey) && event.key === "Enter") run.click();
     });
+
+    /* Python без интернета: один запуск с Flask и SQLite проводит все файлы через service worker,
+       и тот кладёт их в кэш (sw.js, RUNTIME_CACHE). Дальше код запускается без сети */
+    if ("serviceWorker" in navigator) {
+      const offlineButton = el("button", { class: "btn btn-secondary", type: "button", text: t("Скачать Python для работы без интернета") });
+      const offlineNote = el("p", { class: "note", role: "status", text: readJson("pyweb_offline", false) ? t("Python и Flask уже сохранены в этом браузере: код запускается без интернета.") : t("Около 15 МБ. После этого примеры, задачи и песочница запускаются без сети.") });
+
+      offlineButton.addEventListener("click", function () {
+        if (!navigator.serviceWorker.controller) {
+          offlineNote.textContent = t("Сначала обновите страницу: офлайн-режим включается со второго открытия сайта.");
+          return;
+        }
+        offlineButton.disabled = true;
+        offlineNote.textContent = t("Скачиваю Python и Flask…");
+        Py.run({ code: "import sqlite3\nimport json\nimport flask" }, function () {}).then(function (result) {
+          offlineButton.disabled = false;
+          if (result.ok) writeJson("pyweb_offline", true);
+          offlineNote.textContent = result.ok ? t("Готово: Python и Flask сохранены. Теперь код запускается без интернета.") : t("Не получилось скачать. Проверьте интернет и попробуйте ещё раз.");
+        });
+      });
+      playground.appendChild(el("div", { class: "offline-python" }, [offlineButton, offlineNote]));
+    }
   }
 
   /* Задачи с автопроверкой */
@@ -780,6 +891,7 @@
             box.classList.add("is-ok");
             solved[id] = true;
             writeJson("pyweb_tasks", solved);
+            track("task-" + id);
             node.classList.add("is-solved", "just-solved");
             updateTasks();
           } else {

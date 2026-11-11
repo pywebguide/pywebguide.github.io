@@ -19,7 +19,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Сайт публикуется только после успешных проверок
+  checks:
+    uses: ./.github/workflows/checks.yml
+
   deploy:
+    needs: checks
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -32,7 +37,9 @@ jobs:
       - name: Индекс поиска Pagefind
         run: npx -y pagefind@1.4.0 --site .
       - name: Служебные папки не публикуются
-        run: rm -rf .git .github tools docs
+        run: |
+          rm -rf .git .github tools docs README.txt
+          find . -name __pycache__ -type d -prune -exec rm -rf {} +
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

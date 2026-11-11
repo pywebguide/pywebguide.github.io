@@ -144,79 +144,481 @@
      "Мұндай тапсырма болмаса, <code>TASKS.get(task_id)</code> <code>None</code> қайтарады.",
      "Жоқ тапсырма үшін: <code>return {\"error\": \"not found\"}, 404</code>."
     ]
+   },
+   "total": {
+    "title": "Сатып алулар қосындысы",
+    "text": "<code>total(prices)</code> функциясын жазыңыз: ол бағалар тізімін алып, олардың қосындысын қайтарады. Бос тізім үшін <code>0</code> қайтарыңыз.",
+    "hints": [
+     "<code>result = 0</code> айнымалысын жасап, <code>for</code> циклінде әр бағаны оған қосыңыз.",
+     "Қысқа жол: кірістірілген <code>sum(prices)</code> функциясы дәл соны істейді."
+    ]
+   },
+   "evens": {
+    "title": "Тек жұп сандар",
+    "text": "<code>only_even(numbers)</code> функциясын жазыңыз: тек жұп сандар сол ретпен қалған жаңа тізімді қайтарыңыз.",
+    "hints": [
+     "2-ге бөлгендегі қалдық нөлге тең болса, сан жұп: <code>n % 2 == 0</code>.",
+     "Бос тізімнен бастап, сәйкес сандарды <code>.append(n)</code> арқылы қосыңыз."
+    ]
+   },
+   "truncate": {
+    "title": "Қысқа аңдатпа",
+    "text": "<code>truncate(text, limit)</code> функциясын жазыңыз. Мәтін <code>limit</code> таңбадан ұзын болмаса, оны сол күйінде қайтарыңыз. Әйтпесе алғашқы <code>limit</code> таңбаны және үш нүктені <code>...</code> қайтарыңыз.",
+    "hints": [
+     "Жолдың алғашқы таңбаларын кесінді береді: <code>text[:limit]</code>.",
+     "Алдымен ұзындықты тексеріңіз: <code>if len(text) &lt;= limit</code>."
+    ]
+   },
+   "longest": {
+    "title": "Ең ұзын сөз",
+    "text": "<code>longest(words)</code> функциясын жазыңыз: тізімдегі ең ұзын сөзді қайтарыңыз. Ондай сөз бірнешеу болса, біріншісін қайтарыңыз. Бос тізім үшін бос жол қайтарыңыз.",
+    "hints": [
+     "Ең жақсы сөзді <code>best = \"\"</code> айнымалысында сақтап, ұзындықтарды <code>len()</code> арқылы салыстырыңыз.",
+     "Ұзындығы тең болғанда бірінші сөз қалуы үшін қатаң салыстырыңыз: <code>len(word) &gt; len(best)</code>."
+    ]
+   },
+   "unique": {
+    "title": "Қайталаусыз",
+    "text": "<code>unique(items)</code> функциясын жазыңыз: қайталанбайтын элементтер тізімін қайтарыңыз. Алғашқы кездесу реті сақталуы керек.",
+    "hints": [
+     "Элементтің тізімде бар-жоғын <code>item not in result</code> арқылы тексеруге болады.",
+     "<code>set()</code> қайталауларды жояды, бірақ рет өзгеруі мүмкін, сондықтан мұнда цикл керек."
+    ]
+   },
+   "initials": {
+    "title": "Инициалдар",
+    "text": "<code>initials(full_name)</code> функциясын жазыңыз: аты мен тегінен инициалдар жасаңыз. <code>Aru Bekova</code> мәнінен <code>A. B.</code> шығуы керек. Әріптерді бас әріпке айналдырыңыз, артық бос орындарды есепке алмаңыз.",
+    "hints": [
+     "<code>full_name.split()</code> жолды сөздерге бөледі және артық бос орындарды өзі алып тастайды.",
+     "Сөздің бірінші әрпі — <code>part[0]</code>, оны <code>.upper()</code> бас әріпке айналдырады. Бөліктерді <code>\" \".join(...)</code> арқылы жинаңыз."
+    ]
+   },
+   "status": {
+    "title": "Күй мәтіні",
+    "text": "<code>status_text(code)</code> функциясын жазыңыз: жауап коды бойынша оның атауын қайтарыңыз. <code>200</code> — <code>OK</code>, <code>201</code> — <code>Created</code>, <code>404</code> — <code>Not Found</code>, <code>500</code> — <code>Internal Server Error</code>. Қалған кодтар үшін <code>Unknown</code> қайтарыңыз.",
+    "hints": [
+     "Жұптарды сөздікте сақтаған ыңғайлы: <code>{200: \"OK\", 404: \"Not Found\"}</code>.",
+     "Код сөздікте болмаса, <code>names.get(code, \"Unknown\")</code> қосалқы мәнді қайтарады."
+    ]
+   },
+   "mime": {
+    "title": "Файл типі",
+    "text": "Сервер браузерге файл типін <code>Content-Type</code> тақырыбында хабарлайды. <code>content_type(filename)</code> функциясын жазыңыз: <code>.html</code> үшін <code>text/html</code>, <code>.css</code> үшін <code>text/css</code>, <code>.js</code> үшін <code>text/javascript</code>, <code>.json</code> үшін <code>application/json</code>, қалғандары үшін <code>application/octet-stream</code> қайтарыңыз. Атаудағы әріптердің регистрі маңызды емес.",
+    "hints": [
+     "Кеңейтім — соңғы нүктеден кейінгі бөлік: <code>filename.rsplit(\".\", 1)[-1]</code>.",
+     "Атауды <code>.lower()</code> арқылы кіші әріпке келтіріп, типті сөздіктен <code>.get()</code> арқылы қосалқы мәнмен алыңыз."
+    ]
+   },
+   "build_url": {
+    "title": "Параметрлі мекенжай",
+    "text": "<code>build_url(path, params)</code> функциясын жазыңыз: жолға сөздіктегі параметрлерді қосыңыз. <code>\"/search\"</code> пен <code>{\"q\": \"flask\", \"page\": 2}</code> мәндерінен <code>/search?q=flask&amp;page=2</code> шығуы керек. Сөздік бос болса, жолды сұрақ белгісінсіз қайтарыңыз.",
+    "hints": [
+     "Кілт пен мән жұптарын <code>params.items()</code> береді. Әрқайсысын <code>f\"{key}={value}\"</code> жолына айналдырыңыз.",
+     "Жұптарды <code>\"&amp;\".join(pairs)</code> арқылы біріктіріп, жолға <code>?</code> белгісінен кейін қосыңыз."
+    ]
+   },
+   "cookie": {
+    "title": "Cookie талдау",
+    "text": "<code>parse_cookie(header)</code> функциясын жазыңыз: <code>theme=dark; lang=kk</code> тақырып жолын <code>{\"theme\": \"dark\", \"lang\": \"kk\"}</code> сөздігіне айналдырыңыз. Бос жол үшін бос сөздік қайтарыңыз. Мәннің ішінде <code>=</code> белгісі кездесуі мүмкін.",
+    "hints": [
+     "Алдымен жолды <code>;</code> бойынша бөліңіз, содан кейін әр бөліктің бос орындарын <code>.strip()</code> арқылы алып тастаңыз.",
+     "<code>part.split(\"=\", 1)</code> тек бірінші теңдік белгісі бойынша бөледі, сондықтан <code>a=b</code> мәні бүтін қалады."
+    ]
+   },
+   "redirect": {
+    "title": "Қауіпсіз бағыттау",
+    "text": "Кіргеннен кейін сайт адамды <code>next</code> параметріндегі мекенжайға қайтарады. <code>is_safe_redirect(url)</code> функциясын жазыңыз: мекенжай осы сайттың өзіне апарса ғана, яғни бір қиғаш сызықпен <code>/</code> басталса ғана <code>True</code> қайтарыңыз. <code>//evil.example</code> мекенжайын браузер бөтен сайт деп санайды.",
+    "hints": [
+     "Жолдың басын <code>url.startswith(\"/\")</code> тексереді.",
+     "<code>and not</code> арқылы екінші шарт қосыңыз: мекенжай <code>//</code> деп басталмауы керек."
+    ]
+   },
+   "clean": {
+    "title": "Таза тақырып",
+    "text": "<code>clean_title(value)</code> функциясын жазыңыз: шеттердегі бос орындарды алып тастаңыз, ал ішіндегі қатар тұрған бірнеше бос орынды біреуімен ауыстырыңыз. <code>\"  Buy   bread \"</code> мәнінен <code>Buy bread</code> шығуы керек.",
+    "hints": [
+     "Аргументсіз <code>value.split()</code> жолды кез келген бос орын бойынша бөліп, бос бөліктерді тастайды.",
+     "Сөздерді <code>\" \".join(...)</code> арқылы қайта жинаңыз."
+    ]
+   },
+   "to_int": {
+    "title": "Формадағы сан",
+    "text": "Форма өрістері әрқашан жол болып келеді. <code>to_int(value, default)</code> функциясын жазыңыз: жолды бүтін санға айналдырыңыз. Шеттердегі бос орындар кедергі болмайды. Жолда сан болмаса, <code>default</code> қайтарыңыз.",
+    "hints": [
+     "<code>int(\"abc\")</code> <code>ValueError</code> қатесін шығарады. Оны <code>try</code> / <code>except ValueError</code> блогы ұстайды.",
+     "<code>except</code> блогында қосалқы мәнді қайтарыңыз: <code>return default</code>."
+    ]
+   },
+   "missing": {
+    "title": "Міндетті өрістер",
+    "text": "<code>missing_fields(data, required)</code> функциясын жазыңыз. <code>data</code> — форма деректері бар сөздік, <code>required</code> — міндетті өрістер тізімі. Сөздікте жоқ немесе бос өрістердің тізімін қайтарыңыз. Тек бос орындардан тұратын жол да бос. Реті <code>required</code> тізіміндегідей.",
+    "hints": [
+     "Өріс болмаса, <code>data.get(name, \"\")</code> бос жол қайтарады.",
+     "Бостықты <code>not value.strip()</code> тексереді: бос орындардан тұратын жолда <code>.strip()</code> кейін ештеңе қалмайды."
+    ]
+   },
+   "escape": {
+    "title": "Қауіпсіз шығару",
+    "text": "<code>escape_html(text)</code> функциясын жазыңыз: <code>&amp;</code> белгісін <code>&amp;amp;</code>, <code>&lt;</code> белгісін <code>&amp;lt;</code>, <code>&gt;</code> белгісін <code>&amp;gt;</code> деп ауыстырыңыз. Сонда пайдаланушының мәтіні бетте тег емес, мәтін болып көрінеді.",
+    "hints": [
+     "Ауыстыруды <code>text.replace(\"&lt;\", \"&amp;lt;\")</code> жасайды. Нәтижені сақтау керек: жолдар орнында өзгермейді.",
+     "<code>&amp;</code> белгісінен бастаңыз. Әйтпесе ол дайын <code>&amp;lt;</code> ішінде екінші рет ауысады."
+    ]
+   },
+   "email": {
+    "title": "Поштаға ұқсай ма",
+    "text": "<code>is_email(value)</code> функциясын жазыңыз: пошта мекенжайын шамамен тексеру. Мекенжайда бос орын жоқ, дәл бір <code>@</code> белгісі бар, оның алдында кемінде бір таңба бар, ал одан кейін басында да, соңында да тұрмаған нүкте бар.",
+    "hints": [
+     "Таңбаның неше рет кездесетінін <code>value.count(\"@\")</code> санайды.",
+     "Мекенжайды екі бөлікке бөліңіз: <code>name, domain = value.split(\"@\")</code>, және әрқайсысын бөлек тексеріңіз."
+    ]
+   },
+   "count": {
+    "title": "Қаншасы қалды",
+    "text": "<code>count_active(db)</code> функциясын жазыңыз: <code>done = 0</code> болатын тапсырмалар санын қайтарыңыз. Санауды Python емес, дерекқор жасауы керек.",
+    "hints": [
+     "Жолдарды <code>SELECT COUNT(*) FROM tasks WHERE done = 0</code> сұрауы санайды.",
+     "<code>.fetchone()</code> бір жол-кортеж қайтарады, сан оның біріншісі: <code>row[0]</code>."
+    ]
+   },
+   "delete_done": {
+    "title": "Орындалғандарды жою",
+    "text": "<code>delete_done(db)</code> функциясын жазыңыз: орындалған тапсырмалардың бәрін (<code>done = 1</code>) жойып, неше жол жойылғанын қайтарыңыз.",
+    "hints": [
+     "Жою сұрауы: <code>DELETE FROM tasks WHERE done = 1</code>.",
+     "Жойылған жолдар саны <code>cursor.rowcount</code> ішінде. <code>db.commit()</code> ұмытпаңыз."
+    ]
+   },
+   "mark_done": {
+    "title": "Орындалды деп белгілеу",
+    "text": "<code>mark_done(db, task_id)</code> функциясын жазыңыз: осы нөмірлі тапсырмаға <code>done = 1</code> қойыңыз. Мұндай тапсырма болса <code>True</code>, болмаса <code>False</code> қайтарыңыз. Басқа тапсырмаларды өзгертуге болмайды.",
+    "hints": [
+     "Өзгерту сұрауы: <code>UPDATE tasks SET done = 1 WHERE id = ?</code>. <code>WHERE</code> болмаса, барлық жол өзгереді.",
+     "Неше жол өзгергенін <code>cursor.rowcount</code> көрсетеді."
+    ]
+   },
+   "search": {
+    "title": "Мәтін бойынша іздеу",
+    "text": "<code>search(db, text)</code> функциясын жазыңыз: ішінде <code>text</code> кездесетін тапсырмалардың тақырыптарын <code>id</code> ретімен қайтарыңыз. Іздеудегі тырнақша сұрауды бұзбауы үшін мәтінді <code>?</code> параметрі арқылы беріңіз.",
+    "hints": [
+     "Жолдың бөлігі бойынша іздеуді <code>WHERE title LIKE ?</code> жасайды, ал <code>%</code> белгісі «кез келген таңбалар» дегенді білдіреді.",
+     "Пайыз белгілерін сұрауға емес, мәнге қосыңыз: <code>(\"%\" + text + \"%\",)</code>."
+    ]
+   },
+   "health": {
+    "title": "Байланысты тексеру",
+    "text": "<code>{\"status\": \"ok\"}</code> JSON қайтаратын <code>GET /health</code> маршрутын қосыңыз. Мұндай мекенжай сервердің жұмыс істеп тұрғанын тексеру үшін жасалады. <code>POST</code> сұрауына ол жауап бермеуі керек.",
+    "hints": [
+     "Тек GET үшін маршрут былай жарияланады: <code>@app.get(\"/health\")</code>.",
+     "Функциядан сөздік қайтарыңыз: Flask оны өзі JSON-ға айналдырады."
+    ]
+   },
+   "square": {
+    "title": "Мекенжайдағы сан",
+    "text": "<code>GET /square/&lt;int:n&gt;</code> жасаңыз: сан мен оның квадраты бар JSON қайтарыңыз, мысалы <code>{\"n\": 4, \"square\": 16}</code>. <code>/square/abc</code> мекенжайы 404 беруі керек.",
+    "hints": [
+     "Мекенжайдағы <code>&lt;int:n&gt;</code> тек сандарды өткізеді және функцияға жол емес, дайын санды береді.",
+     "Функция дәл сол атаулы аргументті қабылдауы керек: <code>def square(n):</code>."
+    ]
+   },
+   "search_q": {
+    "title": "Міндетті параметр",
+    "text": "<code>GET /search</code> жасаңыз. Мекенжайда бос емес <code>q</code> параметрі болса, <code>{\"q\": мәні}</code> қайтарыңыз. Параметр жоқ немесе тек бос орындардан тұрса, 400 кодымен <code>{\"error\": \"q\"}</code> қайтарыңыз.",
+    "hints": [
+     "Параметрді <code>request.args.get(\"q\", \"\")</code> оқиды: параметр болмаса, екінші мән қайтарылады.",
+     "Жауап коды екінші мән ретінде қойылады: <code>return {\"error\": \"q\"}, 400</code>."
+    ]
+   },
+   "remove": {
+    "title": "Нөмір бойынша жою",
+    "text": "<code>DELETE /tasks/&lt;int:task_id&gt;</code> жасаңыз. Тапсырма <code>TASKS</code> сөздігінде болса, оны жойып, 204 кодымен бос жауап қайтарыңыз. Болмаса, 404 кодымен <code>{\"error\": \"not found\"}</code> қайтарыңыз.",
+    "hints": [
+     "Жою маршруты <code>@app.delete(...)</code> арқылы жарияланады. Сөздіктен элементті <code>del TASKS[task_id]</code> алып тастайды.",
+     "Коды бар бос жауап: <code>return \"\", 204</code>."
+    ]
    }
   },
   "code": [
-   ["# ваш код", "# сіздің кодыңыз"],
-   ["# ваш маршрут", "# сіздің маршрутыңыз"],
-   ["\"Уберите пробелы вокруг имени: подойдёт .strip()\"", "\"Есімнің айналасындағы бос орындарды алып тастаңыз: .strip() жарайды\""],
-   ["\"Для пустого имени нужен ответ «Привет, гость!»\"", "\"Бос есім үшін «Сәлем, қонақ!» жауабы керек\""],
-   ["\"Имя из одних пробелов тоже считается пустым\"", "\"Тек бос орындардан тұратын есім де бос болып саналады\""],
-   ["Привет, ", "Сәлем, "],
-   ["'гость'", "'қонақ'"],
-   ["\"Сәлем, гость!\"", "\"Сәлем, қонақ!\""],
-   ["\"Для пустой строки нужен пустой словарь\"", "\"Бос жол үшін бос сөздік керек\""],
-   ["\"Да да нет\"", "\"Иә иә жоқ\""],
-   ["{\"да\": 2, \"нет\": 1}", "{\"иә\": 2, \"жоқ\": 1}"],
-   ["\"Приведите слова к нижнему регистру\"", "\"Сөздерді кіші әріпке айналдырыңыз\""],
-   ["\"Разделяйте через .split() без аргументов\"", "\"Аргументсіз .split() арқылы бөліңіз\""],
-   ["\"Нужно не меньше 8 символов\"", "\"Кемінде 8 таңба керек\""],
-   ["\"Без букв пароль не надёжный\"", "\"Әріпсіз құпиясөз сенімді емес\""],
-   ["\"Без цифр пароль не надёжный\"", "\"Цифрсыз құпиясөз сенімді емес\""],
-   ["\"пароль2026\"", "\"құпиясөз2026\""],
-   ["\"Русские буквы тоже буквы: .isalpha()\"", "\"Қазақ әріптері де әріп: .isalpha()\""],
-   ["\"Несколько знаков подряд дают один дефис\"", "\"Қатар тұрған бірнеше таңба бір сызықша береді\""],
-   ["\"Дефисы по краям нужно убрать\"", "\"Шеттердегі сызықшаларды алып тастау керек\""],
-   ["\"Цифры остаются\"", "\"Цифрлар қалады\""],
-   ["\"Часть без = нужно пропустить\"", "\"= белгісі жоқ бөлікті өткізіп жіберу керек\""],
-   ["\"Делите только по первому =: split('=', 1)\"", "\"Тек бірінші = бойынша бөліңіз: split('=', 1)\""],
-   ["\"Главная\"", "\"Басты бет\""],
-   ["\"Список задач\"", "\"Тапсырмалар тізімі\""],
-   ["\"Задача создана\"", "\"Тапсырма жасалды\""],
-   ["\"Для неизвестного адреса нужен код 404\"", "\"Белгісіз мекенжай үшін 404 коды керек\""],
-   ["\"Для неподходящего метода нужен код 405\"", "\"Сәйкес келмейтін әдіс үшін 405 коды керек\""],
-   ["\"Верные данные не должны давать ошибок\"", "\"Дұрыс деректер қате бермеуі керек\""],
-   ["\"Без имени должна быть ошибка name\"", "\"Есім болмаса, name қатесі болуы керек\""],
-   ["\"Имя из пробелов считается пустым\"", "\"Бос орындардан тұратын есім бос болып саналады\""],
-   ["\"Возраст 0 не подходит\"", "\"0 жасы жарамайды\""],
-   ["\"Строка не считается числом\"", "\"Жол сан болып саналмайды\""],
-   ["\"True в Python тоже int: проверьте это отдельно\"", "\"Python-да True да int: мұны бөлек тексеріңіз\""],
-   ["\"Нужно вернуть обе ошибки по порядку\"", "\"Екі қатені де ретімен қайтару керек\""],
-   ["\"Сон\"", "\"Ұйқы\""],
-   ["\"Нужно вернуть строку, а не список\"", "\"Тізімді емес, жолды қайтару керек\""],
-   ["\"В ответе должны остаться только невыполненные задачи\"", "\"Жауапта тек орындалмаған тапсырмалар қалуы керек\""],
-   ["\"Добавьте ensure_ascii=False, иначе кириллица превратится в коды\"", "\"ensure_ascii=False қосыңыз, әйтпесе кирилл әріптері кодқа айналады\""],
-   ["\"Для пустого списка нужна строка []\"", "\"Бос тізім үшін [] жолы керек\""],
-   ["\"Пробелы внутри скобок необязательны, числа превратите в строку\"", "\"Жақша ішіндегі бос орындар міндетті емес, сандарды жолға айналдырыңыз\""],
-   ["\"Неизвестный ключ заменяется пустой строкой\"", "\"Белгісіз кілт бос жолмен ауыстырылады\""],
-   ["\"без пропусков\"", "\"бос орынсыз\""],
-   ["\"На последней странице может быть меньше элементов\"", "\"Соңғы бетте элементтер азырақ болуы мүмкін\""],
-   ["\"Такой страницы нет: нужен пустой список\"", "\"Мұндай бет жоқ: бос тізім керек\""],
-   ["\"Страницы с номером 0 не бывает\"", "\"0 нөмірлі бет болмайды\""],
-   ["\"Первая\"", "\"Бірінші\""],
-   ["\"Вторая\"", "\"Екінші\""],
-   ["\"Верните cursor.lastrowid\"", "\"cursor.lastrowid қайтарыңыз\""],
-   ["\"Каждая новая строка получает следующий id\"", "\"Әр жаңа жол келесі id алады\""],
-   ["\"Текст с кавычкой не должен ломать запрос: используйте ?\"", "\"Тырнақшасы бар мәтін сұрауды бұзбауы керек: ? қолданыңыз\""],
-   ["\"Текст с кавычкой должен сохраниться как есть\"", "\"Тырнақшасы бар мәтін сол күйінде сақталуы керек\""],
-   ["\"Добавьте WHERE и ORDER BY и верните список строк\"", "\"WHERE мен ORDER BY қосып, жолдар тізімін қайтарыңыз\""],
-   ["\"Если подходящих строк нет, верните пустой список\"", "\"Сәйкес жолдар болмаса, бос тізім қайтарыңыз\""],
-   ["\"Адрес /hello/Python должен открываться с кодом 200\"", "\"/hello/Python мекенжайы 200 кодымен ашылуы керек\""],
-   ["\"Купить хлеб\"", "\"Нан сатып алу\""],
-   ["\"Выучить Flask\"", "\"Flask-ты үйрену\""],
-   ["\"Без параметра нужны все задачи\"", "\"Параметр болмаса, барлық тапсырма керек\""],
-   ["\"?done=1 — только выполненные\"", "\"?done=1 — тек орындалғандары\""],
-   ["\"?done=0 — только невыполненные: параметр приходит строкой\"", "\"?done=0 — тек орындалмағандары: параметр жол түрінде келеді\""],
-   ["\"Без title нужен код 400\"", "\"title болмаса, 400 коды керек\""],
-   ["\"Пустой title тоже даёт 400\"", "\"Бос title да 400 береді\""],
-   ["\"не json\"", "\"json емес\""],
-   ["\"Неверный JSON не должен приводить к падению: get_json(silent=True)\"", "\"Қате JSON құлауға әкелмеуі керек: get_json(silent=True)\""],
-   ["\"При успехе нужен код 201: return {...}, 201\"", "\"Сәтті болса, 201 коды керек: return {...}, 201\""],
-   ["\"Книга\"", "\"Кітап\""],
-   ["\"Заголовок должен попасть в список items\"", "\"Тақырып items тізіміне түсуі керек\""],
-   ["\"Ручка\"", "\"Қалам\""],
-   ["\"Для несуществующей задачи нужен код 404\"", "\"Жоқ тапсырма үшін 404 коды керек\""],
-   ["\"<int:...> пропускает только числа\"", "\"<int:...> тек сандарды өткізеді\""]
+   [
+    "# ваш код",
+    "# сіздің кодыңыз"
+   ],
+   [
+    "# ваш маршрут",
+    "# сіздің маршрутыңыз"
+   ],
+   [
+    "\"Уберите пробелы вокруг имени: подойдёт .strip()\"",
+    "\"Есімнің айналасындағы бос орындарды алып тастаңыз: .strip() жарайды\""
+   ],
+   [
+    "\"Для пустого имени нужен ответ «Привет, гость!»\"",
+    "\"Бос есім үшін «Сәлем, қонақ!» жауабы керек\""
+   ],
+   [
+    "\"Имя из одних пробелов тоже считается пустым\"",
+    "\"Тек бос орындардан тұратын есім де бос болып саналады\""
+   ],
+   [
+    "Привет, ",
+    "Сәлем, "
+   ],
+   [
+    "'гость'",
+    "'қонақ'"
+   ],
+   [
+    "\"Сәлем, гость!\"",
+    "\"Сәлем, қонақ!\""
+   ],
+   [
+    "\"Для пустой строки нужен пустой словарь\"",
+    "\"Бос жол үшін бос сөздік керек\""
+   ],
+   [
+    "\"Да да нет\"",
+    "\"Иә иә жоқ\""
+   ],
+   [
+    "{\"да\": 2, \"нет\": 1}",
+    "{\"иә\": 2, \"жоқ\": 1}"
+   ],
+   [
+    "\"Приведите слова к нижнему регистру\"",
+    "\"Сөздерді кіші әріпке айналдырыңыз\""
+   ],
+   [
+    "\"Разделяйте через .split() без аргументов\"",
+    "\"Аргументсіз .split() арқылы бөліңіз\""
+   ],
+   [
+    "\"Нужно не меньше 8 символов\"",
+    "\"Кемінде 8 таңба керек\""
+   ],
+   [
+    "\"Без букв пароль не надёжный\"",
+    "\"Әріпсіз құпиясөз сенімді емес\""
+   ],
+   [
+    "\"Без цифр пароль не надёжный\"",
+    "\"Цифрсыз құпиясөз сенімді емес\""
+   ],
+   [
+    "\"пароль2026\"",
+    "\"құпиясөз2026\""
+   ],
+   [
+    "\"Русские буквы тоже буквы: .isalpha()\"",
+    "\"Қазақ әріптері де әріп: .isalpha()\""
+   ],
+   [
+    "\"Несколько знаков подряд дают один дефис\"",
+    "\"Қатар тұрған бірнеше таңба бір сызықша береді\""
+   ],
+   [
+    "\"Дефисы по краям нужно убрать\"",
+    "\"Шеттердегі сызықшаларды алып тастау керек\""
+   ],
+   [
+    "\"Цифры остаются\"",
+    "\"Цифрлар қалады\""
+   ],
+   [
+    "\"Часть без = нужно пропустить\"",
+    "\"= белгісі жоқ бөлікті өткізіп жіберу керек\""
+   ],
+   [
+    "\"Делите только по первому =: split('=', 1)\"",
+    "\"Тек бірінші = бойынша бөліңіз: split('=', 1)\""
+   ],
+   [
+    "\"Главная\"",
+    "\"Басты бет\""
+   ],
+   [
+    "\"Список задач\"",
+    "\"Тапсырмалар тізімі\""
+   ],
+   [
+    "\"Задача создана\"",
+    "\"Тапсырма жасалды\""
+   ],
+   [
+    "\"Для неизвестного адреса нужен код 404\"",
+    "\"Белгісіз мекенжай үшін 404 коды керек\""
+   ],
+   [
+    "\"Для неподходящего метода нужен код 405\"",
+    "\"Сәйкес келмейтін әдіс үшін 405 коды керек\""
+   ],
+   [
+    "\"Верные данные не должны давать ошибок\"",
+    "\"Дұрыс деректер қате бермеуі керек\""
+   ],
+   [
+    "\"Без имени должна быть ошибка name\"",
+    "\"Есім болмаса, name қатесі болуы керек\""
+   ],
+   [
+    "\"Имя из пробелов считается пустым\"",
+    "\"Бос орындардан тұратын есім бос болып саналады\""
+   ],
+   [
+    "\"Возраст 0 не подходит\"",
+    "\"0 жасы жарамайды\""
+   ],
+   [
+    "\"Строка не считается числом\"",
+    "\"Жол сан болып саналмайды\""
+   ],
+   [
+    "\"True в Python тоже int: проверьте это отдельно\"",
+    "\"Python-да True да int: мұны бөлек тексеріңіз\""
+   ],
+   [
+    "\"Нужно вернуть обе ошибки по порядку\"",
+    "\"Екі қатені де ретімен қайтару керек\""
+   ],
+   [
+    "\"Сон\"",
+    "\"Ұйқы\""
+   ],
+   [
+    "\"Нужно вернуть строку, а не список\"",
+    "\"Тізімді емес, жолды қайтару керек\""
+   ],
+   [
+    "\"В ответе должны остаться только невыполненные задачи\"",
+    "\"Жауапта тек орындалмаған тапсырмалар қалуы керек\""
+   ],
+   [
+    "\"Добавьте ensure_ascii=False, иначе кириллица превратится в коды\"",
+    "\"ensure_ascii=False қосыңыз, әйтпесе кирилл әріптері кодқа айналады\""
+   ],
+   [
+    "\"Для пустого списка нужна строка []\"",
+    "\"Бос тізім үшін [] жолы керек\""
+   ],
+   [
+    "\"Пробелы внутри скобок необязательны, числа превратите в строку\"",
+    "\"Жақша ішіндегі бос орындар міндетті емес, сандарды жолға айналдырыңыз\""
+   ],
+   [
+    "\"Неизвестный ключ заменяется пустой строкой\"",
+    "\"Белгісіз кілт бос жолмен ауыстырылады\""
+   ],
+   [
+    "\"без пропусков\"",
+    "\"бос орынсыз\""
+   ],
+   [
+    "\"На последней странице может быть меньше элементов\"",
+    "\"Соңғы бетте элементтер азырақ болуы мүмкін\""
+   ],
+   [
+    "\"Такой страницы нет: нужен пустой список\"",
+    "\"Мұндай бет жоқ: бос тізім керек\""
+   ],
+   [
+    "\"Страницы с номером 0 не бывает\"",
+    "\"0 нөмірлі бет болмайды\""
+   ],
+   [
+    "\"Первая\"",
+    "\"Бірінші\""
+   ],
+   [
+    "\"Вторая\"",
+    "\"Екінші\""
+   ],
+   [
+    "\"Верните cursor.lastrowid\"",
+    "\"cursor.lastrowid қайтарыңыз\""
+   ],
+   [
+    "\"Каждая новая строка получает следующий id\"",
+    "\"Әр жаңа жол келесі id алады\""
+   ],
+   [
+    "\"Текст с кавычкой не должен ломать запрос: используйте ?\"",
+    "\"Тырнақшасы бар мәтін сұрауды бұзбауы керек: ? қолданыңыз\""
+   ],
+   [
+    "\"Текст с кавычкой должен сохраниться как есть\"",
+    "\"Тырнақшасы бар мәтін сол күйінде сақталуы керек\""
+   ],
+   [
+    "\"Добавьте WHERE и ORDER BY и верните список строк\"",
+    "\"WHERE мен ORDER BY қосып, жолдар тізімін қайтарыңыз\""
+   ],
+   [
+    "\"Если подходящих строк нет, верните пустой список\"",
+    "\"Сәйкес жолдар болмаса, бос тізім қайтарыңыз\""
+   ],
+   [
+    "\"Адрес /hello/Python должен открываться с кодом 200\"",
+    "\"/hello/Python мекенжайы 200 кодымен ашылуы керек\""
+   ],
+   [
+    "\"Купить хлеб\"",
+    "\"Нан сатып алу\""
+   ],
+   [
+    "\"Выучить Flask\"",
+    "\"Flask-ты үйрену\""
+   ],
+   [
+    "\"Без параметра нужны все задачи\"",
+    "\"Параметр болмаса, барлық тапсырма керек\""
+   ],
+   [
+    "\"?done=1 — только выполненные\"",
+    "\"?done=1 — тек орындалғандары\""
+   ],
+   [
+    "\"?done=0 — только невыполненные: параметр приходит строкой\"",
+    "\"?done=0 — тек орындалмағандары: параметр жол түрінде келеді\""
+   ],
+   [
+    "\"Без title нужен код 400\"",
+    "\"title болмаса, 400 коды керек\""
+   ],
+   [
+    "\"Пустой title тоже даёт 400\"",
+    "\"Бос title да 400 береді\""
+   ],
+   [
+    "\"не json\"",
+    "\"json емес\""
+   ],
+   [
+    "\"Неверный JSON не должен приводить к падению: get_json(silent=True)\"",
+    "\"Қате JSON құлауға әкелмеуі керек: get_json(silent=True)\""
+   ],
+   [
+    "\"При успехе нужен код 201: return {...}, 201\"",
+    "\"Сәтті болса, 201 коды керек: return {...}, 201\""
+   ],
+   [
+    "\"Книга\"",
+    "\"Кітап\""
+   ],
+   [
+    "\"Заголовок должен попасть в список items\"",
+    "\"Тақырып items тізіміне түсуі керек\""
+   ],
+   [
+    "\"Ручка\"",
+    "\"Қалам\""
+   ],
+   [
+    "\"Для несуществующей задачи нужен код 404\"",
+    "\"Жоқ тапсырма үшін 404 коды керек\""
+   ],
+   [
+    "\"<int:...> пропускает только числа\"",
+    "\"<int:...> тек сандарды өткізеді\""
+   ]
   ]
  },
  "en": {
@@ -364,87 +766,513 @@
      "<code>TASKS.get(task_id)</code> returns <code>None</code> if there is no such task.",
      "For a missing task: <code>return {\"error\": \"not found\"}, 404</code>."
     ]
+   },
+   "total": {
+    "title": "Shopping total",
+    "text": "Write <code>total(prices)</code>: the function takes a list of prices and returns their sum. For an empty list return <code>0</code>.",
+    "hints": [
+     "Create a variable <code>result = 0</code> and add every price to it in a <code>for</code> loop.",
+     "A shortcut: the built-in <code>sum(prices)</code> does the same."
+    ]
+   },
+   "evens": {
+    "title": "Even numbers only",
+    "text": "Write <code>only_even(numbers)</code>: return a new list that keeps only the even numbers, in the same order.",
+    "hints": [
+     "A number is even when the remainder of dividing by 2 is zero: <code>n % 2 == 0</code>.",
+     "Start with an empty list and add matching numbers with <code>.append(n)</code>."
+    ]
+   },
+   "truncate": {
+    "title": "Short teaser",
+    "text": "Write <code>truncate(text, limit)</code>. If the text is no longer than <code>limit</code> characters, return it unchanged. Otherwise return the first <code>limit</code> characters followed by three dots <code>...</code>.",
+    "hints": [
+     "A slice gives the first characters of a string: <code>text[:limit]</code>.",
+     "Check the length first: <code>if len(text) &lt;= limit</code>."
+    ]
+   },
+   "longest": {
+    "title": "Longest word",
+    "text": "Write <code>longest(words)</code>: return the longest word in the list. If there are several, return the first one. For an empty list return an empty string.",
+    "hints": [
+     "Keep the best word in a variable <code>best = \"\"</code> and compare lengths with <code>len()</code>.",
+     "To keep the first word when lengths are equal, compare strictly: <code>len(word) &gt; len(best)</code>."
+    ]
+   },
+   "unique": {
+    "title": "No duplicates",
+    "text": "Write <code>unique(items)</code>: return the list without duplicates. The order of first appearances must be kept.",
+    "hints": [
+     "You can check whether an item is already in the list with <code>item not in result</code>.",
+     "<code>set()</code> removes duplicates but may change the order, so a loop is needed here."
+    ]
+   },
+   "initials": {
+    "title": "Initials",
+    "text": "Write <code>initials(full_name)</code>: turn a first and last name into initials. <code>Aru Bekova</code> must become <code>A. B.</code> Make the letters capital and ignore extra spaces.",
+    "hints": [
+     "<code>full_name.split()</code> splits the string into words and drops extra spaces itself.",
+     "The first letter of a word is <code>part[0]</code>, and <code>.upper()</code> makes it capital. Join the parts with <code>\" \".join(...)</code>."
+    ]
+   },
+   "status": {
+    "title": "Status text",
+    "text": "Write <code>status_text(code)</code>: return the name of a response code. <code>200</code> is <code>OK</code>, <code>201</code> is <code>Created</code>, <code>404</code> is <code>Not Found</code>, <code>500</code> is <code>Internal Server Error</code>. For any other code return <code>Unknown</code>.",
+    "hints": [
+     "It is handy to keep the pairs in a dictionary: <code>{200: \"OK\", 404: \"Not Found\"}</code>.",
+     "<code>names.get(code, \"Unknown\")</code> returns a fallback when the code is not in the dictionary."
+    ]
+   },
+   "mime": {
+    "title": "File type",
+    "text": "A server tells the browser the file type in the <code>Content-Type</code> header. Write <code>content_type(filename)</code>: for <code>.html</code> return <code>text/html</code>, for <code>.css</code> <code>text/css</code>, for <code>.js</code> <code>text/javascript</code>, for <code>.json</code> <code>application/json</code>, and for anything else <code>application/octet-stream</code>. Letter case in the name does not matter.",
+    "hints": [
+     "The extension is the part after the last dot: <code>filename.rsplit(\".\", 1)[-1]</code>.",
+     "Lowercase the name with <code>.lower()</code> and take the type from a dictionary with <code>.get()</code> and a fallback."
+    ]
+   },
+   "build_url": {
+    "title": "Address with parameters",
+    "text": "Write <code>build_url(path, params)</code>: add the parameters from a dictionary to the path. <code>\"/search\"</code> and <code>{\"q\": \"flask\", \"page\": 2}</code> must give <code>/search?q=flask&amp;page=2</code>. If the dictionary is empty, return the path without a question mark.",
+    "hints": [
+     "<code>params.items()</code> gives key and value pairs. Turn each one into a string <code>f\"{key}={value}\"</code>.",
+     "Join the pairs with <code>\"&amp;\".join(pairs)</code> and add them to the path after <code>?</code>."
+    ]
+   },
+   "cookie": {
+    "title": "Parsing a cookie",
+    "text": "Write <code>parse_cookie(header)</code>: turn the header string <code>theme=dark; lang=kk</code> into the dictionary <code>{\"theme\": \"dark\", \"lang\": \"kk\"}</code>. For an empty string return an empty dictionary. A value may contain the <code>=</code> sign.",
+    "hints": [
+     "First split the string on <code>;</code>, then strip the spaces from each part with <code>.strip()</code>.",
+     "<code>part.split(\"=\", 1)</code> splits only on the first equals sign, so the value <code>a=b</code> stays whole."
+    ]
+   },
+   "redirect": {
+    "title": "Safe redirect",
+    "text": "After login a site sends the person back to the address from the <code>next</code> parameter. Write <code>is_safe_redirect(url)</code>: return <code>True</code> only if the address leads to the same site, that is, starts with a single slash <code>/</code>. The browser treats <code>//evil.example</code> as another site.",
+    "hints": [
+     "<code>url.startswith(\"/\")</code> checks the start of a string.",
+     "Add a second condition with <code>and not</code>: the address must not start with <code>//</code>."
+    ]
+   },
+   "clean": {
+    "title": "Clean title",
+    "text": "Write <code>clean_title(value)</code>: remove the spaces at both ends and replace several spaces in a row inside with one. <code>\"  Buy   bread \"</code> must become <code>Buy bread</code>.",
+    "hints": [
+     "<code>value.split()</code> without arguments splits on any whitespace and drops empty parts.",
+     "Put the words back together with <code>\" \".join(...)</code>."
+    ]
+   },
+   "to_int": {
+    "title": "A number from a form",
+    "text": "Form fields always arrive as strings. Write <code>to_int(value, default)</code>: turn the string into a whole number. Spaces at the ends are fine. If the string is not a number, return <code>default</code>.",
+    "hints": [
+     "<code>int(\"abc\")</code> raises <code>ValueError</code>. A <code>try</code> / <code>except ValueError</code> block catches it.",
+     "In the <code>except</code> block simply return the fallback: <code>return default</code>."
+    ]
+   },
+   "missing": {
+    "title": "Required fields",
+    "text": "Write <code>missing_fields(data, required)</code>. <code>data</code> is a dictionary with form data, <code>required</code> is a list of required fields. Return the list of fields that are missing from the dictionary or empty. A string of spaces is empty too. Keep the order of <code>required</code>.",
+    "hints": [
+     "<code>data.get(name, \"\")</code> returns an empty string when the field is missing.",
+     "<code>not value.strip()</code> checks for emptiness: nothing is left of a string of spaces after <code>.strip()</code>."
+    ]
+   },
+   "escape": {
+    "title": "Safe output",
+    "text": "Write <code>escape_html(text)</code>: replace <code>&amp;</code> with <code>&amp;amp;</code>, <code>&lt;</code> with <code>&amp;lt;</code> and <code>&gt;</code> with <code>&amp;gt;</code>. Then text from a user shows up on the page as text and does not become a tag.",
+    "hints": [
+     "<code>text.replace(\"&lt;\", \"&amp;lt;\")</code> does a replacement. Save the result: strings do not change in place.",
+     "Start with <code>&amp;</code>. Otherwise it gets replaced a second time inside the finished <code>&amp;lt;</code>."
+    ]
+   },
+   "email": {
+    "title": "Looks like an email",
+    "text": "Write <code>is_email(value)</code>: a rough check of an email address. The address has no spaces, exactly one <code>@</code> sign, at least one character before it, and after it a dot that is neither first nor last.",
+    "hints": [
+     "<code>value.count(\"@\")</code> counts how many times a character appears.",
+     "Split the address into two parts: <code>name, domain = value.split(\"@\")</code>, and check each one separately."
+    ]
+   },
+   "count": {
+    "title": "How many are left",
+    "text": "Write <code>count_active(db)</code>: return the number of tasks where <code>done = 0</code>. The database must do the counting, not Python.",
+    "hints": [
+     "The query <code>SELECT COUNT(*) FROM tasks WHERE done = 0</code> counts rows.",
+     "<code>.fetchone()</code> returns one row as a tuple, and the number is first in it: <code>row[0]</code>."
+    ]
+   },
+   "delete_done": {
+    "title": "Delete the finished",
+    "text": "Write <code>delete_done(db)</code>: delete every finished task (<code>done = 1</code>) and return how many rows were deleted.",
+    "hints": [
+     "The delete query: <code>DELETE FROM tasks WHERE done = 1</code>.",
+     "The number of deleted rows is in <code>cursor.rowcount</code>. Do not forget <code>db.commit()</code>."
+    ]
+   },
+   "mark_done": {
+    "title": "Mark as done",
+    "text": "Write <code>mark_done(db, task_id)</code>: set <code>done = 1</code> for the task with this number. Return <code>True</code> if there was such a task and <code>False</code> if there was not. Other tasks must stay unchanged.",
+    "hints": [
+     "The update query: <code>UPDATE tasks SET done = 1 WHERE id = ?</code>. Without <code>WHERE</code> every row changes.",
+     "<code>cursor.rowcount</code> shows how many rows changed."
+    ]
+   },
+   "search": {
+    "title": "Text search",
+    "text": "Write <code>search(db, text)</code>: return the titles of tasks that contain <code>text</code>, ordered by <code>id</code>. Pass the text through a <code>?</code> parameter so that a quote in the search cannot break the query.",
+    "hints": [
+     "<code>WHERE title LIKE ?</code> searches by part of a string, and <code>%</code> means “any characters”.",
+     "Add the percent signs to the value, not to the query: <code>(\"%\" + text + \"%\",)</code>."
+    ]
+   },
+   "health": {
+    "title": "Health check",
+    "text": "Add a route <code>GET /health</code> that returns the JSON <code>{\"status\": \"ok\"}</code>. Such an address is made to check that the server is alive. It must not answer <code>POST</code>.",
+    "hints": [
+     "A GET-only route is declared like this: <code>@app.get(\"/health\")</code>.",
+     "Return a dictionary from the function: Flask turns it into JSON itself."
+    ]
+   },
+   "square": {
+    "title": "A number in the address",
+    "text": "Make <code>GET /square/&lt;int:n&gt;</code>: return JSON with the number and its square, for example <code>{\"n\": 4, \"square\": 16}</code>. The address <code>/square/abc</code> must give 404.",
+    "hints": [
+     "<code>&lt;int:n&gt;</code> in the address lets only numbers through and passes a number, not a string, to the function.",
+     "The function must take an argument with the same name: <code>def square(n):</code>."
+    ]
+   },
+   "search_q": {
+    "title": "Required parameter",
+    "text": "Make <code>GET /search</code>. If the address has a non-empty <code>q</code> parameter, return <code>{\"q\": value}</code>. If the parameter is missing or made of spaces, return <code>{\"error\": \"q\"}</code> with code 400.",
+    "hints": [
+     "<code>request.args.get(\"q\", \"\")</code> reads the parameter: the second value comes back when it is missing.",
+     "The response code goes second: <code>return {\"error\": \"q\"}, 400</code>."
+    ]
+   },
+   "remove": {
+    "title": "Delete by number",
+    "text": "Make <code>DELETE /tasks/&lt;int:task_id&gt;</code>. If the task is in the <code>TASKS</code> dictionary, delete it and return an empty response with code 204. If it is not there, return <code>{\"error\": \"not found\"}</code> with code 404.",
+    "hints": [
+     "A delete route is declared with <code>@app.delete(...)</code>. <code>del TASKS[task_id]</code> removes an item from a dictionary.",
+     "An empty response with a code: <code>return \"\", 204</code>."
+    ]
    }
   },
   "code": [
-   ["# ваш код", "# your code"],
-   ["# ваш маршрут", "# your route"],
-   ["\"Уберите пробелы вокруг имени: подойдёт .strip()\"", "\"Remove the spaces around the name: .strip() will do\""],
-   ["\"Для пустого имени нужен ответ «Привет, гость!»\"", "\"An empty name needs the answer “Hello, guest!”\""],
-   ["\"Имя из одних пробелов тоже считается пустым\"", "\"A name made only of spaces also counts as empty\""],
-   ["Привет, ", "Hello, "],
-   ["'гость'", "'guest'"],
-   ["\"Hello, гость!\"", "\"Hello, guest!\""],
-   ["Анна", "Anna"],
-   ["Ерлан", "Erlan"],
-   ["Дана", "Dana"],
-   ["Аружан", "Aruzhan"],
-   ["\"Для пустой строки нужен пустой словарь\"", "\"An empty string needs an empty dictionary\""],
-   ["\"Да да нет\"", "\"Yes yes no\""],
-   ["{\"да\": 2, \"нет\": 1}", "{\"yes\": 2, \"no\": 1}"],
-   ["\"Приведите слова к нижнему регистру\"", "\"Convert the words to lower case\""],
-   ["\"Разделяйте через .split() без аргументов\"", "\"Split with .split() without arguments\""],
-   ["\"Нужно не меньше 8 символов\"", "\"At least 8 characters are needed\""],
-   ["\"Без букв пароль не надёжный\"", "\"A password without letters is not strong\""],
-   ["\"Без цифр пароль не надёжный\"", "\"A password without digits is not strong\""],
-   ["\"пароль2026\"", "\"pässwort2026\""],
-   ["\"Русские буквы тоже буквы: .isalpha()\"", "\"Letters like ä are letters too: .isalpha()\""],
-   ["\"Несколько знаков подряд дают один дефис\"", "\"Several signs in a row give one hyphen\""],
-   ["\"Дефисы по краям нужно убрать\"", "\"Hyphens at the ends must be removed\""],
-   ["\"Цифры остаются\"", "\"Digits stay\""],
-   ["\"Часть без = нужно пропустить\"", "\"A part without = must be skipped\""],
-   ["\"Делите только по первому =: split('=', 1)\"", "\"Split only on the first =: split('=', 1)\""],
-   ["\"Главная\"", "\"Home\""],
-   ["\"Список задач\"", "\"Task list\""],
-   ["\"Задача создана\"", "\"Task created\""],
-   ["\"Для неизвестного адреса нужен код 404\"", "\"An unknown address needs code 404\""],
-   ["\"Для неподходящего метода нужен код 405\"", "\"A wrong method needs code 405\""],
-   ["\"Верные данные не должны давать ошибок\"", "\"Correct data must not give errors\""],
-   ["\"Без имени должна быть ошибка name\"", "\"Without a name there must be a name error\""],
-   ["\"Имя из пробелов считается пустым\"", "\"A name made of spaces counts as empty\""],
-   ["\"Возраст 0 не подходит\"", "\"Age 0 is not allowed\""],
-   ["\"Строка не считается числом\"", "\"A string does not count as a number\""],
-   ["\"True в Python тоже int: проверьте это отдельно\"", "\"In Python True is an int too: check for it separately\""],
-   ["\"Нужно вернуть обе ошибки по порядку\"", "\"Return both errors in order\""],
-   ["\"Код\"", "\"Café\""],
-   ["\"Сон\"", "\"Sleep\""],
-   ["\"Нужно вернуть строку, а не список\"", "\"Return a string, not a list\""],
-   ["\"В ответе должны остаться только невыполненные задачи\"", "\"Only unfinished tasks must remain in the answer\""],
-   ["\"Добавьте ensure_ascii=False, иначе кириллица превратится в коды\"", "\"Add ensure_ascii=False, otherwise é turns into a code\""],
-   ["\"Для пустого списка нужна строка []\"", "\"An empty list needs the string []\""],
-   ["\"Пробелы внутри скобок необязательны, числа превратите в строку\"", "\"Spaces inside the braces are optional, turn numbers into strings\""],
-   ["\"Неизвестный ключ заменяется пустой строкой\"", "\"An unknown key is replaced with an empty string\""],
-   ["\"без пропусков\"", "\"no gaps\""],
-   ["\"На последней странице может быть меньше элементов\"", "\"The last page may have fewer items\""],
-   ["\"Такой страницы нет: нужен пустой список\"", "\"There is no such page: an empty list is needed\""],
-   ["\"Страницы с номером 0 не бывает\"", "\"There is no page number 0\""],
-   ["\"Первая\"", "\"First\""],
-   ["\"Вторая\"", "\"Second\""],
-   ["\"Верните cursor.lastrowid\"", "\"Return cursor.lastrowid\""],
-   ["\"Каждая новая строка получает следующий id\"", "\"Every new row gets the next id\""],
-   ["\"Текст с кавычкой не должен ломать запрос: используйте ?\"", "\"Text with a quote must not break the query: use ?\""],
-   ["\"Текст с кавычкой должен сохраниться как есть\"", "\"Text with a quote must be saved as it is\""],
-   ["\"Б\"", "\"B\""],
-   ["\"А\"", "\"A\""],
-   ["\"В\"", "\"C\""],
-   ["\"Добавьте WHERE и ORDER BY и верните список строк\"", "\"Add WHERE and ORDER BY and return a list of strings\""],
-   ["\"Если подходящих строк нет, верните пустой список\"", "\"If no rows match, return an empty list\""],
-   ["\"Адрес /hello/Python должен открываться с кодом 200\"", "\"The address /hello/Python must open with code 200\""],
-   ["\"Купить хлеб\"", "\"Buy bread\""],
-   ["\"Выучить Flask\"", "\"Learn Flask\""],
-   ["\"Без параметра нужны все задачи\"", "\"Without the parameter all tasks are needed\""],
-   ["\"?done=1 — только выполненные\"", "\"?done=1 — only finished ones\""],
-   ["\"?done=0 — только невыполненные: параметр приходит строкой\"", "\"?done=0 — only unfinished ones: the parameter arrives as a string\""],
-   ["\"Без title нужен код 400\"", "\"Without a title code 400 is needed\""],
-   ["\"Пустой title тоже даёт 400\"", "\"An empty title also gives 400\""],
-   ["\"не json\"", "\"not json\""],
-   ["\"Неверный JSON не должен приводить к падению: get_json(silent=True)\"", "\"Invalid JSON must not cause a crash: get_json(silent=True)\""],
-   ["\"При успехе нужен код 201: return {...}, 201\"", "\"On success code 201 is needed: return {...}, 201\""],
-   ["\"Книга\"", "\"Book\""],
-   ["\"Заголовок должен попасть в список items\"", "\"The title must go into the items list\""],
-   ["\"Ручка\"", "\"Pen\""],
-   ["\"Для несуществующей задачи нужен код 404\"", "\"A task that does not exist needs code 404\""],
-   ["\"<int:...> пропускает только числа\"", "\"<int:...> lets only numbers through\""]
+   [
+    "# ваш код",
+    "# your code"
+   ],
+   [
+    "# ваш маршрут",
+    "# your route"
+   ],
+   [
+    "\"Уберите пробелы вокруг имени: подойдёт .strip()\"",
+    "\"Remove the spaces around the name: .strip() will do\""
+   ],
+   [
+    "\"Для пустого имени нужен ответ «Привет, гость!»\"",
+    "\"An empty name needs the answer “Hello, guest!”\""
+   ],
+   [
+    "\"Имя из одних пробелов тоже считается пустым\"",
+    "\"A name made only of spaces also counts as empty\""
+   ],
+   [
+    "Привет, ",
+    "Hello, "
+   ],
+   [
+    "'гость'",
+    "'guest'"
+   ],
+   [
+    "\"Hello, гость!\"",
+    "\"Hello, guest!\""
+   ],
+   [
+    "Анна",
+    "Anna"
+   ],
+   [
+    "Ерлан",
+    "Erlan"
+   ],
+   [
+    "Дана",
+    "Dana"
+   ],
+   [
+    "Аружан",
+    "Aruzhan"
+   ],
+   [
+    "\"Для пустой строки нужен пустой словарь\"",
+    "\"An empty string needs an empty dictionary\""
+   ],
+   [
+    "\"Да да нет\"",
+    "\"Yes yes no\""
+   ],
+   [
+    "{\"да\": 2, \"нет\": 1}",
+    "{\"yes\": 2, \"no\": 1}"
+   ],
+   [
+    "\"Приведите слова к нижнему регистру\"",
+    "\"Convert the words to lower case\""
+   ],
+   [
+    "\"Разделяйте через .split() без аргументов\"",
+    "\"Split with .split() without arguments\""
+   ],
+   [
+    "\"Нужно не меньше 8 символов\"",
+    "\"At least 8 characters are needed\""
+   ],
+   [
+    "\"Без букв пароль не надёжный\"",
+    "\"A password without letters is not strong\""
+   ],
+   [
+    "\"Без цифр пароль не надёжный\"",
+    "\"A password without digits is not strong\""
+   ],
+   [
+    "\"пароль2026\"",
+    "\"pässwort2026\""
+   ],
+   [
+    "\"Русские буквы тоже буквы: .isalpha()\"",
+    "\"Letters like ä are letters too: .isalpha()\""
+   ],
+   [
+    "\"Несколько знаков подряд дают один дефис\"",
+    "\"Several signs in a row give one hyphen\""
+   ],
+   [
+    "\"Дефисы по краям нужно убрать\"",
+    "\"Hyphens at the ends must be removed\""
+   ],
+   [
+    "\"Цифры остаются\"",
+    "\"Digits stay\""
+   ],
+   [
+    "\"Часть без = нужно пропустить\"",
+    "\"A part without = must be skipped\""
+   ],
+   [
+    "\"Делите только по первому =: split('=', 1)\"",
+    "\"Split only on the first =: split('=', 1)\""
+   ],
+   [
+    "\"Главная\"",
+    "\"Home\""
+   ],
+   [
+    "\"Список задач\"",
+    "\"Task list\""
+   ],
+   [
+    "\"Задача создана\"",
+    "\"Task created\""
+   ],
+   [
+    "\"Для неизвестного адреса нужен код 404\"",
+    "\"An unknown address needs code 404\""
+   ],
+   [
+    "\"Для неподходящего метода нужен код 405\"",
+    "\"A wrong method needs code 405\""
+   ],
+   [
+    "\"Верные данные не должны давать ошибок\"",
+    "\"Correct data must not give errors\""
+   ],
+   [
+    "\"Без имени должна быть ошибка name\"",
+    "\"Without a name there must be a name error\""
+   ],
+   [
+    "\"Имя из пробелов считается пустым\"",
+    "\"A name made of spaces counts as empty\""
+   ],
+   [
+    "\"Возраст 0 не подходит\"",
+    "\"Age 0 is not allowed\""
+   ],
+   [
+    "\"Строка не считается числом\"",
+    "\"A string does not count as a number\""
+   ],
+   [
+    "\"True в Python тоже int: проверьте это отдельно\"",
+    "\"In Python True is an int too: check for it separately\""
+   ],
+   [
+    "\"Нужно вернуть обе ошибки по порядку\"",
+    "\"Return both errors in order\""
+   ],
+   [
+    "\"Код\"",
+    "\"Café\""
+   ],
+   [
+    "\"Сон\"",
+    "\"Sleep\""
+   ],
+   [
+    "\"Нужно вернуть строку, а не список\"",
+    "\"Return a string, not a list\""
+   ],
+   [
+    "\"В ответе должны остаться только невыполненные задачи\"",
+    "\"Only unfinished tasks must remain in the answer\""
+   ],
+   [
+    "\"Добавьте ensure_ascii=False, иначе кириллица превратится в коды\"",
+    "\"Add ensure_ascii=False, otherwise é turns into a code\""
+   ],
+   [
+    "\"Для пустого списка нужна строка []\"",
+    "\"An empty list needs the string []\""
+   ],
+   [
+    "\"Пробелы внутри скобок необязательны, числа превратите в строку\"",
+    "\"Spaces inside the braces are optional, turn numbers into strings\""
+   ],
+   [
+    "\"Неизвестный ключ заменяется пустой строкой\"",
+    "\"An unknown key is replaced with an empty string\""
+   ],
+   [
+    "\"без пропусков\"",
+    "\"no gaps\""
+   ],
+   [
+    "\"На последней странице может быть меньше элементов\"",
+    "\"The last page may have fewer items\""
+   ],
+   [
+    "\"Такой страницы нет: нужен пустой список\"",
+    "\"There is no such page: an empty list is needed\""
+   ],
+   [
+    "\"Страницы с номером 0 не бывает\"",
+    "\"There is no page number 0\""
+   ],
+   [
+    "\"Первая\"",
+    "\"First\""
+   ],
+   [
+    "\"Вторая\"",
+    "\"Second\""
+   ],
+   [
+    "\"Верните cursor.lastrowid\"",
+    "\"Return cursor.lastrowid\""
+   ],
+   [
+    "\"Каждая новая строка получает следующий id\"",
+    "\"Every new row gets the next id\""
+   ],
+   [
+    "\"Текст с кавычкой не должен ломать запрос: используйте ?\"",
+    "\"Text with a quote must not break the query: use ?\""
+   ],
+   [
+    "\"Текст с кавычкой должен сохраниться как есть\"",
+    "\"Text with a quote must be saved as it is\""
+   ],
+   [
+    "\"Б\"",
+    "\"B\""
+   ],
+   [
+    "\"А\"",
+    "\"A\""
+   ],
+   [
+    "\"В\"",
+    "\"C\""
+   ],
+   [
+    "\"Добавьте WHERE и ORDER BY и верните список строк\"",
+    "\"Add WHERE and ORDER BY and return a list of strings\""
+   ],
+   [
+    "\"Если подходящих строк нет, верните пустой список\"",
+    "\"If no rows match, return an empty list\""
+   ],
+   [
+    "\"Адрес /hello/Python должен открываться с кодом 200\"",
+    "\"The address /hello/Python must open with code 200\""
+   ],
+   [
+    "\"Купить хлеб\"",
+    "\"Buy bread\""
+   ],
+   [
+    "\"Выучить Flask\"",
+    "\"Learn Flask\""
+   ],
+   [
+    "\"Без параметра нужны все задачи\"",
+    "\"Without the parameter all tasks are needed\""
+   ],
+   [
+    "\"?done=1 — только выполненные\"",
+    "\"?done=1 — only finished ones\""
+   ],
+   [
+    "\"?done=0 — только невыполненные: параметр приходит строкой\"",
+    "\"?done=0 — only unfinished ones: the parameter arrives as a string\""
+   ],
+   [
+    "\"Без title нужен код 400\"",
+    "\"Without a title code 400 is needed\""
+   ],
+   [
+    "\"Пустой title тоже даёт 400\"",
+    "\"An empty title also gives 400\""
+   ],
+   [
+    "\"не json\"",
+    "\"not json\""
+   ],
+   [
+    "\"Неверный JSON не должен приводить к падению: get_json(silent=True)\"",
+    "\"Invalid JSON must not cause a crash: get_json(silent=True)\""
+   ],
+   [
+    "\"При успехе нужен код 201: return {...}, 201\"",
+    "\"On success code 201 is needed: return {...}, 201\""
+   ],
+   [
+    "\"Книга\"",
+    "\"Book\""
+   ],
+   [
+    "\"Заголовок должен попасть в список items\"",
+    "\"The title must go into the items list\""
+   ],
+   [
+    "\"Ручка\"",
+    "\"Pen\""
+   ],
+   [
+    "\"Для несуществующей задачи нужен код 404\"",
+    "\"A task that does not exist needs code 404\""
+   ],
+   [
+    "\"<int:...> пропускает только числа\"",
+    "\"<int:...> lets only numbers through\""
+   ]
   ]
  }
 }

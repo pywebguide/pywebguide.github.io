@@ -43,9 +43,13 @@ class Page(HTMLParser):
         if tag == "meta" and attrs.get("name") == "description" and attrs.get("content"):
             self.has_description = True
         for name in ("href", "src"):
-            if attrs.get(name) and tag != "link" or (tag == "link" and name == "href" and attrs.get("rel") in ("stylesheet", "icon", "apple-touch-icon")):
-                if attrs.get(name):
-                    self.links.append(attrs[name])
+            value = attrs.get(name)
+            if not value:
+                continue
+            # У <link> проверяем только файлы сайта: стили и иконки (не canonical, alternate, preload)
+            if tag == "link" and not (name == "href" and attrs.get("rel") in ("stylesheet", "icon", "apple-touch-icon")):
+                continue
+            self.links.append(value)
 
     def handle_endtag(self, tag):
         if tag == "title":

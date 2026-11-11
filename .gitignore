@@ -1,2 +1,4 @@
 pagefind/
 tools/i18n/todo-*.json
+__pycache__/
+*.pyc

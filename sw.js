@@ -1,7 +1,7 @@
 /* Service worker PyWeb Guide: офлайн и быстрые повторные визиты.
    VERSION и PRECACHE вписывает tools/build_sw.py по содержимому файлов сайта: любая правка
    меняет версию, новый worker ставится, а кэш прошлой версии удаляется. Руками не править. */
-const VERSION = "pyweb-0f0165a348";
+const VERSION = "pyweb-d3946c9651";
 const PRECACHE = ["/", "/kk/", "/en/", "/about.html", "/api.html", "/auth.html", "/cheatsheet.html", "/contacts.html", "/course.html", "/databases.html", "/deploy.html", "/en/about.html", "/en/api.html", "/en/auth.html", "/en/cheatsheet.html", "/en/contacts.html", "/en/course.html", "/en/databases.html", "/en/deploy.html", "/en/exam.html", "/en/frameworks.html", "/en/git.html", "/en/glossary.html", "/en/index.html", "/en/playground.html", "/en/practice.html", "/en/privacy.html", "/en/progress.html", "/en/project.html", "/en/project2.html", "/en/start.html", "/en/templates.html", "/en/terms.html", "/en/testing.html", "/exam.html", "/frameworks.html", "/git.html", "/glossary.html", "/index.html", "/kk/about.html", "/kk/api.html", "/kk/auth.html", "/kk/cheatsheet.html", "/kk/contacts.html", "/kk/course.html", "/kk/databases.html", "/kk/deploy.html", "/kk/exam.html", "/kk/frameworks.html", "/kk/git.html", "/kk/glossary.html", "/kk/index.html", "/kk/playground.html", "/kk/practice.html", "/kk/privacy.html", "/kk/progress.html", "/kk/project.html", "/kk/project2.html", "/kk/start.html", "/kk/templates.html", "/kk/terms.html", "/kk/testing.html", "/playground.html", "/practice.html", "/privacy.html", "/progress.html", "/project.html", "/project2.html", "/start.html", "/templates.html", "/terms.html", "/testing.html", "/styles.css", "/script.js", "/features.js", "/assets/i18n.js", "/assets/checker.py", "/assets/icon.svg", "/assets/icon-192.png", "/manifest.webmanifest"];
 
 const SITE_CACHE = "site-" + VERSION;
@@ -46,8 +46,11 @@ self.addEventListener("fetch", function (event) {
   if (PYTHON_HOSTS.indexOf(url.hostname) !== -1) {
     // Список версий пакета на PyPI может обновиться: сеть, а без неё — сохранённая копия
     const fresh = url.hostname === "pypi.org";
+    // importScripts в потоке Python просит pyodide.js без CORS: такой ответ «непрозрачный», его нельзя
+    // ни проверить, ни сохранить, и без сети Python не запускался бы. Просим тот же адрес с CORS
+    const wanted = request.mode === "no-cors" ? new Request(request.url, { mode: "cors", credentials: "omit" }) : request;
     event.respondWith(caches.open(RUNTIME_CACHE).then(function (cache) {
-      const network = fetch(request).then(function (response) {
+      const network = fetch(wanted).then(function (response) {
         if (response.ok) cache.put(request, response.clone());
         return response;
       });

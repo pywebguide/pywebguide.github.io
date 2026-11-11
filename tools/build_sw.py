@@ -13,7 +13,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SKIP_DIRS = {".git", ".github", "tools", "docs", "examples", "pagefind", "node_modules"}
+SKIP_DIRS = {".git", ".github", "tools", "docs", "examples", "pagefind", "node_modules", "__pycache__"}
+# Не публикуются (см. .github/workflows/pages.yml): их правка не должна менять версию кэша
+SKIP_FILES = {"sw.js", "README.txt", ".gitignore"}
 
 # Предзагрузка: всё, без чего не работают уже открытые страницы. Картинки и шрифты кэшируются при первом показе
 CORE = ["styles.css", "script.js", "features.js", "assets/i18n.js", "assets/checker.py",
@@ -23,7 +25,7 @@ CORE = ["styles.css", "script.js", "features.js", "assets/i18n.js", "assets/chec
 def site_files():
     for path in sorted(ROOT.rglob("*")):
         rel = path.relative_to(ROOT)
-        if path.is_file() and not (set(rel.parts) & SKIP_DIRS) and rel.as_posix() != "sw.js":
+        if path.is_file() and not (set(rel.parts) & SKIP_DIRS) and rel.as_posix() not in SKIP_FILES:
             yield rel.as_posix()
 
 

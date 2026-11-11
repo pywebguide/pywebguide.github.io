@@ -45,7 +45,9 @@ def index():
 
 @app.post("/add")
 def add():
-    query("INSERT INTO tasks (title) VALUES (?)", (request.form["title"],))
+    title = request.form.get("title", "").strip()
+    if title:
+        query("INSERT INTO tasks (title) VALUES (?)", (title,))
     return redirect(url_for("index"))
 
 @app.post("/delete/<int:task_id>")

@@ -150,7 +150,7 @@
         <nav class="page-toc" aria-label="On this page">
           <a href="#prep">What you need</a> <a href="#flask">Flask: 6 steps</a> <a href="#django">Django: 10 steps</a> <a href="#errors">Common errors</a> <a href="#sources">Sources</a>
         </nav>
-      <img class="band-picture" src="../assets/img/eniac.jpg" width="900" height="617" alt="Two women setting up the ENIAC computer at its cable panels, 1946" decoding="async" fetchpriority="high">
+      <img class="band-picture" src="../assets/img/eniac.webp" width="900" height="617" alt="Two women setting up the ENIAC computer at its cable panels, 1946" decoding="async" fetchpriority="high">
 </div></div>
 
       <section class="section" id="prep" aria-labelledby="prep-title">
@@ -256,7 +256,9 @@ PAGE = """
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        tasks.append(request.form["title"])
+        title = request.form.get("title", "").strip()
+        if title:
+            tasks.append(title)
         return redirect(url_for("index"))
     return render_template_string(PAGE, tasks=tasks)</code></pre>
               </div>
@@ -347,7 +349,9 @@ def index():
 
 @app.post("/add")
 def add():
-    query("INSERT INTO tasks (title) VALUES (?)", (request.form["title"],))
+    title = request.form.get("title", "").strip()
+    if title:
+        query("INSERT INTO tasks (title) VALUES (?)", (title,))
     return redirect(url_for("index"))
 
 @app.post("/delete/&lt;int:task_id&gt;")
@@ -367,6 +371,7 @@ def delete(task_id):
               <p>
                 Start the server with the same command, add a couple of tasks and delete one. Then stop the server (<kbd>Ctrl</kbd> + <kbd>C</kbd>) and start it again: the tasks are still there. Deleting is done with <code>POST</code>, not an ordinary link: actions that change data must not run just because someone opened an address.
               </p>
+              <p>The empty-task check lives in two places. The <code>required</code> attribute stops an empty form in the browser, but a request can be sent without the form, so the <code>add</code> function strips spaces itself and does not save an empty title. Protection against forged requests (CSRF), however, is missing from this example: for a real site add Flask-WTF, or build the project in Django, where it is on from the start.</p>
               <figure class="shot">
                 <p class="shot-title">What it should look like</p>
                 <img src="../assets/img/project/flask-step6.webp" width="1120" height="427" alt="The “Мои задачи” page: each task has an “Удалить” button" loading="lazy" decoding="async">
@@ -833,7 +838,7 @@ urlpatterns = [
         <div><strong>Site</strong><ul><li><a href="course.html">Full course</a></li><li><a href="progress.html">My progress</a></li><li><a href="contacts.html">Contact</a></li></ul></div>
       </div>
       <p class="footer-copy">© 2026 PyWeb Guide, a learning project about Python in web development</p>
-      <p class="note footer-note">Author: <a href="contacts.html#authors">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-09">09.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
+      <p class="note footer-note">Author: <a href="contacts.html#authors">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-11">11.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
       <p class="note footer-note">Photo: <a href="https://commons.wikimedia.org/wiki/File:Two_women_operating_ENIAC_(full_resolution).jpg" rel="noopener">ENIAC, U.S. Army, 1946</a>.</p>
       <p class="note footer-note"><a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of use</a></p>
       <p class="note footer-note">This is a learning site. Messages from the form are sent through the public Issues section on GitHub. No GitHub account? <a href="contacts.html#no-github">Write directly</a>.</p>

@@ -18,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://pywebguide.github.io/"
 LANGS = ("ru", "kk", "en")
-UPDATED = date(2026, 11, 9)
+UPDATED = date(2026, 11, 11)
 
 # Статистика GoatCounter без cookies (описана в privacy.html).
 # TODO(автор): проверьте код счётчика — адрес вида https://<код>.goatcounter.com.
@@ -199,9 +199,11 @@ def relink_body(text, lang):
     return "".join(part if part.startswith('<li class="nav-lang"') else re.sub(r"<a\b[^>]*>", fix, part) for part in parts)
 
 
-def apply(path):
+def apply(path, text=None):
+    """Страница path с актуальной шапкой и подвалом. text — содержимое вместо файла (для проверок без записи)."""
     lang, slug = page_lang(path)
-    text = path.read_text(encoding="utf-8")
+    if text is None:
+        text = path.read_text(encoding="utf-8")
     new = re.sub(r'      <nav id="site-nav".*?\n      </nav>', lambda m: nav_html(lang, slug), text, count=1, flags=re.S)
     new = re.sub(r'      <div class="footer-links">.*?\n      </div>', lambda m: footer_links_html(lang), new, count=1, flags=re.S)
     # hreflang в <head>: старые строки убираем, новые ставим сразу после canonical
@@ -210,7 +212,8 @@ def apply(path):
     if alt:
         new = re.sub(r'(  <link rel="canonical" href="[^"]+">)', lambda m: m.group(1) + "\n" + alt, new, count=1)
     stamp = f'<time datetime="{UPDATED.isoformat()}">{UPDATED.strftime("%d.%m.%Y")}</time>'
-    new = re.sub("(" + "|".join(UI["updated"]) + r'): <time datetime="[^"]+">[^<]+</time>', lambda m: f"{m.group(1)}: {stamp}", new)
+    # «Жаңартылған күні» — подпись на страницах kk/, переведённых вручную
+    new = re.sub("(" + "|".join((*UI["updated"], "Жаңартылған күні")) + r'): <time datetime="[^"]+">[^<]+</time>', lambda m: f"{m.group(1)}: {stamp}", new)
     new = relink_body(new, lang)
     # Счётчик GoatCounter: один код на все страницы
     counter = (f'<script data-goatcounter="https://{GOATCOUNTER}.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" '

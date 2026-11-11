@@ -124,7 +124,7 @@
 </nav>
 <h1>Задачи с автопроверкой</h1>
 <p class="lead">Напишите решение и нажмите «Проверить». Код выполнится в браузере и пройдёт скрытые тесты. Если тест не пройден, вы увидите, что он проверял, что ожидалось и что получилось. Застряли — откройте подсказку. Решённые задачи запоминаются в этом браузере.</p>
-<img class="band-picture" src="assets/img/typing-class.jpg" width="1000" height="637" alt="Ученицы занимаются в классе машинописи, около 1945 года" decoding="async" fetchpriority="high">
+<img class="band-picture" src="assets/img/typing-class.webp" width="1000" height="637" alt="Ученицы занимаются в классе машинописи, около 1945 года" decoding="async" fetchpriority="high">
 </div></div>
 <section class="section" id="result" aria-labelledby="result-title">
 <div class="container">
@@ -133,7 +133,7 @@
 <p>Первая проверка загрузит Python: около 5 МБ, это занимает несколько секунд.</p>
 </div>
 <div class="progress-box reveal">
-<p class="progress-label" role="status"><span data-tasks-count>0</span> из <span data-tasks-total="16">16</span> задач решено</p>
+<p class="progress-label" role="status"><span data-tasks-count>0</span> из <span data-tasks-total="40">40</span> задач решено</p>
 <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-tasks-fill></div></div>
 </div>
 </div>
@@ -245,6 +245,146 @@ case('slugify("  Flask &amp; Django: 2 frameworks! ")', "flask-django-2-framewor
 case('slugify("---")', "", "Дефисы по краям нужно убрать")
 case('slugify("Python3")', "python3", "Цифры остаются")</template>
 </article>
+<article class="task reveal" data-task="total" data-level="easy">
+<div class="task-head"><h3>5. Сумма покупок</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Напишите <code>total(prices)</code>: функция получает список цен и возвращает их сумму. Для пустого списка верните <code>0</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 5. Сумма покупок">def total(prices):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Заведите переменную <code>result = 0</code> и прибавляйте к ней каждую цену в цикле <code>for</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Короткий путь: встроенная функция <code>sum(prices)</code> делает то же самое.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def total(prices):
+    result = 0
+    for price in prices:
+        result += price
+    return result</code></pre></details>
+<template data-kind="tests">case('total([100, 250, 50])', 400)
+case('total([])', 0)
+case('total([1.5, 2.5])', 4.0)</template>
+</article>
+<article class="task reveal" data-task="evens" data-level="easy">
+<div class="task-head"><h3>6. Только чётные</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Напишите <code>only_even(numbers)</code>: верните новый список, в котором остались только чётные числа в том же порядке.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 6. Только чётные">def only_even(numbers):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Число чётное, если остаток от деления на 2 равен нулю: <code>n % 2 == 0</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Начните с пустого списка и добавляйте подходящие числа через <code>.append(n)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def only_even(numbers):
+    return [n for n in numbers if n % 2 == 0]</code></pre></details>
+<template data-kind="tests">case('only_even([1, 2, 3, 4])', [2, 4])
+case('only_even([7, 9])', [])
+case('only_even([0, -2, 5])', [0, -2])</template>
+</article>
+<article class="task reveal" data-task="truncate" data-level="easy">
+<div class="task-head"><h3>7. Короткий анонс</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Напишите <code>truncate(text, limit)</code>. Если текст не длиннее <code>limit</code> символов, верните его как есть. Иначе верните первые <code>limit</code> символов и три точки <code>...</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 7. Короткий анонс">def truncate(text, limit):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Первые символы строки даёт срез: <code>text[:limit]</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Сначала проверьте длину: <code>if len(text) &lt;= limit</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def truncate(text, limit):
+    if len(text) &lt;= limit:
+        return text
+    return text[:limit] + "..."</code></pre></details>
+<template data-kind="tests">case('truncate("Python", 10)', "Python")
+case('truncate("Python for the web", 6)', "Python...")
+case('truncate("Flask", 5)', "Flask")</template>
+</article>
+<article class="task reveal" data-task="longest" data-level="medium">
+<div class="task-head"><h3>8. Самое длинное слово</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Напишите <code>longest(words)</code>: верните самое длинное слово из списка. Если таких несколько, верните первое из них. Для пустого списка верните пустую строку.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 8. Самое длинное слово">def longest(words):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Храните лучшее слово в переменной <code>best = ""</code> и сравнивайте длины через <code>len()</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Чтобы при равной длине осталось первое слово, сравнивайте строго: <code>len(word) &gt; len(best)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def longest(words):
+    best = ""
+    for word in words:
+        if len(word) &gt; len(best):
+            best = word
+    return best</code></pre></details>
+<template data-kind="tests">case('longest(["api", "python", "web"])', "python")
+case('longest(["html", "json"])', "html")
+case('longest([])', "")</template>
+</article>
+<article class="task reveal" data-task="unique" data-level="medium">
+<div class="task-head"><h3>9. Без повторов</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Напишите <code>unique(items)</code>: верните список без повторов. Порядок первых появлений должен сохраниться.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 9. Без повторов">def unique(items):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Проверить, есть ли элемент в списке, можно через <code>item not in result</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Через <code>set()</code> повторы уйдут, но порядок может измениться, поэтому здесь нужен цикл.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def unique(items):
+    result = []
+    for item in items:
+        if item not in result:
+            result.append(item)
+    return result</code></pre></details>
+<template data-kind="tests">case('unique(["a", "b", "a", "c", "b"])', ["a", "b", "c"])
+case('unique([3, 3, 3])', [3])
+case('unique([])', [])</template>
+</article>
+<article class="task reveal" data-task="initials" data-level="medium">
+<div class="task-head"><h3>10. Инициалы</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Напишите <code>initials(full_name)</code>: из имени и фамилии сделайте инициалы. Из <code>Aru Bekova</code> должно получиться <code>A. B.</code> Буквы делайте заглавными, лишние пробелы не учитывайте.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 10. Инициалы">def initials(full_name):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> <code>full_name.split()</code> делит строку на слова и сам убирает лишние пробелы.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Первая буква слова — <code>part[0]</code>, заглавной её делает <code>.upper()</code>. Соберите части через <code>" ".join(...)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def initials(full_name):
+    parts = full_name.split()
+    return " ".join(part[0].upper() + "." for part in parts)</code></pre></details>
+<template data-kind="tests">case('initials("Aru Bekova")', "A. B.")
+case('initials("  dana   ali ")', "D. A.")
+case('initials("Python")', "P.")</template>
+</article>
 </div>
 </section>
 <section class="section" id="http" aria-labelledby="http-title">
@@ -254,9 +394,9 @@ case('slugify("Python3")', "python3", "Цифры остаются")</template>
 <p>То, что фреймворк делает за вас, легко написать в простом виде.</p>
 </div>
 <article class="task reveal" data-task="query" data-level="medium">
-<div class="task-head"><h3>5. Разбор адреса</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<div class="task-head"><h3>11. Разбор адреса</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
 <p>Напишите <code>parse_query(query)</code>. Она превращает строку <code>a=1&amp;b=2</code> в словарь <code>{"a": "1", "b": "2"}</code>. Части без знака <code>=</code> пропускайте. Значение может содержать <code>=</code>.</p>
-<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 5. Разбор адреса">def parse_query(query):
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 11. Разбор адреса">def parse_query(query):
     # ваш код
     pass</textarea>
 <div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
@@ -282,9 +422,9 @@ case('parse_query("flag&amp;x=1")', {"x": "1"}, "Часть без = нужно 
 case('parse_query("token=a=b")', {"token": "a=b"}, "Делите только по первому =: split('=', 1)")</template>
 </article>
 <article class="task reveal" data-task="router" data-level="medium">
-<div class="task-head"><h3>6. Простой маршрутизатор</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<div class="task-head"><h3>12. Простой маршрутизатор</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
 <p>Допишите <code>handle(method, path)</code>. Она ищет обработчик в словаре <code>ROUTES</code> и возвращает пару «код, текст». Если адреса нет, верните <code>(404, "Not Found")</code>. Если адрес есть, но метод не подходит, верните <code>(405, "Method Not Allowed")</code>.</p>
-<textarea class="editor-area" rows="10" spellcheck="false" aria-label="Решение: 6. Простой маршрутизатор">ROUTES = {
+<textarea class="editor-area" rows="10" spellcheck="false" aria-label="Решение: 12. Простой маршрутизатор">ROUTES = {
     "/": {"GET": "Главная"},
     "/tasks": {"GET": "Список задач", "POST": "Задача создана"},
 }
@@ -319,9 +459,9 @@ case('handle("GET", "/nope")', (404, "Not Found"), "Для неизвестно�
 case('handle("DELETE", "/")', (405, "Method Not Allowed"), "Для неподходящего метода нужен код 405")</template>
 </article>
 <article class="task reveal" data-task="validate" data-level="hard">
-<div class="task-head"><h3>7. Проверка данных формы</h3><span class="level level-hard"><span class="visually-hidden">Уровень: </span>Сложная</span></div>
+<div class="task-head"><h3>13. Проверка данных формы</h3><span class="level level-hard"><span class="visually-hidden">Уровень: </span>Сложная</span></div>
 <p>Напишите <code>validate_user(data)</code>. Функция принимает словарь и возвращает список ошибок. Поле <code>name</code> обязательно, поле <code>age</code> должно быть целым числом от 1 до 120. Тексты ошибок: <code>"name"</code> и <code>"age"</code>. Если всё верно, верните пустой список.</p>
-<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Решение: 7. Проверка данных формы">def validate_user(data):
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Решение: 13. Проверка данных формы">def validate_user(data):
     errors = []
     # ваш код
     return errors</textarea>
@@ -352,9 +492,9 @@ case('validate_user({"name": "A", "age": True})', ["age"], "True в Python то�
 case('validate_user({})', ["name", "age"], "Нужно вернуть обе ошибки по порядку")</template>
 </article>
 <article class="task reveal" data-task="json" data-level="medium">
-<div class="task-head"><h3>8. Ответ в JSON</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<div class="task-head"><h3>14. Ответ в JSON</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
 <p>Напишите <code>tasks_json(tasks)</code>. Функция получает список словарей и возвращает строку JSON только с задачами, у которых <code>done</code> равно <code>False</code>. Кириллица должна остаться читаемой. Импорт уже есть.</p>
-<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Решение: 8. Ответ в JSON">import json
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Решение: 14. Ответ в JSON">import json
 
 def tasks_json(tasks):
     # ваш код
@@ -381,9 +521,9 @@ case('"Код" in tasks_json(data)', True, "Добавьте ensure_ascii=False,
 case('tasks_json([])', "[]", "Для пустого списка нужна строка []")</template>
 </article>
 <article class="task reveal" data-task="render" data-level="medium">
-<div class="task-head"><h3>9. Свой шаблон</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<div class="task-head"><h3>15. Свой шаблон</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
 <p>Шаблон — текст с пропусками. Напишите <code>render(template, data)</code>: она заменяет каждый пропуск <code>{{ имя }}</code> на значение из словаря <code>data</code>. Пробелы внутри скобок могут быть или не быть. Если ключа в словаре нет, подставьте пустую строку.</p>
-<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Решение: 9. Свой шаблон">import re
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Решение: 15. Свой шаблон">import re
 
 def render(template, data):
     # ваш код
@@ -410,9 +550,9 @@ case('render("[{{ missing }}]", {})', "[]", "Неизвестный ключ з�
 case('render("без пропусков", {"x": 1})', "без пропусков")</template>
 </article>
 <article class="task reveal" data-task="paginate" data-level="medium">
-<div class="task-head"><h3>10. Страницы списка</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<div class="task-head"><h3>16. Страницы списка</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
 <p>Длинный список показывают по частям. Напишите <code>paginate(items, page, per_page)</code>: верните элементы страницы номер <code>page</code> (нумерация с 1). Если страницы с таким номером нет или номер меньше 1, верните пустой список.</p>
-<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 10. Страницы списка">def paginate(items, page, per_page):
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 16. Страницы списка">def paginate(items, page, per_page):
     # ваш код
     pass</textarea>
 <div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
@@ -436,6 +576,258 @@ case('paginate(letters, 3, 3)', ["g"], "На последней странице
 case('paginate(letters, 4, 3)', [], "Такой страницы нет: нужен пустой список")
 case('paginate(letters, 0, 3)', [], "Страницы с номером 0 не бывает")</template>
 </article>
+<article class="task reveal" data-task="status" data-level="easy">
+<div class="task-head"><h3>17. Текст статуса</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Напишите <code>status_text(code)</code>: по коду ответа верните его название. <code>200</code> — <code>OK</code>, <code>201</code> — <code>Created</code>, <code>404</code> — <code>Not Found</code>, <code>500</code> — <code>Internal Server Error</code>. Для остальных кодов верните <code>Unknown</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 17. Текст статуса">def status_text(code):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Удобно хранить пары в словаре: <code>{200: "OK", 404: "Not Found"}</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> <code>names.get(code, "Unknown")</code> вернёт запасное значение, если кода нет в словаре.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def status_text(code):
+    names = {200: "OK", 201: "Created", 404: "Not Found", 500: "Internal Server Error"}
+    return names.get(code, "Unknown")</code></pre></details>
+<template data-kind="tests">case('status_text(200)', "OK")
+case('status_text(201)', "Created")
+case('status_text(404)', "Not Found")
+case('status_text(500)', "Internal Server Error")
+case('status_text(418)', "Unknown")</template>
+</article>
+<article class="task reveal" data-task="mime" data-level="medium">
+<div class="task-head"><h3>18. Тип файла</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Сервер сообщает браузеру тип файла в заголовке <code>Content-Type</code>. Напишите <code>content_type(filename)</code>: для <code>.html</code> верните <code>text/html</code>, для <code>.css</code> — <code>text/css</code>, для <code>.js</code> — <code>text/javascript</code>, для <code>.json</code> — <code>application/json</code>, для остальных — <code>application/octet-stream</code>. Регистр букв в имени не важен.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 18. Тип файла">def content_type(filename):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Расширение — это часть после последней точки: <code>filename.rsplit(".", 1)[-1]</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Приведите имя к нижнему регистру через <code>.lower()</code> и возьмите тип из словаря через <code>.get()</code> с запасным значением.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def content_type(filename):
+    types = {"html": "text/html", "css": "text/css", "js": "text/javascript", "json": "application/json"}
+    extension = filename.lower().rsplit(".", 1)[-1]
+    return types.get(extension, "application/octet-stream")</code></pre></details>
+<template data-kind="tests">case('content_type("index.html")', "text/html")
+case('content_type("styles.css")', "text/css")
+case('content_type("app.min.js")', "text/javascript")
+case('content_type("DATA.JSON")', "application/json")
+case('content_type("photo.png")', "application/octet-stream")</template>
+</article>
+<article class="task reveal" data-task="build_url" data-level="medium">
+<div class="task-head"><h3>19. Адрес с параметрами</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Напишите <code>build_url(path, params)</code>: добавьте к пути параметры из словаря. Из <code>"/search"</code> и <code>{"q": "flask", "page": 2}</code> должно получиться <code>/search?q=flask&amp;page=2</code>. Если словарь пустой, верните путь без знака вопроса.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 19. Адрес с параметрами">def build_url(path, params):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Пары ключ и значение даёт <code>params.items()</code>. Каждую превратите в строку <code>f"{key}={value}"</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Соедините пары через <code>"&amp;".join(pairs)</code> и добавьте к пути после знака <code>?</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def build_url(path, params):
+    if not params:
+        return path
+    pairs = [f"{key}={value}" for key, value in params.items()]
+    return path + "?" + "&amp;".join(pairs)</code></pre></details>
+<template data-kind="tests">case('build_url("/search", {"q": "flask", "page": 2})', "/search?q=flask&amp;page=2")
+case('build_url("/tasks", {})', "/tasks")
+case('build_url("/", {"lang": "kk"})', "/?lang=kk")</template>
+</article>
+<article class="task reveal" data-task="cookie" data-level="medium">
+<div class="task-head"><h3>20. Разбор cookie</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Напишите <code>parse_cookie(header)</code>: превратите строку заголовка <code>theme=dark; lang=kk</code> в словарь <code>{"theme": "dark", "lang": "kk"}</code>. Для пустой строки верните пустой словарь. В значении может встретиться знак <code>=</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 20. Разбор cookie">def parse_cookie(header):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Сначала разделите строку по <code>;</code>, затем у каждой части уберите пробелы через <code>.strip()</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> <code>part.split("=", 1)</code> делит только по первому знаку равно, поэтому значение <code>a=b</code> останется целым.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def parse_cookie(header):
+    result = {}
+    for part in header.split(";"):
+        if "=" in part:
+            key, value = part.strip().split("=", 1)
+            result[key] = value
+    return result</code></pre></details>
+<template data-kind="tests">case('parse_cookie("theme=dark; lang=kk")', {"theme": "dark", "lang": "kk"})
+case('parse_cookie("")', {})
+case('parse_cookie("token=a=b")', {"token": "a=b"})</template>
+</article>
+<article class="task reveal" data-task="redirect" data-level="medium">
+<div class="task-head"><h3>21. Безопасный переход</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>После входа сайт возвращает человека на адрес из параметра <code>next</code>. Напишите <code>is_safe_redirect(url)</code>: верните <code>True</code>, только если адрес ведёт на этот же сайт, то есть начинается с одной косой черты <code>/</code>. Адрес <code>//evil.example</code> браузер считает чужим сайтом.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 21. Безопасный переход">def is_safe_redirect(url):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Начало строки проверяет <code>url.startswith("/")</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Добавьте второе условие через <code>and not</code>: адрес не должен начинаться с <code>//</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def is_safe_redirect(url):
+    return url.startswith("/") and not url.startswith("//")</code></pre></details>
+<template data-kind="tests">case('is_safe_redirect("/profile")', True)
+case('is_safe_redirect("https://evil.example")', False)
+case('is_safe_redirect("//evil.example")', False)
+case('is_safe_redirect("")', False)</template>
+</article>
+</div>
+</section>
+<section class="section" id="forms" aria-labelledby="forms-title">
+<div class="container">
+<div class="section-head reveal">
+<h2 id="forms-title">Формы и проверка данных</h2>
+<p>Всё, что прислал пользователь, сервер проверяет сам.</p>
+</div>
+<article class="task reveal" data-task="clean" data-level="easy">
+<div class="task-head"><h3>22. Чистый заголовок</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Напишите <code>clean_title(value)</code>: уберите пробелы по краям, а несколько пробелов подряд внутри замените одним. Из <code>"  Buy   bread "</code> должно получиться <code>Buy bread</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 22. Чистый заголовок">def clean_title(value):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> <code>value.split()</code> без аргументов делит строку по любым пробелам и отбрасывает пустые части.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Соберите слова обратно через <code>" ".join(...)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def clean_title(value):
+    return " ".join(value.split())</code></pre></details>
+<template data-kind="tests">case('clean_title("  Buy   bread ")', "Buy bread")
+case('clean_title("Flask")', "Flask")
+case('clean_title("   ")', "")</template>
+</article>
+<article class="task reveal" data-task="to_int" data-level="medium">
+<div class="task-head"><h3>23. Число из формы</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Поля формы всегда приходят строками. Напишите <code>to_int(value, default)</code>: превратите строку в целое число. Пробелы по краям не мешают. Если в строке не число, верните <code>default</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 23. Число из формы">def to_int(value, default):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> <code>int("abc")</code> вызывает ошибку <code>ValueError</code>. Её ловит блок <code>try</code> / <code>except ValueError</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> В блоке <code>except</code> просто верните запасное значение: <code>return default</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def to_int(value, default):
+    try:
+        return int(value.strip())
+    except ValueError:
+        return default</code></pre></details>
+<template data-kind="tests">case('to_int("42", 0)', 42)
+case('to_int(" 7 ", 0)', 7)
+case('to_int("abc", 1)', 1)
+case('to_int("", 5)', 5)
+case('to_int("-3", 0)', -3)</template>
+</article>
+<article class="task reveal" data-task="missing" data-level="medium">
+<div class="task-head"><h3>24. Обязательные поля</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Напишите <code>missing_fields(data, required)</code>. <code>data</code> — словарь с данными формы, <code>required</code> — список обязательных полей. Верните список тех полей, которых нет в словаре или которые пустые. Строка из одних пробелов тоже пустая. Порядок — как в <code>required</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 24. Обязательные поля">def missing_fields(data, required):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> <code>data.get(name, "")</code> вернёт пустую строку, если поля нет.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Пустоту проверяет <code>not value.strip()</code>: у строки из пробелов после <code>.strip()</code> ничего не остаётся.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def missing_fields(data, required):
+    return [name for name in required if not str(data.get(name, "")).strip()]</code></pre></details>
+<template data-kind="tests">case('missing_fields({"name": "Aru", "email": ""}, ["name", "email"])', ["email"])
+case('missing_fields({}, ["name", "email"])', ["name", "email"])
+case('missing_fields({"name": "  "}, ["name"])', ["name"])
+case('missing_fields({"name": "Aru"}, ["name"])', [])</template>
+</article>
+<article class="task reveal" data-task="escape" data-level="medium">
+<div class="task-head"><h3>25. Безопасный вывод</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Напишите <code>escape_html(text)</code>: замените знак <code>&amp;</code> на <code>&amp;amp;</code>, <code>&lt;</code> на <code>&amp;lt;</code>, <code>&gt;</code> на <code>&amp;gt;</code>. Тогда текст пользователя покажется на странице как текст и не станет тегом.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 25. Безопасный вывод">def escape_html(text):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Замену делает <code>text.replace("&lt;", "&amp;lt;")</code>. Результат нужно сохранить: строки не меняются на месте.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Начните со знака <code>&amp;</code>. Иначе он заменится второй раз внутри уже готовых <code>&amp;lt;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def escape_html(text):
+    text = text.replace("&amp;", "&amp;amp;")
+    text = text.replace("&lt;", "&amp;lt;")
+    return text.replace("&gt;", "&amp;gt;")</code></pre></details>
+<template data-kind="tests">case('escape_html("&lt;b&gt;hi&lt;/b&gt;")', "&amp;lt;b&amp;gt;hi&amp;lt;/b&amp;gt;")
+case('escape_html("Tom &amp; Jerry")', "Tom &amp;amp; Jerry")
+case('escape_html("a &lt; b")', "a &amp;lt; b")
+case('escape_html("&amp;lt;")', "&amp;amp;lt;")</template>
+</article>
+<article class="task reveal" data-task="email" data-level="hard">
+<div class="task-head"><h3>26. Похоже на почту</h3><span class="level level-hard"><span class="visually-hidden">Уровень: </span>Сложная</span></div>
+<p>Напишите <code>is_email(value)</code>: грубая проверка адреса почты. В адресе нет пробелов, ровно один знак <code>@</code>, перед ним есть хотя бы один символ, а после него есть точка, которая стоит не в начале и не в конце.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: 26. Похоже на почту">def is_email(value):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Сколько раз встречается символ, считает <code>value.count("@")</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Разделите адрес на две части: <code>name, domain = value.split("@")</code>, и проверьте каждую отдельно.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def is_email(value):
+    if " " in value or value.count("@") != 1:
+        return False
+    name, domain = value.split("@")
+    if not name or "." not in domain:
+        return False
+    return not domain.startswith(".") and not domain.endswith(".")</code></pre></details>
+<template data-kind="tests">case('is_email("aru@example.com")', True)
+case('is_email("aru.example.com")', False)
+case('is_email("a@b@example.com")', False)
+case('is_email("@example.com")', False)
+case('is_email("aru@example")', False)
+case('is_email("aru @example.com")', False)
+case('is_email("aru@example.")', False)</template>
+</article>
 </div>
 </section>
 <section class="section" id="sql" aria-labelledby="sql-title">
@@ -445,9 +837,9 @@ case('paginate(letters, 0, 3)', [], "Страницы с номером 0 не �
 <p>Настоящая база SQLite работает прямо в браузере.</p>
 </div>
 <article class="task reveal" data-task="add_task" data-level="medium">
-<div class="task-head"><h3>11. Безопасная вставка</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<div class="task-head"><h3>27. Безопасная вставка</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
 <p>Напишите <code>add_task(db, title)</code>: она добавляет строку в таблицу <code>tasks</code> и возвращает её <code>id</code>. Используйте параметр <code>?</code>: текст с кавычкой не должен ломать запрос.</p>
-<textarea class="editor-area" rows="10" spellcheck="false" aria-label="Решение: 11. Безопасная вставка">import sqlite3
+<textarea class="editor-area" rows="10" spellcheck="false" aria-label="Решение: 27. Безопасная вставка">import sqlite3
 
 db = sqlite3.connect(":memory:")
 db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT)")
@@ -481,9 +873,9 @@ case('add_task(db, evil)', 3, "Текст с кавычкой не должен 
 case('db.execute("SELECT title FROM tasks WHERE id = 3").fetchone()', (evil,), "Текст с кавычкой должен сохраниться как есть")</template>
 </article>
 <article class="task reveal" data-task="select" data-level="easy">
-<div class="task-head"><h3>12. Выборка с условием</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<div class="task-head"><h3>28. Выборка с условием</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
 <p>Напишите <code>active_titles(db)</code>: верните список заголовков, у которых <code>done = 0</code>, отсортированный по алфавиту.</p>
-<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Решение: 12. Выборка с условием">import sqlite3
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Решение: 28. Выборка с условием">import sqlite3
 
 db = sqlite3.connect(":memory:")
 db.execute("CREATE TABLE tasks (title TEXT, done INTEGER)")
@@ -515,6 +907,147 @@ def active_titles(db):
 db.execute("UPDATE tasks SET done = 1")
 case('active_titles(db)', [], "Если подходящих строк нет, верните пустой список")</template>
 </article>
+<article class="task reveal" data-task="count" data-level="easy">
+<div class="task-head"><h3>29. Сколько осталось</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Напишите <code>count_active(db)</code>: верните число задач, у которых <code>done = 0</code>. Считать должна база, а не Python.</p>
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Решение: 29. Сколько осталось">import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks (title, done) VALUES (?, ?)", [("Buy bread", 1), ("Learn Flask", 0), ("Write tests", 0)])
+
+def count_active(db):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Строки считает запрос <code>SELECT COUNT(*) FROM tasks WHERE done = 0</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> <code>.fetchone()</code> вернёт одну строку-кортеж, число в ней первое: <code>row[0]</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks (title, done) VALUES (?, ?)", [("Buy bread", 1), ("Learn Flask", 0), ("Write tests", 0)])
+
+def count_active(db):
+    row = db.execute("SELECT COUNT(*) FROM tasks WHERE done = 0").fetchone()
+    return row[0]</code></pre></details>
+<template data-kind="tests">case('count_active(db)', 2)
+db.execute("UPDATE tasks SET done = 1")
+case('count_active(db)', 0)</template>
+</article>
+<article class="task reveal" data-task="delete_done" data-level="easy">
+<div class="task-head"><h3>30. Удалить выполненные</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Напишите <code>delete_done(db)</code>: удалите все выполненные задачи (<code>done = 1</code>) и верните, сколько строк удалено.</p>
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Решение: 30. Удалить выполненные">import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks (title, done) VALUES (?, ?)", [("Buy bread", 1), ("Learn Flask", 0), ("Write tests", 0)])
+
+def delete_done(db):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Запрос на удаление: <code>DELETE FROM tasks WHERE done = 1</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Число удалённых строк лежит в <code>cursor.rowcount</code>. Не забудьте <code>db.commit()</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks (title, done) VALUES (?, ?)", [("Buy bread", 1), ("Learn Flask", 0), ("Write tests", 0)])
+
+def delete_done(db):
+    cursor = db.execute("DELETE FROM tasks WHERE done = 1")
+    db.commit()
+    return cursor.rowcount</code></pre></details>
+<template data-kind="tests">case('delete_done(db)', 1)
+case('db.execute("SELECT COUNT(*) FROM tasks").fetchone()', (2,))
+case('delete_done(db)', 0)</template>
+</article>
+<article class="task reveal" data-task="mark_done" data-level="medium">
+<div class="task-head"><h3>31. Отметить выполненной</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Напишите <code>mark_done(db, task_id)</code>: поставьте задаче с этим номером <code>done = 1</code>. Верните <code>True</code>, если такая задача была, и <code>False</code>, если её нет. Остальные задачи менять нельзя.</p>
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Решение: 31. Отметить выполненной">import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks (title, done) VALUES (?, ?)", [("Buy bread", 1), ("Learn Flask", 0), ("Write tests", 0)])
+
+def mark_done(db, task_id):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Запрос на изменение: <code>UPDATE tasks SET done = 1 WHERE id = ?</code>. Без <code>WHERE</code> изменятся все строки.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Сколько строк изменилось, показывает <code>cursor.rowcount</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks (title, done) VALUES (?, ?)", [("Buy bread", 1), ("Learn Flask", 0), ("Write tests", 0)])
+
+def mark_done(db, task_id):
+    cursor = db.execute("UPDATE tasks SET done = 1 WHERE id = ?", (task_id,))
+    db.commit()
+    return cursor.rowcount == 1</code></pre></details>
+<template data-kind="tests">case('mark_done(db, 2)', True)
+case('db.execute("SELECT done FROM tasks WHERE id = 2").fetchone()', (1,))
+case('db.execute("SELECT done FROM tasks WHERE id = 3").fetchone()', (0,))
+case('mark_done(db, 99)', False)</template>
+</article>
+<article class="task reveal" data-task="search" data-level="hard">
+<div class="task-head"><h3>32. Поиск по тексту</h3><span class="level level-hard"><span class="visually-hidden">Уровень: </span>Сложная</span></div>
+<p>Напишите <code>search(db, text)</code>: верните заголовки задач, в которых встречается <code>text</code>, в порядке <code>id</code>. Текст передавайте через параметр <code>?</code>, чтобы кавычка в поиске не сломала запрос.</p>
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Решение: 32. Поиск по тексту">import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks (title, done) VALUES (?, ?)", [("Buy bread", 1), ("Learn Flask", 0), ("Write tests", 0)])
+
+def search(db, text):
+    # ваш код
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Поиск по части строки делает <code>WHERE title LIKE ?</code>, а знак <code>%</code> означает «любые символы».</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Знаки процента добавьте к значению, а не к запросу: <code>("%" + text + "%",)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.execute("CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)")
+db.executemany("INSERT INTO tasks (title, done) VALUES (?, ?)", [("Buy bread", 1), ("Learn Flask", 0), ("Write tests", 0)])
+
+def search(db, text):
+    rows = db.execute("SELECT title FROM tasks WHERE title LIKE ? ORDER BY id", ("%" + text + "%",))
+    return [row[0] for row in rows]</code></pre></details>
+<template data-kind="tests">case('search(db, "Flask")', ["Learn Flask"])
+case('search(db, "e")', ["Buy bread", "Learn Flask", "Write tests"])
+case('search(db, "django")', [])
+case('search(db, "x\'; DROP TABLE tasks; --")', [])
+case('db.execute("SELECT COUNT(*) FROM tasks").fetchone()', (3,))</template>
+</article>
 </div>
 </section>
 <section class="section" id="flask" aria-labelledby="flask-title">
@@ -524,9 +1057,9 @@ case('active_titles(db)', [], "Если подходящих строк нет, 
 <p>Настоящий Flask. Первая проверка дополнительно загрузит пакет с PyPI.</p>
 </div>
 <article class="task reveal" data-task="route" data-level="easy">
-<div class="task-head"><h3>13. Первый маршрут</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<div class="task-head"><h3>33. Первый маршрут</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
 <p>Добавьте маршрут <code>GET /hello/&lt;name&gt;</code>, который возвращает JSON <code>{"message": "Привет, имя!"}</code>.</p>
-<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Решение: 13. Первый маршрут">from flask import Flask
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Решение: 33. Первый маршрут">from flask import Flask
 
 app = Flask(__name__)
 
@@ -553,9 +1086,9 @@ case('client.get("/hello/Python").status_code', 200, "Адрес /hello/Python �
 case('client.get("/hello/Python").json', {"message": "Привет, Python!"})</template>
 </article>
 <article class="task reveal" data-task="filter" data-level="medium">
-<div class="task-head"><h3>14. Фильтр в адресе</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<div class="task-head"><h3>34. Фильтр в адресе</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
 <p>Сделайте <code>GET /tasks</code>, который возвращает JSON-список задач из <code>TASKS</code>. Если в адресе есть <code>?done=1</code>, верните только выполненные, если <code>?done=0</code> — только невыполненные. Без параметра верните все.</p>
-<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Решение: 14. Фильтр в адресе">from flask import Flask, request
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Решение: 34. Фильтр в адресе">from flask import Flask, request
 
 app = Flask(__name__)
 TASKS = [
@@ -594,9 +1127,9 @@ case('client.get("/tasks?done=1").json', [{"title": "Купить хлеб", "do
 case('client.get("/tasks?done=0").json', [{"title": "Выучить Flask", "done": False}], "?done=0 — только невыполненные: параметр приходит строкой")</template>
 </article>
 <article class="task reveal" data-task="post" data-level="hard">
-<div class="task-head"><h3>15. Создание записи</h3><span class="level level-hard"><span class="visually-hidden">Уровень: </span>Сложная</span></div>
+<div class="task-head"><h3>35. Создание записи</h3><span class="level level-hard"><span class="visually-hidden">Уровень: </span>Сложная</span></div>
 <p>Сделайте <code>POST /items</code>. Он читает JSON с полем <code>title</code>. Если поля нет или оно пустое, верните <code>{"error": "title"}</code> с кодом 400. Иначе добавьте заголовок в список <code>items</code> и верните <code>{"title": ...}</code> с кодом 201.</p>
-<textarea class="editor-area" rows="8" spellcheck="false" aria-label="Решение: 15. Создание записи">from flask import Flask, request
+<textarea class="editor-area" rows="8" spellcheck="false" aria-label="Решение: 35. Создание записи">from flask import Flask, request
 
 app = Flask(__name__)
 items = []
@@ -634,9 +1167,9 @@ case('items', ["Книга"], "Заголовок должен попасть в
 case('client.post("/items", json={"title": "Ручка"}).json', {"title": "Ручка"})</template>
 </article>
 <article class="task reveal" data-task="detail" data-level="hard">
-<div class="task-head"><h3>16. Одна запись или 404</h3><span class="level level-hard"><span class="visually-hidden">Уровень: </span>Сложная</span></div>
+<div class="task-head"><h3>36. Одна запись или 404</h3><span class="level level-hard"><span class="visually-hidden">Уровень: </span>Сложная</span></div>
 <p>Сделайте <code>GET /tasks/&lt;int:task_id&gt;</code>. Если задача с таким номером есть в словаре <code>TASKS</code>, верните её JSON. Если нет, верните <code>{"error": "not found"}</code> с кодом 404.</p>
-<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Решение: 16. Одна запись или 404">from flask import Flask
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Решение: 36. Одна запись или 404">from flask import Flask
 
 app = Flask(__name__)
 TASKS = {
@@ -675,6 +1208,133 @@ case('client.get("/tasks/99").status_code', 404, "Для несуществую�
 case('client.get("/tasks/99").json', {"error": "not found"})
 case('client.get("/tasks/abc").status_code', 404, "&lt;int:...&gt; пропускает только числа")</template>
 </article>
+<article class="task reveal" data-task="health" data-level="easy">
+<div class="task-head"><h3>37. Проверка связи</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Добавьте маршрут <code>GET /health</code>, который возвращает JSON <code>{"status": "ok"}</code>. Такой адрес делают, чтобы проверять, жив ли сервер. На <code>POST</code> он отвечать не должен.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Решение: 37. Проверка связи">from flask import Flask
+
+app = Flask(__name__)
+
+# ваш маршрут</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Маршрут только для GET объявляют так: <code>@app.get("/health")</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Верните из функции словарь: Flask сам превратит его в JSON.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}</code></pre></details>
+<template data-kind="tests">client = app.test_client()
+case('client.get("/health").status_code', 200)
+case('client.get("/health").json', {"status": "ok"})
+case('client.post("/health").status_code', 405)</template>
+</article>
+<article class="task reveal" data-task="square" data-level="easy">
+<div class="task-head"><h3>38. Число в адресе</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Сделайте <code>GET /square/&lt;int:n&gt;</code>: верните JSON с числом и его квадратом, например <code>{"n": 4, "square": 16}</code>. Адрес <code>/square/abc</code> должен давать 404.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Решение: 38. Число в адресе">from flask import Flask
+
+app = Flask(__name__)
+
+# ваш маршрут</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> <code>&lt;int:n&gt;</code> в адресе пропускает только числа и передаёт в функцию уже число, а не строку.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Функция должна принимать аргумент с тем же именем: <code>def square(n):</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+@app.get("/square/&lt;int:n&gt;")
+def square(n):
+    return {"n": n, "square": n * n}</code></pre></details>
+<template data-kind="tests">client = app.test_client()
+case('client.get("/square/4").json', {"n": 4, "square": 16})
+case('client.get("/square/0").json', {"n": 0, "square": 0})
+case('client.get("/square/abc").status_code', 404)</template>
+</article>
+<article class="task reveal" data-task="search_q" data-level="medium">
+<div class="task-head"><h3>39. Обязательный параметр</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Сделайте <code>GET /search</code>. Если в адресе есть непустой параметр <code>q</code>, верните <code>{"q": значение}</code>. Если параметра нет или он из одних пробелов, верните <code>{"error": "q"}</code> с кодом 400.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Решение: 39. Обязательный параметр">from flask import Flask, request
+
+app = Flask(__name__)
+
+# ваш маршрут</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Параметр читает <code>request.args.get("q", "")</code>: второе значение вернётся, если параметра нет.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Код ответа ставится вторым значением: <code>return {"error": "q"}, 400</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.get("/search")
+def search():
+    q = request.args.get("q", "").strip()
+    if not q:
+        return {"error": "q"}, 400
+    return {"q": q}</code></pre></details>
+<template data-kind="tests">client = app.test_client()
+case('client.get("/search?q=flask").json', {"q": "flask"})
+case('client.get("/search").status_code', 400)
+case('client.get("/search").json', {"error": "q"})
+case('client.get("/search?q=%20").status_code', 400)</template>
+</article>
+<article class="task reveal" data-task="remove" data-level="hard">
+<div class="task-head"><h3>40. Удаление по номеру</h3><span class="level level-hard"><span class="visually-hidden">Уровень: </span>Сложная</span></div>
+<p>Сделайте <code>DELETE /tasks/&lt;int:task_id&gt;</code>. Если задача есть в словаре <code>TASKS</code>, удалите её и верните пустой ответ с кодом 204. Если её нет, верните <code>{"error": "not found"}</code> с кодом 404.</p>
+<textarea class="editor-area" rows="8" spellcheck="false" aria-label="Решение: 40. Удаление по номеру">from flask import Flask
+
+app = Flask(__name__)
+TASKS = {1: "Buy bread", 2: "Learn Flask"}
+
+# ваш маршрут</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Маршрут для удаления объявляют через <code>@app.delete(...)</code>. Из словаря элемент убирает <code>del TASKS[task_id]</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Пустой ответ с кодом: <code>return "", 204</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>from flask import Flask
+
+app = Flask(__name__)
+TASKS = {1: "Buy bread", 2: "Learn Flask"}
+
+@app.delete("/tasks/&lt;int:task_id&gt;")
+def delete_task(task_id):
+    if task_id not in TASKS:
+        return {"error": "not found"}, 404
+    del TASKS[task_id]
+    return "", 204</code></pre></details>
+<template data-kind="tests">client = app.test_client()
+case('client.delete("/tasks/1").status_code', 204)
+case('TASKS', {2: "Learn Flask"})
+case('client.delete("/tasks/1").status_code', 404)
+case('client.delete("/tasks/9").json', {"error": "not found"})
+case('client.get("/tasks/2").status_code', 405)</template>
+</article>
 </div>
 </section>
 <!-- tasks:end -->
@@ -704,7 +1364,7 @@ case('client.get("/tasks/abc").status_code', 404, "&lt;int:...&gt; пропус�
         <div><strong>Сайт</strong><ul><li><a href="course.html">Весь курс</a></li><li><a href="progress.html">Мой прогресс</a></li><li><a href="contacts.html">Контакты</a></li></ul></div>
       </div>
       <p class="footer-copy">© 2026 PyWeb Guide, учебный проект о Python в веб-разработке</p>
-      <p class="note footer-note">Автор: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Обновлено: <time datetime="2026-11-09">09.11.2026</time> · Версии в примерах: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Исходный код на GitHub</a></p>
+      <p class="note footer-note">Автор: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Обновлено: <time datetime="2026-11-11">11.11.2026</time> · Версии в примерах: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Исходный код на GitHub</a></p>
       <p class="note footer-note">Снимок: <a href="https://commons.wikimedia.org/wiki/File:Girls_in_Typing_Class(GN08967).jpg" rel="noopener">класс машинописи, около 1945, CC0</a>.</p>
       <p class="note footer-note"><a href="privacy.html">Политика конфиденциальности</a> · <a href="terms.html">Условия использования</a></p>
       <p class="note footer-note">Сайт учебный. Сообщения с формы отправляются через публичный раздел Issues на GitHub. Без аккаунта GitHub можно <a href="contacts.html#no-github">написать напрямую</a>.</p>

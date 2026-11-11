@@ -23,6 +23,11 @@ class TodoTests(unittest.TestCase):
         self.client.post("/delete/1")
         self.assertNotIn("Купить хлеб", self.client.get("/").get_data(as_text=True))
 
+    def test_empty_title_is_not_saved(self):
+        self.client.post("/add", data={"title": "   "})
+        self.client.post("/add", data={})
+        self.assertEqual(todo.query("SELECT COUNT(*) FROM tasks")[0][0], 0)
+
     def test_delete_needs_post(self):
         self.assertEqual(self.client.get("/delete/1").status_code, 405)
 

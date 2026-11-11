@@ -370,12 +370,7 @@ def check():
                 stale.append(f"{lang}/{slug}: нет перевода для {len(missing)} фрагментов")
                 continue
             current = (ROOT / lang / slug).read_text(encoding="utf-8")
-            tmp = ROOT / lang / slug
-            tmp.write_text(page, encoding="utf-8", newline="\n")
-            try:
-                _, rebuilt = layout.apply(tmp)
-            finally:
-                tmp.write_text(current, encoding="utf-8", newline="\n")
+            _, rebuilt = layout.apply(ROOT / lang / slug, page)
             if rebuilt != current:
                 stale.append(f"{lang}/{slug}: устарел, запустите python tools/translate.py build {lang} {slug} и tools/layout.py")
     for line in stale:

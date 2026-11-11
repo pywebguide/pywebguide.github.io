@@ -4,52 +4,17 @@ import re
 import subprocess
 import sys
 import tempfile
-from html.parser import HTMLParser
 from pathlib import Path
+
+from codeblocks import read
 
 ROOT = Path(__file__).resolve().parent.parent
 W = Path()
 PY = sys.executable
 
 
-class Blocks(HTMLParser):
-    def __init__(self):
-        super().__init__(convert_charrefs=True)
-        self.out, self.b, self.d, self.lab, self.code = [], None, 0, False, False
-
-    def handle_starttag(self, tag, attrs):
-        attrs = dict(attrs)
-        if tag == "div" and "code-block" in (attrs.get("class") or "").split():
-            self.b = {"label": "", "code": "", "d": self.d}
-        if tag == "div":
-            self.d += 1
-        if self.b is not None and tag == "span" and not self.b["label"]:
-            self.lab = True
-        if self.b is not None and tag == "code":
-            self.code = True
-
-    def handle_endtag(self, tag):
-        if tag == "span":
-            self.lab = False
-        if tag == "code":
-            self.code = False
-        if tag == "div":
-            self.d -= 1
-            if self.b is not None and self.d == self.b["d"]:
-                self.out.append(self.b)
-                self.b = None
-
-    def handle_data(self, data):
-        if self.lab:
-            self.b["label"] += data
-        elif self.code:
-            self.b["code"] += data
-
-
 def blocks(page):
-    parser = Blocks()
-    parser.feed((ROOT / page).read_text(encoding="utf-8"))
-    return [(b["label"].strip(), b["code"]) for b in parser.out]
+    return [(b["label"].strip(), b["code"]) for b in read(ROOT / page)]
 
 
 def last(page, label):

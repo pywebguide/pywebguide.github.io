@@ -5,7 +5,8 @@
 если перевода нет, берётся русский. Тесты пишутся через case(выражение, ожидаемое, подсказка),
 см. assets/checker.py. После правки:
 
-    python tools/build_practice.py
+    python tools/build_practice.py            # переписать страницы
+    python tools/build_practice.py --check    # только проверить (для CI)
     python tools/check_tasks.py      # решения проходят тесты, стартовый код — нет
 """
 import html
@@ -39,7 +40,7 @@ SECTIONS = [
         "lead": {"ru": "Функции, строки и словари: на них держится любой обработчик запросов.",
                  "kk": "Функциялар, жолдар және сөздіктер: кез келген сұрау өңдегіші осыларға сүйенеді.",
                  "en": "Functions, strings and dictionaries: every request handler is built on them."},
-        "tasks": ["greet", "words", "strong", "slug"],
+        "tasks": ["greet", "words", "strong", "slug", "total", "evens", "truncate", "longest", "unique", "initials"],
     },
     {
         "id": "http",
@@ -47,7 +48,13 @@ SECTIONS = [
         "lead": {"ru": "То, что фреймворк делает за вас, легко написать в простом виде.",
                  "kk": "Фреймворк сіз үшін істейтін нәрсені қарапайым түрде жазу оңай.",
                  "en": "What a framework does for you is easy to write in a simple form."},
-        "tasks": ["query", "router", "validate", "json", "render", "paginate"],
+        "tasks": ["query", "router", "validate", "json", "render", "paginate", "status", "mime", "build_url", "cookie", "redirect"],
+    },
+    {
+        "id": "forms",
+        "title": {"ru": "Формы и проверка данных", "kk": "Формалар және деректерді тексеру", "en": "Forms and data checks"},
+        "lead": {"ru": "Всё, что прислал пользователь, сервер проверяет сам.", "kk": "Пайдаланушы жіберген нәрсенің бәрін сервер өзі тексереді.", "en": "The server checks everything a user sends on its own."},
+        "tasks": ["clean", "to_int", "missing", "escape", "email"],
     },
     {
         "id": "sql",
@@ -55,7 +62,7 @@ SECTIONS = [
         "lead": {"ru": "Настоящая база SQLite работает прямо в браузере.",
                  "kk": "Нағыз SQLite дерекқоры тікелей браузерде жұмыс істейді.",
                  "en": "A real SQLite database runs right in the browser."},
-        "tasks": ["add_task", "select"],
+        "tasks": ["add_task", "select", "count", "delete_done", "mark_done", "search"],
     },
     {
         "id": "flask",
@@ -63,7 +70,7 @@ SECTIONS = [
         "lead": {"ru": "Настоящий Flask. Первая проверка дополнительно загрузит пакет с PyPI.",
                  "kk": "Нағыз Flask. Алғашқы тексеру PyPI-дан пакетті қосымша жүктейді.",
                  "en": "Real Flask. The first check also downloads the package from PyPI."},
-        "tasks": ["route", "filter", "post", "detail"],
+        "tasks": ["route", "filter", "post", "detail", "health", "square", "search_q", "remove"],
     },
 ]
 
@@ -332,6 +339,294 @@ TASKS = {
                  "case('client.get(\"/tasks/99\").json', {\"error\": \"not found\"})\n"
                  "case('client.get(\"/tasks/abc\").status_code', 404, \"<int:...> пропускает только числа\")",
     },
+    "total": {
+        "level": "easy",
+        "title": {"ru": "Сумма покупок"},
+        "text": {"ru": "Напишите <code>total(prices)</code>: функция получает список цен и возвращает их сумму. Для пустого списка верните <code>0</code>."},
+        "starter": "def total(prices):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "Заведите переменную <code>result = 0</code> и прибавляйте к ней каждую цену в цикле <code>for</code>.",
+            "Короткий путь: встроенная функция <code>sum(prices)</code> делает то же самое.",
+        ]},
+        "solution": "def total(prices):\n    result = 0\n    for price in prices:\n        result += price\n    return result",
+        "tests": "case('total([100, 250, 50])', 400)\ncase('total([])', 0)\ncase('total([1.5, 2.5])', 4.0)",
+    },
+    "evens": {
+        "level": "easy",
+        "title": {"ru": "Только чётные"},
+        "text": {"ru": "Напишите <code>only_even(numbers)</code>: верните новый список, в котором остались только чётные числа в том же порядке."},
+        "starter": "def only_even(numbers):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "Число чётное, если остаток от деления на 2 равен нулю: <code>n % 2 == 0</code>.",
+            "Начните с пустого списка и добавляйте подходящие числа через <code>.append(n)</code>.",
+        ]},
+        "solution": "def only_even(numbers):\n    return [n for n in numbers if n % 2 == 0]",
+        "tests": "case('only_even([1, 2, 3, 4])', [2, 4])\ncase('only_even([7, 9])', [])\ncase('only_even([0, -2, 5])', [0, -2])",
+    },
+    "truncate": {
+        "level": "easy",
+        "title": {"ru": "Короткий анонс"},
+        "text": {"ru": "Напишите <code>truncate(text, limit)</code>. Если текст не длиннее <code>limit</code> символов, верните его как есть. Иначе верните первые <code>limit</code> символов и три точки <code>...</code>."},
+        "starter": "def truncate(text, limit):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "Первые символы строки даёт срез: <code>text[:limit]</code>.",
+            "Сначала проверьте длину: <code>if len(text) &lt;= limit</code>.",
+        ]},
+        "solution": "def truncate(text, limit):\n    if len(text) <= limit:\n        return text\n    return text[:limit] + \"...\"",
+        "tests": "case('truncate(\"Python\", 10)', \"Python\")\ncase('truncate(\"Python for the web\", 6)', \"Python...\")\ncase('truncate(\"Flask\", 5)', \"Flask\")",
+    },
+    "longest": {
+        "level": "medium",
+        "title": {"ru": "Самое длинное слово"},
+        "text": {"ru": "Напишите <code>longest(words)</code>: верните самое длинное слово из списка. Если таких несколько, верните первое из них. Для пустого списка верните пустую строку."},
+        "starter": "def longest(words):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "Храните лучшее слово в переменной <code>best = \"\"</code> и сравнивайте длины через <code>len()</code>.",
+            "Чтобы при равной длине осталось первое слово, сравнивайте строго: <code>len(word) &gt; len(best)</code>.",
+        ]},
+        "solution": "def longest(words):\n    best = \"\"\n    for word in words:\n        if len(word) > len(best):\n            best = word\n    return best",
+        "tests": "case('longest([\"api\", \"python\", \"web\"])', \"python\")\ncase('longest([\"html\", \"json\"])', \"html\")\ncase('longest([])', \"\")",
+    },
+    "unique": {
+        "level": "medium",
+        "title": {"ru": "Без повторов"},
+        "text": {"ru": "Напишите <code>unique(items)</code>: верните список без повторов. Порядок первых появлений должен сохраниться."},
+        "starter": "def unique(items):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "Проверить, есть ли элемент в списке, можно через <code>item not in result</code>.",
+            "Через <code>set()</code> повторы уйдут, но порядок может измениться, поэтому здесь нужен цикл.",
+        ]},
+        "solution": "def unique(items):\n    result = []\n    for item in items:\n        if item not in result:\n            result.append(item)\n    return result",
+        "tests": "case('unique([\"a\", \"b\", \"a\", \"c\", \"b\"])', [\"a\", \"b\", \"c\"])\ncase('unique([3, 3, 3])', [3])\ncase('unique([])', [])",
+    },
+    "initials": {
+        "level": "medium",
+        "title": {"ru": "Инициалы"},
+        "text": {"ru": "Напишите <code>initials(full_name)</code>: из имени и фамилии сделайте инициалы. Из <code>Aru Bekova</code> должно получиться <code>A. B.</code> Буквы делайте заглавными, лишние пробелы не учитывайте."},
+        "starter": "def initials(full_name):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "<code>full_name.split()</code> делит строку на слова и сам убирает лишние пробелы.",
+            "Первая буква слова — <code>part[0]</code>, заглавной её делает <code>.upper()</code>. Соберите части через <code>\" \".join(...)</code>.",
+        ]},
+        "solution": "def initials(full_name):\n    parts = full_name.split()\n    return \" \".join(part[0].upper() + \".\" for part in parts)",
+        "tests": "case('initials(\"Aru Bekova\")', \"A. B.\")\ncase('initials(\"  dana   ali \")', \"D. A.\")\ncase('initials(\"Python\")', \"P.\")",
+    },
+    "status": {
+        "level": "easy",
+        "title": {"ru": "Текст статуса"},
+        "text": {"ru": "Напишите <code>status_text(code)</code>: по коду ответа верните его название. <code>200</code> — <code>OK</code>, <code>201</code> — <code>Created</code>, <code>404</code> — <code>Not Found</code>, <code>500</code> — <code>Internal Server Error</code>. Для остальных кодов верните <code>Unknown</code>."},
+        "starter": "def status_text(code):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "Удобно хранить пары в словаре: <code>{200: \"OK\", 404: \"Not Found\"}</code>.",
+            "<code>names.get(code, \"Unknown\")</code> вернёт запасное значение, если кода нет в словаре.",
+        ]},
+        "solution": "def status_text(code):\n    names = {200: \"OK\", 201: \"Created\", 404: \"Not Found\", 500: \"Internal Server Error\"}\n    return names.get(code, \"Unknown\")",
+        "tests": "case('status_text(200)', \"OK\")\ncase('status_text(201)', \"Created\")\ncase('status_text(404)', \"Not Found\")\ncase('status_text(500)', \"Internal Server Error\")\ncase('status_text(418)', \"Unknown\")",
+    },
+    "mime": {
+        "level": "medium",
+        "title": {"ru": "Тип файла"},
+        "text": {"ru": "Сервер сообщает браузеру тип файла в заголовке <code>Content-Type</code>. Напишите <code>content_type(filename)</code>: для <code>.html</code> верните <code>text/html</code>, для <code>.css</code> — <code>text/css</code>, для <code>.js</code> — <code>text/javascript</code>, для <code>.json</code> — <code>application/json</code>, для остальных — <code>application/octet-stream</code>. Регистр букв в имени не важен."},
+        "starter": "def content_type(filename):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "Расширение — это часть после последней точки: <code>filename.rsplit(\".\", 1)[-1]</code>.",
+            "Приведите имя к нижнему регистру через <code>.lower()</code> и возьмите тип из словаря через <code>.get()</code> с запасным значением.",
+        ]},
+        "solution": "def content_type(filename):\n    types = {\"html\": \"text/html\", \"css\": \"text/css\", \"js\": \"text/javascript\", \"json\": \"application/json\"}\n    extension = filename.lower().rsplit(\".\", 1)[-1]\n    return types.get(extension, \"application/octet-stream\")",
+        "tests": "case('content_type(\"index.html\")', \"text/html\")\ncase('content_type(\"styles.css\")', \"text/css\")\ncase('content_type(\"app.min.js\")', \"text/javascript\")\ncase('content_type(\"DATA.JSON\")', \"application/json\")\ncase('content_type(\"photo.png\")', \"application/octet-stream\")",
+    },
+    "build_url": {
+        "level": "medium",
+        "title": {"ru": "Адрес с параметрами"},
+        "text": {"ru": "Напишите <code>build_url(path, params)</code>: добавьте к пути параметры из словаря. Из <code>\"/search\"</code> и <code>{\"q\": \"flask\", \"page\": 2}</code> должно получиться <code>/search?q=flask&amp;page=2</code>. Если словарь пустой, верните путь без знака вопроса."},
+        "starter": "def build_url(path, params):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "Пары ключ и значение даёт <code>params.items()</code>. Каждую превратите в строку <code>f\"{key}={value}\"</code>.",
+            "Соедините пары через <code>\"&amp;\".join(pairs)</code> и добавьте к пути после знака <code>?</code>.",
+        ]},
+        "solution": "def build_url(path, params):\n    if not params:\n        return path\n    pairs = [f\"{key}={value}\" for key, value in params.items()]\n    return path + \"?\" + \"&\".join(pairs)",
+        "tests": "case('build_url(\"/search\", {\"q\": \"flask\", \"page\": 2})', \"/search?q=flask&page=2\")\ncase('build_url(\"/tasks\", {})', \"/tasks\")\ncase('build_url(\"/\", {\"lang\": \"kk\"})', \"/?lang=kk\")",
+    },
+    "cookie": {
+        "level": "medium",
+        "title": {"ru": "Разбор cookie"},
+        "text": {"ru": "Напишите <code>parse_cookie(header)</code>: превратите строку заголовка <code>theme=dark; lang=kk</code> в словарь <code>{\"theme\": \"dark\", \"lang\": \"kk\"}</code>. Для пустой строки верните пустой словарь. В значении может встретиться знак <code>=</code>."},
+        "starter": "def parse_cookie(header):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "Сначала разделите строку по <code>;</code>, затем у каждой части уберите пробелы через <code>.strip()</code>.",
+            "<code>part.split(\"=\", 1)</code> делит только по первому знаку равно, поэтому значение <code>a=b</code> останется целым.",
+        ]},
+        "solution": "def parse_cookie(header):\n    result = {}\n    for part in header.split(\";\"):\n        if \"=\" in part:\n            key, value = part.strip().split(\"=\", 1)\n            result[key] = value\n    return result",
+        "tests": "case('parse_cookie(\"theme=dark; lang=kk\")', {\"theme\": \"dark\", \"lang\": \"kk\"})\ncase('parse_cookie(\"\")', {})\ncase('parse_cookie(\"token=a=b\")', {\"token\": \"a=b\"})",
+    },
+    "redirect": {
+        "level": "medium",
+        "title": {"ru": "Безопасный переход"},
+        "text": {"ru": "После входа сайт возвращает человека на адрес из параметра <code>next</code>. Напишите <code>is_safe_redirect(url)</code>: верните <code>True</code>, только если адрес ведёт на этот же сайт, то есть начинается с одной косой черты <code>/</code>. Адрес <code>//evil.example</code> браузер считает чужим сайтом."},
+        "starter": "def is_safe_redirect(url):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "Начало строки проверяет <code>url.startswith(\"/\")</code>.",
+            "Добавьте второе условие через <code>and not</code>: адрес не должен начинаться с <code>//</code>.",
+        ]},
+        "solution": "def is_safe_redirect(url):\n    return url.startswith(\"/\") and not url.startswith(\"//\")",
+        "tests": "case('is_safe_redirect(\"/profile\")', True)\ncase('is_safe_redirect(\"https://evil.example\")', False)\ncase('is_safe_redirect(\"//evil.example\")', False)\ncase('is_safe_redirect(\"\")', False)",
+    },
+    "clean": {
+        "level": "easy",
+        "title": {"ru": "Чистый заголовок"},
+        "text": {"ru": "Напишите <code>clean_title(value)</code>: уберите пробелы по краям, а несколько пробелов подряд внутри замените одним. Из <code>\"  Buy   bread \"</code> должно получиться <code>Buy bread</code>."},
+        "starter": "def clean_title(value):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "<code>value.split()</code> без аргументов делит строку по любым пробелам и отбрасывает пустые части.",
+            "Соберите слова обратно через <code>\" \".join(...)</code>.",
+        ]},
+        "solution": "def clean_title(value):\n    return \" \".join(value.split())",
+        "tests": "case('clean_title(\"  Buy   bread \")', \"Buy bread\")\ncase('clean_title(\"Flask\")', \"Flask\")\ncase('clean_title(\"   \")', \"\")",
+    },
+    "to_int": {
+        "level": "medium",
+        "title": {"ru": "Число из формы"},
+        "text": {"ru": "Поля формы всегда приходят строками. Напишите <code>to_int(value, default)</code>: превратите строку в целое число. Пробелы по краям не мешают. Если в строке не число, верните <code>default</code>."},
+        "starter": "def to_int(value, default):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "<code>int(\"abc\")</code> вызывает ошибку <code>ValueError</code>. Её ловит блок <code>try</code> / <code>except ValueError</code>.",
+            "В блоке <code>except</code> просто верните запасное значение: <code>return default</code>.",
+        ]},
+        "solution": "def to_int(value, default):\n    try:\n        return int(value.strip())\n    except ValueError:\n        return default",
+        "tests": "case('to_int(\"42\", 0)', 42)\ncase('to_int(\" 7 \", 0)', 7)\ncase('to_int(\"abc\", 1)', 1)\ncase('to_int(\"\", 5)', 5)\ncase('to_int(\"-3\", 0)', -3)",
+    },
+    "missing": {
+        "level": "medium",
+        "title": {"ru": "Обязательные поля"},
+        "text": {"ru": "Напишите <code>missing_fields(data, required)</code>. <code>data</code> — словарь с данными формы, <code>required</code> — список обязательных полей. Верните список тех полей, которых нет в словаре или которые пустые. Строка из одних пробелов тоже пустая. Порядок — как в <code>required</code>."},
+        "starter": "def missing_fields(data, required):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "<code>data.get(name, \"\")</code> вернёт пустую строку, если поля нет.",
+            "Пустоту проверяет <code>not value.strip()</code>: у строки из пробелов после <code>.strip()</code> ничего не остаётся.",
+        ]},
+        "solution": "def missing_fields(data, required):\n    return [name for name in required if not str(data.get(name, \"\")).strip()]",
+        "tests": "case('missing_fields({\"name\": \"Aru\", \"email\": \"\"}, [\"name\", \"email\"])', [\"email\"])\ncase('missing_fields({}, [\"name\", \"email\"])', [\"name\", \"email\"])\ncase('missing_fields({\"name\": \"  \"}, [\"name\"])', [\"name\"])\ncase('missing_fields({\"name\": \"Aru\"}, [\"name\"])', [])",
+    },
+    "escape": {
+        "level": "medium",
+        "title": {"ru": "Безопасный вывод"},
+        "text": {"ru": "Напишите <code>escape_html(text)</code>: замените знак <code>&amp;</code> на <code>&amp;amp;</code>, <code>&lt;</code> на <code>&amp;lt;</code>, <code>&gt;</code> на <code>&amp;gt;</code>. Тогда текст пользователя покажется на странице как текст и не станет тегом."},
+        "starter": "def escape_html(text):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "Замену делает <code>text.replace(\"&lt;\", \"&amp;lt;\")</code>. Результат нужно сохранить: строки не меняются на месте.",
+            "Начните со знака <code>&amp;</code>. Иначе он заменится второй раз внутри уже готовых <code>&amp;lt;</code>.",
+        ]},
+        "solution": "def escape_html(text):\n    text = text.replace(\"&\", \"&amp;\")\n    text = text.replace(\"<\", \"&lt;\")\n    return text.replace(\">\", \"&gt;\")",
+        "tests": "case('escape_html(\"<b>hi</b>\")', \"&lt;b&gt;hi&lt;/b&gt;\")\ncase('escape_html(\"Tom & Jerry\")', \"Tom &amp; Jerry\")\ncase('escape_html(\"a < b\")', \"a &lt; b\")\ncase('escape_html(\"&lt;\")', \"&amp;lt;\")",
+    },
+    "email": {
+        "level": "hard",
+        "title": {"ru": "Похоже на почту"},
+        "text": {"ru": "Напишите <code>is_email(value)</code>: грубая проверка адреса почты. В адресе нет пробелов, ровно один знак <code>@</code>, перед ним есть хотя бы один символ, а после него есть точка, которая стоит не в начале и не в конце."},
+        "starter": "def is_email(value):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "Сколько раз встречается символ, считает <code>value.count(\"@\")</code>.",
+            "Разделите адрес на две части: <code>name, domain = value.split(\"@\")</code>, и проверьте каждую отдельно.",
+        ]},
+        "solution": "def is_email(value):\n    if \" \" in value or value.count(\"@\") != 1:\n        return False\n    name, domain = value.split(\"@\")\n    if not name or \".\" not in domain:\n        return False\n    return not domain.startswith(\".\") and not domain.endswith(\".\")",
+        "tests": "case('is_email(\"aru@example.com\")', True)\ncase('is_email(\"aru.example.com\")', False)\ncase('is_email(\"a@b@example.com\")', False)\ncase('is_email(\"@example.com\")', False)\ncase('is_email(\"aru@example\")', False)\ncase('is_email(\"aru @example.com\")', False)\ncase('is_email(\"aru@example.\")', False)",
+    },
+    "count": {
+        "level": "easy",
+        "title": {"ru": "Сколько осталось"},
+        "text": {"ru": "Напишите <code>count_active(db)</code>: верните число задач, у которых <code>done = 0</code>. Считать должна база, а не Python."},
+        "starter": "import sqlite3\n\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)\")\ndb.executemany(\"INSERT INTO tasks (title, done) VALUES (?, ?)\", [(\"Buy bread\", 1), (\"Learn Flask\", 0), (\"Write tests\", 0)])\n\ndef count_active(db):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "Строки считает запрос <code>SELECT COUNT(*) FROM tasks WHERE done = 0</code>.",
+            "<code>.fetchone()</code> вернёт одну строку-кортеж, число в ней первое: <code>row[0]</code>.",
+        ]},
+        "solution": "import sqlite3\n\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)\")\ndb.executemany(\"INSERT INTO tasks (title, done) VALUES (?, ?)\", [(\"Buy bread\", 1), (\"Learn Flask\", 0), (\"Write tests\", 0)])\n\ndef count_active(db):\n    row = db.execute(\"SELECT COUNT(*) FROM tasks WHERE done = 0\").fetchone()\n    return row[0]",
+        "tests": "case('count_active(db)', 2)\ndb.execute(\"UPDATE tasks SET done = 1\")\ncase('count_active(db)', 0)",
+    },
+    "delete_done": {
+        "level": "easy",
+        "title": {"ru": "Удалить выполненные"},
+        "text": {"ru": "Напишите <code>delete_done(db)</code>: удалите все выполненные задачи (<code>done = 1</code>) и верните, сколько строк удалено."},
+        "starter": "import sqlite3\n\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)\")\ndb.executemany(\"INSERT INTO tasks (title, done) VALUES (?, ?)\", [(\"Buy bread\", 1), (\"Learn Flask\", 0), (\"Write tests\", 0)])\n\ndef delete_done(db):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "Запрос на удаление: <code>DELETE FROM tasks WHERE done = 1</code>.",
+            "Число удалённых строк лежит в <code>cursor.rowcount</code>. Не забудьте <code>db.commit()</code>.",
+        ]},
+        "solution": "import sqlite3\n\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)\")\ndb.executemany(\"INSERT INTO tasks (title, done) VALUES (?, ?)\", [(\"Buy bread\", 1), (\"Learn Flask\", 0), (\"Write tests\", 0)])\n\ndef delete_done(db):\n    cursor = db.execute(\"DELETE FROM tasks WHERE done = 1\")\n    db.commit()\n    return cursor.rowcount",
+        "tests": "case('delete_done(db)', 1)\ncase('db.execute(\"SELECT COUNT(*) FROM tasks\").fetchone()', (2,))\ncase('delete_done(db)', 0)",
+    },
+    "mark_done": {
+        "level": "medium",
+        "title": {"ru": "Отметить выполненной"},
+        "text": {"ru": "Напишите <code>mark_done(db, task_id)</code>: поставьте задаче с этим номером <code>done = 1</code>. Верните <code>True</code>, если такая задача была, и <code>False</code>, если её нет. Остальные задачи менять нельзя."},
+        "starter": "import sqlite3\n\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)\")\ndb.executemany(\"INSERT INTO tasks (title, done) VALUES (?, ?)\", [(\"Buy bread\", 1), (\"Learn Flask\", 0), (\"Write tests\", 0)])\n\ndef mark_done(db, task_id):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "Запрос на изменение: <code>UPDATE tasks SET done = 1 WHERE id = ?</code>. Без <code>WHERE</code> изменятся все строки.",
+            "Сколько строк изменилось, показывает <code>cursor.rowcount</code>.",
+        ]},
+        "solution": "import sqlite3\n\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)\")\ndb.executemany(\"INSERT INTO tasks (title, done) VALUES (?, ?)\", [(\"Buy bread\", 1), (\"Learn Flask\", 0), (\"Write tests\", 0)])\n\ndef mark_done(db, task_id):\n    cursor = db.execute(\"UPDATE tasks SET done = 1 WHERE id = ?\", (task_id,))\n    db.commit()\n    return cursor.rowcount == 1",
+        "tests": "case('mark_done(db, 2)', True)\ncase('db.execute(\"SELECT done FROM tasks WHERE id = 2\").fetchone()', (1,))\ncase('db.execute(\"SELECT done FROM tasks WHERE id = 3\").fetchone()', (0,))\ncase('mark_done(db, 99)', False)",
+    },
+    "search": {
+        "level": "hard",
+        "title": {"ru": "Поиск по тексту"},
+        "text": {"ru": "Напишите <code>search(db, text)</code>: верните заголовки задач, в которых встречается <code>text</code>, в порядке <code>id</code>. Текст передавайте через параметр <code>?</code>, чтобы кавычка в поиске не сломала запрос."},
+        "starter": "import sqlite3\n\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)\")\ndb.executemany(\"INSERT INTO tasks (title, done) VALUES (?, ?)\", [(\"Buy bread\", 1), (\"Learn Flask\", 0), (\"Write tests\", 0)])\n\ndef search(db, text):\n    # ваш код\n    pass",
+        "hints": {"ru": [
+            "Поиск по части строки делает <code>WHERE title LIKE ?</code>, а знак <code>%</code> означает «любые символы».",
+            "Знаки процента добавьте к значению, а не к запросу: <code>(\"%\" + text + \"%\",)</code>.",
+        ]},
+        "solution": "import sqlite3\n\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, done INTEGER)\")\ndb.executemany(\"INSERT INTO tasks (title, done) VALUES (?, ?)\", [(\"Buy bread\", 1), (\"Learn Flask\", 0), (\"Write tests\", 0)])\n\ndef search(db, text):\n    rows = db.execute(\"SELECT title FROM tasks WHERE title LIKE ? ORDER BY id\", (\"%\" + text + \"%\",))\n    return [row[0] for row in rows]",
+        "tests": "case('search(db, \"Flask\")', [\"Learn Flask\"])\ncase('search(db, \"e\")', [\"Buy bread\", \"Learn Flask\", \"Write tests\"])\ncase('search(db, \"django\")', [])\ncase('search(db, \"x\\'; DROP TABLE tasks; --\")', [])\ncase('db.execute(\"SELECT COUNT(*) FROM tasks\").fetchone()', (3,))",
+    },
+    "health": {
+        "level": "easy",
+        "title": {"ru": "Проверка связи"},
+        "text": {"ru": "Добавьте маршрут <code>GET /health</code>, который возвращает JSON <code>{\"status\": \"ok\"}</code>. Такой адрес делают, чтобы проверять, жив ли сервер. На <code>POST</code> он отвечать не должен."},
+        "starter": "from flask import Flask\n\napp = Flask(__name__)\n\n# ваш маршрут",
+        "hints": {"ru": [
+            "Маршрут только для GET объявляют так: <code>@app.get(\"/health\")</code>.",
+            "Верните из функции словарь: Flask сам превратит его в JSON.",
+        ]},
+        "solution": "from flask import Flask\n\napp = Flask(__name__)\n\n@app.get(\"/health\")\ndef health():\n    return {\"status\": \"ok\"}",
+        "tests": "client = app.test_client()\ncase('client.get(\"/health\").status_code', 200)\ncase('client.get(\"/health\").json', {\"status\": \"ok\"})\ncase('client.post(\"/health\").status_code', 405)",
+    },
+    "square": {
+        "level": "easy",
+        "title": {"ru": "Число в адресе"},
+        "text": {"ru": "Сделайте <code>GET /square/&lt;int:n&gt;</code>: верните JSON с числом и его квадратом, например <code>{\"n\": 4, \"square\": 16}</code>. Адрес <code>/square/abc</code> должен давать 404."},
+        "starter": "from flask import Flask\n\napp = Flask(__name__)\n\n# ваш маршрут",
+        "hints": {"ru": [
+            "<code>&lt;int:n&gt;</code> в адресе пропускает только числа и передаёт в функцию уже число, а не строку.",
+            "Функция должна принимать аргумент с тем же именем: <code>def square(n):</code>.",
+        ]},
+        "solution": "from flask import Flask\n\napp = Flask(__name__)\n\n@app.get(\"/square/<int:n>\")\ndef square(n):\n    return {\"n\": n, \"square\": n * n}",
+        "tests": "client = app.test_client()\ncase('client.get(\"/square/4\").json', {\"n\": 4, \"square\": 16})\ncase('client.get(\"/square/0\").json', {\"n\": 0, \"square\": 0})\ncase('client.get(\"/square/abc\").status_code', 404)",
+    },
+    "search_q": {
+        "level": "medium",
+        "title": {"ru": "Обязательный параметр"},
+        "text": {"ru": "Сделайте <code>GET /search</code>. Если в адресе есть непустой параметр <code>q</code>, верните <code>{\"q\": значение}</code>. Если параметра нет или он из одних пробелов, верните <code>{\"error\": \"q\"}</code> с кодом 400."},
+        "starter": "from flask import Flask, request\n\napp = Flask(__name__)\n\n# ваш маршрут",
+        "hints": {"ru": [
+            "Параметр читает <code>request.args.get(\"q\", \"\")</code>: второе значение вернётся, если параметра нет.",
+            "Код ответа ставится вторым значением: <code>return {\"error\": \"q\"}, 400</code>.",
+        ]},
+        "solution": "from flask import Flask, request\n\napp = Flask(__name__)\n\n@app.get(\"/search\")\ndef search():\n    q = request.args.get(\"q\", \"\").strip()\n    if not q:\n        return {\"error\": \"q\"}, 400\n    return {\"q\": q}",
+        "tests": "client = app.test_client()\ncase('client.get(\"/search?q=flask\").json', {\"q\": \"flask\"})\ncase('client.get(\"/search\").status_code', 400)\ncase('client.get(\"/search\").json', {\"error\": \"q\"})\ncase('client.get(\"/search?q=%20\").status_code', 400)",
+    },
+    "remove": {
+        "level": "hard",
+        "title": {"ru": "Удаление по номеру"},
+        "text": {"ru": "Сделайте <code>DELETE /tasks/&lt;int:task_id&gt;</code>. Если задача есть в словаре <code>TASKS</code>, удалите её и верните пустой ответ с кодом 204. Если её нет, верните <code>{\"error\": \"not found\"}</code> с кодом 404."},
+        "starter": "from flask import Flask\n\napp = Flask(__name__)\nTASKS = {1: \"Buy bread\", 2: \"Learn Flask\"}\n\n# ваш маршрут",
+        "hints": {"ru": [
+            "Маршрут для удаления объявляют через <code>@app.delete(...)</code>. Из словаря элемент убирает <code>del TASKS[task_id]</code>.",
+            "Пустой ответ с кодом: <code>return \"\", 204</code>.",
+        ]},
+        "solution": "from flask import Flask\n\napp = Flask(__name__)\nTASKS = {1: \"Buy bread\", 2: \"Learn Flask\"}\n\n@app.delete(\"/tasks/<int:task_id>\")\ndef delete_task(task_id):\n    if task_id not in TASKS:\n        return {\"error\": \"not found\"}, 404\n    del TASKS[task_id]\n    return \"\", 204",
+        "tests": "client = app.test_client()\ncase('client.delete(\"/tasks/1\").status_code', 204)\ncase('TASKS', {2: \"Learn Flask\"})\ncase('client.delete(\"/tasks/1\").status_code', 404)\ncase('client.delete(\"/tasks/9\").json', {\"error\": \"not found\"})\ncase('client.get(\"/tasks/2\").status_code', 405)",
+    },
 }
 
 
@@ -410,6 +705,15 @@ def total():
 
 
 def main():
+    check = "--check" in sys.argv
+    stale = []
+
+    def update(path, new):
+        if path.read_text(encoding="utf-8") != new:
+            stale.append(path.relative_to(ROOT).as_posix())
+            if not check:
+                path.write_text(new, encoding="utf-8", newline="\n")
+
     for lang, path in (("ru", ROOT / "practice.html"), ("kk", ROOT / "kk" / "practice.html"), ("en", ROOT / "en" / "practice.html")):
         if not path.exists():
             continue
@@ -418,12 +722,19 @@ def main():
             sys.exit(f"{path}: нет метки <!-- tasks:start -->")
         new = re.sub(r"<!-- tasks:start -->.*?<!-- tasks:end -->",
                      lambda m: "<!-- tasks:start -->\n" + build(lang) + "\n<!-- tasks:end -->", text, flags=re.S)
-        new = re.sub(r'data-tasks-total="\d+"', f'data-tasks-total="{total()}"', new)
-        path.write_text(new, encoding="utf-8", newline="\n")
+        # Число стоит и в атрибуте, и в тексте: без JavaScript и для поиска оно должно быть верным
+        new = re.sub(r'data-tasks-total="\d+">\d*<', f'data-tasks-total="{total()}">{total()}<', new)
+        update(path, new)
     course = ROOT / "course.html"
-    text = course.read_text(encoding="utf-8")
-    course.write_text(re.sub(r'data-tasks="\d+"', f'data-tasks="{total()}"', text), encoding="utf-8", newline="\n")
-    print(f"Задач: {total()}")
+    update(course, re.sub(r'data-tasks="\d+"', f'data-tasks="{total()}"', course.read_text(encoding="utf-8")))
+    if check:
+        if stale:
+            print("Задачи на страницах отличаются от tools/build_practice.py. Запустите python tools/build_practice.py:")
+            print("\n".join("  " + s for s in stale))
+            sys.exit(1)
+        print("Задачи на страницах актуальны")
+        return
+    print(f"Задач: {total()}, обновлено файлов: {len(stale)}")
 
 
 if __name__ == "__main__":

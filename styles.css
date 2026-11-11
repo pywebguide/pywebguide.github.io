@@ -1198,6 +1198,26 @@ th {
   display: none;
 }
 
+/* Кнопка «Скачать Python для работы без интернета» в песочнице */
+.offline-python {
+  margin-top: 20px;
+}
+
+.offline-python .note {
+  margin: 8px 0 0;
+}
+
+/* Объяснение ошибки простыми словами под текстом Python */
+.run-explain {
+  max-width: 70ch;
+  margin: 10px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--code-text);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+
 .run-output.is-error .run-status {
   color: #ff9a9a;
   font-weight: 700;

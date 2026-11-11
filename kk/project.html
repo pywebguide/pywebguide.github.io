@@ -151,7 +151,7 @@
         <nav class="page-toc" aria-label="Бет мазмұны">
           <a href="#prep">Не қажет болады</a> <a href="#flask">Flask: 6 қадам</a> <a href="#django">Django: 10 қадам</a> <a href="#errors">Жиі кездесетін қателер</a> <a href="#sources">Дереккөздер</a>
         </nav>
-      <img class="band-picture" src="../assets/img/eniac.jpg" width="900" height="617" alt="Екі әйел кабель панельдерінің жанында ENIAC компьютерін баптап жатыр, 1946 жыл" decoding="async" fetchpriority="high">
+      <img class="band-picture" src="../assets/img/eniac.webp" width="900" height="617" alt="Екі әйел кабель панельдерінің жанында ENIAC компьютерін баптап жатыр, 1946 жыл" decoding="async" fetchpriority="high">
 </div></div>
 
       <section class="section" id="prep" aria-labelledby="prep-title">
@@ -257,7 +257,9 @@ PAGE = """
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        tasks.append(request.form["title"])
+        title = request.form.get("title", "").strip()
+        if title:
+            tasks.append(title)
         return redirect(url_for("index"))
     return render_template_string(PAGE, tasks=tasks)</code></pre>
               </div>
@@ -348,7 +350,9 @@ def index():
 
 @app.post("/add")
 def add():
-    query("INSERT INTO tasks (title) VALUES (?)", (request.form["title"],))
+    title = request.form.get("title", "").strip()
+    if title:
+        query("INSERT INTO tasks (title) VALUES (?)", (title,))
     return redirect(url_for("index"))
 
 @app.post("/delete/&lt;int:task_id&gt;")
@@ -368,6 +372,7 @@ def delete(task_id):
               <p>
                 Серверді сол командамен іске қосып, бірнеше тапсырма қосыңыз да, біреуін жойыңыз. Содан кейін серверді тоқтатып (<kbd>Ctrl</kbd> + <kbd>C</kbd>), қайта іске қосыңыз — тапсырмалар орнында қалады. Жою кәдімгі сілтеме арқылы емес, <code>POST</code> арқылы жасалған: деректерді өзгертетін әрекеттер мекенжайға жай өту арқылы орындалмауы керек.
               </p>
+              <p>Бос тапсырманы тексеру екі жерде тұр. <code>required</code> атрибуты бос форманы браузерде тоқтатады, бірақ сұрауды формасыз да жіберуге болады, сондықтан <code>add</code> функциясы бос орындарды өзі алып тастап, бос тақырыпты сақтамайды. Ал сұрауды қолдан жасаудан қорғаныс (CSRF) бұл мысалда жоқ: нағыз сайт үшін Flask-WTF қосыңыз немесе жобаны Django-да жасаңыз, онда ол бірден қосулы.</p>
               <figure class="shot">
                 <p class="shot-title">Қалай көрінуі керек</p>
                 <img src="../assets/img/project/flask-step6.webp" width="1120" height="427" alt="«Мои задачи» беті: әр тапсырманың жанында «Удалить» батырмасы бар" loading="lazy" decoding="async">
@@ -834,7 +839,7 @@ urlpatterns = [
         <div><strong>Сайт</strong><ul><li><a href="course.html">Бүкіл курс</a></li><li><a href="progress.html">Менің прогресім</a></li><li><a href="contacts.html">Байланыс</a></li></ul></div>
       </div>
       <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
-      <p class="note footer-note">Авторы: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-09">09.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Авторы: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-11">11.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
       <p class="note footer-note">Сурет: <a href="https://commons.wikimedia.org/wiki/File:Two_women_operating_ENIAC_(full_resolution).jpg" rel="noopener">ENIAC, АҚШ армиясы, 1946</a>.</p>
       <p class="note footer-note"><a href="privacy.html">Құпиялылық саясаты</a> · <a href="terms.html">Пайдалану шарттары</a></p>
       <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="contacts.html#no-github">тікелей жазуға</a> болады.</p>

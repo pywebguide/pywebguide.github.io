@@ -3,6 +3,7 @@ name: Проверка сайта
 on:
   push:
   pull_request:
+  workflow_call:
 
 jobs:
   checks:
@@ -13,6 +14,10 @@ jobs:
         with:
           python-version: "3.13"
       - run: pip install -r tools/requirements.txt
+      - name: Тесты инструментов сборки
+        run: python tools/test_tools.py
+      - name: Объяснения ошибок Python, Flask и SQLite срабатывают и переведены
+        run: python tools/check_errors.py
       - name: Ссылки, заголовки, карта сайта
         run: python tools/check_site.py
       - name: Шапка и подвал совпадают с tools/layout.py
@@ -21,6 +26,8 @@ jobs:
         run: python tools/check_examples.py
       - name: Эталонные решения задач проходят тесты
         run: python tools/check_tasks.py
+      - name: Задачи на страницах совпадают с tools/build_practice.py
+        run: python tools/build_practice.py --check
       - name: Примеры Django в настоящем проекте
         run: python tools/check_django.py
       - name: Полный код первого проекта совпадает со страницей и проходит тесты
@@ -34,4 +41,4 @@ jobs:
       - name: Индекс поиска актуален
         run: |
           python tools/build_search.py
-          git diff --exit-code assets/search-index.js
+          git diff --exit-code assets/search-index.js assets/search-index.kk.js assets/search-index.en.js

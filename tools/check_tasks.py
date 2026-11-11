@@ -57,9 +57,10 @@ def run(code, tests):
     script = CHECKER + "\n" + f"check({code!r}, {tests!r})\n"
     with tempfile.NamedTemporaryFile("w", suffix=".py", delete=False, encoding="utf-8") as f:
         f.write(script)
-    result = subprocess.run([sys.executable, "-I", "-X", "utf8", f.name], capture_output=True, text=True, encoding="utf-8", timeout=60, cwd=tempfile.gettempdir())
-    Path(f.name).unlink()
-    return result
+    try:
+        return subprocess.run([sys.executable, "-I", "-X", "utf8", f.name], capture_output=True, text=True, encoding="utf-8", timeout=60, cwd=tempfile.gettempdir())
+    finally:
+        Path(f.name).unlink()
 
 
 def main():
