@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <base href="/">
+  <script>
+    // GitHub Pages отдаёт этот файл на любой несуществующий адрес. Для /en/... и /kk/... — страница на языке раздела
+    (function () {
+      var lang = location.pathname.match(/^\/(en|kk)\//);
+      if (lang && !/\/404\.html$/.test(location.pathname)) location.replace("/" + lang[1] + "/404.html");
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Страница не найдена — PyWeb Guide</title>
 
@@ -86,8 +93,8 @@
         </details></li>
           <li class="nav-lang" aria-label="Язык сайта">
             <a href="404.html" hreflang="ru" lang="ru" aria-current="true">РУС</a>
-            <a href="kk/index.html" hreflang="kk" lang="kk" data-untranslated="kk">ҚАЗ</a>
-            <a href="en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+            <a href="kk/404.html" hreflang="kk" lang="kk">ҚАЗ</a>
+            <a href="en/404.html" hreflang="en" lang="en">ENG</a>
           </li>
         </ul>
       </nav>

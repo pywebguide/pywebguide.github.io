@@ -63,9 +63,12 @@ class Page(HTMLParser):
 
 
 def resolve(name, path):
-    """Путь ссылки относительно корня сайта. Переводы лежат в kk/ и en/, у 404.html база — корень."""
+    """Путь ссылки относительно корня сайта. Переводы лежат в kk/ и en/, у 404.html база — корень
+    (у en/404.html и kk/404.html — их папка, как у остальных переводов)."""
     if path.startswith("/"):
-        return path.lstrip("/") or "index.html"
+        path = path.lstrip("/")
+        # Адрес папки (/en/) — это её index.html
+        return path + "index.html" if path == "" or path.endswith("/") else path
     folder = "" if name == "404.html" else posixpath.dirname(name)
     target = posixpath.normpath(posixpath.join(folder, path))
     return "index.html" if target == "." else target
@@ -90,7 +93,7 @@ def main():
             errors.append(f"{name}: повторяется id {duplicate}")
         if not page.title.strip():
             errors.append(f"{name}: нет title")
-        if not page.has_description and name != "404.html":
+        if not page.has_description and posixpath.basename(name) != "404.html":
             errors.append(f"{name}: нет description")
         for link in page.links:
             parts = urlsplit(link)
@@ -106,7 +109,7 @@ def main():
     # «https://…/kk/» в карте сайта — это страница kk/index.html
     listed = {(urlsplit(url).path.lstrip("/") + ("index.html" if url.endswith("/") else "")) for url in re.findall(r"<loc>(.*?)</loc>", sitemap)}
     for name in pages:
-        if name != "404.html" and name not in listed:
+        if posixpath.basename(name) != "404.html" and name not in listed:
             errors.append(f"sitemap.xml: нет страницы {name}")
 
     for error in errors:

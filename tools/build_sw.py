@@ -38,7 +38,8 @@ def build():
     for rel in site_files():
         digest.update(rel.encode())
         digest.update((ROOT / rel).read_bytes().replace(b"\r\n", b"\n"))
-    pages = [rel for rel in site_files() if rel.endswith(".html") and rel != "404.html"]
+    # Страницы «не найдено» (404.html, en/404.html, kk/404.html) не кэшируются: их отдаёт сервер на любой адрес
+    pages = [rel for rel in site_files() if rel.endswith(".html") and rel.rsplit("/", 1)[-1] != "404.html"]
     precache = ["/", "/kk/", "/en/"] + ["/" + rel for rel in pages] + ["/" + rel for rel in CORE]
     text = (ROOT / "sw.js").read_text(encoding="utf-8")
     text = re.sub(r'const VERSION = "[^"]*";', f'const VERSION = "pyweb-{digest.hexdigest()[:10]}";', text, count=1)

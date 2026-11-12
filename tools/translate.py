@@ -276,6 +276,9 @@ def build(lang, slug, memory=None, write=True):
     page = re.sub(r'(<meta property="og:url" content=")' + re.escape(SITE), lambda m: f"{m.group(1)}{SITE}{lang}/", page, count=1)
     page = page.replace('<meta property="og:locale" content="ru_RU">', f'<meta property="og:locale" content="{LOCALE[lang]}">', 1)
     page = page.replace(PRELOAD_RU.replace('href="', 'href="../'), PRELOAD[lang], 1)
+    # 404.html показывается на любом адресе, поэтому ссылки в нём считаются от <base>. У перевода база — его папка:
+    # project.html ведёт на /en/project.html, а ../assets/ — по-прежнему в корень
+    page = page.replace('<base href="/">', f'<base href="/{lang}/">', 1)
     # Картинки с текстом: если есть версия на языке страницы (имя.kk.svg), берём её
     page = re.sub(r'src="\.\./assets/([\w-]+)\.svg"',
                   lambda m: f'src="../assets/{m.group(1)}.{lang}.svg"' if (ROOT / "assets" / f"{m.group(1)}.{lang}.svg").exists() else m.group(0), page)

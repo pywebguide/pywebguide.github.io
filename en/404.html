@@ -1,0 +1,150 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из 404.html. Правьте tools/i18n/en.json, а не этот файл. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <base href="/en/">
+  <script>
+    // GitHub Pages отдаёт этот файл на любой несуществующий адрес. Для /en/... и /kk/... — страница на языке раздела
+    (function () {
+      var lang = location.pathname.match(/^\/(en|kk)\//);
+      if (lang && !/\/404\.html$/.test(location.pathname)) location.replace("/" + lang[1] + "/404.html");
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — PyWeb Guide</title>
+
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#ffd249">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/sofia-sans-extra-condensed-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="yellow" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">From scratch</a></li>
+          <li><a class="nav-link" href="course.html">Full course</a></li>
+          <li><a class="nav-link" href="project.html">First project</a></li>
+          <li><a class="nav-link" href="playground.html">Sandbox</a></li>
+          <li><a class="nav-link" href="glossary.html">Glossary</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link">More <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Understand</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">About Python</a></li>
+              <li><a href="frameworks.html">Frameworks</a></li>
+              <li><a href="databases.html">Databases</a></li>
+              <li><a href="templates.html">Templates and forms</a></li>
+              <li><a href="auth.html">Authentication</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Testing</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Build</p><ul aria-labelledby="nav-group-2">
+              <li><a href="project2.html">Second project</a></li>
+              <li><a href="deploy.html">Deployment</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Practice</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Exercises</a></li>
+              <li><a href="cheatsheet.html">Cheat sheet</a></li>
+              <li><a href="exam.html">Final test</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Site</p><ul aria-labelledby="nav-group-4">
+              <li><a href="progress.html">My progress</a></li>
+              <li><a href="contacts.html">Contact</a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Site language">
+            <a href="../404.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="../kk/404.html" hreflang="kk" lang="kk">ҚАЗ</a>
+            <a href="404.html" hreflang="en" lang="en" aria-current="true">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Light theme">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" class="page" tabindex="-1">
+      <section class="not-found">
+        <div class="container">
+          <p class="code-404" aria-hidden="true">404</p>
+          <h1>There is no such page</h1>
+          <p class="lead">
+            The link may be out of date, or there may be a typo in the address. Start from the home page or open one of the sections.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="index.html">Home</a> <a class="btn btn-secondary" href="project.html">First project</a> <a class="btn btn-secondary" href="frameworks.html">Framework comparison</a>
+          </div>
+        </div>
+      </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Start</strong><ul><li><a href="start.html">Python from scratch</a></li><li><a href="glossary.html">Glossary</a></li><li><a href="playground.html">Sandbox</a></li></ul></div>
+        <div><strong>Understand</strong><ul><li><a href="about.html">About Python</a></li><li><a href="frameworks.html">Frameworks</a></li><li><a href="databases.html">Databases</a></li><li><a href="templates.html">Templates and forms</a></li><li><a href="auth.html">Authentication</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Testing</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Build</strong><ul><li><a href="project.html">First project</a></li><li><a href="project2.html">Second project</a></li><li><a href="deploy.html">Deployment</a></li></ul></div>
+        <div><strong>Practice</strong><ul><li><a href="practice.html">Exercises</a></li><li><a href="cheatsheet.html">Cheat sheet</a></li><li><a href="exam.html">Final test</a></li></ul></div>
+        <div><strong>Site</strong><ul><li><a href="course.html">Full course</a></li><li><a href="progress.html">My progress</a></li><li><a href="contacts.html">Contact</a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, a learning project about Python in web development</p>
+      <p class="note footer-note">Author: <a href="contacts.html#authors">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-11">11.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
+      <p class="note footer-note"><a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of use</a></p>
+      <p class="note footer-note">This is a learning site. Messages from the form are sent through the public Issues section on GitHub. No GitHub account? <a href="contacts.html#no-github">Write directly</a>.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
