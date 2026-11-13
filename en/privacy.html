@@ -121,7 +121,7 @@
           <a href="index.html">Home</a> <span aria-hidden="true">/</span> <span>Privacy policy</span>
         </nav>
         <h1>Privacy policy</h1>
-        <p class="lead">In short: the site has no database of its own. Messages sent through the form are published on GitHub and visible to everyone, and the hosting records visitors' IP addresses.</p>
+        <p class="lead">In short: the site has no database of its own. Messages sent through the form are published on GitHub and visible to everyone, and the hosting records visitors' IP addresses. The separate <a href="#account-version">version with an account</a> has a server, and what it stores is described below.</p>
       </div></div>
 
       <section class="section" aria-label="Privacy policy">
@@ -158,6 +158,21 @@
             <p>The site is hosted on GitHub Pages. According to GitHub, the visitor's IP address is logged and stored for security purposes. Source: <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection" rel="noopener">GitHub Pages help</a>; details are in the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub privacy statement</a>.</p>
           </div>
 
+          <div class="panel reveal stack-gap" id="account-version">
+            <h2>Version with an account</h2>
+            <p>You can also take the course in a separate version with an account at <a href="https://pywebguide.pythonanywhere.com/" rel="noopener">pywebguide.pythonanywhere.com</a>. An account is only needed to carry your progress between devices: the course works the same without it. This version stores on its server:</p>
+            <ul>
+            <li>your username and password, if you signed up. The password is stored only as a hash, and nobody can read it, including the author;</li>
+            <li>your progress: completed steps, solved exercises and your best final test score. They are saved only while you are logged in;</li>
+            <li>messages from the form on the Contact page: name, text, date and your account, if you are logged in. Only the author sees them; they are never published;</li>
+            <li>failed login attempts: username, IP address and browser. This protects against password guessing: after five mistakes, login is blocked for an hour, and a successful login resets the counter. Successful logins are not recorded.</li>
+            </ul>
+            <p>To limit the number of messages from the form, the server remembers for one hour how many came from your IP address. This number is kept only in the server's memory, not in the database.</p>
+            <p>This version sets two technical cookies: <code>sessionid</code> to remember your login (for up to two weeks) and <code>csrftoken</code> to protect forms from forgery. There are no advertising or tracking cookies.</p>
+            <p>The server is hosted on <a href="https://www.pythonanywhere.com/privacy/" rel="noopener">PythonAnywhere</a>, whose servers are in the USA. Like any hosting, it records visitors' IP addresses and browsers in its logs.</p>
+            <p>To delete your account together with your progress, or to delete your messages, log in and say so through the form on the Contact page of this version. The author will delete the data.</p>
+          </div>
+
           <div class="panel reveal stack-gap">
             <h2>Running Python in the browser</h2>
             <p>Only after you press a run or check button does the browser load Python (Pyodide) from jsDelivr, and for Flask examples also packages from PyPI. Like any website, these services receive your IP address and browser data. The code itself runs on your device and is not sent anywhere. The name for the certificate also stays in the browser and is not stored.</p>
@@ -165,7 +180,7 @@
 
           <div class="panel reveal stack-gap">
             <h2>Cookies and visit statistics</h2>
-            <p>The site sets no cookies and shows no ads.</p>
+            <p>The site sets no cookies and shows no ads. The technical cookies of the version with an account are described <a href="#account-version">above</a>.</p>
             <p>To understand which pages are read and where people drop the course, the site counts visits with <a href="https://www.goatcounter.com/" rel="noopener">GoatCounter</a>. It uses no cookies and does not recognise you on later visits. It records the address and title of the page you open, the site you came from, the country based on your IP address, the screen size, browser and operating system. The IP address itself is not stored. Details are in the <a href="https://www.goatcounter.com/help/privacy" rel="noopener">GoatCounter policy</a>.</p>
             <p>The site counts learning events in the same way: a lesson or step is marked as done, code is run for the first time, an exercise is solved. They contain no names or answers, and the same details are sent as when a page is opened. To avoid counting an event twice, the list of events already sent is kept in your browser (key pyweb_events).</p>
             <p>If Do Not Track or an ad blocker is on in your browser, the visit may not be counted, and the site works just the same.</p>
@@ -186,7 +201,7 @@
             <p>If the policy changes, we will update this text and the date at the end of the page.</p>
           </div>
 
-          <p class="note stack-gap">In effect since <time datetime="2026-11-03">3 ноября 2026 года</time>. Updated on <time datetime="2026-11-09">9 ноября 2026 года</time>: added the cache for offline use, the system choice in tabs, local search, the progress file and contact without GitHub.</p>
+          <p class="note stack-gap">In effect since <time datetime="2026-11-03">3 ноября 2026 года</time>. Updated on <time datetime="2026-11-13">13 ноября 2026 года</time>: added a section about the version with an account.</p>
         </div>
       </section>
   </main>
