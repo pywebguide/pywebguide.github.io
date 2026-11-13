@@ -67,7 +67,7 @@ def main():
     errors = []
     total = 0
     # Задачи есть на странице «Задачи» и в уроках «С нуля», на всех языках
-    pages = [ROOT / lang / name for name in ("practice.html", "start.html") for lang in ("", "kk", "en")]
+    pages = [ROOT / lang / name for name in ("practice.html", "start.html", "html-css.html") for lang in ("", "kk", "en")]
     for page in pages:
         if not page.exists():
             continue

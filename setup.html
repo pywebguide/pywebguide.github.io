@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Подготовка компьютера: Python, VS Code и терминал — PyWeb Guide</title>
+
+  <meta name="description" content="Как установить Python и VS Code на Windows, macOS и Linux и освоить терминал перед первым проектом на Flask или Django.">
+  <link rel="canonical" href="https://pywebguide.github.io/setup.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Подготовка компьютера: Python, VS Code и терминал — PyWeb Guide">
+  <meta property="og:description" content="Как установить Python и VS Code на Windows, macOS и Linux и освоить терминал перед первым проектом на Flask или Django.">
+  <meta property="og:url" content="https://pywebguide.github.io/setup.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Плакат PyWeb Guide: первый сайт на Python, бесплатный курс для тех, кто никогда не программировал">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffd249">
+
+
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <link rel="preload" href="assets/fonts/sofia-sans-extra-condensed-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="yellow" id="top" data-no-toc>
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Основная навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">С нуля</a></li>
+          <li><a class="nav-link" href="course.html">Весь курс</a></li>
+          <li><a class="nav-link" href="project.html">Первый проект</a></li>
+          <li><a class="nav-link" href="playground.html">Песочница</a></li>
+          <li><a class="nav-link" href="glossary.html">Словарь</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">Ещё <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Понять</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">О Python</a></li>
+              <li><a href="frameworks.html">Фреймворки</a></li>
+              <li><a href="databases.html">Базы данных</a></li>
+              <li><a href="templates.html">Шаблоны и формы</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Тесты</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Сделать</p><ul aria-labelledby="nav-group-2">
+              <li><a href="setup.html" aria-current="page">Подготовка компьютера</a></li>
+              <li><a href="project2.html">Второй проект</a></li>
+              <li><a href="deploy.html">Публикация</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Задачи</a></li>
+              <li><a href="cheatsheet.html">Шпаргалка</a></li>
+              <li><a href="exam.html">Финальный тест</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="progress.html">Мой прогресс</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Язык сайта">
+            <a href="setup.html" hreflang="ru" lang="ru" aria-current="true">РУС</a>
+            <a href="kk/index.html" hreflang="kk" lang="kk" data-untranslated="kk">ҚАЗ</a>
+            <a href="en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Светлая тема">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Хлебные крошки">
+<a href="index.html">Главная</a>
+<span aria-hidden="true">/</span>
+<span>Подготовка компьютера</span>
+</nav>
+<h1>Подготовка компьютера</h1>
+<p class="lead">Два урока перед первым проектом: как установить Python и редактор кода и как не бояться терминала. Команды даны для Windows и для macOS с Linux, выберите свою систему.</p>
+<p class="note">Если что-то не получается, загляните в <a href="project.html#errors-title">частые ошибки</a> первого проекта. Незнакомые слова есть в <a href="glossary.html">словаре</a>.</p>
+<div class="progress-box" data-progress="setup">
+  <p class="progress-label" role="status" aria-live="polite"><span data-progress-count>0</span> из 2 уроков пройдено</p>
+  <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
+  <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Сбросить прогресс</button>
+</div>
+<img class="band-picture" src="assets/img/ibm-704.webp" width="900" height="713" alt="Сотрудники лаборатории NACA работают с вычислительной машиной IBM 704, 1957 год" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" aria-label="Уроки">
+<div class="container">
+<ol class="project-steps" data-progress-list="setup">
+  <li class="project-step lesson" id="setup-1">
+    <div class="lesson-text">
+      <h2>Урок 1. Установка Python и редактора кода</h2>
+      <p><strong>Зачем.</strong> В уроках код работал прямо в браузере. Но свой сайт на Flask или Django запускают на своём компьютере. Для этого нужны две программы: сам Python и редактор, в котором удобно писать код.</p>
+      <p><strong>Python.</strong> Скачайте установщик с официального сайта <a href="https://www.python.org/downloads/" rel="noopener">python.org</a>, версию 3.12 или новее. Скачивайте только оттуда: на других сайтах под видом Python могут подсунуть вирус.</p>
+      <p><strong>Самое важное на Windows.</strong> На первом экране установщика отметьте галочку <strong>«Add python.exe to PATH»</strong>, а потом нажмите «Install Now». Без этой галочки команда <code>python</code> в терминале работать не будет.</p>
+      <p><strong>На macOS</strong> поставьте Python установщиком с того же сайта. <strong>В Linux</strong> он обычно уже есть: проверьте командой ниже.</p>
+      <p><strong>Проверьте установку.</strong> Откройте терминал (как это сделать — в следующем уроке) и выполните команду из вкладки вашей системы. Должна появиться версия, например <code>Python 3.13.1</code>.</p>
+      <p><strong>Редактор кода.</strong> Удобный бесплатный редактор — <a href="https://code.visualstudio.com/" rel="noopener">Visual Studio Code</a>. После установки откройте в нём раздел расширений (значок из четырёх квадратиков слева) и поставьте расширение <strong>Python</strong> от Microsoft. Оно подсвечивает код и подсказывает ошибки.</p>
+      <p><strong>Первая программа на компьютере.</strong> Создайте пустую папку, например <code>pyweb</code>, и откройте её в VS Code: «File → Open Folder». Создайте файл <code>hello.py</code>, напишите <code>print("Привет с моего компьютера!")</code> и нажмите треугольник ▶ справа вверху. Результат появится внизу, в терминале.</p>
+      <details>
+        <summary>Частая ошибка: «Python was not found»</summary>
+        <p>На Windows команда <code>python</code> открывает Microsoft Store или пишет:
+          <code class="error-text">Python was not found; run without arguments to install from the Microsoft Store…</code>
+          Значит, при установке не отмечена галочка PATH. Запустите установщик ещё раз, выберите «Modify» и отметьте «Add Python to environment variables». Или используйте команду <code>py</code> вместо <code>python</code>: она ставится вместе с Python.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: «command not found: python» на macOS</summary>
+        <p>На macOS и в Linux команда часто называется <code>python3</code>, а не <code>python</code>. Пишите <code>python3 --version</code> и <code>python3 hello.py</code>.</p>
+      </details>
+      <p><strong>Проверьте себя:</strong></p>
+      <ul>
+      <li>команда из вкладки ниже показывает версию 3.12 или новее;</li>
+      <li>в VS Code стоит расширение Python;</li>
+      <li>файл <code>hello.py</code> запускается и печатает приветствие.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="os-tabs" data-os-tabs>
+  <div class="os-tablist" role="tablist" aria-label="Система компьютера" hidden>
+    <button type="button" role="tab" data-os="win">Windows</button>
+    <button type="button" role="tab" data-os="unix">macOS и Linux</button>
+  </div>
+  <div role="tabpanel" data-os-panel="win">
+    <p class="os-caption">Windows (PowerShell или командная строка)</p>
+    <div class="code-block">
+      <div class="code-head">
+        <span>Терминал: проверка версии</span>
+        <button class="copy-btn" type="button">Копировать</button>
+      </div>
+      <pre><code>python --version
+py --version</code></pre>
+    </div>
+  </div>
+  <div role="tabpanel" data-os-panel="unix">
+    <p class="os-caption">macOS и Linux (Терминал)</p>
+    <div class="code-block">
+      <div class="code-head">
+        <span>Терминал: проверка версии</span>
+        <button class="copy-btn" type="button">Копировать</button>
+      </div>
+      <pre><code>python3 --version</code></pre>
+    </div>
+  </div>
+</div>
+<div class="code-block">
+  <div class="code-head">
+    <span>Файл hello.py</span>
+    <button class="copy-btn" type="button">Копировать</button>
+  </div>
+  <pre><code>print("Привет с моего компьютера!")
+print("Python работает.")</code></pre>
+</div>
+      <label class="step-check"><input type="checkbox" data-step="s1"> Урок пройден</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="setup-2">
+    <div class="lesson-text">
+      <h2>Урок 2. Терминал без страха</h2>
+      <p><strong>Зачем.</strong> Программисты часто управляют компьютером не мышкой, а командами: устанавливают библиотеки, запускают сервер, создают проекты. Всё это делают в <strong>терминале</strong>. В первом проекте он понадобится с первого шага.</p>
+      <p><strong>Что такое терминал.</strong> Это окно, где вы пишете команду словами и нажимаете Enter, а компьютер выполняет её и пишет ответ. Сломать им компьютер случайно очень трудно: команды из этого курса безопасны.</p>
+      <p><strong>Как открыть.</strong> Проще всего — прямо в VS Code: меню «Terminal → New Terminal» или клавиши <kbd>Ctrl</kbd> + <kbd>`</kbd>. Отдельно: на Windows нажмите «Пуск» и наберите «PowerShell», на macOS откройте программу «Терминал».</p>
+      <p><strong>Где вы находитесь.</strong> Терминал всегда работает в какой-то папке, её путь написан в начале строки. Команды выполняются именно там. Если программа «не находит файл», чаще всего вы просто не в той папке.</p>
+      <p><strong>Пять главных команд:</strong></p>
+      <ul>
+      <li><code>cd папка</code> — перейти в папку, <code>cd ..</code> — подняться на уровень выше;</li>
+      <li><code>ls</code> (а в старой командной строке Windows — <code>dir</code>) — показать файлы в папке;</li>
+      <li><code>mkdir имя</code> — создать папку;</li>
+      <li><code>python hello.py</code> — запустить программу (на macOS — <code>python3</code>);</li>
+      <li><kbd>Ctrl</kbd> + <kbd>C</kbd> — остановить работающую программу, например сервер.</li>
+      </ul>
+      <p><strong>Две подсказки, которые экономят время.</strong> Стрелка вверх возвращает предыдущую команду, не нужно набирать её заново. Клавиша <kbd>Tab</kbd> дописывает название файла или папки по первым буквам.</p>
+      <details>
+        <summary>Частая ошибка: файл не найден</summary>
+        <p>Команда <code>python hello.py</code> отвечает
+          <code class="error-text">can't open file 'hello.py': [Errno 2] No such file or directory</code>
+          Значит, вы не в той папке. Посмотрите файлы командой <code>ls</code> и перейдите в нужную папку через <code>cd</code>. В VS Code терминал сразу открывается в папке проекта.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: пробелы в названии папки</summary>
+        <p><code>cd Мои проекты</code> не сработает: терминал решит, что это две отдельные части. Возьмите путь в кавычки: <code>cd "Мои проекты"</code>. А ещё лучше называйте папки проектов без пробелов и латиницей: <code>my-site</code>.</p>
+      </details>
+      <p><strong>Проверьте себя:</strong></p>
+      <ul>
+      <li>вы открыли терминал в VS Code и видите путь к папке;</li>
+      <li>создали папку командой <code>mkdir</code> и перешли в неё через <code>cd</code>;</li>
+      <li>запустили <code>hello.py</code> командой из терминала, а не кнопкой.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="os-tabs" data-os-tabs>
+  <div class="os-tablist" role="tablist" aria-label="Система компьютера" hidden>
+    <button type="button" role="tab" data-os="win">Windows</button>
+    <button type="button" role="tab" data-os="unix">macOS и Linux</button>
+  </div>
+  <div role="tabpanel" data-os-panel="win">
+    <p class="os-caption">Windows (PowerShell)</p>
+    <div class="code-block">
+      <div class="code-head">
+        <span>Терминал: первые шаги</span>
+        <button class="copy-btn" type="button">Копировать</button>
+      </div>
+      <pre><code>mkdir my-site
+cd my-site
+ls
+python hello.py
+cd ..</code></pre>
+    </div>
+  </div>
+  <div role="tabpanel" data-os-panel="unix">
+    <p class="os-caption">macOS и Linux (Терминал)</p>
+    <div class="code-block">
+      <div class="code-head">
+        <span>Терминал: первые шаги</span>
+        <button class="copy-btn" type="button">Копировать</button>
+      </div>
+      <pre><code>mkdir my-site
+cd my-site
+ls
+python3 hello.py
+cd ..</code></pre>
+    </div>
+  </div>
+</div>
+<p class="note">Файл <code>hello.py</code> из прошлого урока положите в папку <code>my-site</code>, иначе команда запуска его не найдёт. Как раз это и есть «частая ошибка» из этого урока.</p>
+      <label class="step-check"><input type="checkbox" data-step="s2"> Урок пройден</label>
+    </div>
+  </li>
+</ol>
+</div>
+</section>
+<section class="section" aria-labelledby="next-title">
+<div class="container">
+<div class="cta-panel">
+  <div>
+    <h2 id="next-title">Что дальше</h2>
+    <p class="lead cta-lead">Компьютер готов. Теперь можно собрать первый сайт: список задач на Flask или Django.</p>
+  </div>
+  <div class="cta-actions">
+    <a class="btn btn-primary" href="project.html">Первый проект</a>
+    <a class="btn btn-secondary" href="html-css.html">HTML и CSS</a>
+  </div>
+</div>
+</div>
+</section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Начать</strong><ul><li><a href="start.html">Python с нуля</a></li><li><a href="html-css.html">HTML и CSS</a></li><li><a href="glossary.html">Словарь</a></li><li><a href="playground.html">Песочница</a></li></ul></div>
+        <div><strong>Понять</strong><ul><li><a href="about.html">О Python</a></li><li><a href="frameworks.html">Фреймворки</a></li><li><a href="databases.html">Базы данных</a></li><li><a href="templates.html">Шаблоны и формы</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесты</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Сделать</strong><ul><li><a href="setup.html">Подготовка компьютера</a></li><li><a href="project.html">Первый проект</a></li><li><a href="project2.html">Второй проект</a></li><li><a href="deploy.html">Публикация</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Задачи</a></li><li><a href="cheatsheet.html">Шпаргалка</a></li><li><a href="exam.html">Финальный тест</a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="course.html">Весь курс</a></li><li><a href="progress.html">Мой прогресс</a></li><li><a href="contacts.html">Контакты</a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, учебный проект о Python в веб-разработке</p>
+      <p class="note footer-note">Автор: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Обновлено: <time datetime="2026-11-11">11.11.2026</time> · Версии в примерах: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Исходный код на GitHub</a></p>
+      <p class="note footer-note">Снимок: <a href="https://www.rawpixel.com/image/13959871/image-paper-cartoon-art" rel="noopener">гравюра со змеями, rawpixel, CC0</a>.</p>
+      <p class="note footer-note"><a href="privacy.html">Политика конфиденциальности</a> · <a href="terms.html">Условия использования</a></p>
+      <p class="note footer-note">Сайт учебный. Сообщения с формы отправляются через публичный раздел Issues на GitHub. Без аккаунта GitHub можно <a href="contacts.html#no-github">написать напрямую</a>.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Прокрутить наверх">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="script.js"></script>
+  <script src="features.js"></script>
+</body>
+</html>

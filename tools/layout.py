@@ -30,6 +30,8 @@ GOATCOUNTER_SRI = "sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugb
 NAMES = {
     "index.html": ("Главная", "Басты бет", "Home"),
     "start.html": ("Python с нуля", "Python нөлден", "Python from scratch"),
+    "html-css.html": ("HTML и CSS", "HTML және CSS", "HTML and CSS"),
+    "setup.html": ("Подготовка компьютера", "Компьютерді дайындау", "Setting up your computer"),
     "glossary.html": ("Словарь", "Сөздік", "Glossary"),
     "playground.html": ("Песочница", "Құмсалғыш", "Sandbox"),
     "course.html": ("Весь курс", "Бүкіл курс", "Full course"),
@@ -64,9 +66,9 @@ TOP = [
 
 # Группы меню «Ещё» (третий элемент True) и колонки подвала
 GROUPS = [
-    (("Начать", "Бастау", "Start"), ["start.html", "glossary.html", "playground.html"], False),
+    (("Начать", "Бастау", "Start"), ["start.html", "html-css.html", "glossary.html", "playground.html"], False),
     (("Понять", "Түсіну", "Understand"), ["about.html", "frameworks.html", "databases.html", "templates.html", "auth.html", "api.html", "testing.html", "git.html"], True),
-    (("Сделать", "Жасау", "Build"), ["project.html", "project2.html", "deploy.html"], True),
+    (("Сделать", "Жасау", "Build"), ["setup.html", "project.html", "project2.html", "deploy.html"], True),
     (("Практика", "Практика", "Practice"), ["practice.html", "cheatsheet.html", "exam.html"], True),
     (("Сайт", "Сайт", "Site"), ["course.html", "progress.html", "contacts.html"], True),
 ]

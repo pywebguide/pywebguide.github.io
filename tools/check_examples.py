@@ -4,12 +4,14 @@ import subprocess
 import sys
 import tempfile
 import textwrap
+from html.parser import HTMLParser
 from pathlib import Path
 
 from codeblocks import read
 
 ROOT = Path(__file__).resolve().parent.parent
-NOT_PYTHON = ("Терминал", ".html", "SQL", "JSON", ".gitignore", "requirements", "JavaScript", ".js", "HTTP", ".md")
+NOT_PYTHON = ("Терминал", ".html", "SQL", "JSON", ".gitignore", "requirements", "JavaScript", ".js", "HTTP", ".md",
+              "Как должно получиться")
 
 
 def main():
@@ -17,7 +19,15 @@ def main():
     for path in sorted(ROOT.glob("*.html")):
         for block in read(path):
             label = block["label"].strip()
-            if block["run"]:
+            if block.get("lang") == "html":
+                # HTML-пример показывается в окне предпросмотра: он должен разбираться без ошибок
+                checked += 1
+                try:
+                    HTMLParser().feed(block["code"])
+                except Exception as error:  # разбор HTML не должен падать ни на каком примере
+                    failed += 1
+                    print(f"ОШИБКА разбора HTML {path.name} «{label}»: {error}")
+            elif block["run"]:
                 ran += 1
                 with tempfile.TemporaryDirectory() as folder:
                     result = subprocess.run([sys.executable, "-c", block["code"]], cwd=folder, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=60, env={**__import__("os").environ, "PYTHONIOENCODING": "utf-8"})

@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML и CSS: основы для будущего веб-разработчика — PyWeb Guide</title>
+
+  <meta name="description" content="Пять уроков HTML и CSS для тех, кто учит Python: теги, ссылки, формы, оформление и как Python собирает страницу. Результат примеров виден прямо на странице.">
+  <link rel="canonical" href="https://pywebguide.github.io/html-css.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="HTML и CSS: основы для будущего веб-разработчика — PyWeb Guide">
+  <meta property="og:description" content="Пять уроков HTML и CSS для тех, кто учит Python: теги, ссылки, формы, оформление и как Python собирает страницу. Результат примеров виден прямо на странице.">
+  <meta property="og:url" content="https://pywebguide.github.io/html-css.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Плакат PyWeb Guide: первый сайт на Python, бесплатный курс для тех, кто никогда не программировал">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffd249">
+
+
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <link rel="preload" href="assets/fonts/sofia-sans-extra-condensed-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="yellow" id="top" data-no-toc>
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Основная навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">С нуля</a></li>
+          <li><a class="nav-link" href="course.html">Весь курс</a></li>
+          <li><a class="nav-link" href="project.html">Первый проект</a></li>
+          <li><a class="nav-link" href="playground.html">Песочница</a></li>
+          <li><a class="nav-link" href="glossary.html">Словарь</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link">Ещё <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Понять</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">О Python</a></li>
+              <li><a href="frameworks.html">Фреймворки</a></li>
+              <li><a href="databases.html">Базы данных</a></li>
+              <li><a href="templates.html">Шаблоны и формы</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Тесты</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Сделать</p><ul aria-labelledby="nav-group-2">
+              <li><a href="setup.html">Подготовка компьютера</a></li>
+              <li><a href="project2.html">Второй проект</a></li>
+              <li><a href="deploy.html">Публикация</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Задачи</a></li>
+              <li><a href="cheatsheet.html">Шпаргалка</a></li>
+              <li><a href="exam.html">Финальный тест</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="progress.html">Мой прогресс</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Язык сайта">
+            <a href="html-css.html" hreflang="ru" lang="ru" aria-current="true">РУС</a>
+            <a href="kk/index.html" hreflang="kk" lang="kk" data-untranslated="kk">ҚАЗ</a>
+            <a href="en/index.html" hreflang="en" lang="en" data-untranslated="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Светлая тема">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Хлебные крошки">
+<a href="index.html">Главная</a>
+<span aria-hidden="true">/</span>
+<span>HTML и CSS</span>
+</nav>
+<h1>HTML и CSS</h1>
+<p class="lead">Пять уроков о том, из чего сделана любая страница: теги, ссылки, формы и оформление. В последнем уроке Python сам собирает HTML. Нажимайте «Показать», чтобы сразу увидеть результат.</p>
+<p class="note">Лучше начинать после уроков <a href="start.html">«Python с нуля»</a>: последний урок использует функции и циклы. Незнакомые слова есть в <a href="glossary.html">словаре</a>.</p>
+<div class="progress-box" data-progress="html">
+  <p class="progress-label" role="status" aria-live="polite"><span data-progress-count>0</span> из 5 уроков пройдено</p>
+  <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
+  <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Сбросить прогресс</button>
+</div>
+<img class="band-picture" src="assets/img/typecase.webp" width="1000" height="524" alt="Наборный цех газеты в Медане: ряды наборных касс с литерами, 1898 год" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" aria-label="Уроки">
+<div class="container">
+<ol class="project-steps" data-progress-list="html">
+  <li class="project-step lesson" id="html-1">
+    <div class="lesson-text">
+      <h2>Урок 1. Что такое HTML: теги и скелет страницы</h2>
+      <p><strong>Зачем.</strong> Когда вы открываете сайт, сервер на Python отвечает браузеру текстом на языке <strong>HTML</strong>. Браузер читает этот текст и рисует страницу. Чтобы сделать свой сайт, нужно знать, как этот текст устроен.</p>
+      <p><strong>Что такое HTML.</strong> Это язык разметки, а не программа. В нём нет условий и циклов. HTML просто подписывает части текста: «это заголовок», «это абзац», «это важное слово».</p>
+      <p><strong>Теги.</strong> Подпись называется тегом и пишется в угловых скобках. Обычно теги парные: открывающий <code>&lt;p&gt;</code> и закрывающий <code>&lt;/p&gt;</code> со слешем. Текст между ними — содержимое. Тег вместе с содержимым называют элементом.</p>
+      <p><strong>Самые нужные теги:</strong></p>
+      <ul>
+      <li><code>&lt;h1&gt;</code>…<code>&lt;h6&gt;</code> — заголовки, <code>&lt;h1&gt;</code> главный и обычно один на странице;</li>
+      <li><code>&lt;p&gt;</code> — абзац текста;</li>
+      <li><code>&lt;strong&gt;</code> — важные слова, браузер покажет их жирным, <code>&lt;em&gt;</code> — выделение курсивом;</li>
+      <li><code>&lt;br&gt;</code> — перенос строки. Это одиночный тег, закрывать его не нужно.</li>
+      </ul>
+      <p><strong>Вложенность.</strong> Теги складывают друг в друга, как коробки: <code>&lt;p&gt;Это &lt;strong&gt;важно&lt;/strong&gt;&lt;/p&gt;</code>. Закрывают в обратном порядке: сначала внутренний, потом внешний.</p>
+      <p><strong>Скелет страницы.</strong> У каждой страницы одинаковый каркас: строка <code>&lt;!doctype html&gt;</code>, затем <code>&lt;html&gt;</code>, внутри него <code>&lt;head&gt;</code> со служебными сведениями, например заголовком вкладки <code>&lt;title&gt;</code>, и <code>&lt;body&gt;</code> — всё, что видно на странице.</p>
+      <p><strong>Попробуйте:</strong> нажмите «Показать» под примерами. Поменяйте текст заголовка, добавьте ещё один абзац и снова нажмите «Показать».</p>
+      <details>
+        <summary>Частая ошибка: забыли закрыть тег</summary>
+        <p>Если не закрыть <code>&lt;strong&gt;</code>, браузер сделает жирным весь текст до конца страницы. Ошибку он не покажет, просто страница будет выглядеть странно. Проверьте, что у каждого парного тега есть закрывающий со слешем.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: перепутанный порядок закрытия</summary>
+        <p><code>&lt;p&gt;&lt;strong&gt;текст&lt;/p&gt;&lt;/strong&gt;</code> — неправильно: коробки «перекрещиваются». Правильно закрывать от внутренней к внешней: <code>&lt;p&gt;&lt;strong&gt;текст&lt;/strong&gt;&lt;/p&gt;</code>.</p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li>HTML подписывает части текста тегами: <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;strong&gt;</code>;</li>
+      <li>парный тег закрывают слешем, вложенные теги закрывают в обратном порядке;</li>
+      <li>скелет страницы: <code>&lt;html&gt;</code>, внутри <code>&lt;head&gt;</code> для служебного и <code>&lt;body&gt;</code> для видимого.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>Пример 1. Первые теги</span></div>
+  <pre><code>&lt;h1&gt;Привет, я Аружан&lt;/h1&gt;
+&lt;p&gt;Я учусь делать сайты на &lt;strong&gt;Python&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Это мой второй абзац.&lt;br&gt;А это новая строка в нём.&lt;/p&gt;
+&lt;h2&gt;Мои планы&lt;/h2&gt;
+&lt;p&gt;Сделать &lt;em&gt;свой&lt;/em&gt; первый сайт.&lt;/p&gt;</code></pre>
+</div>
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>Пример 2. Полный скелет страницы</span></div>
+  <pre><code>&lt;!doctype html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;Моя визитка&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Ерлан Нурланов&lt;/h1&gt;
+  &lt;p&gt;Учусь программировать в Астане.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+<article class="task" data-task="html-tags" data-level="easy">
+<div class="task-head"><h3>Задание: первая страница</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Напишите разметку: главный заголовок <code>Мой первый сайт</code> и под ним два абзаца с любым текстом.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: первая страница">&lt;!-- напишите заголовок h1 и два абзаца p --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Заголовок: <code>&lt;h1&gt;Мой первый сайт&lt;/h1&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Каждый абзац — в своих тегах: <code>&lt;p&gt;...&lt;/p&gt;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>&lt;h1&gt;Мой первый сайт&lt;/h1&gt;
+&lt;p&gt;Здесь я рассказываю о себе.&lt;/p&gt;
+&lt;p&gt;А здесь — о своих планах.&lt;/p&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('count("h1")', 1)
+case('text("h1")', "Мой первый сайт")
+case('count("p")', 2)</template>
+</article>
+<article class="task" data-task="html-skeleton" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: скелет визитки</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Соберите полный скелет страницы: <code>html</code>, внутри <code>head</code> с заголовком вкладки <code>Визитка</code> и <code>body</code> с главным заголовком — вашим именем.</p>
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Решение: скелет визитки">&lt;!doctype html&gt;
+&lt;!-- дальше html, head с title и body с h1 --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Всё, кроме первой строки, лежит внутри <code>&lt;html&gt;...&lt;/html&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> В <code>&lt;head&gt;</code> положите <code>&lt;title&gt;Визитка&lt;/title&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> В <code>&lt;body&gt;</code> — <code>&lt;h1&gt;</code> с вашим именем. Пример 2 устроен точно так же.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>&lt;!doctype html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;Визитка&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Дана Смагулова&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('count("html")', 1)
+case('count("head")', 1)
+case('count("body")', 1)
+case('text("title")', "Визитка")
+case('count("h1")', 1)
+case('bool(text("h1"))', True)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="h1"> Урок пройден</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="html-2">
+    <div class="lesson-text">
+      <h2>Урок 2. Списки, ссылки и картинки</h2>
+      <p><strong>Зачем.</strong> Меню сайта — это список ссылок. Карточка товара — картинка с подписью. Эти три тега встречаются почти на каждой странице.</p>
+      <p><strong>Списки.</strong> <code>&lt;ul&gt;</code> — список с точками, <code>&lt;ol&gt;</code> — с номерами. Каждый пункт пишут в <code>&lt;li&gt;</code>. Это как список в Python, только для показа на странице.</p>
+      <p><strong>Ссылки.</strong> <code>&lt;a href="адрес"&gt;текст&lt;/a&gt;</code>. В атрибуте <code>href</code> пишут, куда ведёт ссылка, а между тегами — текст, на который нажимают.</p>
+      <p><strong>Атрибуты</strong> — это дополнительные сведения внутри открывающего тега: <code>имя="значение"</code>. У ссылки это <code>href</code>, у картинки — <code>src</code> и <code>alt</code>.</p>
+      <p><strong>Полный и короткий адрес.</strong> <code>https://www.python.org</code> ведёт на другой сайт. <code>about.html</code> — на страницу этого же сайта, путь считается от текущей страницы.</p>
+      <p><strong>Картинки.</strong> <code>&lt;img src="адрес" alt="описание"&gt;</code> — одиночный тег. <code>src</code> — откуда взять картинку. <code>alt</code> — текст вместо картинки: его читают программы для незрячих, и он виден, если картинка не загрузилась. Пишите в нём, что изображено.</p>
+      <p><strong>Попробуйте:</strong> добавьте в меню свой пункт со ссылкой. В примере с картинкой поменяйте <code>width</code> на 150.</p>
+      <details>
+        <summary>Частая ошибка: адрес без https://</summary>
+        <p><code>&lt;a href="www.python.org"&gt;</code> браузер поймёт как страницу этого же сайта с названием «www.python.org» и откроет ошибку 404. Адрес другого сайта пишите полностью: <code>https://www.python.org</code>.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: картинка без alt</summary>
+        <p>Без <code>alt</code> незрячий пользователь услышит только «изображение» или имя файла. Описывайте суть: не «картинка1», а «Питон на старой гравюре». Если картинка чисто украшение, пишите пустой <code>alt=""</code>.</p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li><code>&lt;ul&gt;</code> и <code>&lt;ol&gt;</code> — списки, пункты в <code>&lt;li&gt;</code>;</li>
+      <li><code>&lt;a href="..."&gt;</code> — ссылка, адрес другого сайта пишут с <code>https://</code>;</li>
+      <li><code>&lt;img src="..." alt="..."&gt;</code> — картинка, и <code>alt</code> обязателен.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>Пример 1. Меню из ссылок</span></div>
+  <pre><code>&lt;h2&gt;Меню&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://pywebguide.github.io/"&gt;Главная&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://pywebguide.github.io/start.html"&gt;Python с нуля&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.python.org"&gt;Сайт Python&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;План на неделю&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;Пройти уроки HTML&lt;/li&gt;
+  &lt;li&gt;Сделать визитку&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+</div>
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>Пример 2. Картинка с подписью</span></div>
+  <pre><code>&lt;img src="https://pywebguide.github.io/assets/img/snakes.webp"
+     alt="Старая гравюра: восемь змей, среди них сетчатый питон"
+     width="300"&gt;
+&lt;p&gt;Язык Python назван не в честь змеи, а в честь комедийного шоу.&lt;/p&gt;</code></pre>
+</div>
+<article class="task" data-task="html-list" data-level="easy">
+<div class="task-head"><h3>Задание: любимые фрукты</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Сделайте список с точками из трёх любимых фруктов.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: любимые фрукты">&lt;!-- список ul с тремя пунктами li --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Весь список — внутри <code>&lt;ul&gt;...&lt;/ul&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Каждый фрукт — отдельный <code>&lt;li&gt;яблоко&lt;/li&gt;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>&lt;ul&gt;
+  &lt;li&gt;яблоко&lt;/li&gt;
+  &lt;li&gt;груша&lt;/li&gt;
+  &lt;li&gt;апорт&lt;/li&gt;
+&lt;/ul&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('count("ul")', 1)
+case('count("li")', 3)</template>
+</article>
+<article class="task" data-task="html-link-img" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: ссылка и картинка</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Сделайте ссылку с текстом <code>Сайт Python</code>, которая ведёт на <code>https://www.python.org</code>. Под ней поставьте картинку с адресом <code>https://pywebguide.github.io/assets/img/snakes.webp</code> и понятным описанием в <code>alt</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: ссылка и картинка">&lt;!-- ссылка a и картинка img --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Ссылка: <code>&lt;a href="https://www.python.org"&gt;Сайт Python&lt;/a&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Картинка — одиночный тег <code>&lt;img src="..." alt="..."&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> В <code>alt</code> опишите, что на картинке, например «Гравюра со змеями».</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>&lt;a href="https://www.python.org"&gt;Сайт Python&lt;/a&gt;
+&lt;img src="https://pywebguide.github.io/assets/img/snakes.webp" alt="Гравюра со змеями"&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('attr("a", "href")', "https://www.python.org")
+case('text("a")', "Сайт Python")
+case('attr("img", "src")', "https://pywebguide.github.io/assets/img/snakes.webp")
+case('bool(attr("img", "alt"))', True)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="h2"> Урок пройден</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="html-3">
+    <div class="lesson-text">
+      <h2>Урок 3. Формы: как сайт получает данные</h2>
+      <p><strong>Зачем.</strong> Регистрация, поиск, отзыв, заказ — всё это формы. Именно через форму данные от человека попадают на сервер, к вашей программе на Python.</p>
+      <p><strong>Тег <code>&lt;form&gt;</code></strong> собирает поля вместе. В атрибуте <code>action</code> пишут, куда отправить данные, а в <code>method</code> — как.</p>
+      <p><strong>Поля.</strong> <code>&lt;input&gt;</code> — одиночный тег для ввода. Его вид задаёт <code>type</code>: <code>text</code> — текст, <code>email</code> — почта, <code>password</code> — пароль точками, <code>number</code> — число, <code>checkbox</code> — галочка. Для длинного текста есть <code>&lt;textarea&gt;</code>, для отправки — <code>&lt;button&gt;</code>.</p>
+      <p><strong>Атрибут <code>name</code> — самое важное.</strong> Это имя, под которым значение придёт на сервер. В Flask оно станет ключом словаря: <code>request.form["email"]</code>. Без <code>name</code> поле не отправится вообще.</p>
+      <p><strong>Подпись <code>&lt;label&gt;</code>.</strong> Связывайте подпись с полем: у поля <code>id="email"</code>, у подписи <code>for="email"</code>. Тогда клик по подписи ставит курсор в поле, а программы для незрячих читают подпись вслух.</p>
+      <p><strong>GET и POST.</strong> <code>method="get"</code> кладёт данные в адрес страницы, так работает поиск: <code>?q=python</code>. <code>method="post"</code> отправляет их скрыто, в теле запроса: так отправляют пароли и отзывы.</p>
+      <p><strong>Попробуйте:</strong> добавьте в форму поле для возраста с <code>type="number"</code>. В окне предпросмотра отправка выключена, но поля работают: в них можно печатать.</p>
+      <details>
+        <summary>Частая ошибка: поле без name</summary>
+        <p>Если забыть <code>name</code>, браузер покажет поле и даже даст в него писать, но на сервер значение не придёт. В Python <code>request.form["email"]</code> упадёт с <code>KeyError</code>. Проверьте, что у каждого поля есть <code>name</code>.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: пароль через GET</summary>
+        <p>С <code>method="get"</code> пароль окажется прямо в адресной строке и в истории браузера. Для форм с паролями и личными данными всегда используйте <code>method="post"</code>.</p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li><code>&lt;form&gt;</code> собирает поля, <code>method="post"</code> — для личных данных, <code>get</code> — для поиска;</li>
+      <li><code>&lt;input type="..." name="..."&gt;</code>: по <code>name</code> значение придёт на сервер;</li>
+      <li><code>&lt;label for="id"&gt;</code> связывает подпись с полем.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>Пример 1. Регистрация</span></div>
+  <pre><code>&lt;form action="/register" method="post"&gt;
+  &lt;p&gt;
+    &lt;label for="name"&gt;Имя&lt;/label&gt;&lt;br&gt;
+    &lt;input id="name" name="name" type="text" placeholder="Аружан" required&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="email"&gt;Почта&lt;/label&gt;&lt;br&gt;
+    &lt;input id="email" name="email" type="email"&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="password"&gt;Пароль&lt;/label&gt;&lt;br&gt;
+    &lt;input id="password" name="password" type="password"&gt;
+  &lt;/p&gt;
+  &lt;button type="submit"&gt;Зарегистрироваться&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 2. Что получит сервер</span></div>
+  <pre><code># Так данные формы выглядят на сервере (Flask: request.form)
+form = {"name": "Аружан", "email": "aru@example.com", "password": "секрет"}
+
+print("Новый пользователь:", form["name"])
+print("Почта:", form["email"])
+print("Есть пароль?", "password" in form)</code></pre>
+</div>
+<article class="task" data-task="html-form" data-level="easy">
+<div class="task-head"><h3>Задание: подписка на новости</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Сделайте форму подписки: одно поле для почты с <code>type="email"</code> и <code>name="email"</code> и кнопку отправки.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: подписка на новости">&lt;!-- form с полем input и кнопкой button --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Поле: <code>&lt;input type="email" name="email"&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Поле и <code>&lt;button type="submit"&gt;Подписаться&lt;/button&gt;</code> положите внутрь <code>&lt;form&gt;...&lt;/form&gt;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>&lt;form action="/subscribe" method="post"&gt;
+  &lt;input type="email" name="email" placeholder="Ваша почта"&gt;
+  &lt;button type="submit"&gt;Подписаться&lt;/button&gt;
+&lt;/form&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('count("form")', 1)
+case('attr("input", "type")', "email")
+case('attr("input", "name")', "email")
+case('count("button")', 1)</template>
+</article>
+<article class="task" data-task="html-login" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: форма входа</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Сделайте форму входа с <code>method="post"</code>: поле логина (<code>name="username"</code>) с подписью, связанной через <code>for</code> и <code>id</code>, поле пароля (<code>name="password"</code>, <code>type="password"</code>) и кнопку.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Решение: форма входа">&lt;form action="/login" method="post"&gt;
+  &lt;!-- подпись и поле логина, поле пароля, кнопка --&gt;
+&lt;/form&gt;</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Подпись и поле: <code>&lt;label for="username"&gt;Логин&lt;/label&gt;</code> и <code>&lt;input id="username" name="username"&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Пароль: <code>&lt;input name="password" type="password"&gt;</code>. Это второе поле в форме.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> И кнопка: <code>&lt;button type="submit"&gt;Войти&lt;/button&gt;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>&lt;form action="/login" method="post"&gt;
+  &lt;label for="username"&gt;Логин&lt;/label&gt;
+  &lt;input id="username" name="username" type="text"&gt;
+  &lt;input name="password" type="password"&gt;
+  &lt;button type="submit"&gt;Войти&lt;/button&gt;
+&lt;/form&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('(attr("form", "method") or "").lower()', "post")
+case('count("input")', 2)
+case('attr("input", "name")', "username")
+case('attr("label", "for") is not None and attr("label", "for") == attr("input", "id")', True)
+case('attr("input", "name", 1)', "password")
+case('attr("input", "type", 1)', "password")
+case('count("button")', 1)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="h3"> Урок пройден</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="html-4">
+    <div class="lesson-text">
+      <h2>Урок 4. CSS: внешний вид страницы</h2>
+      <p><strong>Зачем.</strong> HTML говорит, <em>что</em> на странице: заголовок, абзац, кнопка. А <strong>CSS</strong> — <em>как</em> это выглядит: цвета, размеры, отступы. Этот сайт оформлен именно на CSS.</p>
+      <p><strong>Где писать.</strong> Проще всего — в теге <code>&lt;style&gt;</code> в начале страницы. На больших сайтах CSS выносят в отдельный файл.</p>
+      <p><strong>Правило CSS</strong> состоит из селектора и свойств в фигурных скобках: <code>h1 { color: navy; }</code>. Читается так: «у всех <code>h1</code> цвет тёмно-синий». После каждого свойства ставят точку с запятой.</p>
+      <p><strong>Селекторы:</strong></p>
+      <ul>
+      <li>по тегу: <code>p { ... }</code> — все абзацы;</li>
+      <li>по классу: <code>.card { ... }</code> — все элементы с <code>class="card"</code>. Это самый частый способ;</li>
+      <li>по id: <code>#top { ... }</code> — один элемент с <code>id="top"</code>.</li>
+      </ul>
+      <p><strong>Полезные свойства.</strong> <code>color</code> — цвет текста, <code>background</code> — фон, <code>font-size</code> — размер шрифта, <code>font-weight: bold</code> — жирность, <code>text-align: center</code> — выравнивание. <code>padding</code> — отступ <em>внутри</em> рамки, <code>margin</code> — <em>снаружи</em>, <code>border</code> — рамка, <code>border-radius</code> — скругление углов.</p>
+      <p><strong>Цвета</strong> задают словом (<code>red</code>) или кодом: <code>#ffd249</code> — это жёлтый этого сайта.</p>
+      <p><strong>Попробуйте:</strong> поменяйте цвет фона карточки на <code>#a4f6f8</code> и скругление на <code>20px</code>.</p>
+      <details>
+        <summary>Частая ошибка: точка в атрибуте class</summary>
+        <p>Точку пишут только в CSS: <code>.card { ... }</code>. В HTML класс указывают без неё: <code>class="card"</code>. С точкой <code>class=".card"</code> правило не сработает.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: забыли точку с запятой</summary>
+        <p>В <code>color: red background: yellow;</code> нет точки с запятой после <code>red</code>, и браузер пропустит оба свойства. Ошибку он не покажет: стиль просто не применится. Ставьте <code>;</code> после каждого свойства.</p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li>HTML — что на странице, CSS — как это выглядит;</li>
+      <li>правило: <code>селектор { свойство: значение; }</code>, класс в CSS пишут с точкой;</li>
+      <li><code>padding</code> — отступ внутри, <code>margin</code> — снаружи.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>Пример 1. Оформляем текст</span></div>
+  <pre><code>&lt;style&gt;
+  h1 { color: #2f6694; font-size: 40px; }
+  p { font-size: 18px; color: #333333; }
+  .important { background: #ffd249; font-weight: bold; }
+&lt;/style&gt;
+
+&lt;h1&gt;Курс PyWeb Guide&lt;/h1&gt;
+&lt;p&gt;Обычный абзац.&lt;/p&gt;
+&lt;p class="important"&gt;А этот абзац выделен классом.&lt;/p&gt;</code></pre>
+</div>
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>Пример 2. Карточка товара</span></div>
+  <pre><code>&lt;style&gt;
+  .card {
+    width: 220px;
+    padding: 16px;
+    margin: 12px;
+    background: #ffc4ef;
+    border: 2px solid #0d0d0d;
+    border-radius: 12px;
+  }
+  .price { font-size: 24px; font-weight: bold; }
+&lt;/style&gt;
+
+&lt;div class="card"&gt;
+  &lt;h2&gt;Тетрадь&lt;/h2&gt;
+  &lt;p class="price"&gt;450 тенге&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<article class="task" data-task="css-color" data-level="easy">
+<div class="task-head"><h3>Задание: синий заголовок</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Добавьте правило CSS, чтобы заголовок <code>h1</code> стал цвета <code>#2f6694</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: синий заголовок">&lt;style&gt;
+  /* правило для h1 */
+&lt;/style&gt;
+&lt;h1&gt;Мой сайт&lt;/h1&gt;</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Селектор — просто имя тега: <code>h1 { ... }</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Свойство цвета текста: <code>color: #2f6694;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>&lt;style&gt;
+  h1 { color: #2f6694; }
+&lt;/style&gt;
+&lt;h1&gt;Мой сайт&lt;/h1&gt;</code></pre></details>
+<template data-kind="tests"># html
+import re
+found = re.search(r"h1\s*\{([^}]*)\}", style())
+h1_css = found.group(1) if found else ""
+case('"color" in h1_css', True)
+case('"#2f6694" in h1_css', True)
+case('text("h1")', "Мой сайт")</template>
+</article>
+<article class="task" data-task="css-card" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: своя карточка</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Сделайте блок <code>&lt;div class="card"&gt;</code> с заголовком внутри и правило <code>.card</code>, в котором есть фон (<code>background</code>), отступ внутри (<code>padding</code>) и скругление углов (<code>border-radius</code>).</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Решение: своя карточка">&lt;style&gt;
+  /* правило .card */
+&lt;/style&gt;
+&lt;!-- div с классом card и заголовком внутри --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> В CSS класс пишут с точкой: <code>.card { ... }</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Внутри правила: <code>background: #ffc4ef; padding: 16px; border-radius: 12px;</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> В HTML — без точки: <code>&lt;div class="card"&gt;&lt;h2&gt;Тетрадь&lt;/h2&gt;&lt;/div&gt;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>&lt;style&gt;
+  .card { background: #ffc4ef; padding: 16px; border-radius: 12px; }
+&lt;/style&gt;
+&lt;div class="card"&gt;
+  &lt;h2&gt;Тетрадь&lt;/h2&gt;
+&lt;/div&gt;</code></pre></details>
+<template data-kind="tests"># html
+import re
+found = re.search(r"\.card\s*\{([^}]*)\}", style())
+card_css = found.group(1) if found else ""
+case('found is not None', True)
+case('"background" in card_css', True)
+case('"padding" in card_css', True)
+case('"border-radius" in card_css', True)
+case('attr("div", "class")', "card")
+case('count("h1") + count("h2") + count("h3") &gt;= 1', True)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="h4"> Урок пройден</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="html-5">
+    <div class="lesson-text">
+      <h2>Урок 5. Как Python собирает HTML</h2>
+      <p><strong>Зачем.</strong> На настоящем сайте HTML не пишут вручную для каждого пользователя. Его <strong>собирает программа</strong> на сервере: подставляет имя, список задач, цены. Этот урок соединяет всё, что вы знаете о Python и HTML.</p>
+      <p><strong>HTML — это просто строка.</strong> Для Python страница — обычный текст. Значит, её можно собрать f-строкой: <code>f"&lt;h1&gt;Привет, {name}!&lt;/h1&gt;"</code>.</p>
+      <p><strong>Списки превращаются циклом.</strong> Чтобы показать список задач, программа проходит по нему и для каждой задачи добавляет строку <code>&lt;li&gt;</code>. Так делают ленты, каталоги и меню.</p>
+      <p><strong>Опасность: чужой код в странице.</strong> Если вставить в HTML текст пользователя как есть, он может написать туда свой тег, например <code>&lt;script&gt;</code>, и этот код выполнится у других посетителей. Такая атака называется XSS. Защита — функция <code>html.escape</code>: она превращает <code>&lt;</code> в безопасное <code>&amp;lt;</code>, и браузер покажет символ, а не выполнит тег.</p>
+      <p><strong>Шаблоны.</strong> Склеивать большие страницы строками неудобно. Поэтому во Flask и Django используют шаблоны: HTML-файл с пропусками <code>{{ name }}</code> и циклами <code>{% for %}</code>. Они сами вызывают <code>escape</code> для каждого значения. Подробнее — на странице <a href="templates.html">«Шаблоны и формы»</a>.</p>
+      <p><strong>Попробуйте:</strong> в первом примере добавьте задачу в список. Во втором поменяйте текст комментария и сравните вывод с <code>escape</code> и без него.</p>
+      <details>
+        <summary>Частая ошибка: вставить текст пользователя без escape</summary>
+        <p>Комментарий <code>&lt;script&gt;alert(1)&lt;/script&gt;</code>, вставленный как есть, станет частью страницы. Любой текст, который пришёл от пользователя, пропускайте через <code>html.escape()</code> или используйте шаблоны, которые делают это сами.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: забыли закрыть тег после цикла</summary>
+        <p>Если в цикле добавлять <code>&lt;li&gt;</code>, а <code>&lt;/ul&gt;</code> забыть после цикла, список «растянется» на всю страницу. Открывающий тег — до цикла, закрывающий — после.</p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li>для Python HTML — обычная строка: её собирают f-строками и циклами;</li>
+      <li>текст пользователя всегда пропускайте через <code>html.escape</code>;</li>
+      <li>во Flask и Django это делают шаблоны, и это следующий шаг.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 1. Страница из списка</span></div>
+  <pre><code>name = "Аружан"
+tasks = ["выучить теги", "сделать форму", "оформить CSS"]
+
+page = f"&lt;h1&gt;Задачи: {name}&lt;/h1&gt;\n&lt;ul&gt;\n"
+for task in tasks:
+    page += f"  &lt;li&gt;{task}&lt;/li&gt;\n"
+page += "&lt;/ul&gt;"
+
+print(page)</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 2. Защита через escape</span></div>
+  <pre><code>import html
+
+comment = "&lt;script&gt;alert('взлом')&lt;/script&gt;"
+
+print("Опасно:   ", f"&lt;p&gt;{comment}&lt;/p&gt;")
+print("Безопасно:", f"&lt;p&gt;{html.escape(comment)}&lt;/p&gt;")</code></pre>
+</div>
+<article class="task" data-task="py-card" data-level="easy">
+<div class="task-head"><h3>Задание: карточка товара из Python</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Напишите функцию <code>card(name, price)</code>. Она возвращает HTML карточки: <code>&lt;div class="card"&gt;&lt;h2&gt;Тетрадь&lt;/h2&gt;&lt;p&gt;450 тенге&lt;/p&gt;&lt;/div&gt;</code> для <code>card("Тетрадь", 450)</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Решение: карточка товара из Python">def card(name, price):
+    # верните строку с HTML
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Соберите строку f-строкой и верните её через <code>return</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> <code>return f'&lt;div class="card"&gt;&lt;h2&gt;{name}&lt;/h2&gt;&lt;p&gt;{price} тенге&lt;/p&gt;&lt;/div&gt;'</code>. Внешние кавычки одинарные, потому что внутри есть двойные.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def card(name, price):
+    return f'&lt;div class="card"&gt;&lt;h2&gt;{name}&lt;/h2&gt;&lt;p&gt;{price} тенге&lt;/p&gt;&lt;/div&gt;'</code></pre></details>
+<template data-kind="tests">case('card("Тетрадь", 450)', '&lt;div class="card"&gt;&lt;h2&gt;Тетрадь&lt;/h2&gt;&lt;p&gt;450 тенге&lt;/p&gt;&lt;/div&gt;')
+case('card("Ручка", 200)', '&lt;div class="card"&gt;&lt;h2&gt;Ручка&lt;/h2&gt;&lt;p&gt;200 тенге&lt;/p&gt;&lt;/div&gt;')</template>
+</article>
+<article class="task" data-task="py-render-list" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: безопасный список</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Напишите функцию <code>render_list(items)</code>, которая возвращает список HTML: <code>&lt;ul&gt;&lt;li&gt;хлеб&lt;/li&gt;&lt;li&gt;молоко&lt;/li&gt;&lt;/ul&gt;</code>. Каждый пункт пропустите через <code>html.escape</code>, ведь пункты мог написать пользователь.</p>
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Решение: безопасный список">import html
+
+
+def render_list(items):
+    # соберите &lt;ul&gt;, пункты &lt;li&gt; и &lt;/ul&gt;
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Начните строку до цикла: <code>result = "&lt;ul&gt;"</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> В цикле: <code>result += f"&lt;li&gt;{html.escape(item)}&lt;/li&gt;"</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> После цикла закройте список и верните: <code>return result + "&lt;/ul&gt;"</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>import html
+
+
+def render_list(items):
+    result = "&lt;ul&gt;"
+    for item in items:
+        result += f"&lt;li&gt;{html.escape(item)}&lt;/li&gt;"
+    return result + "&lt;/ul&gt;"</code></pre></details>
+<template data-kind="tests">case('render_list(["хлеб", "молоко"])', "&lt;ul&gt;&lt;li&gt;хлеб&lt;/li&gt;&lt;li&gt;молоко&lt;/li&gt;&lt;/ul&gt;")
+case('render_list([])', "&lt;ul&gt;&lt;/ul&gt;")
+case('render_list(["&lt;b&gt;жирно&lt;/b&gt;"])', "&lt;ul&gt;&lt;li&gt;&amp;lt;b&amp;gt;жирно&amp;lt;/b&amp;gt;&lt;/li&gt;&lt;/ul&gt;")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="h5"> Урок пройден</label>
+    </div>
+  </li>
+</ol>
+</div>
+</section>
+<section class="section" aria-labelledby="next-title">
+<div class="container">
+<div class="cta-panel">
+  <div>
+    <h2 id="next-title">Что дальше</h2>
+    <p class="lead cta-lead">Теперь вы знаете, из чего сделана страница. Осталось подготовить компьютер и собрать первый сайт на Flask или Django.</p>
+  </div>
+  <div class="cta-actions">
+    <a class="btn btn-primary" href="setup.html">Подготовка компьютера</a>
+    <a class="btn btn-secondary" href="project.html">Первый проект</a>
+  </div>
+</div>
+</div>
+</section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Начать</strong><ul><li><a href="start.html">Python с нуля</a></li><li><a href="html-css.html">HTML и CSS</a></li><li><a href="glossary.html">Словарь</a></li><li><a href="playground.html">Песочница</a></li></ul></div>
+        <div><strong>Понять</strong><ul><li><a href="about.html">О Python</a></li><li><a href="frameworks.html">Фреймворки</a></li><li><a href="databases.html">Базы данных</a></li><li><a href="templates.html">Шаблоны и формы</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесты</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Сделать</strong><ul><li><a href="setup.html">Подготовка компьютера</a></li><li><a href="project.html">Первый проект</a></li><li><a href="project2.html">Второй проект</a></li><li><a href="deploy.html">Публикация</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Задачи</a></li><li><a href="cheatsheet.html">Шпаргалка</a></li><li><a href="exam.html">Финальный тест</a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="course.html">Весь курс</a></li><li><a href="progress.html">Мой прогресс</a></li><li><a href="contacts.html">Контакты</a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, учебный проект о Python в веб-разработке</p>
+      <p class="note footer-note">Автор: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Обновлено: <time datetime="2026-11-11">11.11.2026</time> · Версии в примерах: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Исходный код на GitHub</a></p>
+      <p class="note footer-note">Снимок: <a href="https://www.rawpixel.com/image/13959871/image-paper-cartoon-art" rel="noopener">гравюра со змеями, rawpixel, CC0</a>.</p>
+      <p class="note footer-note"><a href="privacy.html">Политика конфиденциальности</a> · <a href="terms.html">Условия использования</a></p>
+      <p class="note footer-note">Сайт учебный. Сообщения с формы отправляются через публичный раздел Issues на GitHub. Без аккаунта GitHub можно <a href="contacts.html#no-github">написать напрямую</a>.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Прокрутить наверх">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="script.js"></script>
+  <script src="features.js"></script>
+</body>
+</html>

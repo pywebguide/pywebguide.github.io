@@ -1180,6 +1180,16 @@ th {
   color: var(--code-text);
 }
 
+/* Окно с результатом HTML-примера: белая «страница», как в браузере */
+.run-preview {
+  display: block;
+  width: 100%;
+  height: 280px;
+  border: 0;
+  background: #ffffff;
+  color-scheme: light;
+}
+
 .run-status {
   margin: 0 0 6px;
   color: #c9d1da;

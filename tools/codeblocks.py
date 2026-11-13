@@ -17,7 +17,8 @@ class Blocks(HTMLParser):
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         if tag == "div" and "code-block" in (attrs.get("class") or "").split():
-            self.block = {"run": "data-run" in attrs, "label": "", "code": "", "depth": self.depth}
+            # lang: что запускает кнопка блока — "python" или "html" (предпросмотр страницы); пусто, если кнопки нет
+            self.block = {"run": "data-run" in attrs, "lang": attrs.get("data-run") or "", "label": "", "code": "", "depth": self.depth}
         if tag == "div":
             self.depth += 1
         if self.block is not None and tag == "span" and not self.block["label"]:

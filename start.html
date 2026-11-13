@@ -86,6 +86,7 @@
               <li><a href="git.html">Git</a></li>
             </ul></div>
             <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Сделать</p><ul aria-labelledby="nav-group-2">
+              <li><a href="setup.html">Подготовка компьютера</a></li>
               <li><a href="project2.html">Второй проект</a></li>
               <li><a href="deploy.html">Публикация</a></li>
             </ul></div>
@@ -126,7 +127,7 @@
 <p class="lead">13 уроков для тех, кто никогда не программировал. Код запускается прямо на этой странице: нажимайте «Запустить», меняйте его и запускайте снова. Ошибиться не страшно, ничего не сломается.</p>
 <p class="note">При первом запуске браузер загружает Python, это займёт несколько секунд. Незнакомые слова есть в <a href="glossary.html">словаре</a>.</p>
 <div class="progress-box" data-progress="start">
-  <p class="progress-label" role="status" aria-live="polite"><span data-progress-count>0</span> из 13 уроков пройдено</p>
+  <p class="progress-label" role="status" aria-live="polite"><span data-progress-count>0</span> из 17 уроков и проектов пройдено</p>
   <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
   <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Сбросить прогресс</button>
 </div>
@@ -144,7 +145,7 @@
       <p><strong>Как заниматься.</strong> В каждом уроке есть объяснение, примеры и задания. Нажмите «Запустить» под примером, и Python выполнит код прямо здесь, в браузере. Код можно менять как угодно: компьютер не сломается.</p>
       <p><strong>Задания с проверкой.</strong> Напишите решение и нажмите «Проверить». Если не получается, откройте подсказки по одной. Готовое решение тоже есть, но сначала попробуйте сами.</p>
       <p><strong>Прогресс.</strong> Отметка «Урок пройден» сохраняется в этом браузере. Незнакомые слова ищите в <a href="glossary.html">словаре</a>.</p>
-      <p><strong>Попробуйте:</strong> запустите оба примера справа. Это уже настоящие программы.</p>
+      <p><strong>Попробуйте:</strong> запустите оба примера этого урока. Это уже настоящие программы.</p>
       <details>
         <summary>Частый вопрос: нужно ли что-то устанавливать?</summary>
         <p>Нет. Python загрузится в браузер сам при первом запуске, это займёт несколько секунд. Устанавливать Python на компьютер понадобится позже, для своего проекта, и об этом будет отдельный урок.</p>
@@ -655,6 +656,76 @@ else:
       <label class="step-check"><input type="checkbox" data-step="3"> Урок пройден</label>
     </div>
   </li>
+  <li class="project-step lesson" id="project-discount">
+    <div class="lesson-text">
+      <h2>Мини-проект 1. Калькулятор скидок</h2>
+      <p><strong>Что построим.</strong> Программу для кассы магазина: она считает скидку и печатает чек. Так работает корзина любого интернет-магазина, только там то же самое делает сервер.</p>
+      <p><strong>Что пригодится:</strong> числа (<a href="#lesson-numbers">урок 2</a>), переменные (<a href="#lesson-2">урок 3</a>), f-строки (<a href="#lesson-strings">урок 4</a>) и условия (<a href="#lesson-3">урок 5</a>).</p>
+      <p><strong>Правила магазина:</strong></p>
+      <ul>
+      <li>если покупка на 5000 тенге или больше, скидка 10%;</li>
+      <li>студентам ещё 5% сверху;</li>
+      <li>скидки складываются: студент с покупкой на 6000 получает 15%.</li>
+      </ul>
+      <p><strong>План по шагам:</strong></p>
+      <ol>
+      <li>заведите переменную <code>discount = 0</code> — скидка в процентах;</li>
+      <li>двумя отдельными <code>if</code> прибавьте к ней 10 и 5, если условия верны;</li>
+      <li>посчитайте сумму к оплате и округлите её до целого: <code>round(...)</code>;</li>
+      <li>напечатайте чек из трёх строк, как в примере «Как должно получиться».</li>
+      </ol>
+      <p><strong>Почему два отдельных <code>if</code>, а не <code>elif</code>.</strong> <code>elif</code> срабатывает, только если предыдущее условие неверно. А здесь скидки должны складываться, поэтому каждое условие проверяется само по себе.</p>
+      <p><strong>Что можно добавить:</strong> бесплатную доставку от 10 000 тенге, скидку 20% в день рождения, строку «Вы сэкономили: … тенге».</p>
+    </div>
+    <div class="lesson-code">
+<div class="code-block">
+  <div class="code-head"><span>Как должно получиться</span></div>
+  <pre><code>Сумма: 6000 тенге
+Скидка: 15%
+К оплате: 5100 тенге</code></pre>
+</div>
+<article class="task" data-task="project-discount" data-level="medium">
+<div class="task-head"><h3>Проект: чек со скидкой</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Покупка на 6000 тенге, покупатель — студент. Посчитайте скидку по правилам магазина и напечатайте чек точно как в примере.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Решение: чек со скидкой">price = 6000
+is_student = True
+discount = 0
+
+# 1. добавьте скидки
+# 2. посчитайте сумму к оплате
+# 3. напечатайте чек
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 4</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Первое условие: <code>if price &gt;= 5000:</code> и под ним <code>discount += 10</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Второе — отдельный <code>if</code>, не <code>elif</code>: <code>if is_student:</code> и <code>discount += 5</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Сумма к оплате: <code>to_pay = round(price - price * discount / 100)</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 4.</strong> Чек: <code>print(f"Сумма: {price} тенге")</code>, потом так же скидку со знаком <code>%</code> и сумму к оплате.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>price = 6000
+is_student = True
+discount = 0
+
+if price &gt;= 5000:
+    discount += 10
+if is_student:
+    discount += 5
+
+to_pay = round(price - price * discount / 100)
+
+print(f"Сумма: {price} тенге")
+print(f"Скидка: {discount}%")
+print(f"К оплате: {to_pay} тенге")</code></pre></details>
+<template data-kind="tests">case('discount', 15)
+case('printed()', "Сумма: 6000 тенге\nСкидка: 15%\nК оплате: 5100 тенге")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="project-discount"> Проект готов</label>
+    </div>
+  </li>
   <li class="project-step lesson" id="lesson-4">
     <div class="lesson-text">
       <h2>Урок 6. Списки: много значений в одной переменной</h2>
@@ -957,6 +1028,96 @@ case('ticket_price(40)', 1000)</template>
       <label class="step-check"><input type="checkbox" data-step="5"> Урок пройден</label>
     </div>
   </li>
+  <li class="project-step lesson" id="project-cart">
+    <div class="lesson-text">
+      <h2>Мини-проект 2. Корзина покупок</h2>
+      <p><strong>Что построим.</strong> Три функции для корзины интернет-магазина. В корзине лежат цены товаров, а функции считают итог, находят дорогие товары и применяют скидку. На настоящем сайте эти же функции вызывались бы при каждом открытии корзины.</p>
+      <p><strong>Что пригодится:</strong> списки (<a href="#lesson-4">урок 6</a>), циклы (<a href="#lesson-loops">урок 7</a>), условия (<a href="#lesson-3">урок 5</a>) и функции (<a href="#lesson-5">урок 8</a>).</p>
+      <p><strong>Три функции:</strong></p>
+      <ul>
+      <li><code>total(cart)</code> возвращает сумму всех цен. Для пустой корзины — <code>0</code>;</li>
+      <li><code>count_expensive(cart, limit)</code> возвращает, сколько товаров дороже <code>limit</code>;</li>
+      <li><code>apply_discount(cart, percent)</code> возвращает <strong>новый</strong> список цен со скидкой, каждая цена округлена до целого.</li>
+      </ul>
+      <p><strong>План по шагам:</strong></p>
+      <ol>
+      <li><code>total</code>: заведите <code>s = 0</code>, в цикле прибавляйте каждую цену, верните <code>s</code>. Да, есть готовая <code>sum()</code>, но так вы поймёте, как она устроена;</li>
+      <li><code>count_expensive</code>: такой же счётчик, только прибавляйте 1 и только под условием <code>if price &gt; limit</code>;</li>
+      <li><code>apply_discount</code>: заведите пустой список <code>new = []</code>, в цикле добавляйте в него цену со скидкой через <code>.append()</code>, верните <code>new</code>.</li>
+      </ol>
+      <p><strong>Почему новый список.</strong> Если менять исходный, пропадут старые цены, а на сайте их часто показывают зачёркнутыми рядом с новыми.</p>
+      <p><strong>Что можно добавить:</strong> функцию <code>cheapest(cart)</code>, которая возвращает самую низкую цену, или <code>average(cart)</code> со средней ценой.</p>
+    </div>
+    <div class="lesson-code">
+<div class="code-block">
+  <div class="code-head"><span>Как должно получиться</span></div>
+  <pre><code>cart = [200, 450, 1500]
+total(cart)                  → 2150
+count_expensive(cart, 400)   → 2
+apply_discount(cart, 10)     → [180, 405, 1350]</code></pre>
+</div>
+<article class="task" data-task="project-cart" data-level="medium">
+<div class="task-head"><h3>Проект: функции корзины</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Допишите три функции. Проверка вызовет их с разными корзинами, включая пустую.</p>
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Решение: функции корзины">def total(cart):
+    # сумма всех цен
+    pass
+
+
+def count_expensive(cart, limit):
+    # сколько цен больше limit
+    pass
+
+
+def apply_discount(cart, percent):
+    # новый список цен со скидкой
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 4</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> В <code>total</code>: <code>s = 0</code>, затем <code>for price in cart:</code> и <code>s += price</code>, в конце <code>return s</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> В <code>count_expensive</code> то же самое, но внутри цикла <code>if price &gt; limit:</code> и <code>n += 1</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Цена со скидкой: <code>round(price - price * percent / 100)</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 4.</strong> В <code>apply_discount</code>: <code>new = []</code>, в цикле <code>new.append(...)</code>, после цикла <code>return new</code>. Следите за отступом у <code>return</code>: он должен быть после цикла, а не внутри.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def total(cart):
+    s = 0
+    for price in cart:
+        s += price
+    return s
+
+
+def count_expensive(cart, limit):
+    n = 0
+    for price in cart:
+        if price &gt; limit:
+            n += 1
+    return n
+
+
+def apply_discount(cart, percent):
+    new = []
+    for price in cart:
+        new.append(round(price - price * percent / 100))
+    return new</code></pre></details>
+<template data-kind="tests">case('total([200, 450, 1500])', 2150)
+case('total([])', 0)
+case('total([999])', 999)
+case('count_expensive([200, 450, 1500, 3000], 1000)', 2)
+case('count_expensive([200, 450], 1000)', 0)
+case('count_expensive([1000, 1001], 1000)', 1)
+case('apply_discount([200, 450, 1500], 10)', [180, 405, 1350])
+case('apply_discount([], 50)', [])
+c = [100, 200]
+apply_discount(c, 50)
+case('c', [100, 200])</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="project-cart"> Проект готов</label>
+    </div>
+  </li>
   <li class="project-step lesson" id="lesson-6">
     <div class="lesson-text">
       <h2>Урок 9. Словари: найти значение по названию</h2>
@@ -1062,6 +1223,96 @@ print(counts)</code></pre></details>
 <template data-kind="tests">case('counts', {"кошка": 3, "собака": 2, "попугай": 1})</template>
 </article>
       <label class="step-check"><input type="checkbox" data-step="6"> Урок пройден</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="project-quiz">
+    <div class="lesson-text">
+      <h2>Мини-проект 3. Викторина</h2>
+      <p><strong>Что построим.</strong> Проверку викторины: вопросы с правильными ответами лежат в одном словаре, ответы ученика — в другом. Программа считает правильные ответы и ставит оценку. Так устроены тесты на любом учебном сайте, и финальный тест на этом сайте тоже.</p>
+      <p><strong>Что пригодится:</strong> строки (<a href="#lesson-strings">урок 4</a>), условия (<a href="#lesson-3">урок 5</a>), циклы (<a href="#lesson-loops">урок 7</a>), функции (<a href="#lesson-5">урок 8</a>) и словари (<a href="#lesson-6">урок 9</a>).</p>
+      <p><strong>Две функции:</strong></p>
+      <ul>
+      <li><code>check_quiz(questions, answers)</code> возвращает, сколько ответов правильных. Ответ засчитывается, даже если ученик написал его маленькими буквами или с пробелами по краям. Если на вопрос не ответили, он просто не засчитывается;</li>
+      <li><code>grade(score, total)</code> переводит результат в слово: от 90% — <code>отлично</code>, от 70% — <code>хорошо</code>, от 50% — <code>неплохо</code>, иначе <code>попробуйте ещё раз</code>.</li>
+      </ul>
+      <p><strong>План по шагам:</strong></p>
+      <ol>
+      <li>в <code>check_quiz</code> заведите счётчик и переберите вопросы: <code>for question, right in questions.items():</code>;</li>
+      <li>достаньте ответ ученика безопасно: <code>answers.get(question, "")</code>. Если ответа нет, будет пустая строка, и программа не упадёт;</li>
+      <li>сравните ответы, приведя оба к одному виду: <code>.strip().lower()</code>;</li>
+      <li>в <code>grade</code> посчитайте процент: <code>score * 100 // total</code>, а дальше — <code>if</code> и <code>elif</code>, как в уроке про условия.</li>
+      </ol>
+      <p><strong>Что можно добавить:</strong> список вопросов, на которые ученик ответил неверно, чтобы показать ему правильные ответы.</p>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Данные для викторины</span></div>
+  <pre><code>questions = {
+    "Столица Казахстана?": "Астана",
+    "Сколько будет 7 * 8?": "56",
+    "Язык этого курса?": "Python",
+}
+answers = {
+    "Столица Казахстана?": " астана ",
+    "Сколько будет 7 * 8?": "54",
+    "Язык этого курса?": "python",
+}
+print("Вопросов:", len(questions))
+print("Ответ на первый:", answers["Столица Казахстана?"])</code></pre>
+</div>
+<article class="task" data-task="project-quiz" data-level="medium">
+<div class="task-head"><h3>Проект: проверка викторины</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Допишите две функции. С данными из примера <code>check_quiz</code> должна вернуть <code>2</code>, а <code>grade(2, 3)</code> — <code>неплохо</code>.</p>
+<textarea class="editor-area" rows="9" spellcheck="false" aria-label="Решение: проверка викторины">def check_quiz(questions, answers):
+    # сколько ответов правильных
+    pass
+
+
+def grade(score, total):
+    # отлично / хорошо / неплохо / попробуйте ещё раз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 4</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Начало: <code>score = 0</code> и <code>for question, right in questions.items():</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Ответ ученика: <code>given = answers.get(question, "")</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Условие: <code>if given.strip().lower() == right.lower():</code> и <code>score += 1</code>. После цикла <code>return score</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 4.</strong> В <code>grade</code>: <code>percent = score * 100 // total</code>, затем <code>if percent &gt;= 90: return "отлично"</code> и так далее.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def check_quiz(questions, answers):
+    score = 0
+    for question, right in questions.items():
+        given = answers.get(question, "")
+        if given.strip().lower() == right.lower():
+            score += 1
+    return score
+
+
+def grade(score, total):
+    percent = score * 100 // total
+    if percent &gt;= 90:
+        return "отлично"
+    elif percent &gt;= 70:
+        return "хорошо"
+    elif percent &gt;= 50:
+        return "неплохо"
+    else:
+        return "попробуйте ещё раз"</code></pre></details>
+<template data-kind="tests">qs = {"Столица Казахстана?": "Астана", "Сколько будет 7 * 8?": "56", "Язык этого курса?": "Python"}
+case('check_quiz(qs, {"Столица Казахстана?": " астана ", "Сколько будет 7 * 8?": "54", "Язык этого курса?": "python"})', 2)
+case('check_quiz(qs, {})', 0)
+case('check_quiz(qs, {"Сколько будет 7 * 8?": "56"})', 1)
+case('check_quiz({"2 + 2?": "4"}, {"2 + 2?": "4"})', 1)
+case('grade(3, 3)', "отлично")
+case('grade(7, 10)', "хорошо")
+case('grade(2, 3)', "неплохо")
+case('grade(1, 3)', "попробуйте ещё раз")
+case('grade(0, 3)', "попробуйте ещё раз")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="project-quiz"> Проект готов</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-errors">
@@ -1275,6 +1526,85 @@ print((end - start).days)</code></pre></details>
       <label class="step-check"><input type="checkbox" data-step="modules"> Урок пройден</label>
     </div>
   </li>
+  <li class="project-step lesson" id="project-guess">
+    <div class="lesson-text">
+      <h2>Мини-проект 4. Угадай число</h2>
+      <p><strong>Что построим.</strong> Компьютер загадывает число от 1 до 100, а потом сам же его угадывает. Хитрость в том, что угадывать он будет за <strong>7 попыток или меньше</strong>, какое бы число ни было загадано. Это настоящий алгоритм, его называют <strong>деление пополам</strong> или двоичный поиск. Так работает поиск в базах данных и даже игра «горячо — холодно».</p>
+      <p><strong>Что пригодится:</strong> условия (<a href="#lesson-3">урок 5</a>), цикл <code>while</code> (<a href="#lesson-loops">урок 7</a>), функции (<a href="#lesson-5">урок 8</a>) и модуль <code>random</code> (<a href="#lesson-modules">урок 11</a>).</p>
+      <p><strong>Как угадывать.</strong> Число где-то между <code>low = 1</code> и <code>high = 100</code>. Называем середину: <code>(low + high) // 2</code>. Если угадали — конец. Если загаданное больше, то всё, что меньше середины, можно отбросить: <code>low = середина + 1</code>. Если меньше — отбрасываем верхнюю половину: <code>high = середина - 1</code>. Каждая попытка делит промежуток пополам, поэтому 100 чисел кончаются очень быстро.</p>
+      <p><strong>План по шагам:</strong></p>
+      <ol>
+      <li>в функции <code>guess_number(secret, low=1, high=100)</code> заведите счётчик попыток <code>tries = 0</code>;</li>
+      <li>сделайте цикл <code>while True:</code> — «повторяй, пока не скажем остановиться»;</li>
+      <li>в цикле прибавьте попытку и назовите середину;</li>
+      <li>если угадали, сразу верните число попыток: <code>return</code> завершает и цикл, и функцию. Иначе сдвиньте <code>low</code> или <code>high</code>.</li>
+      </ol>
+      <p><strong>Что можно добавить:</strong> печать каждой попытки («пробую 50 — больше»), а ещё проверку, что числу 100 действительно хватает 7 попыток: переберите все числа от 1 до 100 циклом и найдите самое большое число попыток.</p>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Как это выглядит по шагам</span></div>
+  <pre><code>import random
+
+secret = random.randint(1, 100)
+low = 1
+high = 100
+tries = 0
+
+while True:
+    tries += 1
+    guess = (low + high) // 2
+    if guess == secret:
+        print(f"Попытка {tries}: {guess} — угадал!")
+        break
+    elif guess &lt; secret:
+        print(f"Попытка {tries}: {guess} — нужно больше")
+        low = guess + 1
+    else:
+        print(f"Попытка {tries}: {guess} — нужно меньше")
+        high = guess - 1</code></pre>
+</div>
+<article class="task" data-task="project-guess" data-level="hard">
+<div class="task-head"><h3>Проект: функция-угадайка</h3><span class="level level-hard"><span class="visually-hidden">Уровень: </span>Сложная</span></div>
+<p>Напишите функцию <code>guess_number(secret, low=1, high=100)</code>, которая угадывает <code>secret</code> делением пополам и возвращает, за сколько попыток угадала. Например, <code>guess_number(50)</code> угадывает с первой попытки и возвращает <code>1</code>.</p>
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Решение: функция-угадайка">def guess_number(secret, low=1, high=100):
+    tries = 0
+    # угадывайте делением пополам и верните число попыток
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 4</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Пример «Как это выглядит по шагам» — почти готовое решение. Разница одна: вместо <code>print</code> и <code>break</code> нужен <code>return tries</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Внутри <code>while True:</code> первой строкой <code>tries += 1</code>, второй <code>guess = (low + high) // 2</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> <code>if guess == secret: return tries</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 4.</strong> <code>elif guess &lt; secret: low = guess + 1</code>, иначе <code>high = guess - 1</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def guess_number(secret, low=1, high=100):
+    tries = 0
+    while True:
+        tries += 1
+        guess = (low + high) // 2
+        if guess == secret:
+            return tries
+        elif guess &lt; secret:
+            low = guess + 1
+        else:
+            high = guess - 1</code></pre></details>
+<template data-kind="tests">case('guess_number(50)', 1)
+case('guess_number(25)', 2)
+case('guess_number(1)', 6)
+case('guess_number(100)', 7)
+case('guess_number(73)', 6)
+case('max(guess_number(n) for n in range(1, 101))', 7)
+case('guess_number(5, 1, 10)', 1)
+case('guess_number(10, 1, 10)', 4)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="project-guess"> Проект готов</label>
+    </div>
+  </li>
   <li class="project-step lesson" id="lesson-7">
     <div class="lesson-text">
       <h2>Урок 12. Как это связано с сайтами</h2>
@@ -1422,11 +1752,11 @@ case('handle("")', "404: страница не найдена")</template>
 <div class="cta-panel">
   <div>
     <h2 id="next-title">Что дальше</h2>
-    <p class="lead cta-lead">Теперь вы понимаете основу. Дальше узнаете, как запрос идёт по настоящему серверу, и соберёте свой первый сайт.</p>
+    <p class="lead cta-lead">Теперь вы понимаете основу Python. Дальше узнаете, из чего сделана страница сайта: HTML и CSS. А потом соберёте свой первый сайт.</p>
   </div>
   <div class="cta-actions">
-    <a class="btn btn-primary" href="about.html">Как работает сайт</a>
-    <a class="btn btn-secondary" href="project.html">Первый проект</a>
+    <a class="btn btn-primary" href="html-css.html">HTML и CSS</a>
+    <a class="btn btn-secondary" href="about.html">Как работает сайт</a>
   </div>
 </div>
 </div>
@@ -1437,9 +1767,9 @@ case('handle("")', "404: страница не найдена")</template>
     <div class="container">
       <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
       <div class="footer-links">
-        <div><strong>Начать</strong><ul><li><a href="start.html">Python с нуля</a></li><li><a href="glossary.html">Словарь</a></li><li><a href="playground.html">Песочница</a></li></ul></div>
+        <div><strong>Начать</strong><ul><li><a href="start.html">Python с нуля</a></li><li><a href="html-css.html">HTML и CSS</a></li><li><a href="glossary.html">Словарь</a></li><li><a href="playground.html">Песочница</a></li></ul></div>
         <div><strong>Понять</strong><ul><li><a href="about.html">О Python</a></li><li><a href="frameworks.html">Фреймворки</a></li><li><a href="databases.html">Базы данных</a></li><li><a href="templates.html">Шаблоны и формы</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесты</a></li><li><a href="git.html">Git</a></li></ul></div>
-        <div><strong>Сделать</strong><ul><li><a href="project.html">Первый проект</a></li><li><a href="project2.html">Второй проект</a></li><li><a href="deploy.html">Публикация</a></li></ul></div>
+        <div><strong>Сделать</strong><ul><li><a href="setup.html">Подготовка компьютера</a></li><li><a href="project.html">Первый проект</a></li><li><a href="project2.html">Второй проект</a></li><li><a href="deploy.html">Публикация</a></li></ul></div>
         <div><strong>Практика</strong><ul><li><a href="practice.html">Задачи</a></li><li><a href="cheatsheet.html">Шпаргалка</a></li><li><a href="exam.html">Финальный тест</a></li></ul></div>
         <div><strong>Сайт</strong><ul><li><a href="course.html">Весь курс</a></li><li><a href="progress.html">Мой прогресс</a></li><li><a href="contacts.html">Контакты</a></li></ul></div>
       </div>

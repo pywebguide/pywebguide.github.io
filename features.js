@@ -709,11 +709,29 @@
     );
   }
 
+  /* HTML-пример: страница рисуется в изолированном окне. Скрипты из примера не выполняются и до сайта
+     не дотягиваются. Разрешены только ссылки: они открываются в новой вкладке (base target), а не внутри окна */
+  function showHtml(box, code) {
+    let frame = box.querySelector(".run-preview");
+    if (!frame) {
+      frame = el("iframe", { class: "run-preview", sandbox: "allow-popups allow-popups-to-escape-sandbox", title: t("Результат: так страница выглядит в браузере") });
+      box.appendChild(frame);
+    }
+    box.hidden = false;
+    box.classList.remove("is-error");
+    box.classList.add("is-ok");
+    box.querySelector(".run-status").textContent = t("Так страница выглядит в браузере:");
+    box.querySelector(".run-text").hidden = true;
+    frame.srcdoc = '<base target="_blank">' + code;
+    track("run-html");
+  }
+
   /* Примеры на страницах: кнопки «Запустить» и «Изменить» */
   document.querySelectorAll(".code-block[data-run]").forEach(function (block) {
     const head = block.querySelector(".code-head");
     const copy = head.querySelector(".copy-btn");
-    const run = el("button", { class: "run-btn", type: "button", text: t("Запустить") });
+    const isHtml = block.dataset.run === "html";
+    const run = el("button", { class: "run-btn", type: "button", text: t(isHtml ? "Показать" : "Запустить") });
     const edit = el("button", { class: "copy-btn-plain", type: "button", text: t("Изменить") });
     const box = outputBox();
 
@@ -741,6 +759,10 @@
     if (block.hasAttribute("data-open")) openEditor(false);
 
     run.addEventListener("click", function () {
+      if (isHtml) {
+        showHtml(box, codeOf(block));
+        return;
+      }
       runInto(box, { code: codeOf(block) }, run).then(function (result) {
         // На главной вывод программы показывается большими буквами
         const poster = block.dataset.poster ? document.querySelector(block.dataset.poster) : null;
@@ -1211,7 +1233,10 @@
 
   if (dash) {
     const TRACKS = {
-      "start": { name: t("Python с нуля"), total: 7, url: "start.html" },
+      // total = число отметок «пройдено» на странице: в «Python с нуля» 13 уроков и 4 мини-проекта
+      "start": { name: t("Python с нуля"), total: 17, url: "start.html" },
+      "html": { name: t("HTML и CSS"), total: 5, url: "html-css.html" },
+      "setup": { name: t("Подготовка компьютера"), total: 2, url: "setup.html" },
       "roadmap": { name: t("Дорожная карта"), total: 5, url: "index.html" },
       "project-flask": { name: t("Первый проект: Flask"), total: 6, url: "project.html#flask" },
       "project-django": { name: t("Первый проект: Django"), total: 10, url: "project.html#django" },
@@ -1222,6 +1247,8 @@
     const file = document.querySelector("[data-dash-file]");
     const totalLine = document.querySelector("[data-dash-total]");
     const TASK_TOTAL = Number(dash.dataset.tasks) || 0;
+    const LESSON_TASK_TOTAL = Number(dash.dataset.lessonTasks) || 0;
+    const LESSON_TASK = /^(lesson-|project-|html-|css-|py-)/;
 
     function row(name, url, done, total) {
       const fill = el("div", { class: "progress-fill" });
@@ -1247,10 +1274,19 @@
         total += TRACKS[key].total;
         body.appendChild(row(TRACKS[key].name, TRACKS[key].url, steps, TRACKS[key].total));
       });
-      const solved = Math.min(Object.keys(tasks).length, TASK_TOTAL);
+      // Задания из уроков и проектов лежат в том же pyweb_tasks, но считаются отдельной строкой
+      const ids = Object.keys(tasks);
+      const lessonIds = ids.filter(function (id) { return LESSON_TASK.test(id); });
+      const solved = Math.min(ids.length - lessonIds.length, TASK_TOTAL);
       done += solved;
       total += TASK_TOTAL;
       body.appendChild(row(t("Задачи с автопроверкой"), "practice.html", solved, TASK_TOTAL));
+      if (LESSON_TASK_TOTAL) {
+        const lessonSolved = Math.min(lessonIds.length, LESSON_TASK_TOTAL);
+        done += lessonSolved;
+        total += LESSON_TASK_TOTAL;
+        body.appendChild(row(t("Задания в уроках"), "start.html", lessonSolved, LESSON_TASK_TOTAL));
+      }
       const passed = exam && typeof exam.best === "number" && exam.best >= 12;
       total += 1;
       if (passed) done += 1;
