@@ -66,7 +66,9 @@ def run(code, tests):
 def main():
     errors = []
     total = 0
-    for page in [ROOT / "practice.html", ROOT / "kk" / "practice.html", ROOT / "en" / "practice.html"]:
+    # Задачи есть на странице «Задачи» и в уроках «С нуля», на всех языках
+    pages = [ROOT / lang / name for name in ("practice.html", "start.html") for lang in ("", "kk", "en")]
+    for page in pages:
         if not page.exists():
             continue
         parser = Tasks()

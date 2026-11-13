@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Python с нуля: семь уроков в браузере — PyWeb Guide</title>
+  <title>Python с нуля: 13 уроков в браузере — PyWeb Guide</title>
 
-  <meta name="description" content="Семь коротких уроков Python для тех, кто никогда не программировал. Код запускается прямо на странице, устанавливать ничего не нужно.">
+  <meta name="description" content="13 уроков Python для тех, кто никогда не программировал: объяснения, примеры и задания с проверкой. Код запускается прямо на странице, устанавливать ничего не нужно.">
   <link rel="canonical" href="https://pywebguide.github.io/start.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/start.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/start.html">
@@ -14,8 +14,8 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="Python с нуля: семь уроков в браузере — PyWeb Guide">
-  <meta property="og:description" content="Семь коротких уроков Python для тех, кто никогда не программировал. Код запускается прямо на странице, устанавливать ничего не нужно.">
+  <meta property="og:title" content="Python с нуля: 13 уроков в браузере — PyWeb Guide">
+  <meta property="og:description" content="13 уроков Python для тех, кто никогда не программировал: объяснения, примеры и задания с проверкой. Код запускается прямо на странице, устанавливать ничего не нужно.">
   <meta property="og:url" content="https://pywebguide.github.io/start.html">
   <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -123,10 +123,10 @@
 <span>С нуля</span>
 </nav>
 <h1>Python с нуля</h1>
-<p class="lead">Семь коротких уроков для тех, кто никогда не программировал. Код запускается прямо на этой странице: нажимайте «Запустить», меняйте его и запускайте снова. Ошибиться не страшно, ничего не сломается.</p>
+<p class="lead">13 уроков для тех, кто никогда не программировал. Код запускается прямо на этой странице: нажимайте «Запустить», меняйте его и запускайте снова. Ошибиться не страшно, ничего не сломается.</p>
 <p class="note">При первом запуске браузер загружает Python, это займёт несколько секунд. Незнакомые слова есть в <a href="glossary.html">словаре</a>.</p>
 <div class="progress-box" data-progress="start">
-  <p class="progress-label" role="status" aria-live="polite"><span data-progress-count>0</span> из 7 уроков пройдено</p>
+  <p class="progress-label" role="status" aria-live="polite"><span data-progress-count>0</span> из 13 уроков пройдено</p>
   <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
   <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Сбросить прогресс</button>
 </div>
@@ -135,142 +135,1196 @@
 <section class="section" aria-label="Уроки">
 <div class="container">
 <ol class="project-steps" data-progress-list="start">
-  <li class="project-step lesson" id="lesson-1">
+  <li class="project-step lesson" id="lesson-intro">
     <div class="lesson-text">
-      <h2>Урок 1. Первая программа</h2>
-      <p>Программа — это список команд для компьютера. Он выполняет их по очереди, сверху вниз.</p>
-      <p>Команда <code>print</code> выводит текст на экран. Сам текст всегда пишут в кавычках.</p>
-      <p><strong>Попробуйте:</strong> напишите в кавычках своё имя и нажмите «Запустить».</p>
+      <h2>Урок 0. Как устроен этот курс</h2>
+      <p><strong>Зачем.</strong> Прежде чем писать код, полезно понять три вещи: что такое программа, почему мы учим Python и как заниматься на этой странице.</p>
+      <p><strong>Что такое программа.</strong> Программа — это инструкция для компьютера. Она похожа на рецепт: повар выполняет шаги по порядку, сначала режет, потом варит. Компьютер тоже выполняет команды по очереди, сверху вниз.</p>
+      <p><strong>Почему Python.</strong> Код на Python читается почти как обычный текст на английском, в нём мало лишних знаков. На Python делают сайты, обрабатывают данные и автоматизируют скучную работу. Поэтому его часто выбирают первым языком.</p>
+      <p><strong>Как заниматься.</strong> В каждом уроке есть объяснение, примеры и задания. Нажмите «Запустить» под примером, и Python выполнит код прямо здесь, в браузере. Код можно менять как угодно: компьютер не сломается.</p>
+      <p><strong>Задания с проверкой.</strong> Напишите решение и нажмите «Проверить». Если не получается, откройте подсказки по одной. Готовое решение тоже есть, но сначала попробуйте сами.</p>
+      <p><strong>Прогресс.</strong> Отметка «Урок пройден» сохраняется в этом браузере. Незнакомые слова ищите в <a href="glossary.html">словаре</a>.</p>
+      <p><strong>Попробуйте:</strong> запустите оба примера справа. Это уже настоящие программы.</p>
+      <details>
+        <summary>Частый вопрос: нужно ли что-то устанавливать?</summary>
+        <p>Нет. Python загрузится в браузер сам при первом запуске, это займёт несколько секунд. Устанавливать Python на компьютер понадобится позже, для своего проекта, и об этом будет отдельный урок.</p>
+      </details>
+      <details>
+        <summary>Частый вопрос: нужно ли хорошо знать математику и английский?</summary>
+        <p>Нет. Хватит школьной арифметики. Английских слов в Python немного, их значение мы объясним в уроках.</p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li>программа — это команды, которые компьютер выполняет по очереди, сверху вниз;</li>
+      <li>код здесь запускается прямо в браузере, устанавливать ничего не нужно;</li>
+      <li>ошибаться не страшно: пробуйте, меняйте и запускайте снова.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Ваша программа</span></div>
-  <pre><code>print("Привет!")
+  <div class="code-head"><span>Пример 1. Рецепт по шагам</span></div>
+  <pre><code>print("Шаг 1: беру чашку")
+print("Шаг 2: наливаю чай")
+print("Шаг 3: пью чай")</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 2. Python умеет считать</span></div>
+  <pre><code>print(2 + 2)
+print("2 + 2")</code></pre>
+</div>
+      <p class="note">Во втором примере первая строка считает, а вторая печатает текст как есть: всё, что в кавычках, Python не вычисляет.</p>
+      <label class="step-check"><input type="checkbox" data-step="intro"> Урок пройден</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-1">
+    <div class="lesson-text">
+      <h2>Урок 1. Первая программа</h2>
+      <p><strong>Зачем.</strong> Любая программа, даже большой сайт, складывается из простых команд. Начнём с самой главной — с команды, которая показывает результат.</p>
+      <p><strong>Команда <code>print</code></strong> выводит на экран то, что стоит в скобках. Текст пишут в кавычках: <code>print("Привет!")</code>. Числа можно писать без кавычек: <code>print(2026)</code>.</p>
+      <p><strong>Порядок.</strong> Каждую команду пишут с новой строки. Python выполняет их сверху вниз: что выше, то и напечатается раньше.</p>
+      <p><strong>Несколько значений.</strong> В одном <code>print</code> можно перечислить несколько значений через запятую. Python сам поставит между ними пробелы: <code>print("Мне", 16, "лет")</code> печатает <code>Мне 16 лет</code>.</p>
+      <p><strong>Пустая строка.</strong> <code>print()</code> без ничего в скобках печатает пустую строку. Так удобно отделять одну часть вывода от другой.</p>
+      <p><strong>Комментарии.</strong> Всё, что стоит после знака <code>#</code>, — заметка для человека. Python её пропускает. Комментарии помогают объяснить, что делает код.</p>
+      <p><strong>Попробуйте:</strong> напишите в кавычках своё имя и нажмите «Запустить». Потом поменяйте две строки местами и посмотрите, как изменится вывод.</p>
+      <details>
+        <summary>Частая ошибка: забыли кавычку или скобку</summary>
+        <p>Кавычки и скобки всегда идут парой. Если написать <code>print("Привет)</code>, Python не найдёт конец текста:
+          <code class="error-text">SyntaxError: unterminated string literal</code>
+          Проверьте, что у каждой открывающей кавычки и скобки есть закрывающая.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: Print с большой буквы</summary>
+        <p>Python различает большие и маленькие буквы. <code>Print</code> и <code>print</code> для него разные слова, и первого он не знает:
+          <code class="error-text">NameError: name 'Print' is not defined</code>
+          Команды Python пишутся маленькими буквами.</p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li><code>print(...)</code> показывает результат: текст в кавычках, числа без кавычек;</li>
+      <li>команды выполняются сверху вниз, каждая с новой строки;</li>
+      <li><code>#</code> начинает комментарий, а кавычки и скобки всегда идут парой.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 1. Первые команды</span></div>
+  <pre><code># Это комментарий: Python его пропустит
+print("Привет!")
 print("Это моя первая программа")</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 2. Несколько значений</span></div>
+  <pre><code>print("Меня зовут", "Аружан")
+print("Мне", 16, "лет")
+print()
+print("Учусь программировать с", 2026, "года")</code></pre>
+</div>
+<article class="task" data-task="lesson-print" data-level="easy">
+<div class="task-head"><h3>Задание: представьтесь</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Напишите программу, которая печатает две строки: сначала <code>Привет!</code>, а под ней <code>Я учу Python</code>.</p>
+<textarea class="editor-area" rows="3" spellcheck="false" aria-label="Решение: представьтесь"># напишите программу здесь
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Нужны две команды <code>print</code>, каждая на своей строке.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Текст пишите в кавычках точно так, как в задании: <code>print("Привет!")</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>print("Привет!")
+print("Я учу Python")</code></pre></details>
+<template data-kind="tests">case('printed()', "Привет!\nЯ учу Python")</template>
+</article>
+<article class="task" data-task="lesson-print-2" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: найдите ошибки</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>В программе три ошибки, и она не запускается. Исправьте их, чтобы программа напечатала <code>Меня зовут Ерлан</code> и <code>Мне 16 лет</code>.</p>
+<textarea class="editor-area" rows="3" spellcheck="false" aria-label="Решение: найдите ошибки">Print("Меня зовут Ерлан)
+print("Мне", 16 "лет")</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Посмотрите на первую букву первой команды.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> У текста в первой строке есть открывающая кавычка. А закрывающая?</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Значения в <code>print</code> разделяют запятыми. Между <code>16</code> и <code>"лет"</code> её нет.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>print("Меня зовут Ерлан")
+print("Мне", 16, "лет")</code></pre></details>
+<template data-kind="tests">case('printed()', "Меня зовут Ерлан\nМне 16 лет")</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="1"> Урок пройден</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-numbers">
+    <div class="lesson-text">
+      <h2>Урок 2. Числа: Python как калькулятор</h2>
+      <p><strong>Зачем.</strong> Сайты постоянно считают: цену в корзине, баллы за тест, сколько дней осталось до экзамена. Поэтому сначала научимся считать.</p>
+      <p><strong>Действия.</strong> Python складывает <code>+</code>, вычитает <code>-</code>, умножает <code>*</code> и делит <code>/</code>. Результат можно сразу напечатать: <code>print(2 + 3)</code>.</p>
+      <p><strong>Целые и дробные числа.</strong> Бывают целые числа, например <code>7</code>, и дробные, например <code>7.5</code>. Дробную часть отделяют <strong>точкой</strong>, а не запятой. Обычное деление <code>/</code> всегда даёт дробное число: <code>10 / 2</code> равно <code>5.0</code>.</p>
+      <p><strong>Деление нацело и остаток.</strong> Представьте 17 конфет, которые раскладывают по 5 штук в коробку. <code>17 // 5</code> отвечает, сколько получится полных коробок: <code>3</code>. <code>17 % 5</code> отвечает, сколько конфет останется: <code>2</code>.</p>
+      <p><strong>Степень и порядок действий.</strong> <code>2 ** 3</code> — это 2 в кубе, то есть <code>8</code>. Порядок действий как в математике: сначала умножение и деление, потом сложение и вычитание. Скобки меняют порядок: <code>(2 + 3) * 4</code> равно <code>20</code>.</p>
+      <p><strong>Округление.</strong> <code>round(3.14159, 2)</code> оставляет два знака после точки: <code>3.14</code>.</p>
+      <p><strong>Число и текст — разные вещи.</strong> <code>2 + 2</code> даёт <code>4</code>, а <code>"2" + "2"</code> даёт <code>"22"</code>: это склеенный текст, а не сумма.</p>
+      <p><strong>Попробуйте:</strong> посчитайте, сколько минут в неделе. Затем проверьте, как работает остаток: что даст <code>10 % 3</code>?</p>
+      <details>
+        <summary>Частая ошибка: запятая вместо точки</summary>
+        <p>В дробном числе нужна точка. Если написать <code>print(2,5)</code>, ошибки не будет, но Python поймёт это как два числа и напечатает <code>2 5</code>. Правильно: <code>print(2.5)</code>.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: деление на ноль</summary>
+        <p>На ноль делить нельзя и в Python. Команда <code>print(5 / 0)</code> остановит программу:
+          <code class="error-text">ZeroDivisionError: division by zero</code>
+          Проверьте, что делитель не равен нулю.</p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li><code>+ - * /</code> — обычные действия, дробную часть отделяют точкой;</li>
+      <li><code>//</code> — сколько целых раз, <code>%</code> — остаток, <code>**</code> — степень;</li>
+      <li>числа пишут без кавычек: <code>"2"</code> в кавычках — это уже текст.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 1. Калькулятор</span></div>
+  <pre><code>print(7 + 5)
+print(7 - 5)
+print(7 * 5)
+print(7 / 2)
+print(7 // 2)
+print(7 % 2)
+print(2 ** 10)</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 2. Покупка в магазине</span></div>
+  <pre><code>print("Три тетради по 450 тенге:", 3 * 450)
+print("С ручкой за 200:", 3 * 450 + 200)
+print("Сдача с 2000:", 2000 - (3 * 450 + 200))
+print("Средняя оценка:", round((5 + 4 + 5) / 3, 1))</code></pre>
+</div>
+<article class="task" data-task="lesson-numbers" data-level="easy">
+<div class="task-head"><h3>Задание: секунды в сутках</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>В сутках 24 часа, в часе 60 минут, в минуте 60 секунд. Напечатайте, сколько секунд в сутках. Пусть Python посчитает сам.</p>
+<textarea class="editor-area" rows="3" spellcheck="false" aria-label="Решение: секунды в сутках"># посчитайте и напечатайте
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Нужно перемножить три числа: часы, минуты и секунды.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Напишите выражение прямо в <code>print</code>: <code>print(24 * 60 * 60)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>print(24 * 60 * 60)</code></pre></details>
+<template data-kind="tests">case('printed()', "86400")</template>
+</article>
+<article class="task" data-task="lesson-numbers-2" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: конфеты поровну</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>47 конфет делят поровну между 6 детьми. Напечатайте две строки: сколько конфет получит каждый и сколько останется. Должно получиться <code>Каждому: 7</code> и <code>Останется: 5</code>.</p>
+<textarea class="editor-area" rows="3" spellcheck="false" aria-label="Решение: конфеты поровну"># посчитайте с помощью // и %
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> «Сколько каждому» — это деление нацело: <code>47 // 6</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> «Сколько останется» — это остаток: <code>47 % 6</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Текст и число перечислите через запятую: <code>print("Каждому:", 47 // 6)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>print("Каждому:", 47 // 6)
+print("Останется:", 47 % 6)</code></pre></details>
+<template data-kind="tests">case('printed()', "Каждому: 7\nОстанется: 5")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="numbers"> Урок пройден</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-2">
     <div class="lesson-text">
-      <h2>Урок 2. Переменные: как запомнить значение</h2>
-      <p>Переменная — это подпись на коробке. В коробку кладут значение, а потом обращаются к нему по имени.</p>
-      <p>Со значениями можно работать: например, прибавить к возрасту единицу.</p>
-      <p><strong>Попробуйте:</strong> поставьте своё имя и возраст и запустите снова.</p>
+      <h2>Урок 3. Переменные: как запомнить значение</h2>
+      <p><strong>Зачем.</strong> Программа должна помнить данные: имя ученика, баллы за тест, сумму в корзине. Для этого есть переменные.</p>
+      <p><strong>Что такое переменная.</strong> Переменная — это коробка с подписью. В коробку кладут значение, а потом обращаются к нему по подписи. <code>name = "Аня"</code> значит: положи текст <code>"Аня"</code> в коробку с подписью <code>name</code>.</p>
+      <p><strong>Знак <code>=</code></strong> в Python означает «положить», а не «равно». Слева пишут имя коробки, справа — что в неё кладут.</p>
+      <p><strong>Значение можно менять.</strong> <code>score = score + 10</code> значит: возьми, что лежит в <code>score</code>, прибавь 10 и положи обратно. Короче то же самое пишут так: <code>score += 10</code>.</p>
+      <p><strong>Как называть переменные.</strong> Используйте латинские буквы, цифры и знак <code>_</code>. Имя не может начинаться с цифры. Выбирайте понятные имена: <code>user_age</code> лучше, чем <code>a</code>.</p>
+      <p><strong>Типы значений.</strong> У каждого значения есть тип: <code>str</code> — текст, <code>int</code> — целое число, <code>float</code> — дробное. Узнать тип помогает <code>type(...)</code>. Превратить одно в другое помогают <code>int("16")</code>, <code>str(16)</code> и <code>float("2.5")</code>.</p>
+      <p><strong>Ввод с клавиатуры.</strong> На компьютере <code>input("Как вас зовут? ")</code> спрашивает человека и ждёт ответа. Ответ всегда приходит текстом, поэтому число получают так: <code>int(input())</code>. В браузере на этом сайте <code>input()</code> не работает, поэтому значения мы записываем прямо в код. А на сайтах данные приходят из форм, о них будет отдельный урок.</p>
+      <p><strong>Попробуйте:</strong> поставьте своё имя и возраст и запустите снова. Добавьте к баллам ещё 5.</p>
+      <details>
+        <summary>Частая ошибка: опечатка в имени</summary>
+        <p>Если создать <code>name</code>, а потом написать <code>nmae</code>, Python не поймёт, о чём речь:
+          <code class="error-text">NameError: name 'nmae' is not defined</code>
+          Проверьте, что имя написано везде одинаково, вплоть до буквы.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: число в виде текста</summary>
+        <p><code>"16" + 1</code> не сработает: слева текст, справа число.
+          <code class="error-text">TypeError: can only concatenate str (not "int") to str</code>
+          Сначала превратите текст в число: <code>int("16") + 1</code> даёт <code>17</code>.</p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li>переменная — коробка с подписью: <code>name = "Аня"</code>, знак <code>=</code> значит «положить»;</li>
+      <li>значение можно менять: <code>score += 10</code>;</li>
+      <li>тип узнают через <code>type()</code>, меняют через <code>int()</code>, <code>str()</code>, <code>float()</code>.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Ваша программа</span></div>
+  <div class="code-head"><span>Пример 1. Коробки с данными</span></div>
   <pre><code>name = "Аня"
 age = 18
+score = 0
 
 print("Меня зовут", name)
-print("Через год мне будет", age + 1)</code></pre>
+print("Через год мне будет", age + 1)
+
+score = score + 10
+score += 5
+print("Баллы:", score)</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 2. Текст или число</span></div>
+  <pre><code>age_text = "16"
+age = int(age_text)
+
+print(type(age_text))
+print(type(age))
+print("Через год:", age + 1)
+print("Склейка текста:", age_text + "1")</code></pre>
+</div>
+<article class="task" data-task="lesson-variables" data-level="easy">
+<div class="task-head"><h3>Задание: копилка</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>В копилке лежит 500 тенге. Положите в неё ещё 300, а потом потратьте 250. Меняйте значение переменной <code>money</code>, а в конце напечатайте, сколько осталось.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Решение: копилка">money = 500
+# положите 300, потратьте 250 и напечатайте money
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Положить деньги — значит прибавить: <code>money += 300</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Потратить — значит вычесть: <code>money -= 250</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> В конце: <code>print(money)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>money = 500
+money += 300
+money -= 250
+print(money)</code></pre></details>
+<template data-kind="tests">case('money', 550)
+case('printed()', "550")</template>
+</article>
+<article class="task" data-task="lesson-variables-2" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: возраст из анкеты</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Анкета на сайте прислала возраст текстом: <code>"15"</code>. Посчитайте, сколько человеку будет через 3 года, и напечатайте <code>Через 3 года вам будет 18</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Решение: возраст из анкеты">age_text = "15"
+# превратите текст в число и напечатайте ответ
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Текст в число превращает <code>int(age_text)</code>. Сохраните результат в новую переменную, например <code>age</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Теперь можно считать: <code>age + 3</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Текст и число перечислите через запятую, как в уроке 1: <code>print("Через 3 года вам будет", age + 3)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>age_text = "15"
+age = int(age_text)
+print("Через 3 года вам будет", age + 3)</code></pre></details>
+<template data-kind="tests">case('printed()', "Через 3 года вам будет 18")</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="2"> Урок пройден</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-strings">
+    <div class="lesson-text">
+      <h2>Урок 4. Строки: работа с текстом</h2>
+      <p><strong>Зачем.</strong> На сайте почти всё — текст: имя ученика, заголовок, сообщение в форме. Чтобы работать с текстом, нужно уметь его хранить, склеивать и исправлять.</p>
+      <p><strong>Что такое строка.</strong> В Python текст называется <strong>строкой</strong>. Это буквы, которые стоят в ряд, как бусины на нитке. Строку пишут в кавычках: <code>"Привет"</code>.</p>
+      <p>Кавычки — это границы текста. Без них Python подумает, что <code>Привет</code> — имя переменной, и сообщит об ошибке.</p>
+      <p><strong>Склеить строки</strong> можно знаком <code>+</code>: <code>"Привет, " + "Аружан"</code> даёт <code>Привет, Аружан</code>. Пробел ставьте сами: Python его не добавит.</p>
+      <p><strong>f-строка</strong> — самый удобный способ вставить значение в текст. Представьте открытку с пропуском для имени. Буква <code>f</code> перед кавычками говорит Python: «здесь есть пропуски». Сами пропуски — фигурные скобки: <code>f"Привет, {name}!"</code>. Python подставит туда значение переменной.</p>
+      <p><strong>Методы</strong> — это команды, которые есть у каждой строки. Их пишут через точку:</p>
+      <ul>
+      <li><code>.strip()</code> убирает лишние пробелы в начале и в конце;</li>
+      <li><code>.title()</code> делает первую букву большой: <code>аружан</code> → <code>Аружан</code>;</li>
+      <li><code>.upper()</code> делает все буквы большими, <code>.lower()</code> — маленькими.</li>
+      </ul>
+      <p><strong>Длина и буквы по номерам.</strong> <code>len(name)</code> считает, сколько в строке символов. А взять одну букву можно по её номеру в квадратных скобках. Номера начинаются с нуля: <code>name[0]</code> — первая буква, <code>name[1]</code> — вторая.</p>
+      <p><strong>Попробуйте:</strong> в первом примере поставьте своё имя с лишними пробелами — результат не изменится. Замените <code>.title()</code> на <code>.upper()</code>. Во втором примере поменяйте город и возраст.</p>
+      <details>
+        <summary>Частая ошибка: склеить текст с числом</summary>
+        <p>Строку и число нельзя сложить знаком <code>+</code>. Команда <code>print("Мне " + 18)</code> остановит программу с ошибкой:
+          <code class="error-text">TypeError: can only concatenate str (not "int") to str</code>
+          Python не понимает, что вы хотели: сложить числа или склеить текст. Используйте f-строку: <code>print(f"Мне {18}")</code>. Она сама превратит число в текст.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: строка не меняется сама</summary>
+        <p>Метод не исправляет строку, а <strong>возвращает новую</strong>. Поэтому после <code>name.strip()</code> в <code>name</code> останутся старые пробелы. Результат нужно сохранить: <code>name = name.strip()</code>.</p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li>текст в кавычках — это строка, склеивают строки знаком <code>+</code>;</li>
+      <li>f-строка подставляет значения в текст: <code>f"Привет, {name}!"</code>;</li>
+      <li>методы <code>.strip()</code>, <code>.title()</code>, <code>.upper()</code> возвращают новую строку, <code>len()</code> считает символы, <code>name[0]</code> даёт первую букву.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 1. Приводим имя в порядок</span></div>
+  <pre><code>name = "   аружан   "
+
+clean = name.strip()
+print(clean.title())
+print("Символов в имени:", len(clean))
+print("Первая буква:", clean[0].upper())
+print("Привет, " + clean.title() + "!")</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 2. Открытка с пропусками</span></div>
+  <pre><code>name = "Ерлан"
+city = "Астана"
+age = 16
+
+print(f"Привет, {name}!")
+print(f"Ты из города {city}, и тебе {age} лет.")
+print(f"Через год тебе будет {age + 1}.")</code></pre>
+</div>
+<article class="task" data-task="lesson-strings" data-level="easy">
+<div class="task-head"><h3>Задание: бейдж участника</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Имя и город уже записаны в переменные, но с лишними пробелами. Напечатайте бейдж: имя большими буквами, затем <code>из</code> и город. Должно получиться <code>АРУЖАН из Алматы</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Решение: бейдж участника">name = "  аружан "
+city = " Алматы"
+# напечатайте бейдж</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Сначала уберите пробелы: <code>name.strip()</code> и <code>city.strip()</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Большие буквы даёт <code>.upper()</code>, причём методы можно писать подряд: <code>name.strip().upper()</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Соберите ответ f-строкой и напечатайте: <code>print(f"{...} из {...}")</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>name = "  аружан "
+city = " Алматы"
+print(f"{name.strip().upper()} из {city.strip()}")</code></pre></details>
+<template data-kind="tests">case('printed()', "АРУЖАН из Алматы")</template>
+</article>
+<article class="task" data-task="lesson-strings-2" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: короткое имя</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>В журналах имя часто пишут коротко: фамилия, а потом первая буква имени с точкой. Имя и фамилия уже записаны, но маленькими буквами и с пробелами. Напечатайте <code>Сейтказы А.</code></p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Решение: короткое имя">first = "  аружан"
+last = "сейтказы  "
+# напечатайте короткое имя</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Сначала уберите пробелы и сохраните результат: <code>first = first.strip()</code>, и так же для <code>last</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Фамилия с большой буквы — <code>last.title()</code>. Первая буква имени — <code>first[0]</code>, большой её сделает <code>.upper()</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Соберите ответ f-строкой: <code>print(f"{...} {...}.")</code>. Не забудьте точку в конце.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>first = "  аружан"
+last = "сейтказы  "
+first = first.strip()
+last = last.strip()
+print(f"{last.title()} {first[0].upper()}.")</code></pre></details>
+<template data-kind="tests">case('printed()', "Сейтказы А.")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="strings"> Урок пройден</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-3">
     <div class="lesson-text">
-      <h2>Урок 3. Условия: если так, то вот так</h2>
-      <p>Программа умеет выбирать. Слово <code>if</code> значит «если», а <code>else</code> значит «иначе».</p>
-      <p>Отступ из четырёх пробелов показывает, какие строки относятся к условию.</p>
-      <p><strong>Попробуйте:</strong> поменяйте температуру на 10 и посмотрите, что изменится.</p>
+      <h2>Урок 5. Условия: если так, то вот так</h2>
+      <p><strong>Зачем.</strong> Сайт всё время выбирает: пустить ли пользователя, засчитать ли ответ, хватает ли денег на покупку. Для выбора есть условия.</p>
+      <p><strong>Слово <code>if</code></strong> значит «если». После него пишут условие и двоеточие. Строки под ним с отступом в четыре пробела выполнятся, <strong>только если</strong> условие верно.</p>
+      <p><strong>Слово <code>else</code></strong> значит «иначе». Его строки выполнятся, если условие неверно. А <code>elif</code> — это «а если нет, то проверь вот это». Таких проверок можно написать сколько угодно, Python пойдёт по ним сверху вниз и остановится на первой верной.</p>
+      <p><strong>Отступ</strong> показывает, какие строки относятся к условию. Это не украшение: без отступа Python не поймёт, что выполнять.</p>
+      <p><strong>Сравнения.</strong> <code>&gt;</code> больше, <code>&lt;</code> меньше, <code>&gt;=</code> и <code>&lt;=</code> — больше или равно и меньше или равно. Равенство проверяют <strong>двумя</strong> знаками: <code>==</code>. Не равно — <code>!=</code>. Сравнивать можно и текст: <code>password == "qwerty"</code>.</p>
+      <p><strong>Правда и ложь.</strong> Ответ на сравнение — <code>True</code> (верно) или <code>False</code> (неверно). Проверьте сами: <code>print(5 &gt; 3)</code> напечатает <code>True</code>.</p>
+      <p><strong>Несколько условий.</strong> <code>and</code> — «и»: верно, когда верны оба. <code>or</code> — «или»: хватает одного. <code>not</code> переворачивает ответ.</p>
+      <p><strong>Попробуйте:</strong> в первом примере поставьте температуру 10, потом 30. Во втором поменяйте возраст и разрешение родителей.</p>
+      <details>
+        <summary>Частая ошибка: один знак = вместо двух</summary>
+        <p>Один знак <code>=</code> кладёт значение в переменную, а сравнивают двумя: <code>==</code>. Если написать <code>if x = 5:</code>, Python сразу подскажет:
+          <code class="error-text">SyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?</code></p>
+      </details>
+      <details>
+        <summary>Частая ошибка: забыли отступ или двоеточие</summary>
+        <p>После условия нужно двоеточие, а строки внутри — с отступом в четыре пробела. Иначе Python остановится:
+          <code class="error-text">IndentationError: expected an indented block after 'if' statement on line 2</code>
+          Поставьте двоеточие и сдвиньте строку вправо клавишей Tab или четырьмя пробелами.</p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li><code>if</code> — если, <code>elif</code> — а если, <code>else</code> — иначе; после условия двоеточие и отступ;</li>
+      <li>равенство проверяют через <code>==</code>, а один <code>=</code> кладёт значение в переменную;</li>
+      <li><code>and</code> — оба условия, <code>or</code> — хотя бы одно, <code>not</code> — наоборот.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Ваша программа</span></div>
+  <div class="code-head"><span>Пример 1. Что надеть</span></div>
   <pre><code>temperature = -5
 
 if temperature &lt; 0:
     print("На улице мороз, наденьте шапку")
+elif temperature &lt; 15:
+    print("Прохладно, возьмите куртку")
 else:
-    print("Можно без шапки")</code></pre>
+    print("Тепло, можно в футболке")
+
+print(temperature &lt; 0)</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 2. Можно ли в поход</span></div>
+  <pre><code>age = 15
+parents_allow = True
+
+if age &gt;= 16 or parents_allow:
+    print("Можно идти в поход")
+else:
+    print("Пока нельзя")
+
+if age &gt;= 14 and age &lt;= 17:
+    print("Вы в группе подростков")</code></pre>
+</div>
+<article class="task" data-task="lesson-conditions" data-level="easy">
+<div class="task-head"><h3>Задание: чётное или нечётное</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Число записано в переменную <code>number</code>. Напечатайте <code>чётное</code>, если оно делится на 2 без остатка, и <code>нечётное</code>, если нет.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Решение: чётное или нечётное">number = 7
+# проверьте остаток от деления на 2
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Остаток от деления на 2 даёт <code>number % 2</code>. У чётного числа он равен нулю.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Условие: <code>if number % 2 == 0:</code>. Не забудьте двоеточие и отступ.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> В ветке <code>else:</code> напечатайте <code>"нечётное"</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>number = 7
+if number % 2 == 0:
+    print("чётное")
+else:
+    print("нечётное")</code></pre></details>
+<template data-kind="tests">case('printed()', "нечётное")</template>
+</article>
+<article class="task" data-task="lesson-conditions-2" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: оценка по баллам</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>За тест можно набрать до 100 баллов. От 90 — <code>отлично</code>, от 70 — <code>хорошо</code>, от 50 — <code>удовлетворительно</code>, меньше 50 — <code>попробуйте ещё раз</code>. Напечатайте оценку для <code>score</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Решение: оценка по баллам">score = 78
+# используйте if, elif и else
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Начните с самой высокой границы: <code>if score &gt;= 90:</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Дальше <code>elif score &gt;= 70:</code> и <code>elif score &gt;= 50:</code>. Python остановится на первой верной проверке.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Всё, что меньше 50, попадёт в <code>else:</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>score = 78
+if score &gt;= 90:
+    print("отлично")
+elif score &gt;= 70:
+    print("хорошо")
+elif score &gt;= 50:
+    print("удовлетворительно")
+else:
+    print("попробуйте ещё раз")</code></pre></details>
+<template data-kind="tests">case('printed()', "хорошо")</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="3"> Урок пройден</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-4">
     <div class="lesson-text">
-      <h2>Урок 4. Списки и циклы: одно действие много раз</h2>
-      <p>Список хранит несколько значений подряд. Цикл <code>for</code> берёт их по одному и делает с каждым одно и то же.</p>
-      <p>Так сайт показывает ленту: у него есть список записей, и он выводит их одну за другой.</p>
-      <p><strong>Попробуйте:</strong> добавьте в список своё дело.</p>
+      <h2>Урок 6. Списки: много значений в одной переменной</h2>
+      <p><strong>Зачем.</strong> На сайтах почти всё — списки: лента новостей, ученики класса, товары в корзине. Хранить каждое значение в своей переменной неудобно, поэтому их собирают в список.</p>
+      <p><strong>Что такое список.</strong> Список — это ряд значений в квадратных скобках через запятую: <code>["яблоко", "груша", "слива"]</code>. Представьте поезд: каждое значение едет в своём вагоне.</p>
+      <p><strong>Номера вагонов</strong> начинаются с нуля, как у букв в строке. <code>fruits[0]</code> — первый элемент, <code>fruits[1]</code> — второй. С конца считают отрицательными номерами: <code>fruits[-1]</code> — последний.</p>
+      <p><strong>Сколько элементов</strong>, показывает уже знакомая <code>len(fruits)</code>.</p>
+      <p><strong>Список можно менять.</strong> <code>fruits[1] = "киви"</code> заменяет второй элемент. <code>.append("банан")</code> добавляет в конец, <code>.remove("груша")</code> убирает по значению.</p>
+      <p><strong>Есть ли в списке?</strong> Это проверяет слово <code>in</code>: <code>"слива" in fruits</code> даёт <code>True</code> или <code>False</code>. Удобно в условиях.</p>
+      <p><strong>Списки чисел.</strong> <code>sum()</code> складывает все числа, <code>min()</code> и <code>max()</code> находят наименьшее и наибольшее, <code>sorted()</code> возвращает их по порядку.</p>
+      <p><strong>Попробуйте:</strong> добавьте в первый список свой продукт и уберите другой. Во втором примере добавьте ещё одну оценку.</p>
+      <details>
+        <summary>Частая ошибка: номера с нуля</summary>
+        <p>В списке из трёх элементов номера 0, 1 и 2. Элемента с номером 3 нет:
+          <code class="error-text">IndexError: list index out of range</code>
+          Номер последнего элемента на единицу меньше длины. Или просто пишите <code>[-1]</code>.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: не тот метод</summary>
+        <p>Добавляют в список методом <code>.append()</code>. Если написать <code>.add()</code>, Python ответит, что у списка такого нет:
+          <code class="error-text">AttributeError: 'list' object has no attribute 'add'</code></p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li>список — значения в квадратных скобках: <code>["а", "б"]</code>, номера начинаются с нуля;</li>
+      <li><code>.append()</code> добавляет, <code>.remove()</code> убирает, <code>in</code> проверяет, есть ли значение;</li>
+      <li><code>len()</code>, <code>sum()</code>, <code>min()</code>, <code>max()</code> и <code>sorted()</code> работают со всем списком сразу.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Ваша программа</span></div>
-  <pre><code>tasks = ["купить хлеб", "сделать уроки", "позвонить маме"]
+  <div class="code-head"><span>Пример 1. Список покупок</span></div>
+  <pre><code>shopping = ["хлеб", "молоко", "яблоки"]
 
-for task in tasks:
-    print("Сделать:", task)
+print(shopping[0])
+print(shopping[-1])
 
-print("Всего дел:", len(tasks))</code></pre>
+shopping.append("сыр")
+shopping.remove("молоко")
+print(shopping)
+print("Всего покупок:", len(shopping))
+print("Есть ли хлеб?", "хлеб" in shopping)</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 2. Оценки за четверть</span></div>
+  <pre><code>grades = [5, 4, 5, 3, 5, 4]
+
+print("Всего оценок:", len(grades))
+print("Сумма:", sum(grades))
+print("Лучшая:", max(grades), "худшая:", min(grades))
+print("Средняя:", round(sum(grades) / len(grades), 2))
+print("По порядку:", sorted(grades))</code></pre>
+</div>
+<article class="task" data-task="lesson-lists" data-level="easy">
+<div class="task-head"><h3>Задание: список гостей</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>На день рождения уже пригласили двоих. Добавьте в список <code>guests</code> гостью по имени <code>Дана</code> и напечатайте, сколько теперь гостей.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Решение: список гостей">guests = ["Аружан", "Ерлан"]
+# добавьте Дану и напечатайте число гостей
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Добавить в конец списка: <code>guests.append("Дана")</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Число элементов: <code>print(len(guests))</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>guests = ["Аружан", "Ерлан"]
+guests.append("Дана")
+print(len(guests))</code></pre></details>
+<template data-kind="tests">case('guests', ["Аружан", "Ерлан", "Дана"])
+case('printed()', "3")</template>
+</article>
+<article class="task" data-task="lesson-lists-2" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: средний балл</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>В списке <code>scores</code> оценки ученика. Напечатайте средний балл, округлённый до одной цифры после точки. Должно получиться <code>4.4</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Решение: средний балл">scores = [5, 4, 5, 3, 5]
+# посчитайте и напечатайте средний балл
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Средний балл — это сумма, делённая на количество оценок.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Сумма — <code>sum(scores)</code>, количество — <code>len(scores)</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Округлите до одного знака: <code>round(..., 1)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>scores = [5, 4, 5, 3, 5]
+print(round(sum(scores) / len(scores), 1))</code></pre></details>
+<template data-kind="tests">case('printed()', "4.4")</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="4"> Урок пройден</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-loops">
+    <div class="lesson-text">
+      <h2>Урок 7. Циклы: одно действие много раз</h2>
+      <p><strong>Зачем.</strong> Сайт показывает ленту из сотни записей, но код для одной записи пишут один раз. Повторять его для каждой будет цикл.</p>
+      <p><strong>Цикл <code>for</code></strong> значит «для каждого». <code>for fruit in fruits:</code> читается так: «для каждого фрукта в списке фруктов сделай…». Python берёт элементы по одному, кладёт очередной в переменную <code>fruit</code> и выполняет строки с отступом.</p>
+      <p><strong>Повторить несколько раз</strong> помогает <code>range</code>. <code>range(5)</code> даёт числа 0, 1, 2, 3, 4 — пять штук, начиная с нуля. <code>range(1, 6)</code> даёт числа от 1 до 5: последнее число в диапазон не входит.</p>
+      <p><strong>Накопление.</strong> Частый приём: завести переменную до цикла и менять её внутри. Например, <code>total = 0</code>, а в цикле <code>total += price</code>. После цикла в <code>total</code> будет сумма.</p>
+      <p><strong>Цикл <code>while</code></strong> значит «пока». Он повторяет строки, пока условие верно. Он нужен, когда заранее неизвестно, сколько будет повторов: например, копить, пока не наберётся нужная сумма.</p>
+      <p><strong>Выйти раньше</strong> можно командой <code>break</code>: цикл сразу закончится.</p>
+      <p><strong>Попробуйте:</strong> в первом примере добавьте свой фрукт и поменяйте <code>range(1, 4)</code> на <code>range(1, 11)</code>. Во втором поменяйте сумму, которую откладываете в неделю.</p>
+      <details>
+        <summary>Частая ошибка: бесконечный цикл</summary>
+        <p>Если внутри <code>while</code> ничего не меняется, условие всегда верно, и цикл не закончится никогда. Программа «зависнет». Проверьте, что в цикле меняется переменная из условия: например, есть <code>money += 150</code>.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: на одно число меньше</summary>
+        <p><code>range(1, 10)</code> даёт числа от 1 до 9, а не до 10. Ошибки Python не покажет, просто в ответе не будет последнего числа. Чтобы дойти до 10, пишите <code>range(1, 11)</code>.</p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li><code>for x in список:</code> повторяет строки с отступом для каждого элемента;</li>
+      <li><code>range(1, 6)</code> — числа от 1 до 5, последнее не входит;</li>
+      <li><code>while условие:</code> повторяет, пока условие верно, и внутри обязательно что-то должно меняться.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 1. Для каждого</span></div>
+  <pre><code>fruits = ["яблоко", "груша", "слива"]
+
+for fruit in fruits:
+    print("Я люблю", fruit)
+
+for number in range(1, 4):
+    print("Повтор номер", number)
+
+total = 0
+for price in [450, 200, 1200]:
+    total += price
+print("Итого:", total)</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 2. Копим на наушники</span></div>
+  <pre><code>money = 0
+weeks = 0
+
+while money &lt; 1000:
+    money += 150
+    weeks += 1
+
+print("Нужно недель:", weeks)
+print("Накоплено:", money)</code></pre>
+</div>
+<article class="task" data-task="lesson-loops" data-level="easy">
+<div class="task-head"><h3>Задание: таблица умножения на 7</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Напечатайте пять строк таблицы умножения на 7, от <code>7 x 1 = 7</code> до <code>7 x 5 = 35</code>. Используйте цикл, а не пять отдельных <code>print</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Решение: таблица умножения на 7"># используйте for и range
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Числа от 1 до 5 даёт <code>range(1, 6)</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Начало цикла: <code>for n in range(1, 6):</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Внутри цикла: <code>print(f"7 x {n} = {7 * n}")</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>for n in range(1, 6):
+    print(f"7 x {n} = {7 * n}")</code></pre></details>
+<template data-kind="tests">case('printed()', "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35")</template>
+</article>
+<article class="task" data-task="lesson-loops-2" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: сумма чётных</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Сложите все чётные числа от 1 до 20 включительно и напечатайте сумму. Подсказка из урока про условия пригодится.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Решение: сумма чётных">total = 0
+# переберите числа от 1 до 20 и прибавляйте чётные
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Чтобы дойти до 20 включительно, нужен <code>range(1, 21)</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Внутри цикла проверьте чётность: <code>if n % 2 == 0:</code>, и тогда <code>total += n</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Напечатайте сумму <strong>после</strong> цикла, без отступа: <code>print(total)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>total = 0
+for n in range(1, 21):
+    if n % 2 == 0:
+        total += n
+print(total)</code></pre></details>
+<template data-kind="tests">case('total', 110)
+case('printed()', "110")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="loops"> Урок пройден</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-5">
     <div class="lesson-text">
-      <h2>Урок 5. Функции: своя команда</h2>
-      <p>Функция — это ваша собственная команда. Её описывают один раз, а вызывают сколько угодно.</p>
-      <p>Слово <code>def</code> начинает описание, а <code>return</code> говорит, что функция отдаёт обратно.</p>
-      <p><strong>Попробуйте:</strong> вызовите функцию ещё раз с другим именем.</p>
+      <h2>Урок 8. Функции: своя команда</h2>
+      <p><strong>Зачем.</strong> Одно и то же действие часто нужно в разных местах: посчитать цену со скидкой, поприветствовать пользователя. Чтобы не копировать код, ему дают имя и вызывают по этому имени.</p>
+      <p><strong>Что такое функция.</strong> Функция — это ваша собственная команда. Вы уже пользовались готовыми: <code>print</code>, <code>len</code>, <code>round</code>. Теперь научимся делать свои.</p>
+      <p><strong>Как описать.</strong> Слово <code>def</code> начинает описание. Дальше имя функции, скобки и двоеточие: <code>def greet(name):</code>. Строки функции пишут с отступом, как в условиях и циклах.</p>
+      <p><strong>Параметры</strong> — это пустые места в скобках. Когда функцию вызывают, их заполняют значениями: <code>greet("Аня")</code> кладёт <code>"Аня"</code> в <code>name</code>.</p>
+      <p><strong>Описать ещё не значит выполнить.</strong> Код внутри <code>def</code> работает только тогда, когда функцию вызывают: имя и скобки, <code>greet("Аня")</code>.</p>
+      <p><strong><code>return</code> отдаёт результат.</strong> Функция как кофемашина: вы даёте ей зёрна, она возвращает кофе. <code>return</code> — это «вот готовый результат, забирай». Его можно сохранить в переменную или использовать дальше: <code>total = price_with_discount(1000, 10)</code>.</p>
+      <p><strong><code>print</code> и <code>return</code> — разные вещи.</strong> <code>print</code> только показывает значение на экране. <code>return</code> возвращает его в программу, чтобы с ним можно было работать дальше.</p>
+      <p><strong>Значение по умолчанию.</strong> <code>def greet(name="гость"):</code> — если имя не передали, будет «гость».</p>
+      <p><strong>Попробуйте:</strong> вызовите <code>greet</code> со своим именем. Во втором примере поменяйте скидку и посмотрите, как изменится итог.</p>
+      <details>
+        <summary>Частая ошибка: print вместо return</summary>
+        <p>Если функция печатает результат, а не возвращает его, работать с ним дальше нельзя: функция вернёт пустое значение <code>None</code>. Попытка прибавить к нему число закончится так:
+          <code class="error-text">TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'</code>
+          Внутри функции пишите <code>return</code>, а печатайте уже результат: <code>print(f(3))</code>.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: забыли скобки при вызове</summary>
+        <p><code>print(greet)</code> без скобок не вызывает функцию, а печатает что-то вроде <code>&lt;function greet at 0x…&gt;</code>. Чтобы функция сработала, нужны скобки: <code>greet()</code> или <code>greet("Аня")</code>.</p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li><code>def имя(параметры):</code> описывает функцию, а выполняется она при вызове <code>имя(...)</code>;</li>
+      <li><code>return</code> возвращает результат, <code>print</code> только показывает;</li>
+      <li>у параметра может быть значение по умолчанию: <code>name="гость"</code>.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Ваша программа</span></div>
-  <pre><code>def greet(name):
-    return "Привет, " + name + "!"
+  <div class="code-head"><span>Пример 1. Приветствие</span></div>
+  <pre><code>def greet(name="гость"):
+    return f"Привет, {name}!"
 
 print(greet("Аня"))
-print(greet("Марат"))</code></pre>
+print(greet("Марат"))
+print(greet())</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 2. Цена со скидкой</span></div>
+  <pre><code>def price_with_discount(price, percent):
+    return price - price * percent / 100
+
+phone = price_with_discount(120000, 10)
+cover = price_with_discount(5000, 20)
+
+print("Телефон:", phone)
+print("Чехол:", cover)
+print("Вместе:", phone + cover)</code></pre>
+</div>
+<article class="task" data-task="lesson-functions" data-level="easy">
+<div class="task-head"><h3>Задание: квадрат числа</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Допишите функцию <code>square(n)</code>: она должна <strong>возвращать</strong> число, умноженное само на себя. Например, <code>square(3)</code> возвращает <code>9</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Решение: квадрат числа">def square(n):
+    # верните n в квадрате
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Слово <code>pass</code> значит «пока ничего». Замените его своей строкой.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Нужен именно <code>return</code>, а не <code>print</code>: <code>return n * n</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def square(n):
+    return n * n</code></pre></details>
+<template data-kind="tests">case('square(3)', 9)
+case('square(0)', 0)
+case('square(-4)', 16)
+case('square(12)', 144)</template>
+</article>
+<article class="task" data-task="lesson-functions-2" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: цена билета</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>В кинотеатре дети до 7 лет проходят бесплатно, школьники до 18 лет платят 500 тенге, остальные — 1000. Напишите функцию <code>ticket_price(age)</code>, которая возвращает цену. Например, <code>ticket_price(10)</code> возвращает <code>500</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Решение: цена билета">def ticket_price(age):
+    # верните 0, 500 или 1000
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Внутри функции работают условия из урока 5: <code>if</code>, <code>elif</code>, <code>else</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> «До 7 лет» значит меньше семи: <code>if age &lt; 7:</code>. Семилетний уже платит.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> В каждой ветке пишите <code>return</code> с ценой.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def ticket_price(age):
+    if age &lt; 7:
+        return 0
+    elif age &lt; 18:
+        return 500
+    else:
+        return 1000</code></pre></details>
+<template data-kind="tests">case('ticket_price(3)', 0)
+case('ticket_price(7)', 500)
+case('ticket_price(10)', 500)
+case('ticket_price(17)', 500)
+case('ticket_price(18)', 1000)
+case('ticket_price(40)', 1000)</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="5"> Урок пройден</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-6">
     <div class="lesson-text">
-      <h2>Урок 6. Словари: найти значение по названию</h2>
-      <p>Словарь хранит пары «название и значение», как прайс-лист в магазине. Значение находят по названию, а не по номеру.</p>
-      <p>Сайты пользуются этим постоянно: например, находят страницу по её адресу.</p>
-      <p><strong>Попробуйте:</strong> добавьте свой товар с ценой.</p>
+      <h2>Урок 9. Словари: найти значение по названию</h2>
+      <p><strong>Зачем.</strong> У пользователя сайта есть имя, возраст, город. Хранить их удобно не по номерам, как в списке, а по названиям: «имя — Аружан», «город — Алматы». Для этого есть словари.</p>
+      <p><strong>Что такое словарь.</strong> Словарь хранит пары «ключ — значение» в фигурных скобках: <code>{"хлеб": 200, "молоко": 450}</code>. Он похож на контакты в телефоне: по имени находишь номер. Или на прайс-лист: по названию товара — цену.</p>
+      <p><strong>Получить значение</strong> можно по ключу в квадратных скобках: <code>prices["хлеб"]</code> даёт <code>200</code>.</p>
+      <p><strong>Добавить или изменить:</strong> <code>prices["сыр"] = 1500</code>. Если ключа не было, он появится, а если был, значение заменится. Удалить пару: <code>del prices["хлеб"]</code>.</p>
+      <p><strong>Безопасно получить.</strong> <code>prices.get("кофе", 0)</code> вернёт цену кофе, а если его нет в словаре, вернёт <code>0</code> вместо ошибки. Проверить, есть ли ключ, можно знакомым словом <code>in</code>: <code>"хлеб" in prices</code>.</p>
+      <p><strong>Перебрать словарь.</strong> <code>for name, price in prices.items():</code> берёт пары по очереди: ключ попадает в <code>name</code>, значение — в <code>price</code>.</p>
+      <p><strong>Список словарей</strong> — так обычно хранят много похожих записей: товары, учеников, сообщения. Ровно в таком виде сайты передают данные друг другу, это называется JSON.</p>
+      <p><strong>Попробуйте:</strong> добавьте свой товар с ценой, поменяйте цену молока. Во втором примере добавьте ещё одного ученика.</p>
+      <details>
+        <summary>Частая ошибка: такого ключа нет</summary>
+        <p>Если попросить ключ, которого в словаре нет, программа остановится:
+          <code class="error-text">KeyError: 'кофе'</code>
+          Проверьте написание: <code>"Хлеб"</code> и <code>"хлеб"</code> — разные ключи. Если ключа может не быть, используйте <code>.get()</code>.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: номер вместо ключа</summary>
+        <p>У словаря нет номеров, как у списка: <code>prices[0]</code> ищет ключ <code>0</code> и не найдёт его. Обращайтесь по названию: <code>prices["хлеб"]</code>.</p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li>словарь — пары «ключ: значение» в фигурных скобках, значение находят по ключу;</li>
+      <li><code>d[ключ] = значение</code> добавляет или меняет, <code>.get(ключ, запасное)</code> не падает, если ключа нет;</li>
+      <li><code>for k, v in d.items():</code> перебирает пары, а список словарей хранит много записей.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Ваша программа</span></div>
+  <div class="code-head"><span>Пример 1. Прайс-лист</span></div>
   <pre><code>prices = {"хлеб": 200, "молоко": 450}
 
 print("Хлеб стоит", prices["хлеб"], "тенге")
 
 prices["сыр"] = 1500
-print(prices)</code></pre>
+prices["молоко"] = 500
+print(prices)
+
+print("Кофе:", prices.get("кофе", "нет в продаже"))
+
+for name, price in prices.items():
+    print(f"{name}: {price} тенге")</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 2. Ученики класса</span></div>
+  <pre><code>students = [
+    {"name": "Аружан", "city": "Алматы", "score": 92},
+    {"name": "Ерлан", "city": "Астана", "score": 78},
+    {"name": "Дана", "city": "Шымкент", "score": 85},
+]
+
+for student in students:
+    print(f"{student['name']} из города {student['city']}: {student['score']} баллов")
+
+best = 0
+for student in students:
+    if student["score"] &gt; best:
+        best = student["score"]
+print("Лучший результат:", best)</code></pre>
+</div>
+<article class="task" data-task="lesson-dicts" data-level="easy">
+<div class="task-head"><h3>Задание: сумма покупки</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Цены лежат в словаре <code>prices</code>. Напечатайте, сколько стоят два хлеба и одно молоко. Берите цены из словаря, а не пишите числа сами.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Решение: сумма покупки">prices = {"хлеб": 200, "молоко": 450, "сыр": 1500}
+# два хлеба и одно молоко
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Цена хлеба — <code>prices["хлеб"]</code>, цена молока — <code>prices["молоко"]</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> <code>print(2 * prices["хлеб"] + prices["молоко"])</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>prices = {"хлеб": 200, "молоко": 450, "сыр": 1500}
+print(2 * prices["хлеб"] + prices["молоко"])</code></pre></details>
+<template data-kind="tests">case('printed()', "850")</template>
+</article>
+<article class="task" data-task="lesson-dicts-2" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: подсчёт голосов</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Класс выбирал питомца для живого уголка. Голоса записаны в список <code>votes</code>. Заполните словарь <code>counts</code>: ключ — животное, значение — сколько за него проголосовали.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: подсчёт голосов">votes = ["кошка", "собака", "кошка", "попугай", "кошка", "собака"]
+counts = {}
+# переберите голоса и посчитайте каждый вариант
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Переберите список циклом: <code>for vote in votes:</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Сколько голосов уже есть у животного: <code>counts.get(vote, 0)</code>. Если его ещё нет, будет 0.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Прибавьте один голос: <code>counts[vote] = counts.get(vote, 0) + 1</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>votes = ["кошка", "собака", "кошка", "попугай", "кошка", "собака"]
+counts = {}
+for vote in votes:
+    counts[vote] = counts.get(vote, 0) + 1
+print(counts)</code></pre></details>
+<template data-kind="tests">case('counts', {"кошка": 3, "собака": 2, "попугай": 1})</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="6"> Урок пройден</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-errors">
+    <div class="lesson-text">
+      <h2>Урок 10. Ошибки: как их читать и ловить</h2>
+      <p><strong>Зачем.</strong> Ошибки бывают у всех, даже у опытных программистов. Пользователь вводит буквы вместо числа, нужной записи нет, пропал интернет. Хорошая программа в таких случаях не «падает», а спокойно объясняет, что не так.</p>
+      <p><strong>Как читать сообщение об ошибке.</strong> Python пишет несколько строк, и самая важная из них — <strong>последняя</strong>. В ней тип ошибки и короткое объяснение, например <code>ValueError: invalid literal for int()</code>. Строка с <code>line 3</code> показывает, где искать. На этом сайте под ошибкой ещё появляется подсказка «Что это значит».</p>
+      <p><strong>Ошибки, которые вы уже встречали:</strong></p>
+      <ul>
+      <li><code>SyntaxError</code> — код написан неправильно: нет кавычки, скобки, двоеточия;</li>
+      <li><code>NameError</code> — такого имени нет, часто это опечатка;</li>
+      <li><code>TypeError</code> — действие не подходит к типу, например текст плюс число;</li>
+      <li><code>IndexError</code> и <code>KeyError</code> — нет элемента с таким номером или ключом;</li>
+      <li><code>ValueError</code> — значение не подходит: <code>int("abc")</code>.</li>
+      </ul>
+      <p><strong>Поймать ошибку</strong> помогает <code>try</code> и <code>except</code>. Это значит: «попробуй сделать это, а если случится такая ошибка, сделай вот это». Программа при этом не остановится.</p>
+      <p><strong>Ловите конкретную ошибку:</strong> <code>except ValueError:</code>, а не все подряд. Иначе <code>except</code> спрячет и настоящую опечатку, и вы долго не поймёте, почему программа работает не так.</p>
+      <p><strong>Попробуйте:</strong> в первом примере добавьте в список свой ответ, например <code>"двадцать"</code>. Во втором поделите на ноль и посмотрите, что ответит функция.</p>
+      <details>
+        <summary>Частая ошибка: ловить вообще всё</summary>
+        <p>Пустой <code>except:</code> без названия ошибки поймает что угодно, даже опечатку в имени переменной. Программа «молча» сделает не то, и найти причину будет трудно. Всегда пишите, какую ошибку ждёте: <code>except ValueError:</code>.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: читать сообщение сверху</summary>
+        <p>Новички часто пугаются длинного сообщения и читают его первую строку. Начинайте с последней: там написано, что случилось, например
+          <code class="error-text">ValueError: invalid literal for int() with base 10: 'abc'</code>
+          Это значит «<code>'abc'</code> нельзя превратить в целое число».</p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li>в сообщении об ошибке главное — последняя строка: тип ошибки и объяснение;</li>
+      <li><code>try:</code> — попробовать, <code>except Тип:</code> — что делать, если случилась такая ошибка;</li>
+      <li>ловите конкретные ошибки, а не все сразу.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 1. Ответы из анкеты</span></div>
+  <pre><code>answers = ["16", "abc", "20", ""]
+
+for text in answers:
+    try:
+        age = int(text)
+        print("Возраст:", age)
+    except ValueError:
+        print(f"«{text}» — это не число, пропускаю")</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 2. Безопасное деление</span></div>
+  <pre><code>def divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        return "на ноль делить нельзя"
+
+print(divide(10, 4))
+print(divide(10, 0))</code></pre>
+</div>
+<article class="task" data-task="lesson-errors" data-level="easy">
+<div class="task-head"><h3>Задание: это число?</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>В переменной <code>text</code> записано то, что ввёл пользователь. Попробуйте превратить это в число и напечатать его. Если не получится, напечатайте <code>Это не число</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Решение: это число?">text = "12а"
+# используйте try и except ValueError
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Начните с <code>try:</code>, а внутри, с отступом, напишите <code>print(int(text))</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> <code>int()</code> не понимает букву «а», поэтому будет <code>ValueError</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Под <code>except ValueError:</code> напечатайте <code>"Это не число"</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>text = "12а"
+try:
+    print(int(text))
+except ValueError:
+    print("Это не число")</code></pre></details>
+<template data-kind="tests">case('printed()', "Это не число")</template>
+</article>
+<article class="task" data-task="lesson-errors-2" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: надёжный перевод в число</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Напишите функцию <code>safe_int(text, default=0)</code>. Она возвращает число из текста, а если текст не число — возвращает <code>default</code>. Например, <code>safe_int("42")</code> даёт <code>42</code>, а <code>safe_int("abc")</code> даёт <code>0</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Решение: надёжный перевод в число">def safe_int(text, default=0):
+    # попробуйте int(text), а при ValueError верните default
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Внутри функции: <code>try:</code> и под ним <code>return int(text)</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Под <code>except ValueError:</code> напишите <code>return default</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def safe_int(text, default=0):
+    try:
+        return int(text)
+    except ValueError:
+        return default</code></pre></details>
+<template data-kind="tests">case('safe_int("42")', 42)
+case('safe_int("abc")', 0)
+case('safe_int("")', 0)
+case('safe_int("x", -1)', -1)
+case('safe_int(" 7 ")', 7)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="errors"> Урок пройден</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-modules">
+    <div class="lesson-text">
+      <h2>Урок 11. Модули: готовые инструменты</h2>
+      <p><strong>Зачем.</strong> Не нужно писать всё самому. Вместе с Python идёт целая библиотека готовых инструментов: случайные числа, математика, даты. Эти наборы называются <strong>модулями</strong>.</p>
+      <p><strong>Как подключить.</strong> Модуль подключают командой <code>import</code> в начале программы: <code>import random</code>. После этого его инструменты доступны через точку: <code>random.randint(1, 6)</code>.</p>
+      <p><strong>Взять одну вещь</strong> можно так: <code>from datetime import date</code>. Тогда пишут просто <code>date</code>, без названия модуля.</p>
+      <p><strong>Три полезных модуля:</strong></p>
+      <ul>
+      <li><code>random</code> — случайности: <code>randint(1, 6)</code> бросает кубик, <code>choice(список)</code> выбирает случайный элемент;</li>
+      <li><code>math</code> — математика: <code>sqrt(16)</code> — квадратный корень, <code>pi</code> — число π;</li>
+      <li><code>datetime</code> — даты: <code>date.today()</code> — сегодняшняя дата, а разность двух дат показывает, сколько между ними дней.</li>
+      </ul>
+      <p><strong>Модули из интернета.</strong> Кроме встроенных, есть тысячи модулей от других людей, их называют пакетами. Их устанавливают командой <code>pip install</code>. Так ставят Flask и Django, об этом расскажем в первом проекте.</p>
+      <p><strong>Попробуйте:</strong> запустите первый пример несколько раз: ответы будут разными. Во втором поменяйте дату события на свой день рождения.</p>
+      <details>
+        <summary>Частая ошибка: забыли import</summary>
+        <p>Если сразу написать <code>random.randint(1, 6)</code>, не подключив модуль, Python его не знает и даже подскажет, в чём дело:
+          <code class="error-text">NameError: name 'random' is not defined. Did you forget to import 'random'?</code>
+          Добавьте <code>import random</code> в начало программы.</p>
+      </details>
+      <details>
+        <summary>Частая ошибка: опечатка в названии модуля</summary>
+        <p>Название модуля должно быть точным. <code>import randon</code> закончится ошибкой:
+          <code class="error-text">ModuleNotFoundError: No module named 'randon'</code></p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li>модуль — набор готовых инструментов, его подключают через <code>import</code>;</li>
+      <li><code>import random</code> и <code>random.randint()</code>, или <code>from datetime import date</code> и просто <code>date</code>;</li>
+      <li>встроенные модули идут с Python, остальные ставят через <code>pip install</code>.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 1. Кубик и жребий</span></div>
+  <pre><code>import random
+import math
+
+print("Выпало на кубике:", random.randint(1, 6))
+
+students = ["Аружан", "Ерлан", "Дана", "Марат"]
+print("Отвечать идёт:", random.choice(students))
+
+print("Корень из 144:", math.sqrt(144))
+print("Число пи:", round(math.pi, 4))</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Пример 2. Сколько дней осталось</span></div>
+  <pre><code>from datetime import date
+
+today = date.today()
+new_year = date(today.year + 1, 1, 1)
+
+print("Сегодня:", today)
+print("До Нового года дней:", (new_year - today).days)</code></pre>
+</div>
+<article class="task" data-task="lesson-modules" data-level="easy">
+<div class="task-head"><h3>Задание: квадратный корень</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Подключите модуль <code>math</code> и напечатайте квадратный корень из 144 с помощью <code>math.sqrt</code>.</p>
+<textarea class="editor-area" rows="3" spellcheck="false" aria-label="Решение: квадратный корень"># подключите math и напечатайте корень из 144
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Первая строка: <code>import math</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Вторая: <code>print(math.sqrt(144))</code>. Ответ будет дробным: <code>12.0</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>import math
+print(math.sqrt(144))</code></pre></details>
+<template data-kind="tests">case('printed()', "12.0")
+case('math.sqrt(4)', 2.0)</template>
+</article>
+<article class="task" data-task="lesson-modules-2" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: дни учёбы</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Учебный год начинается 1 сентября 2026 года, а заканчивается 25 мая 2027 года. Напечатайте, сколько дней между этими датами.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Решение: дни учёбы">from datetime import date
+
+start = date(2026, 9, 1)
+end = date(2027, 5, 25)
+# напечатайте число дней между датами
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 2</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Даты можно вычитать: <code>end - start</code>. Получится промежуток времени.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Число дней в промежутке — <code>.days</code>: <code>print((end - start).days)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>from datetime import date
+
+start = date(2026, 9, 1)
+end = date(2027, 5, 25)
+print((end - start).days)</code></pre></details>
+<template data-kind="tests">case('printed()', "266")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="modules"> Урок пройден</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-7">
     <div class="lesson-text">
-      <h2>Урок 7. Как это связано с сайтами</h2>
-      <p>Вы уже знаете всё, чтобы понять главное. Адрес в браузере выбирает функцию, а функция возвращает страницу.</p>
-      <p>Ниже маленький сайт, собранный из того, что вы только что прошли: функций и словаря.</p>
-      <p>Второй пример делает то же самое на Flask. Это готовый инструмент для сайтов: строка <code>@app.route</code> говорит, какой адрес открывает эту функцию.</p>
-      <p><strong>Попробуйте:</strong> поменяйте адрес на "/" и запустите снова.</p>
+      <h2>Урок 12. Как это связано с сайтами</h2>
+      <p><strong>Зачем.</strong> Вы прошли основы Python. Теперь соединим их: посмотрим, как из этих кирпичиков получается сайт.</p>
+      <p><strong>Как работает сайт.</strong> Вы набираете адрес в браузере, и браузер отправляет <strong>запрос</strong> на сервер. Сервер — это компьютер, на котором работает программа, например на Python. Она смотрит на адрес, выбирает нужную функцию, и та возвращает <strong>ответ</strong>: текст страницы. Подробнее — на странице <a href="about.html">«Как работает сайт»</a>.</p>
+      <p><strong>Где здесь ваши уроки:</strong></p>
+      <ul>
+      <li><strong>функции</strong> — каждая страница сайта: функция получает запрос и возвращает страницу;</li>
+      <li><strong>словарь</strong> — «адрес → функция»: так сайт выбирает, что показать;</li>
+      <li><strong>f-строки</strong> — подставляют данные в страницу: «Привет, {name}!»;</li>
+      <li><strong>списки и циклы</strong> — лента записей, список задач, товары в каталоге;</li>
+      <li><strong>условия</strong> — вошёл ли пользователь, правильный ли пароль;</li>
+      <li><strong>ошибки</strong> — страница «404: не найдено» вместо падения сайта;</li>
+      <li><strong>модули</strong> — Flask и Django, готовые инструменты для сайтов.</li>
+      </ul>
+      <p><strong>Flask.</strong> Во втором примере тот же сайт на Flask. Строка <code>@app.route("/")</code> говорит: «этот адрес открывает эту функцию». По сути это тот же словарь адресов, только Flask заводит его за вас.</p>
+      <p><strong>Попробуйте:</strong> в первом примере поменяйте адрес на <code>"/"</code>, потом на <code>"/tasks"</code>, потом на несуществующий. Добавьте в список своё дело.</p>
+      <details>
+        <summary>Частая ошибка: нет такой страницы</summary>
+        <p>Если открыть адрес, которого нет в словаре, <code>pages[address]</code> упадёт с <code>KeyError</code>. Настоящий сайт так не делает: он показывает страницу «404: не найдено». В примере это делает <code>pages.get(address, not_found)</code>.</p>
+      </details>
+      <p><strong>Коротко:</strong></p>
+      <ul>
+      <li>сайт — программа: получает адрес и возвращает страницу;</li>
+      <li>страницы — функции, адреса — ключи словаря, данные подставляются f-строками;</li>
+      <li>Flask и Django делают то же самое, только удобнее; дальше вы соберёте на них <a href="project.html">первый проект</a>.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Сайт из функций и словаря</span></div>
-  <pre><code>def home():
+  <div class="code-head"><span>Пример 1. Сайт из функций и словаря</span></div>
+  <pre><code>tasks = ["купить хлеб", "сделать уроки"]
+
+def home():
     return "Главная страница"
 
-def contacts():
-    return "Наши контакты"
+def task_list():
+    lines = ""
+    for task in tasks:
+        lines += f"- {task}\n"
+    return f"Мои дела ({len(tasks)}):\n{lines}"
 
-pages = {"/": home, "/contacts": contacts}
+def not_found():
+    return "404: страница не найдена"
 
-address = "/contacts"
+pages = {"/": home, "/tasks": task_list}
+
+address = "/tasks"
 print("Вы открыли:", address)
-print("Сайт ответил:", pages[address]())</code></pre>
+print(pages.get(address, not_found)())</code></pre>
 </div>
 <div class="code-block" data-run="python" data-open>
   <div class="code-head"><span>То же самое на Flask</span></div>
@@ -284,6 +1338,79 @@ def home():
 
 print("Сайт ответил:", app.test_client().get("/").text)</code></pre>
 </div>
+<article class="task" data-task="lesson-web" data-level="easy">
+<div class="task-head"><h3>Задание: новая страница</h3><span class="level level-easy"><span class="visually-hidden">Уровень: </span>Лёгкая</span></div>
+<p>Добавьте на сайт страницу «О нас». Напишите функцию <code>about()</code>, которая возвращает <code>О нас</code>, и добавьте её в словарь <code>pages</code> по адресу <code>"/about"</code>.</p>
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Решение: новая страница">def home():
+    return "Главная страница"
+
+# напишите функцию about()
+
+pages = {"/": home}
+# добавьте "/about" в словарь
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Функция как <code>home</code>: <code>def about():</code> и под ней <code>return "О нас"</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> В словарь кладут саму функцию, <strong>без</strong> скобок: <code>pages["/about"] = about</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Проверить себя можно так: <code>print(pages["/about"]())</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def home():
+    return "Главная страница"
+
+def about():
+    return "О нас"
+
+pages = {"/": home}
+pages["/about"] = about</code></pre></details>
+<template data-kind="tests">case('pages["/about"]()', "О нас")
+case('pages["/"]()', "Главная страница")</template>
+</article>
+<article class="task" data-task="lesson-web-2" data-level="medium">
+<div class="task-head"><h3>Задание посложнее: ответ сервера</h3><span class="level level-medium"><span class="visually-hidden">Уровень: </span>Средняя</span></div>
+<p>Напишите функцию <code>handle(address)</code>, как у настоящего сервера. Если адрес есть в словаре <code>pages</code>, она вызывает нужную функцию и возвращает её ответ. Если адреса нет, возвращает <code>404: страница не найдена</code>.</p>
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Решение: ответ сервера">def home():
+    return "Главная страница"
+
+def contacts():
+    return "Наши контакты"
+
+pages = {"/": home, "/contacts": contacts}
+
+def handle(address):
+    # верните ответ страницы или текст 404
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Проверить</button><button class="btn btn-secondary" type="button" data-reset>Сбросить</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Подсказка 1 / 3</button>
+<ol class="hint-list" aria-label="Подсказки" aria-live="polite">
+<li hidden tabindex="-1"><strong>Подсказка 1.</strong> Проверьте адрес словом <code>in</code>: <code>if address in pages:</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 2.</strong> Достаньте функцию и сразу вызовите её: <code>return pages[address]()</code>.</li>
+<li hidden tabindex="-1"><strong>Подсказка 3.</strong> Иначе: <code>return "404: страница не найдена"</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Показать решение</summary><pre><code>def home():
+    return "Главная страница"
+
+def contacts():
+    return "Наши контакты"
+
+pages = {"/": home, "/contacts": contacts}
+
+def handle(address):
+    if address in pages:
+        return pages[address]()
+    return "404: страница не найдена"</code></pre></details>
+<template data-kind="tests">case('handle("/")', "Главная страница")
+case('handle("/contacts")', "Наши контакты")
+case('handle("/nope")', "404: страница не найдена")
+case('handle("")', "404: страница не найдена")</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="7"> Урок пройден</label>
     </div>
   </li>

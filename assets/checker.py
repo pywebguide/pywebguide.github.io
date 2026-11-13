@@ -4,6 +4,9 @@
 #     case('greet("Анна")', "Привет, Анна!", "подсказка")
 # Первый аргумент — выражение, которое вычисляется в коде ученика, второй — ожидаемый ответ.
 # Если ответ не совпал, ученик видит выражение, ожидаемый и полученный результат.
+# Что программа напечатала, возвращает printed(): case('printed()', "Привет!") — для первых уроков,
+# где ученик знает print, но ещё не знает функций.
+import sys
 
 LABELS = {
     "ru": ("Проверка", "Ожидалось", "Получено", "Подсказка", "ошибка"),
@@ -21,7 +24,24 @@ def check(code, tests, lang="ru"):
     # exec и eval здесь намеренно: это код самого ученика и тесты с сайта, всё выполняется
     # в его браузере (Pyodide) или в CI, чужие данные сюда не попадают
     ns: dict[str, object] = {"__name__": "__main__"}
-    exec(compile(code, "<code>", "exec"), ns)
+    # Вывод ученика копируется: на экран он попадает как обычно, а копия нужна printed()
+    printed_parts = []
+    real_stdout = sys.stdout
+
+    class Copy:
+        def write(self, text):
+            printed_parts.append(text)
+            return real_stdout.write(text)
+
+        def flush(self):
+            real_stdout.flush()
+
+    sys.stdout = Copy()
+    try:
+        exec(compile(code, "<code>", "exec"), ns)
+    finally:
+        sys.stdout = real_stdout
+    ns["printed"] = lambda: "".join(printed_parts).rstrip("\n")
 
     def case(expr, expected, hint=""):
         try:
