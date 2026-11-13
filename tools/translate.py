@@ -327,6 +327,56 @@ def add(lang, path):
     return 1 if problems else 0
 
 
+# Код примеров, заготовки заданий и тесты (<pre><code>, <textarea>, <template data-kind="tests">) при переводе
+# текста пропускаются. Если в коде есть русские строки, его переводят целиком: tools/i18n/code-<язык>.json,
+# ключ — точное содержимое блока на русской странице, значение — то же на языке перевода. Блок без записи
+# остаётся как есть. В переводе заготовка, решение и тесты задания должны согласоваться (check_tasks это проверяет).
+CODE_BLOCKS = [re.compile(r"(<pre><code>)(.*?)(</code></pre>)", re.S),
+               re.compile(r"(<textarea\b[^>]*>)(.*?)(</textarea>)", re.S),
+               re.compile(r'(<template data-kind="tests">)(.*?)(</template>)', re.S)]
+
+
+def load_code(lang):
+    path = MEMORY / f"code-{lang}.json"
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+
+
+def apply_code(page, lang):
+    code = load_code(lang)
+    if not code:
+        return page
+    for pattern in CODE_BLOCKS:
+        page = pattern.sub(lambda m: m.group(1) + code.get(m.group(2), m.group(2)) + m.group(3), page)
+    return page
+
+
+def code_missing(lang, slugs):
+    """Блоки кода с русскими буквами, у которых нет перевода -> tools/i18n/todo-code-<язык>.json."""
+    code = load_code(lang)
+    seen = []
+    for slug in slugs:
+        source = (ROOT / slug).read_text(encoding="utf-8")
+        for pattern in CODE_BLOCKS:
+            for m in pattern.finditer(source):
+                block = m.group(2)
+                if CYRILLIC.search(block) and block not in code and block not in seen:
+                    seen.append(block)
+    items = {str(i): block for i, block in enumerate(seen, 1)}
+    (MEMORY / f"todo-code-{lang}.json").write_text(json.dumps(items, ensure_ascii=False, indent=0) + "\n", encoding="utf-8", newline="\n")
+    return items
+
+
+def code_add(lang, path):
+    items = json.loads((MEMORY / f"todo-code-{lang}.json").read_text(encoding="utf-8"))
+    given = json.loads(Path(path).read_text(encoding="utf-8"))
+    code = load_code(lang)
+    for number, value in given.items():
+        code[items[str(number)]] = value
+    (MEMORY / f"code-{lang}.json").write_text(json.dumps(code, ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline="\n")
+    print(f"Добавлено блоков кода: {len(given)}, всего: {len(code)}")
+    return 0
+
+
 def seed():
     """Пары «русский — перевод» из страниц, которые уже переведены вручную (одинаковая структура)."""
     for lang in ("kk", "en"):
@@ -399,6 +449,12 @@ def main():
         return 0
     if command == "add":
         return add(args[1], args[2])
+    if command == "code-missing":
+        items = code_missing(args[1], args[2:])
+        print(f"Блоков кода без перевода: {len(items)} -> tools/i18n/todo-code-{args[1]}.json")
+        return 0
+    if command == "code-add":
+        return code_add(args[1], args[2])
     if command == "build":
         lang = args[1]
         for slug in args[2:]:
