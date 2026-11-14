@@ -82,6 +82,14 @@ html[lang="kk"] {
   --mono: "Fira Code", "JetBrains Mono", Consolas, "Courier New", monospace; /* taste-skill-ignore: моноширинный шрифт только для кода */
 }
 
+/* Название сайта — латиница, казахские буквы ему не нужны: на всех языках тот же шрифт, что в русской версии */
+html[lang="kk"] .mark,
+html[lang="kk"] .mark span,
+html[lang="kk"] .brand,
+html[lang="kk"] .cert-brand {
+  font-family: "Sofia Sans Extra Condensed", Impact, "Arial Narrow", "Roboto Condensed", sans-serif;
+}
+
 :root[data-theme="dark"] {
   --bg: #0d0d0d;
   --text: #f5f5f5;
