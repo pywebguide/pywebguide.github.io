@@ -1,0 +1,317 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из setup.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Компьютерді дайындау: Python, VS Code және терминал — PyWeb Guide</title>
+
+  <meta name="description" content="Flask немесе Django-дағы алғашқы жобаға дейін Windows, macOS және Linux жүйелеріне Python мен VS Code-ты қалай орнатуға және терминалды меңгеруге болады.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/setup.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/setup.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/setup.html">
+  <link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/setup.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/setup.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Компьютерді дайындау: Python, VS Code және терминал — PyWeb Guide">
+  <meta property="og:description" content="Flask немесе Django-дағы алғашқы жобаға дейін Windows, macOS және Linux жүйелеріне Python мен VS Code-ты қалай орнатуға және терминалды меңгеруге болады.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/setup.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffd249">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="yellow" id="top" data-no-toc>
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="course.html">Бүкіл курс</a></li>
+          <li><a class="nav-link" href="project.html">Алғашқы жоба</a></li>
+          <li><a class="nav-link" href="playground.html">Құмсалғыш</a></li>
+          <li><a class="nav-link" href="glossary.html">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">Python туралы</a></li>
+              <li><a href="frameworks.html">Фреймворктер</a></li>
+              <li><a href="databases.html">Дерекқорлар</a></li>
+              <li><a href="templates.html">Үлгілер мен формалар</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Тесттер</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="setup.html" aria-current="page">Компьютерді дайындау</a></li>
+              <li><a href="project2.html">Екінші жоба</a></li>
+              <li><a href="deploy.html">Жариялау</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Есептер</a></li>
+              <li><a href="cheatsheet.html">Қысқаша анықтама</a></li>
+              <li><a href="exam.html">Қорытынды тест</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="progress.html">Менің прогресім</a></li>
+              <li><a href="contacts.html">Байланыс</a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../setup.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="setup.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/setup.html" hreflang="en" lang="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Навигациялық тізбек">
+<a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Компьютерді дайындау</span>
+</nav>
+<h1>Компьютерді дайындау</h1>
+<p class="lead">Алғашқы жобаға дейінгі екі сабақ: Python мен код редакторын қалай орнату керек және терминалдан қалай қорықпау керек. Командалар Windows үшін және macOS пен Linux үшін берілген, өз жүйеңізді таңдаңыз.</p>
+<p class="note">Бір нәрсе шықпаса, алғашқы жобаның <a href="project.html#errors-title">жиі кездесетін қателерін</a> қараңыз. Таныс емес сөздер <a href="glossary.html">сөздікте</a> бар.</p>
+<div class="progress-box" data-progress="setup">
+  <p class="progress-label" role="status" aria-live="polite">2 сабақтың <span data-progress-count>0</span> өтілді</p>
+  <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
+  <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Прогресті тастау</button>
+</div>
+<img class="band-picture" src="../assets/img/ibm-704.webp" width="900" height="713" alt="NACA зертханасының қызметкерлері IBM 704 есептеу машинасымен жұмыс істеп жатыр, 1957 жыл" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" aria-label="Сабақтар">
+<div class="container">
+<ol class="project-steps" data-progress-list="setup">
+  <li class="project-step lesson" id="setup-1">
+    <div class="lesson-text">
+      <h2>1-сабақ. Python мен код редакторын орнату</h2>
+      <p><strong>Не үшін.</strong> Сабақтарда код тікелей браузерде жұмыс істеді. Ал Flask немесе Django-дағы өз сайтыңызды өз компьютеріңізде іске қосасыз. Ол үшін екі бағдарлама керек: Python-ның өзі және код жазуға ыңғайлы редактор.</p>
+      <p><strong>Python.</strong> Орнатушыны ресми <a href="https://www.python.org/downloads/" rel="noopener">python.org</a> сайтынан жүктеңіз, 3.12 немесе одан жаңа нұсқасын. Тек сол жерден жүктеңіз: басқа сайттарда Python деп вирус беріп жіберуі мүмкін.</p>
+      <p><strong>Windows-тағы ең маңызды нәрсе.</strong> Орнатушының бірінші экранында <strong>«Add python.exe to PATH»</strong> белгісін қойыңыз, содан кейін «Install Now» батырмасын басыңыз. Бұл белгісіз терминалдағы <code>python</code> командасы жұмыс істемейді.</p>
+      <p><strong>macOS-та</strong> Python-ды сол сайттағы орнатушымен орнатыңыз. <strong>Linux-та</strong> ол әдетте бұрыннан бар: төмендегі командамен тексеріңіз.</p>
+      <p><strong>Орнатуды тексеріңіз.</strong> Терминалды ашыңыз (мұны қалай істеу — келесі сабақта) және өз жүйеңіздің қойындысындағы команданы орындаңыз. Нұсқа шығуы керек, мысалы <code>Python 3.13.1</code>.</p>
+      <p><strong>Код редакторы.</strong> Ыңғайлы тегін редактор — <a href="https://code.visualstudio.com/" rel="noopener">Visual Studio Code</a>. Орнатқаннан кейін ондағы кеңейтімдер бөлімін ашыңыз (сол жақтағы төрт шаршы белгісі) және Microsoft-тың <strong>Python</strong> кеңейтімін орнатыңыз. Ол кодты түрлі түспен бөліп, қателерді көрсетеді.</p>
+      <p><strong>Компьютердегі алғашқы бағдарлама.</strong> Бос бума жасаңыз, мысалы <code>pyweb</code>, және оны VS Code-та ашыңыз: «File → Open Folder». <code>hello.py</code> файлын жасап, <code>print("Менің компьютерімнен сәлем!")</code> деп жазыңыз да, оң жақ жоғарыдағы ▶ үшбұрышын басыңыз. Нәтиже төменде, терминалда пайда болады.</p>
+      <details>
+        <summary>Жиі қате: «Python was not found»</summary>
+        <p>Windows-та <code>python</code> командасы Microsoft Store-ды ашады немесе мынаны жазады: <code class="error-text">Python was not found; run without arguments to install from the Microsoft Store…</code> Демек, орнату кезінде PATH белгісі қойылмаған. Орнатушыны қайта іске қосып, «Modify» таңдаңыз да, «Add Python to environment variables» белгісін қойыңыз. Немесе <code>python</code> орнына <code>py</code> командасын қолданыңыз: ол Python-мен бірге орнатылады.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: macOS-тағы «command not found: python»</summary>
+        <p>macOS пен Linux-та команда көбіне <code>python</code> емес, <code>python3</code> деп аталады. <code>python3 --version</code> және <code>python3 hello.py</code> деп жазыңыз.</p>
+      </details>
+      <p><strong>Өзіңізді тексеріңіз:</strong></p>
+      <ul>
+      <li>төмендегі қойындыдағы команда 3.12 немесе одан жаңа нұсқаны көрсетеді;</li>
+      <li>VS Code-та Python кеңейтімі орнатылған;</li>
+      <li><code>hello.py</code> файлы іске қосылып, сәлемдесу сөзін шығарады.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="os-tabs" data-os-tabs>
+  <div class="os-tablist" role="tablist" aria-label="Компьютер жүйесі" hidden>
+    <button type="button" role="tab" data-os="win">Windows</button>
+    <button type="button" role="tab" data-os="unix">macOS және Linux</button>
+  </div>
+  <div role="tabpanel" data-os-panel="win">
+    <p class="os-caption">Windows (PowerShell немесе пәрмен жолы)</p>
+    <div class="code-block">
+      <div class="code-head">
+        <span>Терминал: нұсқаны тексеру</span>
+        <button class="copy-btn" type="button">Көшіру</button>
+      </div>
+      <pre><code>python --version
+py --version</code></pre>
+    </div>
+  </div>
+  <div role="tabpanel" data-os-panel="unix">
+    <p class="os-caption">macOS және Linux (Терминал)</p>
+    <div class="code-block">
+      <div class="code-head">
+        <span>Терминал: нұсқаны тексеру</span>
+        <button class="copy-btn" type="button">Көшіру</button>
+      </div>
+      <pre><code>python3 --version</code></pre>
+    </div>
+  </div>
+</div>
+<div class="code-block">
+  <div class="code-head">
+    <span>hello.py файлы</span>
+    <button class="copy-btn" type="button">Көшіру</button>
+  </div>
+  <pre><code>print("Менің компьютерімнен сәлем!")
+print("Python жұмыс істеп тұр.")</code></pre>
+</div>
+      <label class="step-check"><input type="checkbox" data-step="s1"> Сабақ өтілді</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="setup-2">
+    <div class="lesson-text">
+      <h2>2-сабақ. Терминалдан қорықпаңыз</h2>
+      <p><strong>Не үшін.</strong> Бағдарламашылар компьютерді көбіне тінтуірмен емес, командалармен басқарады: кітапханаларды орнатады, серверді іске қосады, жобалар жасайды. Мұның бәрі <strong>терминалда</strong> істеледі. Алғашқы жобада ол бірінші қадамнан бастап керек болады.</p>
+      <p><strong>Терминал деген не.</strong> Бұл — команданы сөзбен жазып, Enter басатын терезе, ал компьютер оны орындап, жауап жазады. Онымен компьютерді абайсызда бұзу өте қиын: осы курстағы командалар қауіпсіз.</p>
+      <p><strong>Қалай ашуға болады.</strong> Ең оңайы — тікелей VS Code-та: «Terminal → New Terminal» мәзірі немесе <kbd>Ctrl</kbd> + <kbd>`</kbd> пернелері. Бөлек: Windows-та «Пуск» батырмасын басып, «PowerShell» деп теріңіз, macOS-та «Терминал» бағдарламасын ашыңыз.</p>
+      <p><strong>Сіз қай жердесіз.</strong> Терминал әрқашан қандай да бір бумада жұмыс істейді, оның жолы жолдың басында жазылған. Командалар дәл сол жерде орындалады. Бағдарлама «файлды таппаса», көбіне сіз жай ғана басқа бумадасыз.</p>
+      <p><strong>Бес негізгі команда:</strong></p>
+      <ul>
+      <li><code>cd бума</code> — бумаға өту, <code>cd ..</code> — бір деңгей жоғары көтерілу;</li>
+      <li><code>ls</code> (ескі Windows командалық жолында — <code>dir</code>) — бумадағы файлдарды көрсету;</li>
+      <li><code>mkdir атау</code> — бума жасау;</li>
+      <li><code>python hello.py</code> — бағдарламаны іске қосу (macOS-та — <code>python3</code>);</li>
+      <li><kbd>Ctrl</kbd> + <kbd>C</kbd> — жұмыс істеп тұрған бағдарламаны, мысалы серверді тоқтату.</li>
+      </ul>
+      <p><strong>Уақытты үнемдейтін екі кеңес.</strong> Жоғары бағыттауыш алдыңғы команданы қайтарады, оны қайта терудің қажеті жоқ. <kbd>Tab</kbd> пернесі файлдың немесе буманың атауын алғашқы әріптері бойынша толықтырады.</p>
+      <details>
+        <summary>Жиі қате: файл табылмады</summary>
+        <p><code>python hello.py</code> командасы мынадай жауап береді: <code class="error-text">can't open file 'hello.py': [Errno 2] No such file or directory</code> Демек, сіз басқа бумадасыз. Файлдарды <code>ls</code> командасымен қарап, <code>cd</code> арқылы керек бумаға өтіңіз. VS Code-та терминал бірден жоба бумасында ашылады.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: бума атауындағы бос орындар</summary>
+        <p><code>cd Менің жобаларым</code> жұмыс істемейді: терминал мұны екі бөлек бөлік деп ойлайды. Жолды тырнақшаға алыңыз: <code>cd "Менің жобаларым"</code>. Ал ең дұрысы — жоба бумаларын бос орынсыз және латын әріптерімен атаңыз: <code>my-site</code>.</p>
+      </details>
+      <p><strong>Өзіңізді тексеріңіз:</strong></p>
+      <ul>
+      <li>VS Code-та терминалды ашып, буманың жолын көріп тұрсыз;</li>
+      <li><code>mkdir</code> командасымен бума жасап, оған <code>cd</code> арқылы өттіңіз;</li>
+      <li><code>hello.py</code> файлын батырмамен емес, терминалдағы командамен іске қостыңыз.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="os-tabs" data-os-tabs>
+  <div class="os-tablist" role="tablist" aria-label="Компьютер жүйесі" hidden>
+    <button type="button" role="tab" data-os="win">Windows</button>
+    <button type="button" role="tab" data-os="unix">macOS және Linux</button>
+  </div>
+  <div role="tabpanel" data-os-panel="win">
+    <p class="os-caption">Windows (PowerShell)</p>
+    <div class="code-block">
+      <div class="code-head">
+        <span>Терминал: алғашқы қадамдар</span>
+        <button class="copy-btn" type="button">Көшіру</button>
+      </div>
+      <pre><code>mkdir my-site
+cd my-site
+ls
+python hello.py
+cd ..</code></pre>
+    </div>
+  </div>
+  <div role="tabpanel" data-os-panel="unix">
+    <p class="os-caption">macOS және Linux (Терминал)</p>
+    <div class="code-block">
+      <div class="code-head">
+        <span>Терминал: алғашқы қадамдар</span>
+        <button class="copy-btn" type="button">Көшіру</button>
+      </div>
+      <pre><code>mkdir my-site
+cd my-site
+ls
+python3 hello.py
+cd ..</code></pre>
+    </div>
+  </div>
+</div>
+<p class="note">Өткен сабақтағы <code>hello.py</code> файлын <code>my-site</code> бумасына салыңыз, әйтпесе іске қосу командасы оны таппайды. Дәл осы — осы сабақтағы «жиі қате».</p>
+      <label class="step-check"><input type="checkbox" data-step="s2"> Сабақ өтілді</label>
+    </div>
+  </li>
+</ol>
+</div>
+</section>
+<section class="section" aria-labelledby="next-title">
+<div class="container">
+<div class="cta-panel">
+  <div>
+    <h2 id="next-title">Әрі қарай не бар</h2>
+    <p class="lead cta-lead">Компьютер дайын. Енді алғашқы сайтты жасауға болады: Flask немесе Django-дағы тапсырмалар тізімі.</p>
+  </div>
+  <div class="cta-actions">
+    <a class="btn btn-primary" href="project.html">Алғашқы жоба</a> <a class="btn btn-secondary" href="../html-css.html" hreflang="ru">HTML және CSS</a>
+  </div>
+</div>
+</div>
+</section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="../html-css.html" hreflang="ru">HTML және CSS <span class="ru-mark">(RU)</span></a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="playground.html">Құмсалғыш</a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="about.html">Python туралы</a></li><li><a href="frameworks.html">Фреймворктер</a></li><li><a href="databases.html">Дерекқорлар</a></li><li><a href="templates.html">Үлгілер мен формалар</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесттер</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="setup.html">Компьютерді дайындау</a></li><li><a href="project.html">Алғашқы жоба</a></li><li><a href="project2.html">Екінші жоба</a></li><li><a href="deploy.html">Жариялау</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Есептер</a></li><li><a href="cheatsheet.html">Қысқаша анықтама</a></li><li><a href="exam.html">Қорытынды тест</a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="course.html">Бүкіл курс</a></li><li><a href="progress.html">Менің прогресім</a></li><li><a href="contacts.html">Байланыс</a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-11">11.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Сурет: <a href="https://www.rawpixel.com/image/13959871/image-paper-cartoon-art" rel="noopener">жыландар бейнеленген гравюра, rawpixel, CC0</a>.</p>
+      <p class="note footer-note"><a href="privacy.html">Құпиялылық саясаты</a> · <a href="terms.html">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="contacts.html#no-github">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>

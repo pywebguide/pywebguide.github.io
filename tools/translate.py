@@ -290,6 +290,7 @@ def build(lang, slug, memory=None, write=True):
                       lambda m: "<!-- tasks:start -->\n" + build_practice.build(lang) + "\n<!-- tasks:end -->", page, flags=re.S)
     if "assets/i18n.js" not in page:
         page = page.replace('  <script src="../script.js"></script>', '  <script src="../assets/i18n.js"></script>\n  <script src="../script.js"></script>', 1)
+    page = apply_code(page, lang)
     if write:
         (ROOT / lang / slug).write_text(page, encoding="utf-8", newline="\n")
     return page, []

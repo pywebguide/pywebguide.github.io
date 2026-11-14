@@ -1,0 +1,316 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из setup.html. Правьте tools/i18n/en.json, а не этот файл. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Setting up your computer: Python, VS Code and the terminal — PyWeb Guide</title>
+
+  <meta name="description" content="How to install Python and VS Code on Windows, macOS and Linux and get comfortable with the terminal before your first Flask or Django project.">
+  <link rel="canonical" href="https://pywebguide.github.io/en/setup.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/setup.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/setup.html">
+  <link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/setup.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/setup.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Setting up your computer: Python, VS Code and the terminal — PyWeb Guide">
+  <meta property="og:description" content="How to install Python and VS Code on Windows, macOS and Linux and get comfortable with the terminal before your first Flask or Django project.">
+  <meta property="og:url" content="https://pywebguide.github.io/en/setup.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide poster: your first website with Python, a free course for people who have never programmed">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffd249">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/sofia-sans-extra-condensed-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="yellow" id="top" data-no-toc>
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">From scratch</a></li>
+          <li><a class="nav-link" href="course.html">Full course</a></li>
+          <li><a class="nav-link" href="project.html">First project</a></li>
+          <li><a class="nav-link" href="playground.html">Sandbox</a></li>
+          <li><a class="nav-link" href="glossary.html">Glossary</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">More <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Understand</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">About Python</a></li>
+              <li><a href="frameworks.html">Frameworks</a></li>
+              <li><a href="databases.html">Databases</a></li>
+              <li><a href="templates.html">Templates and forms</a></li>
+              <li><a href="auth.html">Authentication</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Testing</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Build</p><ul aria-labelledby="nav-group-2">
+              <li><a href="setup.html" aria-current="page">Setting up your computer</a></li>
+              <li><a href="project2.html">Second project</a></li>
+              <li><a href="deploy.html">Deployment</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Practice</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Exercises</a></li>
+              <li><a href="cheatsheet.html">Cheat sheet</a></li>
+              <li><a href="exam.html">Final test</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Site</p><ul aria-labelledby="nav-group-4">
+              <li><a href="progress.html">My progress</a></li>
+              <li><a href="contacts.html">Contact</a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Site language">
+            <a href="../setup.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="../kk/setup.html" hreflang="kk" lang="kk">ҚАЗ</a>
+            <a href="setup.html" hreflang="en" lang="en" aria-current="true">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Light theme">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Breadcrumb">
+<a href="index.html">Home</a> <span aria-hidden="true">/</span> <span>Setting up your computer</span>
+</nav>
+<h1>Setting up your computer</h1>
+<p class="lead">Two lessons before your first project: how to install Python and a code editor, and how to stop being afraid of the terminal. Commands are given for Windows and for macOS with Linux, pick your system.</p>
+<p class="note">If something doesn't work, check the <a href="project.html#errors-title">common errors</a> of the first project. Unfamiliar words are in the <a href="glossary.html">glossary</a>.</p>
+<div class="progress-box" data-progress="setup">
+  <p class="progress-label" role="status" aria-live="polite"><span data-progress-count>0</span> of 2 lessons done</p>
+  <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
+  <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Reset progress</button>
+</div>
+<img class="band-picture" src="../assets/img/ibm-704.webp" width="900" height="713" alt="NACA laboratory staff working with an IBM 704 computer, 1957" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" aria-label="Lessons">
+<div class="container">
+<ol class="project-steps" data-progress-list="setup">
+  <li class="project-step lesson" id="setup-1">
+    <div class="lesson-text">
+      <h2>Lesson 1. Installing Python and a code editor</h2>
+      <p><strong>Why.</strong> In the lessons, code ran right in the browser. But your own Flask or Django site runs on your own computer. For that you need two programs: Python itself and an editor that makes writing code comfortable.</p>
+      <p><strong>Python.</strong> Download the installer from the official site <a href="https://www.python.org/downloads/" rel="noopener">python.org</a>, version 3.12 or newer. Download it only from there: other sites may slip you a virus disguised as Python.</p>
+      <p><strong>The most important thing on Windows.</strong> On the first screen of the installer, tick <strong>“Add python.exe to PATH”</strong>, then click “Install Now”. Without this tick the <code>python</code> command in the terminal will not work.</p>
+      <p><strong>On macOS</strong> install Python with the installer from the same site. <strong>On Linux</strong> it is usually already there: check with the command below.</p>
+      <p><strong>Check the installation.</strong> Open a terminal (how to do it is in the next lesson) and run the command from your system's tab. You should see a version, for example <code>Python 3.13.1</code>.</p>
+      <p><strong>Code editor.</strong> A handy free editor is <a href="https://code.visualstudio.com/" rel="noopener">Visual Studio Code</a>. After installing it, open the extensions section (the icon of four squares on the left) and install the <strong>Python</strong> extension by Microsoft. It highlights code and points out errors.</p>
+      <p><strong>Your first program on the computer.</strong> Create an empty folder, for example <code>pyweb</code>, and open it in VS Code: “File → Open Folder”. Create a file <code>hello.py</code>, write <code>print("Hello from my computer!")</code> and click the triangle ▶ in the top right. The result will appear at the bottom, in the terminal.</p>
+      <details>
+        <summary>Common error: “Python was not found”</summary>
+        <p>On Windows the <code>python</code> command opens the Microsoft Store or prints: <code class="error-text">Python was not found; run without arguments to install from the Microsoft Store…</code> This means the PATH box was not ticked during installation. Run the installer again, choose “Modify” and tick “Add Python to environment variables”. Or use the <code>py</code> command instead of <code>python</code>: it is installed together with Python.</p>
+      </details>
+      <details>
+        <summary>Common error: “command not found: python” on macOS</summary>
+        <p>On macOS and Linux the command is often called <code>python3</code>, not <code>python</code>. Type <code>python3 --version</code> and <code>python3 hello.py</code>.</p>
+      </details>
+      <p><strong>Check yourself:</strong></p>
+      <ul>
+      <li>the command from the tab below shows version 3.12 or newer;</li>
+      <li>the Python extension is installed in VS Code;</li>
+      <li>the file <code>hello.py</code> runs and prints a greeting.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="os-tabs" data-os-tabs>
+  <div class="os-tablist" role="tablist" aria-label="Your computer&#x27;s system" hidden>
+    <button type="button" role="tab" data-os="win">Windows</button>
+    <button type="button" role="tab" data-os="unix">macOS and Linux</button>
+  </div>
+  <div role="tabpanel" data-os-panel="win">
+    <p class="os-caption">Windows (PowerShell or Command Prompt)</p>
+    <div class="code-block">
+      <div class="code-head">
+        <span>Terminal: checking the version</span>
+        <button class="copy-btn" type="button">Copy</button>
+      </div>
+      <pre><code>python --version
+py --version</code></pre>
+    </div>
+  </div>
+  <div role="tabpanel" data-os-panel="unix">
+    <p class="os-caption">macOS and Linux (Terminal)</p>
+    <div class="code-block">
+      <div class="code-head">
+        <span>Terminal: checking the version</span>
+        <button class="copy-btn" type="button">Copy</button>
+      </div>
+      <pre><code>python3 --version</code></pre>
+    </div>
+  </div>
+</div>
+<div class="code-block">
+  <div class="code-head">
+    <span>File hello.py</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code>print("Hello from my computer!")
+print("Python works.")</code></pre>
+</div>
+      <label class="step-check"><input type="checkbox" data-step="s1"> Lesson done</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="setup-2">
+    <div class="lesson-text">
+      <h2>Lesson 2. The terminal without fear</h2>
+      <p><strong>Why.</strong> Programmers often control the computer not with the mouse but with commands: they install libraries, start the server, create projects. All of this is done in the <strong>terminal</strong>. You will need it from the very first step of the first project.</p>
+      <p><strong>What a terminal is.</strong> It is a window where you type a command in words and press Enter, and the computer runs it and prints an answer. It is very hard to break the computer with it by accident: the commands in this course are safe.</p>
+      <p><strong>How to open it.</strong> The easiest way is right in VS Code: the “Terminal → New Terminal” menu or the keys <kbd>Ctrl</kbd> + <kbd>`</kbd>. Separately: on Windows press “Start” and type “PowerShell”, on macOS open the “Terminal” app.</p>
+      <p><strong>Where you are.</strong> The terminal always works in some folder, and its path is written at the start of the line. Commands run right there. If a program “can't find the file”, most often you are simply in the wrong folder.</p>
+      <p><strong>Five main commands:</strong></p>
+      <ul>
+      <li><code>cd folder</code> — go into a folder, <code>cd ..</code> — go one level up;</li>
+      <li><code>ls</code> (in the old Windows command prompt — <code>dir</code>) — show the files in the folder;</li>
+      <li><code>mkdir name</code> — create a folder;</li>
+      <li><code>python hello.py</code> — run a program (on macOS — <code>python3</code>);</li>
+      <li><kbd>Ctrl</kbd> + <kbd>C</kbd> — stop a running program, for example a server.</li>
+      </ul>
+      <p><strong>Two tips that save time.</strong> The up arrow brings back the previous command, so you don't have to type it again. The <kbd>Tab</kbd> key completes a file or folder name from its first letters.</p>
+      <details>
+        <summary>Common error: file not found</summary>
+        <p>The command <code>python hello.py</code> answers <code class="error-text">can't open file 'hello.py': [Errno 2] No such file or directory</code> This means you are in the wrong folder. Look at the files with <code>ls</code> and go to the right folder with <code>cd</code>. In VS Code the terminal opens right in the project folder.</p>
+      </details>
+      <details>
+        <summary>Common error: spaces in a folder name</summary>
+        <p><code>cd My projects</code> won't work: the terminal will think these are two separate parts. Put the path in quotes: <code>cd "My projects"</code>. Even better, name project folders without spaces and in Latin letters: <code>my-site</code>.</p>
+      </details>
+      <p><strong>Check yourself:</strong></p>
+      <ul>
+      <li>you opened the terminal in VS Code and see the folder path;</li>
+      <li>created a folder with <code>mkdir</code> and went into it with <code>cd</code>;</li>
+      <li>ran <code>hello.py</code> with a command from the terminal, not with the button.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="os-tabs" data-os-tabs>
+  <div class="os-tablist" role="tablist" aria-label="Your computer&#x27;s system" hidden>
+    <button type="button" role="tab" data-os="win">Windows</button>
+    <button type="button" role="tab" data-os="unix">macOS and Linux</button>
+  </div>
+  <div role="tabpanel" data-os-panel="win">
+    <p class="os-caption">Windows (PowerShell)</p>
+    <div class="code-block">
+      <div class="code-head">
+        <span>Terminal: first steps</span>
+        <button class="copy-btn" type="button">Copy</button>
+      </div>
+      <pre><code>mkdir my-site
+cd my-site
+ls
+python hello.py
+cd ..</code></pre>
+    </div>
+  </div>
+  <div role="tabpanel" data-os-panel="unix">
+    <p class="os-caption">macOS and Linux (Terminal)</p>
+    <div class="code-block">
+      <div class="code-head">
+        <span>Terminal: first steps</span>
+        <button class="copy-btn" type="button">Copy</button>
+      </div>
+      <pre><code>mkdir my-site
+cd my-site
+ls
+python3 hello.py
+cd ..</code></pre>
+    </div>
+  </div>
+</div>
+<p class="note">Put the <code>hello.py</code> file from the previous lesson into the <code>my-site</code> folder, otherwise the run command won't find it. That is exactly the “common error” from this lesson.</p>
+      <label class="step-check"><input type="checkbox" data-step="s2"> Lesson done</label>
+    </div>
+  </li>
+</ol>
+</div>
+</section>
+<section class="section" aria-labelledby="next-title">
+<div class="container">
+<div class="cta-panel">
+  <div>
+    <h2 id="next-title">What's next</h2>
+    <p class="lead cta-lead">Your computer is ready. Now you can build your first site: a to-do list on Flask or Django.</p>
+  </div>
+  <div class="cta-actions">
+    <a class="btn btn-primary" href="project.html">First project</a> <a class="btn btn-secondary" href="../html-css.html" hreflang="ru">HTML and CSS</a>
+  </div>
+</div>
+</div>
+</section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Start</strong><ul><li><a href="start.html">Python from scratch</a></li><li><a href="../html-css.html" hreflang="ru">HTML and CSS <span class="ru-mark">(RU)</span></a></li><li><a href="glossary.html">Glossary</a></li><li><a href="playground.html">Sandbox</a></li></ul></div>
+        <div><strong>Understand</strong><ul><li><a href="about.html">About Python</a></li><li><a href="frameworks.html">Frameworks</a></li><li><a href="databases.html">Databases</a></li><li><a href="templates.html">Templates and forms</a></li><li><a href="auth.html">Authentication</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Testing</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Build</strong><ul><li><a href="setup.html">Setting up your computer</a></li><li><a href="project.html">First project</a></li><li><a href="project2.html">Second project</a></li><li><a href="deploy.html">Deployment</a></li></ul></div>
+        <div><strong>Practice</strong><ul><li><a href="practice.html">Exercises</a></li><li><a href="cheatsheet.html">Cheat sheet</a></li><li><a href="exam.html">Final test</a></li></ul></div>
+        <div><strong>Site</strong><ul><li><a href="course.html">Full course</a></li><li><a href="progress.html">My progress</a></li><li><a href="contacts.html">Contact</a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, a learning project about Python in web development</p>
+      <p class="note footer-note">Author: <a href="contacts.html#authors">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-11">11.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
+      <p class="note footer-note">Image: <a href="https://www.rawpixel.com/image/13959871/image-paper-cartoon-art" rel="noopener">engraving with snakes, rawpixel, CC0</a>.</p>
+      <p class="note footer-note"><a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of use</a></p>
+      <p class="note footer-note">This is a learning site. Messages from the form are sent through the public Issues section on GitHub. No GitHub account? <a href="contacts.html#no-github">Write directly</a>.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
