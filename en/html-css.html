@@ -1,0 +1,729 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из html-css.html. Правьте tools/i18n/en.json, а не этот файл. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML and CSS: the basics for a future web developer — PyWeb Guide</title>
+
+  <meta name="description" content="Five HTML and CSS lessons for people learning Python: tags, links, forms, styling and how Python builds a page. You see the result of the examples right on the page.">
+  <link rel="canonical" href="https://pywebguide.github.io/en/html-css.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/html-css.html">
+  <link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/html-css.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/html-css.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="HTML and CSS: the basics for a future web developer — PyWeb Guide">
+  <meta property="og:description" content="Five HTML and CSS lessons for people learning Python: tags, links, forms, styling and how Python builds a page. You see the result of the examples right on the page.">
+  <meta property="og:url" content="https://pywebguide.github.io/en/html-css.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide poster: your first website with Python, a free course for people who have never programmed">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffd249">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/sofia-sans-extra-condensed-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="yellow" id="top" data-no-toc>
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">From scratch</a></li>
+          <li><a class="nav-link" href="course.html">Full course</a></li>
+          <li><a class="nav-link" href="project.html">First project</a></li>
+          <li><a class="nav-link" href="playground.html">Sandbox</a></li>
+          <li><a class="nav-link" href="glossary.html">Glossary</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link">More <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Understand</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">About Python</a></li>
+              <li><a href="frameworks.html">Frameworks</a></li>
+              <li><a href="databases.html">Databases</a></li>
+              <li><a href="templates.html">Templates and forms</a></li>
+              <li><a href="auth.html">Authentication</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Testing</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Build</p><ul aria-labelledby="nav-group-2">
+              <li><a href="setup.html">Setting up your computer</a></li>
+              <li><a href="project2.html">Second project</a></li>
+              <li><a href="deploy.html">Deployment</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Practice</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Exercises</a></li>
+              <li><a href="cheatsheet.html">Cheat sheet</a></li>
+              <li><a href="exam.html">Final test</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Site</p><ul aria-labelledby="nav-group-4">
+              <li><a href="progress.html">My progress</a></li>
+              <li><a href="contacts.html">Contact</a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Site language">
+            <a href="../html-css.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="../kk/index.html" hreflang="kk" lang="kk" data-untranslated="kk">ҚАЗ</a>
+            <a href="html-css.html" hreflang="en" lang="en" aria-current="true">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Light theme">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Breadcrumb">
+<a href="index.html">Home</a> <span aria-hidden="true">/</span> <span>HTML and CSS</span>
+</nav>
+<h1>HTML and CSS</h1>
+<p class="lead">Five lessons about what any page is made of: tags, links, forms and styling. In the last lesson Python builds the HTML itself. Click “Show” to see the result right away.</p>
+<p class="note">It is best to start after the <a href="start.html">“Python from scratch”</a> lessons: the last lesson uses functions and loops. Unfamiliar words are in the <a href="glossary.html">glossary</a>.</p>
+<div class="progress-box" data-progress="html">
+  <p class="progress-label" role="status" aria-live="polite"><span data-progress-count>0</span> of 5 lessons done</p>
+  <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
+  <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Reset progress</button>
+</div>
+<img class="band-picture" src="../assets/img/typecase.webp" width="1000" height="524" alt="The composing room of a newspaper in Medan: rows of type cases, 1898" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" aria-label="Lessons">
+<div class="container">
+<ol class="project-steps" data-progress-list="html">
+  <li class="project-step lesson" id="html-1">
+    <div class="lesson-text">
+      <h2>Lesson 1. What HTML is: tags and the page skeleton</h2>
+      <p><strong>Why.</strong> When you open a site, a Python server answers the browser with text in the <strong>HTML</strong> language. The browser reads this text and draws the page. To make your own site, you need to know how this text is built.</p>
+      <p><strong>What HTML is.</strong> It is a markup language, not a program. It has no conditions or loops. HTML simply labels parts of the text: “this is a heading”, “this is a paragraph”, “this is an important word”.</p>
+      <p><strong>Tags.</strong> A label is called a tag and is written in angle brackets. Tags usually come in pairs: an opening <code>&lt;p&gt;</code> and a closing <code>&lt;/p&gt;</code> with a slash. The text between them is the content. A tag together with its content is called an element.</p>
+      <p><strong>The most useful tags:</strong></p>
+      <ul>
+      <li><code>&lt;h1&gt;</code>…<code>&lt;h6&gt;</code> — headings, <code>&lt;h1&gt;</code> is the main one and usually there is one per page;</li>
+      <li><code>&lt;p&gt;</code> — a paragraph of text;</li>
+      <li><code>&lt;strong&gt;</code> — important words, the browser shows them in bold, <code>&lt;em&gt;</code> — emphasis in italics;</li>
+      <li><code>&lt;br&gt;</code> — a line break. It is a single tag, you don't need to close it.</li>
+      </ul>
+      <p><strong>Nesting.</strong> Tags are put inside each other like boxes: <code>&lt;p&gt;This is &lt;strong&gt;important&lt;/strong&gt;&lt;/p&gt;</code>. They are closed in reverse order: first the inner one, then the outer one.</p>
+      <p><strong>The page skeleton.</strong> Every page has the same frame: the line <code>&lt;!doctype html&gt;</code>, then <code>&lt;html&gt;</code>, inside it <code>&lt;head&gt;</code> with technical information, for example the tab title <code>&lt;title&gt;</code>, and <code>&lt;body&gt;</code> — everything you see on the page.</p>
+      <p><strong>Try it:</strong> click “Show” under the examples. Change the heading text, add one more paragraph and click “Show” again.</p>
+      <details>
+        <summary>Common mistake: a tag left open</summary>
+        <p>If you don't close <code>&lt;strong&gt;</code>, the browser will make all the text bold until the end of the page. It won't show an error, the page will just look strange. Check that every paired tag has a closing tag with a slash.</p>
+      </details>
+      <details>
+        <summary>Common mistake: closing in the wrong order</summary>
+        <p><code>&lt;p&gt;&lt;strong&gt;text&lt;/p&gt;&lt;/strong&gt;</code> is wrong: the boxes “cross”. Close them from the inner one to the outer one: <code>&lt;p&gt;&lt;strong&gt;text&lt;/strong&gt;&lt;/p&gt;</code>.</p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li>HTML labels parts of the text with tags: <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;strong&gt;</code>;</li>
+      <li>a paired tag is closed with a slash, nested tags are closed in reverse order;</li>
+      <li>the page skeleton: <code>&lt;html&gt;</code>, inside it <code>&lt;head&gt;</code> for technical things and <code>&lt;body&gt;</code> for what is visible.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>Example 1. First tags</span></div>
+  <pre><code>&lt;h1&gt;Hi, I'm Aruzhan&lt;/h1&gt;
+&lt;p&gt;I'm learning to make websites with &lt;strong&gt;Python&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This is my second paragraph.&lt;br&gt;And this is a new line in it.&lt;/p&gt;
+&lt;h2&gt;My plans&lt;/h2&gt;
+&lt;p&gt;To make &lt;em&gt;my own&lt;/em&gt; first website.&lt;/p&gt;</code></pre>
+</div>
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>Example 2. A full page skeleton</span></div>
+  <pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;My business card&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Yerlan Nurlanov&lt;/h1&gt;
+  &lt;p&gt;Learning to program in Astana.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+<article class="task" data-task="html-tags" data-level="easy">
+<div class="task-head"><h3>Exercise: your first page</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Write the markup: a main heading <code>My first site</code> and two paragraphs with any text below it.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: your first page">&lt;!-- write an h1 heading and two p paragraphs --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The heading: <code>&lt;h1&gt;My first site&lt;/h1&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Each paragraph goes in its own tags: <code>&lt;p&gt;...&lt;/p&gt;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>&lt;h1&gt;My first site&lt;/h1&gt;
+&lt;p&gt;Here I tell about myself.&lt;/p&gt;
+&lt;p&gt;And here about my plans.&lt;/p&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('count("h1")', 1)
+case('text("h1")', "My first site")
+case('count("p")', 2)</template>
+</article>
+<article class="task" data-task="html-skeleton" data-level="medium">
+<div class="task-head"><h3>A harder exercise: a business card skeleton</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Build a full page skeleton: <code>html</code>, inside it <code>head</code> with the tab title <code>Business card</code> and <code>body</code> with a main heading — your name.</p>
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Solution: a business card skeleton">&lt;!doctype html&gt;
+&lt;!-- then html, head with title and body with h1 --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> Everything except the first line goes inside <code>&lt;html&gt;...&lt;/html&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Put <code>&lt;title&gt;Business card&lt;/title&gt;</code> into <code>&lt;head&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> Into <code>&lt;body&gt;</code> — an <code>&lt;h1&gt;</code> with your name. Example 2 is built exactly the same way.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;Business card&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Dana Smagulova&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('count("html")', 1)
+case('count("head")', 1)
+case('count("body")', 1)
+case('text("title")', "Business card")
+case('count("h1")', 1)
+case('bool(text("h1"))', True)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="h1"> Lesson done</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="html-2">
+    <div class="lesson-text">
+      <h2>Lesson 2. Lists, links and images</h2>
+      <p><strong>Why.</strong> A site menu is a list of links. A product card is an image with a caption. These three tags appear on almost every page.</p>
+      <p><strong>Lists.</strong> <code>&lt;ul&gt;</code> is a bulleted list, <code>&lt;ol&gt;</code> is a numbered one. Each item goes in <code>&lt;li&gt;</code>. It is like a list in Python, only for showing on a page.</p>
+      <p><strong>Links.</strong> <code>&lt;a href="address"&gt;text&lt;/a&gt;</code>. The <code>href</code> attribute holds where the link leads, and between the tags goes the text you click.</p>
+      <p><strong>Attributes</strong> are extra information inside the opening tag: <code>name="value"</code>. A link has <code>href</code>, an image has <code>src</code> and <code>alt</code>.</p>
+      <p><strong>Full and short addresses.</strong> <code>https://www.python.org</code> leads to another site. <code>about.html</code> leads to a page of this same site, the path is counted from the current page.</p>
+      <p><strong>Images.</strong> <code>&lt;img src="address" alt="description"&gt;</code> is a single tag. <code>src</code> is where to get the image. <code>alt</code> is the text instead of the image: screen readers for blind people read it, and it is shown if the image didn't load. Write in it what the image shows.</p>
+      <p><strong>Try it:</strong> add your own item with a link to the menu. In the image example change <code>width</code> to 150.</p>
+      <details>
+        <summary>Common mistake: an address without https://</summary>
+        <p>The browser will read <code>&lt;a href="www.python.org"&gt;</code> as a page of this same site called “www.python.org” and open a 404 error. Write the address of another site in full: <code>https://www.python.org</code>.</p>
+      </details>
+      <details>
+        <summary>Common mistake: an image without alt</summary>
+        <p>Without <code>alt</code> a blind user will only hear “image” or the file name. Describe the point: not “picture1” but “A python on an old engraving”. If the image is pure decoration, write an empty <code>alt=""</code>.</p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li><code>&lt;ul&gt;</code> and <code>&lt;ol&gt;</code> are lists, items go in <code>&lt;li&gt;</code>;</li>
+      <li><code>&lt;a href="..."&gt;</code> is a link, the address of another site is written with <code>https://</code>;</li>
+      <li><code>&lt;img src="..." alt="..."&gt;</code> is an image, and <code>alt</code> is required.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>Example 1. A menu of links</span></div>
+  <pre><code>&lt;h2&gt;Menu&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://pywebguide.github.io/en/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://pywebguide.github.io/en/start.html"&gt;Python from scratch&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.python.org"&gt;Python website&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Plan for the week&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;Go through the HTML lessons&lt;/li&gt;
+  &lt;li&gt;Make a business card&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+</div>
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>Example 2. An image with a caption</span></div>
+  <pre><code>&lt;img src="https://pywebguide.github.io/assets/img/snakes.webp"
+     alt="An old engraving: eight snakes, among them a reticulated python"
+     width="300"&gt;
+&lt;p&gt;Python is named not after the snake but after a comedy show.&lt;/p&gt;</code></pre>
+</div>
+<article class="task" data-task="html-list" data-level="easy">
+<div class="task-head"><h3>Exercise: favourite fruit</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Make a bulleted list of three favourite fruits.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: favourite fruit">&lt;!-- a ul list with three li items --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The whole list goes inside <code>&lt;ul&gt;...&lt;/ul&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Each fruit is a separate <code>&lt;li&gt;apple&lt;/li&gt;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>&lt;ul&gt;
+  &lt;li&gt;apple&lt;/li&gt;
+  &lt;li&gt;pear&lt;/li&gt;
+  &lt;li&gt;aport apple&lt;/li&gt;
+&lt;/ul&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('count("ul")', 1)
+case('count("li")', 3)</template>
+</article>
+<article class="task" data-task="html-link-img" data-level="medium">
+<div class="task-head"><h3>A harder exercise: a link and an image</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Make a link with the text <code>Python website</code> that leads to <code>https://www.python.org</code>. Below it put an image with the address <code>https://pywebguide.github.io/assets/img/snakes.webp</code> and a clear description in <code>alt</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: a link and an image">&lt;!-- an a link and an img image --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The link: <code>&lt;a href="https://www.python.org"&gt;Python website&lt;/a&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> An image is a single tag <code>&lt;img src="..." alt="..."&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> In <code>alt</code> describe what the image shows, for example “An engraving with snakes”.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>&lt;a href="https://www.python.org"&gt;Python website&lt;/a&gt;
+&lt;img src="https://pywebguide.github.io/assets/img/snakes.webp" alt="An engraving with snakes"&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('attr("a", "href")', "https://www.python.org")
+case('text("a")', "Python website")
+case('attr("img", "src")', "https://pywebguide.github.io/assets/img/snakes.webp")
+case('bool(attr("img", "alt"))', True)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="h2"> Lesson done</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="html-3">
+    <div class="lesson-text">
+      <h2>Lesson 3. Forms: how a site receives data</h2>
+      <p><strong>Why.</strong> Sign-up, search, a review, an order — all of these are forms. It is through a form that data from a person reaches the server, your Python program.</p>
+      <p><strong>The <code>&lt;form&gt;</code> tag</strong> groups fields together. The <code>action</code> attribute says where to send the data, and <code>method</code> says how.</p>
+      <p><strong>Fields.</strong> <code>&lt;input&gt;</code> is a single tag for input. Its kind is set by <code>type</code>: <code>text</code> — text, <code>email</code> — email, <code>password</code> — a password shown as dots, <code>number</code> — a number, <code>checkbox</code> — a tick box. For long text there is <code>&lt;textarea&gt;</code>, for sending — <code>&lt;button&gt;</code>.</p>
+      <p><strong>The <code>name</code> attribute matters most.</strong> It is the name under which the value reaches the server. In Flask it becomes a dictionary key: <code>request.form["email"]</code>. Without <code>name</code> the field isn't sent at all.</p>
+      <p><strong>The <code>&lt;label&gt;</code> caption.</strong> Connect the caption to the field: the field has <code>id="email"</code>, the caption has <code>for="email"</code>. Then clicking the caption puts the cursor in the field, and screen readers read the caption aloud.</p>
+      <p><strong>GET and POST.</strong> <code>method="get"</code> puts the data into the page address, this is how search works: <code>?q=python</code>. <code>method="post"</code> sends it hidden, in the request body: this is how passwords and reviews are sent.</p>
+      <p><strong>Try it:</strong> add an age field with <code>type="number"</code> to the form. Sending is turned off in the preview window, but the fields work: you can type in them.</p>
+      <details>
+        <summary>Common mistake: a field without name</summary>
+        <p>If you forget <code>name</code>, the browser will show the field and even let you type in it, but the value won't reach the server. In Python <code>request.form["email"]</code> will fail with <code>KeyError</code>. Check that every field has a <code>name</code>.</p>
+      </details>
+      <details>
+        <summary>Common mistake: a password sent with GET</summary>
+        <p>With <code>method="get"</code> the password ends up right in the address bar and in the browser history. For forms with passwords and personal data always use <code>method="post"</code>.</p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li><code>&lt;form&gt;</code> groups fields, <code>method="post"</code> is for personal data, <code>get</code> is for search;</li>
+      <li><code>&lt;input type="..." name="..."&gt;</code>: the value reaches the server by its <code>name</code>;</li>
+      <li><code>&lt;label for="id"&gt;</code> connects a caption to a field.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>Example 1. Sign-up</span></div>
+  <pre><code>&lt;form action="/register" method="post"&gt;
+  &lt;p&gt;
+    &lt;label for="name"&gt;Name&lt;/label&gt;&lt;br&gt;
+    &lt;input id="name" name="name" type="text" placeholder="Aruzhan" required&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="email"&gt;Email&lt;/label&gt;&lt;br&gt;
+    &lt;input id="email" name="email" type="email"&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="password"&gt;Password&lt;/label&gt;&lt;br&gt;
+    &lt;input id="password" name="password" type="password"&gt;
+  &lt;/p&gt;
+  &lt;button type="submit"&gt;Sign up&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 2. What the server receives</span></div>
+  <pre><code># This is how form data looks on the server (Flask: request.form)
+form = {"name": "Aruzhan", "email": "aru@example.com", "password": "secret"}
+
+print("New user:", form["name"])
+print("Email:", form["email"])
+print("Has a password?", "password" in form)</code></pre>
+</div>
+<article class="task" data-task="html-form" data-level="easy">
+<div class="task-head"><h3>Exercise: newsletter subscription</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Make a subscription form: one email field with <code>type="email"</code> and <code>name="email"</code> and a submit button.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: newsletter subscription">&lt;!-- a form with an input field and a button --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The field: <code>&lt;input type="email" name="email"&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Put the field and <code>&lt;button type="submit"&gt;Subscribe&lt;/button&gt;</code> inside <code>&lt;form&gt;...&lt;/form&gt;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>&lt;form action="/subscribe" method="post"&gt;
+  &lt;input type="email" name="email" placeholder="Your email"&gt;
+  &lt;button type="submit"&gt;Subscribe&lt;/button&gt;
+&lt;/form&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('count("form")', 1)
+case('attr("input", "type")', "email")
+case('attr("input", "name")', "email")
+case('count("button")', 1)</template>
+</article>
+<article class="task" data-task="html-login" data-level="medium">
+<div class="task-head"><h3>A harder exercise: a login form</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Make a login form with <code>method="post"</code>: a username field (<code>name="username"</code>) with a caption connected through <code>for</code> and <code>id</code>, a password field (<code>name="password"</code>, <code>type="password"</code>) and a button.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Solution: a login form">&lt;form action="/login" method="post"&gt;
+  &lt;!-- username caption and field, password field, button --&gt;
+&lt;/form&gt;</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The caption and the field: <code>&lt;label for="username"&gt;Username&lt;/label&gt;</code> and <code>&lt;input id="username" name="username"&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> The password: <code>&lt;input name="password" type="password"&gt;</code>. It is the second field in the form.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> And the button: <code>&lt;button type="submit"&gt;Log in&lt;/button&gt;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>&lt;form action="/login" method="post"&gt;
+  &lt;label for="username"&gt;Username&lt;/label&gt;
+  &lt;input id="username" name="username" type="text"&gt;
+  &lt;input name="password" type="password"&gt;
+  &lt;button type="submit"&gt;Log in&lt;/button&gt;
+&lt;/form&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('(attr("form", "method") or "").lower()', "post")
+case('count("input")', 2)
+case('attr("input", "name")', "username")
+case('attr("label", "for") is not None and attr("label", "for") == attr("input", "id")', True)
+case('attr("input", "name", 1)', "password")
+case('attr("input", "type", 1)', "password")
+case('count("button")', 1)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="h3"> Lesson done</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="html-4">
+    <div class="lesson-text">
+      <h2>Lesson 4. CSS: how a page looks</h2>
+      <p><strong>Why.</strong> HTML says <em>what</em> is on the page: a heading, a paragraph, a button. And <strong>CSS</strong> says <em>how</em> it looks: colours, sizes, spacing. This very site is styled with CSS.</p>
+      <p><strong>Where to write it.</strong> The easiest is in the <code>&lt;style&gt;</code> tag at the top of the page. Big sites move CSS into a separate file.</p>
+      <p><strong>A CSS rule</strong> consists of a selector and properties in curly braces: <code>h1 { color: navy; }</code>. It reads: “all <code>h1</code> are dark blue”. A semicolon goes after each property.</p>
+      <p><strong>Selectors:</strong></p>
+      <ul>
+      <li>by tag: <code>p { ... }</code> — all paragraphs;</li>
+      <li>by class: <code>.card { ... }</code> — all elements with <code>class="card"</code>. This is the most common way;</li>
+      <li>by id: <code>#top { ... }</code> — one element with <code>id="top"</code>.</li>
+      </ul>
+      <p><strong>Useful properties.</strong> <code>color</code> — text colour, <code>background</code> — background, <code>font-size</code> — font size, <code>font-weight: bold</code> — boldness, <code>text-align: center</code> — alignment. <code>padding</code> — spacing <em>inside</em> the border, <code>margin</code> — <em>outside</em>, <code>border</code> — a border, <code>border-radius</code> — rounded corners.</p>
+      <p><strong>Colours</strong> are set with a word (<code>red</code>) or a code: <code>#ffd249</code> is this site's yellow.</p>
+      <p><strong>Try it:</strong> change the card background to <code>#a4f6f8</code> and the rounding to <code>20px</code>.</p>
+      <details>
+        <summary>Common mistake: a dot in the class attribute</summary>
+        <p>The dot is written only in CSS: <code>.card { ... }</code>. In HTML the class is given without it: <code>class="card"</code>. With a dot, <code>class=".card"</code>, the rule won't work.</p>
+      </details>
+      <details>
+        <summary>Common mistake: a missing semicolon</summary>
+        <p>In <code>color: red background: yellow;</code> there is no semicolon after <code>red</code>, and the browser skips both properties. It won't show an error: the style just won't apply. Put <code>;</code> after every property.</p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li>HTML is what is on the page, CSS is how it looks;</li>
+      <li>a rule: <code>selector { property: value; }</code>, a class in CSS is written with a dot;</li>
+      <li><code>padding</code> is spacing inside, <code>margin</code> is spacing outside.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>Example 1. Styling text</span></div>
+  <pre><code>&lt;style&gt;
+  h1 { color: #2f6694; font-size: 40px; }
+  p { font-size: 18px; color: #333333; }
+  .important { background: #ffd249; font-weight: bold; }
+&lt;/style&gt;
+
+&lt;h1&gt;The PyWeb Guide course&lt;/h1&gt;
+&lt;p&gt;An ordinary paragraph.&lt;/p&gt;
+&lt;p class="important"&gt;And this paragraph is highlighted with a class.&lt;/p&gt;</code></pre>
+</div>
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>Example 2. A product card</span></div>
+  <pre><code>&lt;style&gt;
+  .card {
+    width: 220px;
+    padding: 16px;
+    margin: 12px;
+    background: #ffc4ef;
+    border: 2px solid #0d0d0d;
+    border-radius: 12px;
+  }
+  .price { font-size: 24px; font-weight: bold; }
+&lt;/style&gt;
+
+&lt;div class="card"&gt;
+  &lt;h2&gt;Notebook&lt;/h2&gt;
+  &lt;p class="price"&gt;450 tenge&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<article class="task" data-task="css-color" data-level="easy">
+<div class="task-head"><h3>Exercise: a blue heading</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Add a CSS rule so that the <code>h1</code> heading becomes the colour <code>#2f6694</code>.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: a blue heading">&lt;style&gt;
+  /* a rule for h1 */
+&lt;/style&gt;
+&lt;h1&gt;My site&lt;/h1&gt;</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The selector is just the tag name: <code>h1 { ... }</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> The text colour property: <code>color: #2f6694;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>&lt;style&gt;
+  h1 { color: #2f6694; }
+&lt;/style&gt;
+&lt;h1&gt;My site&lt;/h1&gt;</code></pre></details>
+<template data-kind="tests"># html
+import re
+found = re.search(r"h1\s*\{([^}]*)\}", style())
+h1_css = found.group(1) if found else ""
+case('"color" in h1_css', True)
+case('"#2f6694" in h1_css', True)
+case('text("h1")', "My site")</template>
+</article>
+<article class="task" data-task="css-card" data-level="medium">
+<div class="task-head"><h3>A harder exercise: your own card</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Make a <code>&lt;div class="card"&gt;</code> block with a heading inside and a <code>.card</code> rule that has a background (<code>background</code>), inner spacing (<code>padding</code>) and rounded corners (<code>border-radius</code>).</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Solution: your own card">&lt;style&gt;
+  /* the .card rule */
+&lt;/style&gt;
+&lt;!-- a div with the card class and a heading inside --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> In CSS a class is written with a dot: <code>.card { ... }</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Inside the rule: <code>background: #ffc4ef; padding: 16px; border-radius: 12px;</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> In HTML — without the dot: <code>&lt;div class="card"&gt;&lt;h2&gt;Notebook&lt;/h2&gt;&lt;/div&gt;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>&lt;style&gt;
+  .card { background: #ffc4ef; padding: 16px; border-radius: 12px; }
+&lt;/style&gt;
+&lt;div class="card"&gt;
+  &lt;h2&gt;Notebook&lt;/h2&gt;
+&lt;/div&gt;</code></pre></details>
+<template data-kind="tests"># html
+import re
+found = re.search(r"\.card\s*\{([^}]*)\}", style())
+card_css = found.group(1) if found else ""
+case('found is not None', True)
+case('"background" in card_css', True)
+case('"padding" in card_css', True)
+case('"border-radius" in card_css', True)
+case('attr("div", "class")', "card")
+case('count("h1") + count("h2") + count("h3") &gt;= 1', True)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="h4"> Lesson done</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="html-5">
+    <div class="lesson-text">
+      <h2>Lesson 5. How Python builds HTML</h2>
+      <p><strong>Why.</strong> On a real site HTML isn't written by hand for every user. It is <strong>built by a program</strong> on the server: it fills in a name, a task list, prices. This lesson connects everything you know about Python and HTML.</p>
+      <p><strong>HTML is just a string.</strong> For Python a page is ordinary text. So it can be built with an f-string: <code>f"&lt;h1&gt;Hello, {name}!&lt;/h1&gt;"</code>.</p>
+      <p><strong>Lists become a loop.</strong> To show a task list, the program goes through it and adds an <code>&lt;li&gt;</code> line for each task. This is how feeds, catalogues and menus are made.</p>
+      <p><strong>Danger: someone else's code in the page.</strong> If you insert a user's text into HTML as is, they can write their own tag there, for example <code>&lt;script&gt;</code>, and this code will run for other visitors. This attack is called XSS. The protection is the <code>html.escape</code> function: it turns <code>&lt;</code> into the safe <code>&amp;lt;</code>, and the browser shows the character instead of running the tag.</p>
+      <p><strong>Templates.</strong> Gluing big pages together from strings is awkward. So Flask and Django use templates: an HTML file with gaps <code>{{ name }}</code> and loops <code>{% for %}</code>. They call <code>escape</code> for every value themselves. More on the <a href="templates.html">“Templates and forms”</a> page.</p>
+      <p><strong>Try it:</strong> in the first example add a task to the list. In the second change the comment text and compare the output with and without <code>escape</code>.</p>
+      <details>
+        <summary>Common mistake: inserting user text without escape</summary>
+        <p>The comment <code>&lt;script&gt;alert(1)&lt;/script&gt;</code>, inserted as is, becomes part of the page. Pass any text that came from a user through <code>html.escape()</code>, or use templates that do it themselves.</p>
+      </details>
+      <details>
+        <summary>Common mistake: forgetting to close the tag after the loop</summary>
+        <p>If you add <code>&lt;li&gt;</code> in a loop but forget <code>&lt;/ul&gt;</code> after the loop, the list “stretches” over the whole page. The opening tag goes before the loop, the closing one after it.</p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li>for Python HTML is an ordinary string: it is built with f-strings and loops;</li>
+      <li>always pass user text through <code>html.escape</code>;</li>
+      <li>in Flask and Django templates do it, and that is the next step.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 1. A page from a list</span></div>
+  <pre><code>name = "Aruzhan"
+tasks = ["learn tags", "make a form", "style with CSS"]
+
+page = f"&lt;h1&gt;Tasks: {name}&lt;/h1&gt;\n&lt;ul&gt;\n"
+for task in tasks:
+    page += f"  &lt;li&gt;{task}&lt;/li&gt;\n"
+page += "&lt;/ul&gt;"
+
+print(page)</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 2. Protection with escape</span></div>
+  <pre><code>import html
+
+comment = "&lt;script&gt;alert('hacked')&lt;/script&gt;"
+
+print("Dangerous:", f"&lt;p&gt;{comment}&lt;/p&gt;")
+print("Safe:     ", f"&lt;p&gt;{html.escape(comment)}&lt;/p&gt;")</code></pre>
+</div>
+<article class="task" data-task="py-card" data-level="easy">
+<div class="task-head"><h3>Exercise: a product card from Python</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Write a function <code>card(name, price)</code>. It returns the card HTML: <code>&lt;div class="card"&gt;&lt;h2&gt;Notebook&lt;/h2&gt;&lt;p&gt;450 tenge&lt;/p&gt;&lt;/div&gt;</code> for <code>card("Notebook", 450)</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Solution: a product card from Python">def card(name, price):
+    # return a string with HTML
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> Build the string with an f-string and return it with <code>return</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> <code>return f'&lt;div class="card"&gt;&lt;h2&gt;{name}&lt;/h2&gt;&lt;p&gt;{price} tenge&lt;/p&gt;&lt;/div&gt;'</code>. The outer quotes are single because there are double ones inside.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>def card(name, price):
+    return f'&lt;div class="card"&gt;&lt;h2&gt;{name}&lt;/h2&gt;&lt;p&gt;{price} tenge&lt;/p&gt;&lt;/div&gt;'</code></pre></details>
+<template data-kind="tests">case('card("Notebook", 450)', '&lt;div class="card"&gt;&lt;h2&gt;Notebook&lt;/h2&gt;&lt;p&gt;450 tenge&lt;/p&gt;&lt;/div&gt;')
+case('card("Pen", 200)', '&lt;div class="card"&gt;&lt;h2&gt;Pen&lt;/h2&gt;&lt;p&gt;200 tenge&lt;/p&gt;&lt;/div&gt;')</template>
+</article>
+<article class="task" data-task="py-render-list" data-level="medium">
+<div class="task-head"><h3>A harder exercise: a safe list</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Write a function <code>render_list(items)</code> that returns an HTML list: <code>&lt;ul&gt;&lt;li&gt;bread&lt;/li&gt;&lt;li&gt;milk&lt;/li&gt;&lt;/ul&gt;</code>. Pass each item through <code>html.escape</code>, because the items may have been written by a user.</p>
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Solution: a safe list">import html
+
+
+def render_list(items):
+    # build &lt;ul&gt;, the &lt;li&gt; items and &lt;/ul&gt;
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> Start the string before the loop: <code>result = "&lt;ul&gt;"</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> In the loop: <code>result += f"&lt;li&gt;{html.escape(item)}&lt;/li&gt;"</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> After the loop close the list and return it: <code>return result + "&lt;/ul&gt;"</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>import html
+
+
+def render_list(items):
+    result = "&lt;ul&gt;"
+    for item in items:
+        result += f"&lt;li&gt;{html.escape(item)}&lt;/li&gt;"
+    return result + "&lt;/ul&gt;"</code></pre></details>
+<template data-kind="tests">case('render_list(["bread", "milk"])', "&lt;ul&gt;&lt;li&gt;bread&lt;/li&gt;&lt;li&gt;milk&lt;/li&gt;&lt;/ul&gt;")
+case('render_list([])', "&lt;ul&gt;&lt;/ul&gt;")
+case('render_list(["&lt;b&gt;bold&lt;/b&gt;"])', "&lt;ul&gt;&lt;li&gt;&amp;lt;b&amp;gt;bold&amp;lt;/b&amp;gt;&lt;/li&gt;&lt;/ul&gt;")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="h5"> Lesson done</label>
+    </div>
+  </li>
+</ol>
+</div>
+</section>
+<section class="section" aria-labelledby="next-title">
+<div class="container">
+<div class="cta-panel">
+  <div>
+    <h2 id="next-title">What's next</h2>
+    <p class="lead cta-lead">Now you know what a page is made of. All that's left is to set up your computer and build your first site on Flask or Django.</p>
+  </div>
+  <div class="cta-actions">
+    <a class="btn btn-primary" href="setup.html">Setting up your computer</a> <a class="btn btn-secondary" href="project.html">First project</a>
+  </div>
+</div>
+</div>
+</section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Start</strong><ul><li><a href="start.html">Python from scratch</a></li><li><a href="html-css.html">HTML and CSS</a></li><li><a href="glossary.html">Glossary</a></li><li><a href="playground.html">Sandbox</a></li></ul></div>
+        <div><strong>Understand</strong><ul><li><a href="about.html">About Python</a></li><li><a href="frameworks.html">Frameworks</a></li><li><a href="databases.html">Databases</a></li><li><a href="templates.html">Templates and forms</a></li><li><a href="auth.html">Authentication</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Testing</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Build</strong><ul><li><a href="setup.html">Setting up your computer</a></li><li><a href="project.html">First project</a></li><li><a href="project2.html">Second project</a></li><li><a href="deploy.html">Deployment</a></li></ul></div>
+        <div><strong>Practice</strong><ul><li><a href="practice.html">Exercises</a></li><li><a href="cheatsheet.html">Cheat sheet</a></li><li><a href="exam.html">Final test</a></li></ul></div>
+        <div><strong>Site</strong><ul><li><a href="course.html">Full course</a></li><li><a href="progress.html">My progress</a></li><li><a href="contacts.html">Contact</a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, a learning project about Python in web development</p>
+      <p class="note footer-note">Author: <a href="contacts.html#authors">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-11">11.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
+      <p class="note footer-note">Image: <a href="https://www.rawpixel.com/image/13959871/image-paper-cartoon-art" rel="noopener">engraving with snakes, rawpixel, CC0</a>.</p>
+      <p class="note footer-note"><a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of use</a></p>
+      <p class="note footer-note">This is a learning site. Messages from the form are sent through the public Issues section on GitHub. No GitHub account? <a href="contacts.html#no-github">Write directly</a>.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
