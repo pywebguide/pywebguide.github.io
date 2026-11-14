@@ -1,11 +1,12 @@
 <!doctype html>
+<!-- Перевод собран tools/translate.py из start.html. Правьте tools/i18n/kk.json, а не этот файл. -->
 <html lang="kk">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Python нөлден: браузердегі жеті сабақ — PyWeb Guide</title>
+  <title>Python нөлден: браузердегі 13 сабақ — PyWeb Guide</title>
 
-  <meta name="description" content="Бұрын ешқашан бағдарлама жазбағандарға арналған Python бойынша жеті қысқа сабақ. Код тікелей бетте іске қосылады, ештеңе орнатудың қажеті жоқ.">
+  <meta name="description" content="Ешқашан бағдарламаламағандарға арналған Python бойынша 13 сабақ: түсіндірмелер, мысалдар және тексерілетін тапсырмалар. Код тікелей бетте іске қосылады, ештеңе орнатудың қажеті жоқ.">
   <link rel="canonical" href="https://pywebguide.github.io/kk/start.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/start.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/start.html">
@@ -14,8 +15,8 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="kk_KZ">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="Python нөлден: браузердегі жеті сабақ — PyWeb Guide">
-  <meta property="og:description" content="Бұрын ешқашан бағдарлама жазбағандарға арналған Python бойынша жеті қысқа сабақ. Код тікелей бетте іске қосылады, ештеңе орнатудың қажеті жоқ.">
+  <meta property="og:title" content="Python нөлден: браузердегі 13 сабақ — PyWeb Guide">
+  <meta property="og:description" content="Ешқашан бағдарламаламағандарға арналған Python бойынша 13 сабақ: түсіндірмелер, мысалдар және тексерілетін тапсырмалар. Код тікелей бетте іске қосылады, ештеңе орнатудың қажеті жоқ.">
   <meta property="og:url" content="https://pywebguide.github.io/kk/start.html">
   <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -23,6 +24,7 @@
   <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#ffd249">
+
 
   <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
   <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
@@ -35,7 +37,7 @@
   <link rel="stylesheet" href="../styles.css">
 
   <script>
-    // Бет жыпылықтамас үшін тақырып сурет салынғанға дейін таңдалады
+    // Тема выбирается до отрисовки, чтобы страница не мигала
     (function () {
       var theme;
       try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
@@ -119,15 +121,13 @@
   <main id="content" data-pagefind-body class="page" tabindex="-1">
 <div class="page-band"><div class="container page-hero page-hero--picture">
 <nav class="breadcrumb" aria-label="Навигациялық тізбек">
-<a href="index.html">Басты бет</a>
-<span aria-hidden="true">/</span>
-<span>Нөлден</span>
+<a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Нөлден</span>
 </nav>
 <h1>Python нөлден</h1>
-<p class="lead">Бұрын ешқашан бағдарлама жазбағандарға арналған жеті қысқа сабақ. Код дәл осы бетте іске қосылады: «Іске қосу» батырмасын басыңыз, кодты өзгертіп, қайта іске қосыңыз. Қателесуден қорықпаңыз, ештеңе бұзылмайды.</p>
+<p class="lead">Ешқашан бағдарламаламағандарға арналған 13 сабақ. Код тікелей осы бетте іске қосылады: «Іске қосу» батырмасын басып, оны өзгертіп, қайта іске қосыңыз. Қателесу қорқынышты емес, ештеңе бұзылмайды.</p>
 <p class="note">Алғаш іске қосқанда браузер Python-ды жүктейді, бұл бірнеше секундқа созылады. Бейтаныс сөздер <a href="glossary.html">сөздікте</a> бар (әзірге орыс тілінде).</p>
 <div class="progress-box" data-progress="start">
-  <p class="progress-label" role="status" aria-live="polite">7 сабақтың <span data-progress-count>0</span> сабағы өтілді</p>
+  <p class="progress-label" role="status" aria-live="polite">17 сабақ пен жобаның <span data-progress-count>0</span> өтілді</p>
   <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
   <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Прогресті тастау</button>
 </div>
@@ -136,142 +136,1498 @@
 <section class="section" aria-label="Сабақтар">
 <div class="container">
 <ol class="project-steps" data-progress-list="start">
-  <li class="project-step lesson" id="lesson-1">
+  <li class="project-step lesson" id="lesson-intro">
     <div class="lesson-text">
-      <h2>1-сабақ. Алғашқы бағдарлама</h2>
-      <p>Бағдарлама — компьютерге арналған командалар тізімі. Ол оларды жоғарыдан төменге қарай кезекпен орындайды.</p>
-      <p><code>print</code> командасы мәтінді экранға шығарады. Мәтіннің өзі әрқашан тырнақшаға алынып жазылады.</p>
-      <p><strong>Байқап көріңіз:</strong> тырнақшаның ішіне атыңызды жазып, «Іске қосу» батырмасын басыңыз.</p>
+      <h2>0-сабақ. Бұл курс қалай құрылған</h2>
+      <p><strong>Не үшін.</strong> Код жазбас бұрын үш нәрсені түсінген пайдалы: бағдарлама деген не, неге Python үйренеміз және осы бетте қалай оқу керек.</p>
+      <p><strong>Бағдарлама деген не.</strong> Бағдарлама — компьютерге арналған нұсқаулық. Ол рецептке ұқсайды: аспаз қадамдарды ретімен орындайды, алдымен турайды, сосын пісіреді. Компьютер де командаларды кезекпен, жоғарыдан төмен қарай орындайды.</p>
+      <p><strong>Неге Python.</strong> Python коды ағылшын тіліндегі қарапайым мәтін сияқты оқылады, онда артық белгілер аз. Python-да сайттар жасайды, деректерді өңдейді және іш пыстыратын жұмысты автоматтандырады. Сондықтан оны жиі бірінші тіл ретінде таңдайды.</p>
+      <p><strong>Қалай оқу керек.</strong> Әр сабақта түсіндірме, мысалдар және тапсырмалар бар. Мысалдың астындағы «Іске қосу» батырмасын басыңыз, сонда Python кодты осы жерде, браузерде орындайды. Кодты қалағаныңызша өзгертуге болады: компьютер бұзылмайды.</p>
+      <p><strong>Тексерілетін тапсырмалар.</strong> Шешімді жазып, «Тексеру» батырмасын басыңыз. Шықпаса, кеңестерді бір-бірден ашыңыз. Дайын шешім де бар, бірақ алдымен өзіңіз байқап көріңіз.</p>
+      <p><strong>Прогресс.</strong> «Сабақ өтілді» белгісі осы браузерде сақталады. Таныс емес сөздерді <a href="glossary.html">сөздіктен</a> іздеңіз.</p>
+      <p><strong>Байқап көріңіз:</strong> осы сабақтың екі мысалын да іске қосыңыз. Бұл — нағыз бағдарламалар.</p>
+      <details>
+        <summary>Жиі сұрақ: бірдеңе орнату керек пе?</summary>
+        <p>Жоқ. Python алғаш іске қосқанда браузерге өзі жүктеледі, бұл бірнеше секунд алады. Python-ды компьютерге кейінірек, өз жобаңыз үшін орнату керек болады, бұл туралы бөлек сабақ бар.</p>
+      </details>
+      <details>
+        <summary>Жиі сұрақ: математика мен ағылшын тілін жақсы білу керек пе?</summary>
+        <p>Жоқ. Мектептегі арифметика жеткілікті. Python-да ағылшын сөздері аз, олардың мағынасын сабақтарда түсіндіреміз.</p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li>бағдарлама — компьютер кезекпен, жоғарыдан төмен қарай орындайтын командалар;</li>
+      <li>мұнда код тікелей браузерде іске қосылады, ештеңе орнатудың қажеті жоқ;</li>
+      <li>қателесу қорқынышты емес: байқап көріңіз, өзгертіңіз және қайта іске қосыңыз.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Сіздің бағдарламаңыз</span></div>
-  <pre><code>print("Сәлем!")
+  <div class="code-head"><span>1-мысал. Қадамдық рецепт</span></div>
+  <pre><code>print("1-қадам: кесені аламын")
+print("2-қадам: шай құямын")
+print("3-қадам: шай ішемін")</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>2-мысал. Python санай алады</span></div>
+  <pre><code>print(2 + 2)
+print("2 + 2")</code></pre>
+</div>
+      <p class="note">Екінші мысалда бірінші жол есептейді, ал екіншісі мәтінді сол күйінде шығарады: тырнақшадағының бәрін Python есептемейді.</p>
+      <label class="step-check"><input type="checkbox" data-step="intro"> Сабақ өтілді</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-1">
+    <div class="lesson-text">
+      <h2>1-сабақ. Алғашқы бағдарлама</h2>
+      <p><strong>Не үшін.</strong> Кез келген бағдарлама, тіпті үлкен сайт та қарапайым командалардан құралады. Ең маңыздысынан — нәтижені көрсететін командадан бастайық.</p>
+      <p><strong><code>print</code> командасы</strong> жақшадағыны экранға шығарады. Мәтін тырнақшаға жазылады: <code>print("Сәлем!")</code>. Сандарды тырнақшасыз жазуға болады: <code>print(2026)</code>.</p>
+      <p><strong>Реті.</strong> Әр команда жаңа жолдан жазылады. Python оларды жоғарыдан төмен қарай орындайды: жоғарыдағысы ертерек шығады.</p>
+      <p><strong>Бірнеше мән.</strong> Бір <code>print</code> ішінде бірнеше мәнді үтір арқылы тізбелеуге болады. Python олардың арасына бос орынды өзі қояды: <code>print("Маған", 16, "жас")</code> <code>Маған 16 жас</code> деп шығарады.</p>
+      <p><strong>Бос жол.</strong> Жақшасында ештеңе жоқ <code>print()</code> бос жол шығарады. Шығарылымның бір бөлігін екіншісінен бөлу үшін ыңғайлы.</p>
+      <p><strong>Түсіндірмелер.</strong> <code>#</code> белгісінен кейінгінің бәрі — адамға арналған жазба. Python оны өткізіп жібереді. Түсіндірмелер кодтың не істейтінін түсіндіруге көмектеседі.</p>
+      <p><strong>Байқап көріңіз:</strong> тырнақшаға өз атыңызды жазып, «Іске қосу» батырмасын басыңыз. Сосын екі жолдың орнын ауыстырып, шығарылым қалай өзгеретінін қараңыз.</p>
+      <details>
+        <summary>Жиі қате: тырнақша немесе жақша ұмытылған</summary>
+        <p>Тырнақшалар мен жақшалар әрқашан жұп болады. <code>print("Сәлем!)</code> деп жазсаңыз, Python мәтіннің соңын таппайды: <code class="error-text">SyntaxError: unterminated string literal</code> Әр ашатын тырнақша мен жақшаның жабатыны бар екенін тексеріңіз.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: бас әріппен жазылған Print</summary>
+        <p>Python бас әріп пен кіші әріпті ажыратады. Ол үшін <code>Print</code> пен <code>print</code> — әртүрлі сөздер, ал біріншісін ол білмейді: <code class="error-text">NameError: name 'Print' is not defined</code> Python командалары кіші әріппен жазылады.</p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li><code>print(...)</code> нәтижені көрсетеді: мәтін тырнақшада, сандар тырнақшасыз;</li>
+      <li>командалар жоғарыдан төмен қарай, әрқайсысы жаңа жолдан орындалады;</li>
+      <li><code>#</code> түсіндірмені бастайды, ал тырнақшалар мен жақшалар әрқашан жұп болады.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>1-мысал. Алғашқы командалар</span></div>
+  <pre><code># Бұл түсіндірме: Python оны өткізіп жібереді
+print("Сәлем!")
 print("Бұл менің алғашқы бағдарламам")</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>2-мысал. Бірнеше мән</span></div>
+  <pre><code>print("Менің атым", "Аружан")
+print("Маған", 16, "жас")
+print()
+print("Бағдарламалауды үйреніп жүргеніме:", 2026, "жылдан бері")</code></pre>
+</div>
+<article class="task" data-task="lesson-print" data-level="easy">
+<div class="task-head"><h3>Тапсырма: өзіңізді таныстырыңыз</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p>Екі жол шығаратын бағдарлама жазыңыз: алдымен <code>Сәлем!</code>, ал оның астында <code>Мен Python үйреніп жүрмін</code>.</p>
+<textarea class="editor-area" rows="3" spellcheck="false" aria-label="Шешімі: өзіңізді таныстырыңыз"># бағдарламаны осында жазыңыз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 2</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Әрқайсысы өз жолында тұрған екі <code>print</code> командасы керек.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Мәтінді тырнақшаға тапсырмадағыдай дәл жазыңыз: <code>print("Сәлем!")</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>print("Сәлем!")
+print("Мен Python үйреніп жүрмін")</code></pre></details>
+<template data-kind="tests">case('printed()', "Сәлем!\nМен Python үйреніп жүрмін")</template>
+</article>
+<article class="task" data-task="lesson-print-2" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: қателерді табыңыз</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>Бағдарламада үш қате бар, сондықтан ол іске қосылмайды. Бағдарлама <code>Менің атым Ерлан</code> және <code>Маған 16 жас</code> деп шығаратындай етіп оларды түзетіңіз.</p>
+<textarea class="editor-area" rows="3" spellcheck="false" aria-label="Шешімі: қателерді табыңыз">Print("Менің атым Ерлан)
+print("Маған", 16 "жас")</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Бірінші команданың бірінші әрпіне қараңыз.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Бірінші жолдағы мәтіннің ашатын тырнақшасы бар. Ал жабатыны ше?</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> <code>print</code> ішіндегі мәндер үтірмен бөлінеді. <code>16</code> мен <code>"жас"</code> арасында үтір жоқ.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>print("Менің атым Ерлан")
+print("Маған", 16, "жас")</code></pre></details>
+<template data-kind="tests">case('printed()', "Менің атым Ерлан\nМаған 16 жас")</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="1"> Сабақ өтілді</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-numbers">
+    <div class="lesson-text">
+      <h2>2-сабақ. Сандар: Python — калькулятор</h2>
+      <p><strong>Не үшін.</strong> Сайттар үнемі есептейді: себеттегі бағаны, тест ұпайларын, емтиханға дейін қанша күн қалғанын. Сондықтан алдымен санауды үйренейік.</p>
+      <p><strong>Амалдар.</strong> Python <code>+</code> қосады, <code>-</code> азайтады, <code>*</code> көбейтеді және <code>/</code> бөледі. Нәтижені бірден шығаруға болады: <code>print(2 + 3)</code>.</p>
+      <p><strong>Бүтін және бөлшек сандар.</strong> Бүтін сандар болады, мысалы <code>7</code>, және бөлшек сандар, мысалы <code>7.5</code>. Бөлшек бөлігі үтірмен емес, <strong>нүктемен</strong> бөлінеді. Қарапайым бөлу <code>/</code> әрқашан бөлшек сан береді: <code>10 / 2</code> <code>5.0</code> болады.</p>
+      <p><strong>Бүтін бөлу және қалдық.</strong> 17 кәмпитті қорапқа 5-тен салып жатыр деп елестетіңіз. <code>17 // 5</code> қанша толық қорап шығатынын айтады: <code>3</code>. <code>17 % 5</code> қанша кәмпит қалатынын айтады: <code>2</code>.</p>
+      <p><strong>Дәреже және амалдар реті.</strong> <code>2 ** 3</code> — 2-нің кубы, яғни <code>8</code>. Амалдар реті математикадағыдай: алдымен көбейту мен бөлу, сосын қосу мен азайту. Жақшалар ретті өзгертеді: <code>(2 + 3) * 4</code> <code>20</code> болады.</p>
+      <p><strong>Дөңгелектеу.</strong> <code>round(3.14159, 2)</code> нүктеден кейін екі таңба қалдырады: <code>3.14</code>.</p>
+      <p><strong>Сан мен мәтін — әртүрлі нәрсе.</strong> <code>2 + 2</code> <code>4</code> береді, ал <code>"2" + "2"</code> <code>"22"</code> береді: бұл қосынды емес, желімделген мәтін.</p>
+      <p><strong>Байқап көріңіз:</strong> бір аптада қанша минут бар екенін есептеңіз. Сосын қалдықтың қалай жұмыс істейтінін тексеріңіз: <code>10 % 3</code> не береді?</p>
+      <details>
+        <summary>Жиі қате: нүктенің орнына үтір</summary>
+        <p>Бөлшек санға нүкте керек. <code>print(2,5)</code> деп жазсаңыз, қате болмайды, бірақ Python мұны екі сан деп түсініп, <code>2 5</code> деп шығарады. Дұрысы: <code>print(2.5)</code>.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: нөлге бөлу</summary>
+        <p>Python-да да нөлге бөлуге болмайды. <code>print(5 / 0)</code> командасы бағдарламаны тоқтатады: <code class="error-text">ZeroDivisionError: division by zero</code> Бөлгіштің нөлге тең емес екенін тексеріңіз.</p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li><code>+ - * /</code> — қарапайым амалдар, бөлшек бөлігі нүктемен бөлінеді;</li>
+      <li><code>//</code> — неше бүтін рет, <code>%</code> — қалдық, <code>**</code> — дәреже;</li>
+      <li>сандар тырнақшасыз жазылады: тырнақшадағы <code>"2"</code> — бұл енді мәтін.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>1-мысал. Калькулятор</span></div>
+  <pre><code>print(7 + 5)
+print(7 - 5)
+print(7 * 5)
+print(7 / 2)
+print(7 // 2)
+print(7 % 2)
+print(2 ** 10)</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>2-мысал. Дүкендегі сатып алу</span></div>
+  <pre><code>print("450 теңгеден үш дәптер:", 3 * 450)
+print("200 теңгелік қаламмен:", 3 * 450 + 200)
+print("2000-нан қайтарым:", 2000 - (3 * 450 + 200))
+print("Орташа баға:", round((5 + 4 + 5) / 3, 1))</code></pre>
+</div>
+<article class="task" data-task="lesson-numbers" data-level="easy">
+<div class="task-head"><h3>Тапсырма: тәуліктегі секундтар</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p>Тәулікте 24 сағат, сағатта 60 минут, минутта 60 секунд бар. Тәулікте неше секунд бар екенін шығарыңыз. Python өзі есептесін.</p>
+<textarea class="editor-area" rows="3" spellcheck="false" aria-label="Шешімі: тәуліктегі секундтар"># есептеп, шығарыңыз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 2</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Үш санды көбейту керек: сағатты, минутты және секундты.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Өрнекті тікелей <code>print</code> ішіне жазыңыз: <code>print(24 * 60 * 60)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>print(24 * 60 * 60)</code></pre></details>
+<template data-kind="tests">case('printed()', "86400")</template>
+</article>
+<article class="task" data-task="lesson-numbers-2" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: кәмпиттерді тең бөлу</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>47 кәмпитті 6 баланың арасында тең бөледі. Екі жол шығарыңыз: әрқайсысы неше кәмпит алады және нешеуі қалады. <code>Әрқайсысына: 7</code> және <code>Қалады: 5</code> шығуы керек.</p>
+<textarea class="editor-area" rows="3" spellcheck="false" aria-label="Шешімі: кәмпиттерді тең бөлу"># // және % көмегімен есептеңіз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> «Әрқайсысына қанша» — бұл бүтін бөлу: <code>47 // 6</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> «Қанша қалады» — бұл қалдық: <code>47 % 6</code>.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Мәтін мен санды үтір арқылы тізбелеңіз: <code>print("Әрқайсысына:", 47 // 6)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>print("Әрқайсысына:", 47 // 6)
+print("Қалады:", 47 % 6)</code></pre></details>
+<template data-kind="tests">case('printed()', "Әрқайсысына: 7\nҚалады: 5")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="numbers"> Сабақ өтілді</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-2">
     <div class="lesson-text">
-      <h2>2-сабақ. Айнымалылар: мәнді қалай есте сақтау</h2>
-      <p>Айнымалы — қораптағы жазу сияқты. Қорапқа мән салынады, содан кейін оған аты арқылы жүгінеді.</p>
-      <p>Мәндермен жұмыс істеуге болады: мысалы, жасқа бір қосу.</p>
-      <p><strong>Байқап көріңіз:</strong> өз атыңыз бен жасыңызды қойып, қайта іске қосыңыз.</p>
+      <h2>3-сабақ. Айнымалылар: мәнді қалай есте сақтау керек</h2>
+      <p><strong>Не үшін.</strong> Бағдарлама деректерді есте сақтауы керек: оқушының атын, тест ұпайларын, себеттегі соманы. Ол үшін айнымалылар бар.</p>
+      <p><strong>Айнымалы деген не.</strong> Айнымалы — жазуы бар қорап. Қорапқа мән салады, сосын оған жазуы арқылы жүгінеді. <code>name = "Аня"</code> мынаны білдіреді: <code>"Аня"</code> мәтінін <code>name</code> деп жазылған қорапқа сал.</p>
+      <p>Python-дағы <strong><code>=</code> белгісі</strong> «тең» емес, «салу» дегенді білдіреді. Сол жақта қораптың аты, оң жақта оған не салынатыны жазылады.</p>
+      <p><strong>Мәнді өзгертуге болады.</strong> <code>score = score + 10</code> мынаны білдіреді: <code>score</code> ішіндегіні ал, 10 қос және қайта сал. Қысқаша дәл соны былай жазады: <code>score += 10</code>.</p>
+      <p><strong>Айнымалыларды қалай атау керек.</strong> Латын әріптерін, цифрларды және <code>_</code> белгісін қолданыңыз. Ат цифрдан басталмайды. Түсінікті аттар таңдаңыз: <code>user_age</code> <code>a</code>-дан жақсы.</p>
+      <p><strong>Мәндердің түрлері.</strong> Әр мәннің түрі бар: <code>str</code> — мәтін, <code>int</code> — бүтін сан, <code>float</code> — бөлшек сан. Түрін <code>type(...)</code> арқылы білуге болады. Біреуін екіншісіне <code>int("16")</code>, <code>str(16)</code> және <code>float("2.5")</code> айналдырады.</p>
+      <p><strong>Пернетақтадан енгізу.</strong> Компьютерде <code>input("Атыңыз кім? ")</code> адамнан сұрап, жауап күтеді. Жауап әрқашан мәтін болып келеді, сондықтан санды былай алады: <code>int(input())</code>. Осы сайттағы браузерде <code>input()</code> жұмыс істемейді, сондықтан мәндерді тікелей кодқа жазамыз. Ал сайттарда деректер формалардан келеді, олар туралы бөлек сабақ болады.</p>
+      <p><strong>Байқап көріңіз:</strong> өз атыңыз бен жасыңызды қойып, қайта іске қосыңыз. Ұпайларға тағы 5 қосыңыз.</p>
+      <details>
+        <summary>Жиі қате: аттағы қате</summary>
+        <p><code>name</code> жасап, сосын <code>nmae</code> деп жазсаңыз, Python не туралы айтылып тұрғанын түсінбейді: <code class="error-text">NameError: name 'nmae' is not defined</code> Аттың барлық жерде әрпіне дейін бірдей жазылғанын тексеріңіз.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: мәтін түріндегі сан</summary>
+        <p><code>"16" + 1</code> жұмыс істемейді: сол жақта мәтін, оң жақта сан. <code class="error-text">TypeError: can only concatenate str (not "int") to str</code> Алдымен мәтінді санға айналдырыңыз: <code>int("16") + 1</code> <code>17</code> береді.</p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li>айнымалы — жазуы бар қорап: <code>name = "Аня"</code>, <code>=</code> белгісі «салу» дегенді білдіреді;</li>
+      <li>мәнді өзгертуге болады: <code>score += 10</code>;</li>
+      <li>түрін <code>type()</code> арқылы біледі, <code>int()</code>, <code>str()</code>, <code>float()</code> арқылы өзгертеді.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Сіздің бағдарламаңыз</span></div>
-  <pre><code>name = "Аружан"
+  <div class="code-head"><span>1-мысал. Деректері бар қораптар</span></div>
+  <pre><code>name = "Аня"
 age = 18
+score = 0
 
 print("Менің атым", name)
-print("Келесі жылы:", age + 1, "жас")</code></pre>
+print("Бір жылдан кейін маған", age + 1, "жас болады")
+
+score = score + 10
+score += 5
+print("Ұпай:", score)</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>2-мысал. Мәтін бе, сан ба</span></div>
+  <pre><code>age_text = "16"
+age = int(age_text)
+
+print(type(age_text))
+print(type(age))
+print("Бір жылдан кейін:", age + 1)
+print("Мәтінді желімдеу:", age_text + "1")</code></pre>
+</div>
+<article class="task" data-task="lesson-variables" data-level="easy">
+<div class="task-head"><h3>Тапсырма: қорапша</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p>Қорапшада 500 теңге бар. Оған тағы 300 салыңыз, сосын 250 жұмсаңыз. <code>money</code> айнымалысының мәнін өзгертіңіз, ал соңында қанша қалғанын шығарыңыз.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Шешімі: қорапша">money = 500
+# 300 салып, 250 жұмсаңыз да, money шығарыңыз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Ақша салу — қосу деген сөз: <code>money += 300</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Жұмсау — азайту деген сөз: <code>money -= 250</code>.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Соңында: <code>print(money)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>money = 500
+money += 300
+money -= 250
+print(money)</code></pre></details>
+<template data-kind="tests">case('money', 550)
+case('printed()', "550")</template>
+</article>
+<article class="task" data-task="lesson-variables-2" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: сауалнамадағы жас</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>Сайттағы сауалнама жасты мәтінмен жіберді: <code>"15"</code>. Адамға 3 жылдан кейін неше жас болатынын есептеп, <code>3 жылдан кейін сізге 18 жас болады</code> деп шығарыңыз.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Шешімі: сауалнамадағы жас">age_text = "15"
+# мәтінді санға айналдырып, жауапты шығарыңыз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Мәтінді санға <code>int(age_text)</code> айналдырады. Нәтижені жаңа айнымалыға сақтаңыз, мысалы <code>age</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Енді есептеуге болады: <code>age + 3</code>.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Мәтін мен санды 1-сабақтағыдай үтір арқылы тізбелеңіз, ал соңындағы сөзді бөлек мәтін етіп қосыңыз: <code>print("3 жылдан кейін сізге", age + 3, "жас болады")</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>age_text = "15"
+age = int(age_text)
+print("3 жылдан кейін сізге", age + 3, "жас болады")</code></pre></details>
+<template data-kind="tests">case('printed()', "3 жылдан кейін сізге 18 жас болады")</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="2"> Сабақ өтілді</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-strings">
+    <div class="lesson-text">
+      <h2>4-сабақ. Жолдар: мәтінмен жұмыс</h2>
+      <p><strong>Не үшін.</strong> Сайтта барлығы дерлік мәтін: оқушының аты, тақырып, формадағы хабарлама. Мәтінмен жұмыс істеу үшін оны сақтай, желімдей және түзете білу керек.</p>
+      <p><strong>Жол деген не.</strong> Python-да мәтін <strong>жол</strong> деп аталады. Бұл жіпке тізілген моншақтар сияқты қатар тұрған әріптер. Жол тырнақшаға жазылады: <code>"Сәлем"</code>.</p>
+      <p>Тырнақшалар — мәтіннің шекаралары. Оларсыз Python <code>Сәлем</code> деп айнымалының атын ойлайды да, қате туралы хабарлайды.</p>
+      <p><strong>Жолдарды желімдеу</strong> үшін <code>+</code> белгісін қолданады: <code>"Сәлем, " + "Аружан"</code> <code>Сәлем, Аружан</code> береді. Бос орынды өзіңіз қойыңыз: Python оны қоспайды.</p>
+      <p><strong>f-жол</strong> — мәнді мәтінге қоюдың ең ыңғайлы тәсілі. Ат жазуға бос орын қалдырылған ашықхатты елестетіңіз. Тырнақшалар алдындағы <code>f</code> әрпі Python-ға «мұнда бос орындар бар» дейді. Бос орындардың өзі — бұйра жақшалар: <code>f"Сәлем, {name}!"</code>. Python сол жерге айнымалының мәнін қояды.</p>
+      <p><strong>Әдістер</strong> — әр жолда бар командалар. Олар нүкте арқылы жазылады:</p>
+      <ul>
+      <li><code>.strip()</code> басындағы және соңындағы артық бос орындарды алып тастайды;</li>
+      <li><code>.title()</code> бірінші әріпті бас әріп етеді: <code>аружан</code> → <code>Аружан</code>;</li>
+      <li><code>.upper()</code> барлық әріпті бас әріп етеді, <code>.lower()</code> — кіші әріп.</li>
+      </ul>
+      <p><strong>Ұзындық және әріптердің нөмірі.</strong> <code>len(name)</code> жолда неше таңба бар екенін санайды. Ал бір әріпті шаршы жақшадағы нөмірі бойынша алуға болады. Нөмірлер нөлден басталады: <code>name[0]</code> — бірінші әріп, <code>name[1]</code> — екінші.</p>
+      <p><strong>Байқап көріңіз:</strong> бірінші мысалда өз атыңызды артық бос орындармен қойыңыз — нәтиже өзгермейді. <code>.title()</code> орнына <code>.upper()</code> жазыңыз. Екінші мысалда қала мен жасты өзгертіңіз.</p>
+      <details>
+        <summary>Жиі қате: мәтінді санмен желімдеу</summary>
+        <p>Жол мен санды <code>+</code> белгісімен қосуға болмайды. <code>print("Маған " + 18)</code> командасы бағдарламаны қатемен тоқтатады: <code class="error-text">TypeError: can only concatenate str (not "int") to str</code> Python не қалағаныңызды түсінбейді: сандарды қосу ма, әлде мәтінді желімдеу ме. f-жолды қолданыңыз: <code>print(f"Маған {18} жас")</code>. Ол санды мәтінге өзі айналдырады.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: жол өздігінен өзгермейді</summary>
+        <p>Әдіс жолды түзетпейді, <strong>жаңасын қайтарады</strong>. Сондықтан <code>name.strip()</code> кейін <code>name</code> ішінде ескі бос орындар қалады. Нәтижені сақтау керек: <code>name = name.strip()</code>.</p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li>тырнақшадағы мәтін — жол, жолдар <code>+</code> белгісімен желімделеді;</li>
+      <li>f-жол мәндерді мәтінге қояды: <code>f"Сәлем, {name}!"</code>;</li>
+      <li><code>.strip()</code>, <code>.title()</code>, <code>.upper()</code> әдістері жаңа жол қайтарады, <code>len()</code> таңбаларды санайды, <code>name[0]</code> бірінші әріпті береді.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>1-мысал. Атты ретке келтіреміз</span></div>
+  <pre><code>name = "   аружан   "
+
+clean = name.strip()
+print(clean.title())
+print("Аттағы таңбалар:", len(clean))
+print("Бірінші әріп:", clean[0].upper())
+print("Сәлем, " + clean.title() + "!")</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>2-мысал. Бос орындары бар ашықхат</span></div>
+  <pre><code>name = "Ерлан"
+city = "Астана"
+age = 16
+
+print(f"Сәлем, {name}!")
+print(f"Сен {city} қаласынансың, саған {age} жас.")
+print(f"Бір жылдан кейін саған {age + 1} жас болады.")</code></pre>
+</div>
+<article class="task" data-task="lesson-strings" data-level="easy">
+<div class="task-head"><h3>Тапсырма: қатысушының бейджі</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p>Ат пен қала айнымалыларға жазылған, бірақ артық бос орындармен. Бейджді шығарыңыз: бас әріптермен жазылған ат, үтір, қала және <code>қаласы</code> сөзі. <code>АРУЖАН, Алматы қаласы</code> шығуы керек.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Шешімі: қатысушының бейджі">name = "  аружан "
+city = " Алматы"
+# бейджді шығарыңыз</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Алдымен бос орындарды алып тастаңыз: <code>name.strip()</code> және <code>city.strip()</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Бас әріптерді <code>.upper()</code> береді, әрі әдістерді қатарынан жазуға болады: <code>name.strip().upper()</code>.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Жауапты f-жолмен жинап, шығарыңыз: <code>print(f"{...}, {...} қаласы")</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>name = "  аружан "
+city = " Алматы"
+print(f"{name.strip().upper()}, {city.strip()} қаласы")</code></pre></details>
+<template data-kind="tests">case('printed()', "АРУЖАН, Алматы қаласы")</template>
+</article>
+<article class="task" data-task="lesson-strings-2" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: қысқа ат</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>Журналдарда атты жиі қысқа жазады: тегі, сосын аттың бірінші әрпі нүктемен. Ат пен тек жазылған, бірақ кіші әріптермен және бос орындармен. <code>Сейтқазы А.</code> деп шығарыңыз</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Шешімі: қысқа ат">first = "  аружан"
+last = "сейтқазы  "
+# қысқа атты шығарыңыз</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Алдымен бос орындарды алып тастап, нәтижені сақтаңыз: <code>first = first.strip()</code>, <code>last</code> үшін де солай.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Бас әріппен жазылған тек — <code>last.title()</code>. Аттың бірінші әрпі — <code>first[0]</code>, оны <code>.upper()</code> бас әріп етеді.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Жауапты f-жолмен жинаңыз: <code>print(f"{...} {...}.")</code>. Соңындағы нүктені ұмытпаңыз.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>first = "  аружан"
+last = "сейтқазы  "
+first = first.strip()
+last = last.strip()
+print(f"{last.title()} {first[0].upper()}.")</code></pre></details>
+<template data-kind="tests">case('printed()', "Сейтқазы А.")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="strings"> Сабақ өтілді</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-3">
     <div class="lesson-text">
-      <h2>3-сабақ. Шарттар: егер былай болса, онда былай</h2>
-      <p>Бағдарлама таңдау жасай алады. <code>if</code> сөзі «егер», ал <code>else</code> «әйтпесе» дегенді білдіреді.</p>
-      <p>Төрт бос орыннан тұратын шегініс қай жолдардың шартқа жататынын көрсетеді.</p>
-      <p><strong>Байқап көріңіз:</strong> температураны 10-ға өзгертіп, не өзгеретінін қараңыз.</p>
+      <h2>5-сабақ. Шарттар: егер былай болса, онда былай</h2>
+      <p><strong>Не үшін.</strong> Сайт үнемі таңдау жасайды: пайдаланушыны кіргізу ме, жауапты есептеу ме, сатып алуға ақша жете ме. Таңдау үшін шарттар бар.</p>
+      <p><strong><code>if</code> сөзі</strong> «егер» дегенді білдіреді. Одан кейін шарт пен қос нүкте жазылады. Оның астындағы төрт бос орын шегінісі бар жолдар <strong>тек шарт дұрыс болғанда ғана</strong> орындалады.</p>
+      <p><strong><code>else</code> сөзі</strong> «әйтпесе» дегенді білдіреді. Оның жолдары шарт дұрыс болмағанда орындалады. Ал <code>elif</code> — «ал егер олай болмаса, мынаны тексер». Мұндай тексерулерді қанша болса да жазуға болады, Python оларды жоғарыдан төмен қарай өтіп, бірінші дұрысына тоқтайды.</p>
+      <p><strong>Шегініс</strong> қай жолдардың шартқа жататынын көрсетеді. Бұл әшекей емес: шегініссіз Python нені орындау керегін түсінбейді.</p>
+      <p><strong>Салыстыру.</strong> <code>&gt;</code> үлкен, <code>&lt;</code> кіші, <code>&gt;=</code> және <code>&lt;=</code> — үлкен немесе тең және кіші немесе тең. Теңдікті <strong>екі</strong> белгімен тексереді: <code>==</code>. Тең емес — <code>!=</code>. Мәтінді де салыстыруға болады: <code>password == "qwerty"</code>.</p>
+      <p><strong>Ақиқат пен жалған.</strong> Салыстырудың жауабы — <code>True</code> (дұрыс) немесе <code>False</code> (дұрыс емес). Өзіңіз тексеріңіз: <code>print(5 &gt; 3)</code> <code>True</code> деп шығарады.</p>
+      <p><strong>Бірнеше шарт.</strong> <code>and</code> — «және»: екеуі де дұрыс болғанда дұрыс. <code>or</code> — «немесе»: біреуі жеткілікті. <code>not</code> жауапты керісінше өзгертеді.</p>
+      <p><strong>Байқап көріңіз:</strong> бірінші мысалда температураны 10, сосын 30 етіп қойыңыз. Екіншісінде жасты және ата-ананың рұқсатын өзгертіңіз.</p>
+      <details>
+        <summary>Жиі қате: екі белгінің орнына бір = белгісі</summary>
+        <p>Бір <code>=</code> белгісі мәнді айнымалыға салады, ал салыстыру екеуімен жасалады: <code>==</code>. <code>if x = 5:</code> деп жазсаңыз, Python бірден айтады: <code class="error-text">SyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?</code></p>
+      </details>
+      <details>
+        <summary>Жиі қате: шегініс немесе қос нүкте ұмытылған</summary>
+        <p>Шарттан кейін қос нүкте керек, ал ішіндегі жолдарға төрт бос орын шегініс керек. Әйтпесе Python тоқтайды: <code class="error-text">IndentationError: expected an indented block after 'if' statement on line 2</code> Қос нүкте қойып, жолды Tab пернесімен немесе төрт бос орынмен оңға жылжытыңыз.</p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li><code>if</code> — егер, <code>elif</code> — ал егер, <code>else</code> — әйтпесе; шарттан кейін қос нүкте мен шегініс;</li>
+      <li>теңдік <code>==</code> арқылы тексеріледі, ал бір <code>=</code> мәнді айнымалыға салады;</li>
+      <li><code>and</code> — екі шарт та, <code>or</code> — ең болмаса біреуі, <code>not</code> — керісінше.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Сіздің бағдарламаңыз</span></div>
+  <div class="code-head"><span>1-мысал. Не кию керек</span></div>
   <pre><code>temperature = -5
 
 if temperature &lt; 0:
-    print("Далада аяз, бөрігіңізді киіңіз")
+    print("Далада аяз, бас киім киіңіз")
+elif temperature &lt; 15:
+    print("Салқын, күртеше алыңыз")
 else:
-    print("Бөріксіз де болады")</code></pre>
+    print("Жылы, футболкамен жүруге болады")
+
+print(temperature &lt; 0)</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>2-мысал. Жорыққа баруға бола ма</span></div>
+  <pre><code>age = 15
+parents_allow = True
+
+if age &gt;= 16 or parents_allow:
+    print("Жорыққа баруға болады")
+else:
+    print("Әзірге болмайды")
+
+if age &gt;= 14 and age &lt;= 17:
+    print("Сіз жасөспірімдер тобындасыз")</code></pre>
+</div>
+<article class="task" data-task="lesson-conditions" data-level="easy">
+<div class="task-head"><h3>Тапсырма: жұп па, тақ па</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p>Сан <code>number</code> айнымалысына жазылған. Ол 2-ге қалдықсыз бөлінсе, <code>жұп</code> деп, бөлінбесе, <code>тақ</code> деп шығарыңыз.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Шешімі: жұп па, тақ па">number = 7
+# 2-ге бөлгендегі қалдықты тексеріңіз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> 2-ге бөлгендегі қалдықты <code>number % 2</code> береді. Жұп санда ол нөлге тең.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Шарт: <code>if number % 2 == 0:</code>. Қос нүкте мен шегіністі ұмытпаңыз.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> <code>else:</code> тармағында <code>"тақ"</code> деп шығарыңыз.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>number = 7
+if number % 2 == 0:
+    print("жұп")
+else:
+    print("тақ")</code></pre></details>
+<template data-kind="tests">case('printed()', "тақ")</template>
+</article>
+<article class="task" data-task="lesson-conditions-2" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: ұпай бойынша баға</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>Тесттен 100 ұпайға дейін жинауға болады. 90-нан бастап — <code>өте жақсы</code>, 70-тен — <code>жақсы</code>, 50-ден — <code>қанағаттанарлық</code>, 50-ден төмен — <code>қайта байқап көріңіз</code>. <code>score</code> үшін бағаны шығарыңыз.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Шешімі: ұпай бойынша баға">score = 78
+# if, elif және else қолданыңыз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Ең жоғарғы шекарадан бастаңыз: <code>if score &gt;= 90:</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Одан кейін <code>elif score &gt;= 70:</code> және <code>elif score &gt;= 50:</code>. Python бірінші дұрыс тексеруге тоқтайды.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> 50-ден төменнің бәрі <code>else:</code> ішіне түседі.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>score = 78
+if score &gt;= 90:
+    print("өте жақсы")
+elif score &gt;= 70:
+    print("жақсы")
+elif score &gt;= 50:
+    print("қанағаттанарлық")
+else:
+    print("қайта байқап көріңіз")</code></pre></details>
+<template data-kind="tests">case('printed()', "жақсы")</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="3"> Сабақ өтілді</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="project-discount">
+    <div class="lesson-text">
+      <h2>1-шағын жоба. Жеңілдік калькуляторы</h2>
+      <p><strong>Не жасаймыз.</strong> Дүкен кассасына арналған бағдарлама: ол жеңілдікті есептеп, чек шығарады. Кез келген интернет-дүкеннің себеті осылай жұмыс істейді, тек онда дәл осыны сервер жасайды.</p>
+      <p><strong>Не керек болады:</strong> сандар (<a href="#lesson-numbers">2-сабақ</a>), айнымалылар (<a href="#lesson-2">3-сабақ</a>), f-жолдар (<a href="#lesson-strings">4-сабақ</a>) және шарттар (<a href="#lesson-3">5-сабақ</a>).</p>
+      <p><strong>Дүкен ережелері:</strong></p>
+      <ul>
+      <li>сатып алу 5000 теңге немесе одан көп болса, жеңілдік 10%;</li>
+      <li>студенттерге үстіне тағы 5%;</li>
+      <li>жеңілдіктер қосылады: 6000 теңгеге сатып алған студент 15% алады.</li>
+      </ul>
+      <p><strong>Қадамдық жоспар:</strong></p>
+      <ol>
+      <li><code>discount = 0</code> айнымалысын жасаңыз — пайыздағы жеңілдік;</li>
+      <li>екі бөлек <code>if</code> арқылы шарттар дұрыс болса, оған 10 мен 5 қосыңыз;</li>
+      <li>төлеуге тиісті соманы есептеп, оны бүтінге дейін дөңгелектеңіз: <code>round(...)</code>;</li>
+      <li>«Қалай шығуы керек» мысалындағыдай үш жолдан тұратын чек шығарыңыз.</li>
+      </ol>
+      <p><strong>Неге <code>elif</code> емес, екі бөлек <code>if</code>.</strong> <code>elif</code> алдыңғы шарт дұрыс болмағанда ғана іске қосылады. Ал мұнда жеңілдіктер қосылуы керек, сондықтан әр шарт өз бетінше тексеріледі.</p>
+      <p><strong>Не қосуға болады:</strong> 10 000 теңгеден бастап тегін жеткізу, туған күнде 20% жеңілдік, «Сіз үнемдедіңіз: … теңге» деген жол.</p>
+    </div>
+    <div class="lesson-code">
+<div class="code-block">
+  <div class="code-head"><span>Қалай шығуы керек</span></div>
+  <pre><code>Сомасы: 6000 теңге
+Жеңілдік: 15%
+Төлеуге: 5100 теңге</code></pre>
+</div>
+<article class="task" data-task="project-discount" data-level="medium">
+<div class="task-head"><h3>Жоба: жеңілдігі бар чек</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>6000 теңгеге сатып алу, сатып алушы — студент. Жеңілдікті дүкен ережелері бойынша есептеп, чекті мысалдағыдай дәл шығарыңыз.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Шешімі: жеңілдігі бар чек">price = 6000
+is_student = True
+discount = 0
+
+# 1. жеңілдіктерді қосыңыз
+# 2. төлеуге тиісті соманы есептеңіз
+# 3. чекті шығарыңыз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>1 / 4 кеңес</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Бірінші шарт: <code>if price &gt;= 5000:</code> және оның астында <code>discount += 10</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Екіншісі — <code>elif</code> емес, бөлек <code>if</code>: <code>if is_student:</code> және <code>discount += 5</code>.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Төлеуге тиісті сома: <code>to_pay = round(price - price * discount / 100)</code>.</li>
+<li hidden tabindex="-1"><strong>4-кеңес.</strong> Чек: <code>print(f"Сомасы: {price} теңге")</code>, сосын дәл солай <code>%</code> белгісі бар жеңілдікті және төлеуге тиісті соманы.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>price = 6000
+is_student = True
+discount = 0
+
+if price &gt;= 5000:
+    discount += 10
+if is_student:
+    discount += 5
+
+to_pay = round(price - price * discount / 100)
+
+print(f"Сомасы: {price} теңге")
+print(f"Жеңілдік: {discount}%")
+print(f"Төлеуге: {to_pay} теңге")</code></pre></details>
+<template data-kind="tests">case('discount', 15)
+case('printed()', "Сомасы: 6000 теңге\nЖеңілдік: 15%\nТөлеуге: 5100 теңге")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="project-discount"> Жоба дайын</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-4">
     <div class="lesson-text">
-      <h2>4-сабақ. Тізімдер мен циклдер: бір әрекетті көп рет</h2>
-      <p>Тізім бірнеше мәнді қатарынан сақтайды. <code>for</code> циклі оларды бір-бірден алып, әрқайсысымен бірдей әрекет жасайды.</p>
-      <p>Сайт лентаны осылай көрсетеді: оның жазбалар тізімі бар, ол оларды бірінен соң бірін шығарады.</p>
-      <p><strong>Байқап көріңіз:</strong> тізімге өз ісіңізді қосыңыз.</p>
+      <h2>6-сабақ. Тізімдер: бір айнымалыда көп мән</h2>
+      <p><strong>Не үшін.</strong> Сайттарда барлығы дерлік тізім: жаңалықтар таспасы, сынып оқушылары, себеттегі тауарлар. Әр мәнді өз айнымалысында сақтау ыңғайсыз, сондықтан оларды тізімге жинайды.</p>
+      <p><strong>Тізім деген не.</strong> Тізім — шаршы жақшадағы үтірмен бөлінген мәндер қатары: <code>["алма", "алмұрт", "өрік"]</code>. Пойызды елестетіңіз: әр мән өз вагонында келеді.</p>
+      <p><strong>Вагон нөмірлері</strong> жолдағы әріптер сияқты нөлден басталады. <code>fruits[0]</code> — бірінші элемент, <code>fruits[1]</code> — екінші. Соңынан теріс нөмірлермен санайды: <code>fruits[-1]</code> — соңғысы.</p>
+      <p><strong>Неше элемент бар екенін</strong> таныс <code>len(fruits)</code> көрсетеді.</p>
+      <p><strong>Тізімді өзгертуге болады.</strong> <code>fruits[1] = "киви"</code> екінші элементті ауыстырады. <code>.append("банан")</code> соңына қосады, <code>.remove("алмұрт")</code> мәні бойынша алып тастайды.</p>
+      <p><strong>Тізімде бар ма?</strong> Мұны <code>in</code> сөзі тексереді: <code>"өрік" in fruits</code> <code>True</code> немесе <code>False</code> береді. Шарттарда ыңғайлы.</p>
+      <p><strong>Сандар тізімі.</strong> <code>sum()</code> барлық сандарды қосады, <code>min()</code> мен <code>max()</code> ең кішісі мен ең үлкенін табады, <code>sorted()</code> оларды ретімен қайтарады.</p>
+      <p><strong>Байқап көріңіз:</strong> бірінші тізімге өз өніміңізді қосып, басқасын алып тастаңыз. Екінші мысалда тағы бір баға қосыңыз.</p>
+      <details>
+        <summary>Жиі қате: нөмірлер нөлден басталады</summary>
+        <p>Үш элементтен тұратын тізімде нөмірлер 0, 1 және 2. 3 нөмірлі элемент жоқ: <code class="error-text">IndexError: list index out of range</code> Соңғы элементтің нөмірі ұзындықтан бір кем. Немесе жай ғана <code>[-1]</code> деп жазыңыз.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: басқа әдіс</summary>
+        <p>Тізімге <code>.append()</code> әдісімен қосады. <code>.add()</code> деп жазсаңыз, Python тізімде мұндай жоқ деп жауап береді: <code class="error-text">AttributeError: 'list' object has no attribute 'add'</code></p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li>тізім — шаршы жақшадағы мәндер: <code>["а", "ә"]</code>, нөмірлер нөлден басталады;</li>
+      <li><code>.append()</code> қосады, <code>.remove()</code> алып тастайды, <code>in</code> мәннің бар-жоғын тексереді;</li>
+      <li><code>len()</code>, <code>sum()</code>, <code>min()</code>, <code>max()</code> және <code>sorted()</code> бүкіл тізіммен бірден жұмыс істейді.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Сіздің бағдарламаңыз</span></div>
-  <pre><code>tasks = ["нан сатып алу", "сабақ оқу", "анама қоңырау шалу"]
+  <div class="code-head"><span>1-мысал. Сатып алу тізімі</span></div>
+  <pre><code>shopping = ["нан", "сүт", "алма"]
 
-for task in tasks:
-    print("Істеу керек:", task)
+print(shopping[0])
+print(shopping[-1])
 
-print("Барлық іс:", len(tasks))</code></pre>
+shopping.append("ірімшік")
+shopping.remove("сүт")
+print(shopping)
+print("Барлық сатып алу:", len(shopping))
+print("Нан бар ма?", "нан" in shopping)</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>2-мысал. Тоқсандық бағалар</span></div>
+  <pre><code>grades = [5, 4, 5, 3, 5, 4]
+
+print("Барлық баға:", len(grades))
+print("Қосынды:", sum(grades))
+print("Ең жақсысы:", max(grades), "ең нашары:", min(grades))
+print("Орташа:", round(sum(grades) / len(grades), 2))
+print("Ретімен:", sorted(grades))</code></pre>
+</div>
+<article class="task" data-task="lesson-lists" data-level="easy">
+<div class="task-head"><h3>Тапсырма: қонақтар тізімі</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p>Туған күнге екі адам шақырылып қойды. <code>guests</code> тізіміне <code>Дана</code> есімді қонақты қосып, енді неше қонақ бар екенін шығарыңыз.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Шешімі: қонақтар тізімі">guests = ["Аружан", "Ерлан"]
+# Дананы қосып, қонақтар санын шығарыңыз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 2</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Тізімнің соңына қосу: <code>guests.append("Дана")</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Элементтер саны: <code>print(len(guests))</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>guests = ["Аружан", "Ерлан"]
+guests.append("Дана")
+print(len(guests))</code></pre></details>
+<template data-kind="tests">case('guests', ["Аружан", "Ерлан", "Дана"])
+case('printed()', "3")</template>
+</article>
+<article class="task" data-task="lesson-lists-2" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: орташа баға</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p><code>scores</code> тізімінде оқушының бағалары бар. Нүктеден кейін бір цифрға дейін дөңгелектелген орташа бағаны шығарыңыз. <code>4.4</code> шығуы керек.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Шешімі: орташа баға">scores = [5, 4, 5, 3, 5]
+# орташа бағаны есептеп, шығарыңыз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Орташа баға — бағалар санына бөлінген қосынды.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Қосынды — <code>sum(scores)</code>, саны — <code>len(scores)</code>.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Бір таңбаға дейін дөңгелектеңіз: <code>round(..., 1)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>scores = [5, 4, 5, 3, 5]
+print(round(sum(scores) / len(scores), 1))</code></pre></details>
+<template data-kind="tests">case('printed()', "4.4")</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="4"> Сабақ өтілді</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-loops">
+    <div class="lesson-text">
+      <h2>7-сабақ. Циклдар: бір әрекет көп рет</h2>
+      <p><strong>Не үшін.</strong> Сайт жүздеген жазбадан тұратын таспаны көрсетеді, бірақ бір жазбаның коды бір рет жазылады. Оны әрқайсысы үшін цикл қайталайды.</p>
+      <p><strong><code>for</code> циклы</strong> «әрқайсысы үшін» дегенді білдіреді. <code>for fruit in fruits:</code> былай оқылады: «жемістер тізіміндегі әр жеміс үшін істе…». Python элементтерді бір-бірден алып, кезектісін <code>fruit</code> айнымалысына салады да, шегінісі бар жолдарды орындайды.</p>
+      <p><strong>Бірнеше рет қайталауға</strong> <code>range</code> көмектеседі. <code>range(5)</code> 0, 1, 2, 3, 4 сандарын береді — нөлден бастап бес сан. <code>range(1, 6)</code> 1-ден 5-ке дейінгі сандарды береді: соңғы сан ауқымға кірмейді.</p>
+      <p><strong>Жинақтау.</strong> Жиі қолданылатын тәсіл: циклға дейін айнымалы жасап, оны ішінде өзгерту. Мысалы, <code>total = 0</code>, ал циклда <code>total += price</code>. Циклдан кейін <code>total</code> ішінде қосынды болады.</p>
+      <p><strong><code>while</code> циклы</strong> «әзірше» дегенді білдіреді. Ол шарт дұрыс болғанша жолдарды қайталайды. Ол қанша қайталау болатыны алдын ала белгісіз болғанда керек: мысалы, қажетті сома жиналғанша ақша жинау.</p>
+      <p><strong>Ертерек шығу</strong> үшін <code>break</code> командасы бар: цикл бірден аяқталады.</p>
+      <p><strong>Байқап көріңіз:</strong> бірінші мысалда өз жемісіңізді қосып, <code>range(1, 4)</code> орнына <code>range(1, 11)</code> жазыңыз. Екіншісінде аптасына жинайтын соманы өзгертіңіз.</p>
+      <details>
+        <summary>Жиі қате: шексіз цикл</summary>
+        <p><code>while</code> ішінде ештеңе өзгермесе, шарт әрқашан дұрыс болады да, цикл ешқашан аяқталмайды. Бағдарлама «қатып қалады». Циклда шарттағы айнымалының өзгеретінін тексеріңіз: мысалы, <code>money += 150</code> бар.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: бір санға кем</summary>
+        <p><code>range(1, 10)</code> 10-ға дейін емес, 1-ден 9-ға дейінгі сандарды береді. Python қате көрсетпейді, жай ғана жауапта соңғы сан болмайды. 10-ға жету үшін <code>range(1, 11)</code> деп жазыңыз.</p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li><code>for x in тізім:</code> әр элемент үшін шегінісі бар жолдарды қайталайды;</li>
+      <li><code>range(1, 6)</code> — 1-ден 5-ке дейінгі сандар, соңғысы кірмейді;</li>
+      <li><code>while шарт:</code> шарт дұрыс болғанша қайталайды, әрі ішінде міндетті түрде бірдеңе өзгеруі керек.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>1-мысал. Әрқайсысы үшін</span></div>
+  <pre><code>fruits = ["алма", "алмұрт", "өрік"]
+
+for fruit in fruits:
+    print("Маған ұнайды:", fruit)
+
+for number in range(1, 4):
+    print("Қайталау нөмірі", number)
+
+total = 0
+for price in [450, 200, 1200]:
+    total += price
+print("Барлығы:", total)</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>2-мысал. Құлаққапқа ақша жинаймыз</span></div>
+  <pre><code>money = 0
+weeks = 0
+
+while money &lt; 1000:
+    money += 150
+    weeks += 1
+
+print("Қажет апта:", weeks)
+print("Жиналды:", money)</code></pre>
+</div>
+<article class="task" data-task="lesson-loops" data-level="easy">
+<div class="task-head"><h3>Тапсырма: 7-ге көбейту кестесі</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p>7-ге көбейту кестесінің бес жолын шығарыңыз: <code>7 x 1 = 7</code>-ден <code>7 x 5 = 35</code>-ке дейін. Бес бөлек <code>print</code> емес, цикл қолданыңыз.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Шешімі: 7-ге көбейту кестесі"># for және range қолданыңыз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> 1-ден 5-ке дейінгі сандарды <code>range(1, 6)</code> береді.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Циклдың басы: <code>for n in range(1, 6):</code>.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Циклдың ішінде: <code>print(f"7 x {n} = {7 * n}")</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>for n in range(1, 6):
+    print(f"7 x {n} = {7 * n}")</code></pre></details>
+<template data-kind="tests">case('printed()', "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35")</template>
+</article>
+<article class="task" data-task="lesson-loops-2" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: жұп сандардың қосындысы</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>1-ден 20-ға дейінгі (20-ны қоса) барлық жұп сандарды қосып, қосындыны шығарыңыз. Шарттар туралы сабақтағы кеңес пайдалы болады.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Шешімі: жұп сандардың қосындысы">total = 0
+# 1-ден 20-ға дейінгі сандарды аралап, жұптарын қосыңыз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> 20-ны қоса жету үшін <code>range(1, 21)</code> керек.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Циклдың ішінде жұптықты тексеріңіз: <code>if n % 2 == 0:</code>, сонда <code>total += n</code>.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Қосындыны циклдан <strong>кейін</strong>, шегініссіз шығарыңыз: <code>print(total)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>total = 0
+for n in range(1, 21):
+    if n % 2 == 0:
+        total += n
+print(total)</code></pre></details>
+<template data-kind="tests">case('total', 110)
+case('printed()', "110")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="loops"> Сабақ өтілді</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-5">
     <div class="lesson-text">
-      <h2>5-сабақ. Функциялар: өз командаңыз</h2>
-      <p>Функция — сіздің жеке командаңыз. Оны бір рет сипаттайды, ал қанша рет болса да шақыра береді.</p>
-      <p><code>def</code> сөзі сипаттаманы бастайды, ал <code>return</code> функцияның не қайтаратынын айтады.</p>
-      <p><strong>Байқап көріңіз:</strong> функцияны басқа атпен тағы бір рет шақырыңыз.</p>
+      <h2>8-сабақ. Функциялар: өз командаңыз</h2>
+      <p><strong>Не үшін.</strong> Бір әрекет жиі әртүрлі жерлерде керек болады: жеңілдігі бар бағаны есептеу, пайдаланушымен амандасу. Кодты көшірмеу үшін оған ат беріп, сол атымен шақырады.</p>
+      <p><strong>Функция деген не.</strong> Функция — сіздің өз командаңыз. Сіз дайындарын қолданып көрдіңіз: <code>print</code>, <code>len</code>, <code>round</code>. Енді өзімізгісін жасауды үйренейік.</p>
+      <p><strong>Қалай сипаттау керек.</strong> <code>def</code> сөзі сипаттаманы бастайды. Одан кейін функцияның аты, жақшалар және қос нүкте: <code>def greet(name):</code>. Функцияның жолдары шарттар мен циклдардағыдай шегініспен жазылады.</p>
+      <p><strong>Параметрлер</strong> — жақшадағы бос орындар. Функцияны шақырғанда оларды мәндермен толтырады: <code>greet("Аня")</code> <code>"Аня"</code> мәнін <code>name</code> ішіне салады.</p>
+      <p><strong>Сипаттау әлі орындау емес.</strong> <code>def</code> ішіндегі код функцияны шақырғанда ғана жұмыс істейді: аты мен жақшалар, <code>greet("Аня")</code>.</p>
+      <p><strong><code>return</code> нәтижені қайтарады.</strong> Функция кофе машинасы сияқты: сіз оған дән бересіз, ол кофе қайтарады. <code>return</code> — «міне, дайын нәтиже, ал». Оны айнымалыға сақтауға немесе әрі қарай қолдануға болады: <code>total = price_with_discount(1000, 10)</code>.</p>
+      <p><strong><code>print</code> пен <code>return</code> — әртүрлі нәрсе.</strong> <code>print</code> мәнді экранда тек көрсетеді. <code>return</code> оны әрі қарай жұмыс істеу үшін бағдарламаға қайтарады.</p>
+      <p><strong>Әдепкі мән.</strong> <code>def greet(name="қонақ"):</code> — ат берілмесе, «қонақ» болады.</p>
+      <p><strong>Байқап көріңіз:</strong> <code>greet</code> функциясын өз атыңызбен шақырыңыз. Екінші мысалда жеңілдікті өзгертіп, қорытынды қалай өзгеретінін қараңыз.</p>
+      <details>
+        <summary>Жиі қате: return орнына print</summary>
+        <p>Функция нәтижені қайтармай, шығарып қана қойса, онымен әрі қарай жұмыс істеуге болмайды: функция бос <code>None</code> мәнін қайтарады. Оған сан қосу әрекеті былай аяқталады: <code class="error-text">TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'</code> Функцияның ішінде <code>return</code> жазыңыз, ал нәтижені сыртта шығарыңыз: <code>print(f(3))</code>.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: шақырғанда жақшалар ұмытылған</summary>
+        <p>Жақшасыз <code>print(greet)</code> функцияны шақырмайды, <code>&lt;function greet at 0x…&gt;</code> сияқты бірдеңе шығарады. Функция жұмыс істеуі үшін жақшалар керек: <code>greet()</code> немесе <code>greet("Аня")</code>.</p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li><code>def ат(параметрлер):</code> функцияны сипаттайды, ал ол <code>ат(...)</code> шақырылғанда орындалады;</li>
+      <li><code>return</code> нәтижені қайтарады, <code>print</code> тек көрсетеді;</li>
+      <li>параметрдің әдепкі мәні болуы мүмкін: <code>name="қонақ"</code>.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Сіздің бағдарламаңыз</span></div>
-  <pre><code>def greet(name):
-    return "Сәлем, " + name + "!"
+  <div class="code-head"><span>1-мысал. Амандасу</span></div>
+  <pre><code>def greet(name="қонақ"):
+    return f"Сәлем, {name}!"
 
-print(greet("Аружан"))
-print(greet("Марат"))</code></pre>
+print(greet("Аня"))
+print(greet("Марат"))
+print(greet())</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>2-мысал. Жеңілдігі бар баға</span></div>
+  <pre><code>def price_with_discount(price, percent):
+    return price - price * percent / 100
+
+phone = price_with_discount(120000, 10)
+cover = price_with_discount(5000, 20)
+
+print("Телефон:", phone)
+print("Қап:", cover)
+print("Бірге:", phone + cover)</code></pre>
+</div>
+<article class="task" data-task="lesson-functions" data-level="easy">
+<div class="task-head"><h3>Тапсырма: санның квадраты</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p><code>square(n)</code> функциясын аяқтаңыз: ол өзіне-өзі көбейтілген санды <strong>қайтаруы</strong> керек. Мысалы, <code>square(3)</code> <code>9</code> қайтарады.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Шешімі: санның квадраты">def square(n):
+    # n-нің квадратын қайтарыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 2</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> <code>pass</code> сөзі «әзірге ештеңе» дегенді білдіреді. Оны өз жолыңызбен ауыстырыңыз.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> <code>print</code> емес, дәл <code>return</code> керек: <code>return n * n</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>def square(n):
+    return n * n</code></pre></details>
+<template data-kind="tests">case('square(3)', 9)
+case('square(0)', 0)
+case('square(-4)', 16)
+case('square(12)', 144)</template>
+</article>
+<article class="task" data-task="lesson-functions-2" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: билеттің бағасы</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>Кинотеатрда 7 жасқа дейінгі балалар тегін кіреді, 18 жасқа дейінгі оқушылар 500 теңге төлейді, қалғандары — 1000. Бағаны қайтаратын <code>ticket_price(age)</code> функциясын жазыңыз. Мысалы, <code>ticket_price(10)</code> <code>500</code> қайтарады.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Шешімі: билеттің бағасы">def ticket_price(age):
+    # 0, 500 немесе 1000 қайтарыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Функцияның ішінде 5-сабақтағы шарттар жұмыс істейді: <code>if</code>, <code>elif</code>, <code>else</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> «7 жасқа дейін» жетіден кіші дегенді білдіреді: <code>if age &lt; 7:</code>. Жеті жасар бала енді төлейді.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Әр тармақта бағасы бар <code>return</code> жазыңыз.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>def ticket_price(age):
+    if age &lt; 7:
+        return 0
+    elif age &lt; 18:
+        return 500
+    else:
+        return 1000</code></pre></details>
+<template data-kind="tests">case('ticket_price(3)', 0)
+case('ticket_price(7)', 500)
+case('ticket_price(10)', 500)
+case('ticket_price(17)', 500)
+case('ticket_price(18)', 1000)
+case('ticket_price(40)', 1000)</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="5"> Сабақ өтілді</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="project-cart">
+    <div class="lesson-text">
+      <h2>2-шағын жоба. Сатып алу себеті</h2>
+      <p><strong>Не жасаймыз.</strong> Интернет-дүкен себетіне арналған үш функция. Себетте тауарлардың бағалары жатыр, ал функциялар қорытындыны есептейді, қымбат тауарларды табады және жеңілдік қолданады. Нағыз сайтта дәл осы функциялар себет ашылған сайын шақырылар еді.</p>
+      <p><strong>Не керек болады:</strong> тізімдер (<a href="#lesson-4">6-сабақ</a>), циклдар (<a href="#lesson-loops">7-сабақ</a>), шарттар (<a href="#lesson-3">5-сабақ</a>) және функциялар (<a href="#lesson-5">8-сабақ</a>).</p>
+      <p><strong>Үш функция:</strong></p>
+      <ul>
+      <li><code>total(cart)</code> барлық бағалардың қосындысын қайтарады. Бос себет үшін — <code>0</code>;</li>
+      <li><code>count_expensive(cart, limit)</code> неше тауардың <code>limit</code>-тен қымбат екенін қайтарады;</li>
+      <li><code>apply_discount(cart, percent)</code> жеңілдігі бар бағалардың <strong>жаңа</strong> тізімін қайтарады, әр баға бүтінге дейін дөңгелектенеді.</li>
+      </ul>
+      <p><strong>Қадамдық жоспар:</strong></p>
+      <ol>
+      <li><code>total</code>: <code>s = 0</code> жасаңыз, циклда әр бағаны қосыңыз, <code>s</code> қайтарыңыз. Иә, дайын <code>sum()</code> бар, бірақ осылай оның қалай құрылғанын түсінесіз;</li>
+      <li><code>count_expensive</code>: дәл сондай санауыш, тек 1 қосыңыз және тек <code>if price &gt; limit</code> шарты бойынша;</li>
+      <li><code>apply_discount</code>: бос <code>new = []</code> тізімін жасаңыз, циклда оған <code>.append()</code> арқылы жеңілдігі бар бағаны қосыңыз, <code>new</code> қайтарыңыз.</li>
+      </ol>
+      <p><strong>Неге жаңа тізім.</strong> Бастапқы тізімді өзгертсеңіз, ескі бағалар жоғалады, ал сайтта оларды жиі жаңаларының жанында сызылған күйде көрсетеді.</p>
+      <p><strong>Не қосуға болады:</strong> ең төмен бағаны қайтаратын <code>cheapest(cart)</code> функциясын немесе орташа бағасы бар <code>average(cart)</code> функциясын.</p>
+    </div>
+    <div class="lesson-code">
+<div class="code-block">
+  <div class="code-head"><span>Қалай шығуы керек</span></div>
+  <pre><code>cart = [200, 450, 1500]
+total(cart)                  → 2150
+count_expensive(cart, 400)   → 2
+apply_discount(cart, 10)     → [180, 405, 1350]</code></pre>
+</div>
+<article class="task" data-task="project-cart" data-level="medium">
+<div class="task-head"><h3>Жоба: себет функциялары</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>Үш функцияны аяқтаңыз. Тексеру оларды әртүрлі себеттермен, соның ішінде бос себетпен шақырады.</p>
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Шешімі: себет функциялары">def total(cart):
+    # барлық бағалардың қосындысы
+    pass
+
+
+def count_expensive(cart, limit):
+    # limit-тен үлкен неше баға бар
+    pass
+
+
+def apply_discount(cart, percent):
+    # жеңілдігі бар бағалардың жаңа тізімі
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>1 / 4 кеңес</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> <code>total</code> ішінде: <code>s = 0</code>, сосын <code>for price in cart:</code> және <code>s += price</code>, соңында <code>return s</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> <code>count_expensive</code> ішінде де солай, бірақ циклдың ішінде <code>if price &gt; limit:</code> және <code>n += 1</code>.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Жеңілдігі бар баға: <code>round(price - price * percent / 100)</code>.</li>
+<li hidden tabindex="-1"><strong>4-кеңес.</strong> <code>apply_discount</code> ішінде: <code>new = []</code>, циклда <code>new.append(...)</code>, циклдан кейін <code>return new</code>. <code>return</code> шегінісін қадағалаңыз: ол циклдың ішінде емес, одан кейін тұруы керек.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>def total(cart):
+    s = 0
+    for price in cart:
+        s += price
+    return s
+
+
+def count_expensive(cart, limit):
+    n = 0
+    for price in cart:
+        if price &gt; limit:
+            n += 1
+    return n
+
+
+def apply_discount(cart, percent):
+    new = []
+    for price in cart:
+        new.append(round(price - price * percent / 100))
+    return new</code></pre></details>
+<template data-kind="tests">case('total([200, 450, 1500])', 2150)
+case('total([])', 0)
+case('total([999])', 999)
+case('count_expensive([200, 450, 1500, 3000], 1000)', 2)
+case('count_expensive([200, 450], 1000)', 0)
+case('count_expensive([1000, 1001], 1000)', 1)
+case('apply_discount([200, 450, 1500], 10)', [180, 405, 1350])
+case('apply_discount([], 50)', [])
+c = [100, 200]
+apply_discount(c, 50)
+case('c', [100, 200])</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="project-cart"> Жоба дайын</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-6">
     <div class="lesson-text">
-      <h2>6-сабақ. Сөздіктер: мәнді атауы бойынша табу</h2>
-      <p>Сөздік «атау мен мән» жұптарын дүкендегі баға тізімі сияқты сақтайды. Мәнді нөмірі бойынша емес, атауы бойынша табады.</p>
-      <p>Сайттар мұны үнемі пайдаланады: мысалы, бетті оның мекенжайы бойынша табады.</p>
-      <p><strong>Байқап көріңіз:</strong> өз тауарыңызды бағасымен қосыңыз.</p>
+      <h2>9-сабақ. Сөздіктер: мәнді атауы бойынша табу</h2>
+      <p><strong>Не үшін.</strong> Сайт пайдаланушысының аты, жасы, қаласы бар. Оларды тізімдегідей нөмір бойынша емес, атауы бойынша сақтау ыңғайлы: «аты — Аружан», «қаласы — Алматы». Ол үшін сөздіктер бар.</p>
+      <p><strong>Сөздік деген не.</strong> Сөздік бұйра жақшада «кілт — мән» жұптарын сақтайды: <code>{"нан": 200, "сүт": 450}</code>. Ол телефондағы контактілерге ұқсайды: аты бойынша нөмірді табасыз. Немесе баға парағына: тауардың атауы бойынша — бағасын.</p>
+      <p><strong>Мәнді алу</strong> үшін шаршы жақшаға кілтін жазады: <code>prices["нан"]</code> <code>200</code> береді.</p>
+      <p><strong>Қосу немесе өзгерту:</strong> <code>prices["ірімшік"] = 1500</code>. Кілт болмаса, ол пайда болады, ал болса, мәні ауыстырылады. Жұпты жою: <code>del prices["нан"]</code>.</p>
+      <p><strong>Қауіпсіз алу.</strong> <code>prices.get("кофе", 0)</code> кофенің бағасын қайтарады, ал ол сөздікте болмаса, қатенің орнына <code>0</code> қайтарады. Кілттің бар-жоғын таныс <code>in</code> сөзімен тексеруге болады: <code>"нан" in prices</code>.</p>
+      <p><strong>Сөздікті аралау.</strong> <code>for name, price in prices.items():</code> жұптарды кезекпен алады: кілт <code>name</code> ішіне, мән <code>price</code> ішіне түседі.</p>
+      <p><strong>Сөздіктер тізімі</strong> — көптеген ұқсас жазбаларды әдетте осылай сақтайды: тауарларды, оқушыларды, хабарламаларды. Сайттар деректерді бір-біріне дәл осындай түрде жібереді, бұл JSON деп аталады.</p>
+      <p><strong>Байқап көріңіз:</strong> бағасымен бірге өз тауарыңызды қосыңыз, сүттің бағасын өзгертіңіз. Екінші мысалда тағы бір оқушы қосыңыз.</p>
+      <details>
+        <summary>Жиі қате: мұндай кілт жоқ</summary>
+        <p>Сөздікте жоқ кілтті сұрасаңыз, бағдарлама тоқтайды: <code class="error-text">KeyError: 'кофе'</code> Жазылуын тексеріңіз: <code>"Нан"</code> мен <code>"нан"</code> — әртүрлі кілттер. Кілт болмауы мүмкін болса, <code>.get()</code> қолданыңыз.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: кілттің орнына нөмір</summary>
+        <p>Сөздікте тізімдегідей нөмірлер жоқ: <code>prices[0]</code> <code>0</code> кілтін іздейді және оны таппайды. Атауы бойынша жүгініңіз: <code>prices["нан"]</code>.</p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li>сөздік — бұйра жақшадағы «кілт: мән» жұптары, мән кілт бойынша табылады;</li>
+      <li><code>d[кілт] = мән</code> қосады немесе өзгертеді, <code>.get(кілт, қосалқы)</code> кілт болмаса құламайды;</li>
+      <li><code>for k, v in d.items():</code> жұптарды аралайды, ал сөздіктер тізімі көп жазбаны сақтайды.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Сіздің бағдарламаңыз</span></div>
+  <div class="code-head"><span>1-мысал. Баға парағы</span></div>
   <pre><code>prices = {"нан": 200, "сүт": 450}
 
 print("Нанның бағасы", prices["нан"], "теңге")
 
 prices["ірімшік"] = 1500
-print(prices)</code></pre>
+prices["сүт"] = 500
+print(prices)
+
+print("Кофе:", prices.get("кофе", "сатылымда жоқ"))
+
+for name, price in prices.items():
+    print(f"{name}: {price} теңге")</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>2-мысал. Сынып оқушылары</span></div>
+  <pre><code>students = [
+    {"name": "Аружан", "city": "Алматы", "score": 92},
+    {"name": "Ерлан", "city": "Астана", "score": 78},
+    {"name": "Дана", "city": "Шымкент", "score": 85},
+]
+
+for student in students:
+    print(f"{student['name']}, {student['city']} қаласы: {student['score']} ұпай")
+
+best = 0
+for student in students:
+    if student["score"] &gt; best:
+        best = student["score"]
+print("Ең жақсы нәтиже:", best)</code></pre>
+</div>
+<article class="task" data-task="lesson-dicts" data-level="easy">
+<div class="task-head"><h3>Тапсырма: сатып алу сомасы</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p>Бағалар <code>prices</code> сөздігінде жатыр. Екі нан мен бір сүттің қанша тұратынын шығарыңыз. Сандарды өзіңіз жазбай, бағаларды сөздіктен алыңыз.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Шешімі: сатып алу сомасы">prices = {"нан": 200, "сүт": 450, "ірімшік": 1500}
+# екі нан және бір сүт
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 2</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Нанның бағасы — <code>prices["нан"]</code>, сүттің бағасы — <code>prices["сүт"]</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> <code>print(2 * prices["нан"] + prices["сүт"])</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>prices = {"нан": 200, "сүт": 450, "ірімшік": 1500}
+print(2 * prices["нан"] + prices["сүт"])</code></pre></details>
+<template data-kind="tests">case('printed()', "850")</template>
+</article>
+<article class="task" data-task="lesson-dicts-2" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: дауыстарды санау</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>Сынып тірі бұрышқа үй жануарын таңдады. Дауыстар <code>votes</code> тізіміне жазылған. <code>counts</code> сөздігін толтырыңыз: кілт — жануар, мән — оған қанша дауыс берілгені.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Шешімі: дауыстарды санау">votes = ["мысық", "ит", "мысық", "тотықұс", "мысық", "ит"]
+counts = {}
+# дауыстарды аралап, әр нұсқаны санаңыз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Тізімді циклмен аралаңыз: <code>for vote in votes:</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Жануардың қазір неше дауысы бар: <code>counts.get(vote, 0)</code>. Ол әлі жоқ болса, 0 болады.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Бір дауыс қосыңыз: <code>counts[vote] = counts.get(vote, 0) + 1</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>votes = ["мысық", "ит", "мысық", "тотықұс", "мысық", "ит"]
+counts = {}
+for vote in votes:
+    counts[vote] = counts.get(vote, 0) + 1
+print(counts)</code></pre></details>
+<template data-kind="tests">case('counts', {"мысық": 3, "ит": 2, "тотықұс": 1})</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="6"> Сабақ өтілді</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="project-quiz">
+    <div class="lesson-text">
+      <h2>3-шағын жоба. Викторина</h2>
+      <p><strong>Не жасаймыз.</strong> Викторинаны тексеру: дұрыс жауаптары бар сұрақтар бір сөздікте, оқушының жауаптары басқасында жатыр. Бағдарлама дұрыс жауаптарды санап, баға қояды. Кез келген оқу сайтындағы тесттер осылай құрылған, осы сайттағы қорытынды тест те.</p>
+      <p><strong>Не керек болады:</strong> жолдар (<a href="#lesson-strings">4-сабақ</a>), шарттар (<a href="#lesson-3">5-сабақ</a>), циклдар (<a href="#lesson-loops">7-сабақ</a>), функциялар (<a href="#lesson-5">8-сабақ</a>) және сөздіктер (<a href="#lesson-6">9-сабақ</a>).</p>
+      <p><strong>Екі функция:</strong></p>
+      <ul>
+      <li><code>check_quiz(questions, answers)</code> неше жауаптың дұрыс екенін қайтарады. Оқушы жауапты кіші әріптермен немесе шеттерінде бос орындармен жазса да, жауап есептеледі. Сұраққа жауап берілмесе, ол жай ғана есептелмейді;</li>
+      <li><code>grade(score, total)</code> нәтижені сөзге айналдырады: 90%-дан бастап — <code>өте жақсы</code>, 70%-дан — <code>жақсы</code>, 50%-дан — <code>жаман емес</code>, әйтпесе <code>қайта байқап көріңіз</code>.</li>
+      </ul>
+      <p><strong>Қадамдық жоспар:</strong></p>
+      <ol>
+      <li><code>check_quiz</code> ішінде санауыш жасап, сұрақтарды аралаңыз: <code>for question, right in questions.items():</code>;</li>
+      <li>оқушының жауабын қауіпсіз алыңыз: <code>answers.get(question, "")</code>. Жауап болмаса, бос жол болады да, бағдарлама құламайды;</li>
+      <li>екеуін бір түрге келтіріп, жауаптарды салыстырыңыз: <code>.strip().lower()</code>;</li>
+      <li><code>grade</code> ішінде пайызды есептеңіз: <code>score * 100 // total</code>, ал әрі қарай — шарттар туралы сабақтағыдай <code>if</code> және <code>elif</code>.</li>
+      </ol>
+      <p><strong>Не қосуға болады:</strong> оқушы қате жауап берген сұрақтардың тізімін, оған дұрыс жауаптарды көрсету үшін.</p>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Викторинаға арналған деректер</span></div>
+  <pre><code>questions = {
+    "Қазақстанның астанасы?": "Астана",
+    "7 * 8 неше болады?": "56",
+    "Бұл курстың тілі?": "Python",
+}
+answers = {
+    "Қазақстанның астанасы?": " астана ",
+    "7 * 8 неше болады?": "54",
+    "Бұл курстың тілі?": "python",
+}
+print("Сұрақтар:", len(questions))
+print("Біріншісіне жауап:", answers["Қазақстанның астанасы?"])</code></pre>
+</div>
+<article class="task" data-task="project-quiz" data-level="medium">
+<div class="task-head"><h3>Жоба: викторинаны тексеру</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>Екі функцияны аяқтаңыз. Мысалдағы деректермен <code>check_quiz</code> <code>2</code> қайтаруы керек, ал <code>grade(2, 3)</code> — <code>жаман емес</code>.</p>
+<textarea class="editor-area" rows="9" spellcheck="false" aria-label="Шешімі: викторинаны тексеру">def check_quiz(questions, answers):
+    # неше жауап дұрыс
+    pass
+
+
+def grade(score, total):
+    # өте жақсы / жақсы / жаман емес / қайта байқап көріңіз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>1 / 4 кеңес</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Басы: <code>score = 0</code> және <code>for question, right in questions.items():</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Оқушының жауабы: <code>given = answers.get(question, "")</code>.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Шарт: <code>if given.strip().lower() == right.lower():</code> және <code>score += 1</code>. Циклдан кейін <code>return score</code>.</li>
+<li hidden tabindex="-1"><strong>4-кеңес.</strong> <code>grade</code> ішінде: <code>percent = score * 100 // total</code>, сосын <code>if percent &gt;= 90: return "өте жақсы"</code> және тағы солай.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>def check_quiz(questions, answers):
+    score = 0
+    for question, right in questions.items():
+        given = answers.get(question, "")
+        if given.strip().lower() == right.lower():
+            score += 1
+    return score
+
+
+def grade(score, total):
+    percent = score * 100 // total
+    if percent &gt;= 90:
+        return "өте жақсы"
+    elif percent &gt;= 70:
+        return "жақсы"
+    elif percent &gt;= 50:
+        return "жаман емес"
+    else:
+        return "қайта байқап көріңіз"</code></pre></details>
+<template data-kind="tests">qs = {"Қазақстанның астанасы?": "Астана", "7 * 8 неше болады?": "56", "Бұл курстың тілі?": "Python"}
+case('check_quiz(qs, {"Қазақстанның астанасы?": " астана ", "7 * 8 неше болады?": "54", "Бұл курстың тілі?": "python"})', 2)
+case('check_quiz(qs, {})', 0)
+case('check_quiz(qs, {"7 * 8 неше болады?": "56"})', 1)
+case('check_quiz({"2 + 2?": "4"}, {"2 + 2?": "4"})', 1)
+case('grade(3, 3)', "өте жақсы")
+case('grade(7, 10)', "жақсы")
+case('grade(2, 3)', "жаман емес")
+case('grade(1, 3)', "қайта байқап көріңіз")
+case('grade(0, 3)', "қайта байқап көріңіз")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="project-quiz"> Жоба дайын</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-errors">
+    <div class="lesson-text">
+      <h2>10-сабақ. Қателер: оларды қалай оқу және ұстау керек</h2>
+      <p><strong>Не үшін.</strong> Қателер барлығында болады, тіпті тәжірибелі бағдарламашыларда да. Пайдаланушы санның орнына әріп енгізеді, керекті жазба жоқ, интернет жоғалды. Жақсы бағдарлама мұндайда «құламайды», нені дұрыс емес екенін сабырмен түсіндіреді.</p>
+      <p><strong>Қате туралы хабарламаны қалай оқу керек.</strong> Python бірнеше жол жазады, солардың ең маңыздысы — <strong>соңғысы</strong>. Онда қатенің түрі мен қысқа түсіндірме бар, мысалы <code>ValueError: invalid literal for int()</code>. <code>line 3</code> жазылған жол қай жерден іздеу керегін көрсетеді. Бұл сайтта қатенің астында «Бұл нені білдіреді» деген кеңес те шығады.</p>
+      <p><strong>Сіз кездестірген қателер:</strong></p>
+      <ul>
+      <li><code>SyntaxError</code> — код дұрыс жазылмаған: тырнақша, жақша, қос нүкте жоқ;</li>
+      <li><code>NameError</code> — мұндай ат жоқ, көбіне бұл жазудағы қате;</li>
+      <li><code>TypeError</code> — әрекет түрге сәйкес келмейді, мысалы мәтін қосу сан;</li>
+      <li><code>IndexError</code> және <code>KeyError</code> — мұндай нөмірі немесе кілті бар элемент жоқ;</li>
+      <li><code>ValueError</code> — мән сәйкес келмейді: <code>int("abc")</code>.</li>
+      </ul>
+      <p><strong>Қатені ұстауға</strong> <code>try</code> және <code>except</code> көмектеседі. Бұл: «мынаны істеп көр, ал мұндай қате болса, мынаны істе» дегенді білдіреді. Бағдарлама бұл кезде тоқтамайды.</p>
+      <p><strong>Нақты қатені ұстаңыз:</strong> бәрін қатарынан емес, <code>except ValueError:</code>. Әйтпесе <code>except</code> нағыз жазу қатесін де жасырады да, бағдарламаның неге дұрыс жұмыс істемейтінін ұзақ түсінбей жүресіз.</p>
+      <p><strong>Байқап көріңіз:</strong> бірінші мысалда тізімге өз жауабыңызды қосыңыз, мысалы <code>"жиырма"</code>. Екіншісінде нөлге бөліп, функцияның не жауап беретінін қараңыз.</p>
+      <details>
+        <summary>Жиі қате: мүлдем бәрін ұстау</summary>
+        <p>Қатенің атауы жоқ бос <code>except:</code> кез келген нәрсені, тіпті айнымалы атындағы жазу қатесін де ұстайды. Бағдарлама «үнсіз» басқа нәрсе істейді, ал себебін табу қиын болады. Қандай қате күтетініңізді әрқашан жазыңыз: <code>except ValueError:</code>.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: хабарламаны жоғарыдан оқу</summary>
+        <p>Жаңадан бастағандар ұзын хабарламадан жиі қорқып, оның бірінші жолын оқиды. Соңғысынан бастаңыз: онда не болғаны жазылған, мысалы <code class="error-text">ValueError: invalid literal for int() with base 10: 'abc'</code> Бұл «<code>'abc'</code> бүтін санға айналдыруға болмайды» дегенді білдіреді.</p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li>қате туралы хабарламада ең бастысы — соңғы жол: қатенің түрі және түсіндірме;</li>
+      <li><code>try:</code> — байқап көру, <code>except Түр:</code> — мұндай қате болса не істеу керек;</li>
+      <li>бәрін бірден емес, нақты қателерді ұстаңыз.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>1-мысал. Сауалнамадағы жауаптар</span></div>
+  <pre><code>answers = ["16", "abc", "20", ""]
+
+for text in answers:
+    try:
+        age = int(text)
+        print("Жасы:", age)
+    except ValueError:
+        print(f"«{text}» — сан емес, өткізіп жіберемін")</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>2-мысал. Қауіпсіз бөлу</span></div>
+  <pre><code>def divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        return "нөлге бөлуге болмайды"
+
+print(divide(10, 4))
+print(divide(10, 0))</code></pre>
+</div>
+<article class="task" data-task="lesson-errors" data-level="easy">
+<div class="task-head"><h3>Тапсырма: бұл сан ба?</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p><code>text</code> айнымалысына пайдаланушы енгізген нәрсе жазылған. Оны санға айналдырып, шығарып көріңіз. Шықпаса, <code>Бұл сан емес</code> деп шығарыңыз.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Шешімі: бұл сан ба?">text = "12а"
+# try және except ValueError қолданыңыз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> <code>try:</code> деп бастаңыз, ал ішіне шегініспен <code>print(int(text))</code> деп жазыңыз.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> <code>int()</code> «а» әрпін түсінбейді, сондықтан <code>ValueError</code> болады.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> <code>except ValueError:</code> астында <code>"Бұл сан емес"</code> деп шығарыңыз.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>text = "12а"
+try:
+    print(int(text))
+except ValueError:
+    print("Бұл сан емес")</code></pre></details>
+<template data-kind="tests">case('printed()', "Бұл сан емес")</template>
+</article>
+<article class="task" data-task="lesson-errors-2" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: санға сенімді айналдыру</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p><code>safe_int(text, default=0)</code> функциясын жазыңыз. Ол мәтіннен санды қайтарады, ал мәтін сан болмаса — <code>default</code> қайтарады. Мысалы, <code>safe_int("42")</code> <code>42</code> береді, ал <code>safe_int("abc")</code> <code>0</code> береді.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Шешімі: санға сенімді айналдыру">def safe_int(text, default=0):
+    # int(text) байқап көріңіз, ал ValueError болса default қайтарыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 2</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Функцияның ішінде: <code>try:</code> және оның астында <code>return int(text)</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> <code>except ValueError:</code> астында <code>return default</code> деп жазыңыз.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>def safe_int(text, default=0):
+    try:
+        return int(text)
+    except ValueError:
+        return default</code></pre></details>
+<template data-kind="tests">case('safe_int("42")', 42)
+case('safe_int("abc")', 0)
+case('safe_int("")', 0)
+case('safe_int("x", -1)', -1)
+case('safe_int(" 7 ")', 7)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="errors"> Сабақ өтілді</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-modules">
+    <div class="lesson-text">
+      <h2>11-сабақ. Модульдер: дайын құралдар</h2>
+      <p><strong>Не үшін.</strong> Бәрін өзіңіз жазудың қажеті жоқ. Python-мен бірге дайын құралдардың тұтас кітапханасы келеді: кездейсоқ сандар, математика, күндер. Бұл жинақтар <strong>модульдер</strong> деп аталады.</p>
+      <p><strong>Қалай қосу керек.</strong> Модуль бағдарламаның басында <code>import</code> командасымен қосылады: <code>import random</code>. Осыдан кейін оның құралдары нүкте арқылы қолжетімді: <code>random.randint(1, 6)</code>.</p>
+      <p><strong>Бір нәрсені алу</strong> үшін былай жазады: <code>from datetime import date</code>. Сонда модуль атауынсыз жай ғана <code>date</code> деп жазады.</p>
+      <p><strong>Үш пайдалы модуль:</strong></p>
+      <ul>
+      <li><code>random</code> — кездейсоқтық: <code>randint(1, 6)</code> сүйекті лақтырады, <code>choice(тізім)</code> кездейсоқ элементті таңдайды;</li>
+      <li><code>math</code> — математика: <code>sqrt(16)</code> — квадрат түбір, <code>pi</code> — π саны;</li>
+      <li><code>datetime</code> — күндер: <code>date.today()</code> — бүгінгі күн, ал екі күннің айырмасы олардың арасында неше күн бар екенін көрсетеді.</li>
+      </ul>
+      <p><strong>Интернеттегі модульдер.</strong> Кірістірілгендерден басқа, басқа адамдар жазған мыңдаған модуль бар, оларды пакеттер деп атайды. Олар <code>pip install</code> командасымен орнатылады. Flask пен Django осылай орнатылады, бұл туралы бірінші жобада айтамыз.</p>
+      <p><strong>Байқап көріңіз:</strong> бірінші мысалды бірнеше рет іске қосыңыз: жауаптар әртүрлі болады. Екіншісінде оқиғаның күнін өз туған күніңізге өзгертіңіз.</p>
+      <details>
+        <summary>Жиі қате: import ұмытылған</summary>
+        <p>Модульді қоспай, бірден <code>random.randint(1, 6)</code> деп жазсаңыз, Python оны білмейді және тіпті мәселенің неде екенін айтады: <code class="error-text">NameError: name 'random' is not defined. Did you forget to import 'random'?</code> Бағдарламаның басына <code>import random</code> қосыңыз.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: модуль атауындағы қате</summary>
+        <p>Модульдің атауы дәл болуы керек. <code>import randon</code> қатемен аяқталады: <code class="error-text">ModuleNotFoundError: No module named 'randon'</code></p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li>модуль — дайын құралдар жинағы, ол <code>import</code> арқылы қосылады;</li>
+      <li><code>import random</code> және <code>random.randint()</code>, немесе <code>from datetime import date</code> және жай ғана <code>date</code>;</li>
+      <li>кірістірілген модульдер Python-мен бірге келеді, қалғандары <code>pip install</code> арқылы орнатылады.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>1-мысал. Сүйек пен жеребе</span></div>
+  <pre><code>import random
+import math
+
+print("Сүйекте түскені:", random.randint(1, 6))
+
+students = ["Аружан", "Ерлан", "Дана", "Марат"]
+print("Жауап беруге шығады:", random.choice(students))
+
+print("144-тің түбірі:", math.sqrt(144))
+print("Пи саны:", round(math.pi, 4))</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>2-мысал. Неше күн қалды</span></div>
+  <pre><code>from datetime import date
+
+today = date.today()
+new_year = date(today.year + 1, 1, 1)
+
+print("Бүгін:", today)
+print("Жаңа жылға дейін күн:", (new_year - today).days)</code></pre>
+</div>
+<article class="task" data-task="lesson-modules" data-level="easy">
+<div class="task-head"><h3>Тапсырма: квадрат түбір</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p><code>math</code> модулін қосып, <code>math.sqrt</code> көмегімен 144-тің квадрат түбірін шығарыңыз.</p>
+<textarea class="editor-area" rows="3" spellcheck="false" aria-label="Шешімі: квадрат түбір"># math қосып, 144-тің түбірін шығарыңыз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 2</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Бірінші жол: <code>import math</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Екіншісі: <code>print(math.sqrt(144))</code>. Жауап бөлшек болады: <code>12.0</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>import math
+print(math.sqrt(144))</code></pre></details>
+<template data-kind="tests">case('printed()', "12.0")
+case('math.sqrt(4)', 2.0)</template>
+</article>
+<article class="task" data-task="lesson-modules-2" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: оқу күндері</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>Оқу жылы 2026 жылғы 1 қыркүйекте басталып, 2027 жылғы 25 мамырда аяқталады. Осы күндердің арасында неше күн бар екенін шығарыңыз.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Шешімі: оқу күндері">from datetime import date
+
+start = date(2026, 9, 1)
+end = date(2027, 5, 25)
+# күндер арасындағы күн санын шығарыңыз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 2</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Күндерді азайтуға болады: <code>end - start</code>. Уақыт аралығы шығады.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Аралықтағы күндер саны — <code>.days</code>: <code>print((end - start).days)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>from datetime import date
+
+start = date(2026, 9, 1)
+end = date(2027, 5, 25)
+print((end - start).days)</code></pre></details>
+<template data-kind="tests">case('printed()', "266")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="modules"> Сабақ өтілді</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="project-guess">
+    <div class="lesson-text">
+      <h2>4-шағын жоба. Санды тап</h2>
+      <p><strong>Не жасаймыз.</strong> Компьютер 1-ден 100-ге дейінгі санды ойлайды, сосын оны өзі табады. Айласы мынада: қандай сан ойланса да, ол <strong>7 немесе одан аз әрекетпен</strong> табады. Бұл нағыз алгоритм, оны <strong>қақ бөлу</strong> немесе екілік іздеу деп атайды. Дерекқорлардағы іздеу, тіпті «ыстық — суық» ойыны да осылай жұмыс істейді.</p>
+      <p><strong>Не керек болады:</strong> шарттар (<a href="#lesson-3">5-сабақ</a>), <code>while</code> циклы (<a href="#lesson-loops">7-сабақ</a>), функциялар (<a href="#lesson-5">8-сабақ</a>) және <code>random</code> модулі (<a href="#lesson-modules">11-сабақ</a>).</p>
+      <p><strong>Қалай табу керек.</strong> Сан <code>low = 1</code> мен <code>high = 100</code> арасында бір жерде. Ортасын атаймыз: <code>(low + high) // 2</code>. Тапсақ — бітті. Ойланған сан үлкенірек болса, ортадан кішінің бәрін алып тастауға болады: <code>low = орта + 1</code>. Кішірек болса — жоғарғы жартысын алып тастаймыз: <code>high = орта - 1</code>. Әр әрекет аралықты қақ бөледі, сондықтан 100 сан өте тез таусылады.</p>
+      <p><strong>Қадамдық жоспар:</strong></p>
+      <ol>
+      <li><code>guess_number(secret, low=1, high=100)</code> функциясында әрекеттер санауышын жасаңыз: <code>tries = 0</code>;</li>
+      <li><code>while True:</code> циклын жасаңыз — «тоқта дегенше қайтала»;</li>
+      <li>циклда бір әрекет қосып, ортасын атаңыз;</li>
+      <li>тапсаңыз, әрекеттер санын бірден қайтарыңыз: <code>return</code> циклды да, функцияны да аяқтайды. Әйтпесе <code>low</code> немесе <code>high</code> жылжытыңыз.</li>
+      </ol>
+      <p><strong>Не қосуға болады:</strong> әр әрекетті шығару («50-ді байқаймын — үлкенірек»), сондай-ақ 100 санға шынымен 7 әрекет жететінін тексеру: 1-ден 100-ге дейінгі барлық сандарды циклмен аралап, әрекеттердің ең үлкен санын табыңыз.</p>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Қадам бойынша қалай көрінеді</span></div>
+  <pre><code>import random
+
+secret = random.randint(1, 100)
+low = 1
+high = 100
+tries = 0
+
+while True:
+    tries += 1
+    guess = (low + high) // 2
+    if guess == secret:
+        print(f"{tries}-әрекет: {guess} — таптым!")
+        break
+    elif guess &lt; secret:
+        print(f"{tries}-әрекет: {guess} — үлкенірек керек")
+        low = guess + 1
+    else:
+        print(f"{tries}-әрекет: {guess} — кішірек керек")
+        high = guess - 1</code></pre>
+</div>
+<article class="task" data-task="project-guess" data-level="hard">
+<div class="task-head"><h3>Жоба: табатын функция</h3><span class="level level-hard"><span class="visually-hidden">Деңгейі: </span>Күрделі</span></div>
+<p><code>secret</code> санын қақ бөлу арқылы тауып, неше әрекетпен тапқанын қайтаратын <code>guess_number(secret, low=1, high=100)</code> функциясын жазыңыз. Мысалы, <code>guess_number(50)</code> бірінші әрекеттен табады да, <code>1</code> қайтарады.</p>
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Шешімі: табатын функция">def guess_number(secret, low=1, high=100):
+    tries = 0
+    # қақ бөлу арқылы тауып, әрекеттер санын қайтарыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>1 / 4 кеңес</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> «Қадам бойынша қалай көрінеді» мысалы — дерлік дайын шешім. Айырмашылық біреу: <code>print</code> пен <code>break</code> орнына <code>return tries</code> керек.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> <code>while True:</code> ішінде бірінші жол <code>tries += 1</code>, екіншісі <code>guess = (low + high) // 2</code>.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> <code>if guess == secret: return tries</code>.</li>
+<li hidden tabindex="-1"><strong>4-кеңес.</strong> <code>elif guess &lt; secret: low = guess + 1</code>, әйтпесе <code>high = guess - 1</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>def guess_number(secret, low=1, high=100):
+    tries = 0
+    while True:
+        tries += 1
+        guess = (low + high) // 2
+        if guess == secret:
+            return tries
+        elif guess &lt; secret:
+            low = guess + 1
+        else:
+            high = guess - 1</code></pre></details>
+<template data-kind="tests">case('guess_number(50)', 1)
+case('guess_number(25)', 2)
+case('guess_number(1)', 6)
+case('guess_number(100)', 7)
+case('guess_number(73)', 6)
+case('max(guess_number(n) for n in range(1, 101))', 7)
+case('guess_number(5, 1, 10)', 1)
+case('guess_number(10, 1, 10)', 4)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="project-guess"> Жоба дайын</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-7">
     <div class="lesson-text">
-      <h2>7-сабақ. Мұның сайттарға қандай қатысы бар</h2>
-      <p>Ең бастысын түсіну үшін сіз бәрін біліп қойдыңыз. Браузердегі мекенжай функцияны таңдайды, ал функция бетті қайтарады.</p>
-      <p>Төменде сіз жаңа ғана өткен нәрселерден — функциялар мен сөздіктен жасалған шағын сайт тұр.</p>
-      <p>Екінші мысал дәл осыны Flask-та жасайды. Бұл сайттарға арналған дайын құрал: <code>@app.route</code> жолы осы функцияны қай мекенжай ашатынын айтады.</p>
-      <p><strong>Байқап көріңіз:</strong> мекенжайды "/" деп өзгертіп, қайта іске қосыңыз.</p>
+      <h2>12-сабақ. Бұның сайттарға қандай қатысы бар</h2>
+      <p><strong>Не үшін.</strong> Сіз Python негіздерін өттіңіз. Енді оларды біріктірейік: осы кірпіштерден сайт қалай шығатынын көрейік.</p>
+      <p><strong>Сайт қалай жұмыс істейді.</strong> Сіз браузерде мекенжайды тересіз, ал браузер серверге <strong>сұрау</strong> жібереді. Сервер — бағдарлама жұмыс істеп тұрған компьютер, мысалы Python-да. Ол мекенжайға қарап, керекті функцияны таңдайды, ал ол <strong>жауап</strong> қайтарады: беттің мәтінін. Толығырақ — <a href="about.html">«Сайт қалай жұмыс істейді»</a> бетінде.</p>
+      <p><strong>Мұнда сіздің сабақтарыңыз қайда:</strong></p>
+      <ul>
+      <li><strong>функциялар</strong> — сайттың әр беті: функция сұрау алып, бетті қайтарады;</li>
+      <li><strong>сөздік</strong> — «мекенжай → функция»: сайт нені көрсету керегін осылай таңдайды;</li>
+      <li><strong>f-жолдар</strong> — деректерді бетке қояды: «Сәлем, {name}!»;</li>
+      <li><strong>тізімдер мен циклдар</strong> — жазбалар таспасы, істер тізімі, каталогтағы тауарлар;</li>
+      <li><strong>шарттар</strong> — пайдаланушы кірді ме, құпиясөз дұрыс па;</li>
+      <li><strong>қателер</strong> — сайттың құлауының орнына «404: табылмады» беті;</li>
+      <li><strong>модульдер</strong> — Flask пен Django, сайттарға арналған дайын құралдар.</li>
+      </ul>
+      <p><strong>Flask.</strong> Екінші мысалда дәл сол сайт Flask-та. <code>@app.route("/")</code> жолы: «бұл мекенжай осы функцияны ашады» дейді. Шын мәнінде бұл сол мекенжайлар сөздігі, тек Flask оны сіз үшін жасайды.</p>
+      <p><strong>Байқап көріңіз:</strong> бірінші мысалда мекенжайды <code>"/"</code>, сосын <code>"/tasks"</code>, сосын жоқ мекенжайға өзгертіңіз. Тізімге өз ісіңізді қосыңыз.</p>
+      <details>
+        <summary>Жиі қате: мұндай бет жоқ</summary>
+        <p>Сөздікте жоқ мекенжайды ашсаңыз, <code>pages[address]</code> <code>KeyError</code> қатесімен құлайды. Нағыз сайт олай істемейді: ол «404: табылмады» бетін көрсетеді. Мысалда мұны <code>pages.get(address, not_found)</code> жасайды.</p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li>сайт — бағдарлама: мекенжайды алып, бетті қайтарады;</li>
+      <li>беттер — функциялар, мекенжайлар — сөздік кілттері, деректер f-жолдармен қойылады;</li>
+      <li>Flask пен Django дәл соны істейді, тек ыңғайлырақ; әрі қарай олармен <a href="project.html">бірінші жобаны</a> құрастырасыз.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Функциялар мен сөздіктен жасалған сайт</span></div>
-  <pre><code>def home():
+  <div class="code-head"><span>1-мысал. Функциялар мен сөздіктен жасалған сайт</span></div>
+  <pre><code>tasks = ["нан сатып алу", "сабақ оқу"]
+
+def home():
     return "Басты бет"
 
-def contacts():
-    return "Біздің байланыс деректеріміз"
+def task_list():
+    lines = ""
+    for task in tasks:
+        lines += f"- {task}\n"
+    return f"Менің істерім ({len(tasks)}):\n{lines}"
 
-pages = {"/": home, "/contacts": contacts}
+def not_found():
+    return "404: бет табылмады"
 
-address = "/contacts"
+pages = {"/": home, "/tasks": task_list}
+
+address = "/tasks"
 print("Сіз аштыңыз:", address)
-print("Сайт жауап берді:", pages[address]())</code></pre>
+print(pages.get(address, not_found)())</code></pre>
 </div>
 <div class="code-block" data-run="python" data-open>
   <div class="code-head"><span>Дәл осы Flask-та</span></div>
@@ -285,6 +1641,79 @@ def home():
 
 print("Сайт жауап берді:", app.test_client().get("/").text)</code></pre>
 </div>
+<article class="task" data-task="lesson-web" data-level="easy">
+<div class="task-head"><h3>Тапсырма: жаңа бет</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p>Сайтқа «Біз туралы» бетін қосыңыз. <code>Біз туралы</code> қайтаратын <code>about()</code> функциясын жазып, оны <code>pages</code> сөздігіне <code>"/about"</code> мекенжайымен қосыңыз.</p>
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Шешімі: жаңа бет">def home():
+    return "Басты бет"
+
+# about() функциясын жазыңыз
+
+pages = {"/": home}
+# сөздікке "/about" қосыңыз
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> <code>home</code> сияқты функция: <code>def about():</code> және оның астында <code>return "Біз туралы"</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Сөздікке функцияның өзін <strong>жақшасыз</strong> салады: <code>pages["/about"] = about</code>.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Өзіңізді былай тексеруге болады: <code>print(pages["/about"]())</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>def home():
+    return "Басты бет"
+
+def about():
+    return "Біз туралы"
+
+pages = {"/": home}
+pages["/about"] = about</code></pre></details>
+<template data-kind="tests">case('pages["/about"]()', "Біз туралы")
+case('pages["/"]()', "Басты бет")</template>
+</article>
+<article class="task" data-task="lesson-web-2" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: сервердің жауабы</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>Нағыз сервердегідей <code>handle(address)</code> функциясын жазыңыз. Мекенжай <code>pages</code> сөздігінде болса, ол керекті функцияны шақырып, оның жауабын қайтарады. Мекенжай болмаса, <code>404: бет табылмады</code> қайтарады.</p>
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Шешімі: сервердің жауабы">def home():
+    return "Басты бет"
+
+def contacts():
+    return "Біздің байланыстар"
+
+pages = {"/": home, "/contacts": contacts}
+
+def handle(address):
+    # беттің жауабын немесе 404 мәтінін қайтарыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Мекенжайды <code>in</code> сөзімен тексеріңіз: <code>if address in pages:</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Функцияны алып, бірден шақырыңыз: <code>return pages[address]()</code>.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Әйтпесе: <code>return "404: бет табылмады"</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>def home():
+    return "Басты бет"
+
+def contacts():
+    return "Біздің байланыстар"
+
+pages = {"/": home, "/contacts": contacts}
+
+def handle(address):
+    if address in pages:
+        return pages[address]()
+    return "404: бет табылмады"</code></pre></details>
+<template data-kind="tests">case('handle("/")', "Басты бет")
+case('handle("/contacts")', "Біздің байланыстар")
+case('handle("/nope")', "404: бет табылмады")
+case('handle("")', "404: бет табылмады")</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="7"> Сабақ өтілді</label>
     </div>
   </li>
@@ -296,11 +1725,10 @@ print("Сайт жауап берді:", app.test_client().get("/").text)</code>
 <div class="cta-panel">
   <div>
     <h2 id="next-title">Әрі қарай не бар</h2>
-    <p class="lead cta-lead">Енді сіз негізді түсінесіз. Әрі қарай сұрау нағыз сервер арқылы қалай өтетінін біліп, алғашқы сайтыңызды жасайсыз. Бұл бөлімдер әзірге орыс тілінде.</p>
+    <p class="lead cta-lead">Енді сіз Python негізін түсінесіз. Әрі қарай сайт беті неден жасалғанын білесіз: HTML және CSS. Ал сосын өзіңіздің алғашқы сайтыңызды құрастырасыз.</p>
   </div>
   <div class="cta-actions">
-    <a class="btn btn-primary" href="about.html">Сайт қалай жұмыс істейді</a>
-    <a class="btn btn-secondary" href="project.html">Алғашқы жоба</a>
+    <a class="btn btn-primary" href="../html-css.html" hreflang="ru">HTML және CSS</a> <a class="btn btn-secondary" href="about.html">Сайт қалай жұмыс істейді</a>
   </div>
 </div>
 </div>
@@ -318,7 +1746,7 @@ print("Сайт жауап берді:", app.test_client().get("/").text)</code>
         <div><strong>Сайт</strong><ul><li><a href="course.html">Бүкіл курс</a></li><li><a href="progress.html">Менің прогресім</a></li><li><a href="contacts.html">Байланыс</a></li></ul></div>
       </div>
       <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
-      <p class="note footer-note">Авторы: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Жаңартылған күні: <time datetime="2026-11-11">11.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Авторы: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-11">11.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
       <p class="note footer-note">Сурет: <a href="https://www.rawpixel.com/image/13959871/image-paper-cartoon-art" rel="noopener">жыландар бейнеленген гравюра, rawpixel, CC0</a>.</p>
       <p class="note footer-note"><a href="privacy.html">Құпиялылық саясаты</a> · <a href="terms.html">Пайдалану шарттары</a></p>
       <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="contacts.html#no-github">тікелей жазуға</a> болады.</p>
@@ -328,6 +1756,7 @@ print("Сайт жауап берді:", app.test_client().get("/").text)</code>
   <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
 
   <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
   <script src="../assets/i18n.js"></script>
   <script src="../script.js"></script>
   <script src="../features.js"></script>
