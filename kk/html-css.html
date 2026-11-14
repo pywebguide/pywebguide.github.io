@@ -1,0 +1,731 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из html-css.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML және CSS: болашақ веб-әзірлеушіге арналған негіздер — PyWeb Guide</title>
+
+  <meta name="description" content="Python үйреніп жүргендерге арналған HTML және CSS бойынша бес сабақ: тегтер, сілтемелер, формалар, безендіру және Python бетті қалай құрастырады. Мысалдардың нәтижесі тікелей бетте көрінеді.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/html-css.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/html-css.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/html-css.html">
+  <link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/html-css.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/html-css.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="HTML және CSS: болашақ веб-әзірлеушіге арналған негіздер — PyWeb Guide">
+  <meta property="og:description" content="Python үйреніп жүргендерге арналған HTML және CSS бойынша бес сабақ: тегтер, сілтемелер, формалар, безендіру және Python бетті қалай құрастырады. Мысалдардың нәтижесі тікелей бетте көрінеді.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/html-css.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffd249">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+
+<body data-band="yellow" id="top" data-no-toc>
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="course.html">Бүкіл курс</a></li>
+          <li><a class="nav-link" href="project.html">Алғашқы жоба</a></li>
+          <li><a class="nav-link" href="playground.html">Құмсалғыш</a></li>
+          <li><a class="nav-link" href="glossary.html">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">Python туралы</a></li>
+              <li><a href="frameworks.html">Фреймворктер</a></li>
+              <li><a href="databases.html">Дерекқорлар</a></li>
+              <li><a href="templates.html">Үлгілер мен формалар</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Тесттер</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="setup.html">Компьютерді дайындау</a></li>
+              <li><a href="project2.html">Екінші жоба</a></li>
+              <li><a href="deploy.html">Жариялау</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Есептер</a></li>
+              <li><a href="cheatsheet.html">Қысқаша анықтама</a></li>
+              <li><a href="exam.html">Қорытынды тест</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="progress.html">Менің прогресім</a></li>
+              <li><a href="contacts.html">Байланыс</a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../html-css.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="html-css.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/html-css.html" hreflang="en" lang="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+<div class="page-band"><div class="container page-hero page-hero--picture">
+<nav class="breadcrumb" aria-label="Навигациялық тізбек">
+<a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>HTML және CSS</span>
+</nav>
+<h1>HTML және CSS</h1>
+<p class="lead">Кез келген бет неден жасалатыны туралы бес сабақ: тегтер, сілтемелер, формалар және безендіру. Соңғы сабақта Python HTML-ді өзі құрастырады. Нәтижені бірден көру үшін «Көрсету» батырмасын басыңыз.</p>
+<p class="note"><a href="start.html">«Python нөлден»</a> сабақтарынан кейін бастаған дұрыс: соңғы сабақта функциялар мен циклдер қолданылады. Таныс емес сөздер <a href="glossary.html">сөздікте</a> бар.</p>
+<div class="progress-box" data-progress="html">
+  <p class="progress-label" role="status" aria-live="polite">5 сабақтың <span data-progress-count>0</span> өтілді</p>
+  <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
+  <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Прогресті тастау</button>
+</div>
+<img class="band-picture" src="../assets/img/typecase.webp" width="1000" height="524" alt="Медандағы газеттің теру цехы: литерлері бар теру кассаларының қатарлары, 1898 жыл" decoding="async" fetchpriority="high">
+</div></div>
+<section class="section" aria-label="Сабақтар">
+<div class="container">
+<ol class="project-steps" data-progress-list="html">
+  <li class="project-step lesson" id="html-1">
+    <div class="lesson-text">
+      <h2>1-сабақ. HTML деген не: тегтер және беттің қаңқасы</h2>
+      <p><strong>Не үшін.</strong> Сайтты ашқанда Python-дағы сервер браузерге <strong>HTML</strong> тіліндегі мәтінмен жауап береді. Браузер бұл мәтінді оқып, бетті салады. Өз сайтыңызды жасау үшін бұл мәтіннің қалай құрылғанын білу керек.</p>
+      <p><strong>HTML деген не.</strong> Бұл — бағдарлама емес, белгілеу тілі. Онда шарттар да, циклдер де жоқ. HTML мәтіннің бөліктеріне жай ғана белгі қояды: «бұл — тақырып», «бұл — абзац», «бұл — маңызды сөз».</p>
+      <p><strong>Тегтер.</strong> Белгі тег деп аталады және бұрыштық жақшаға жазылады. Әдетте тегтер жұп болады: ашатын <code>&lt;p&gt;</code> және қиғаш сызығы бар жабатын <code>&lt;/p&gt;</code>. Олардың арасындағы мәтін — мазмұн. Тег мазмұнымен бірге элемент деп аталады.</p>
+      <p><strong>Ең керекті тегтер:</strong></p>
+      <ul>
+      <li><code>&lt;h1&gt;</code>…<code>&lt;h6&gt;</code> — тақырыптар, <code>&lt;h1&gt;</code> — басты тақырып, ол бетте әдетте біреу болады;</li>
+      <li><code>&lt;p&gt;</code> — мәтін абзацы;</li>
+      <li><code>&lt;strong&gt;</code> — маңызды сөздер, браузер оларды қалың етіп көрсетеді, <code>&lt;em&gt;</code> — көлбеу қаріппен бөлу;</li>
+      <li><code>&lt;br&gt;</code> — жаңа жолға көшу. Бұл жалқы тег, оны жабудың қажеті жоқ.</li>
+      </ul>
+      <p><strong>Ішкі орналасу.</strong> Тегтер бір-бірінің ішіне қораптар сияқты салынады: <code>&lt;p&gt;Бұл &lt;strong&gt;маңызды&lt;/strong&gt;&lt;/p&gt;</code>. Оларды кері ретпен жабады: алдымен ішкісін, содан кейін сыртқысын.</p>
+      <p><strong>Беттің қаңқасы.</strong> Әр беттің қаңқасы бірдей: <code>&lt;!doctype html&gt;</code> жолы, содан кейін <code>&lt;html&gt;</code>, оның ішінде қызметтік мәліметтері бар <code>&lt;head&gt;</code>, мысалы қойындының тақырыбы <code>&lt;title&gt;</code>, және <code>&lt;body&gt;</code> — бетте көрінетіннің бәрі.</p>
+      <p><strong>Байқап көріңіз:</strong> мысалдардың астындағы «Көрсету» батырмасын басыңыз. Тақырып мәтінін өзгертіп, тағы бір абзац қосыңыз да, «Көрсету» батырмасын қайта басыңыз.</p>
+      <details>
+        <summary>Жиі қате: тегті жабуды ұмыттыңыз</summary>
+        <p><code>&lt;strong&gt;</code> тегін жаппасаңыз, браузер беттің соңына дейінгі бүкіл мәтінді қалың етеді. Ол қатені көрсетпейді, бет жай ғана оғаш көрінеді. Әр жұп тегтің қиғаш сызығы бар жабатын тегі бар екенін тексеріңіз.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: жабу реті шатасқан</summary>
+        <p><code>&lt;p&gt;&lt;strong&gt;мәтін&lt;/p&gt;&lt;/strong&gt;</code> — дұрыс емес: қораптар «қиылысып» кетеді. Ішкісінен сыртқысына қарай жабу керек: <code>&lt;p&gt;&lt;strong&gt;мәтін&lt;/strong&gt;&lt;/p&gt;</code>.</p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li>HTML мәтіннің бөліктерін тегтермен белгілейді: <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;strong&gt;</code>;</li>
+      <li>жұп тег қиғаш сызықпен жабылады, ішкі тегтер кері ретпен жабылады;</li>
+      <li>беттің қаңқасы: <code>&lt;html&gt;</code>, оның ішінде қызметтік бөлік үшін <code>&lt;head&gt;</code> және көрінетін бөлік үшін <code>&lt;body&gt;</code>.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>1-мысал. Алғашқы тегтер</span></div>
+  <pre><code>&lt;h1&gt;Сәлем, мен Аружанмын&lt;/h1&gt;
+&lt;p&gt;Мен &lt;strong&gt;Python&lt;/strong&gt; тілінде сайт жасауды үйреніп жүрмін.&lt;/p&gt;
+&lt;p&gt;Бұл менің екінші абзацым.&lt;br&gt;Ал бұл оның ішіндегі жаңа жол.&lt;/p&gt;
+&lt;h2&gt;Жоспарларым&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Өз&lt;/em&gt; алғашқы сайтымды жасау.&lt;/p&gt;</code></pre>
+</div>
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>2-мысал. Беттің толық қаңқасы</span></div>
+  <pre><code>&lt;!doctype html&gt;
+&lt;html lang="kk"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;Менің визиткам&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Ерлан Нұрланов&lt;/h1&gt;
+  &lt;p&gt;Астанада бағдарламалауды үйреніп жүрмін.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+<article class="task" data-task="html-tags" data-level="easy">
+<div class="task-head"><h3>Тапсырма: алғашқы бет</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p>Белгілеуді жазыңыз: <code>Менің алғашқы сайтым</code> деген басты тақырып және оның астында кез келген мәтіні бар екі абзац.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Шешімі: алғашқы бет">&lt;!-- h1 тақырыбын және екі p абзацын жазыңыз --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 2</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Тақырып: <code>&lt;h1&gt;Менің алғашқы сайтым&lt;/h1&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Әр абзац өз тегтерінде болады: <code>&lt;p&gt;...&lt;/p&gt;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>&lt;h1&gt;Менің алғашқы сайтым&lt;/h1&gt;
+&lt;p&gt;Мұнда мен өзім туралы айтамын.&lt;/p&gt;
+&lt;p&gt;Ал мұнда — жоспарларым туралы.&lt;/p&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('count("h1")', 1)
+case('text("h1")', "Менің алғашқы сайтым")
+case('count("p")', 2)</template>
+</article>
+<article class="task" data-task="html-skeleton" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: визитка қаңқасы</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>Беттің толық қаңқасын құрастырыңыз: <code>html</code>, оның ішінде қойынды тақырыбы <code>Визитка</code> болатын <code>head</code> және басты тақырыбы — сіздің атыңыз болатын <code>body</code>.</p>
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Шешімі: визитка қаңқасы">&lt;!doctype html&gt;
+&lt;!-- әрі қарай html, title бар head және h1 бар body --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Бірінші жолдан басқаның бәрі <code>&lt;html&gt;...&lt;/html&gt;</code> ішінде тұрады.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> <code>&lt;head&gt;</code> ішіне <code>&lt;title&gt;Визитка&lt;/title&gt;</code> салыңыз.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> <code>&lt;body&gt;</code> ішіне — атыңыз жазылған <code>&lt;h1&gt;</code>. 2-мысал дәл осылай құрылған.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>&lt;!doctype html&gt;
+&lt;html lang="kk"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;Визитка&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Дана Смағұлова&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('count("html")', 1)
+case('count("head")', 1)
+case('count("body")', 1)
+case('text("title")', "Визитка")
+case('count("h1")', 1)
+case('bool(text("h1"))', True)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="h1"> Сабақ өтілді</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="html-2">
+    <div class="lesson-text">
+      <h2>2-сабақ. Тізімдер, сілтемелер және суреттер</h2>
+      <p><strong>Не үшін.</strong> Сайт мәзірі — сілтемелер тізімі. Тауар карточкасы — жазуы бар сурет. Бұл үш тег әр бетте дерлік кездеседі.</p>
+      <p><strong>Тізімдер.</strong> <code>&lt;ul&gt;</code> — нүктелі тізім, <code>&lt;ol&gt;</code> — нөмірлі тізім. Әр тармақ <code>&lt;li&gt;</code> ішіне жазылады. Бұл Python-дағы тізім сияқты, тек бетте көрсетуге арналған.</p>
+      <p><strong>Сілтемелер.</strong> <code>&lt;a href="мекенжай"&gt;мәтін&lt;/a&gt;</code>. <code>href</code> атрибутына сілтеменің қайда апаратыны, ал тегтердің арасына басатын мәтін жазылады.</p>
+      <p><strong>Атрибуттар</strong> — ашатын тегтің ішіндегі қосымша мәліметтер: <code>атау="мән"</code>. Сілтемеде бұл <code>href</code>, суретте — <code>src</code> және <code>alt</code>.</p>
+      <p><strong>Толық және қысқа мекенжай.</strong> <code>https://www.python.org</code> басқа сайтқа апарады. <code>about.html</code> — осы сайттың бетіне, жол ағымдағы беттен бастап есептеледі.</p>
+      <p><strong>Суреттер.</strong> <code>&lt;img src="мекенжай" alt="сипаттама"&gt;</code> — жалқы тег. <code>src</code> — суретті қайдан алу керек. <code>alt</code> — суреттің орнына тұратын мәтін: оны зағиптарға арналған бағдарламалар оқиды, ал сурет жүктелмесе, ол көрінеді. Онда суретте не бейнеленгенін жазыңыз.</p>
+      <p><strong>Байқап көріңіз:</strong> мәзірге сілтемесі бар өз тармағыңызды қосыңыз. Сурет мысалында <code>width</code> мәнін 150-ге өзгертіңіз.</p>
+      <details>
+        <summary>Жиі қате: https:// жоқ мекенжай</summary>
+        <p>Браузер <code>&lt;a href="www.python.org"&gt;</code> сілтемесін осы сайттағы «www.python.org» деп аталатын бет деп түсініп, 404 қатесін ашады. Басқа сайттың мекенжайын толық жазыңыз: <code>https://www.python.org</code>.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: alt жоқ сурет</summary>
+        <p><code>alt</code> болмаса, зағип пайдаланушы тек «сурет» немесе файл атауын естиді. Мәнін сипаттаңыз: «сурет1» емес, «Ескі гравюрадағы питон». Сурет тек әшекей болса, бос <code>alt=""</code> жазыңыз.</p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li><code>&lt;ul&gt;</code> және <code>&lt;ol&gt;</code> — тізімдер, тармақтар <code>&lt;li&gt;</code> ішінде;</li>
+      <li><code>&lt;a href="..."&gt;</code> — сілтеме, басқа сайттың мекенжайы <code>https://</code> арқылы жазылады;</li>
+      <li><code>&lt;img src="..." alt="..."&gt;</code> — сурет, ал <code>alt</code> міндетті.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>1-мысал. Сілтемелерден тұратын мәзір</span></div>
+  <pre><code>&lt;h2&gt;Мәзір&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://pywebguide.github.io/kk/"&gt;Басты бет&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://pywebguide.github.io/kk/start.html"&gt;Python нөлден&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.python.org"&gt;Python сайты&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Аптаға жоспар&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;HTML сабақтарын өту&lt;/li&gt;
+  &lt;li&gt;Визитка жасау&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+</div>
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>2-мысал. Жазуы бар сурет</span></div>
+  <pre><code>&lt;img src="https://pywebguide.github.io/assets/img/snakes.webp"
+     alt="Ескі гравюра: сегіз жылан, олардың арасында торлы питон"
+     width="300"&gt;
+&lt;p&gt;Python тілі жыланның емес, комедиялық шоудың құрметіне аталған.&lt;/p&gt;</code></pre>
+</div>
+<article class="task" data-task="html-list" data-level="easy">
+<div class="task-head"><h3>Тапсырма: сүйікті жемістер</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p>Үш сүйікті жемістен нүктелі тізім жасаңыз.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Шешімі: сүйікті жемістер">&lt;!-- үш li тармағы бар ul тізімі --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 2</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Бүкіл тізім <code>&lt;ul&gt;...&lt;/ul&gt;</code> ішінде.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Әр жеміс — жеке <code>&lt;li&gt;алма&lt;/li&gt;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>&lt;ul&gt;
+  &lt;li&gt;алма&lt;/li&gt;
+  &lt;li&gt;алмұрт&lt;/li&gt;
+  &lt;li&gt;апорт&lt;/li&gt;
+&lt;/ul&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('count("ul")', 1)
+case('count("li")', 3)</template>
+</article>
+<article class="task" data-task="html-link-img" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: сілтеме және сурет</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p><code>https://www.python.org</code> мекенжайына апаратын <code>Python сайты</code> мәтіні бар сілтеме жасаңыз. Оның астына <code>https://pywebguide.github.io/assets/img/snakes.webp</code> мекенжайы бар және <code>alt</code> ішінде түсінікті сипаттамасы бар сурет қойыңыз.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Шешімі: сілтеме және сурет">&lt;!-- a сілтемесі және img суреті --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Сілтеме: <code>&lt;a href="https://www.python.org"&gt;Python сайты&lt;/a&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Сурет — жалқы тег <code>&lt;img src="..." alt="..."&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> <code>alt</code> ішінде суретте не бар екенін сипаттаңыз, мысалы «Жыландар бейнеленген гравюра».</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>&lt;a href="https://www.python.org"&gt;Python сайты&lt;/a&gt;
+&lt;img src="https://pywebguide.github.io/assets/img/snakes.webp" alt="Жыландар бейнеленген гравюра"&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('attr("a", "href")', "https://www.python.org")
+case('text("a")', "Python сайты")
+case('attr("img", "src")', "https://pywebguide.github.io/assets/img/snakes.webp")
+case('bool(attr("img", "alt"))', True)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="h2"> Сабақ өтілді</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="html-3">
+    <div class="lesson-text">
+      <h2>3-сабақ. Формалар: сайт деректерді қалай алады</h2>
+      <p><strong>Не үшін.</strong> Тіркелу, іздеу, пікір, тапсырыс — мұның бәрі формалар. Адамнан келетін деректер серверге, сіздің Python-дағы бағдарламаңызға дәл форма арқылы жетеді.</p>
+      <p><strong><code>&lt;form&gt;</code> тегі</strong> өрістерді біріктіреді. <code>action</code> атрибутына деректерді қайда жіберу керегі, ал <code>method</code> атрибутына қалай жіберу керегі жазылады.</p>
+      <p><strong>Өрістер.</strong> <code>&lt;input&gt;</code> — енгізуге арналған жалқы тег. Оның түрін <code>type</code> анықтайды: <code>text</code> — мәтін, <code>email</code> — пошта, <code>password</code> — нүктемен көрінетін құпиясөз, <code>number</code> — сан, <code>checkbox</code> — белгі. Ұзын мәтін үшін <code>&lt;textarea&gt;</code>, жіберу үшін <code>&lt;button&gt;</code> бар.</p>
+      <p><strong><code>name</code> атрибуты — ең маңыздысы.</strong> Бұл — мән серверге қандай атаумен келетіні. Flask-та ол сөздіктің кілті болады: <code>request.form["email"]</code>. <code>name</code> болмаса, өріс мүлдем жіберілмейді.</p>
+      <p><strong><code>&lt;label&gt;</code> жазуы.</strong> Жазуды өріспен байланыстырыңыз: өрісте <code>id="email"</code>, жазуда <code>for="email"</code>. Сонда жазуды басқанда курсор өріске қойылады, ал зағиптарға арналған бағдарламалар жазуды дауыстап оқиды.</p>
+      <p><strong>GET және POST.</strong> <code>method="get"</code> деректерді бет мекенжайына салады, іздеу осылай жұмыс істейді: <code>?q=python</code>. <code>method="post"</code> оларды сұраныстың денесінде жасырын жібереді: құпиясөздер мен пікірлер осылай жіберіледі.</p>
+      <p><strong>Байқап көріңіз:</strong> формаға <code>type="number"</code> түріндегі жас өрісін қосыңыз. Алдын ала қарау терезесінде жіберу өшірулі, бірақ өрістер жұмыс істейді: оларға жазуға болады.</p>
+      <details>
+        <summary>Жиі қате: name жоқ өріс</summary>
+        <p><code>name</code> жазуды ұмытсаңыз, браузер өрісті көрсетеді, тіпті оған жазуға да мүмкіндік береді, бірақ мән серверге жетпейді. Python-да <code>request.form["email"]</code> <code>KeyError</code> қатесімен құлайды. Әр өрісте <code>name</code> бар екенін тексеріңіз.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: GET арқылы құпиясөз</summary>
+        <p><code>method="get"</code> болса, құпиясөз тікелей мекенжай жолында және браузер тарихында қалады. Құпиясөз бен жеке деректері бар формалар үшін әрқашан <code>method="post"</code> қолданыңыз.</p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li><code>&lt;form&gt;</code> өрістерді біріктіреді, <code>method="post"</code> — жеке деректер үшін, <code>get</code> — іздеу үшін;</li>
+      <li><code>&lt;input type="..." name="..."&gt;</code>: мән серверге <code>name</code> бойынша келеді;</li>
+      <li><code>&lt;label for="id"&gt;</code> жазуды өріспен байланыстырады.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>1-мысал. Тіркелу</span></div>
+  <pre><code>&lt;form action="/register" method="post"&gt;
+  &lt;p&gt;
+    &lt;label for="name"&gt;Аты&lt;/label&gt;&lt;br&gt;
+    &lt;input id="name" name="name" type="text" placeholder="Аружан" required&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="email"&gt;Пошта&lt;/label&gt;&lt;br&gt;
+    &lt;input id="email" name="email" type="email"&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="password"&gt;Құпиясөз&lt;/label&gt;&lt;br&gt;
+    &lt;input id="password" name="password" type="password"&gt;
+  &lt;/p&gt;
+  &lt;button type="submit"&gt;Тіркелу&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>2-мысал. Сервер не алады</span></div>
+  <pre><code># Форма деректері серверде осылай көрінеді (Flask: request.form)
+form = {"name": "Аружан", "email": "aru@example.com", "password": "құпия"}
+
+print("Жаңа пайдаланушы:", form["name"])
+print("Пошта:", form["email"])
+print("Құпиясөз бар ма?", "password" in form)</code></pre>
+</div>
+<article class="task" data-task="html-form" data-level="easy">
+<div class="task-head"><h3>Тапсырма: жаңалықтарға жазылу</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p>Жазылу формасын жасаңыз: <code>type="email"</code> және <code>name="email"</code> бар бір пошта өрісі және жіберу батырмасы.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Шешімі: жаңалықтарға жазылу">&lt;!-- input өрісі және button батырмасы бар form --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 2</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Өріс: <code>&lt;input type="email" name="email"&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Өрісті және <code>&lt;button type="submit"&gt;Жазылу&lt;/button&gt;</code> батырмасын <code>&lt;form&gt;...&lt;/form&gt;</code> ішіне салыңыз.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>&lt;form action="/subscribe" method="post"&gt;
+  &lt;input type="email" name="email" placeholder="Поштаңыз"&gt;
+  &lt;button type="submit"&gt;Жазылу&lt;/button&gt;
+&lt;/form&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('count("form")', 1)
+case('attr("input", "type")', "email")
+case('attr("input", "name")', "email")
+case('count("button")', 1)</template>
+</article>
+<article class="task" data-task="html-login" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: кіру формасы</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p><code>method="post"</code> бар кіру формасын жасаңыз: <code>for</code> және <code>id</code> арқылы байланысқан жазуы бар логин өрісі (<code>name="username"</code>), құпиясөз өрісі (<code>name="password"</code>, <code>type="password"</code>) және батырма.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Шешімі: кіру формасы">&lt;form action="/login" method="post"&gt;
+  &lt;!-- логин жазуы мен өрісі, құпиясөз өрісі, батырма --&gt;
+&lt;/form&gt;</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Жазу мен өріс: <code>&lt;label for="username"&gt;Логин&lt;/label&gt;</code> және <code>&lt;input id="username" name="username"&gt;</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Құпиясөз: <code>&lt;input name="password" type="password"&gt;</code>. Бұл — формадағы екінші өріс.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Және батырма: <code>&lt;button type="submit"&gt;Кіру&lt;/button&gt;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>&lt;form action="/login" method="post"&gt;
+  &lt;label for="username"&gt;Логин&lt;/label&gt;
+  &lt;input id="username" name="username" type="text"&gt;
+  &lt;input name="password" type="password"&gt;
+  &lt;button type="submit"&gt;Кіру&lt;/button&gt;
+&lt;/form&gt;</code></pre></details>
+<template data-kind="tests"># html
+case('(attr("form", "method") or "").lower()', "post")
+case('count("input")', 2)
+case('attr("input", "name")', "username")
+case('attr("label", "for") is not None and attr("label", "for") == attr("input", "id")', True)
+case('attr("input", "name", 1)', "password")
+case('attr("input", "type", 1)', "password")
+case('count("button")', 1)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="h3"> Сабақ өтілді</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="html-4">
+    <div class="lesson-text">
+      <h2>4-сабақ. CSS: беттің сыртқы түрі</h2>
+      <p><strong>Не үшін.</strong> HTML бетте <em>не</em> бар екенін айтады: тақырып, абзац, батырма. Ал <strong>CSS</strong> мұның <em>қалай</em> көрінетінін айтады: түстер, өлшемдер, шегіністер. Осы сайттың өзі CSS-пен безендірілген.</p>
+      <p><strong>Қайда жазу керек.</strong> Ең оңайы — беттің басындағы <code>&lt;style&gt;</code> тегінде. Үлкен сайттарда CSS бөлек файлға шығарылады.</p>
+      <p><strong>CSS ережесі</strong> селектордан және бұйра жақшадағы қасиеттерден тұрады: <code>h1 { color: navy; }</code>. Бұл былай оқылады: «барлық <code>h1</code> күңгірт көк түсті». Әр қасиеттен кейін нүктелі үтір қойылады.</p>
+      <p><strong>Селекторлар:</strong></p>
+      <ul>
+      <li>тег бойынша: <code>p { ... }</code> — барлық абзацтар;</li>
+      <li>класс бойынша: <code>.card { ... }</code> — <code>class="card"</code> бар барлық элементтер. Бұл ең жиі тәсіл;</li>
+      <li>id бойынша: <code>#top { ... }</code> — <code>id="top"</code> бар бір элемент.</li>
+      </ul>
+      <p><strong>Пайдалы қасиеттер.</strong> <code>color</code> — мәтін түсі, <code>background</code> — фон, <code>font-size</code> — қаріп өлшемі, <code>font-weight: bold</code> — қалыңдық, <code>text-align: center</code> — туралау. <code>padding</code> — жиектің <em>ішіндегі</em> шегініс, <code>margin</code> — <em>сыртындағы</em>, <code>border</code> — жиек, <code>border-radius</code> — бұрыштарды дөңгелектеу.</p>
+      <p><strong>Түстер</strong> сөзбен (<code>red</code>) немесе кодпен беріледі: <code>#ffd249</code> — осы сайттың сары түсі.</p>
+      <p><strong>Байқап көріңіз:</strong> карточка фонын <code>#a4f6f8</code> түсіне, ал дөңгелектеуді <code>20px</code> мәніне өзгертіңіз.</p>
+      <details>
+        <summary>Жиі қате: class атрибутындағы нүкте</summary>
+        <p>Нүкте тек CSS-та жазылады: <code>.card { ... }</code>. HTML-де класс нүктесіз көрсетіледі: <code>class="card"</code>. Нүктемен <code>class=".card"</code> жазсаңыз, ереже жұмыс істемейді.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: нүктелі үтірді ұмыттыңыз</summary>
+        <p><code>color: red background: yellow;</code> ішінде <code>red</code> сөзінен кейін нүктелі үтір жоқ, сондықтан браузер екі қасиетті де өткізіп жібереді. Ол қатені көрсетпейді: стиль жай ғана қолданылмайды. Әр қасиеттен кейін <code>;</code> қойыңыз.</p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li>HTML — бетте не бар, CSS — ол қалай көрінеді;</li>
+      <li>ереже: <code>селектор { қасиет: мән; }</code>, CSS-та класс нүктемен жазылады;</li>
+      <li><code>padding</code> — ішкі шегініс, <code>margin</code> — сыртқы шегініс.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>1-мысал. Мәтінді безендіреміз</span></div>
+  <pre><code>&lt;style&gt;
+  h1 { color: #2f6694; font-size: 40px; }
+  p { font-size: 18px; color: #333333; }
+  .important { background: #ffd249; font-weight: bold; }
+&lt;/style&gt;
+
+&lt;h1&gt;PyWeb Guide курсы&lt;/h1&gt;
+&lt;p&gt;Қарапайым абзац.&lt;/p&gt;
+&lt;p class="important"&gt;Ал бұл абзац класпен бөлінген.&lt;/p&gt;</code></pre>
+</div>
+<div class="code-block" data-run="html" data-open>
+  <div class="code-head"><span>2-мысал. Тауар карточкасы</span></div>
+  <pre><code>&lt;style&gt;
+  .card {
+    width: 220px;
+    padding: 16px;
+    margin: 12px;
+    background: #ffc4ef;
+    border: 2px solid #0d0d0d;
+    border-radius: 12px;
+  }
+  .price { font-size: 24px; font-weight: bold; }
+&lt;/style&gt;
+
+&lt;div class="card"&gt;
+  &lt;h2&gt;Дәптер&lt;/h2&gt;
+  &lt;p class="price"&gt;450 теңге&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<article class="task" data-task="css-color" data-level="easy">
+<div class="task-head"><h3>Тапсырма: көк тақырып</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p><code>h1</code> тақырыбы <code>#2f6694</code> түсті болуы үшін CSS ережесін қосыңыз.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Шешімі: көк тақырып">&lt;style&gt;
+  /* h1 үшін ереже */
+&lt;/style&gt;
+&lt;h1&gt;Менің сайтым&lt;/h1&gt;</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 2</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Селектор — жай ғана тегтің атауы: <code>h1 { ... }</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Мәтін түсінің қасиеті: <code>color: #2f6694;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>&lt;style&gt;
+  h1 { color: #2f6694; }
+&lt;/style&gt;
+&lt;h1&gt;Менің сайтым&lt;/h1&gt;</code></pre></details>
+<template data-kind="tests"># html
+import re
+found = re.search(r"h1\s*\{([^}]*)\}", style())
+h1_css = found.group(1) if found else ""
+case('"color" in h1_css', True)
+case('"#2f6694" in h1_css', True)
+case('text("h1")', "Менің сайтым")</template>
+</article>
+<article class="task" data-task="css-card" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: өз карточкаңыз</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>Ішінде тақырыбы бар <code>&lt;div class="card"&gt;</code> блогын және фоны (<code>background</code>), ішкі шегінісі (<code>padding</code>) және бұрыштарды дөңгелектеуі (<code>border-radius</code>) бар <code>.card</code> ережесін жасаңыз.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Шешімі: өз карточкаңыз">&lt;style&gt;
+  /* .card ережесі */
+&lt;/style&gt;
+&lt;!-- card класы бар және ішінде тақырыбы бар div --&gt;
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> CSS-та класс нүктемен жазылады: <code>.card { ... }</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Ереженің ішінде: <code>background: #ffc4ef; padding: 16px; border-radius: 12px;</code>.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> HTML-де — нүктесіз: <code>&lt;div class="card"&gt;&lt;h2&gt;Дәптер&lt;/h2&gt;&lt;/div&gt;</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>&lt;style&gt;
+  .card { background: #ffc4ef; padding: 16px; border-radius: 12px; }
+&lt;/style&gt;
+&lt;div class="card"&gt;
+  &lt;h2&gt;Дәптер&lt;/h2&gt;
+&lt;/div&gt;</code></pre></details>
+<template data-kind="tests"># html
+import re
+found = re.search(r"\.card\s*\{([^}]*)\}", style())
+card_css = found.group(1) if found else ""
+case('found is not None', True)
+case('"background" in card_css', True)
+case('"padding" in card_css', True)
+case('"border-radius" in card_css', True)
+case('attr("div", "class")', "card")
+case('count("h1") + count("h2") + count("h3") &gt;= 1', True)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="h4"> Сабақ өтілді</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="html-5">
+    <div class="lesson-text">
+      <h2>5-сабақ. Python HTML-ді қалай құрастырады</h2>
+      <p><strong>Не үшін.</strong> Нағыз сайтта HTML әр пайдаланушы үшін қолмен жазылмайды. Оны серверде <strong>бағдарлама құрастырады</strong>: атты, тапсырмалар тізімін, бағаларды қояды. Бұл сабақ Python мен HTML туралы білетініңіздің бәрін біріктіреді.</p>
+      <p><strong>HTML — жай ғана жол.</strong> Python үшін бет — қарапайым мәтін. Демек, оны f-жолмен құрастыруға болады: <code>f"&lt;h1&gt;Сәлем, {name}!&lt;/h1&gt;"</code>.</p>
+      <p><strong>Тізімдер циклге айналады.</strong> Тапсырмалар тізімін көрсету үшін бағдарлама оны аралап шығып, әр тапсырма үшін <code>&lt;li&gt;</code> жолын қосады. Таспалар, каталогтар мен мәзірлер осылай жасалады.</p>
+      <p><strong>Қауіп: беттегі бөгде код.</strong> Пайдаланушының мәтінін HTML-ге сол күйінде қойсаңыз, ол оған өз тегін жазуы мүмкін, мысалы <code>&lt;script&gt;</code>, және бұл код басқа келушілерде орындалады. Мұндай шабуыл XSS деп аталады. Қорғаныс — <code>html.escape</code> функциясы: ол <code>&lt;</code> белгісін қауіпсіз <code>&amp;lt;</code> түріне айналдырады, сонда браузер тегті орындамай, таңбаны көрсетеді.</p>
+      <p><strong>Үлгілер.</strong> Үлкен беттерді жолдардан желімдеу ыңғайсыз. Сондықтан Flask пен Django-да үлгілер қолданылады: <code>{{ name }}</code> бос орындары мен <code>{% for %}</code> циклдері бар HTML файлы. Олар әр мән үшін <code>escape</code> функциясын өздері шақырады. Толығырақ — <a href="templates.html">«Үлгілер мен формалар»</a> бетінде.</p>
+      <p><strong>Байқап көріңіз:</strong> бірінші мысалда тізімге тапсырма қосыңыз. Екіншісінде пікір мәтінін өзгертіп, нәтижені <code>escape</code> арқылы және онсыз салыстырыңыз.</p>
+      <details>
+        <summary>Жиі қате: пайдаланушы мәтінін escape-сіз қою</summary>
+        <p>Сол күйінде қойылған <code>&lt;script&gt;alert(1)&lt;/script&gt;</code> пікірі беттің бөлігіне айналады. Пайдаланушыдан келген кез келген мәтінді <code>html.escape()</code> арқылы өткізіңіз немесе мұны өздері жасайтын үлгілерді қолданыңыз.</p>
+      </details>
+      <details>
+        <summary>Жиі қате: циклден кейін тегті жабуды ұмыттыңыз</summary>
+        <p>Циклде <code>&lt;li&gt;</code> қосып, циклден кейін <code>&lt;/ul&gt;</code> жазуды ұмытсаңыз, тізім бүкіл бетке «созылып» кетеді. Ашатын тег — циклге дейін, жабатыны — циклден кейін.</p>
+      </details>
+      <p><strong>Қысқаша:</strong></p>
+      <ul>
+      <li>Python үшін HTML — қарапайым жол: оны f-жолдармен және циклдермен құрастырады;</li>
+      <li>пайдаланушы мәтінін әрқашан <code>html.escape</code> арқылы өткізіңіз;</li>
+      <li>Flask пен Django-да мұны үлгілер жасайды, және бұл — келесі қадам.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>1-мысал. Тізімнен жасалған бет</span></div>
+  <pre><code>name = "Аружан"
+tasks = ["тегтерді үйрену", "форма жасау", "CSS-пен безендіру"]
+
+page = f"&lt;h1&gt;Тапсырмалар: {name}&lt;/h1&gt;\n&lt;ul&gt;\n"
+for task in tasks:
+    page += f"  &lt;li&gt;{task}&lt;/li&gt;\n"
+page += "&lt;/ul&gt;"
+
+print(page)</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>2-мысал. escape арқылы қорғау</span></div>
+  <pre><code>import html
+
+comment = "&lt;script&gt;alert('бұзу')&lt;/script&gt;"
+
+print("Қауіпті:    ", f"&lt;p&gt;{comment}&lt;/p&gt;")
+print("Қауіпсіз:   ", f"&lt;p&gt;{html.escape(comment)}&lt;/p&gt;")</code></pre>
+</div>
+<article class="task" data-task="py-card" data-level="easy">
+<div class="task-head"><h3>Тапсырма: Python-нан тауар карточкасы</h3><span class="level level-easy"><span class="visually-hidden">Деңгейі: </span>Жеңіл</span></div>
+<p><code>card(name, price)</code> функциясын жазыңыз. Ол <code>card("Дәптер", 450)</code> үшін карточканың HTML-ін қайтарады: <code>&lt;div class="card"&gt;&lt;h2&gt;Дәптер&lt;/h2&gt;&lt;p&gt;450 теңге&lt;/p&gt;&lt;/div&gt;</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Шешімі: Python-нан тауар карточкасы">def card(name, price):
+    # HTML жолын қайтарыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 2</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Жолды f-жолмен құрастырып, оны <code>return</code> арқылы қайтарыңыз.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> <code>return f'&lt;div class="card"&gt;&lt;h2&gt;{name}&lt;/h2&gt;&lt;p&gt;{price} теңге&lt;/p&gt;&lt;/div&gt;'</code>. Сыртқы тырнақшалар жалқы, өйткені ішінде қос тырнақшалар бар.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>def card(name, price):
+    return f'&lt;div class="card"&gt;&lt;h2&gt;{name}&lt;/h2&gt;&lt;p&gt;{price} теңге&lt;/p&gt;&lt;/div&gt;'</code></pre></details>
+<template data-kind="tests">case('card("Дәптер", 450)', '&lt;div class="card"&gt;&lt;h2&gt;Дәптер&lt;/h2&gt;&lt;p&gt;450 теңге&lt;/p&gt;&lt;/div&gt;')
+case('card("Қалам", 200)', '&lt;div class="card"&gt;&lt;h2&gt;Қалам&lt;/h2&gt;&lt;p&gt;200 теңге&lt;/p&gt;&lt;/div&gt;')</template>
+</article>
+<article class="task" data-task="py-render-list" data-level="medium">
+<div class="task-head"><h3>Күрделірек тапсырма: қауіпсіз тізім</h3><span class="level level-medium"><span class="visually-hidden">Деңгейі: </span>Орташа</span></div>
+<p>HTML тізімін қайтаратын <code>render_list(items)</code> функциясын жазыңыз: <code>&lt;ul&gt;&lt;li&gt;нан&lt;/li&gt;&lt;li&gt;сүт&lt;/li&gt;&lt;/ul&gt;</code>. Әр тармақты <code>html.escape</code> арқылы өткізіңіз, өйткені тармақтарды пайдаланушы жазуы мүмкін.</p>
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Шешімі: қауіпсіз тізім">import html
+
+
+def render_list(items):
+    # &lt;ul&gt;, &lt;li&gt; тармақтарын және &lt;/ul&gt; құрастырыңыз
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Тексеру</button><button class="btn btn-secondary" type="button" data-reset>Тастау</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Кеңес 1 / 3</button>
+<ol class="hint-list" aria-label="Кеңестер" aria-live="polite">
+<li hidden tabindex="-1"><strong>1-кеңес.</strong> Жолды циклге дейін бастаңыз: <code>result = "&lt;ul&gt;"</code>.</li>
+<li hidden tabindex="-1"><strong>2-кеңес.</strong> Циклде: <code>result += f"&lt;li&gt;{html.escape(item)}&lt;/li&gt;"</code>.</li>
+<li hidden tabindex="-1"><strong>3-кеңес.</strong> Циклден кейін тізімді жауып, қайтарыңыз: <code>return result + "&lt;/ul&gt;"</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Шешімін көрсету</summary><pre><code>import html
+
+
+def render_list(items):
+    result = "&lt;ul&gt;"
+    for item in items:
+        result += f"&lt;li&gt;{html.escape(item)}&lt;/li&gt;"
+    return result + "&lt;/ul&gt;"</code></pre></details>
+<template data-kind="tests">case('render_list(["нан", "сүт"])', "&lt;ul&gt;&lt;li&gt;нан&lt;/li&gt;&lt;li&gt;сүт&lt;/li&gt;&lt;/ul&gt;")
+case('render_list([])', "&lt;ul&gt;&lt;/ul&gt;")
+case('render_list(["&lt;b&gt;қалың&lt;/b&gt;"])', "&lt;ul&gt;&lt;li&gt;&amp;lt;b&amp;gt;қалың&amp;lt;/b&amp;gt;&lt;/li&gt;&lt;/ul&gt;")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="h5"> Сабақ өтілді</label>
+    </div>
+  </li>
+</ol>
+</div>
+</section>
+<section class="section" aria-labelledby="next-title">
+<div class="container">
+<div class="cta-panel">
+  <div>
+    <h2 id="next-title">Әрі қарай не бар</h2>
+    <p class="lead cta-lead">Енді сіз бет неден жасалатынын білесіз. Компьютерді дайындап, Flask немесе Django-да алғашқы сайтты жасау ғана қалды.</p>
+  </div>
+  <div class="cta-actions">
+    <a class="btn btn-primary" href="setup.html">Компьютерді дайындау</a> <a class="btn btn-secondary" href="project.html">Алғашқы жоба</a>
+  </div>
+</div>
+</div>
+</section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="html-css.html">HTML және CSS</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="playground.html">Құмсалғыш</a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="about.html">Python туралы</a></li><li><a href="frameworks.html">Фреймворктер</a></li><li><a href="databases.html">Дерекқорлар</a></li><li><a href="templates.html">Үлгілер мен формалар</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесттер</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="setup.html">Компьютерді дайындау</a></li><li><a href="project.html">Алғашқы жоба</a></li><li><a href="project2.html">Екінші жоба</a></li><li><a href="deploy.html">Жариялау</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Есептер</a></li><li><a href="cheatsheet.html">Қысқаша анықтама</a></li><li><a href="exam.html">Қорытынды тест</a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="course.html">Бүкіл курс</a></li><li><a href="progress.html">Менің прогресім</a></li><li><a href="contacts.html">Байланыс</a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-11">11.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Сурет: <a href="https://www.rawpixel.com/image/13959871/image-paper-cartoon-art" rel="noopener">жыландар бейнеленген гравюра, rawpixel, CC0</a>.</p>
+      <p class="note footer-note"><a href="privacy.html">Құпиялылық саясаты</a> · <a href="terms.html">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="contacts.html#no-github">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>
