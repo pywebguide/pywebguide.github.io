@@ -1388,8 +1388,15 @@
       ctx.font = "900 44px " + display;
       ctx.fillText("PYWEB GUIDE", w / 2, 100);
 
-      ctx.font = "900 110px " + display;
-      ctx.fillText(t("СЕРТИФИКАТ О ПРОХОЖДЕНИИ"), w / 2, 215);
+      // Заголовок уменьшается, если перевод длиннее русского и не помещается по ширине
+      const title = t("СЕРТИФИКАТ О ПРОХОЖДЕНИИ");
+      let titleSize = 110;
+      ctx.font = "900 " + titleSize + "px " + display;
+      while (ctx.measureText(title).width > w - 120 && titleSize > 48) {
+        titleSize -= 2;
+        ctx.font = "900 " + titleSize + "px " + display;
+      }
+      ctx.fillText(title, w / 2, 215);
 
       ctx.fillStyle = "#ffc4ef";
       ctx.fillRect(0, 262, w, 110);
