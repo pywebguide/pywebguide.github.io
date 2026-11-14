@@ -1,11 +1,12 @@
 <!doctype html>
+<!-- Перевод собран tools/translate.py из start.html. Правьте tools/i18n/en.json, а не этот файл. -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Python from scratch: seven lessons in the browser — PyWeb Guide</title>
+  <title>Python from scratch: 13 lessons in your browser — PyWeb Guide</title>
 
-  <meta name="description" content="Seven short Python lessons for people who have never programmed. The code runs right on the page, nothing to install.">
+  <meta name="description" content="13 Python lessons for people who have never programmed: explanations, examples and exercises with automatic checking. The code runs right on the page, nothing to install.">
   <link rel="canonical" href="https://pywebguide.github.io/en/start.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/start.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/start.html">
@@ -14,8 +15,8 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_GB">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="Python from scratch: seven lessons in the browser — PyWeb Guide">
-  <meta property="og:description" content="Seven short Python lessons for people who have never programmed. The code runs right on the page, nothing to install.">
+  <meta property="og:title" content="Python from scratch: 13 lessons in your browser — PyWeb Guide">
+  <meta property="og:description" content="13 Python lessons for people who have never programmed: explanations, examples and exercises with automatic checking. The code runs right on the page, nothing to install.">
   <meta property="og:url" content="https://pywebguide.github.io/en/start.html">
   <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -23,6 +24,7 @@
   <meta property="og:image:alt" content="PyWeb Guide poster: your first website with Python, a free course for people who have never programmed">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#ffd249">
+
 
   <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
   <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
@@ -34,7 +36,7 @@
   <link rel="stylesheet" href="../styles.css">
 
   <script>
-    // The theme is applied before the first paint so the page does not flash
+    // Тема выбирается до отрисовки, чтобы страница не мигала
     (function () {
       var theme;
       try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
@@ -118,15 +120,13 @@
   <main id="content" data-pagefind-body class="page" tabindex="-1">
 <div class="page-band"><div class="container page-hero page-hero--picture">
 <nav class="breadcrumb" aria-label="Breadcrumb">
-<a href="index.html">Home</a>
-<span aria-hidden="true">/</span>
-<span>From scratch</span>
+<a href="index.html">Home</a> <span aria-hidden="true">/</span> <span>From scratch</span>
 </nav>
 <h1>Python from scratch</h1>
-<p class="lead">Seven short lessons for people who have never programmed. The code runs right on this page: press “Run”, change the code and run it again. Don't be afraid of mistakes, nothing will break.</p>
+<p class="lead">13 lessons for people who have never programmed. The code runs right on this page: click “Run”, change it and run it again. Making mistakes is not scary, nothing will break.</p>
 <p class="note">On the first run the browser loads Python, which takes a few seconds. Unfamiliar words are in the <a href="glossary.html">glossary</a> (in Russian for now).</p>
 <div class="progress-box" data-progress="start">
-  <p class="progress-label" role="status" aria-live="polite"><span data-progress-count>0</span> of 7 lessons done</p>
+  <p class="progress-label" role="status" aria-live="polite"><span data-progress-count>0</span> of 17 lessons and projects done</p>
   <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
   <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Reset progress</button>
 </div>
@@ -135,142 +135,1498 @@
 <section class="section" aria-label="Lessons">
 <div class="container">
 <ol class="project-steps" data-progress-list="start">
-  <li class="project-step lesson" id="lesson-1">
+  <li class="project-step lesson" id="lesson-intro">
     <div class="lesson-text">
-      <h2>Lesson 1. Your first program</h2>
-      <p>A program is a list of commands for the computer. It carries them out one after another, from top to bottom.</p>
-      <p>The <code>print</code> command shows text on the screen. The text itself always goes in quotes.</p>
-      <p><strong>Try it:</strong> write your name in quotes and press “Run”.</p>
+      <h2>Lesson 0. How this course works</h2>
+      <p><strong>Why.</strong> Before writing code, it helps to understand three things: what a program is, why we learn Python and how to study on this page.</p>
+      <p><strong>What a program is.</strong> A program is an instruction for a computer. It is like a recipe: a cook follows the steps in order, first chopping, then cooking. A computer also runs commands one by one, from top to bottom.</p>
+      <p><strong>Why Python.</strong> Python code reads almost like ordinary English text, with few extra symbols. People use Python to build websites, process data and automate boring work. That is why it is often chosen as a first language.</p>
+      <p><strong>How to study.</strong> Every lesson has an explanation, examples and exercises. Click “Run” under an example, and Python will run the code right here, in the browser. You can change the code however you like: the computer won't break.</p>
+      <p><strong>Exercises with checking.</strong> Write a solution and click “Check”. If it doesn't work out, open the hints one by one. There is a ready solution too, but try on your own first.</p>
+      <p><strong>Progress.</strong> The “Lesson done” tick is saved in this browser. Look up unfamiliar words in the <a href="glossary.html">glossary</a>.</p>
+      <p><strong>Try it:</strong> run both examples of this lesson. They are already real programs.</p>
+      <details>
+        <summary>Common question: do I need to install anything?</summary>
+        <p>No. Python loads into the browser by itself the first time you run code, it takes a few seconds. You will need to install Python on your computer later, for your own project, and there is a separate lesson about it.</p>
+      </details>
+      <details>
+        <summary>Common question: do I need to be good at maths and English?</summary>
+        <p>No. School arithmetic is enough. Python has few English words, and we explain what they mean in the lessons.</p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li>a program is commands that the computer runs one by one, from top to bottom;</li>
+      <li>code here runs right in the browser, nothing to install;</li>
+      <li>making mistakes is not scary: try, change and run again.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Your program</span></div>
-  <pre><code>print("Hello!")
+  <div class="code-head"><span>Example 1. A recipe step by step</span></div>
+  <pre><code>print("Step 1: I take a cup")
+print("Step 2: I pour the tea")
+print("Step 3: I drink the tea")</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 2. Python can count</span></div>
+  <pre><code>print(2 + 2)
+print("2 + 2")</code></pre>
+</div>
+      <p class="note">In the second example the first line calculates, and the second prints the text as is: Python doesn't calculate anything in quotes.</p>
+      <label class="step-check"><input type="checkbox" data-step="intro"> Lesson done</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-1">
+    <div class="lesson-text">
+      <h2>Lesson 1. Your first program</h2>
+      <p><strong>Why.</strong> Any program, even a big website, is made of simple commands. Let's start with the most important one — the command that shows a result.</p>
+      <p><strong>The <code>print</code> command</strong> shows on the screen what is in the brackets. Text is written in quotes: <code>print("Hello!")</code>. Numbers can be written without quotes: <code>print(2026)</code>.</p>
+      <p><strong>Order.</strong> Each command is written on a new line. Python runs them from top to bottom: what is higher gets printed earlier.</p>
+      <p><strong>Several values.</strong> One <code>print</code> can list several values separated by commas. Python puts spaces between them itself: <code>print("I am", 16, "years old")</code> prints <code>I am 16 years old</code>.</p>
+      <p><strong>An empty line.</strong> <code>print()</code> with nothing in the brackets prints an empty line. It is handy for separating one part of the output from another.</p>
+      <p><strong>Comments.</strong> Everything after the <code>#</code> sign is a note for people. Python skips it. Comments help explain what the code does.</p>
+      <p><strong>Try it:</strong> write your name in quotes and click “Run”. Then swap the two lines and see how the output changes.</p>
+      <details>
+        <summary>Common mistake: a missing quote or bracket</summary>
+        <p>Quotes and brackets always come in pairs. If you write <code>print("Hello!)</code>, Python can't find the end of the text: <code class="error-text">SyntaxError: unterminated string literal</code> Check that every opening quote and bracket has a closing one.</p>
+      </details>
+      <details>
+        <summary>Common mistake: Print with a capital letter</summary>
+        <p>Python tells capital and small letters apart. <code>Print</code> and <code>print</code> are different words for it, and it doesn't know the first one: <code class="error-text">NameError: name 'Print' is not defined</code> Python commands are written in small letters.</p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li><code>print(...)</code> shows a result: text in quotes, numbers without quotes;</li>
+      <li>commands run from top to bottom, each on a new line;</li>
+      <li><code>#</code> starts a comment, and quotes and brackets always come in pairs.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 1. First commands</span></div>
+  <pre><code># This is a comment: Python will skip it
+print("Hello!")
 print("This is my first program")</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 2. Several values</span></div>
+  <pre><code>print("My name is", "Aruzhan")
+print("I am", 16, "years old")
+print()
+print("Learning to program since", 2026)</code></pre>
+</div>
+<article class="task" data-task="lesson-print" data-level="easy">
+<div class="task-head"><h3>Exercise: introduce yourself</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Write a program that prints two lines: first <code>Hello!</code>, and under it <code>I am learning Python</code>.</p>
+<textarea class="editor-area" rows="3" spellcheck="false" aria-label="Solution: introduce yourself"># write your program here
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> You need two <code>print</code> commands, each on its own line.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Write the text in quotes exactly as in the exercise: <code>print("Hello!")</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>print("Hello!")
+print("I am learning Python")</code></pre></details>
+<template data-kind="tests">case('printed()', "Hello!\nI am learning Python")</template>
+</article>
+<article class="task" data-task="lesson-print-2" data-level="medium">
+<div class="task-head"><h3>A harder exercise: find the mistakes</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>The program has three mistakes, and it doesn't run. Fix them so that the program prints <code>My name is Yerlan</code> and <code>I am 16 years old</code>.</p>
+<textarea class="editor-area" rows="3" spellcheck="false" aria-label="Solution: find the mistakes">Print("My name is Yerlan)
+print("I am", 16 "years old")</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> Look at the first letter of the first command.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> The text in the first line has an opening quote. What about the closing one?</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> Values in <code>print</code> are separated by commas. There is none between <code>16</code> and <code>"years old"</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>print("My name is Yerlan")
+print("I am", 16, "years old")</code></pre></details>
+<template data-kind="tests">case('printed()', "My name is Yerlan\nI am 16 years old")</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="1"> Lesson done</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-numbers">
+    <div class="lesson-text">
+      <h2>Lesson 2. Numbers: Python as a calculator</h2>
+      <p><strong>Why.</strong> Websites count all the time: the price in a cart, test scores, how many days are left until an exam. So first let's learn to count.</p>
+      <p><strong>Operations.</strong> Python adds <code>+</code>, subtracts <code>-</code>, multiplies <code>*</code> and divides <code>/</code>. You can print the result right away: <code>print(2 + 3)</code>.</p>
+      <p><strong>Whole and decimal numbers.</strong> There are whole numbers, for example <code>7</code>, and decimal ones, for example <code>7.5</code>. The fractional part is separated with a <strong>dot</strong>, not a comma. Ordinary division <code>/</code> always gives a decimal number: <code>10 / 2</code> equals <code>5.0</code>.</p>
+      <p><strong>Whole division and remainder.</strong> Imagine 17 sweets packed 5 to a box. <code>17 // 5</code> answers how many full boxes you get: <code>3</code>. <code>17 % 5</code> answers how many sweets are left over: <code>2</code>.</p>
+      <p><strong>Powers and order of operations.</strong> <code>2 ** 3</code> is 2 cubed, that is <code>8</code>. The order of operations is as in maths: first multiplication and division, then addition and subtraction. Brackets change the order: <code>(2 + 3) * 4</code> equals <code>20</code>.</p>
+      <p><strong>Rounding.</strong> <code>round(3.14159, 2)</code> keeps two digits after the dot: <code>3.14</code>.</p>
+      <p><strong>A number and text are different things.</strong> <code>2 + 2</code> gives <code>4</code>, but <code>"2" + "2"</code> gives <code>"22"</code>: that is glued text, not a sum.</p>
+      <p><strong>Try it:</strong> calculate how many minutes there are in a week. Then check how the remainder works: what does <code>10 % 3</code> give?</p>
+      <details>
+        <summary>Common mistake: a comma instead of a dot</summary>
+        <p>A decimal number needs a dot. If you write <code>print(2,5)</code>, there will be no error, but Python will read it as two numbers and print <code>2 5</code>. Correct: <code>print(2.5)</code>.</p>
+      </details>
+      <details>
+        <summary>Common mistake: division by zero</summary>
+        <p>You can't divide by zero in Python either. The command <code>print(5 / 0)</code> stops the program: <code class="error-text">ZeroDivisionError: division by zero</code> Check that the divisor isn't zero.</p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li><code>+ - * /</code> are the usual operations, the fractional part is separated with a dot;</li>
+      <li><code>//</code> — how many whole times, <code>%</code> — the remainder, <code>**</code> — a power;</li>
+      <li>numbers are written without quotes: <code>"2"</code> in quotes is already text.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 1. A calculator</span></div>
+  <pre><code>print(7 + 5)
+print(7 - 5)
+print(7 * 5)
+print(7 / 2)
+print(7 // 2)
+print(7 % 2)
+print(2 ** 10)</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 2. Shopping</span></div>
+  <pre><code>print("Three notebooks at 450 tenge:", 3 * 450)
+print("With a pen for 200:", 3 * 450 + 200)
+print("Change from 2000:", 2000 - (3 * 450 + 200))
+print("Average grade:", round((5 + 4 + 5) / 3, 1))</code></pre>
+</div>
+<article class="task" data-task="lesson-numbers" data-level="easy">
+<div class="task-head"><h3>Exercise: seconds in a day</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>A day has 24 hours, an hour has 60 minutes, a minute has 60 seconds. Print how many seconds there are in a day. Let Python do the calculation.</p>
+<textarea class="editor-area" rows="3" spellcheck="false" aria-label="Solution: seconds in a day"># calculate and print
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> You need to multiply three numbers: hours, minutes and seconds.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Write the expression right inside <code>print</code>: <code>print(24 * 60 * 60)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>print(24 * 60 * 60)</code></pre></details>
+<template data-kind="tests">case('printed()', "86400")</template>
+</article>
+<article class="task" data-task="lesson-numbers-2" data-level="medium">
+<div class="task-head"><h3>A harder exercise: sweets shared equally</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>47 sweets are shared equally among 6 children. Print two lines: how many sweets each child gets and how many are left over. You should get <code>Each: 7</code> and <code>Left over: 5</code>.</p>
+<textarea class="editor-area" rows="3" spellcheck="false" aria-label="Solution: sweets shared equally"># calculate with // and %
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> “How many each” is whole division: <code>47 // 6</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> “How many left over” is the remainder: <code>47 % 6</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> List the text and the number separated by a comma: <code>print("Each:", 47 // 6)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>print("Each:", 47 // 6)
+print("Left over:", 47 % 6)</code></pre></details>
+<template data-kind="tests">case('printed()', "Each: 7\nLeft over: 5")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="numbers"> Lesson done</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-2">
     <div class="lesson-text">
-      <h2>Lesson 2. Variables: how to remember a value</h2>
-      <p>A variable is a label on a box. You put a value in the box and then refer to it by name.</p>
-      <p>You can work with values: for example, add one to an age.</p>
-      <p><strong>Try it:</strong> put in your own name and age and run it again.</p>
+      <h2>Lesson 3. Variables: how to remember a value</h2>
+      <p><strong>Why.</strong> A program has to remember data: a student's name, test scores, the total in a cart. That is what variables are for.</p>
+      <p><strong>What a variable is.</strong> A variable is a labelled box. You put a value in the box and then refer to it by the label. <code>name = "Anya"</code> means: put the text <code>"Anya"</code> in the box labelled <code>name</code>.</p>
+      <p><strong>The <code>=</code> sign</strong> in Python means “put”, not “equals”. The box name goes on the left, and what goes into it on the right.</p>
+      <p><strong>A value can change.</strong> <code>score = score + 10</code> means: take what is in <code>score</code>, add 10 and put it back. The short way to write the same thing is <code>score += 10</code>.</p>
+      <p><strong>How to name variables.</strong> Use Latin letters, digits and the <code>_</code> sign. A name can't start with a digit. Choose clear names: <code>user_age</code> is better than <code>a</code>.</p>
+      <p><strong>Value types.</strong> Every value has a type: <code>str</code> — text, <code>int</code> — a whole number, <code>float</code> — a decimal. <code>type(...)</code> tells you the type. <code>int("16")</code>, <code>str(16)</code> and <code>float("2.5")</code> turn one into another.</p>
+      <p><strong>Keyboard input.</strong> On a computer <code>input("What is your name? ")</code> asks a person and waits for an answer. The answer always comes as text, so a number is read like this: <code>int(input())</code>. In the browser on this site <code>input()</code> doesn't work, so we write values right in the code. And on websites data comes from forms, which get a lesson of their own.</p>
+      <p><strong>Try it:</strong> put in your own name and age and run again. Add 5 more to the score.</p>
+      <details>
+        <summary>Common mistake: a typo in a name</summary>
+        <p>If you create <code>name</code> and then write <code>nmae</code>, Python won't understand what you mean: <code class="error-text">NameError: name 'nmae' is not defined</code> Check that the name is spelled the same everywhere, down to the letter.</p>
+      </details>
+      <details>
+        <summary>Common mistake: a number as text</summary>
+        <p><code>"16" + 1</code> won't work: text on the left, a number on the right. <code class="error-text">TypeError: can only concatenate str (not "int") to str</code> First turn the text into a number: <code>int("16") + 1</code> gives <code>17</code>.</p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li>a variable is a labelled box: <code>name = "Anya"</code>, the <code>=</code> sign means “put”;</li>
+      <li>a value can change: <code>score += 10</code>;</li>
+      <li><code>type()</code> tells the type, <code>int()</code>, <code>str()</code>, <code>float()</code> change it.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Your program</span></div>
-  <pre><code>name = "Anna"
+  <div class="code-head"><span>Example 1. Boxes with data</span></div>
+  <pre><code>name = "Anya"
 age = 18
+score = 0
 
 print("My name is", name)
-print("Next year I will be", age + 1)</code></pre>
+print("In a year I will be", age + 1)
+
+score = score + 10
+score += 5
+print("Score:", score)</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 2. Text or a number</span></div>
+  <pre><code>age_text = "16"
+age = int(age_text)
+
+print(type(age_text))
+print(type(age))
+print("In a year:", age + 1)
+print("Glued text:", age_text + "1")</code></pre>
+</div>
+<article class="task" data-task="lesson-variables" data-level="easy">
+<div class="task-head"><h3>Exercise: a piggy bank</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>There are 500 tenge in a piggy bank. Put in 300 more, then spend 250. Change the value of the <code>money</code> variable, and at the end print how much is left.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Solution: a piggy bank">money = 500
+# put in 300, spend 250 and print money
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> Putting money in means adding: <code>money += 300</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Spending means subtracting: <code>money -= 250</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> At the end: <code>print(money)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>money = 500
+money += 300
+money -= 250
+print(money)</code></pre></details>
+<template data-kind="tests">case('money', 550)
+case('printed()', "550")</template>
+</article>
+<article class="task" data-task="lesson-variables-2" data-level="medium">
+<div class="task-head"><h3>A harder exercise: age from a form</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>A form on a website sent the age as text: <code>"15"</code>. Work out how old the person will be in 3 years and print <code>In 3 years you will be 18</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Solution: age from a form">age_text = "15"
+# turn the text into a number and print the answer
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> <code>int(age_text)</code> turns text into a number. Save the result in a new variable, for example <code>age</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Now you can calculate: <code>age + 3</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> List the text and the number separated by a comma, as in lesson 1: <code>print("In 3 years you will be", age + 3)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>age_text = "15"
+age = int(age_text)
+print("In 3 years you will be", age + 3)</code></pre></details>
+<template data-kind="tests">case('printed()', "In 3 years you will be 18")</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="2"> Lesson done</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-strings">
+    <div class="lesson-text">
+      <h2>Lesson 4. Strings: working with text</h2>
+      <p><strong>Why.</strong> Almost everything on a website is text: a student's name, a heading, a message in a form. To work with text, you need to be able to store it, join it and fix it.</p>
+      <p><strong>What a string is.</strong> In Python text is called a <strong>string</strong>. It is letters standing in a row, like beads on a thread. A string is written in quotes: <code>"Hello"</code>.</p>
+      <p>Quotes are the borders of the text. Without them Python will think that <code>Hello</code> is a variable name and report an error.</p>
+      <p><strong>Joining strings</strong> is done with the <code>+</code> sign: <code>"Hello, " + "Aruzhan"</code> gives <code>Hello, Aruzhan</code>. Put the space in yourself: Python won't add it.</p>
+      <p><strong>An f-string</strong> is the handiest way to insert a value into text. Imagine a postcard with a gap for a name. The letter <code>f</code> before the quotes tells Python: “there are gaps here”. The gaps themselves are curly braces: <code>f"Hello, {name}!"</code>. Python fills in the value of the variable.</p>
+      <p><strong>Methods</strong> are commands that every string has. They are written after a dot:</p>
+      <ul>
+      <li><code>.strip()</code> removes extra spaces at the start and at the end;</li>
+      <li><code>.title()</code> makes the first letter capital: <code>aruzhan</code> → <code>Aruzhan</code>;</li>
+      <li><code>.upper()</code> makes all letters capital, <code>.lower()</code> — small.</li>
+      </ul>
+      <p><strong>Length and letters by number.</strong> <code>len(name)</code> counts how many characters a string has. And you can take one letter by its number in square brackets. Numbers start from zero: <code>name[0]</code> is the first letter, <code>name[1]</code> is the second.</p>
+      <p><strong>Try it:</strong> in the first example put in your name with extra spaces — the result won't change. Replace <code>.title()</code> with <code>.upper()</code>. In the second example change the city and the age.</p>
+      <details>
+        <summary>Common mistake: joining text with a number</summary>
+        <p>You can't add a string and a number with the <code>+</code> sign. The command <code>print("I am " + 18)</code> stops the program with an error: <code class="error-text">TypeError: can only concatenate str (not "int") to str</code> Python doesn't understand what you wanted: to add numbers or to join text. Use an f-string: <code>print(f"I am {18}")</code>. It turns the number into text by itself.</p>
+      </details>
+      <details>
+        <summary>Common mistake: a string doesn't change by itself</summary>
+        <p>A method doesn't fix the string, it <strong>returns a new one</strong>. So after <code>name.strip()</code> the old spaces stay in <code>name</code>. You need to save the result: <code>name = name.strip()</code>.</p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li>text in quotes is a string, strings are joined with the <code>+</code> sign;</li>
+      <li>an f-string puts values into text: <code>f"Hello, {name}!"</code>;</li>
+      <li>the methods <code>.strip()</code>, <code>.title()</code>, <code>.upper()</code> return a new string, <code>len()</code> counts characters, <code>name[0]</code> gives the first letter.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 1. Tidying up a name</span></div>
+  <pre><code>name = "   aruzhan   "
+
+clean = name.strip()
+print(clean.title())
+print("Characters in the name:", len(clean))
+print("First letter:", clean[0].upper())
+print("Hello, " + clean.title() + "!")</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 2. A postcard with gaps</span></div>
+  <pre><code>name = "Yerlan"
+city = "Astana"
+age = 16
+
+print(f"Hello, {name}!")
+print(f"You are from {city}, and you are {age}.")
+print(f"In a year you will be {age + 1}.")</code></pre>
+</div>
+<article class="task" data-task="lesson-strings" data-level="easy">
+<div class="task-head"><h3>Exercise: a participant's badge</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>The name and the city are already stored in variables, but with extra spaces. Print a badge: the name in capital letters, then <code>from</code> and the city. You should get <code>ARUZHAN from Almaty</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Solution: a participant&#x27;s badge">name = "  aruzhan "
+city = " Almaty"
+# print the badge</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> First remove the spaces: <code>name.strip()</code> and <code>city.strip()</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> <code>.upper()</code> gives capital letters, and methods can be written one after another: <code>name.strip().upper()</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> Build the answer with an f-string and print it: <code>print(f"{...} from {...}")</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>name = "  aruzhan "
+city = " Almaty"
+print(f"{name.strip().upper()} from {city.strip()}")</code></pre></details>
+<template data-kind="tests">case('printed()', "ARUZHAN from Almaty")</template>
+</article>
+<article class="task" data-task="lesson-strings-2" data-level="medium">
+<div class="task-head"><h3>A harder exercise: a short name</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Registers often write a name briefly: the surname, then the first letter of the first name with a dot. The first name and surname are already stored, but in small letters and with spaces. Print <code>Seitkazy A.</code></p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Solution: a short name">first = "  aruzhan"
+last = "seitkazy  "
+# print the short name</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> First remove the spaces and save the result: <code>first = first.strip()</code>, and the same for <code>last</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> The surname with a capital letter is <code>last.title()</code>. The first letter of the name is <code>first[0]</code>, and <code>.upper()</code> makes it capital.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> Build the answer with an f-string: <code>print(f"{...} {...}.")</code>. Don't forget the dot at the end.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>first = "  aruzhan"
+last = "seitkazy  "
+first = first.strip()
+last = last.strip()
+print(f"{last.title()} {first[0].upper()}.")</code></pre></details>
+<template data-kind="tests">case('printed()', "Seitkazy A.")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="strings"> Lesson done</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-3">
     <div class="lesson-text">
-      <h2>Lesson 3. Conditions: if this, then that</h2>
-      <p>A program can make choices. The word <code>if</code> means “if”, and <code>else</code> means “otherwise”.</p>
-      <p>An indent of four spaces shows which lines belong to the condition.</p>
-      <p><strong>Try it:</strong> change the temperature to 10 and see what changes.</p>
+      <h2>Lesson 5. Conditions: if this, then that</h2>
+      <p><strong>Why.</strong> A website keeps choosing: whether to let a user in, whether to accept an answer, whether there is enough money for a purchase. Conditions are for choosing.</p>
+      <p><strong>The word <code>if</code></strong> means “if”. After it come the condition and a colon. The lines below it, indented by four spaces, run <strong>only if</strong> the condition is true.</p>
+      <p><strong>The word <code>else</code></strong> means “otherwise”. Its lines run if the condition is false. And <code>elif</code> means “and if not, check this”. You can write as many such checks as you like, Python goes through them from top to bottom and stops at the first true one.</p>
+      <p><strong>Indentation</strong> shows which lines belong to the condition. It is not decoration: without it Python won't understand what to run.</p>
+      <p><strong>Comparisons.</strong> <code>&gt;</code> greater, <code>&lt;</code> less, <code>&gt;=</code> and <code>&lt;=</code> — greater than or equal and less than or equal. Equality is checked with <strong>two</strong> signs: <code>==</code>. Not equal — <code>!=</code>. Text can be compared too: <code>password == "qwerty"</code>.</p>
+      <p><strong>True and false.</strong> The answer to a comparison is <code>True</code> or <code>False</code>. Check it yourself: <code>print(5 &gt; 3)</code> prints <code>True</code>.</p>
+      <p><strong>Several conditions.</strong> <code>and</code> is true when both are true. <code>or</code> needs just one. <code>not</code> flips the answer.</p>
+      <p><strong>Try it:</strong> in the first example set the temperature to 10, then 30. In the second change the age and the parents' permission.</p>
+      <details>
+        <summary>Common mistake: one = sign instead of two</summary>
+        <p>One <code>=</code> sign puts a value into a variable, and comparison uses two: <code>==</code>. If you write <code>if x = 5:</code>, Python will tell you right away: <code class="error-text">SyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?</code></p>
+      </details>
+      <details>
+        <summary>Common mistake: a missing indent or colon</summary>
+        <p>After a condition you need a colon, and the lines inside need an indent of four spaces. Otherwise Python stops: <code class="error-text">IndentationError: expected an indented block after 'if' statement on line 2</code> Put the colon and move the line to the right with Tab or four spaces.</p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li><code>if</code> — if, <code>elif</code> — else if, <code>else</code> — otherwise; after the condition a colon and an indent;</li>
+      <li>equality is checked with <code>==</code>, and one <code>=</code> puts a value into a variable;</li>
+      <li><code>and</code> — both conditions, <code>or</code> — at least one, <code>not</code> — the opposite.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Your program</span></div>
+  <div class="code-head"><span>Example 1. What to wear</span></div>
   <pre><code>temperature = -5
 
 if temperature &lt; 0:
-    print("It's freezing outside, put on a hat")
+    print("It's freezing outside, wear a hat")
+elif temperature &lt; 15:
+    print("It's cool, take a jacket")
 else:
-    print("You can go without a hat")</code></pre>
+    print("It's warm, a T-shirt will do")
+
+print(temperature &lt; 0)</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 2. Can I go hiking</span></div>
+  <pre><code>age = 15
+parents_allow = True
+
+if age &gt;= 16 or parents_allow:
+    print("You can go hiking")
+else:
+    print("Not yet")
+
+if age &gt;= 14 and age &lt;= 17:
+    print("You are in the teenagers' group")</code></pre>
+</div>
+<article class="task" data-task="lesson-conditions" data-level="easy">
+<div class="task-head"><h3>Exercise: even or odd</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>A number is stored in the <code>number</code> variable. Print <code>even</code> if it divides by 2 with no remainder, and <code>odd</code> if not.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Solution: even or odd">number = 7
+# check the remainder of dividing by 2
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> <code>number % 2</code> gives the remainder of dividing by 2. For an even number it is zero.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> The condition: <code>if number % 2 == 0:</code>. Don't forget the colon and the indent.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> In the <code>else:</code> branch print <code>"odd"</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>number = 7
+if number % 2 == 0:
+    print("even")
+else:
+    print("odd")</code></pre></details>
+<template data-kind="tests">case('printed()', "odd")</template>
+</article>
+<article class="task" data-task="lesson-conditions-2" data-level="medium">
+<div class="task-head"><h3>A harder exercise: a grade from points</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>A test gives up to 100 points. From 90 — <code>excellent</code>, from 70 — <code>good</code>, from 50 — <code>satisfactory</code>, below 50 — <code>try again</code>. Print the grade for <code>score</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Solution: a grade from points">score = 78
+# use if, elif and else
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> Start with the highest boundary: <code>if score &gt;= 90:</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Then <code>elif score &gt;= 70:</code> and <code>elif score &gt;= 50:</code>. Python stops at the first true check.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> Everything below 50 goes into <code>else:</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>score = 78
+if score &gt;= 90:
+    print("excellent")
+elif score &gt;= 70:
+    print("good")
+elif score &gt;= 50:
+    print("satisfactory")
+else:
+    print("try again")</code></pre></details>
+<template data-kind="tests">case('printed()', "good")</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="3"> Lesson done</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="project-discount">
+    <div class="lesson-text">
+      <h2>Mini-project 1. A discount calculator</h2>
+      <p><strong>What we'll build.</strong> A program for a shop till: it calculates the discount and prints a receipt. This is how the cart of any online shop works, only there the server does the same thing.</p>
+      <p><strong>You'll need:</strong> numbers (<a href="#lesson-numbers">lesson 2</a>), variables (<a href="#lesson-2">lesson 3</a>), f-strings (<a href="#lesson-strings">lesson 4</a>) and conditions (<a href="#lesson-3">lesson 5</a>).</p>
+      <p><strong>The shop's rules:</strong></p>
+      <ul>
+      <li>if the purchase is 5000 tenge or more, the discount is 10%;</li>
+      <li>students get another 5% on top;</li>
+      <li>discounts add up: a student buying for 6000 gets 15%.</li>
+      </ul>
+      <p><strong>Step-by-step plan:</strong></p>
+      <ol>
+      <li>create a variable <code>discount = 0</code> — the discount in percent;</li>
+      <li>with two separate <code>if</code>s add 10 and 5 to it if the conditions are true;</li>
+      <li>calculate the amount to pay and round it to a whole number: <code>round(...)</code>;</li>
+      <li>print a three-line receipt as in the “How it should look” example.</li>
+      </ol>
+      <p><strong>Why two separate <code>if</code>s and not <code>elif</code>.</strong> <code>elif</code> only fires if the previous condition is false. Here the discounts must add up, so each condition is checked on its own.</p>
+      <p><strong>What you can add:</strong> free delivery from 10 000 tenge, a 20% birthday discount, a line “You saved: … tenge”.</p>
+    </div>
+    <div class="lesson-code">
+<div class="code-block">
+  <div class="code-head"><span>How it should look</span></div>
+  <pre><code>Total: 6000 tenge
+Discount: 15%
+To pay: 5100 tenge</code></pre>
+</div>
+<article class="task" data-task="project-discount" data-level="medium">
+<div class="task-head"><h3>Project: a receipt with a discount</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>A purchase of 6000 tenge, the customer is a student. Calculate the discount by the shop's rules and print the receipt exactly as in the example.</p>
+<textarea class="editor-area" rows="7" spellcheck="false" aria-label="Solution: a receipt with a discount">price = 6000
+is_student = True
+discount = 0
+
+# 1. add the discounts
+# 2. calculate the amount to pay
+# 3. print the receipt
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 4</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The first condition: <code>if price &gt;= 5000:</code> and under it <code>discount += 10</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> The second is a separate <code>if</code>, not <code>elif</code>: <code>if is_student:</code> and <code>discount += 5</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> The amount to pay: <code>to_pay = round(price - price * discount / 100)</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 4.</strong> The receipt: <code>print(f"Total: {price} tenge")</code>, then the discount with a <code>%</code> sign and the amount to pay the same way.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>price = 6000
+is_student = True
+discount = 0
+
+if price &gt;= 5000:
+    discount += 10
+if is_student:
+    discount += 5
+
+to_pay = round(price - price * discount / 100)
+
+print(f"Total: {price} tenge")
+print(f"Discount: {discount}%")
+print(f"To pay: {to_pay} tenge")</code></pre></details>
+<template data-kind="tests">case('discount', 15)
+case('printed()', "Total: 6000 tenge\nDiscount: 15%\nTo pay: 5100 tenge")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="project-discount"> Project done</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-4">
     <div class="lesson-text">
-      <h2>Lesson 4. Lists and loops: one action many times</h2>
-      <p>A list keeps several values in a row. A <code>for</code> loop takes them one at a time and does the same thing with each of them.</p>
-      <p>That's how a website shows a feed: it has a list of posts and shows them one after another.</p>
-      <p><strong>Try it:</strong> add your own task to the list.</p>
+      <h2>Lesson 6. Lists: many values in one variable</h2>
+      <p><strong>Why.</strong> On websites almost everything is a list: a news feed, the students of a class, items in a cart. Keeping each value in its own variable is awkward, so they are collected in a list.</p>
+      <p><strong>What a list is.</strong> A list is a row of values in square brackets separated by commas: <code>["apple", "pear", "plum"]</code>. Imagine a train: each value rides in its own carriage.</p>
+      <p><strong>Carriage numbers</strong> start from zero, like the letters in a string. <code>fruits[0]</code> is the first element, <code>fruits[1]</code> is the second. From the end you count with negative numbers: <code>fruits[-1]</code> is the last.</p>
+      <p><strong>How many elements</strong> there are is shown by the familiar <code>len(fruits)</code>.</p>
+      <p><strong>A list can change.</strong> <code>fruits[1] = "kiwi"</code> replaces the second element. <code>.append("banana")</code> adds to the end, <code>.remove("pear")</code> removes by value.</p>
+      <p><strong>Is it in the list?</strong> The word <code>in</code> checks this: <code>"plum" in fruits</code> gives <code>True</code> or <code>False</code>. Handy in conditions.</p>
+      <p><strong>Lists of numbers.</strong> <code>sum()</code> adds up all the numbers, <code>min()</code> and <code>max()</code> find the smallest and largest, <code>sorted()</code> returns them in order.</p>
+      <p><strong>Try it:</strong> add your own product to the first list and remove another one. In the second example add one more grade.</p>
+      <details>
+        <summary>Common mistake: numbers start from zero</summary>
+        <p>In a list of three elements the numbers are 0, 1 and 2. There is no element number 3: <code class="error-text">IndexError: list index out of range</code> The number of the last element is one less than the length. Or just write <code>[-1]</code>.</p>
+      </details>
+      <details>
+        <summary>Common mistake: the wrong method</summary>
+        <p>You add to a list with the <code>.append()</code> method. If you write <code>.add()</code>, Python answers that a list has no such thing: <code class="error-text">AttributeError: 'list' object has no attribute 'add'</code></p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li>a list is values in square brackets: <code>["a", "b"]</code>, numbers start from zero;</li>
+      <li><code>.append()</code> adds, <code>.remove()</code> removes, <code>in</code> checks whether a value is there;</li>
+      <li><code>len()</code>, <code>sum()</code>, <code>min()</code>, <code>max()</code> and <code>sorted()</code> work with the whole list at once.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Your program</span></div>
-  <pre><code>tasks = ["buy bread", "do homework", "call mum"]
+  <div class="code-head"><span>Example 1. A shopping list</span></div>
+  <pre><code>shopping = ["bread", "milk", "apples"]
 
-for task in tasks:
-    print("To do:", task)
+print(shopping[0])
+print(shopping[-1])
 
-print("Tasks in total:", len(tasks))</code></pre>
+shopping.append("cheese")
+shopping.remove("milk")
+print(shopping)
+print("Items in total:", len(shopping))
+print("Is there bread?", "bread" in shopping)</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 2. Grades for the term</span></div>
+  <pre><code>grades = [5, 4, 5, 3, 5, 4]
+
+print("Number of grades:", len(grades))
+print("Sum:", sum(grades))
+print("Best:", max(grades), "worst:", min(grades))
+print("Average:", round(sum(grades) / len(grades), 2))
+print("In order:", sorted(grades))</code></pre>
+</div>
+<article class="task" data-task="lesson-lists" data-level="easy">
+<div class="task-head"><h3>Exercise: a guest list</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Two people have already been invited to a birthday party. Add a guest named <code>Dana</code> to the <code>guests</code> list and print how many guests there are now.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Solution: a guest list">guests = ["Aruzhan", "Yerlan"]
+# add Dana and print the number of guests
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> Add to the end of the list: <code>guests.append("Dana")</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> The number of elements: <code>print(len(guests))</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>guests = ["Aruzhan", "Yerlan"]
+guests.append("Dana")
+print(len(guests))</code></pre></details>
+<template data-kind="tests">case('guests', ["Aruzhan", "Yerlan", "Dana"])
+case('printed()', "3")</template>
+</article>
+<article class="task" data-task="lesson-lists-2" data-level="medium">
+<div class="task-head"><h3>A harder exercise: the average grade</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>The <code>scores</code> list holds a student's grades. Print the average grade rounded to one digit after the dot. You should get <code>4.4</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Solution: the average grade">scores = [5, 4, 5, 3, 5]
+# calculate and print the average grade
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The average is the sum divided by the number of grades.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> The sum is <code>sum(scores)</code>, the number is <code>len(scores)</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> Round to one digit: <code>round(..., 1)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>scores = [5, 4, 5, 3, 5]
+print(round(sum(scores) / len(scores), 1))</code></pre></details>
+<template data-kind="tests">case('printed()', "4.4")</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="4"> Lesson done</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-loops">
+    <div class="lesson-text">
+      <h2>Lesson 7. Loops: one action many times</h2>
+      <p><strong>Why.</strong> A website shows a feed of a hundred posts, but the code for one post is written once. A loop repeats it for each one.</p>
+      <p><strong>The <code>for</code> loop</strong> means “for each”. <code>for fruit in fruits:</code> reads: “for each fruit in the list of fruits do…”. Python takes the elements one by one, puts the current one into the <code>fruit</code> variable and runs the indented lines.</p>
+      <p><strong>Repeating several times</strong> is done with <code>range</code>. <code>range(5)</code> gives the numbers 0, 1, 2, 3, 4 — five of them, starting from zero. <code>range(1, 6)</code> gives the numbers from 1 to 5: the last number is not included.</p>
+      <p><strong>Accumulating.</strong> A common trick: create a variable before the loop and change it inside. For example, <code>total = 0</code>, and in the loop <code>total += price</code>. After the loop <code>total</code> holds the sum.</p>
+      <p><strong>The <code>while</code> loop</strong> means “while”. It repeats lines while the condition is true. It is needed when you don't know in advance how many repeats there will be: for example, saving until you have the amount you need.</p>
+      <p><strong>To leave early</strong> use the <code>break</code> command: the loop ends at once.</p>
+      <p><strong>Try it:</strong> in the first example add your own fruit and change <code>range(1, 4)</code> to <code>range(1, 11)</code>. In the second change the amount you save each week.</p>
+      <details>
+        <summary>Common mistake: an endless loop</summary>
+        <p>If nothing changes inside <code>while</code>, the condition is always true and the loop never ends. The program “hangs”. Check that the variable from the condition changes in the loop: for example, there is <code>money += 150</code>.</p>
+      </details>
+      <details>
+        <summary>Common mistake: one number short</summary>
+        <p><code>range(1, 10)</code> gives the numbers from 1 to 9, not to 10. Python won't show an error, the last number just won't be in the answer. To reach 10, write <code>range(1, 11)</code>.</p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li><code>for x in list:</code> repeats the indented lines for each element;</li>
+      <li><code>range(1, 6)</code> is the numbers from 1 to 5, the last one is not included;</li>
+      <li><code>while condition:</code> repeats while the condition is true, and something must change inside.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 1. For each</span></div>
+  <pre><code>fruits = ["apple", "pear", "plum"]
+
+for fruit in fruits:
+    print("I love", fruit)
+
+for number in range(1, 4):
+    print("Repeat number", number)
+
+total = 0
+for price in [450, 200, 1200]:
+    total += price
+print("Total:", total)</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 2. Saving up for headphones</span></div>
+  <pre><code>money = 0
+weeks = 0
+
+while money &lt; 1000:
+    money += 150
+    weeks += 1
+
+print("Weeks needed:", weeks)
+print("Saved:", money)</code></pre>
+</div>
+<article class="task" data-task="lesson-loops" data-level="easy">
+<div class="task-head"><h3>Exercise: the 7 times table</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Print five lines of the 7 times table, from <code>7 x 1 = 7</code> to <code>7 x 5 = 35</code>. Use a loop, not five separate <code>print</code>s.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Solution: the 7 times table"># use for and range
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> <code>range(1, 6)</code> gives the numbers from 1 to 5.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> The start of the loop: <code>for n in range(1, 6):</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> Inside the loop: <code>print(f"7 x {n} = {7 * n}")</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>for n in range(1, 6):
+    print(f"7 x {n} = {7 * n}")</code></pre></details>
+<template data-kind="tests">case('printed()', "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35")</template>
+</article>
+<article class="task" data-task="lesson-loops-2" data-level="medium">
+<div class="task-head"><h3>A harder exercise: the sum of even numbers</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Add up all the even numbers from 1 to 20 inclusive and print the sum. A hint from the lesson on conditions will help.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Solution: the sum of even numbers">total = 0
+# go through the numbers from 1 to 20 and add the even ones
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> To reach 20 inclusive you need <code>range(1, 21)</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Inside the loop check for evenness: <code>if n % 2 == 0:</code>, and then <code>total += n</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> Print the sum <strong>after</strong> the loop, without an indent: <code>print(total)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>total = 0
+for n in range(1, 21):
+    if n % 2 == 0:
+        total += n
+print(total)</code></pre></details>
+<template data-kind="tests">case('total', 110)
+case('printed()', "110")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="loops"> Lesson done</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-5">
     <div class="lesson-text">
-      <h2>Lesson 5. Functions: your own command</h2>
-      <p>A function is your own command. You describe it once and call it as many times as you like.</p>
-      <p>The word <code>def</code> starts the description, and <code>return</code> says what the function gives back.</p>
-      <p><strong>Try it:</strong> call the function once more with a different name.</p>
+      <h2>Lesson 8. Functions: your own command</h2>
+      <p><strong>Why.</strong> The same action is often needed in different places: calculating a discounted price, greeting a user. To avoid copying code, you give it a name and call it by that name.</p>
+      <p><strong>What a function is.</strong> A function is your own command. You have already used ready-made ones: <code>print</code>, <code>len</code>, <code>round</code>. Now let's learn to make our own.</p>
+      <p><strong>How to define one.</strong> The word <code>def</code> starts the definition. Then come the function name, brackets and a colon: <code>def greet(name):</code>. The function's lines are indented, as in conditions and loops.</p>
+      <p><strong>Parameters</strong> are the empty places in the brackets. When the function is called, they are filled with values: <code>greet("Anya")</code> puts <code>"Anya"</code> into <code>name</code>.</p>
+      <p><strong>Defining is not running.</strong> The code inside <code>def</code> works only when the function is called: the name and brackets, <code>greet("Anya")</code>.</p>
+      <p><strong><code>return</code> hands back the result.</strong> A function is like a coffee machine: you give it beans, it gives back coffee. <code>return</code> means “here is the finished result, take it”. You can save it in a variable or use it further: <code>total = price_with_discount(1000, 10)</code>.</p>
+      <p><strong><code>print</code> and <code>return</code> are different things.</strong> <code>print</code> only shows a value on the screen. <code>return</code> hands it back to the program so you can keep working with it.</p>
+      <p><strong>A default value.</strong> <code>def greet(name="guest"):</code> — if no name is passed, it will be “guest”.</p>
+      <p><strong>Try it:</strong> call <code>greet</code> with your own name. In the second example change the discount and see how the total changes.</p>
+      <details>
+        <summary>Common mistake: print instead of return</summary>
+        <p>If a function prints the result instead of returning it, you can't keep working with it: the function returns the empty value <code>None</code>. Trying to add a number to it ends like this: <code class="error-text">TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'</code> Write <code>return</code> inside the function, and print the result outside: <code>print(f(3))</code>.</p>
+      </details>
+      <details>
+        <summary>Common mistake: forgetting the brackets when calling</summary>
+        <p><code>print(greet)</code> without brackets doesn't call the function, it prints something like <code>&lt;function greet at 0x…&gt;</code>. For the function to work you need brackets: <code>greet()</code> or <code>greet("Anya")</code>.</p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li><code>def name(parameters):</code> defines a function, and it runs when called: <code>name(...)</code>;</li>
+      <li><code>return</code> hands back the result, <code>print</code> only shows it;</li>
+      <li>a parameter can have a default value: <code>name="guest"</code>.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Your program</span></div>
-  <pre><code>def greet(name):
-    return "Hello, " + name + "!"
+  <div class="code-head"><span>Example 1. A greeting</span></div>
+  <pre><code>def greet(name="guest"):
+    return f"Hello, {name}!"
 
-print(greet("Anna"))
-print(greet("Marat"))</code></pre>
+print(greet("Anya"))
+print(greet("Marat"))
+print(greet())</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 2. A discounted price</span></div>
+  <pre><code>def price_with_discount(price, percent):
+    return price - price * percent / 100
+
+phone = price_with_discount(120000, 10)
+cover = price_with_discount(5000, 20)
+
+print("Phone:", phone)
+print("Case:", cover)
+print("Together:", phone + cover)</code></pre>
+</div>
+<article class="task" data-task="lesson-functions" data-level="easy">
+<div class="task-head"><h3>Exercise: the square of a number</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Finish the function <code>square(n)</code>: it must <strong>return</strong> the number multiplied by itself. For example, <code>square(3)</code> returns <code>9</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Solution: the square of a number">def square(n):
+    # return n squared
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The word <code>pass</code> means “nothing yet”. Replace it with your own line.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> You need <code>return</code>, not <code>print</code>: <code>return n * n</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>def square(n):
+    return n * n</code></pre></details>
+<template data-kind="tests">case('square(3)', 9)
+case('square(0)', 0)
+case('square(-4)', 16)
+case('square(12)', 144)</template>
+</article>
+<article class="task" data-task="lesson-functions-2" data-level="medium">
+<div class="task-head"><h3>A harder exercise: a ticket price</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>At the cinema children under 7 get in free, schoolchildren under 18 pay 500 tenge, everyone else pays 1000. Write a function <code>ticket_price(age)</code> that returns the price. For example, <code>ticket_price(10)</code> returns <code>500</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Solution: a ticket price">def ticket_price(age):
+    # return 0, 500 or 1000
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The conditions from lesson 5 work inside a function: <code>if</code>, <code>elif</code>, <code>else</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> “Under 7” means less than seven: <code>if age &lt; 7:</code>. A seven-year-old already pays.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> Write <code>return</code> with the price in each branch.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>def ticket_price(age):
+    if age &lt; 7:
+        return 0
+    elif age &lt; 18:
+        return 500
+    else:
+        return 1000</code></pre></details>
+<template data-kind="tests">case('ticket_price(3)', 0)
+case('ticket_price(7)', 500)
+case('ticket_price(10)', 500)
+case('ticket_price(17)', 500)
+case('ticket_price(18)', 1000)
+case('ticket_price(40)', 1000)</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="5"> Lesson done</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="project-cart">
+    <div class="lesson-text">
+      <h2>Mini-project 2. A shopping cart</h2>
+      <p><strong>What we'll build.</strong> Three functions for an online shop cart. The cart holds the prices of the items, and the functions calculate the total, find expensive items and apply a discount. On a real website the same functions would be called every time the cart is opened.</p>
+      <p><strong>You'll need:</strong> lists (<a href="#lesson-4">lesson 6</a>), loops (<a href="#lesson-loops">lesson 7</a>), conditions (<a href="#lesson-3">lesson 5</a>) and functions (<a href="#lesson-5">lesson 8</a>).</p>
+      <p><strong>Three functions:</strong></p>
+      <ul>
+      <li><code>total(cart)</code> returns the sum of all prices. For an empty cart — <code>0</code>;</li>
+      <li><code>count_expensive(cart, limit)</code> returns how many items cost more than <code>limit</code>;</li>
+      <li><code>apply_discount(cart, percent)</code> returns a <strong>new</strong> list of discounted prices, each rounded to a whole number.</li>
+      </ul>
+      <p><strong>Step-by-step plan:</strong></p>
+      <ol>
+      <li><code>total</code>: create <code>s = 0</code>, add each price in a loop, return <code>s</code>. Yes, there is a ready <code>sum()</code>, but this way you'll understand how it works;</li>
+      <li><code>count_expensive</code>: the same counter, only add 1 and only under the condition <code>if price &gt; limit</code>;</li>
+      <li><code>apply_discount</code>: create an empty list <code>new = []</code>, in a loop add the discounted price to it with <code>.append()</code>, return <code>new</code>.</li>
+      </ol>
+      <p><strong>Why a new list.</strong> If you change the original one, the old prices are lost, and websites often show them crossed out next to the new ones.</p>
+      <p><strong>What you can add:</strong> a function <code>cheapest(cart)</code> that returns the lowest price, or <code>average(cart)</code> with the average price.</p>
+    </div>
+    <div class="lesson-code">
+<div class="code-block">
+  <div class="code-head"><span>How it should look</span></div>
+  <pre><code>cart = [200, 450, 1500]
+total(cart)                  → 2150
+count_expensive(cart, 400)   → 2
+apply_discount(cart, 10)     → [180, 405, 1350]</code></pre>
+</div>
+<article class="task" data-task="project-cart" data-level="medium">
+<div class="task-head"><h3>Project: cart functions</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Finish the three functions. The check will call them with different carts, including an empty one.</p>
+<textarea class="editor-area" rows="11" spellcheck="false" aria-label="Solution: cart functions">def total(cart):
+    # the sum of all prices
+    pass
+
+
+def count_expensive(cart, limit):
+    # how many prices are greater than limit
+    pass
+
+
+def apply_discount(cart, percent):
+    # a new list of discounted prices
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 4</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> In <code>total</code>: <code>s = 0</code>, then <code>for price in cart:</code> and <code>s += price</code>, at the end <code>return s</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> In <code>count_expensive</code> the same, but inside the loop <code>if price &gt; limit:</code> and <code>n += 1</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> The discounted price: <code>round(price - price * percent / 100)</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 4.</strong> In <code>apply_discount</code>: <code>new = []</code>, in the loop <code>new.append(...)</code>, after the loop <code>return new</code>. Watch the indent of <code>return</code>: it must come after the loop, not inside it.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>def total(cart):
+    s = 0
+    for price in cart:
+        s += price
+    return s
+
+
+def count_expensive(cart, limit):
+    n = 0
+    for price in cart:
+        if price &gt; limit:
+            n += 1
+    return n
+
+
+def apply_discount(cart, percent):
+    new = []
+    for price in cart:
+        new.append(round(price - price * percent / 100))
+    return new</code></pre></details>
+<template data-kind="tests">case('total([200, 450, 1500])', 2150)
+case('total([])', 0)
+case('total([999])', 999)
+case('count_expensive([200, 450, 1500, 3000], 1000)', 2)
+case('count_expensive([200, 450], 1000)', 0)
+case('count_expensive([1000, 1001], 1000)', 1)
+case('apply_discount([200, 450, 1500], 10)', [180, 405, 1350])
+case('apply_discount([], 50)', [])
+c = [100, 200]
+apply_discount(c, 50)
+case('c', [100, 200])</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="project-cart"> Project done</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-6">
     <div class="lesson-text">
-      <h2>Lesson 6. Dictionaries: find a value by its name</h2>
-      <p>A dictionary keeps “name and value” pairs, like a price list in a shop. You find a value by its name, not by its number.</p>
-      <p>Websites use this all the time: for example, to find a page by its address.</p>
-      <p><strong>Try it:</strong> add your own product with a price.</p>
+      <h2>Lesson 9. Dictionaries: find a value by its name</h2>
+      <p><strong>Why.</strong> A website user has a name, an age, a city. It is convenient to store them not by number, as in a list, but by name: “name — Aruzhan”, “city — Almaty”. That is what dictionaries are for.</p>
+      <p><strong>What a dictionary is.</strong> A dictionary stores “key — value” pairs in curly braces: <code>{"bread": 200, "milk": 450}</code>. It is like the contacts in a phone: you find the number by the name. Or like a price list: the price by the product name.</p>
+      <p><strong>To get a value</strong> use its key in square brackets: <code>prices["bread"]</code> gives <code>200</code>.</p>
+      <p><strong>To add or change:</strong> <code>prices["cheese"] = 1500</code>. If the key wasn't there, it appears, and if it was, the value is replaced. To delete a pair: <code>del prices["bread"]</code>.</p>
+      <p><strong>To get safely.</strong> <code>prices.get("coffee", 0)</code> returns the price of coffee, and if it isn't in the dictionary, returns <code>0</code> instead of an error. You can check whether a key exists with the familiar word <code>in</code>: <code>"bread" in prices</code>.</p>
+      <p><strong>To go through a dictionary.</strong> <code>for name, price in prices.items():</code> takes the pairs in turn: the key goes into <code>name</code>, the value into <code>price</code>.</p>
+      <p><strong>A list of dictionaries</strong> is the usual way to store many similar records: products, students, messages. This is exactly the form in which websites pass data to each other, it is called JSON.</p>
+      <p><strong>Try it:</strong> add your own product with a price, change the price of milk. In the second example add one more student.</p>
+      <details>
+        <summary>Common mistake: there is no such key</summary>
+        <p>If you ask for a key that isn't in the dictionary, the program stops: <code class="error-text">KeyError: 'coffee'</code> Check the spelling: <code>"Bread"</code> and <code>"bread"</code> are different keys. If the key may be missing, use <code>.get()</code>.</p>
+      </details>
+      <details>
+        <summary>Common mistake: a number instead of a key</summary>
+        <p>A dictionary has no numbers like a list: <code>prices[0]</code> looks for the key <code>0</code> and won't find it. Use the name: <code>prices["bread"]</code>.</p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li>a dictionary is “key: value” pairs in curly braces, a value is found by its key;</li>
+      <li><code>d[key] = value</code> adds or changes, <code>.get(key, fallback)</code> doesn't fail if the key is missing;</li>
+      <li><code>for k, v in d.items():</code> goes through the pairs, and a list of dictionaries stores many records.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>Your program</span></div>
+  <div class="code-head"><span>Example 1. A price list</span></div>
   <pre><code>prices = {"bread": 200, "milk": 450}
 
 print("Bread costs", prices["bread"], "tenge")
 
 prices["cheese"] = 1500
-print(prices)</code></pre>
+prices["milk"] = 500
+print(prices)
+
+print("Coffee:", prices.get("coffee", "not on sale"))
+
+for name, price in prices.items():
+    print(f"{name}: {price} tenge")</code></pre>
 </div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 2. Students of a class</span></div>
+  <pre><code>students = [
+    {"name": "Aruzhan", "city": "Almaty", "score": 92},
+    {"name": "Yerlan", "city": "Astana", "score": 78},
+    {"name": "Dana", "city": "Shymkent", "score": 85},
+]
+
+for student in students:
+    print(f"{student['name']} from {student['city']}: {student['score']} points")
+
+best = 0
+for student in students:
+    if student["score"] &gt; best:
+        best = student["score"]
+print("Best result:", best)</code></pre>
+</div>
+<article class="task" data-task="lesson-dicts" data-level="easy">
+<div class="task-head"><h3>Exercise: the cost of a purchase</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>The prices are in the <code>prices</code> dictionary. Print how much two loaves of bread and one milk cost. Take the prices from the dictionary, don't write the numbers yourself.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Solution: the cost of a purchase">prices = {"bread": 200, "milk": 450, "cheese": 1500}
+# two loaves of bread and one milk
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The price of bread is <code>prices["bread"]</code>, the price of milk is <code>prices["milk"]</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> <code>print(2 * prices["bread"] + prices["milk"])</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>prices = {"bread": 200, "milk": 450, "cheese": 1500}
+print(2 * prices["bread"] + prices["milk"])</code></pre></details>
+<template data-kind="tests">case('printed()', "850")</template>
+</article>
+<article class="task" data-task="lesson-dicts-2" data-level="medium">
+<div class="task-head"><h3>A harder exercise: counting votes</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>A class was choosing a pet for the nature corner. The votes are in the <code>votes</code> list. Fill the <code>counts</code> dictionary: the key is the animal, the value is how many votes it got.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: counting votes">votes = ["cat", "dog", "cat", "parrot", "cat", "dog"]
+counts = {}
+# go through the votes and count each option
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> Go through the list with a loop: <code>for vote in votes:</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> How many votes the animal already has: <code>counts.get(vote, 0)</code>. If it isn't there yet, it will be 0.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> Add one vote: <code>counts[vote] = counts.get(vote, 0) + 1</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>votes = ["cat", "dog", "cat", "parrot", "cat", "dog"]
+counts = {}
+for vote in votes:
+    counts[vote] = counts.get(vote, 0) + 1
+print(counts)</code></pre></details>
+<template data-kind="tests">case('counts', {"cat": 3, "dog": 2, "parrot": 1})</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="6"> Lesson done</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="project-quiz">
+    <div class="lesson-text">
+      <h2>Mini-project 3. A quiz</h2>
+      <p><strong>What we'll build.</strong> A quiz checker: the questions with correct answers are in one dictionary, the student's answers in another. The program counts the correct answers and gives a grade. Tests on any learning website work like this, including the final test on this site.</p>
+      <p><strong>You'll need:</strong> strings (<a href="#lesson-strings">lesson 4</a>), conditions (<a href="#lesson-3">lesson 5</a>), loops (<a href="#lesson-loops">lesson 7</a>), functions (<a href="#lesson-5">lesson 8</a>) and dictionaries (<a href="#lesson-6">lesson 9</a>).</p>
+      <p><strong>Two functions:</strong></p>
+      <ul>
+      <li><code>check_quiz(questions, answers)</code> returns how many answers are correct. An answer counts even if the student wrote it in small letters or with spaces at the edges. If a question wasn't answered, it simply doesn't count;</li>
+      <li><code>grade(score, total)</code> turns the result into a word: from 90% — <code>excellent</code>, from 70% — <code>good</code>, from 50% — <code>not bad</code>, otherwise <code>try again</code>.</li>
+      </ul>
+      <p><strong>Step-by-step plan:</strong></p>
+      <ol>
+      <li>in <code>check_quiz</code> create a counter and go through the questions: <code>for question, right in questions.items():</code>;</li>
+      <li>get the student's answer safely: <code>answers.get(question, "")</code>. If there is no answer, you get an empty string, and the program won't fail;</li>
+      <li>compare the answers after bringing both to the same form: <code>.strip().lower()</code>;</li>
+      <li>in <code>grade</code> calculate the percent: <code>score * 100 // total</code>, then <code>if</code> and <code>elif</code>, as in the lesson on conditions.</li>
+      </ol>
+      <p><strong>What you can add:</strong> a list of the questions the student got wrong, to show them the correct answers.</p>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Quiz data</span></div>
+  <pre><code>questions = {
+    "Capital of Kazakhstan?": "Astana",
+    "What is 7 * 8?": "56",
+    "Language of this course?": "Python",
+}
+answers = {
+    "Capital of Kazakhstan?": " astana ",
+    "What is 7 * 8?": "54",
+    "Language of this course?": "python",
+}
+print("Questions:", len(questions))
+print("Answer to the first:", answers["Capital of Kazakhstan?"])</code></pre>
+</div>
+<article class="task" data-task="project-quiz" data-level="medium">
+<div class="task-head"><h3>Project: checking a quiz</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Finish the two functions. With the data from the example, <code>check_quiz</code> must return <code>2</code>, and <code>grade(2, 3)</code> must return <code>not bad</code>.</p>
+<textarea class="editor-area" rows="9" spellcheck="false" aria-label="Solution: checking a quiz">def check_quiz(questions, answers):
+    # how many answers are correct
+    pass
+
+
+def grade(score, total):
+    # excellent / good / not bad / try again
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 4</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The start: <code>score = 0</code> and <code>for question, right in questions.items():</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> The student's answer: <code>given = answers.get(question, "")</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> The condition: <code>if given.strip().lower() == right.lower():</code> and <code>score += 1</code>. After the loop <code>return score</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 4.</strong> In <code>grade</code>: <code>percent = score * 100 // total</code>, then <code>if percent &gt;= 90: return "excellent"</code> and so on.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>def check_quiz(questions, answers):
+    score = 0
+    for question, right in questions.items():
+        given = answers.get(question, "")
+        if given.strip().lower() == right.lower():
+            score += 1
+    return score
+
+
+def grade(score, total):
+    percent = score * 100 // total
+    if percent &gt;= 90:
+        return "excellent"
+    elif percent &gt;= 70:
+        return "good"
+    elif percent &gt;= 50:
+        return "not bad"
+    else:
+        return "try again"</code></pre></details>
+<template data-kind="tests">qs = {"Capital of Kazakhstan?": "Astana", "What is 7 * 8?": "56", "Language of this course?": "Python"}
+case('check_quiz(qs, {"Capital of Kazakhstan?": " astana ", "What is 7 * 8?": "54", "Language of this course?": "python"})', 2)
+case('check_quiz(qs, {})', 0)
+case('check_quiz(qs, {"What is 7 * 8?": "56"})', 1)
+case('check_quiz({"2 + 2?": "4"}, {"2 + 2?": "4"})', 1)
+case('grade(3, 3)', "excellent")
+case('grade(7, 10)', "good")
+case('grade(2, 3)', "not bad")
+case('grade(1, 3)', "try again")
+case('grade(0, 3)', "try again")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="project-quiz"> Project done</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-errors">
+    <div class="lesson-text">
+      <h2>Lesson 10. Errors: how to read and catch them</h2>
+      <p><strong>Why.</strong> Everyone makes errors, even experienced programmers. A user types letters instead of a number, a record is missing, the internet goes down. A good program doesn't “crash” in such cases, it calmly explains what is wrong.</p>
+      <p><strong>How to read an error message.</strong> Python writes several lines, and the most important is the <strong>last</strong> one. It has the error type and a short explanation, for example <code>ValueError: invalid literal for int()</code>. The line with <code>line 3</code> shows where to look. On this site a “What it means” hint also appears under the error.</p>
+      <p><strong>Errors you have already met:</strong></p>
+      <ul>
+      <li><code>SyntaxError</code> — the code is written incorrectly: a missing quote, bracket, colon;</li>
+      <li><code>NameError</code> — there is no such name, often a typo;</li>
+      <li><code>TypeError</code> — the operation doesn't fit the type, for example text plus a number;</li>
+      <li><code>IndexError</code> and <code>KeyError</code> — there is no element with such a number or key;</li>
+      <li><code>ValueError</code> — the value doesn't fit: <code>int("abc")</code>.</li>
+      </ul>
+      <p><strong>To catch an error</strong> use <code>try</code> and <code>except</code>. It means: “try to do this, and if such an error happens, do that”. The program won't stop.</p>
+      <p><strong>Catch a specific error:</strong> <code>except ValueError:</code>, not everything at once. Otherwise <code>except</code> will hide a real typo too, and you'll spend a long time figuring out why the program misbehaves.</p>
+      <p><strong>Try it:</strong> in the first example add your own answer to the list, for example <code>"twenty"</code>. In the second divide by zero and see what the function answers.</p>
+      <details>
+        <summary>Common mistake: catching absolutely everything</summary>
+        <p>An empty <code>except:</code> without an error name catches anything, even a typo in a variable name. The program “silently” does the wrong thing, and the cause will be hard to find. Always write which error you expect: <code>except ValueError:</code>.</p>
+      </details>
+      <details>
+        <summary>Common mistake: reading the message from the top</summary>
+        <p>Beginners are often scared by a long message and read its first line. Start from the last one: it says what happened, for example <code class="error-text">ValueError: invalid literal for int() with base 10: 'abc'</code> This means “<code>'abc'</code> can't be turned into a whole number”.</p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li>in an error message the main thing is the last line: the error type and the explanation;</li>
+      <li><code>try:</code> — try, <code>except Type:</code> — what to do if such an error happened;</li>
+      <li>catch specific errors, not all of them at once.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 1. Answers from a form</span></div>
+  <pre><code>answers = ["16", "abc", "20", ""]
+
+for text in answers:
+    try:
+        age = int(text)
+        print("Age:", age)
+    except ValueError:
+        print(f"“{text}” is not a number, skipping")</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 2. Safe division</span></div>
+  <pre><code>def divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        return "you can't divide by zero"
+
+print(divide(10, 4))
+print(divide(10, 0))</code></pre>
+</div>
+<article class="task" data-task="lesson-errors" data-level="easy">
+<div class="task-head"><h3>Exercise: is it a number?</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>The <code>text</code> variable holds what the user typed. Try to turn it into a number and print it. If that doesn't work, print <code>This is not a number</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Solution: is it a number?">text = "12a"
+# use try and except ValueError
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> Start with <code>try:</code>, and inside, indented, write <code>print(int(text))</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> <code>int()</code> doesn't understand the letter “a”, so there will be a <code>ValueError</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> Under <code>except ValueError:</code> print <code>"This is not a number"</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>text = "12a"
+try:
+    print(int(text))
+except ValueError:
+    print("This is not a number")</code></pre></details>
+<template data-kind="tests">case('printed()', "This is not a number")</template>
+</article>
+<article class="task" data-task="lesson-errors-2" data-level="medium">
+<div class="task-head"><h3>A harder exercise: a reliable conversion to a number</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Write a function <code>safe_int(text, default=0)</code>. It returns the number from the text, and if the text is not a number, returns <code>default</code>. For example, <code>safe_int("42")</code> gives <code>42</code>, and <code>safe_int("abc")</code> gives <code>0</code>.</p>
+<textarea class="editor-area" rows="4" spellcheck="false" aria-label="Solution: a reliable conversion to a number">def safe_int(text, default=0):
+    # try int(text), and on ValueError return default
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> Inside the function: <code>try:</code> and under it <code>return int(text)</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Under <code>except ValueError:</code> write <code>return default</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>def safe_int(text, default=0):
+    try:
+        return int(text)
+    except ValueError:
+        return default</code></pre></details>
+<template data-kind="tests">case('safe_int("42")', 42)
+case('safe_int("abc")', 0)
+case('safe_int("")', 0)
+case('safe_int("x", -1)', -1)
+case('safe_int(" 7 ")', 7)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="errors"> Lesson done</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="lesson-modules">
+    <div class="lesson-text">
+      <h2>Lesson 11. Modules: ready-made tools</h2>
+      <p><strong>Why.</strong> You don't have to write everything yourself. Python comes with a whole library of ready-made tools: random numbers, maths, dates. These sets are called <strong>modules</strong>.</p>
+      <p><strong>How to connect one.</strong> A module is connected with the <code>import</code> command at the start of the program: <code>import random</code>. After that its tools are available after a dot: <code>random.randint(1, 6)</code>.</p>
+      <p><strong>To take one thing</strong> write: <code>from datetime import date</code>. Then you just write <code>date</code>, without the module name.</p>
+      <p><strong>Three useful modules:</strong></p>
+      <ul>
+      <li><code>random</code> — chance: <code>randint(1, 6)</code> rolls a die, <code>choice(list)</code> picks a random element;</li>
+      <li><code>math</code> — maths: <code>sqrt(16)</code> is a square root, <code>pi</code> is the number π;</li>
+      <li><code>datetime</code> — dates: <code>date.today()</code> is today's date, and the difference of two dates shows how many days are between them.</li>
+      </ul>
+      <p><strong>Modules from the internet.</strong> Besides the built-in ones, there are thousands of modules by other people, called packages. They are installed with the <code>pip install</code> command. This is how Flask and Django are installed, we'll cover it in the first project.</p>
+      <p><strong>Try it:</strong> run the first example several times: the answers will differ. In the second change the event date to your birthday.</p>
+      <details>
+        <summary>Common mistake: forgetting import</summary>
+        <p>If you write <code>random.randint(1, 6)</code> right away without connecting the module, Python doesn't know it and even tells you what's wrong: <code class="error-text">NameError: name 'random' is not defined. Did you forget to import 'random'?</code> Add <code>import random</code> at the start of the program.</p>
+      </details>
+      <details>
+        <summary>Common mistake: a typo in the module name</summary>
+        <p>The module name must be exact. <code>import randon</code> ends with an error: <code class="error-text">ModuleNotFoundError: No module named 'randon'</code></p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li>a module is a set of ready-made tools, connected with <code>import</code>;</li>
+      <li><code>import random</code> and <code>random.randint()</code>, or <code>from datetime import date</code> and just <code>date</code>;</li>
+      <li>built-in modules come with Python, the rest are installed with <code>pip install</code>.</li>
+      </ul>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 1. A die and a draw</span></div>
+  <pre><code>import random
+import math
+
+print("The die shows:", random.randint(1, 6))
+
+students = ["Aruzhan", "Yerlan", "Dana", "Marat"]
+print("Next to answer:", random.choice(students))
+
+print("Square root of 144:", math.sqrt(144))
+print("Pi:", round(math.pi, 4))</code></pre>
+</div>
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>Example 2. How many days are left</span></div>
+  <pre><code>from datetime import date
+
+today = date.today()
+new_year = date(today.year + 1, 1, 1)
+
+print("Today:", today)
+print("Days until New Year:", (new_year - today).days)</code></pre>
+</div>
+<article class="task" data-task="lesson-modules" data-level="easy">
+<div class="task-head"><h3>Exercise: a square root</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Connect the <code>math</code> module and print the square root of 144 with <code>math.sqrt</code>.</p>
+<textarea class="editor-area" rows="3" spellcheck="false" aria-label="Solution: a square root"># import math and print the square root of 144
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The first line: <code>import math</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> The second: <code>print(math.sqrt(144))</code>. The answer will be decimal: <code>12.0</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>import math
+print(math.sqrt(144))</code></pre></details>
+<template data-kind="tests">case('printed()', "12.0")
+case('math.sqrt(4)', 2.0)</template>
+</article>
+<article class="task" data-task="lesson-modules-2" data-level="medium">
+<div class="task-head"><h3>A harder exercise: school days</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>The school year starts on 1 September 2026 and ends on 25 May 2027. Print how many days there are between these dates.</p>
+<textarea class="editor-area" rows="5" spellcheck="false" aria-label="Solution: school days">from datetime import date
+
+start = date(2026, 9, 1)
+end = date(2027, 5, 25)
+# print the number of days between the dates
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 2</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> Dates can be subtracted: <code>end - start</code>. You get a time span.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> The number of days in the span is <code>.days</code>: <code>print((end - start).days)</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>from datetime import date
+
+start = date(2026, 9, 1)
+end = date(2027, 5, 25)
+print((end - start).days)</code></pre></details>
+<template data-kind="tests">case('printed()', "266")</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="modules"> Lesson done</label>
+    </div>
+  </li>
+  <li class="project-step lesson" id="project-guess">
+    <div class="lesson-text">
+      <h2>Mini-project 4. Guess the number</h2>
+      <p><strong>What we'll build.</strong> The computer picks a number from 1 to 100 and then guesses it itself. The trick is that it will guess in <strong>7 tries or fewer</strong>, whatever number was picked. This is a real algorithm, called <strong>halving</strong> or binary search. This is how searching in databases works, and even the “hot and cold” game.</p>
+      <p><strong>You'll need:</strong> conditions (<a href="#lesson-3">lesson 5</a>), the <code>while</code> loop (<a href="#lesson-loops">lesson 7</a>), functions (<a href="#lesson-5">lesson 8</a>) and the <code>random</code> module (<a href="#lesson-modules">lesson 11</a>).</p>
+      <p><strong>How to guess.</strong> The number is somewhere between <code>low = 1</code> and <code>high = 100</code>. We name the middle: <code>(low + high) // 2</code>. If we guessed it, we're done. If the secret is bigger, everything below the middle can be thrown away: <code>low = middle + 1</code>. If it is smaller, we throw away the upper half: <code>high = middle - 1</code>. Each try halves the range, so 100 numbers run out very quickly.</p>
+      <p><strong>Step-by-step plan:</strong></p>
+      <ol>
+      <li>in the function <code>guess_number(secret, low=1, high=100)</code> create a try counter <code>tries = 0</code>;</li>
+      <li>make a <code>while True:</code> loop — “repeat until we say stop”;</li>
+      <li>in the loop add a try and name the middle;</li>
+      <li>if you guessed it, return the number of tries at once: <code>return</code> ends both the loop and the function. Otherwise move <code>low</code> or <code>high</code>.</li>
+      </ol>
+      <p><strong>What you can add:</strong> printing each try (“trying 50 — higher”), and also a check that 7 tries really are enough for 100 numbers: go through all the numbers from 1 to 100 with a loop and find the largest number of tries.</p>
+    </div>
+    <div class="lesson-code">
+<div class="code-block" data-run="python" data-open>
+  <div class="code-head"><span>How it looks step by step</span></div>
+  <pre><code>import random
+
+secret = random.randint(1, 100)
+low = 1
+high = 100
+tries = 0
+
+while True:
+    tries += 1
+    guess = (low + high) // 2
+    if guess == secret:
+        print(f"Try {tries}: {guess} — got it!")
+        break
+    elif guess &lt; secret:
+        print(f"Try {tries}: {guess} — higher")
+        low = guess + 1
+    else:
+        print(f"Try {tries}: {guess} — lower")
+        high = guess - 1</code></pre>
+</div>
+<article class="task" data-task="project-guess" data-level="hard">
+<div class="task-head"><h3>Project: a guessing function</h3><span class="level level-hard"><span class="visually-hidden">Level: </span>Hard</span></div>
+<p>Write a function <code>guess_number(secret, low=1, high=100)</code> that guesses <code>secret</code> by halving and returns how many tries it took. For example, <code>guess_number(50)</code> guesses on the first try and returns <code>1</code>.</p>
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Solution: a guessing function">def guess_number(secret, low=1, high=100):
+    tries = 0
+    # guess by halving and return the number of tries
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 4</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> The “How it looks step by step” example is almost a ready solution. The only difference: instead of <code>print</code> and <code>break</code> you need <code>return tries</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Inside <code>while True:</code> the first line is <code>tries += 1</code>, the second <code>guess = (low + high) // 2</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> <code>if guess == secret: return tries</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 4.</strong> <code>elif guess &lt; secret: low = guess + 1</code>, otherwise <code>high = guess - 1</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>def guess_number(secret, low=1, high=100):
+    tries = 0
+    while True:
+        tries += 1
+        guess = (low + high) // 2
+        if guess == secret:
+            return tries
+        elif guess &lt; secret:
+            low = guess + 1
+        else:
+            high = guess - 1</code></pre></details>
+<template data-kind="tests">case('guess_number(50)', 1)
+case('guess_number(25)', 2)
+case('guess_number(1)', 6)
+case('guess_number(100)', 7)
+case('guess_number(73)', 6)
+case('max(guess_number(n) for n in range(1, 101))', 7)
+case('guess_number(5, 1, 10)', 1)
+case('guess_number(10, 1, 10)', 4)</template>
+</article>
+      <label class="step-check"><input type="checkbox" data-step="project-guess"> Project done</label>
     </div>
   </li>
   <li class="project-step lesson" id="lesson-7">
     <div class="lesson-text">
-      <h2>Lesson 7. How this connects to websites</h2>
-      <p>You already know enough to understand the main idea. The address in the browser picks a function, and the function returns a page.</p>
-      <p>Below is a tiny website built from what you have just learned: functions and a dictionary.</p>
-      <p>The second example does the same with Flask. It is a ready-made tool for websites: the line <code>@app.route</code> says which address opens this function.</p>
-      <p><strong>Try it:</strong> change the address to "/" and run it again.</p>
+      <h2>Lesson 12. How this connects to websites</h2>
+      <p><strong>Why.</strong> You have learned the basics of Python. Now let's put them together and see how a website is built from these bricks.</p>
+      <p><strong>How a website works.</strong> You type an address in the browser, and the browser sends a <strong>request</strong> to a server. A server is a computer running a program, for example in Python. It looks at the address, picks the right function, and that function returns a <strong>response</strong>: the text of the page. More on the <a href="about.html">“How a website works”</a> page.</p>
+      <p><strong>Where your lessons are here:</strong></p>
+      <ul>
+      <li><strong>functions</strong> — each page of the site: a function receives a request and returns a page;</li>
+      <li><strong>a dictionary</strong> — “address → function”: this is how the site chooses what to show;</li>
+      <li><strong>f-strings</strong> — put data into the page: “Hello, {name}!”;</li>
+      <li><strong>lists and loops</strong> — a feed of posts, a task list, products in a catalogue;</li>
+      <li><strong>conditions</strong> — whether the user is logged in, whether the password is correct;</li>
+      <li><strong>errors</strong> — a “404: not found” page instead of the site crashing;</li>
+      <li><strong>modules</strong> — Flask and Django, ready-made tools for websites.</li>
+      </ul>
+      <p><strong>Flask.</strong> The second example is the same site on Flask. The line <code>@app.route("/")</code> says: “this address opens this function”. It is really the same dictionary of addresses, only Flask creates it for you.</p>
+      <p><strong>Try it:</strong> in the first example change the address to <code>"/"</code>, then to <code>"/tasks"</code>, then to one that doesn't exist. Add your own task to the list.</p>
+      <details>
+        <summary>Common mistake: there is no such page</summary>
+        <p>If you open an address that isn't in the dictionary, <code>pages[address]</code> fails with <code>KeyError</code>. A real site doesn't do that: it shows a “404: not found” page. In the example <code>pages.get(address, not_found)</code> does this.</p>
+      </details>
+      <p><strong>In short:</strong></p>
+      <ul>
+      <li>a website is a program: it receives an address and returns a page;</li>
+      <li>pages are functions, addresses are dictionary keys, data is put in with f-strings;</li>
+      <li>Flask and Django do the same thing, only more conveniently; next you'll build your <a href="project.html">first project</a> on them.</li>
+      </ul>
     </div>
     <div class="lesson-code">
 <div class="code-block" data-run="python" data-open>
-  <div class="code-head"><span>A site made of functions and a dictionary</span></div>
-  <pre><code>def home():
+  <div class="code-head"><span>Example 1. A website from functions and a dictionary</span></div>
+  <pre><code>tasks = ["buy bread", "do homework"]
+
+def home():
     return "Home page"
 
-def contacts():
-    return "Our contacts"
+def task_list():
+    lines = ""
+    for task in tasks:
+        lines += f"- {task}\n"
+    return f"My tasks ({len(tasks)}):\n{lines}"
 
-pages = {"/": home, "/contacts": contacts}
+def not_found():
+    return "404: page not found"
 
-address = "/contacts"
+pages = {"/": home, "/tasks": task_list}
+
+address = "/tasks"
 print("You opened:", address)
-print("The site replied:", pages[address]())</code></pre>
+print(pages.get(address, not_found)())</code></pre>
 </div>
 <div class="code-block" data-run="python" data-open>
   <div class="code-head"><span>The same with Flask</span></div>
@@ -282,8 +1638,81 @@ app = Flask(__name__)
 def home():
     return "Home page"
 
-print("The site replied:", app.test_client().get("/").text)</code></pre>
+print("The site answered:", app.test_client().get("/").text)</code></pre>
 </div>
+<article class="task" data-task="lesson-web" data-level="easy">
+<div class="task-head"><h3>Exercise: a new page</h3><span class="level level-easy"><span class="visually-hidden">Level: </span>Easy</span></div>
+<p>Add an “About us” page to the site. Write a function <code>about()</code> that returns <code>About us</code>, and add it to the <code>pages</code> dictionary at the address <code>"/about"</code>.</p>
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Solution: a new page">def home():
+    return "Home page"
+
+# write the about() function
+
+pages = {"/": home}
+# add "/about" to the dictionary
+</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> A function like <code>home</code>: <code>def about():</code> and under it <code>return "About us"</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> You put the function itself into the dictionary, <strong>without</strong> brackets: <code>pages["/about"] = about</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> You can check yourself like this: <code>print(pages["/about"]())</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>def home():
+    return "Home page"
+
+def about():
+    return "About us"
+
+pages = {"/": home}
+pages["/about"] = about</code></pre></details>
+<template data-kind="tests">case('pages["/about"]()', "About us")
+case('pages["/"]()', "Home page")</template>
+</article>
+<article class="task" data-task="lesson-web-2" data-level="medium">
+<div class="task-head"><h3>A harder exercise: the server's response</h3><span class="level level-medium"><span class="visually-hidden">Level: </span>Medium</span></div>
+<p>Write a function <code>handle(address)</code>, like a real server's. If the address is in the <code>pages</code> dictionary, it calls the right function and returns its response. If the address isn't there, it returns <code>404: page not found</code>.</p>
+<textarea class="editor-area" rows="6" spellcheck="false" aria-label="Solution: the server&#x27;s response">def home():
+    return "Home page"
+
+def contacts():
+    return "Our contacts"
+
+pages = {"/": home, "/contacts": contacts}
+
+def handle(address):
+    # return the page's response or the 404 text
+    pass</textarea>
+<div class="tool-row"><button class="btn btn-primary" type="button" data-check>Check</button><button class="btn btn-secondary" type="button" data-reset>Reset</button></div>
+<div data-output></div>
+<div class="hints" data-hints>
+<button class="btn btn-secondary hint-next" type="button" data-hint-next>Hint 1 / 3</button>
+<ol class="hint-list" aria-label="Hints" aria-live="polite">
+<li hidden tabindex="-1"><strong>Hint 1.</strong> Check the address with the word <code>in</code>: <code>if address in pages:</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 2.</strong> Get the function and call it right away: <code>return pages[address]()</code>.</li>
+<li hidden tabindex="-1"><strong>Hint 3.</strong> Otherwise: <code>return "404: page not found"</code>.</li>
+</ol>
+</div>
+<details class="solution"><summary>Show the solution</summary><pre><code>def home():
+    return "Home page"
+
+def contacts():
+    return "Our contacts"
+
+pages = {"/": home, "/contacts": contacts}
+
+def handle(address):
+    if address in pages:
+        return pages[address]()
+    return "404: page not found"</code></pre></details>
+<template data-kind="tests">case('handle("/")', "Home page")
+case('handle("/contacts")', "Our contacts")
+case('handle("/nope")', "404: page not found")
+case('handle("")', "404: page not found")</template>
+</article>
       <label class="step-check"><input type="checkbox" data-step="7"> Lesson done</label>
     </div>
   </li>
@@ -295,11 +1724,10 @@ print("The site replied:", app.test_client().get("/").text)</code></pre>
 <div class="cta-panel">
   <div>
     <h2 id="next-title">What's next</h2>
-    <p class="lead cta-lead">Now you understand the basics. Next you will see how a request travels through a real server and build your first website. These sections are in Russian for now.</p>
+    <p class="lead cta-lead">Now you understand the basics of Python. Next you'll learn what a website page is made of: HTML and CSS. And then you'll build your first site.</p>
   </div>
   <div class="cta-actions">
-    <a class="btn btn-primary" href="about.html">How a website works</a>
-    <a class="btn btn-secondary" href="project.html">First project</a>
+    <a class="btn btn-primary" href="../html-css.html" hreflang="ru">HTML and CSS</a> <a class="btn btn-secondary" href="about.html">How a website works</a>
   </div>
 </div>
 </div>
@@ -327,6 +1755,7 @@ print("The site replied:", app.test_client().get("/").text)</code></pre>
   <button class="to-top" type="button" aria-label="Back to top">↑</button>
 
   <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
   <script src="../assets/i18n.js"></script>
   <script src="../script.js"></script>
   <script src="../features.js"></script>
