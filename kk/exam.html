@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Python-ның веб-әзірлеудегі рөлі бойынша қорытынды тест — PyWeb Guide</title>
 
-  <meta name="description" content="Бүкіл курс бойынша түсіндірмесі бар 15 сұрақ. 12 және одан көп сұраққа дұрыс жауап берсеңіз, оқу сертификатын жүктеп алуға болады.">
+  <meta name="description" content="Бүкіл курс бойынша түсіндірмесі бар 20 сұрақ. 16 және одан көп сұраққа дұрыс жауап берсеңіз, оқу сертификатын жүктеп алуға болады.">
   <link rel="canonical" href="https://pywebguide.github.io/kk/exam.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/exam.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/exam.html">
@@ -16,7 +16,7 @@
   <meta property="og:locale" content="kk_KZ">
   <meta property="og:site_name" content="PyWeb Guide">
   <meta property="og:title" content="Python-ның веб-әзірлеудегі рөлі бойынша қорытынды тест — PyWeb Guide">
-  <meta property="og:description" content="Бүкіл курс бойынша түсіндірмесі бар 15 сұрақ. 12 және одан көп сұраққа дұрыс жауап берсеңіз, оқу сертификатын жүктеп алуға болады.">
+  <meta property="og:description" content="Бүкіл курс бойынша түсіндірмесі бар 20 сұрақ. 16 және одан көп сұраққа дұрыс жауап берсеңіз, оқу сертификатын жүктеп алуға болады.">
   <meta property="og:url" content="https://pywebguide.github.io/kk/exam.html">
   <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -123,7 +123,7 @@
 <a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Қорытынды тест</span>
 </nav>
 <h1>Қорытынды тест</h1>
-<p class="lead">Бүкіл курс бойынша 15 сұрақ. 12 немесе одан көп сұраққа дұрыс жауап беріңіз, сонда оқу сертификатын жүктеп алуға болады. Әрекет саны шектелмеген.</p>
+<p class="lead">Бүкіл курс бойынша 20 сұрақ. 16 немесе одан көп сұраққа дұрыс жауап беріңіз, сонда оқу сертификатын жүктеп алуға болады. Әрекет саны шектелмеген.</p>
 <img class="band-picture" src="../assets/img/exam-cell.webp" width="570" height="644" alt="Гравюра: үміткер емтихан жұмысын жеке бөлмеде жазып отыр, Пекин, 1873 жыл" decoding="async" fetchpriority="high">
 </div></div>
 <section class="section" id="test" aria-labelledby="test-title">
@@ -267,6 +267,51 @@
 <label class="quiz-option"><input type="radio" name="ex15" value="c"> <span>Статикалық файлдар қалтасын</span></label>
 </div>
 <p class="check-explain" hidden>Жөндеу режимінде келушілер баптаулар мен код үзінділерін көреді, ал ашылған кілт сессияларды жасауға мүмкіндік береді.</p>
+</fieldset>
+<fieldset data-answer="b">
+<legend>16. <code>name = "Аня"</code> болса, <code>print(f"Сәлем, {name}!")</code> не шығарады?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex16" value="a"> <span><code>Сәлем, {name}!</code></span></label>
+<label class="quiz-option"><input type="radio" name="ex16" value="b"> <span><code>Сәлем, Аня!</code></span></label>
+<label class="quiz-option"><input type="radio" name="ex16" value="c"> <span>Қате: мәтінді айнымалымен желімдеуге болмайды</span></label>
+</div>
+<p class="check-explain" hidden>Тырнақшалар алдындағы <code>f</code> әрпі бұйра жақшадағы мәндерді қоюға мүмкіндік береді.</p>
+</fieldset>
+<fieldset data-answer="b">
+<legend>17. <code>for n in range(1, 5):</code> циклы неше рет орындалады?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex17" value="a"> <span>5 рет</span></label>
+<label class="quiz-option"><input type="radio" name="ex17" value="b"> <span>4 рет</span></label>
+<label class="quiz-option"><input type="radio" name="ex17" value="c"> <span>6 рет</span></label>
+</div>
+<p class="check-explain" hidden><code>range(1, 5)</code> 1, 2, 3 және 4 сандарын береді: соңғы сан ауқымға кірмейді.</p>
+</fieldset>
+<fieldset data-answer="a">
+<legend>18. Функцияның ішінде <code>return</code> мен <code>print</code> қалай ерекшеленеді?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex18" value="a"> <span><code>return</code> нәтижені бағдарламаға қайтарады, ал <code>print</code> оны экранда тек көрсетеді</span></label>
+<label class="quiz-option"><input type="radio" name="ex18" value="b"> <span>Ешқандай айырмашылық жоқ, бұл бір нәрсе</span></label>
+<label class="quiz-option"><input type="radio" name="ex18" value="c"> <span><code>return</code> нәтижені үлкенірек шығарады</span></label>
+</div>
+<p class="check-explain" hidden><code>return</code> нәтижесін айнымалыға сақтап, онымен әрі қарай жұмыс істеуге болады. <code>return</code> жоқ функция <code>None</code> қайтарады.</p>
+</fieldset>
+<fieldset data-answer="c">
+<legend>19. <code>prices</code> сөздігінде <code>"кофе"</code> кілті болмауы мүмкін болса, бағаны қалай алуға болады?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex19" value="a"> <span><code>prices[0]</code></span></label>
+<label class="quiz-option"><input type="radio" name="ex19" value="b"> <span><code>prices["кофе"]</code></span></label>
+<label class="quiz-option"><input type="radio" name="ex19" value="c"> <span><code>prices.get("кофе", 0)</code></span></label>
+</div>
+<p class="check-explain" hidden><code>.get()</code> қосалқы мәнді қайтарады, ал кілт болмаса, шаршы жақшалар бағдарламаны <code>KeyError</code> қатесімен тоқтатады.</p>
+</fieldset>
+<fieldset data-answer="a">
+<legend>20. Беттің сыртқы түріне: түстерге, қаріптерге, шегіністерге не жауап береді?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex20" value="a"> <span>CSS</span></label>
+<label class="quiz-option"><input type="radio" name="ex20" value="b"> <span>HTML</span></label>
+<label class="quiz-option"><input type="radio" name="ex20" value="c"> <span>Дерекқор</span></label>
+</div>
+<p class="check-explain" hidden>HTML бет неден тұратынын сипаттайды, ал CSS — оның қалай көрінетінін.</p>
 </fieldset>
 <div class="quiz-actions tool-row">
 <button class="btn btn-primary" type="submit">Жауаптарды тексеру</button>

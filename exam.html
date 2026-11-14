@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Финальный тест по Python в веб-разработке — PyWeb Guide</title>
 
-  <meta name="description" content="15 вопросов по всему курсу с объяснениями. Если ответить верно на 12 и больше, можно скачать учебный сертификат.">
+  <meta name="description" content="20 вопросов по всему курсу с объяснениями. Если ответить верно на 16 и больше, можно скачать учебный сертификат.">
   <link rel="canonical" href="https://pywebguide.github.io/exam.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/exam.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/exam.html">
@@ -15,7 +15,7 @@
   <meta property="og:locale" content="ru_RU">
   <meta property="og:site_name" content="PyWeb Guide">
   <meta property="og:title" content="Финальный тест по Python в веб-разработке — PyWeb Guide">
-  <meta property="og:description" content="15 вопросов по всему курсу с объяснениями. Если ответить верно на 12 и больше, можно скачать учебный сертификат.">
+  <meta property="og:description" content="20 вопросов по всему курсу с объяснениями. Если ответить верно на 16 и больше, можно скачать учебный сертификат.">
   <meta property="og:url" content="https://pywebguide.github.io/exam.html">
   <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -123,7 +123,7 @@
 <span>Финальный тест</span>
 </nav>
 <h1>Финальный тест</h1>
-<p class="lead">15 вопросов по всему курсу. Ответьте верно на 12 или больше, и можно будет скачать учебный сертификат. Количество попыток не ограничено.</p>
+<p class="lead">20 вопросов по всему курсу. Ответьте верно на 16 или больше, и можно будет скачать учебный сертификат. Количество попыток не ограничено.</p>
 <img class="band-picture" src="assets/img/exam-cell.webp" width="570" height="644" alt="Гравюра: кандидат пишет экзаменационную работу в отдельной келье, Пекин, 1873 год" decoding="async" fetchpriority="high">
 </div></div>
 <section class="section" id="test" aria-labelledby="test-title">
@@ -267,6 +267,51 @@
 <label class="quiz-option"><input type="radio" name="ex15" value="c"> <span>Папку со статическими файлами</span></label>
 </div>
 <p class="check-explain" hidden>При отладке посетители увидят настройки и куски кода, а раскрытый ключ позволяет подделывать сессии.</p>
+</fieldset>
+<fieldset data-answer="b">
+<legend>16. Что напечатает <code>print(f"Привет, {name}!")</code>, если <code>name = "Аня"</code>?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex16" value="a"> <span><code>Привет, {name}!</code></span></label>
+<label class="quiz-option"><input type="radio" name="ex16" value="b"> <span><code>Привет, Аня!</code></span></label>
+<label class="quiz-option"><input type="radio" name="ex16" value="c"> <span>Ошибку: текст нельзя склеивать с переменной</span></label>
+</div>
+<p class="check-explain" hidden>Буква <code>f</code> перед кавычками разрешает подставлять значения в фигурных скобках.</p>
+</fieldset>
+<fieldset data-answer="b">
+<legend>17. Сколько раз выполнится цикл <code>for n in range(1, 5):</code>?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex17" value="a"> <span>5 раз</span></label>
+<label class="quiz-option"><input type="radio" name="ex17" value="b"> <span>4 раза</span></label>
+<label class="quiz-option"><input type="radio" name="ex17" value="c"> <span>6 раз</span></label>
+</div>
+<p class="check-explain" hidden><code>range(1, 5)</code> даёт числа 1, 2, 3 и 4: последнее число в диапазон не входит.</p>
+</fieldset>
+<fieldset data-answer="a">
+<legend>18. Чем <code>return</code> отличается от <code>print</code> внутри функции?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex18" value="a"> <span><code>return</code> отдаёт результат программе, а <code>print</code> только показывает его на экране</span></label>
+<label class="quiz-option"><input type="radio" name="ex18" value="b"> <span>Ничем, это одно и то же</span></label>
+<label class="quiz-option"><input type="radio" name="ex18" value="c"> <span><code>return</code> печатает результат крупнее</span></label>
+</div>
+<p class="check-explain" hidden>Результат <code>return</code> можно сохранить в переменную и работать с ним дальше. Функция без <code>return</code> возвращает <code>None</code>.</p>
+</fieldset>
+<fieldset data-answer="c">
+<legend>19. Как получить цену из словаря <code>prices</code>, если ключа <code>"кофе"</code> в нём может не быть?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex19" value="a"> <span><code>prices[0]</code></span></label>
+<label class="quiz-option"><input type="radio" name="ex19" value="b"> <span><code>prices["кофе"]</code></span></label>
+<label class="quiz-option"><input type="radio" name="ex19" value="c"> <span><code>prices.get("кофе", 0)</code></span></label>
+</div>
+<p class="check-explain" hidden><code>.get()</code> вернёт запасное значение, а квадратные скобки при отсутствии ключа остановят программу с <code>KeyError</code>.</p>
+</fieldset>
+<fieldset data-answer="a">
+<legend>20. Что отвечает за внешний вид страницы: цвета, шрифты, отступы?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex20" value="a"> <span>CSS</span></label>
+<label class="quiz-option"><input type="radio" name="ex20" value="b"> <span>HTML</span></label>
+<label class="quiz-option"><input type="radio" name="ex20" value="c"> <span>База данных</span></label>
+</div>
+<p class="check-explain" hidden>HTML описывает, из чего состоит страница, а CSS — как она выглядит.</p>
 </fieldset>
 <div class="quiz-actions tool-row">
 <button class="btn btn-primary" type="submit">Проверить ответы</button>

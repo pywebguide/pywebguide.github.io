@@ -1155,22 +1155,32 @@
   /* ---------- Сертификат для печати и PDF ---------- */
   // Лист сертификата — обычный HTML. При печати остаётся только он (html.print-cert в styles.css),
   // а в окне печати браузера его можно сохранить как PDF
+  // Результат теста: { best, total, date }. В тесте 20 вопросов; старые записи без total — из 15 вопросов.
+  // Порог — 80%: 16 из 20, у старых записей 12 из 15, чтобы уже полученные сертификаты не пропали
+  const EXAM_TOTAL = 20;
+  function examTotal(exam) {
+    return exam && exam.total === EXAM_TOTAL ? EXAM_TOTAL : 15;
+  }
+  function examPassed(exam) {
+    return Boolean(exam) && typeof exam.best === "number" && exam.best * 5 >= examTotal(exam) * 4;
+  }
+
   const certificatePrint = (function () {
-    function sheet(name, score, date) {
+    function sheet(name, score, date, total) {
       return el("div", { class: "cert-sheet", lang: document.documentElement.lang }, [
         el("p", { class: "cert-brand", text: "PYWEB GUIDE" }),
         el("p", { class: "cert-kind", text: t("Сертификат о прохождении") }),
         el("p", { class: "cert-name", text: name || t("Ваше имя") }),
         el("p", { class: "cert-text", text: t("прошёл(ла) финальный тест курса «Python для веб-разработки»") }),
-        el("p", { class: "cert-score", text: t("Результат: {s} из 15 · {d}", { s: score, d: date }) }),
+        el("p", { class: "cert-score", text: t("Результат: {s} из {n} · {d}", { s: score, n: total, d: date }) }),
         el("p", { class: "cert-note", text: t("Учебный сертификат для самопроверки. Не является официальным документом.") })
       ]);
     }
 
-    function print(name, score, date) {
+    function print(name, score, date, total) {
       const old = document.getElementById("cert-print");
       if (old) old.remove();
-      const root = el("div", { id: "cert-print", "aria-hidden": "true" }, [sheet(name, score, date)]);
+      const root = el("div", { id: "cert-print", "aria-hidden": "true" }, [sheet(name, score, date, total)]);
       document.body.appendChild(root);
       document.documentElement.classList.add("print-cert");
       const done = function () {
@@ -1185,7 +1195,7 @@
     return { sheet: sheet, print: print };
   })();
 
-  // Страница «Мой прогресс»: сертификат открывается, если лучший результат теста не меньше 12
+  // Страница «Мой прогресс»: сертификат открывается, если лучший результат теста не ниже порога
   const certBox = document.querySelector("[data-cert-box]");
 
   if (certBox) {
@@ -1195,7 +1205,7 @@
 
     function examResult() {
       const exam = readJson("pyweb_exam", null);
-      return exam && typeof exam.best === "number" && exam.best >= 12 ? exam : null;
+      return examPassed(exam) ? exam : null;
     }
 
     function dateOf(exam) {
@@ -1209,7 +1219,7 @@
       if (locked) locked.hidden = Boolean(exam);
       if (!exam) return;
       preview.textContent = "";
-      preview.appendChild(certificatePrint.sheet(nameField.value.trim(), exam.best, dateOf(exam)));
+      preview.appendChild(certificatePrint.sheet(nameField.value.trim(), exam.best, dateOf(exam), examTotal(exam)));
     }
 
     nameField.addEventListener("input", refresh);
@@ -1222,7 +1232,7 @@
         return;
       }
       nameField.removeAttribute("aria-invalid");
-      certificatePrint.print(nameField.value.trim(), exam.best, dateOf(exam));
+      certificatePrint.print(nameField.value.trim(), exam.best, dateOf(exam), examTotal(exam));
     });
     window.pywebCertificate = { refresh: refresh };
     refresh();
@@ -1287,13 +1297,13 @@
         total += LESSON_TASK_TOTAL;
         body.appendChild(row(t("Задания в уроках"), "start.html", lessonSolved, LESSON_TASK_TOTAL));
       }
-      const passed = exam && typeof exam.best === "number" && exam.best >= 12;
+      const passed = examPassed(exam);
       total += 1;
       if (passed) done += 1;
       body.appendChild(row(t("Финальный тест"), "exam.html", passed ? 1 : 0, 1));
       body.appendChild(el("p", {
         class: "note",
-        text: exam && typeof exam.best === "number" ? t("Лучший результат финального теста: {b} из 15.", { b: exam.best }) : t("Финальный тест пока не пройден.")
+        text: exam && typeof exam.best === "number" ? t("Лучший результат финального теста: {b} из {n}.", { b: exam.best, n: examTotal(exam) }) : t("Финальный тест пока не пройден.")
       }));
       if (totalLine) totalLine.textContent = t("Пройдено {p}% курса: {d} из {n} отметок.", { p: Math.round(done / total * 100), d: done, n: total });
       if (window.pywebCertificate) window.pywebCertificate.refresh();
@@ -1353,7 +1363,7 @@
   const examForm = document.getElementById("exam-form");
 
   if (examForm) {
-    const PASS = 12;
+    const PASS = EXAM_TOTAL * 4 / 5;
     const certificate = document.getElementById("certificate");
     const nameInput = document.getElementById("cert-name");
     const canvas = document.getElementById("cert-canvas");
@@ -1395,7 +1405,7 @@
 
       ctx.font = "500 30px " + body;
       ctx.fillText(t("прошёл(ла) финальный тест курса «Python для веб-разработки»"), w / 2, 435);
-      ctx.fillText(t("Результат: {s} из 15 · {d}", { s: score, d: date }), w / 2, 485);
+      ctx.fillText(t("Результат: {s} из {n} · {d}", { s: score, n: EXAM_TOTAL, d: date }), w / 2, 485);
 
       ctx.font = "400 22px " + body;
       ctx.fillText(t("Учебный сертификат для самопроверки. Не является официальным документом."), w / 2, 565);
@@ -1419,9 +1429,10 @@
       }
 
       score = right;
+      // Лучший результат сравнивается в долях: старый результат мог быть из 15 вопросов
       const previous = readJson("pyweb_exam", null);
-      if (!previous || typeof previous.best !== "number" || right > previous.best) {
-        writeJson("pyweb_exam", { best: right, date: new Date().toISOString() });
+      if (!previous || typeof previous.best !== "number" || right / EXAM_TOTAL > previous.best / examTotal(previous)) {
+        writeJson("pyweb_exam", { best: right, total: EXAM_TOTAL, date: new Date().toISOString() });
       }
 
       certificate.hidden = right < PASS;
@@ -1443,7 +1454,7 @@
     const printButton = document.getElementById("cert-print-btn");
     if (printButton) {
       printButton.addEventListener("click", function () {
-        certificatePrint.print(nameInput.value.trim(), score, new Date().toLocaleDateString(window.pywebLocale || "ru-RU"));
+        certificatePrint.print(nameInput.value.trim(), score, new Date().toLocaleDateString(window.pywebLocale || "ru-RU"), EXAM_TOTAL);
       });
     }
 

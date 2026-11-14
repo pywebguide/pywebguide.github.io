@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Final test on Python in web development — PyWeb Guide</title>
 
-  <meta name="description" content="15 questions on the whole course with explanations. Answer 12 or more correctly, and you can download a learning certificate.">
+  <meta name="description" content="20 questions on the whole course with explanations. Answer 16 or more correctly, and you can download a learning certificate.">
   <link rel="canonical" href="https://pywebguide.github.io/en/exam.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/exam.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/exam.html">
@@ -16,7 +16,7 @@
   <meta property="og:locale" content="en_GB">
   <meta property="og:site_name" content="PyWeb Guide">
   <meta property="og:title" content="Final test on Python in web development — PyWeb Guide">
-  <meta property="og:description" content="15 questions on the whole course with explanations. Answer 12 or more correctly, and you can download a learning certificate.">
+  <meta property="og:description" content="20 questions on the whole course with explanations. Answer 16 or more correctly, and you can download a learning certificate.">
   <meta property="og:url" content="https://pywebguide.github.io/en/exam.html">
   <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -122,7 +122,7 @@
 <a href="index.html">Home</a> <span aria-hidden="true">/</span> <span>Final test</span>
 </nav>
 <h1>Final test</h1>
-<p class="lead">15 questions on the whole course. Answer 12 or more correctly, and you can download a learning certificate. The number of attempts is unlimited.</p>
+<p class="lead">20 questions on the whole course. Answer 16 or more correctly, and you can download a learning certificate. The number of attempts is unlimited.</p>
 <img class="band-picture" src="../assets/img/exam-cell.webp" width="570" height="644" alt="Engraving: a candidate writing an examination paper in a separate cell, Beijing, 1873" decoding="async" fetchpriority="high">
 </div></div>
 <section class="section" id="test" aria-labelledby="test-title">
@@ -266,6 +266,51 @@
 <label class="quiz-option"><input type="radio" name="ex15" value="c"> <span>The folder with static files</span></label>
 </div>
 <p class="check-explain" hidden>In debug mode visitors see settings and pieces of code, and a leaked key lets people forge sessions.</p>
+</fieldset>
+<fieldset data-answer="b">
+<legend>16. What will <code>print(f"Hello, {name}!")</code> print if <code>name = "Anya"</code>?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex16" value="a"> <span><code>Hello, {name}!</code></span></label>
+<label class="quiz-option"><input type="radio" name="ex16" value="b"> <span><code>Hello, Anya!</code></span></label>
+<label class="quiz-option"><input type="radio" name="ex16" value="c"> <span>An error: text can't be joined with a variable</span></label>
+</div>
+<p class="check-explain" hidden>The letter <code>f</code> before the quotes lets you put values in curly braces.</p>
+</fieldset>
+<fieldset data-answer="b">
+<legend>17. How many times will the loop <code>for n in range(1, 5):</code> run?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex17" value="a"> <span>5 times</span></label>
+<label class="quiz-option"><input type="radio" name="ex17" value="b"> <span>4 times</span></label>
+<label class="quiz-option"><input type="radio" name="ex17" value="c"> <span>6 times</span></label>
+</div>
+<p class="check-explain" hidden><code>range(1, 5)</code> gives the numbers 1, 2, 3 and 4: the last number is not included.</p>
+</fieldset>
+<fieldset data-answer="a">
+<legend>18. How is <code>return</code> different from <code>print</code> inside a function?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex18" value="a"> <span><code>return</code> hands the result back to the program, while <code>print</code> only shows it on the screen</span></label>
+<label class="quiz-option"><input type="radio" name="ex18" value="b"> <span>No difference, they are the same</span></label>
+<label class="quiz-option"><input type="radio" name="ex18" value="c"> <span><code>return</code> prints the result in a bigger font</span></label>
+</div>
+<p class="check-explain" hidden>The result of <code>return</code> can be saved in a variable and used further. A function without <code>return</code> returns <code>None</code>.</p>
+</fieldset>
+<fieldset data-answer="c">
+<legend>19. How do you get a price from the <code>prices</code> dictionary if the key <code>"coffee"</code> may be missing?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex19" value="a"> <span><code>prices[0]</code></span></label>
+<label class="quiz-option"><input type="radio" name="ex19" value="b"> <span><code>prices["coffee"]</code></span></label>
+<label class="quiz-option"><input type="radio" name="ex19" value="c"> <span><code>prices.get("coffee", 0)</code></span></label>
+</div>
+<p class="check-explain" hidden><code>.get()</code> returns the fallback value, while square brackets stop the program with <code>KeyError</code> if the key is missing.</p>
+</fieldset>
+<fieldset data-answer="a">
+<legend>20. What controls how a page looks: colours, fonts, spacing?</legend>
+<div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ex20" value="a"> <span>CSS</span></label>
+<label class="quiz-option"><input type="radio" name="ex20" value="b"> <span>HTML</span></label>
+<label class="quiz-option"><input type="radio" name="ex20" value="c"> <span>A database</span></label>
+</div>
+<p class="check-explain" hidden>HTML describes what the page consists of, and CSS describes how it looks.</p>
 </fieldset>
 <div class="quiz-actions tool-row">
 <button class="btn btn-primary" type="submit">Check answers</button>
