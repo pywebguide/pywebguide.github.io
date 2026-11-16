@@ -1981,5 +1981,6 @@
  "тип узнают через <code>type()</code>, меняют через <code>int()</code>, <code>str()</code>, <code>float()</code>.": "<code>type()</code> tells the type, <code>int()</code>, <code>str()</code>, <code>float()</code> change it.",
  "у параметра может быть значение по умолчанию: <code>name=\"гость\"</code>.": "a parameter can have a default value: <code>name=\"guest\"</code>.",
  "файл <code>hello.py</code> запускается и печатает приветствие.": "the file <code>hello.py</code> runs and prints a greeting.",
- "числа пишут без кавычек: <code>\"2\"</code> в кавычках — это уже текст.": "numbers are written without quotes: <code>\"2\"</code> in quotes is already text."
+ "числа пишут без кавычек: <code>\"2\"</code> в кавычках — это уже текст.": "numbers are written without quotes: <code>\"2\"</code> in quotes is already text.",
+ "<span>13</span> <span>уроков</span>": "<span>13</span> <span>lessons</span>"
 }
