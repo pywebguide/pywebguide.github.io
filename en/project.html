@@ -104,6 +104,7 @@
             </ul></div>
             <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Build</p><ul aria-labelledby="nav-group-2">
               <li><a href="setup.html">Setting up your computer</a></li>
+              <li><a href="django-next.html">Django next steps</a></li>
               <li><a href="project2.html">Second project</a></li>
               <li><a href="deploy.html">Deployment</a></li>
             </ul></div>
@@ -269,6 +270,7 @@ def index():
         return redirect(url_for("index"))
     return render_template_string(PAGE, tasks=tasks)</code></pre>
               </div>
+              <p class="download-row step-download"><a href="../examples/flask-todo/steps/step-2.zip" download>Code after this step (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Expected result</p>
                 <p>The terminal prints nothing yet: the file has only been created, and we start the server in the next step. The project folder now contains two items:</p>
@@ -390,6 +392,7 @@ def delete(task_id):
                 <button class="btn btn-primary" type="button" data-try-start>Try it in the browser</button>
                 <p class="note" data-try-note>This same code will run right here: Python and Flask load into the browser (about 15 MB, only on the first click). Add and delete tasks in the window below, just like on your own computer.</p>
               </div>
+              <p class="download-row step-download"><a href="../examples/flask-todo/steps/step-5.zip" download>Code after this step (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Expected result</p>
                 <p>After you save, the server started with <code>--debug</code> restarts by itself, and a database file appears next to <code>app.py</code>:</p>
@@ -550,6 +553,7 @@ python manage.py startapp tasks</code></pre>
               </div>
                 </div>
               </div>
+              <p class="download-row step-download"><a href="../examples/django-todo/steps/step-1.zip" download>Code after this step (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Expected result</p>
                 <p>The last line after installation:</p>
@@ -595,6 +599,7 @@ tasks/
     'tasks',
 ]</code></pre>
               </div>
+              <p class="download-row step-download"><a href="../examples/django-todo/steps/step-2.zip" download>Code after this step (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Expected result</p>
                 <p>Check the settings with <code>python manage.py check</code>. If everything is right, it answers:</p>
@@ -635,6 +640,7 @@ from .models import Task
 admin.site.register(Task)</code></pre>
                 </div>
               </div>
+              <p class="download-row step-download"><a href="../examples/django-todo/steps/step-3.zip" download>Code after this step (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Expected result</p>
                 <p>Nothing visible changes yet: the table for the model appears in the database only after the migrations in step 4. To make sure the code has no typos, use the same command <code>python manage.py check</code>:</p>
@@ -655,6 +661,7 @@ admin.site.register(Task)</code></pre>
 python manage.py migrate
 python manage.py createsuperuser</code></pre>
               </div>
+              <p class="download-row step-download"><a href="../examples/django-todo/steps/step-4.zip" download>Code after this step (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Expected result</p>
                 <p>The first command creates a migration file, the second creates the tables in the database, and the third asks questions:</p>
@@ -728,6 +735,7 @@ urlpatterns = [
 ]</code></pre>
                 </div>
               </div>
+              <p class="download-row step-download"><a href="../examples/django-todo/steps/step-5.zip" download>Code after this step (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Expected result</p>
                 <p>We start the server in the next step. For now, check that the template is in the right place:</p>
@@ -785,6 +793,7 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = ["title"]</code></pre>
               </div>
+              <p class="download-row step-download"><a href="../examples/django-todo/steps/step-7.zip" download>Code after this step (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Expected result</p>
                 <p>The page has not changed yet: the form appears once you update the view and the template in steps 8 and 9. <code>python manage.py check</code> should answer:</p>
@@ -851,6 +860,7 @@ urlpatterns = [
 ]</code></pre>
                 </div>
               </div>
+              <p class="download-row step-download"><a href="../examples/django-todo/steps/step-8.zip" download>Code after this step (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Expected result</p>
                 <p><code>python manage.py check</code> again answers <code>System check identified no issues (0 silenced).</code> The main page looks the same as before: the view already passes the form, but the old template does not show it. If the server is running, it restarts by itself after you save the files.</p>
@@ -895,6 +905,7 @@ urlpatterns = [
   {% endfor %}
 &lt;/ul&gt;</code></pre>
               </div>
+              <p class="download-row step-download"><a href="../examples/django-todo/steps/step-9.zip" download>Code after this step (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Expected result</p>
                 <p>Reload <code>http://127.0.0.1:8000/</code>: an input field and a “Добавить” (Add) button appear above the list. Django built the field from the model; in the page source (<kbd>Ctrl</kbd> + <kbd>U</kbd>, on macOS <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>U</kbd>) it looks like this:</p>
@@ -990,6 +1001,7 @@ urlpatterns = [
           <div class="panel reveal stack-gap">
             <h3>What's next</h3>
             <ul class="list">
+              <li>Sort the tasks into categories, rewrite the views as <code>ListView</code> and <code>CreateView</code> classes and cover them with tests — continued in <a href="../django-next.html" hreflang="ru">“Django next steps”</a>.</li>
               <li>Show unfinished tasks first: <code>Task.objects.order_by("done", "-id")</code>.</li>
               <li>Work through the official Django tutorial: it continues the same logic with a polls example.</li>
               <li>Put the app online: the guide is in the <a href="deploy.html">“Deployment”</a> section.</li>
@@ -1091,7 +1103,7 @@ urlpatterns = [
       <div class="footer-links">
         <div><strong>Start</strong><ul><li><a href="start.html">Python from scratch</a></li><li><a href="html-css.html">HTML and CSS</a></li><li><a href="glossary.html">Glossary</a></li><li><a href="playground.html">Sandbox</a></li></ul></div>
         <div><strong>Understand</strong><ul><li><a href="about.html">About Python</a></li><li><a href="frameworks.html">Frameworks</a></li><li><a href="databases.html">Databases</a></li><li><a href="templates.html">Templates and forms</a></li><li><a href="auth.html">Authentication</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Testing</a></li><li><a href="git.html">Git</a></li></ul></div>
-        <div><strong>Build</strong><ul><li><a href="setup.html">Setting up your computer</a></li><li><a href="project.html">First project</a></li><li><a href="project2.html">Second project</a></li><li><a href="deploy.html">Deployment</a></li></ul></div>
+        <div><strong>Build</strong><ul><li><a href="setup.html">Setting up your computer</a></li><li><a href="project.html">First project</a></li><li><a href="django-next.html">Django next steps</a></li><li><a href="project2.html">Second project</a></li><li><a href="deploy.html">Deployment</a></li></ul></div>
         <div><strong>Practice</strong><ul><li><a href="practice.html">Exercises</a></li><li><a href="cheatsheet.html">Cheat sheet</a></li><li><a href="exam.html">Final test</a></li></ul></div>
         <div><strong>Site</strong><ul><li><a href="course.html">Full course</a></li><li><a href="progress.html">My progress</a></li><li><a href="contacts.html">Contact</a></li></ul></div>
       </div>

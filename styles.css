@@ -4692,6 +4692,11 @@ html[lang="kk"] .cta-open .band-title {
   margin-top: 16px;
 }
 
+/* «Код после этого шага (.zip)»: между окном кода и «Ожидаемым результатом» */
+.project-step > .step-download {
+  margin: 14px 0 0;
+}
+
 /* «Попробовать в браузере»: окно с адресной строкой */
 .try-app {
   margin: 16px 0;

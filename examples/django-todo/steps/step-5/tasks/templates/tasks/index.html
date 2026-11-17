@@ -1,0 +1,8 @@
+<h1>Мои задачи</h1>
+<ul>
+  {% for task in tasks %}
+    <li>{{ task.title }}{% if task.done %} (готово){% endif %}</li>
+  {% empty %}
+    <li>Задач пока нет — добавьте их в админке.</li>
+  {% endfor %}
+</ul>

@@ -1289,7 +1289,8 @@
       "roadmap": { name: t("Дорожная карта"), total: 5, url: "index.html" },
       "project-flask": { name: t("Первый проект: Flask"), total: 6, url: "project.html#flask" },
       "project-django": { name: t("Первый проект: Django"), total: 10, url: "project.html#django" },
-      "project-blog": { name: t("Второй проект: API блога"), total: 7, url: "project2.html" }
+      "project-blog": { name: t("Второй проект: API блога"), total: 7, url: "project2.html" },
+      "django-next": { name: t("Django дальше: связи и классы"), total: 9, url: "django-next.html" }
     };
     const body = dash.querySelector("[data-dash-rows]");
     const message = document.querySelector("[data-dash-message]");

@@ -1,0 +1,26 @@
+<h1>Мои задачи</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.title }}
+  <button>Добавить</button>
+  {{ form.title.errors }}
+</form>
+
+<ul>
+  {% for task in tasks %}
+    <li>
+      {% if task.done %}<s>{{ task.title }}</s>{% else %}{{ task.title }}{% endif %}
+      <form method="post" action="{% url 'toggle' task.pk %}">
+        {% csrf_token %}
+        <button>{% if task.done %}Вернуть{% else %}Готово{% endif %}</button>
+      </form>
+      <form method="post" action="{% url 'delete' task.pk %}">
+        {% csrf_token %}
+        <button>Удалить</button>
+      </form>
+    </li>
+  {% empty %}
+    <li>Задач пока нет.</li>
+  {% endfor %}
+</ul>

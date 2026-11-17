@@ -12,6 +12,7 @@ import build_sw  # noqa: E402
 import check_site  # noqa: E402
 import codeblocks  # noqa: E402
 import layout  # noqa: E402
+import sync_examples  # noqa: E402
 import translate  # noqa: E402
 
 
@@ -117,6 +118,25 @@ class Practice(unittest.TestCase):
         page = build_practice.build("en")
         for slug, task in build_practice.TASKS.items():
             self.assertNotIn(task["title"]["ru"] + "</h3>", page, slug)
+
+
+class StepSnapshots(unittest.TestCase):
+    def test_snapshots_only_for_steps_that_change_files(self):
+        steps = sorted(sync_examples.snapshots())
+        self.assertEqual([n for p, n in steps if p == "flask-todo"], [2, 5])
+        self.assertEqual([n for p, n in steps if p == "django-todo"], [1, 2, 3, 4, 5, 7, 8, 9])
+
+    def test_links_are_stable(self):
+        page = (ROOT / "project.html").read_text(encoding="utf-8")
+        snaps = sync_examples.snapshots()
+        once = sync_examples.page_with_links(page, snaps)
+        self.assertEqual(once, sync_examples.page_with_links(once, snaps))
+        self.assertEqual(once.count(sync_examples.LINK_TEXT), len(snaps))
+
+    def test_zip_does_not_depend_on_order(self):
+        a = sync_examples.pack_files("x", {"b.py": b"1", "A.txt": b"2\r\n"})
+        b = sync_examples.pack_files("x", {"A.txt": b"2\n", "b.py": b"1"})
+        self.assertEqual(a, b)
 
 
 class ServiceWorker(unittest.TestCase):

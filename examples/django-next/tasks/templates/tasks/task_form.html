@@ -1,0 +1,9 @@
+<h1>Новая задача</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button>Добавить</button>
+</form>
+
+<p><a href="{% url 'index' %}">Вернуться к списку</a></p>

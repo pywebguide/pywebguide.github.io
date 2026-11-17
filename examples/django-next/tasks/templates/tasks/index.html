@@ -1,0 +1,35 @@
+<h1>{% if current %}Задачи: {{ current.name }}{% else %}Мои задачи{% endif %}</h1>
+
+<nav>
+  <a href="{% url 'index' %}">Все</a>
+  {% for category in categories %}
+    · <a href="{% url 'category' category.pk %}">{{ category.name }}</a>
+  {% endfor %}
+</nav>
+
+<form method="post" action="{% url 'add' %}">
+  {% csrf_token %}
+  {{ form.title }}
+  {{ form.category }}
+  <button>Добавить</button>
+  {{ form.title.errors }}
+</form>
+
+<ul>
+  {% for task in tasks %}
+    <li>
+      {% if task.done %}<s>{{ task.title }}</s>{% else %}{{ task.title }}{% endif %}
+      {% if task.category %}<small>{{ task.category.name }}</small>{% endif %}
+      <form method="post" action="{% url 'toggle' task.pk %}">
+        {% csrf_token %}
+        <button>{% if task.done %}Вернуть{% else %}Готово{% endif %}</button>
+      </form>
+      <form method="post" action="{% url 'delete' task.pk %}">
+        {% csrf_token %}
+        <button>Удалить</button>
+      </form>
+    </li>
+  {% empty %}
+    <li>Задач пока нет.</li>
+  {% endfor %}
+</ul>

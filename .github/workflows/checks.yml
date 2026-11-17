@@ -30,10 +30,16 @@ jobs:
         run: python tools/build_practice.py --check
       - name: Примеры Django в настоящем проекте
         run: python tools/check_django.py
-      - name: Полный код первого проекта совпадает со страницей и проходит тесты
+      - name: Полный код первого проекта и снимки шагов совпадают со страницей, итоговый код проходит тесты
         run: |
           python tools/sync_examples.py --check
           cd examples/flask-todo && python -m unittest test_app && cd ../django-todo && python manage.py test
+      - name: Код после каждого шага первого проекта запускается (Flask импортируется, Django проходит check)
+        run: python tools/check_steps.py
+      - name: «Django дальше» — шаги страницы дают тот же вывод, итоговый код проходит тесты
+        run: |
+          python tools/check_django_next.py
+          cd examples/django-next && python manage.py test
       - name: Переводы kk/ и en/ не отстали от русских страниц
         run: python tools/translate.py check
       - name: Версия кэша service worker актуальна

@@ -1,0 +1,1217 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Django дальше: связи моделей и представления на классах — PyWeb Guide</title>
+
+  <meta name="description" content="Продолжение первого проекта на Django 6.1: модель Category и ForeignKey, миграция, related_name, select_related, ListView и CreateView вместо функций и тесты к ним.">
+  <link rel="canonical" href="https://pywebguide.github.io/django-next.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/django-next.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/django-next.html">
+  <link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/django-next.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/django-next.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Django дальше: связи моделей и представления на классах — PyWeb Guide">
+  <meta property="og:description" content="Продолжение первого проекта на Django 6.1: модель Category и ForeignKey, миграция, related_name, select_related, ListView и CreateView вместо функций и тесты к ним.">
+  <meta property="og:url" content="https://pywebguide.github.io/django-next.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Плакат PyWeb Guide: первый сайт на Python, бесплатный курс для тех, кто никогда не программировал">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffd249">
+
+
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <link rel="preload" href="assets/fonts/sofia-sans-extra-condensed-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LearningResource",
+      "name": "Django дальше: связи моделей и представления на классах",
+      "description": "Категории и ForeignKey, select_related, ListView и CreateView, тесты представлений на Django 6.1.",
+      "url": "https://pywebguide.github.io/django-next.html",
+      "inLanguage": "ru",
+      "educationalLevel": "Средний",
+      "learningResourceType": "Пошаговое руководство",
+      "timeRequired": "PT1H30M",
+      "dateModified": "2026-11-17",
+      "isPartOf": { "@type": "WebSite", "name": "PyWeb Guide", "url": "https://pywebguide.github.io/" },
+      "author": { "@type": "Person", "name": "Жангужин Е. Е." }
+    }
+  </script>
+</head>
+
+<body data-band="yellow" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Основная навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">С нуля</a></li>
+          <li><a class="nav-link" href="course.html">Весь курс</a></li>
+          <li><a class="nav-link" href="project.html">Первый проект</a></li>
+          <li><a class="nav-link" href="playground.html">Песочница</a></li>
+          <li><a class="nav-link" href="glossary.html">Словарь</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">Ещё <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Понять</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">О Python</a></li>
+              <li><a href="frameworks.html">Фреймворки</a></li>
+              <li><a href="databases.html">Базы данных</a></li>
+              <li><a href="templates.html">Шаблоны и формы</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Тесты</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Сделать</p><ul aria-labelledby="nav-group-2">
+              <li><a href="setup.html">Подготовка компьютера</a></li>
+              <li><a href="django-next.html" aria-current="page">Django дальше</a></li>
+              <li><a href="project2.html">Второй проект</a></li>
+              <li><a href="deploy.html">Публикация</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Задачи</a></li>
+              <li><a href="cheatsheet.html">Шпаргалка</a></li>
+              <li><a href="exam.html">Финальный тест</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="progress.html">Мой прогресс</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Язык сайта">
+            <a href="django-next.html" hreflang="ru" lang="ru" aria-current="true">РУС</a>
+            <a href="kk/django-next.html" hreflang="kk" lang="kk">ҚАЗ</a>
+            <a href="en/django-next.html" hreflang="en" lang="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Светлая тема">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+      <div class="page-band"><div class="container page-hero page-hero--picture">
+        <nav class="breadcrumb" aria-label="Хлебные крошки">
+          <a href="index.html">Главная</a>
+          <span aria-hidden="true">/</span>
+          <span>Django дальше</span>
+        </nav>
+        <h1>Django дальше: связи и представления на классах</h1>
+        <p class="lead">
+          Продолжаем список задач из первого проекта на Django. Разложим задачи по категориям — это первая связь между моделями,
+          уберём лишние запросы к базе, перепишем представления на готовые классы Django и закрепим всё тестами. Около полутора часов.
+        </p>
+        <p class="note">Это продолжение <a href="project.html#django">варианта на Django</a> из «Первого проекта». Про модели и миграции — в разделе <a href="databases.html">«Базы данных»</a>.</p>
+
+        <nav class="page-toc" aria-label="Содержание страницы">
+          <a href="#prep">Что понадобится</a>
+          <a href="#steps">9 шагов</a>
+          <a href="#compare">Функция или класс</a>
+          <a href="#errors">Частые ошибки</a>
+          <a href="#sources">Источники</a>
+        </nav>
+      <img class="band-picture" src="assets/img/card-catalog.webp" width="900" height="675" alt="Ряды ящиков карточного каталога в Библиотеке Конгресса" decoding="async" fetchpriority="high">
+</div></div>
+
+      <section class="section" id="prep" aria-labelledby="prep-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="prep-title">Что понадобится</h2>
+            <p>Начинаем с того места, где закончился первый проект.</p>
+            <p class="download-row"><a class="btn btn-secondary" href="examples/django-next.zip" download>Скачать готовый код (zip, 9 КБ)</a> <a href="https://github.com/pywebguide/pywebguide.github.io/tree/main/examples/django-next" rel="noopener">Посмотреть на GitHub</a></p>
+          </div>
+
+          <div class="panel reveal">
+            <ul class="check-list">
+              <li>Пройденный <a href="project.html#django">вариант на Django</a> (шаги 1–10). Нет своего — скачайте <a href="examples/django-todo.zip" download>код первого проекта</a> и выполните <code>python manage.py migrate</code>.</li>
+              <li>Включённое окружение <code>.venv</code> с Django 6.1: команда <code>python -m django --version</code> покажет версию.</li>
+              <li>Пара задач в базе — так будет видно, что после миграции старые данные остались на месте.</li>
+            </ul>
+          </div>
+
+          <p class="notice" role="note">
+            <strong>Как работать с шагами.</strong> Если блок подписан именем файла, замените файл целиком: так проще не пропустить импорт.
+            Сервер <code>runserver</code> может работать всё время, команды вводите во втором окне терминала. Пройденные шаги сохраняются в этом браузере.
+          </p>
+        </div>
+      </section>
+
+      <section class="section project-track" id="steps" aria-labelledby="steps-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="steps-title">Категории, классы и тесты</h2>
+            <p>Три части: связь между моделями, представления на классах и тесты к ним.</p>
+          </div>
+
+          <div class="progress-box reveal" data-progress="django-next">
+            <p class="progress-label" role="status" aria-live="polite"><span data-progress-count>0</span> из 9 шагов пройдено</p>
+            <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
+            <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Сбросить прогресс</button>
+          </div>
+
+          <ol class="project-steps" data-progress-list="django-next">
+            <li class="project-step project-part reveal">
+              <p class="part-title">Часть 1. Связи между моделями</p>
+              <h3>Шаг 1. Опишите категорию и свяжите с ней задачу</h3>
+              <p>
+                Зачем отдельная модель, если можно добавить задаче текстовое поле «категория»? Текст пришлось бы писать в каждой задаче:
+                «Учёба» и «учеба» стали бы разными категориями, а переименовать категорию пришлось бы во всех задачах по очереди.
+                Отдельная таблица хранит каждую категорию один раз, а задача ссылается на неё по номеру. Такая связь называется
+                «многие к одному»: у категории много задач, у задачи одна категория. В Django её описывает поле <code>ForeignKey</code>.
+              </p>
+              <div class="code-grid">
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/models.py</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>from django.db import models
+
+class Category(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    class Meta:
+        ordering = ["name"]
+        verbose_name_plural = "categories"
+
+    def __str__(self):
+        return self.name
+
+class Task(models.Model):
+    title = models.CharField(max_length=200)
+    done = models.BooleanField(default=False)
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="tasks",
+    )
+
+    def __str__(self):
+        return self.title</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/admin.py</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>from django.contrib import admin
+
+from .models import Category, Task
+
+admin.site.register(Category)
+
+@admin.register(Task)
+class TaskAdmin(admin.ModelAdmin):
+    list_display = ["title", "category", "done"]
+    list_filter = ["category", "done"]</code></pre>
+                </div>
+              </div>
+              <ul class="list">
+                <li><code>ForeignKey(Category, …)</code> добавит в таблицу задач столбец <code>category_id</code> — номер категории.</li>
+                <li><code>on_delete=models.SET_NULL</code> говорит, что делать с задачами, когда категорию удаляют: оставить их без категории. <code>CASCADE</code> удалил бы задачи вместе с категорией, <code>PROTECT</code> запретил бы удалять категорию, пока в ней есть задачи.</li>
+                <li><code>null=True</code> разрешает пустое значение в базе: у задач из первого проекта категории нет. <code>blank=True</code> разрешает оставить поле пустым в форме.</li>
+                <li><code>related_name="tasks"</code> — имя обратной связи: у каждой категории появится список её задач <code>category.tasks</code>. Он пригодится в шаге 3.</li>
+                <li><code>unique=True</code> не даст завести две одинаковые категории, а <code>ordering</code> выводит категории по алфавиту везде, где их показывают.</li>
+                <li><code>TaskAdmin</code> показывает категорию в списке задач админки и добавляет фильтр по категории и отметке «готово».</li>
+              </ul>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Проверка кода проходит:</p>
+                <pre class="step-output" data-check="check">System check identified no issues (0 silenced).</pre>
+                <p class="step-result-note">А вот главная страница, если сервер запущен, пока отвечает ошибкой <code>no such column: tasks_task.category_id</code>: модель уже знает о новом поле, а таблица в базе — ещё нет. Это исправит миграция в следующем шаге.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="1"> Шаг пройден</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Шаг 2. Перенесите изменения в базу</h3>
+              <p>
+                Команда <code>makemigrations</code> сравнивает модели с прошлыми миграциями и записывает разницу в новый файл — это план изменений.
+                <code>migrate</code> выполняет план: создаёт таблицу категорий и добавляет столбец в таблицу задач.
+                Вопросов Django не задаст: благодаря <code>null=True</code> у старых задач можно оставить категорию пустой.
+                Без него <code>makemigrations</code> спросил бы, что записать в уже существующие строки (см. <a href="#errors">частые ошибки</a>).
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Копировать</button>
+                </div>
+                <pre><code>python manage.py makemigrations
+python manage.py migrate</code></pre>
+              </div>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Первая команда создала файл миграции:</p>
+                <pre class="step-output" data-check="makemigrations">Migrations for 'tasks':
+  tasks/migrations/0002_category_task_category.py
+    + Create model Category
+    + Add field category to task</pre>
+                <p>Вторая применила его:</p>
+                <pre class="step-output" data-check="migrate">Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions, tasks
+Running migrations:
+  Applying tasks.0002_category_task_category... OK</pre>
+                <p class="step-result-note">Старые задачи остались на месте, только категории у них пока нет. Главная страница снова открывается.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="2"> Шаг пройден</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Шаг 3. Заполните категории и пройдите по связи в обе стороны</h3>
+              <p>Откройте консоль Django и вводите строки по одной. Django 6.1 сам импортирует модели в консоль, писать <code>import</code> не нужно.</p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Копировать</button>
+                </div>
+                <pre><code>python manage.py shell</code></pre>
+              </div>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>python manage.py shell</span>
+                  <button class="copy-btn" type="button">Копировать</button>
+                </div>
+                <pre><code>study = Category.objects.create(name="Учёба")
+home = Category.objects.create(name="Дом")
+Task.objects.create(title="Сдать лабораторную", category=study)
+Task.objects.create(title="Повторить SQL", category=study)
+Task.objects.create(title="Вынести мусор", category=home)
+Category.objects.all()
+study.tasks.all()
+study.tasks.count()
+task = Task.objects.get(title="Вынести мусор")
+task.category
+Task.objects.filter(category__name="Учёба")</code></pre>
+              </div>
+              <ul class="list">
+                <li><code>task.category</code> — прямая связь, от задачи к её категории.</li>
+                <li><code>study.tasks</code> — обратная связь, от категории к её задачам. Имя <code>tasks</code> задал <code>related_name</code>; без него Django назвал бы её <code>task_set</code>.</li>
+                <li><code>category__name</code> в фильтре — переход по связи: двойное подчёркивание означает «перейди к категории и возьми её поле <code>name</code>». Django сам соединит таблицы в SQL.</li>
+              </ul>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>В консоли получится так:</p>
+                <pre class="step-output" data-check="shell">&gt;&gt;&gt; study = Category.objects.create(name="Учёба")
+&gt;&gt;&gt; home = Category.objects.create(name="Дом")
+&gt;&gt;&gt; Task.objects.create(title="Сдать лабораторную", category=study)
+&lt;Task: Сдать лабораторную&gt;
+&gt;&gt;&gt; Task.objects.create(title="Повторить SQL", category=study)
+&lt;Task: Повторить SQL&gt;
+&gt;&gt;&gt; Task.objects.create(title="Вынести мусор", category=home)
+&lt;Task: Вынести мусор&gt;
+&gt;&gt;&gt; Category.objects.all()
+&lt;QuerySet [&lt;Category: Дом&gt;, &lt;Category: Учёба&gt;]&gt;
+&gt;&gt;&gt; study.tasks.all()
+&lt;QuerySet [&lt;Task: Сдать лабораторную&gt;, &lt;Task: Повторить SQL&gt;]&gt;
+&gt;&gt;&gt; study.tasks.count()
+2
+&gt;&gt;&gt; task = Task.objects.get(title="Вынести мусор")
+&gt;&gt;&gt; task.category
+&lt;Category: Дом&gt;
+&gt;&gt;&gt; Task.objects.filter(category__name="Учёба")
+&lt;QuerySet [&lt;Task: Сдать лабораторную&gt;, &lt;Task: Повторить SQL&gt;]&gt;</pre>
+                <p class="step-result-note">Перед первой строкой <code>&gt;&gt;&gt;</code> консоль выводит версию Python и строку <code>… objects imported automatically</code> — так Django сообщает, сколько имён импортировал сам. Выйти из консоли — <code>exit()</code>.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="3"> Шаг пройден</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Шаг 4. Выберите категорию в форме и отфильтруйте список</h3>
+              <p>
+                В форму добавляем поле <code>category</code>: <code>ModelForm</code> сам сделает из него выпадающий список категорий из базы.
+                <code>labels</code> задаёт подписи полей по-русски — без них Django показал бы имена полей Title и Category.
+                Новое представление <code>category</code> показывает задачи одной категории. Замените четыре файла целиком.
+              </p>
+              <div class="code-grid">
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/forms.py</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>from django import forms
+
+from .models import Task
+
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ["title", "category"]
+        labels = {"title": "Задача", "category": "Категория"}</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/views.py</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
+
+from .forms import TaskForm
+from .models import Category, Task
+
+def index(request):
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("index")
+    else:
+        form = TaskForm()
+    return render(request, "tasks/index.html", {
+        "tasks": Task.objects.all(),
+        "categories": Category.objects.all(),
+        "form": form,
+    })
+
+def category(request, pk):
+    current = get_object_or_404(Category, pk=pk)
+    return render(request, "tasks/index.html", {
+        "tasks": current.tasks.all(),
+        "categories": Category.objects.all(),
+        "current": current,
+        "form": TaskForm(initial={"category": current}),
+    })
+
+@require_POST
+def toggle(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.done = not task.done
+    task.save()
+    return redirect("index")
+
+@require_POST
+def delete(request, pk):
+    get_object_or_404(Task, pk=pk).delete()
+    return redirect("index")</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>mysite/urls.py</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>from django.contrib import admin
+from django.urls import path
+
+from tasks import views
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", views.index, name="index"),
+    path("category/&lt;int:pk&gt;/", views.category, name="category"),
+    path("tasks/&lt;int:pk&gt;/toggle/", views.toggle, name="toggle"),
+    path("tasks/&lt;int:pk&gt;/delete/", views.delete, name="delete"),
+]</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/templates/tasks/index.html</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>&lt;h1&gt;{% if current %}Задачи: {{ current.name }}{% else %}Мои задачи{% endif %}&lt;/h1&gt;
+
+&lt;nav&gt;
+  &lt;a href="{% url 'index' %}"&gt;Все&lt;/a&gt;
+  {% for category in categories %}
+    · &lt;a href="{% url 'category' category.pk %}"&gt;{{ category.name }}&lt;/a&gt;
+  {% endfor %}
+&lt;/nav&gt;
+
+&lt;form method="post" action="{% url 'index' %}"&gt;
+  {% csrf_token %}
+  {{ form.title }}
+  {{ form.category }}
+  &lt;button&gt;Добавить&lt;/button&gt;
+  {{ form.title.errors }}
+&lt;/form&gt;
+
+&lt;ul&gt;
+  {% for task in tasks %}
+    &lt;li&gt;
+      {% if task.done %}&lt;s&gt;{{ task.title }}&lt;/s&gt;{% else %}{{ task.title }}{% endif %}
+      {% if task.category %}&lt;small&gt;{{ task.category.name }}&lt;/small&gt;{% endif %}
+      &lt;form method="post" action="{% url 'toggle' task.pk %}"&gt;
+        {% csrf_token %}
+        &lt;button&gt;{% if task.done %}Вернуть{% else %}Готово{% endif %}&lt;/button&gt;
+      &lt;/form&gt;
+      &lt;form method="post" action="{% url 'delete' task.pk %}"&gt;
+        {% csrf_token %}
+        &lt;button&gt;Удалить&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/li&gt;
+  {% empty %}
+    &lt;li&gt;Задач пока нет.&lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;</code></pre>
+                </div>
+              </div>
+              <ul class="list">
+                <li><code>get_object_or_404</code> отвечает страницей 404, если категории с таким номером нет, — вместо ошибки сервера 500.</li>
+                <li><code>current.tasks.all()</code> — та самая обратная связь из шага 3: задачи только этой категории.</li>
+                <li><code>initial</code> заранее выбирает в форме текущую категорию: задача, добавленная со страницы «Учёба», сразу попадёт в «Учёбу».</li>
+                <li>Форма отправляется на главную (<code>action="{% url 'index' %}"</code>): представление <code>category</code> только показывает список и не сохраняет.</li>
+              </ul>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Над формой появились ссылки «Все · Дом · Учёба», а рядом с полем — выпадающий список. В коде страницы (<kbd>Ctrl</kbd> + <kbd>U</kbd>) он выглядит так:</p>
+                <pre class="step-output" data-check="get:/">&lt;select name="category" id="id_category"&gt;
+  &lt;option value="" selected&gt;- Select an option -&lt;/option&gt;
+
+  &lt;option value="2"&gt;Дом&lt;/option&gt;
+
+  &lt;option value="1"&gt;Учёба&lt;/option&gt;
+
+&lt;/select&gt;</pre>
+                <p>Ссылка «Дом» ведёт на <code>/category/2/</code>, там видна только задача «Вынести мусор». Адрес <code>/category/999/</code> отвечает «Page not found (404)».</p>
+                <p class="step-result-note">Пустой вариант «- Select an option -» — это «без категории»: его разрешает <code>blank=True</code>. Номера категорий у вас могут быть другими.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="4"> Шаг пройден</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Шаг 5. Уберите лишние запросы: select_related</h3>
+              <p>
+                Шаблон выводит <code>{{ task.category.name }}</code> у каждой задачи. <code>Task.objects.all()</code> загружает только задачи,
+                а за категорией каждой задачи Django сходит в базу отдельно — в тот момент, когда шаблон к ней обратится.
+                Три задачи — четыре запроса, сто задач — сто один. Это называют проблемой N+1: страница тормозит тем сильнее, чем больше данных.
+                Посчитаем запросы в консоли:
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>python manage.py shell</span>
+                  <button class="copy-btn" type="button">Копировать</button>
+                </div>
+                <pre><code>from django.db import connection
+from django.test.utils import CaptureQueriesContext
+with CaptureQueriesContext(connection) as queries:
+    names = [str(task.category) for task in Task.objects.all()]
+
+len(queries)
+with CaptureQueriesContext(connection) as queries:
+    names = [str(task.category) for task in Task.objects.select_related("category")]
+
+len(queries)
+print(queries[0]["sql"])</code></pre>
+              </div>
+              <p>
+                <code>select_related("category")</code> соединяет две таблицы в одном запросе (<code>LEFT OUTER JOIN</code>), и задачи приходят сразу с категориями.
+                Замените в <code>tasks/views.py</code> функцию <code>index</code>: изменилась одна строка, <code>"tasks": …</code>.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>tasks/views.py — функция index</span>
+                  <button class="copy-btn" type="button">Копировать</button>
+                </div>
+                <pre><code>def index(request):
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("index")
+    else:
+        form = TaskForm()
+    return render(request, "tasks/index.html", {
+        "tasks": Task.objects.select_related("category"),
+        "categories": Category.objects.all(),
+        "form": form,
+    })</code></pre>
+              </div>
+              <p>
+                На странице категории так делать не нужно: задачи взяты через <code>current.tasks</code>, и Django уже знает их категорию, поэтому лишних запросов там нет.
+                Для обратной стороны связи — например, вывести у каждой категории её задачи — есть <code>prefetch_related</code>: он загружает всё вторым запросом.
+              </p>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Без <code>select_related</code> — четыре запроса, с ним — один:</p>
+                <pre class="step-output" data-check="shell">&gt;&gt;&gt; from django.db import connection
+&gt;&gt;&gt; from django.test.utils import CaptureQueriesContext
+&gt;&gt;&gt; with CaptureQueriesContext(connection) as queries:
+...     names = [str(task.category) for task in Task.objects.all()]
+...
+&gt;&gt;&gt; len(queries)
+4
+&gt;&gt;&gt; with CaptureQueriesContext(connection) as queries:
+...     names = [str(task.category) for task in Task.objects.select_related("category")]
+...
+&gt;&gt;&gt; len(queries)
+1
+&gt;&gt;&gt; print(queries[0]["sql"])
+SELECT "tasks_task"."id", "tasks_task"."title", "tasks_task"."done", "tasks_task"."category_id", "tasks_category"."id", "tasks_category"."name" FROM "tasks_task" LEFT OUTER JOIN "tasks_category" ON ("tasks_task"."category_id" = "tasks_category"."id")</pre>
+                <p class="step-result-note">Число у вас может отличаться: без <code>select_related</code> получается один запрос плюс по одному на каждую задачу с категорией. За пустой категорией старых задач Django в базу не ходит. Пустая строка после <code>...</code> — нажатие <kbd>Enter</kbd>, которое закрывает блок <code>with</code>.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="5"> Шаг пройден</label>
+            </li>
+
+            <li class="project-step project-part reveal">
+              <p class="part-title">Часть 2. Представления на классах</p>
+              <h3>Шаг 6. Добавление задачи — CreateView</h3>
+              <p>
+                Функция <code>index</code> сейчас делает две работы: показывает список (GET) и сохраняет форму (POST).
+                Для типовой работы в Django есть готовые классы — обобщённые представления. Начнём с сохранения:
+                <code>CreateView</code> сам создаёт форму, проверяет её, сохраняет задачу и перенаправляет. Нам остаётся указать модель, форму и адрес возврата.
+              </p>
+              <div class="code-grid">
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/views.py</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
+from django.views.decorators.http import require_POST
+from django.views.generic import CreateView
+
+from .forms import TaskForm
+from .models import Category, Task
+
+def index(request):
+    return render(request, "tasks/index.html", {
+        "tasks": Task.objects.select_related("category"),
+        "categories": Category.objects.all(),
+        "form": TaskForm(),
+    })
+
+def category(request, pk):
+    current = get_object_or_404(Category, pk=pk)
+    return render(request, "tasks/index.html", {
+        "tasks": current.tasks.all(),
+        "categories": Category.objects.all(),
+        "current": current,
+        "form": TaskForm(initial={"category": current}),
+    })
+
+class TaskCreateView(CreateView):
+    model = Task
+    form_class = TaskForm
+    success_url = reverse_lazy("index")
+
+@require_POST
+def toggle(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.done = not task.done
+    task.save()
+    return redirect("index")
+
+@require_POST
+def delete(request, pk):
+    get_object_or_404(Task, pk=pk).delete()
+    return redirect("index")</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>mysite/urls.py</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>from django.contrib import admin
+from django.urls import path
+
+from tasks import views
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", views.index, name="index"),
+    path("category/&lt;int:pk&gt;/", views.category, name="category"),
+    path("tasks/add/", views.TaskCreateView.as_view(), name="add"),
+    path("tasks/&lt;int:pk&gt;/toggle/", views.toggle, name="toggle"),
+    path("tasks/&lt;int:pk&gt;/delete/", views.delete, name="delete"),
+]</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/templates/tasks/index.html</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>&lt;h1&gt;{% if current %}Задачи: {{ current.name }}{% else %}Мои задачи{% endif %}&lt;/h1&gt;
+
+&lt;nav&gt;
+  &lt;a href="{% url 'index' %}"&gt;Все&lt;/a&gt;
+  {% for category in categories %}
+    · &lt;a href="{% url 'category' category.pk %}"&gt;{{ category.name }}&lt;/a&gt;
+  {% endfor %}
+&lt;/nav&gt;
+
+&lt;form method="post" action="{% url 'add' %}"&gt;
+  {% csrf_token %}
+  {{ form.title }}
+  {{ form.category }}
+  &lt;button&gt;Добавить&lt;/button&gt;
+  {{ form.title.errors }}
+&lt;/form&gt;
+
+&lt;ul&gt;
+  {% for task in tasks %}
+    &lt;li&gt;
+      {% if task.done %}&lt;s&gt;{{ task.title }}&lt;/s&gt;{% else %}{{ task.title }}{% endif %}
+      {% if task.category %}&lt;small&gt;{{ task.category.name }}&lt;/small&gt;{% endif %}
+      &lt;form method="post" action="{% url 'toggle' task.pk %}"&gt;
+        {% csrf_token %}
+        &lt;button&gt;{% if task.done %}Вернуть{% else %}Готово{% endif %}&lt;/button&gt;
+      &lt;/form&gt;
+      &lt;form method="post" action="{% url 'delete' task.pk %}"&gt;
+        {% csrf_token %}
+        &lt;button&gt;Удалить&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/li&gt;
+  {% empty %}
+    &lt;li&gt;Задач пока нет.&lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/templates/tasks/task_form.html</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>&lt;h1&gt;Новая задача&lt;/h1&gt;
+
+&lt;form method="post"&gt;
+  {% csrf_token %}
+  {{ form.as_p }}
+  &lt;button&gt;Добавить&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;p&gt;&lt;a href="{% url 'index' %}"&gt;Вернуться к списку&lt;/a&gt;&lt;/p&gt;</code></pre>
+                </div>
+              </div>
+              <ul class="list">
+                <li>Из <code>index</code> ушла вся ветка <code>if request.method == "POST"</code>: её работу теперь делает <code>TaskCreateView</code>.</li>
+                <li><code>success_url = reverse_lazy("index")</code> — куда перенаправить после сохранения. <code>reverse_lazy</code> вычисляет адрес при первом запросе, а не при загрузке файла: в момент описания класса маршруты ещё не загружены.</li>
+                <li>Если форма не прошла проверку, <code>CreateView</code> показывает шаблон по имени модели — <code>tasks/task_form.html</code>, и в нём та же форма с ошибками.</li>
+                <li>В <code>index.html</code> поменялась одна строка: форма отправляется на новый адрес <code>{% url 'add' %}</code>.</li>
+              </ul>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Задачи добавляются, как раньше. В терминале сервера видно, что форма уходит на новый адрес, а затем браузер возвращается на главную:</p>
+                <pre class="step-output">[17/Nov/2026 07:06:26] "POST /tasks/add/ HTTP/1.1" 302 0
+[17/Nov/2026 07:06:26] "GET / HTTP/1.1" 200 2872</pre>
+                <p>Пустую форму не отправит сам браузер (атрибут <code>required</code>), но сервер проверяет и сам. Если пустое название всё-таки придёт, <code>CreateView</code> вернёт страницу «Новая задача» с ошибкой:</p>
+                <pre class="step-output" data-check="post-empty:/tasks/add/">&lt;ul class="errorlist" id="id_title_error"&gt;&lt;li&gt;This field is required.&lt;/li&gt;&lt;/ul&gt;</pre>
+                <p class="step-result-note">Дата, время и последнее число — размер ответа в байтах — у вас будут другими. Текст ошибки на английском, потому что в <code>settings.py</code> стоит <code>LANGUAGE_CODE = 'en-us'</code>; с <code>'ru'</code> он будет «Обязательное поле.».</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="6"> Шаг пройден</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Шаг 7. Список — ListView</h3>
+              <p>
+                Теперь заменим одним классом и <code>index</code>, и <code>category</code>. Обе страницы показывают один шаблон, разница лишь в том,
+                какие задачи взять. <code>ListView</code> берёт список из метода <code>get_queryset()</code>, поэтому один класс обслуживает оба маршрута:
+                на странице категории в <code>self.kwargs</code> лежит <code>pk</code> из адреса.
+              </p>
+              <div class="code-grid">
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/views.py</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse_lazy
+from django.views.decorators.http import require_POST
+from django.views.generic import CreateView, ListView
+
+from .forms import TaskForm
+from .models import Category, Task
+
+class TaskListView(ListView):
+    template_name = "tasks/index.html"
+    context_object_name = "tasks"
+
+    def get_queryset(self):
+        self.current = None
+        if "pk" in self.kwargs:
+            self.current = get_object_or_404(Category, pk=self.kwargs["pk"])
+            return self.current.tasks.all()
+        return Task.objects.select_related("category")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories"] = Category.objects.all()
+        context["current"] = self.current
+        context["form"] = TaskForm(initial={"category": self.current})
+        return context
+
+class TaskCreateView(CreateView):
+    model = Task
+    form_class = TaskForm
+    success_url = reverse_lazy("index")
+
+@require_POST
+def toggle(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.done = not task.done
+    task.save()
+    return redirect("index")
+
+@require_POST
+def delete(request, pk):
+    get_object_or_404(Task, pk=pk).delete()
+    return redirect("index")</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>mysite/urls.py</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>from django.contrib import admin
+from django.urls import path
+
+from tasks import views
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", views.TaskListView.as_view(), name="index"),
+    path("category/&lt;int:pk&gt;/", views.TaskListView.as_view(), name="category"),
+    path("tasks/add/", views.TaskCreateView.as_view(), name="add"),
+    path("tasks/&lt;int:pk&gt;/toggle/", views.toggle, name="toggle"),
+    path("tasks/&lt;int:pk&gt;/delete/", views.delete, name="delete"),
+]</code></pre>
+                </div>
+              </div>
+              <ul class="list">
+                <li><code>template_name</code> — наш шаблон вместо имени по умолчанию <code>tasks/task_list.html</code>. <code>context_object_name = "tasks"</code> — имя списка в шаблоне (по умолчанию <code>object_list</code>), поэтому шаблон менять не нужно.</li>
+                <li><code>get_queryset()</code> решает, какие задачи показать: на главной все, сразу с категориями, в категории — <code>current.tasks.all()</code>.</li>
+                <li><code>get_context_data()</code> добавляет в шаблон то, что к списку не относится: категории для ссылок, текущую категорию и пустую форму.</li>
+                <li><code>toggle</code> и <code>delete</code> остаются функциями: шаблон и форма им не нужны, и пять строк функции понятнее класса. Классы выгодны там, где работа типовая.</li>
+              </ul>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <pre class="step-output" data-check="check">System check identified no issues (0 silenced).</pre>
+                <p>Страницы выглядят и работают как после шага 6, а кода стало меньше. <code>ListView</code> отвечает только на GET: если где-то осталась форма, которая отправляется на главную, сервер ответит 405 (см. <a href="#errors">частые ошибки</a>).</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="7"> Шаг пройден</label>
+            </li>
+
+            <li class="project-step project-part reveal">
+              <p class="part-title">Часть 3. Тесты</p>
+              <h3>Шаг 8. Проверьте представления тестами</h3>
+              <p>
+                Замените <code>tasks/tests.py</code> целиком. <code>TestCase</code> создаёт для тестов отдельную пустую базу и откатывает изменения после каждого теста,
+                поэтому ваши задачи не пострадают. <code>setUpTestData</code> один раз создаёт категории и три задачи для всех тестов класса.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>tasks/tests.py</span>
+                  <button class="copy-btn" type="button">Копировать</button>
+                </div>
+                <pre><code>from django.test import TestCase
+from django.urls import reverse
+
+from .models import Category, Task
+
+class TaskViewsTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.study = Category.objects.create(name="Учёба")
+        cls.home = Category.objects.create(name="Дом")
+        Task.objects.create(title="Сдать лабораторную", category=cls.study)
+        Task.objects.create(title="Вынести мусор", category=cls.home)
+        Task.objects.create(title="Без категории")
+
+    def test_list_shows_all_tasks(self):
+        response = self.client.get(reverse("index"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "tasks/index.html")
+        self.assertEqual(len(response.context["tasks"]), 3)
+
+    def test_category_shows_only_its_tasks(self):
+        response = self.client.get(reverse("category", args=[self.study.pk]))
+        self.assertContains(response, "Сдать лабораторную")
+        self.assertNotContains(response, "Вынести мусор")
+
+    def test_unknown_category_is_404(self):
+        response = self.client.get(reverse("category", args=[999]))
+        self.assertEqual(response.status_code, 404)
+
+    def test_create_saves_task_and_redirects(self):
+        response = self.client.post(reverse("add"), {"title": "Полить цветы", "category": self.home.pk})
+        self.assertRedirects(response, reverse("index"))
+        self.assertTrue(self.home.tasks.filter(title="Полить цветы").exists())
+
+    def test_create_rejects_empty_title(self):
+        response = self.client.post(reverse("add"), {"title": ""})
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("title", response.context["form"].errors)
+        self.assertEqual(Task.objects.count(), 3)
+
+    def test_list_needs_same_queries_for_any_number_of_tasks(self):
+        for number in range(10):
+            Task.objects.create(title=f"Задача {number}", category=self.study)
+        with self.assertNumQueries(3):
+            self.client.get(reverse("index"))</code></pre>
+              </div>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Копировать</button>
+                </div>
+                <pre><code>python manage.py test</code></pre>
+              </div>
+              <ul class="list">
+                <li><code>response.context</code> — то, что представление передало в шаблон: так видно, что на главной ровно три задачи.</li>
+                <li>Фильтр проверяется с двух сторон: задача «Учёбы» на странице есть, а задачи «Дома» — нет. Несуществующая категория отвечает 404.</li>
+                <li><code>CreateView</code> сохраняет задачу с категорией и перенаправляет на список; пустое название не сохраняется.</li>
+                <li><code>assertNumQueries(3)</code> следит за проблемой N+1: на главной ровно три запроса при любом числе задач — задачи с категориями, категории для ссылок и категории для выпадающего списка.</li>
+              </ul>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <pre class="step-output" data-check="test">Found 6 test(s).
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.032s
+
+OK
+Destroying test database for alias 'default'...</pre>
+                <p>Тест на число запросов действительно сторожит <code>select_related</code>. Если заменить в <code>get_queryset</code> строку на <code>Task.objects.all()</code>, он упадёт:</p>
+                <pre class="step-output" data-check="test-fail">FAIL: test_list_needs_same_queries_for_any_number_of_tasks (tasks.tests.TaskViewsTests.test_list_needs_same_queries_for_any_number_of_tasks)
+AssertionError: 15 != 3 : 15 queries executed, 3 expected
+FAILED (failures=1)</pre>
+                <p class="step-result-note">Время выполнения у вас будет другим. В падении 15 запросов: три обычных и по одному на каждую из двенадцати задач с категорией.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="8"> Шаг пройден</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Шаг 9. Проверьте в браузере</h3>
+              <p>
+                Запустите сервер и откройте <code>http://127.0.0.1:8000/</code>. Добавьте пару задач с разными категориями, пройдите по ссылкам категорий,
+                отметьте задачу кнопкой «Готово» и удалите другую. В админке <code>/admin/</code> появился раздел Categories, а в списке задач — фильтр справа.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Копировать</button>
+                </div>
+                <pre><code>python manage.py runserver</code></pre>
+              </div>
+              <figure class="shot">
+                <p class="shot-title">Как должно выглядеть</p>
+                <img src="assets/img/project/django-next.webp" width="1120" height="978" alt="Страница «Мои задачи»: ссылки «Все · Дом · Учёба», поле с выпадающим списком категорий и четыре задачи, у трёх рядом указана категория" loading="lazy" decoding="async">
+                <figcaption>Задача «Вынести мусор» только что добавлена через форму с категорией «Дом», «Сдать лабораторную» отмечена кнопкой «Готово». У старой задачи «Купить хлеб» категории нет.</figcaption>
+              </figure>
+              <label class="step-check"><input type="checkbox" data-step="9"> Шаг пройден</label>
+            </li>
+          </ol>
+
+          <div class="panel reveal stack-gap self-check">
+            <h3>Проверь себя</h3>
+            <p>Ответьте мысленно, затем откройте ответ.</p>
+            <details>
+              <summary>Зачем у <code>ForeignKey</code> стоит <code>null=True</code>?</summary>
+              <p>В базе уже были задачи из первого проекта, и у них нет категории. <code>null=True</code> разрешает оставить в столбце <code>category_id</code> пустое значение, поэтому миграция прошла без вопросов. Без него <code>makemigrations</code> потребовал бы значение по умолчанию для старых строк.</p>
+            </details>
+            <details>
+              <summary>Что станет с задачами, если удалить категорию «Дом»?</summary>
+              <p>Задачи останутся, у них просто пропадёт категория: так велит <code>on_delete=models.SET_NULL</code>. Удаление вернёт <code>(1, {'tasks.Category': 1})</code> — удалена одна категория и ни одной задачи. С <code>CASCADE</code> вместе с категорией удалились бы и её задачи, с <code>PROTECT</code> Django не дал бы удалить категорию, пока в ней есть задачи.</p>
+            </details>
+            <details>
+              <summary>Чем <code>select_related</code> отличается от <code>prefetch_related</code>?</summary>
+              <p><code>select_related</code> соединяет таблицы в одном SQL-запросе (JOIN) и подходит, когда у каждой записи один связанный объект: у задачи одна категория. <code>prefetch_related</code> делает второй запрос и раскладывает результаты по объектам в Python — он нужен для обратной связи и «многие ко многим», например, чтобы вывести у каждой категории все её задачи.</p>
+            </details>
+            <details>
+              <summary>Почему после перехода на <code>ListView</code> форма, отправленная на главную, получает ответ 405?</summary>
+              <p><code>ListView</code> умеет отвечать только на чтение — GET (и служебные HEAD и OPTIONS). На POST он отвечает «Method Not Allowed». Сохранение теперь живёт в <code>TaskCreateView</code> по адресу <code>/tasks/add/</code>, туда форма и должна отправляться.</p>
+            </details>
+            <details>
+              <summary>Зачем в <code>ListView</code> указали <code>context_object_name = "tasks"</code>?</summary>
+              <p>По умолчанию список попадает в шаблон под именами <code>object_list</code> и <code>task_list</code>. Наш шаблон с первого проекта перебирает <code>tasks</code>, и одна строка в классе избавляет от правки шаблона.</p>
+            </details>
+
+            <div class="self-task">
+              <p class="step-result-title">Самостоятельное задание</p>
+              <p>Задач стало много — разбейте список на страницы по пять задач со ссылками «Назад» и «Дальше». <code>ListView</code> умеет это сам. Не забудьте тест: одна страница — пять задач, несуществующая страница — 404.</p>
+              <details class="self-solution">
+                <summary>Показать решение</summary>
+                <p>В класс добавляется одна строка, в шаблон — ссылки по страницам. <code>ListView</code> передаёт в шаблон объект <code>page_obj</code> и отвечает 404 на номер страницы, которой нет.</p>
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/views.py — одна новая строка в TaskListView</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>class TaskListView(ListView):
+    template_name = "tasks/index.html"
+    context_object_name = "tasks"
+    paginate_by = 5
+
+    # ... get_queryset и get_context_data без изменений ...</code></pre>
+                </div>
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/templates/tasks/index.html — добавить в конец</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>{% if page_obj.has_other_pages %}
+  &lt;p&gt;
+    {% if page_obj.has_previous %}&lt;a href="?page={{ page_obj.previous_page_number }}"&gt;Назад&lt;/a&gt;{% endif %}
+    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+    {% if page_obj.has_next %}&lt;a href="?page={{ page_obj.next_page_number }}"&gt;Дальше&lt;/a&gt;{% endif %}
+  &lt;/p&gt;
+{% endif %}</code></pre>
+                </div>
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/tests.py — изменённый и новый тест</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>    def test_list_needs_same_queries_for_any_number_of_tasks(self):
+        for number in range(10):
+            Task.objects.create(title=f"Задача {number}", category=self.study)
+        with self.assertNumQueries(4):
+            self.client.get(reverse("index"))
+
+    def test_pagination(self):
+        for number in range(10):
+            Task.objects.create(title=f"Задача {number}")
+        first = self.client.get(reverse("index"))
+        self.assertEqual(len(first.context["tasks"]), 5)
+        self.assertContains(first, "Страница 1 из 3")
+        self.assertEqual(self.client.get(reverse("index") + "?page=3").status_code, 200)
+        self.assertEqual(self.client.get(reverse("index") + "?page=4").status_code, 404)</code></pre>
+                </div>
+                <p class="step-result-note">Пагинатор считает задачи отдельным запросом <code>COUNT</code>, поэтому в тесте на число запросов теперь 4, а не 3. Остальные тесты проходят без изменений: всего 7 тестов, OK.</p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="compare" aria-labelledby="compare-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="compare-title">Функция или класс</h2>
+            <p>Оба способа правильные. Классы экономят код, когда работа типовая, функции понятнее, когда действие необычное.</p>
+          </div>
+
+          <div class="table-wrap reveal" tabindex="0" role="region" aria-label="Таблица: представления-функции и представления-классы">
+            <table>
+              <caption>Одни и те же страницы в первом проекте и здесь</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Что нужно</th>
+                  <th scope="col">Функция (первый проект)</th>
+                  <th scope="col">Класс (этот раздел)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Показать список</td>
+                  <td><code>render(request, "tasks/index.html", {…})</code></td>
+                  <td><code>ListView</code>: <code>get_queryset()</code> и <code>template_name</code></td>
+                </tr>
+                <tr>
+                  <td>Сохранить форму</td>
+                  <td><code>if request.method == "POST"</code>, <code>is_valid()</code>, <code>save()</code>, <code>redirect()</code></td>
+                  <td><code>CreateView</code>: <code>model</code>, <code>form_class</code>, <code>success_url</code></td>
+                </tr>
+                <tr>
+                  <td>Показать ошибки формы</td>
+                  <td>передать форму в шаблон вручную</td>
+                  <td>шаблон <code>tasks/task_form.html</code> с формой</td>
+                </tr>
+                <tr>
+                  <td>Добавить данные в шаблон</td>
+                  <td>ключ в словаре для <code>render</code></td>
+                  <td>метод <code>get_context_data()</code></td>
+                </tr>
+                <tr>
+                  <td>Подходит для</td>
+                  <td>необычных действий: «Готово», «Удалить»</td>
+                  <td>типовых страниц: список, создание, изменение, удаление (<code>UpdateView</code>, <code>DeleteView</code>, <code>DetailView</code>)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section faq" id="errors" aria-labelledby="errors-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="errors-title">Частые ошибки и как их исправить</h2>
+            <p>Сообщения приведены так, как их показывает Django 6.1. Нажмите на ошибку, чтобы увидеть решение.</p>
+          </div>
+
+          <details class="reveal">
+            <summary>«no such column: tasks_task.category_id»</summary>
+            <p>
+              <code class="error-text">django.db.utils.OperationalError: no such column: tasks_task.category_id</code>
+              Модель уже знает о поле <code>category</code>, а в таблице базы столбца ещё нет. Выполните шаг 2:
+              <code>python manage.py makemigrations</code> и <code>python manage.py migrate</code>.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>makemigrations: «It is impossible to add a non-nullable field 'category'»</summary>
+            <p>
+              <code class="error-text">It is impossible to add a non-nullable field 'category' to task without specifying a default. This is because the database needs something to populate existing rows.</code>
+              У поля нет <code>null=True</code>, а в таблице уже есть задачи: базе нечего записать в их новый столбец.
+              Выберите вариант <kbd>2</kbd> (Quit and manually define a default value in models.py), добавьте полю <code>null=True, blank=True</code>, как в шаге 1, и запустите <code>makemigrations</code> снова.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>«'Category' object has no attribute 'task_set'»</summary>
+            <p>
+              <code class="error-text">AttributeError: 'Category' object has no attribute 'task_set'</code>
+              Имя <code>task_set</code> Django даёт обратной связи, только пока у <code>ForeignKey</code> нет <code>related_name</code>.
+              У нас <code>related_name="tasks"</code>, поэтому задачи категории — <code>category.tasks.all()</code>.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>«Method Not Allowed (POST): /» и ответ 405</summary>
+            <p>
+              <code class="error-text">Method Not Allowed (POST): /</code>
+              Форма добавления отправляется на главную, а там теперь <code>ListView</code>, который принимает только GET.
+              Проверьте в <code>index.html</code> строку формы: <code>&lt;form method="post" action="{% url 'add' %}"&gt;</code> (шаг 6).
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>«TemplateDoesNotExist: tasks/task_form.html»</summary>
+            <p>
+              <code class="error-text">django.template.exceptions.TemplateDoesNotExist: tasks/task_form.html</code>
+              <code>CreateView</code> показывает этот шаблон, когда форма не прошла проверку, или при открытии <code>/tasks/add/</code>.
+              Создайте файл <code>tasks/templates/tasks/task_form.html</code> из шага 6 — имя складывается из названия модели и окончания <code>_form</code>.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>«Reverse for 'add' not found»</summary>
+            <p>
+              <code class="error-text">django.urls.exceptions.NoReverseMatch: Reverse for 'add' not found. 'add' is not a valid view function or pattern name.</code>
+              Шаблон ссылается на маршрут <code>add</code>, а в <code>mysite/urls.py</code> его нет. Добавьте строку
+              <code>path("tasks/add/", views.TaskCreateView.as_view(), name="add")</code>.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>Тест: «AssertionError: 15 != 3 : 15 queries executed, 3 expected»</summary>
+            <p>
+              <code class="error-text">AssertionError: 15 != 3 : 15 queries executed, 3 expected</code>
+              На главной снова проблема N+1: в <code>get_queryset</code> пропал <code>select_related("category")</code>,
+              или шаблон обращается к другой связи, которую не загрузили заранее. Верните <code>select_related</code>, как в шаге 7.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="sources" aria-labelledby="sources-title">
+        <div class="container">
+          <div class="panel sources reveal">
+            <h2 id="sources-title">Источники</h2>
+            <p class="note">Код рассчитан на Django 6.1. Все шаги выполнены на Python 3.13 и Django 6.1.3 <time datetime="2026-11-17">17.11.2026</time>.</p>
+            <ul class="list">
+              <li><a href="https://docs.djangoproject.com/en/6.1/ref/models/fields/#foreignkey" rel="noopener">Django 6.1: поле ForeignKey</a> — <code>on_delete</code>, <code>related_name</code>, <code>null</code> и <code>blank</code></li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/topics/db/queries/#related-objects" rel="noopener">Django 6.1: запросы через связи</a> — прямая и обратная связь, фильтр <code>category__name</code></li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/ref/models/querysets/#select-related" rel="noopener">Django 6.1: select_related и prefetch_related</a></li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/topics/migrations/" rel="noopener">Django 6.1: миграции</a></li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/topics/class-based-views/" rel="noopener">Django 6.1: представления на классах</a> — введение</li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/ref/class-based-views/generic-display/#listview" rel="noopener">Django 6.1: ListView</a></li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/ref/class-based-views/generic-editing/#createview" rel="noopener">Django 6.1: CreateView</a></li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/topics/testing/tools/" rel="noopener">Django 6.1: инструменты для тестов</a> — тестовый клиент и <code>assertNumQueries</code></li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/topics/pagination/" rel="noopener">Django 6.1: пагинация</a> — для самостоятельного задания</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Дальше">
+        <div class="container">
+          <div class="cta-panel reveal">
+            <div>
+              <h2>Что дальше</h2>
+              <p class="lead cta-lead">
+                Опубликуйте проект в интернете по разделу «Публикация» — после миграции на сервере
+                понадобится та же команда <code>migrate</code>. А чтобы отдавать задачи не страницей, а данными, загляните в раздел про REST API.
+              </p>
+            </div>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="deploy.html">Публикация</a>
+              <a class="btn btn-secondary" href="api.html">REST API</a>
+            </div>
+          </div>
+        </div>
+      </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Начать</strong><ul><li><a href="start.html">Python с нуля</a></li><li><a href="html-css.html">HTML и CSS</a></li><li><a href="glossary.html">Словарь</a></li><li><a href="playground.html">Песочница</a></li></ul></div>
+        <div><strong>Понять</strong><ul><li><a href="about.html">О Python</a></li><li><a href="frameworks.html">Фреймворки</a></li><li><a href="databases.html">Базы данных</a></li><li><a href="templates.html">Шаблоны и формы</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесты</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Сделать</strong><ul><li><a href="setup.html">Подготовка компьютера</a></li><li><a href="project.html">Первый проект</a></li><li><a href="django-next.html">Django дальше</a></li><li><a href="project2.html">Второй проект</a></li><li><a href="deploy.html">Публикация</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Задачи</a></li><li><a href="cheatsheet.html">Шпаргалка</a></li><li><a href="exam.html">Финальный тест</a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="course.html">Весь курс</a></li><li><a href="progress.html">Мой прогресс</a></li><li><a href="contacts.html">Контакты</a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, учебный проект о Python в веб-разработке</p>
+      <p class="note footer-note">Автор: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Обновлено: <time datetime="2026-11-17">17.11.2026</time> · Версии в примерах: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Исходный код на GitHub</a></p>
+      <p class="note footer-note">Снимок: <a href="https://commons.wikimedia.org/wiki/File:Copyright_Card_Catalog_Files.jpg" rel="noopener">карточный каталог, Michael Holley</a>.</p>
+      <p class="note footer-note"><a href="privacy.html">Политика конфиденциальности</a> · <a href="terms.html">Условия использования</a></p>
+      <p class="note footer-note">Сайт учебный. Сообщения с формы отправляются через публичный раздел Issues на GitHub. Без аккаунта GitHub можно <a href="contacts.html#no-github">написать напрямую</a>.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Прокрутить наверх">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="script.js"></script>
+  <script src="features.js"></script>
+</body>
+</html>

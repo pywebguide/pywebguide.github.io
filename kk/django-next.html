@@ -1,0 +1,1177 @@
+<!doctype html>
+<!-- Перевод собран tools/translate.py из django-next.html. Правьте tools/i18n/kk.json, а не этот файл. -->
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Django: келесі қадам — модель байланыстары және класс көріністері — PyWeb Guide</title>
+
+  <meta name="description" content="Django 6.1-дегі алғашқы жобаның жалғасы: Category моделі мен ForeignKey, миграция, related_name, select_related, функциялардың орнына ListView мен CreateView және оларға тесттер.">
+  <link rel="canonical" href="https://pywebguide.github.io/kk/django-next.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/django-next.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/django-next.html">
+  <link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/django-next.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/django-next.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Django: келесі қадам — модель байланыстары және класс көріністері — PyWeb Guide">
+  <meta property="og:description" content="Django 6.1-дегі алғашқы жобаның жалғасы: Category моделі мен ForeignKey, миграция, related_name, select_related, функциялардың орнына ListView мен CreateView және оларға тесттер.">
+  <meta property="og:url" content="https://pywebguide.github.io/kk/django-next.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffd249">
+
+
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/fira-sans-extra-condensed-cyrillic-ext-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LearningResource",
+      "name": "Django дальше: связи моделей и представления на классах",
+      "description": "Категории и ForeignKey, select_related, ListView и CreateView, тесты представлений на Django 6.1.",
+      "url": "https://pywebguide.github.io/django-next.html",
+      "inLanguage": "ru",
+      "educationalLevel": "Средний",
+      "learningResourceType": "Пошаговое руководство",
+      "timeRequired": "PT1H30M",
+      "dateModified": "2026-11-17",
+      "isPartOf": { "@type": "WebSite", "name": "PyWeb Guide", "url": "https://pywebguide.github.io/" },
+      "author": { "@type": "Person", "name": "Жангужин Е. Е." }
+    }
+  </script>
+</head>
+
+<body data-band="yellow" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Мазмұнға өту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Мәзірді ашу" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Негізгі навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">Нөлден</a></li>
+          <li><a class="nav-link" href="course.html">Бүкіл курс</a></li>
+          <li><a class="nav-link" href="project.html">Алғашқы жоба</a></li>
+          <li><a class="nav-link" href="playground.html">Құмсалғыш</a></li>
+          <li><a class="nav-link" href="glossary.html">Сөздік</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">Тағы <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Түсіну</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">Python туралы</a></li>
+              <li><a href="frameworks.html">Фреймворктер</a></li>
+              <li><a href="databases.html">Дерекқорлар</a></li>
+              <li><a href="templates.html">Үлгілер мен формалар</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Тесттер</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
+              <li><a href="setup.html">Компьютерді дайындау</a></li>
+              <li><a href="django-next.html" aria-current="page">Django: келесі қадам</a></li>
+              <li><a href="project2.html">Екінші жоба</a></li>
+              <li><a href="deploy.html">Жариялау</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Есептер</a></li>
+              <li><a href="cheatsheet.html">Қысқаша анықтама</a></li>
+              <li><a href="exam.html">Қорытынды тест</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="progress.html">Менің прогресім</a></li>
+              <li><a href="contacts.html">Байланыс</a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Сайт тілі">
+            <a href="../django-next.html" hreflang="ru" lang="ru">РУС</a>
+            <a href="django-next.html" hreflang="kk" lang="kk" aria-current="true">ҚАЗ</a>
+            <a href="../en/django-next.html" hreflang="en" lang="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Жарық тақырып">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+      <div class="page-band"><div class="container page-hero page-hero--picture">
+        <nav class="breadcrumb" aria-label="Навигациялық тізбек">
+          <a href="index.html">Басты бет</a> <span aria-hidden="true">/</span> <span>Django: келесі қадам</span>
+        </nav>
+        <h1>Django: келесі қадам — байланыстар және класс көріністері</h1>
+        <p class="lead">
+          Django-дағы алғашқы жобаның тапсырмалар тізімін жалғастырамыз. Тапсырмаларды санаттарға бөлеміз — бұл модельдер арасындағы алғашқы байланыс, дерекқорға артық сұрауларды алып тастаймыз, көріністерді Django-ның дайын кластарына көшіреміз және бәрін тесттермен бекітеміз. Шамамен бір жарым сағат.
+        </p>
+        <p class="note">Бұл «Алғашқы жобадағы» <a href="project.html#django">Django нұсқасының</a> жалғасы. Модельдер мен миграциялар туралы — <a href="databases.html">«Дерекқорлар»</a> бөлімінде.</p>
+
+        <nav class="page-toc" aria-label="Бет мазмұны">
+          <a href="#prep">Не қажет болады</a> <a href="#steps">9 қадам</a> <a href="#compare">Функция ма, класс па</a> <a href="#errors">Жиі кездесетін қателер</a> <a href="#sources">Дереккөздер</a>
+        </nav>
+      <img class="band-picture" src="../assets/img/card-catalog.webp" width="900" height="675" alt="Конгресс кітапханасындағы карточкалық каталог жәшіктерінің қатарлары" decoding="async" fetchpriority="high">
+</div></div>
+
+      <section class="section" id="prep" aria-labelledby="prep-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="prep-title">Не қажет болады</h2>
+            <p>Алғашқы жоба аяқталған жерден бастаймыз.</p>
+            <p class="download-row"><a class="btn btn-secondary" href="../examples/django-next.zip" download>Дайын кодты жүктеу (zip, 9 КБ)</a> <a href="https://github.com/pywebguide/pywebguide.github.io/tree/main/examples/django-next" rel="noopener">GitHub-та қарау</a></p>
+          </div>
+
+          <div class="panel reveal">
+            <ul class="check-list">
+              <li>Өтілген <a href="project.html#django">Django нұсқасы</a> (1–10 қадамдар). Өзіңіздікі жоқ болса, <a href="../examples/django-todo.zip" download>алғашқы жобаның кодын</a> жүктеп, <code>python manage.py migrate</code> орындаңыз.</li>
+              <li>Django 6.1 орнатылған, қосулы <code>.venv</code> ортасы: <code>python -m django --version</code> командасы нұсқаны көрсетеді.</li>
+              <li>Дерекқорда бір-екі тапсырма — миграциядан кейін ескі деректер орнында қалғанын көресіз.</li>
+            </ul>
+          </div>
+
+          <p class="notice" role="note">
+            <strong>Қадамдармен қалай жұмыс істеу керек.</strong> Блок файл атымен белгіленсе, файлды толығымен ауыстырыңыз: солай импортты өткізіп алмайсыз. <code>runserver</code> сервері үнемі жұмыс істей берсін, командаларды терминалдың екінші терезесіне енгізіңіз. Өтілген қадамдар осы браузерде сақталады.
+          </p>
+        </div>
+      </section>
+
+      <section class="section project-track" id="steps" aria-labelledby="steps-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="steps-title">Санаттар, кластар және тесттер</h2>
+            <p>Үш бөлім: модельдер арасындағы байланыс, класс көріністері және оларға тесттер.</p>
+          </div>
+
+          <div class="progress-box reveal" data-progress="django-next">
+            <p class="progress-label" role="status" aria-live="polite"><span data-progress-count>0</span> / 9 қадам өтілді</p>
+            <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
+            <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Прогресті тастау</button>
+          </div>
+
+          <ol class="project-steps" data-progress-list="django-next">
+            <li class="project-step project-part reveal">
+              <p class="part-title">1-бөлім. Модельдер арасындағы байланыстар</p>
+              <h3>1-қадам. Санатты сипаттап, тапсырманы онымен байланыстырыңыз</h3>
+              <p>
+                Тапсырмаға «санат» деген мәтін өрісін қосуға болатын болса, бөлек модель не үшін керек? Мәтінді әр тапсырмаға жазуға тура келер еді: «Учёба» мен «учеба» әртүрлі санат болып шығады, ал санаттың атын өзгерту үшін барлық тапсырманы бір-бірлеп түзету керек болар еді. Бөлек кесте әр санатты бір рет сақтайды, ал тапсырма оған нөмірі арқылы сілтеме жасайды. Мұндай байланыс «көп-бірге» деп аталады: санатта тапсырма көп, тапсырманың санаты біреу. Django-да оны <code>ForeignKey</code> өрісі сипаттайды.
+              </p>
+              <div class="code-grid">
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/models.py</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>from django.db import models
+
+class Category(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    class Meta:
+        ordering = ["name"]
+        verbose_name_plural = "categories"
+
+    def __str__(self):
+        return self.name
+
+class Task(models.Model):
+    title = models.CharField(max_length=200)
+    done = models.BooleanField(default=False)
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="tasks",
+    )
+
+    def __str__(self):
+        return self.title</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/admin.py</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>from django.contrib import admin
+
+from .models import Category, Task
+
+admin.site.register(Category)
+
+@admin.register(Task)
+class TaskAdmin(admin.ModelAdmin):
+    list_display = ["title", "category", "done"]
+    list_filter = ["category", "done"]</code></pre>
+                </div>
+              </div>
+              <ul class="list">
+                <li><code>ForeignKey(Category, …)</code> тапсырмалар кестесіне <code>category_id</code> бағанын — санат нөмірін қосады.</li>
+                <li><code>on_delete=models.SET_NULL</code> санат жойылғанда тапсырмалармен не істеу керегін айтады: оларды санатсыз қалдыру. <code>CASCADE</code> тапсырмаларды санатпен бірге жояр еді, ал <code>PROTECT</code> ішінде тапсырмасы бар санатты жоюға тыйым салар еді.</li>
+                <li><code>null=True</code> дерекқорда бос мәнге рұқсат береді: алғашқы жобаның тапсырмаларында санат жоқ. <code>blank=True</code> формада өрісті бос қалдыруға рұқсат береді.</li>
+                <li><code>related_name="tasks"</code> — кері байланыстың аты: әр санатта өз тапсырмаларының тізімі <code>category.tasks</code> пайда болады. Ол 3-қадамда керек болады.</li>
+                <li><code>unique=True</code> бірдей екі санат ашуға жол бермейді, ал <code>ordering</code> санаттарды көрсетілген жердің бәрінде әліпби бойынша шығарады.</li>
+                <li><code>TaskAdmin</code> әкімші панеліндегі тапсырмалар тізімінде санатты көрсетеді және санат пен «орындалды» белгісі бойынша сүзгі қосады.</li>
+              </ul>
+              <div class="step-result">
+                <p class="step-result-title">Күтілетін нәтиже</p>
+                <p>Кодты тексеру өтеді:</p>
+                <pre class="step-output" data-check="check">System check identified no issues (0 silenced).</pre>
+                <p class="step-result-note">Ал басты бет, сервер қосулы болса, әзірге <code>no such column: tasks_task.category_id</code> қатесін береді: модель жаңа өрісті біледі, ал дерекқордағы кесте әлі білмейді. Мұны келесі қадамдағы миграция түзетеді.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="1"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>2-қадам. Өзгерістерді дерекқорға көшіріңіз</h3>
+              <p>
+                <code>makemigrations</code> командасы модельдерді алдыңғы миграциялармен салыстырып, айырмашылықты жаңа файлға жазады — бұл өзгерістер жоспары. <code>migrate</code> жоспарды орындайды: санаттар кестесін жасайды және тапсырмалар кестесіне баған қосады. Django сұрақ қоймайды: <code>null=True</code> арқасында ескі тапсырмалардың санатын бос қалдыруға болады. Онсыз <code>makemigrations</code> бар жолдарға не жазу керегін сұрар еді (<a href="#errors">жиі кездесетін қателерді</a> қараңыз).
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>python manage.py makemigrations
+python manage.py migrate</code></pre>
+              </div>
+              <div class="step-result">
+                <p class="step-result-title">Күтілетін нәтиже</p>
+                <p>Бірінші команда миграция файлын жасады:</p>
+                <pre class="step-output" data-check="makemigrations">Migrations for 'tasks':
+  tasks/migrations/0002_category_task_category.py
+    + Create model Category
+    + Add field category to task</pre>
+                <p>Екіншісі оны қолданды:</p>
+                <pre class="step-output" data-check="migrate">Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions, tasks
+Running migrations:
+  Applying tasks.0002_category_task_category... OK</pre>
+                <p class="step-result-note">Ескі тапсырмалар орнында, тек әзірге санаты жоқ. Басты бет қайтадан ашылады.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="2"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>3-қадам. Санаттарды толтырып, байланыс бойынша екі бағытта өтіңіз</h3>
+              <p>Django консолін ашып, жолдарды бір-бірлеп енгізіңіз. Django 6.1 модельдерді консольге өзі импорттайды, <code>import</code> жазудың қажеті жоқ.</p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>python manage.py shell</code></pre>
+              </div>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>python manage.py shell</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>study = Category.objects.create(name="Учёба")
+home = Category.objects.create(name="Дом")
+Task.objects.create(title="Сдать лабораторную", category=study)
+Task.objects.create(title="Повторить SQL", category=study)
+Task.objects.create(title="Вынести мусор", category=home)
+Category.objects.all()
+study.tasks.all()
+study.tasks.count()
+task = Task.objects.get(title="Вынести мусор")
+task.category
+Task.objects.filter(category__name="Учёба")</code></pre>
+              </div>
+              <ul class="list">
+                <li><code>task.category</code> — тура байланыс, тапсырмадан оның санатына.</li>
+                <li><code>study.tasks</code> — кері байланыс, санаттан оның тапсырмаларына. <code>tasks</code> атын <code>related_name</code> берді; онсыз Django оны <code>task_set</code> деп атар еді.</li>
+                <li>Сүзгідегі <code>category__name</code> — байланыс бойынша өту: қос астын сызу «санатқа өтіп, оның <code>name</code> өрісін ал» дегенді білдіреді. Django кестелерді SQL-да өзі біріктіреді.</li>
+              </ul>
+              <div class="step-result">
+                <p class="step-result-title">Күтілетін нәтиже</p>
+                <p>Консольде былай шығады:</p>
+                <pre class="step-output" data-check="shell">&gt;&gt;&gt; study = Category.objects.create(name="Учёба")
+&gt;&gt;&gt; home = Category.objects.create(name="Дом")
+&gt;&gt;&gt; Task.objects.create(title="Сдать лабораторную", category=study)
+&lt;Task: Сдать лабораторную&gt;
+&gt;&gt;&gt; Task.objects.create(title="Повторить SQL", category=study)
+&lt;Task: Повторить SQL&gt;
+&gt;&gt;&gt; Task.objects.create(title="Вынести мусор", category=home)
+&lt;Task: Вынести мусор&gt;
+&gt;&gt;&gt; Category.objects.all()
+&lt;QuerySet [&lt;Category: Дом&gt;, &lt;Category: Учёба&gt;]&gt;
+&gt;&gt;&gt; study.tasks.all()
+&lt;QuerySet [&lt;Task: Сдать лабораторную&gt;, &lt;Task: Повторить SQL&gt;]&gt;
+&gt;&gt;&gt; study.tasks.count()
+2
+&gt;&gt;&gt; task = Task.objects.get(title="Вынести мусор")
+&gt;&gt;&gt; task.category
+&lt;Category: Дом&gt;
+&gt;&gt;&gt; Task.objects.filter(category__name="Учёба")
+&lt;QuerySet [&lt;Task: Сдать лабораторную&gt;, &lt;Task: Повторить SQL&gt;]&gt;</pre>
+                <p class="step-result-note">Бірінші <code>&gt;&gt;&gt;</code> жолының алдында консоль Python нұсқасын және <code>… objects imported automatically</code> жолын шығарады — Django осылай өзі қанша атауды импорттағанын хабарлайды. Консольден шығу — <code>exit()</code>.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="3"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>4-қадам. Формада санатты таңдап, тізімді сүзіңіз</h3>
+              <p>
+                Формаға <code>category</code> өрісін қосамыз: <code>ModelForm</code> одан дерекқордағы санаттардың ашылмалы тізімін өзі жасайды. <code>labels</code> өрістердің орысша жазуларын береді — онсыз Django Title және Category өріс атауларын көрсетер еді. Жаңа <code>category</code> көрінісі бір санаттың тапсырмаларын көрсетеді. Төрт файлды толығымен ауыстырыңыз.
+              </p>
+              <div class="code-grid">
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/forms.py</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>from django import forms
+
+from .models import Task
+
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ["title", "category"]
+        labels = {"title": "Задача", "category": "Категория"}</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/views.py</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
+
+from .forms import TaskForm
+from .models import Category, Task
+
+def index(request):
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("index")
+    else:
+        form = TaskForm()
+    return render(request, "tasks/index.html", {
+        "tasks": Task.objects.all(),
+        "categories": Category.objects.all(),
+        "form": form,
+    })
+
+def category(request, pk):
+    current = get_object_or_404(Category, pk=pk)
+    return render(request, "tasks/index.html", {
+        "tasks": current.tasks.all(),
+        "categories": Category.objects.all(),
+        "current": current,
+        "form": TaskForm(initial={"category": current}),
+    })
+
+@require_POST
+def toggle(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.done = not task.done
+    task.save()
+    return redirect("index")
+
+@require_POST
+def delete(request, pk):
+    get_object_or_404(Task, pk=pk).delete()
+    return redirect("index")</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>mysite/urls.py</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>from django.contrib import admin
+from django.urls import path
+
+from tasks import views
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", views.index, name="index"),
+    path("category/&lt;int:pk&gt;/", views.category, name="category"),
+    path("tasks/&lt;int:pk&gt;/toggle/", views.toggle, name="toggle"),
+    path("tasks/&lt;int:pk&gt;/delete/", views.delete, name="delete"),
+]</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/templates/tasks/index.html</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>&lt;h1&gt;{% if current %}Задачи: {{ current.name }}{% else %}Мои задачи{% endif %}&lt;/h1&gt;
+
+&lt;nav&gt;
+  &lt;a href="{% url 'index' %}"&gt;Все&lt;/a&gt;
+  {% for category in categories %}
+    · &lt;a href="{% url 'category' category.pk %}"&gt;{{ category.name }}&lt;/a&gt;
+  {% endfor %}
+&lt;/nav&gt;
+
+&lt;form method="post" action="{% url 'index' %}"&gt;
+  {% csrf_token %}
+  {{ form.title }}
+  {{ form.category }}
+  &lt;button&gt;Добавить&lt;/button&gt;
+  {{ form.title.errors }}
+&lt;/form&gt;
+
+&lt;ul&gt;
+  {% for task in tasks %}
+    &lt;li&gt;
+      {% if task.done %}&lt;s&gt;{{ task.title }}&lt;/s&gt;{% else %}{{ task.title }}{% endif %}
+      {% if task.category %}&lt;small&gt;{{ task.category.name }}&lt;/small&gt;{% endif %}
+      &lt;form method="post" action="{% url 'toggle' task.pk %}"&gt;
+        {% csrf_token %}
+        &lt;button&gt;{% if task.done %}Вернуть{% else %}Готово{% endif %}&lt;/button&gt;
+      &lt;/form&gt;
+      &lt;form method="post" action="{% url 'delete' task.pk %}"&gt;
+        {% csrf_token %}
+        &lt;button&gt;Удалить&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/li&gt;
+  {% empty %}
+    &lt;li&gt;Задач пока нет.&lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;</code></pre>
+                </div>
+              </div>
+              <ul class="list">
+                <li><code>get_object_or_404</code> мұндай нөмірлі санат болмаса, 500 сервер қатесінің орнына 404 бетімен жауап береді.</li>
+                <li><code>current.tasks.all()</code> — 3-қадамдағы сол кері байланыс: тек осы санаттың тапсырмалары.</li>
+                <li><code>initial</code> формада ағымдағы санатты алдын ала таңдайды: «Учёба» бетінен қосылған тапсырма бірден «Учёба» санатына түседі.</li>
+                <li>Форма басты бетке жіберіледі (<code>action="{% url 'index' %}"</code>): <code>category</code> көрінісі тек тізімді көрсетеді, сақтамайды.</li>
+              </ul>
+              <div class="step-result">
+                <p class="step-result-title">Күтілетін нәтиже</p>
+                <p>Форманың үстінде «Все · Дом · Учёба» сілтемелері, ал өрістің жанында ашылмалы тізім пайда болды. Бет кодында (<kbd>Ctrl</kbd> + <kbd>U</kbd>) ол былай көрінеді:</p>
+                <pre class="step-output" data-check="get:/">&lt;select name="category" id="id_category"&gt;
+  &lt;option value="" selected&gt;- Select an option -&lt;/option&gt;
+
+  &lt;option value="2"&gt;Дом&lt;/option&gt;
+
+  &lt;option value="1"&gt;Учёба&lt;/option&gt;
+
+&lt;/select&gt;</pre>
+                <p>«Дом» сілтемесі <code>/category/2/</code> бетіне апарады, онда тек «Вынести мусор» тапсырмасы көрінеді. <code>/category/999/</code> мекенжайы «Page not found (404)» деп жауап береді.</p>
+                <p class="step-result-note">«- Select an option -» бос нұсқасы — «санатсыз» дегенді білдіреді: оған <code>blank=True</code> рұқсат береді. Санат нөмірлері сізде басқаша болуы мүмкін.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="4"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>5-қадам. Артық сұрауларды алып тастаңыз: select_related</h3>
+              <p>
+                Үлгі әр тапсырмада <code>{{ task.category.name }}</code> шығарады. <code>Task.objects.all()</code> тек тапсырмаларды жүктейді, ал әр тапсырманың санатына Django дерекқорға бөлек барады — үлгі оған жүгінген сәтте. Үш тапсырма — төрт сұрау, жүз тапсырма — жүз бір сұрау. Мұны N+1 мәселесі деп атайды: дерек көбейген сайын бет баяулай береді. Консольде сұрауларды санайық:
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>python manage.py shell</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>from django.db import connection
+from django.test.utils import CaptureQueriesContext
+with CaptureQueriesContext(connection) as queries:
+    names = [str(task.category) for task in Task.objects.all()]
+
+len(queries)
+with CaptureQueriesContext(connection) as queries:
+    names = [str(task.category) for task in Task.objects.select_related("category")]
+
+len(queries)
+print(queries[0]["sql"])</code></pre>
+              </div>
+              <p>
+                <code>select_related("category")</code> екі кестені бір сұрауда біріктіреді (<code>LEFT OUTER JOIN</code>), және тапсырмалар санаттарымен бірге келеді. <code>tasks/views.py</code> ішіндегі <code>index</code> функциясын ауыстырыңыз: бір жол өзгерді, <code>"tasks": …</code>.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>tasks/views.py — index функциясы</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>def index(request):
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("index")
+    else:
+        form = TaskForm()
+    return render(request, "tasks/index.html", {
+        "tasks": Task.objects.select_related("category"),
+        "categories": Category.objects.all(),
+        "form": form,
+    })</code></pre>
+              </div>
+              <p>
+                Санат бетінде мұны істеудің қажеті жоқ: тапсырмалар <code>current.tasks</code> арқылы алынған, Django олардың санатын біледі, сондықтан онда артық сұрау жоқ. Байланыстың кері жағы үшін — мысалы, әр санаттың тапсырмаларын шығару үшін — <code>prefetch_related</code> бар: ол бәрін екінші сұраумен жүктейді.
+              </p>
+              <div class="step-result">
+                <p class="step-result-title">Күтілетін нәтиже</p>
+                <p><code>select_related</code>-сіз — төрт сұрау, онымен — біреу:</p>
+                <pre class="step-output" data-check="shell">&gt;&gt;&gt; from django.db import connection
+&gt;&gt;&gt; from django.test.utils import CaptureQueriesContext
+&gt;&gt;&gt; with CaptureQueriesContext(connection) as queries:
+...     names = [str(task.category) for task in Task.objects.all()]
+...
+&gt;&gt;&gt; len(queries)
+4
+&gt;&gt;&gt; with CaptureQueriesContext(connection) as queries:
+...     names = [str(task.category) for task in Task.objects.select_related("category")]
+...
+&gt;&gt;&gt; len(queries)
+1
+&gt;&gt;&gt; print(queries[0]["sql"])
+SELECT "tasks_task"."id", "tasks_task"."title", "tasks_task"."done", "tasks_task"."category_id", "tasks_category"."id", "tasks_category"."name" FROM "tasks_task" LEFT OUTER JOIN "tasks_category" ON ("tasks_task"."category_id" = "tasks_category"."id")</pre>
+                <p class="step-result-note">Сан сізде басқаша болуы мүмкін: <code>select_related</code>-сіз бір сұрау және санаты бар әр тапсырмаға тағы бір сұрау шығады. Ескі тапсырмалардың бос санаты үшін Django дерекқорға бармайды. <code>...</code> кейінгі бос жол — <code>with</code> блогын жабатын <kbd>Enter</kbd> пернесі.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="5"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step project-part reveal">
+              <p class="part-title">2-бөлім. Класс көріністері</p>
+              <h3>6-қадам. Тапсырма қосу — CreateView</h3>
+              <p>
+                <code>index</code> функциясы қазір екі жұмыс атқарады: тізімді көрсетеді (GET) және форманы сақтайды (POST). Типтік жұмыс үшін Django-да дайын кластар — жалпыланған көріністер бар. Сақтаудан бастайық: <code>CreateView</code> форманы өзі жасайды, тексереді, тапсырманы сақтайды және қайта бағыттайды. Бізге модельді, форманы және қайту мекенжайын көрсету ғана қалады.
+              </p>
+              <div class="code-grid">
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/views.py</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
+from django.views.decorators.http import require_POST
+from django.views.generic import CreateView
+
+from .forms import TaskForm
+from .models import Category, Task
+
+def index(request):
+    return render(request, "tasks/index.html", {
+        "tasks": Task.objects.select_related("category"),
+        "categories": Category.objects.all(),
+        "form": TaskForm(),
+    })
+
+def category(request, pk):
+    current = get_object_or_404(Category, pk=pk)
+    return render(request, "tasks/index.html", {
+        "tasks": current.tasks.all(),
+        "categories": Category.objects.all(),
+        "current": current,
+        "form": TaskForm(initial={"category": current}),
+    })
+
+class TaskCreateView(CreateView):
+    model = Task
+    form_class = TaskForm
+    success_url = reverse_lazy("index")
+
+@require_POST
+def toggle(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.done = not task.done
+    task.save()
+    return redirect("index")
+
+@require_POST
+def delete(request, pk):
+    get_object_or_404(Task, pk=pk).delete()
+    return redirect("index")</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>mysite/urls.py</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>from django.contrib import admin
+from django.urls import path
+
+from tasks import views
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", views.index, name="index"),
+    path("category/&lt;int:pk&gt;/", views.category, name="category"),
+    path("tasks/add/", views.TaskCreateView.as_view(), name="add"),
+    path("tasks/&lt;int:pk&gt;/toggle/", views.toggle, name="toggle"),
+    path("tasks/&lt;int:pk&gt;/delete/", views.delete, name="delete"),
+]</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/templates/tasks/index.html</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>&lt;h1&gt;{% if current %}Задачи: {{ current.name }}{% else %}Мои задачи{% endif %}&lt;/h1&gt;
+
+&lt;nav&gt;
+  &lt;a href="{% url 'index' %}"&gt;Все&lt;/a&gt;
+  {% for category in categories %}
+    · &lt;a href="{% url 'category' category.pk %}"&gt;{{ category.name }}&lt;/a&gt;
+  {% endfor %}
+&lt;/nav&gt;
+
+&lt;form method="post" action="{% url 'add' %}"&gt;
+  {% csrf_token %}
+  {{ form.title }}
+  {{ form.category }}
+  &lt;button&gt;Добавить&lt;/button&gt;
+  {{ form.title.errors }}
+&lt;/form&gt;
+
+&lt;ul&gt;
+  {% for task in tasks %}
+    &lt;li&gt;
+      {% if task.done %}&lt;s&gt;{{ task.title }}&lt;/s&gt;{% else %}{{ task.title }}{% endif %}
+      {% if task.category %}&lt;small&gt;{{ task.category.name }}&lt;/small&gt;{% endif %}
+      &lt;form method="post" action="{% url 'toggle' task.pk %}"&gt;
+        {% csrf_token %}
+        &lt;button&gt;{% if task.done %}Вернуть{% else %}Готово{% endif %}&lt;/button&gt;
+      &lt;/form&gt;
+      &lt;form method="post" action="{% url 'delete' task.pk %}"&gt;
+        {% csrf_token %}
+        &lt;button&gt;Удалить&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/li&gt;
+  {% empty %}
+    &lt;li&gt;Задач пока нет.&lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/templates/tasks/task_form.html</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>&lt;h1&gt;Новая задача&lt;/h1&gt;
+
+&lt;form method="post"&gt;
+  {% csrf_token %}
+  {{ form.as_p }}
+  &lt;button&gt;Добавить&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;p&gt;&lt;a href="{% url 'index' %}"&gt;Вернуться к списку&lt;/a&gt;&lt;/p&gt;</code></pre>
+                </div>
+              </div>
+              <ul class="list">
+                <li><code>index</code> ішінен <code>if request.method == "POST"</code> тармағы толығымен кетті: оның жұмысын енді <code>TaskCreateView</code> атқарады.</li>
+                <li><code>success_url = reverse_lazy("index")</code> — сақтағаннан кейін қайда бағыттау керек. <code>reverse_lazy</code> мекенжайды файл жүктелгенде емес, бірінші сұрауда есептейді: класс сипатталған сәтте маршруттар әлі жүктелмеген.</li>
+                <li>Форма тексеруден өтпесе, <code>CreateView</code> модель атымен аталған үлгіні — <code>tasks/task_form.html</code> көрсетеді, онда сол форма қателерімен бірге шығады.</li>
+                <li><code>index.html</code> ішінде бір жол өзгерді: форма жаңа <code>{% url 'add' %}</code> мекенжайына жіберіледі.</li>
+              </ul>
+              <div class="step-result">
+                <p class="step-result-title">Күтілетін нәтиже</p>
+                <p>Тапсырмалар бұрынғыдай қосылады. Сервер терминалында форма жаңа мекенжайға кететіні, содан кейін браузер басты бетке оралатыны көрінеді:</p>
+                <pre class="step-output">[17/Nov/2026 07:06:26] "POST /tasks/add/ HTTP/1.1" 302 0
+[17/Nov/2026 07:06:26] "GET / HTTP/1.1" 200 2872</pre>
+                <p>Бос форманы браузердің өзі жібермейді (<code>required</code> атрибуты), бірақ сервер де өзі тексереді. Бос атау бәрібір келсе, <code>CreateView</code> «Новая задача» бетін қатемен қайтарады:</p>
+                <pre class="step-output" data-check="post-empty:/tasks/add/">&lt;ul class="errorlist" id="id_title_error"&gt;&lt;li&gt;This field is required.&lt;/li&gt;&lt;/ul&gt;</pre>
+                <p class="step-result-note">Күн, уақыт және соңғы сан — жауаптың байттағы өлшемі — сізде басқаша болады. Қате мәтіні ағылшынша, себебі <code>settings.py</code> ішінде <code>LANGUAGE_CODE = 'en-us'</code> тұр; <code>'ru'</code> болса, ол «Обязательное поле.» болады.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="6"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>7-қадам. Тізім — ListView</h3>
+              <p>
+                Енді <code>index</code> пен <code>category</code> екеуін бір класпен ауыстырамыз. Екі бет те бір үлгіні көрсетеді, айырмашылық тек қай тапсырмаларды алуда. <code>ListView</code> тізімді <code>get_queryset()</code> әдісінен алады, сондықтан бір класс екі маршрутқа да қызмет етеді: санат бетінде <code>self.kwargs</code> ішінде мекенжайдағы <code>pk</code> жатады.
+              </p>
+              <div class="code-grid">
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/views.py</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse_lazy
+from django.views.decorators.http import require_POST
+from django.views.generic import CreateView, ListView
+
+from .forms import TaskForm
+from .models import Category, Task
+
+class TaskListView(ListView):
+    template_name = "tasks/index.html"
+    context_object_name = "tasks"
+
+    def get_queryset(self):
+        self.current = None
+        if "pk" in self.kwargs:
+            self.current = get_object_or_404(Category, pk=self.kwargs["pk"])
+            return self.current.tasks.all()
+        return Task.objects.select_related("category")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories"] = Category.objects.all()
+        context["current"] = self.current
+        context["form"] = TaskForm(initial={"category": self.current})
+        return context
+
+class TaskCreateView(CreateView):
+    model = Task
+    form_class = TaskForm
+    success_url = reverse_lazy("index")
+
+@require_POST
+def toggle(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.done = not task.done
+    task.save()
+    return redirect("index")
+
+@require_POST
+def delete(request, pk):
+    get_object_or_404(Task, pk=pk).delete()
+    return redirect("index")</code></pre>
+                </div>
+
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>mysite/urls.py</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>from django.contrib import admin
+from django.urls import path
+
+from tasks import views
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", views.TaskListView.as_view(), name="index"),
+    path("category/&lt;int:pk&gt;/", views.TaskListView.as_view(), name="category"),
+    path("tasks/add/", views.TaskCreateView.as_view(), name="add"),
+    path("tasks/&lt;int:pk&gt;/toggle/", views.toggle, name="toggle"),
+    path("tasks/&lt;int:pk&gt;/delete/", views.delete, name="delete"),
+]</code></pre>
+                </div>
+              </div>
+              <ul class="list">
+                <li><code>template_name</code> — әдепкі <code>tasks/task_list.html</code> атының орнына біздің үлгі. <code>context_object_name = "tasks"</code> — үлгідегі тізімнің аты (әдепкіде <code>object_list</code>), сондықтан үлгіні өзгертудің қажеті жоқ.</li>
+                <li><code>get_queryset()</code> қай тапсырмаларды көрсетуді шешеді: басты бетте — бәрін, бірден санаттарымен, санатта — <code>current.tasks.all()</code>.</li>
+                <li><code>get_context_data()</code> үлгіге тізімге қатысы жоқ нәрселерді қосады: сілтемелерге арналған санаттарды, ағымдағы санатты және бос форманы.</li>
+                <li><code>toggle</code> мен <code>delete</code> функция болып қалады: оларға үлгі де, форма да керек емес, ал бес жолдық функция класқа қарағанда түсініктірек. Кластар жұмыс типтік болғанда тиімді.</li>
+              </ul>
+              <div class="step-result">
+                <p class="step-result-title">Күтілетін нәтиже</p>
+                <pre class="step-output" data-check="check">System check identified no issues (0 silenced).</pre>
+                <p>Беттер 6-қадамнан кейінгідей көрінеді және жұмыс істейді, ал код азайды. <code>ListView</code> тек GET-ке жауап береді: басты бетке жіберілетін форма бір жерде қалып қойса, сервер 405 деп жауап береді (<a href="#errors">жиі кездесетін қателерді</a> қараңыз).</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="7"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step project-part reveal">
+              <p class="part-title">3-бөлім. Тесттер</p>
+              <h3>8-қадам. Көріністерді тесттермен тексеріңіз</h3>
+              <p>
+                <code>tasks/tests.py</code> файлын толығымен ауыстырыңыз. <code>TestCase</code> тесттер үшін бөлек бос дерекқор жасайды және әр тесттен кейін өзгерістерді кері қайтарады, сондықтан сіздің тапсырмаларыңызға зиян келмейді. <code>setUpTestData</code> кластағы барлық тесттер үшін санаттар мен үш тапсырманы бір рет жасайды.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>tasks/tests.py</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>from django.test import TestCase
+from django.urls import reverse
+
+from .models import Category, Task
+
+class TaskViewsTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.study = Category.objects.create(name="Учёба")
+        cls.home = Category.objects.create(name="Дом")
+        Task.objects.create(title="Сдать лабораторную", category=cls.study)
+        Task.objects.create(title="Вынести мусор", category=cls.home)
+        Task.objects.create(title="Без категории")
+
+    def test_list_shows_all_tasks(self):
+        response = self.client.get(reverse("index"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "tasks/index.html")
+        self.assertEqual(len(response.context["tasks"]), 3)
+
+    def test_category_shows_only_its_tasks(self):
+        response = self.client.get(reverse("category", args=[self.study.pk]))
+        self.assertContains(response, "Сдать лабораторную")
+        self.assertNotContains(response, "Вынести мусор")
+
+    def test_unknown_category_is_404(self):
+        response = self.client.get(reverse("category", args=[999]))
+        self.assertEqual(response.status_code, 404)
+
+    def test_create_saves_task_and_redirects(self):
+        response = self.client.post(reverse("add"), {"title": "Полить цветы", "category": self.home.pk})
+        self.assertRedirects(response, reverse("index"))
+        self.assertTrue(self.home.tasks.filter(title="Полить цветы").exists())
+
+    def test_create_rejects_empty_title(self):
+        response = self.client.post(reverse("add"), {"title": ""})
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("title", response.context["form"].errors)
+        self.assertEqual(Task.objects.count(), 3)
+
+    def test_list_needs_same_queries_for_any_number_of_tasks(self):
+        for number in range(10):
+            Task.objects.create(title=f"Задача {number}", category=self.study)
+        with self.assertNumQueries(3):
+            self.client.get(reverse("index"))</code></pre>
+              </div>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>python manage.py test</code></pre>
+              </div>
+              <ul class="list">
+                <li><code>response.context</code> — көрініс үлгіге берген нәрсе: басты бетте дәл үш тапсырма бар екені осылай көрінеді.</li>
+                <li>Сүзгі екі жақтан тексеріледі: «Учёба» тапсырмасы бетте бар, ал «Дом» тапсырмасы жоқ. Жоқ санат 404 деп жауап береді.</li>
+                <li><code>CreateView</code> санаты бар тапсырманы сақтап, тізімге бағыттайды; бос атау сақталмайды.</li>
+                <li><code>assertNumQueries(3)</code> N+1 мәселесін қадағалайды: басты бетте тапсырмалар саны қанша болса да дәл үш сұрау — санаттарымен тапсырмалар, сілтемелерге арналған санаттар және ашылмалы тізімге арналған санаттар.</li>
+              </ul>
+              <div class="step-result">
+                <p class="step-result-title">Күтілетін нәтиже</p>
+                <pre class="step-output" data-check="test">Found 6 test(s).
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.032s
+
+OK
+Destroying test database for alias 'default'...</pre>
+                <p>Сұраулар санына арналған тест <code>select_related</code>-ті шынымен күзетеді. <code>get_queryset</code> ішіндегі жолды <code>Task.objects.all()</code> деп ауыстырсаңыз, ол құлайды:</p>
+                <pre class="step-output" data-check="test-fail">FAIL: test_list_needs_same_queries_for_any_number_of_tasks (tasks.tests.TaskViewsTests.test_list_needs_same_queries_for_any_number_of_tasks)
+AssertionError: 15 != 3 : 15 queries executed, 3 expected
+FAILED (failures=1)</pre>
+                <p class="step-result-note">Орындалу уақыты сізде басқаша болады. Құлағанда 15 сұрау: үш әдеттегі сұрау және санаты бар он екі тапсырманың әрқайсысына біреуден.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="8"> Қадам өтілді</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>9-қадам. Браузерде тексеріңіз</h3>
+              <p>
+                Серверді іске қосып, <code>http://127.0.0.1:8000/</code> ашыңыз. Әртүрлі санаттағы бір-екі тапсырма қосыңыз, санат сілтемелері бойынша өтіңіз, бір тапсырманы «Готово» батырмасымен белгілеп, екіншісін жойыңыз. <code>/admin/</code> әкімші панелінде Categories бөлімі, ал тапсырмалар тізімінде оң жақта сүзгі пайда болды.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Көшіру</button>
+                </div>
+                <pre><code>python manage.py runserver</code></pre>
+              </div>
+              <figure class="shot">
+                <p class="shot-title">Қалай көрінуі керек</p>
+                <img src="../assets/img/project/django-next.webp" width="1120" height="978" alt="«Мои задачи» беті: «Все · Дом · Учёба» сілтемелері, санаттардың ашылмалы тізімі бар өріс және төрт тапсырма, үшеуінің жанында санаты көрсетілген" loading="lazy" decoding="async">
+                <figcaption>«Вынести мусор» тапсырмасы формадан «Дом» санатымен жаңа ғана қосылды, «Сдать лабораторную» «Готово» батырмасымен белгіленген. Ескі «Купить хлеб» тапсырмасының санаты жоқ.</figcaption>
+              </figure>
+              <label class="step-check"><input type="checkbox" data-step="9"> Қадам өтілді</label>
+            </li>
+          </ol>
+
+          <div class="panel reveal stack-gap self-check">
+            <h3>Өзіңізді тексеріңіз</h3>
+            <p>Алдымен ойша жауап беріп, содан кейін жауапты ашыңыз.</p>
+            <details>
+              <summary><code>ForeignKey</code> өрісінде <code>null=True</code> не үшін тұр?</summary>
+              <p>Дерекқорда алғашқы жобаның тапсырмалары бұрыннан бар еді, олардың санаты жоқ. <code>null=True</code> <code>category_id</code> бағанында бос мән қалдыруға рұқсат береді, сондықтан миграция сұрақсыз өтті. Онсыз <code>makemigrations</code> ескі жолдар үшін әдепкі мән талап етер еді.</p>
+            </details>
+            <details>
+              <summary>«Дом» санатын жойсақ, тапсырмалармен не болады?</summary>
+              <p>Тапсырмалар қалады, тек санаты жоғалады: мұны <code>on_delete=models.SET_NULL</code> талап етеді. Жою <code>(1, {'tasks.Category': 1})</code> қайтарады — бір санат жойылды, бірде-бір тапсырма жойылмады. <code>CASCADE</code> болса, санатпен бірге оның тапсырмалары да жойылар еді, <code>PROTECT</code> болса, ішінде тапсырмасы бар санатты Django жоюға бермес еді.</p>
+            </details>
+            <details>
+              <summary><code>select_related</code> мен <code>prefetch_related</code> айырмашылығы неде?</summary>
+              <p><code>select_related</code> кестелерді бір SQL сұрауында біріктіреді (JOIN) және әр жазбада бір байланысқан нысан болғанда жарайды: тапсырманың санаты біреу. <code>prefetch_related</code> екінші сұрау жасап, нәтижелерді Python-да нысандарға таратады — ол кері байланыс пен «көп-көпке» үшін керек, мысалы, әр санаттың барлық тапсырмасын шығару үшін.</p>
+            </details>
+            <details>
+              <summary><code>ListView</code>-ке көшкеннен кейін басты бетке жіберілген форма неге 405 жауабын алады?</summary>
+              <p><code>ListView</code> тек оқуға — GET-ке (және қызметтік HEAD пен OPTIONS-қа) жауап бере алады. POST-қа ол «Method Not Allowed» деп жауап береді. Сақтау енді <code>/tasks/add/</code> мекенжайындағы <code>TaskCreateView</code>-те, форма сонда жіберілуі керек.</p>
+            </details>
+            <details>
+              <summary><code>ListView</code>-те <code>context_object_name = "tasks"</code> не үшін көрсетілді?</summary>
+              <p>Әдепкіде тізім үлгіге <code>object_list</code> және <code>task_list</code> атауларымен түседі. Алғашқы жобадағы үлгіміз <code>tasks</code> бойынша жүреді, ал кластағы бір жол үлгіні түзетуден құтқарады.</p>
+            </details>
+
+            <div class="self-task">
+              <p class="step-result-title">Өзіндік тапсырма</p>
+              <p>Тапсырмалар көбейді — тізімді «Назад» және «Дальше» сілтемелері бар бес тапсырмадан тұратын беттерге бөліңіз. <code>ListView</code> мұны өзі істей алады. Тестті ұмытпаңыз: бір бетте — бес тапсырма, жоқ бет — 404.</p>
+              <details class="self-solution">
+                <summary>Шешімін көрсету</summary>
+                <p>Класқа бір жол, үлгіге беттер бойынша сілтемелер қосылады. <code>ListView</code> үлгіге <code>page_obj</code> нысанын береді және жоқ бет нөміріне 404 деп жауап береді.</p>
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/views.py — TaskListView ішіндегі бір жаңа жол</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>class TaskListView(ListView):
+    template_name = "tasks/index.html"
+    context_object_name = "tasks"
+    paginate_by = 5
+
+    # ... get_queryset и get_context_data без изменений ...</code></pre>
+                </div>
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/templates/tasks/index.html — соңына қосыңыз</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>{% if page_obj.has_other_pages %}
+  &lt;p&gt;
+    {% if page_obj.has_previous %}&lt;a href="?page={{ page_obj.previous_page_number }}"&gt;Назад&lt;/a&gt;{% endif %}
+    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+    {% if page_obj.has_next %}&lt;a href="?page={{ page_obj.next_page_number }}"&gt;Дальше&lt;/a&gt;{% endif %}
+  &lt;/p&gt;
+{% endif %}</code></pre>
+                </div>
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/tests.py — өзгерген және жаңа тест</span>
+                    <button class="copy-btn" type="button">Көшіру</button>
+                  </div>
+                  <pre><code>    def test_list_needs_same_queries_for_any_number_of_tasks(self):
+        for number in range(10):
+            Task.objects.create(title=f"Задача {number}", category=self.study)
+        with self.assertNumQueries(4):
+            self.client.get(reverse("index"))
+
+    def test_pagination(self):
+        for number in range(10):
+            Task.objects.create(title=f"Задача {number}")
+        first = self.client.get(reverse("index"))
+        self.assertEqual(len(first.context["tasks"]), 5)
+        self.assertContains(first, "Страница 1 из 3")
+        self.assertEqual(self.client.get(reverse("index") + "?page=3").status_code, 200)
+        self.assertEqual(self.client.get(reverse("index") + "?page=4").status_code, 404)</code></pre>
+                </div>
+                <p class="step-result-note">Беттегіш тапсырмаларды бөлек <code>COUNT</code> сұрауымен санайды, сондықтан сұраулар санына арналған тестте енді 3 емес, 4. Қалған тесттер өзгеріссіз өтеді: барлығы 7 тест, OK.</p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="compare" aria-labelledby="compare-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="compare-title">Функция ма, класс па</h2>
+            <p>Екі тәсіл де дұрыс. Жұмыс типтік болса, кластар кодты үнемдейді, ал әрекет ерекше болса, функциялар түсініктірек.</p>
+          </div>
+
+          <div class="table-wrap reveal" tabindex="0" role="region" aria-label="Кесте: функция көріністері және класс көріністері">
+            <table>
+              <caption>Алғашқы жобадағы және мұндағы бірдей беттер</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Не керек</th>
+                  <th scope="col">Функция (алғашқы жоба)</th>
+                  <th scope="col">Класс (осы бөлім)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Тізімді көрсету</td>
+                  <td><code>render(request, "tasks/index.html", {…})</code></td>
+                  <td><code>ListView</code>: <code>get_queryset()</code> және <code>template_name</code></td>
+                </tr>
+                <tr>
+                  <td>Форманы сақтау</td>
+                  <td><code>if request.method == "POST"</code>, <code>is_valid()</code>, <code>save()</code>, <code>redirect()</code></td>
+                  <td><code>CreateView</code>: <code>model</code>, <code>form_class</code>, <code>success_url</code></td>
+                </tr>
+                <tr>
+                  <td>Форма қателерін көрсету</td>
+                  <td>форманы үлгіге қолмен беру</td>
+                  <td>форма бар <code>tasks/task_form.html</code> үлгісі</td>
+                </tr>
+                <tr>
+                  <td>Үлгіге дерек қосу</td>
+                  <td><code>render</code> үшін сөздіктегі кілт</td>
+                  <td><code>get_context_data()</code> әдісі</td>
+                </tr>
+                <tr>
+                  <td>Неге жарайды</td>
+                  <td>ерекше әрекеттерге: «Готово», «Удалить»</td>
+                  <td>типтік беттерге: тізім, жасау, өзгерту, жою (<code>UpdateView</code>, <code>DeleteView</code>, <code>DetailView</code>)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section faq" id="errors" aria-labelledby="errors-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="errors-title">Жиі кездесетін қателер және оларды қалай түзету керек</h2>
+            <p>Хабарламалар Django 6.1 көрсететіндей берілген. Шешімін көру үшін қатені басыңыз.</p>
+          </div>
+
+          <details class="reveal">
+            <summary>«no such column: tasks_task.category_id»</summary>
+            <p>
+              <code class="error-text">django.db.utils.OperationalError: no such column: tasks_task.category_id</code> Модель <code>category</code> өрісін біледі, ал дерекқор кестесінде мұндай баған әлі жоқ. 2-қадамды орындаңыз: <code>python manage.py makemigrations</code> және <code>python manage.py migrate</code>.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>makemigrations: «It is impossible to add a non-nullable field 'category'»</summary>
+            <p>
+              <code class="error-text">It is impossible to add a non-nullable field 'category' to task without specifying a default. This is because the database needs something to populate existing rows.</code> Өрісте <code>null=True</code> жоқ, ал кестеде тапсырмалар бар: дерекқор олардың жаңа бағанына ештеңе жаза алмайды. <kbd>2</kbd> нұсқасын (Quit and manually define a default value in models.py) таңдап, 1-қадамдағыдай өріске <code>null=True, blank=True</code> қосыңыз да, <code>makemigrations</code> командасын қайта іске қосыңыз.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>«'Category' object has no attribute 'task_set'»</summary>
+            <p>
+              <code class="error-text">AttributeError: 'Category' object has no attribute 'task_set'</code> Django кері байланысқа <code>task_set</code> атын <code>ForeignKey</code>-те <code>related_name</code> болмағанда ғана береді. Бізде <code>related_name="tasks"</code>, сондықтан санаттың тапсырмалары — <code>category.tasks.all()</code>.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>«Method Not Allowed (POST): /» және 405 жауабы</summary>
+            <p>
+              <code class="error-text">Method Not Allowed (POST): /</code> Қосу формасы басты бетке жіберіледі, ал онда енді тек GET қабылдайтын <code>ListView</code> тұр. <code>index.html</code> ішіндегі форма жолын тексеріңіз: <code>&lt;form method="post" action="{% url 'add' %}"&gt;</code> (6-қадам).
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>«TemplateDoesNotExist: tasks/task_form.html»</summary>
+            <p>
+              <code class="error-text">django.template.exceptions.TemplateDoesNotExist: tasks/task_form.html</code> <code>CreateView</code> бұл үлгіні форма тексеруден өтпегенде немесе <code>/tasks/add/</code> ашылғанда көрсетеді. 6-қадамдағы <code>tasks/templates/tasks/task_form.html</code> файлын жасаңыз — аты модель атауы мен <code>_form</code> жалғауынан құралады.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>«Reverse for 'add' not found»</summary>
+            <p>
+              <code class="error-text">django.urls.exceptions.NoReverseMatch: Reverse for 'add' not found. 'add' is not a valid view function or pattern name.</code> Үлгі <code>add</code> маршрутына сілтейді, ал <code>mysite/urls.py</code> ішінде ол жоқ. <code>path("tasks/add/", views.TaskCreateView.as_view(), name="add")</code> жолын қосыңыз.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>Тест: «AssertionError: 15 != 3 : 15 queries executed, 3 expected»</summary>
+            <p>
+              <code class="error-text">AssertionError: 15 != 3 : 15 queries executed, 3 expected</code> Басты бетте қайтадан N+1 мәселесі: <code>get_queryset</code> ішінен <code>select_related("category")</code> жоғалған, немесе үлгі алдын ала жүктелмеген басқа байланысқа жүгінеді. <code>select_related</code>-ті 7-қадамдағыдай қайтарыңыз.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="sources" aria-labelledby="sources-title">
+        <div class="container">
+          <div class="panel sources reveal">
+            <h2 id="sources-title">Дереккөздер</h2>
+            <p class="note">Код Django 6.1-ге арналған. Барлық қадам Python 3.13 және Django 6.1.3 нұсқасында орындалды: <time datetime="2026-11-17">17.11.2026</time>.</p>
+            <ul class="list">
+              <li><a href="https://docs.djangoproject.com/en/6.1/ref/models/fields/#foreignkey" rel="noopener">Django 6.1: ForeignKey өрісі</a> — <code>on_delete</code>, <code>related_name</code>, <code>null</code> және <code>blank</code></li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/topics/db/queries/#related-objects" rel="noopener">Django 6.1: байланыстар арқылы сұраулар</a> — тура және кері байланыс, <code>category__name</code> сүзгісі</li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/ref/models/querysets/#select-related" rel="noopener">Django 6.1: select_related және prefetch_related</a></li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/topics/migrations/" rel="noopener">Django 6.1: миграциялар</a></li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/topics/class-based-views/" rel="noopener">Django 6.1: класс көріністері</a> — кіріспе</li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/ref/class-based-views/generic-display/#listview" rel="noopener">Django 6.1: ListView</a></li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/ref/class-based-views/generic-editing/#createview" rel="noopener">Django 6.1: CreateView</a></li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/topics/testing/tools/" rel="noopener">Django 6.1: тест құралдары</a> — тест клиенті және <code>assertNumQueries</code></li>
+              <li><a href="https://docs.djangoproject.com/en/6.1/topics/pagination/" rel="noopener">Django 6.1: беттеу</a> — өзіндік тапсырма үшін</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Әрі қарай">
+        <div class="container">
+          <div class="cta-panel reveal">
+            <div>
+              <h2>Әрі қарай не бар</h2>
+              <p class="lead cta-lead">
+                Жобаны «Жариялау» бөлімі бойынша интернетке шығарыңыз — миграциядан кейін серверде де сол <code>migrate</code> командасы керек болады. Ал тапсырмаларды бет түрінде емес, дерек түрінде беру үшін REST API бөлімін қараңыз.
+              </p>
+            </div>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="deploy.html">Жариялау</a> <a class="btn btn-secondary" href="api.html">REST API</a>
+            </div>
+          </div>
+        </div>
+      </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="html-css.html">HTML және CSS</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="playground.html">Құмсалғыш</a></li></ul></div>
+        <div><strong>Түсіну</strong><ul><li><a href="about.html">Python туралы</a></li><li><a href="frameworks.html">Фреймворктер</a></li><li><a href="databases.html">Дерекқорлар</a></li><li><a href="templates.html">Үлгілер мен формалар</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесттер</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="setup.html">Компьютерді дайындау</a></li><li><a href="project.html">Алғашқы жоба</a></li><li><a href="django-next.html">Django: келесі қадам</a></li><li><a href="project2.html">Екінші жоба</a></li><li><a href="deploy.html">Жариялау</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Есептер</a></li><li><a href="cheatsheet.html">Қысқаша анықтама</a></li><li><a href="exam.html">Қорытынды тест</a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="course.html">Бүкіл курс</a></li><li><a href="progress.html">Менің прогресім</a></li><li><a href="contacts.html">Байланыс</a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, Python-ның веб-әзірлеудегі рөлі туралы оқу жобасы</p>
+      <p class="note footer-note">Авторы: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Жаңартылды: <time datetime="2026-11-17">17.11.2026</time> · Мысалдардағы нұсқалар: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">GitHub-тағы бастапқы код</a></p>
+      <p class="note footer-note">Сурет: <a href="https://commons.wikimedia.org/wiki/File:Copyright_Card_Catalog_Files.jpg" rel="noopener">карточкалық каталог, Michael Holley</a>.</p>
+      <p class="note footer-note"><a href="privacy.html">Құпиялылық саясаты</a> · <a href="terms.html">Пайдалану шарттары</a></p>
+      <p class="note footer-note">Сайт оқу мақсатында жасалған. Форма хабарламалары GitHub-тағы ашық Issues бөлімі арқылы жіберіледі. GitHub аккаунты болмаса, <a href="contacts.html#no-github">тікелей жазуға</a> болады.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Жоғарыға айналдыру">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="../assets/i18n.js"></script>
+  <script src="../script.js"></script>
+  <script src="../features.js"></script>
+</body>
+</html>

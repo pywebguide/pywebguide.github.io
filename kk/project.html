@@ -105,6 +105,7 @@
             </ul></div>
             <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Жасау</p><ul aria-labelledby="nav-group-2">
               <li><a href="setup.html">Компьютерді дайындау</a></li>
+              <li><a href="django-next.html">Django: келесі қадам</a></li>
               <li><a href="project2.html">Екінші жоба</a></li>
               <li><a href="deploy.html">Жариялау</a></li>
             </ul></div>
@@ -270,6 +271,7 @@ def index():
         return redirect(url_for("index"))
     return render_template_string(PAGE, tasks=tasks)</code></pre>
               </div>
+              <p class="download-row step-download"><a href="../examples/flask-todo/steps/step-2.zip" download>Осы қадамнан кейінгі код (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Күтілетін нәтиже</p>
                 <p>Терминал әзірге ештеңе шығармайды: файл енді ғана жасалды, серверді келесі қадамда іске қосамыз. Жоба қалтасында енді екі элемент бар:</p>
@@ -391,6 +393,7 @@ def delete(task_id):
                 <button class="btn btn-primary" type="button" data-try-start>Браузерде байқап көру</button>
                 <p class="note" data-try-note>Дәл осы код осында іске қосылады: Python мен Flask браузерге жүктеледі (шамамен 15 МБ, тек алғаш басқанда). Төмендегі терезеде тапсырмаларды өз компьютеріңіздегідей қосып, жойыңыз.</p>
               </div>
+              <p class="download-row step-download"><a href="../examples/flask-todo/steps/step-5.zip" download>Осы қадамнан кейінгі код (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Күтілетін нәтиже</p>
                 <p>Сақтағаннан кейін <code>--debug</code> жалаушасымен іске қосылған сервер өзі қайта іске қосылады, ал <code>app.py</code> жанында дерекқор файлы пайда болады:</p>
@@ -551,6 +554,7 @@ python manage.py startapp tasks</code></pre>
               </div>
                 </div>
               </div>
+              <p class="download-row step-download"><a href="../examples/django-todo/steps/step-1.zip" download>Осы қадамнан кейінгі код (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Күтілетін нәтиже</p>
                 <p>Орнатудан кейінгі соңғы жол:</p>
@@ -596,6 +600,7 @@ tasks/
     'tasks',
 ]</code></pre>
               </div>
+              <p class="download-row step-download"><a href="../examples/django-todo/steps/step-2.zip" download>Осы қадамнан кейінгі код (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Күтілетін нәтиже</p>
                 <p>Баптауларды <code>python manage.py check</code> командасымен тексеріңіз. Бәрі дұрыс болса, ол былай жауап береді:</p>
@@ -636,6 +641,7 @@ from .models import Task
 admin.site.register(Task)</code></pre>
                 </div>
               </div>
+              <p class="download-row step-download"><a href="../examples/django-todo/steps/step-3.zip" download>Осы қадамнан кейінгі код (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Күтілетін нәтиже</p>
                 <p>Әзірге көзге көрінетін өзгеріс жоқ: модельге арналған кесте дерекқорда 4-қадамдағы миграциялардан кейін ғана пайда болады. Кодта қате жазу жоқ екеніне сол <code>python manage.py check</code> командасымен көз жеткізуге болады:</p>
@@ -656,6 +662,7 @@ admin.site.register(Task)</code></pre>
 python manage.py migrate
 python manage.py createsuperuser</code></pre>
               </div>
+              <p class="download-row step-download"><a href="../examples/django-todo/steps/step-4.zip" download>Осы қадамнан кейінгі код (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Күтілетін нәтиже</p>
                 <p>Бірінші команда миграция файлын жасайды, екіншісі — дерекқордағы кестелерді, үшіншісі сұрақтар қояды:</p>
@@ -729,6 +736,7 @@ urlpatterns = [
 ]</code></pre>
                 </div>
               </div>
+              <p class="download-row step-download"><a href="../examples/django-todo/steps/step-5.zip" download>Осы қадамнан кейінгі код (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Күтілетін нәтиже</p>
                 <p>Серверді келесі қадамда іске қосамыз. Әзірге үлгінің өз орнында жатқанын тексеріңіз:</p>
@@ -786,6 +794,7 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = ["title"]</code></pre>
               </div>
+              <p class="download-row step-download"><a href="../examples/django-todo/steps/step-7.zip" download>Осы қадамнан кейінгі код (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Күтілетін нәтиже</p>
                 <p>Бет әзірге өзгерген жоқ: форма 8 және 9-қадамдарда көрініс пен үлгіні жаңартқанда пайда болады. <code>python manage.py check</code> командасы былай жауап беруі керек:</p>
@@ -852,6 +861,7 @@ urlpatterns = [
 ]</code></pre>
                 </div>
               </div>
+              <p class="download-row step-download"><a href="../examples/django-todo/steps/step-8.zip" download>Осы қадамнан кейінгі код (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Күтілетін нәтиже</p>
                 <p><code>python manage.py check</code> қайтадан <code>System check identified no issues (0 silenced).</code> деп жауап береді. Басты бет бұрынғыдай көрінеді: көрініс форманы беріп тұр, бірақ ескі үлгі оны шығармайды. Сервер іске қосулы болса, файлдарды сақтағаннан кейін ол өзі қайта іске қосылады.</p>
@@ -896,6 +906,7 @@ urlpatterns = [
   {% endfor %}
 &lt;/ul&gt;</code></pre>
               </div>
+              <p class="download-row step-download"><a href="../examples/django-todo/steps/step-9.zip" download>Осы қадамнан кейінгі код (.zip)</a></p>
               <div class="step-result">
                 <p class="step-result-title">Күтілетін нәтиже</p>
                 <p><code>http://127.0.0.1:8000/</code> бетін жаңартыңыз: тізімнің үстінде енгізу өрісі мен «Добавить» батырмасы пайда болады. Өрісті Django модель бойынша құрды — бет кодында (<kbd>Ctrl</kbd> + <kbd>U</kbd>, macOS-та <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>U</kbd>) ол былай көрінеді:</p>
@@ -991,6 +1002,7 @@ urlpatterns = [
           <div class="panel reveal stack-gap">
             <h3>Әрі қарай не бар</h3>
             <ul class="list">
+              <li>Тапсырмаларды санаттарға бөліңіз, көріністерді <code>ListView</code> және <code>CreateView</code> кластарына көшіріп, оларды тесттермен қамтыңыз — жалғасы <a href="../django-next.html" hreflang="ru">«Django: келесі қадам»</a> бөлімінде.</li>
               <li>Алдымен орындалмаған тапсырмаларды көрсетіңіз: <code>Task.objects.order_by("done", "-id")</code>.</li>
               <li>Django-ның ресми нұсқаулығын өтіңіз — ол дәл осы логиканы сауалнамалар мысалында жалғастырады.</li>
               <li>Қосымшаны интернетке жариялаңыз — нұсқаулық <a href="deploy.html">«Жариялау»</a> бөлімінде.</li>
@@ -1092,7 +1104,7 @@ urlpatterns = [
       <div class="footer-links">
         <div><strong>Бастау</strong><ul><li><a href="start.html">Python нөлден</a></li><li><a href="html-css.html">HTML және CSS</a></li><li><a href="glossary.html">Сөздік</a></li><li><a href="playground.html">Құмсалғыш</a></li></ul></div>
         <div><strong>Түсіну</strong><ul><li><a href="about.html">Python туралы</a></li><li><a href="frameworks.html">Фреймворктер</a></li><li><a href="databases.html">Дерекқорлар</a></li><li><a href="templates.html">Үлгілер мен формалар</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесттер</a></li><li><a href="git.html">Git</a></li></ul></div>
-        <div><strong>Жасау</strong><ul><li><a href="setup.html">Компьютерді дайындау</a></li><li><a href="project.html">Алғашқы жоба</a></li><li><a href="project2.html">Екінші жоба</a></li><li><a href="deploy.html">Жариялау</a></li></ul></div>
+        <div><strong>Жасау</strong><ul><li><a href="setup.html">Компьютерді дайындау</a></li><li><a href="project.html">Алғашқы жоба</a></li><li><a href="django-next.html">Django: келесі қадам</a></li><li><a href="project2.html">Екінші жоба</a></li><li><a href="deploy.html">Жариялау</a></li></ul></div>
         <div><strong>Практика</strong><ul><li><a href="practice.html">Есептер</a></li><li><a href="cheatsheet.html">Қысқаша анықтама</a></li><li><a href="exam.html">Қорытынды тест</a></li></ul></div>
         <div><strong>Сайт</strong><ul><li><a href="course.html">Бүкіл курс</a></li><li><a href="progress.html">Менің прогресім</a></li><li><a href="contacts.html">Байланыс</a></li></ul></div>
       </div>
