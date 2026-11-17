@@ -744,6 +744,15 @@
       const area = el("textarea", { class: "code-edit", spellcheck: "false", "aria-label": t("Код примера, его можно менять") });
       area.value = pre.querySelector("code").textContent;
       area.rows = Math.min(24, area.value.split("\n").length + 1);
+      // Поле растёт вместе с кодом (и с переносами длинных строк на телефоне): всё видно без прокрутки внутри окна
+      function fit() {
+        if (!area.isConnected || block.classList.contains("is-expanded")) return;
+        area.style.height = "";
+        if (area.scrollHeight > area.clientHeight) area.style.height = area.scrollHeight + 4 + "px";
+      }
+      area.addEventListener("input", fit);
+      window.addEventListener("resize", fit);
+      requestAnimationFrame(fit);
       tabInsert(area);
       area.addEventListener("keydown", function (event) {
         if ((event.ctrlKey || event.metaKey) && event.key === "Enter") run.click();
@@ -757,6 +766,36 @@
     edit.addEventListener("click", function () { openEditor(true); });
     // В уроках код можно менять сразу, без лишней кнопки
     if (block.hasAttribute("data-open")) openEditor(false);
+
+    // На телефоне окно с кодом узкое: кнопка разворачивает редактор и результат на весь экран
+    // (на широком экране кнопку прячет CSS). Свернуть — той же кнопкой или клавишей Esc вне поля кода
+    // На главной окно-плакат из двух строк: там кнопка не нужна
+    const expand = el("button", { class: "copy-btn-plain expand-btn", type: "button", "aria-pressed": "false", text: t("Во весь экран") });
+    if (!block.dataset.poster) head.appendChild(expand);
+
+    function setExpanded(on) {
+      block.classList.toggle("is-expanded", on);
+      document.documentElement.classList.toggle("has-expanded-code", on);
+      expand.setAttribute("aria-pressed", on ? "true" : "false");
+      expand.textContent = t(on ? "Свернуть" : "Во весь экран");
+      if (!block.querySelector(".code-edit")) openEditor(false);
+      const area = block.querySelector(".code-edit");
+      if (on) {
+        area.style.height = "";
+        block.scrollTop = 0;
+      } else {
+        area.dispatchEvent(new Event("input"));
+        block.scrollIntoView({ block: "nearest" });
+      }
+    }
+
+    expand.addEventListener("click", function () { setExpanded(!block.classList.contains("is-expanded")); });
+    block.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && block.classList.contains("is-expanded") && !event.target.classList.contains("code-edit")) {
+        setExpanded(false);
+        expand.focus();
+      }
+    });
 
     run.addEventListener("click", function () {
       if (isHtml) {

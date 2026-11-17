@@ -1176,6 +1176,65 @@ th {
   min-height: 240px;
 }
 
+/* «Во весь экран» нужен только на узком экране */
+.expand-btn {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .code-block[data-run] .expand-btn {
+    display: inline-flex;
+  }
+
+  /* Длинные строки переносятся, а не уезжают вбок за край узкого окна */
+  .code-edit,
+  .editor-area {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  /* В уроках окно кода занимает всю ширину карточки: отступы карточки код не съедают */
+  .lesson .lesson-code .code-block:not(.is-expanded) {
+    margin-inline: calc(-1 * clamp(18px, 2.4vw, 28px));
+  }
+}
+
+/* Развёрнутый редактор: код и результат на весь экран телефона, страница под ним не прокручивается */
+.code-block.is-expanded {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.code-block.is-expanded .code-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.code-block.is-expanded .code-edit {
+  flex: 1 1 auto;
+  min-height: 40vh;
+  resize: none;
+}
+
+.code-block.is-expanded .run-output {
+  flex: none;
+}
+
+.code-block.is-expanded .code-hint {
+  display: none;
+}
+
+.has-expanded-code body {
+  overflow: hidden;
+}
+
 .code-edit:focus,
 .editor-area:focus {
   outline: 2px solid var(--mark);
