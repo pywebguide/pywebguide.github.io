@@ -58,7 +58,7 @@
       "educationalLevel": "Начальный",
       "learningResourceType": "Пошаговое руководство",
       "timeRequired": "PT1H",
-      "dateModified": "2026-10-28",
+      "dateModified": "2026-11-17",
       "isPartOf": { "@type": "WebSite", "name": "PyWeb Guide", "url": "https://pywebguide.github.io/" },
       "author": { "@type": "Person", "name": "Жангужин Е. Е." }
     }
@@ -225,6 +225,12 @@ pip install flask</code></pre>
               </div>
                 </div>
               </div>
+              <div class="step-result">
+                <p class="step-result-title">Expected result</p>
+                <p>A <code>.venv</code> folder has appeared in the project folder, and the terminal line now starts with <code>(.venv)</code>: the environment is active. The last line after installation:</p>
+                <pre class="step-output">Successfully installed blinker-1.9.0 click-8.5.1 flask-3.1.3 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.4 werkzeug-3.1.9</pre>
+                <p class="step-result-note">Your version numbers may be newer, and that is fine. You can check the installation with <code>flask --version</code>: it shows the versions of Python, Flask and Werkzeug.</p>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="1"> Step done</label>
             </li>
 
@@ -263,6 +269,13 @@ def index():
         return redirect(url_for("index"))
     return render_template_string(PAGE, tasks=tasks)</code></pre>
               </div>
+              <div class="step-result">
+                <p class="step-result-title">Expected result</p>
+                <p>The terminal prints nothing yet: the file has only been created, and we start the server in the next step. The project folder now contains two items:</p>
+                <pre class="step-output">.venv/
+app.py</pre>
+                <p class="step-result-note">The file name matters: in step 3 the command <code>flask --app app</code> looks for exactly <code>app.py</code>.</p>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="2"> Step done</label>
             </li>
 
@@ -275,6 +288,19 @@ def index():
                   <button class="copy-btn" type="button">Copy</button>
                 </div>
                 <pre><code>flask --app app run --debug</code></pre>
+              </div>
+              <div class="step-result">
+                <p class="step-result-title">Expected result</p>
+                <p>The terminal shows roughly this and stays busy running the server:</p>
+                <pre class="step-output"> * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 700-095-102</pre>
+                <p class="step-result-note">The WARNING line is not an error: Flask reminds you that the built-in server is for development only. Your PIN will be different. Do not close this window; type new commands in a second terminal window.</p>
               </div>
               <label class="step-check"><input type="checkbox" data-step="3"> Step done</label>
             </li>
@@ -364,6 +390,18 @@ def delete(task_id):
                 <button class="btn btn-primary" type="button" data-try-start>Try it in the browser</button>
                 <p class="note" data-try-note>This same code will run right here: Python and Flask load into the browser (about 15 MB, only on the first click). Add and delete tasks in the window below, just like on your own computer.</p>
               </div>
+              <div class="step-result">
+                <p class="step-result-title">Expected result</p>
+                <p>After you save, the server started with <code>--debug</code> restarts by itself, and a database file appears next to <code>app.py</code>:</p>
+                <pre class="step-output">.venv/
+__pycache__/
+app.py
+tasks.db</pre>
+                <p>Every task on the page now has a “Удалить” (Delete) button. When you add a task, two lines appear in the server terminal:</p>
+                <pre class="step-output">127.0.0.1 - - [17/Nov/2026 06:00:21] "POST /add HTTP/1.1" 302 -
+127.0.0.1 - - [17/Nov/2026 06:00:21] "GET / HTTP/1.1" 200 -</pre>
+                <p class="step-result-note">Code 302 is a redirect: after saving, the server sends the browser back to the main page, and the browser loads it again (code 200 means success). The <code>__pycache__</code> folder is created by Python itself; you can leave it alone.</p>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="5"> Step done</label>
             </li>
 
@@ -381,6 +419,72 @@ def delete(task_id):
               <label class="step-check"><input type="checkbox" data-step="6"> Step done</label>
             </li>
           </ol>
+
+          <div class="panel reveal stack-gap self-check">
+            <h3>Test yourself</h3>
+            <p>Answer in your head first, then open the answer.</p>
+            <details>
+              <summary>Why did the task list disappear after a server restart in step 4?</summary>
+              <p>The tasks were kept in the <code>tasks</code> list in the memory of the running program. When the server stops, the program exits and its memory is cleared. From step 5 on, tasks are written to the <code>tasks.db</code> file, which stays on disk.</p>
+            </details>
+            <details>
+              <summary>Why do the SQL queries use <code>?</code> marks instead of an f-string with the task title?</summary>
+              <p>A <code>?</code> is a parameter: <code>sqlite3</code> sends the value to the database separately from the query text. Even a title like <code>'); DROP TABLE tasks; --</code> is stored as plain text. An f-string would paste it straight into the SQL, and the query could be changed: this is called SQL injection.</p>
+            </details>
+            <details>
+              <summary>What happens if you open <code>http://127.0.0.1:5000/delete/1</code> in the browser?</summary>
+              <p>Flask answers with error 405 Method Not Allowed: the route is declared with <code>@app.post</code> and accepts only POST. Visiting an address is a GET request, so the task is not deleted. It can only be deleted by submitting the form.</p>
+            </details>
+            <details>
+              <summary>Why does the <code>add</code> function return a <code>redirect</code> after saving instead of the page itself?</summary>
+              <p>If the server answered the POST with the page directly, reloading the page would make the browser submit the form again and add the task twice. The redirect makes the browser load the main page with an ordinary GET request: these are the 302 and 200 lines in the terminal from step 5.</p>
+            </details>
+
+            <div class="self-task">
+              <p class="step-result-title">Exercise on your own</p>
+              <p>Add a “Удалить все” (Delete all) button under the list that deletes all tasks at once. Deletion must happen only when the form is submitted (POST), not when someone visits an address.</p>
+              <details class="self-solution">
+                <summary>Show the solution</summary>
+                <p>You need two changes in <code>app.py</code>: a form at the end of the <code>PAGE</code> template and a new route at the end of the file. The rest of the step 5 code stays the same.</p>
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>app.py — changed parts</span>
+                    <button class="copy-btn" type="button">Copy</button>
+                  </div>
+                  <pre><code>PAGE = """
+&lt;!doctype html&gt;
+&lt;title&gt;Мои задачи&lt;/title&gt;
+&lt;h1&gt;Мои задачи&lt;/h1&gt;
+&lt;form method="post" action="{{ url_for('add') }}"&gt;
+  &lt;input name="title" placeholder="Новая задача" required&gt;
+  &lt;button&gt;Добавить&lt;/button&gt;
+&lt;/form&gt;
+&lt;ul&gt;
+  {% for task in tasks %}
+    &lt;li&gt;
+      {{ task["title"] }}
+      &lt;form method="post" action="{{ url_for('delete', task_id=task['id']) }}"&gt;
+        &lt;button&gt;Удалить&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;
+&lt;form method="post" action="{{ url_for('clear') }}"&gt;
+  &lt;button&gt;Удалить все&lt;/button&gt;
+&lt;/form&gt;
+"""
+
+# ... функции query, index, add и delete без изменений ...
+
+@app.post("/clear")
+def clear():
+    query("DELETE FROM tasks")
+    return redirect(url_for("index"))</code></pre>
+                </div>
+                <p class="step-result-note">Check: add two or three tasks and press “Удалить все”: the list becomes empty and stays empty after a server restart. The <code>/clear</code> address opened in the browser answers 405.</p>
+              </details>
+            </div>
+          </div>
 
           <div class="panel reveal stack-gap">
             <h3>What's next</h3>
@@ -446,6 +550,30 @@ python manage.py startapp tasks</code></pre>
               </div>
                 </div>
               </div>
+              <div class="step-result">
+                <p class="step-result-title">Expected result</p>
+                <p>The last line after installation:</p>
+                <pre class="step-output">Successfully installed asgiref-3.13.0 django-6.1.3 sqlparse-0.6.1</pre>
+                <p>The <code>startproject</code> and <code>startapp</code> commands print nothing: if there is no error message, everything worked. These appeared in the folder:</p>
+                <pre class="step-output">.venv/
+manage.py
+mysite/
+    __init__.py
+    asgi.py
+    settings.py
+    urls.py
+    wsgi.py
+tasks/
+    migrations/
+        __init__.py
+    __init__.py
+    admin.py
+    apps.py
+    models.py
+    tests.py
+    views.py</pre>
+                <p class="step-result-note">Your version numbers may be newer. A service folder <code>__pycache__</code> may also appear; Python creates it.</p>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="1"> Step done</label>
             </li>
 
@@ -466,6 +594,12 @@ python manage.py startapp tasks</code></pre>
     'django.contrib.staticfiles',
     'tasks',
 ]</code></pre>
+              </div>
+              <div class="step-result">
+                <p class="step-result-title">Expected result</p>
+                <p>Check the settings with <code>python manage.py check</code>. If everything is right, it answers:</p>
+                <pre class="step-output">System check identified no issues (0 silenced).</pre>
+                <p class="step-result-note">In the file created by Django 6.1, strings are written in double quotes: <code>"django.contrib.admin"</code>. You can add either <code>"tasks",</code> or <code>'tasks',</code>: to Python they are the same.</p>
               </div>
               <label class="step-check"><input type="checkbox" data-step="2"> Step done</label>
             </li>
@@ -501,6 +635,11 @@ from .models import Task
 admin.site.register(Task)</code></pre>
                 </div>
               </div>
+              <div class="step-result">
+                <p class="step-result-title">Expected result</p>
+                <p>Nothing visible changes yet: the table for the model appears in the database only after the migrations in step 4. To make sure the code has no typos, use the same command <code>python manage.py check</code>:</p>
+                <pre class="step-output">System check identified no issues (0 silenced).</pre>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="3"> Step done</label>
             </li>
 
@@ -515,6 +654,26 @@ admin.site.register(Task)</code></pre>
                 <pre><code>python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser</code></pre>
+              </div>
+              <div class="step-result">
+                <p class="step-result-title">Expected result</p>
+                <p>The first command creates a migration file, the second creates the tables in the database, and the third asks questions:</p>
+                <pre class="step-output">Migrations for 'tasks':
+  tasks/migrations/0001_initial.py
+    + Create model Task
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions, tasks
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  …
+  Applying tasks.0001_initial... OK
+Username (leave blank to use 'root'): admin
+Email address:
+Password:
+Password (again):
+Superuser created successfully.</pre>
+                <p>A database file <code>db.sqlite3</code> has appeared next to <code>manage.py</code>, and the file <code>0001_initial.py</code> in the <code>tasks/migrations/</code> folder.</p>
+                <p class="step-result-note">There are 19 Applying lines in total; some are skipped here. Instead of root you will see your account name. The password is not shown while you type, and that is expected. If the password is short or common, Django warns you and asks <code>Bypass password validation and create user anyway? [y/N]</code>: for a learning project on your own computer you can answer <kbd>y</kbd>.</p>
               </div>
               <label class="step-check"><input type="checkbox" data-step="4"> Step done</label>
             </li>
@@ -569,6 +728,20 @@ urlpatterns = [
 ]</code></pre>
                 </div>
               </div>
+              <div class="step-result">
+                <p class="step-result-title">Expected result</p>
+                <p>We start the server in the next step. For now, check that the template is in the right place:</p>
+                <pre class="step-output">tasks/
+    migrations/
+    templates/
+        tasks/
+            index.html
+    admin.py
+    models.py
+    views.py
+    …</pre>
+                <p><code>python manage.py check</code> should again answer <code>System check identified no issues (0 silenced).</code> While there are no tasks, in step 6 the main page will show the heading “Мои задачи” and the line “Задач пока нет — добавьте их в админке.”</p>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="5"> Step done</label>
             </li>
 
@@ -611,6 +784,11 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ["title"]</code></pre>
+              </div>
+              <div class="step-result">
+                <p class="step-result-title">Expected result</p>
+                <p>The page has not changed yet: the form appears once you update the view and the template in steps 8 and 9. <code>python manage.py check</code> should answer:</p>
+                <pre class="step-output">System check identified no issues (0 silenced).</pre>
               </div>
               <label class="step-check"><input type="checkbox" data-step="7"> Step done</label>
             </li>
@@ -673,6 +851,10 @@ urlpatterns = [
 ]</code></pre>
                 </div>
               </div>
+              <div class="step-result">
+                <p class="step-result-title">Expected result</p>
+                <p><code>python manage.py check</code> again answers <code>System check identified no issues (0 silenced).</code> The main page looks the same as before: the view already passes the form, but the old template does not show it. If the server is running, it restarts by itself after you save the files.</p>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="8"> Step done</label>
             </li>
 
@@ -713,6 +895,12 @@ urlpatterns = [
   {% endfor %}
 &lt;/ul&gt;</code></pre>
               </div>
+              <div class="step-result">
+                <p class="step-result-title">Expected result</p>
+                <p>Reload <code>http://127.0.0.1:8000/</code>: an input field and a “Добавить” (Add) button appear above the list. Django built the field from the model; in the page source (<kbd>Ctrl</kbd> + <kbd>U</kbd>, on macOS <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>U</kbd>) it looks like this:</p>
+                <pre class="step-output">&lt;input type="text" name="title" maxlength="200" required id="id_title"&gt;</pre>
+                <p class="step-result-note">The <code>maxlength="200"</code> limit comes from <code>max_length=200</code> in the model, and <code>required</code> is there because the field is mandatory. Every form also has a hidden <code>csrfmiddlewaretoken</code> field: the <code>{% csrf_token %}</code> tag adds it.</p>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="9"> Step done</label>
             </li>
 
@@ -729,6 +917,75 @@ urlpatterns = [
               <label class="step-check"><input type="checkbox" data-step="10"> Step done</label>
             </li>
           </ol>
+
+          <div class="panel reveal stack-gap self-check">
+            <h3>Test yourself</h3>
+            <p>Answer in your head first, then open the answer.</p>
+            <details>
+              <summary>What happens if you forget to add <code>'tasks'</code> to <code>INSTALLED_APPS</code>?</summary>
+              <p>The <code>makemigrations</code> command answers “No changes detected”: Django does not know about the app, so it does not see its models and does not look for templates in its <code>templates</code> folder.</p>
+            </details>
+            <details>
+              <summary>How is <code>makemigrations</code> different from <code>migrate</code>?</summary>
+              <p><code>makemigrations</code> compares the models with earlier migrations and writes the changes to a new file, for example <code>tasks/migrations/0001_initial.py</code>. That is the plan. <code>migrate</code> carries out these plans in the database: it creates and changes tables. After editing a model you need both commands.</p>
+            </details>
+            <details>
+              <summary>What happens if you remove <code>{% csrf_token %}</code> from the form?</summary>
+              <p>Submitting the form ends with the error “Forbidden (403) CSRF verification failed”. Django checks that the form came from a page of the same site and not from someone else's, and without the token it rejects every POST request.</p>
+            </details>
+            <details>
+              <summary>Why does <code>tasks</code> appear twice in the template path <code>tasks/templates/tasks/index.html</code>?</summary>
+              <p>Django collects templates from the <code>templates</code> folders of all apps into one shared list. The second <code>tasks</code> folder works as a namespace: the view asks for <code>"tasks/index.html"</code>, and the template cannot be confused with the <code>index.html</code> of another app.</p>
+            </details>
+
+            <div class="self-task">
+              <p class="step-result-title">Exercise on your own</p>
+              <p>Add a “Удалить выполненные” (Delete completed) button under the list: it deletes all tasks marked with the “Готово” button and keeps the rest. Data must change only by submitting a form with a CSRF check.</p>
+              <details class="self-solution">
+                <summary>Show the solution</summary>
+                <p>You need a new view, a route and a form in the template. The model does not change, so no migrations are needed.</p>
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/views.py — add at the end</span>
+                    <button class="copy-btn" type="button">Copy</button>
+                  </div>
+                  <pre><code>@require_POST
+def clear_done(request):
+    Task.objects.filter(done=True).delete()
+    return redirect("index")</code></pre>
+                </div>
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>mysite/urls.py — whole file</span>
+                    <button class="copy-btn" type="button">Copy</button>
+                  </div>
+                  <pre><code>from django.contrib import admin
+from django.urls import path
+
+from tasks import views
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", views.index, name="index"),
+    path("tasks/&lt;int:pk&gt;/toggle/", views.toggle, name="toggle"),
+    path("tasks/&lt;int:pk&gt;/delete/", views.delete, name="delete"),
+    path("tasks/clear-done/", views.clear_done, name="clear_done"),
+]</code></pre>
+                </div>
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/templates/tasks/index.html — add at the end</span>
+                    <button class="copy-btn" type="button">Copy</button>
+                  </div>
+                  <pre><code>&lt;form method="post" action="{% url 'clear_done' %}"&gt;
+  {% csrf_token %}
+  &lt;button&gt;Удалить выполненные&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                <p class="step-result-note">Check: add three tasks, mark one with “Готово” and press “Удалить выполненные”: two remain. The <code>/tasks/clear-done/</code> address opened in the browser answers 405.</p>
+              </details>
+            </div>
+          </div>
 
           <div class="panel reveal stack-gap">
             <h3>What's next</h3>
@@ -839,7 +1096,7 @@ urlpatterns = [
         <div><strong>Site</strong><ul><li><a href="course.html">Full course</a></li><li><a href="progress.html">My progress</a></li><li><a href="contacts.html">Contact</a></li></ul></div>
       </div>
       <p class="footer-copy">© 2026 PyWeb Guide, a learning project about Python in web development</p>
-      <p class="note footer-note">Author: <a href="contacts.html#authors">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-11">11.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
+      <p class="note footer-note">Author: <a href="contacts.html#authors">E. Zhanguzhin</a> · Updated: <time datetime="2026-11-17">17.11.2026</time> · Versions in the examples: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Source code on GitHub</a></p>
       <p class="note footer-note">Photo: <a href="https://commons.wikimedia.org/wiki/File:Two_women_operating_ENIAC_(full_resolution).jpg" rel="noopener">ENIAC, U.S. Army, 1946</a>.</p>
       <p class="note footer-note"><a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of use</a></p>
       <p class="note footer-note">This is a learning site. Messages from the form are sent through the public Issues section on GitHub. No GitHub account? <a href="contacts.html#no-github">Write directly</a>.</p>

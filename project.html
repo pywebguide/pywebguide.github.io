@@ -57,7 +57,7 @@
       "educationalLevel": "Начальный",
       "learningResourceType": "Пошаговое руководство",
       "timeRequired": "PT1H",
-      "dateModified": "2026-10-28",
+      "dateModified": "2026-11-17",
       "isPartOf": { "@type": "WebSite", "name": "PyWeb Guide", "url": "https://pywebguide.github.io/" },
       "author": { "@type": "Person", "name": "Жангужин Е. Е." }
     }
@@ -236,6 +236,12 @@ pip install flask</code></pre>
               </div>
                 </div>
               </div>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>В папке проекта появилась папка <code>.venv</code>, а в начале строки терминала — приписка <code>(.venv)</code>: окружение включено. Последняя строка после установки:</p>
+                <pre class="step-output">Successfully installed blinker-1.9.0 click-8.5.1 flask-3.1.3 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.4 werkzeug-3.1.9</pre>
+                <p class="step-result-note">Номера версий могут быть новее — это нормально. Проверить установку можно командой <code>flask --version</code>: она покажет версии Python, Flask и Werkzeug.</p>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="1"> Шаг пройден</label>
             </li>
 
@@ -274,6 +280,13 @@ def index():
         return redirect(url_for("index"))
     return render_template_string(PAGE, tasks=tasks)</code></pre>
               </div>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Терминал пока ничего не выводит: файл только создан, сервер запустим на следующем шаге. В папке проекта теперь два элемента:</p>
+                <pre class="step-output">.venv/
+app.py</pre>
+                <p class="step-result-note">Имя файла важно: в шаге 3 команда <code>flask --app app</code> ищет именно <code>app.py</code>.</p>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="2"> Шаг пройден</label>
             </li>
 
@@ -286,6 +299,19 @@ def index():
                   <button class="copy-btn" type="button">Копировать</button>
                 </div>
                 <pre><code>flask --app app run --debug</code></pre>
+              </div>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Терминал покажет примерно это и останется занятым сервером:</p>
+                <pre class="step-output"> * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 700-095-102</pre>
+                <p class="step-result-note">Строка WARNING — не ошибка: Flask напоминает, что встроенный сервер только для разработки. PIN у вас будет другим. Не закрывайте это окно, а новые команды вводите во втором окне терминала.</p>
               </div>
               <label class="step-check"><input type="checkbox" data-step="3"> Шаг пройден</label>
             </li>
@@ -380,6 +406,18 @@ def delete(task_id):
                 <button class="btn btn-primary" type="button" data-try-start>Попробовать в браузере</button>
                 <p class="note" data-try-note>Этот же код запустится прямо здесь: Python и Flask загрузятся в браузер (около 15 МБ, только при первом нажатии). Добавляйте и удаляйте задачи в окне ниже, как на своём компьютере.</p>
               </div>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>После сохранения сервер с флагом <code>--debug</code> перезапустится сам, и рядом с <code>app.py</code> появится файл базы:</p>
+                <pre class="step-output">.venv/
+__pycache__/
+app.py
+tasks.db</pre>
+                <p>У каждой задачи на странице теперь есть кнопка «Удалить». Когда вы добавляете задачу, в терминале сервера появляются две строки:</p>
+                <pre class="step-output">127.0.0.1 - - [17/Nov/2026 06:00:21] "POST /add HTTP/1.1" 302 -
+127.0.0.1 - - [17/Nov/2026 06:00:21] "GET / HTTP/1.1" 200 -</pre>
+                <p class="step-result-note">Код 302 — перенаправление: после сохранения сервер отправляет браузер обратно на главную, и тот загружает её заново (код 200 — успешно). Папку <code>__pycache__</code> создаёт сам Python, её можно не трогать.</p>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="5"> Шаг пройден</label>
             </li>
 
@@ -400,6 +438,72 @@ def delete(task_id):
               <label class="step-check"><input type="checkbox" data-step="6"> Шаг пройден</label>
             </li>
           </ol>
+
+          <div class="panel reveal stack-gap self-check">
+            <h3>Проверь себя</h3>
+            <p>Ответьте мысленно, затем откройте ответ.</p>
+            <details>
+              <summary>Почему в шаге 4 список задач пропадал после перезапуска сервера?</summary>
+              <p>Задачи хранились в списке <code>tasks</code> в памяти работающей программы. Когда сервер останавливается, программа завершается и память очищается. В шаге 5 задачи записываются в файл <code>tasks.db</code>, а он остаётся на диске.</p>
+            </details>
+            <details>
+              <summary>Зачем в SQL-запросах стоят знаки <code>?</code>, а не f-строка с названием задачи?</summary>
+              <p>Знак <code>?</code> — параметр: <code>sqlite3</code> передаёт значение в базу отдельно от текста запроса. Даже название вроде <code>'); DROP TABLE tasks; --</code> сохранится как обычный текст. F-строка вставила бы его прямо в SQL, и запрос можно было бы изменить — это называется SQL-инъекцией.</p>
+            </details>
+            <details>
+              <summary>Что будет, если открыть в браузере адрес <code>http://127.0.0.1:5000/delete/1</code>?</summary>
+              <p>Flask ответит ошибкой 405 Method Not Allowed: маршрут объявлен через <code>@app.post</code> и принимает только POST. Переход по адресу — это запрос GET, поэтому задача не удалится. Удалить её можно только отправкой формы.</p>
+            </details>
+            <details>
+              <summary>Зачем функция <code>add</code> после сохранения возвращает <code>redirect</code>, а не саму страницу?</summary>
+              <p>Если ответить страницей прямо на POST, то при обновлении страницы браузер отправит форму ещё раз и задача добавится повторно. Перенаправление заставляет браузер загрузить главную обычным запросом GET — это те самые строки 302 и 200 в терминале из шага 5.</p>
+            </details>
+
+            <div class="self-task">
+              <p class="step-result-title">Самостоятельное задание</p>
+              <p>Добавьте под списком кнопку «Удалить все», которая удаляет все задачи сразу. Удаление должно срабатывать только при отправке формы (POST), а не при переходе по адресу.</p>
+              <details class="self-solution">
+                <summary>Показать решение</summary>
+                <p>Нужны две правки в <code>app.py</code>: форма в конце шаблона <code>PAGE</code> и новый маршрут в конце файла. Остальной код шага 5 не меняется.</p>
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>app.py — изменённые части</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>PAGE = """
+&lt;!doctype html&gt;
+&lt;title&gt;Мои задачи&lt;/title&gt;
+&lt;h1&gt;Мои задачи&lt;/h1&gt;
+&lt;form method="post" action="{{ url_for('add') }}"&gt;
+  &lt;input name="title" placeholder="Новая задача" required&gt;
+  &lt;button&gt;Добавить&lt;/button&gt;
+&lt;/form&gt;
+&lt;ul&gt;
+  {% for task in tasks %}
+    &lt;li&gt;
+      {{ task["title"] }}
+      &lt;form method="post" action="{{ url_for('delete', task_id=task['id']) }}"&gt;
+        &lt;button&gt;Удалить&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;
+&lt;form method="post" action="{{ url_for('clear') }}"&gt;
+  &lt;button&gt;Удалить все&lt;/button&gt;
+&lt;/form&gt;
+"""
+
+# ... функции query, index, add и delete без изменений ...
+
+@app.post("/clear")
+def clear():
+    query("DELETE FROM tasks")
+    return redirect(url_for("index"))</code></pre>
+                </div>
+                <p class="step-result-note">Проверка: добавьте две-три задачи и нажмите «Удалить все» — список опустеет и останется пустым после перезапуска сервера. Адрес <code>/clear</code>, открытый в браузере, ответит 405.</p>
+              </details>
+            </div>
+          </div>
 
           <div class="panel reveal stack-gap">
             <h3>Что дальше</h3>
@@ -465,6 +569,30 @@ python manage.py startapp tasks</code></pre>
               </div>
                 </div>
               </div>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Последняя строка после установки:</p>
+                <pre class="step-output">Successfully installed asgiref-3.13.0 django-6.1.3 sqlparse-0.6.1</pre>
+                <p>Команды <code>startproject</code> и <code>startapp</code> ничего не выводят: если сообщения об ошибке нет, всё получилось. В папке появились:</p>
+                <pre class="step-output">.venv/
+manage.py
+mysite/
+    __init__.py
+    asgi.py
+    settings.py
+    urls.py
+    wsgi.py
+tasks/
+    migrations/
+        __init__.py
+    __init__.py
+    admin.py
+    apps.py
+    models.py
+    tests.py
+    views.py</pre>
+                <p class="step-result-note">Номера версий могут быть новее. Ещё может появиться служебная папка <code>__pycache__</code> — её создаёт Python.</p>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="1"> Шаг пройден</label>
             </li>
 
@@ -485,6 +613,12 @@ python manage.py startapp tasks</code></pre>
     'django.contrib.staticfiles',
     'tasks',
 ]</code></pre>
+              </div>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Проверьте настройки командой <code>python manage.py check</code>. Если всё верно, она ответит:</p>
+                <pre class="step-output">System check identified no issues (0 silenced).</pre>
+                <p class="step-result-note">В файле, который создаёт Django 6.1, строки записаны в двойных кавычках: <code>"django.contrib.admin"</code>. Можно добавить и <code>"tasks",</code>, и <code>'tasks',</code> — для Python это одно и то же.</p>
               </div>
               <label class="step-check"><input type="checkbox" data-step="2"> Шаг пройден</label>
             </li>
@@ -520,6 +654,11 @@ from .models import Task
 admin.site.register(Task)</code></pre>
                 </div>
               </div>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Видимых изменений пока нет: таблица для модели появится в базе только после миграций на шаге 4. Убедиться, что в коде нет опечаток, можно той же командой <code>python manage.py check</code>:</p>
+                <pre class="step-output">System check identified no issues (0 silenced).</pre>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="3"> Шаг пройден</label>
             </li>
 
@@ -534,6 +673,26 @@ admin.site.register(Task)</code></pre>
                 <pre><code>python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser</code></pre>
+              </div>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Первая команда создаёт файл миграции, вторая — таблицы в базе, третья задаёт вопросы:</p>
+                <pre class="step-output">Migrations for 'tasks':
+  tasks/migrations/0001_initial.py
+    + Create model Task
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions, tasks
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  …
+  Applying tasks.0001_initial... OK
+Username (leave blank to use 'root'): admin
+Email address:
+Password:
+Password (again):
+Superuser created successfully.</pre>
+                <p>Рядом с <code>manage.py</code> появился файл базы <code>db.sqlite3</code>, а в папке <code>tasks/migrations/</code> — файл <code>0001_initial.py</code>.</p>
+                <p class="step-result-note">Строк Applying всего 19, здесь часть пропущена. Вместо root будет имя вашей учётной записи. Пароль при вводе не отображается — так и должно быть. Если пароль короткий или простой, Django предупредит об этом и спросит <code>Bypass password validation and create user anyway? [y/N]</code>: для учебного проекта на своём компьютере можно ответить <kbd>y</kbd>.</p>
               </div>
               <label class="step-check"><input type="checkbox" data-step="4"> Шаг пройден</label>
             </li>
@@ -589,6 +748,20 @@ urlpatterns = [
 ]</code></pre>
                 </div>
               </div>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Сервер запустим на следующем шаге. Пока проверьте, что шаблон лежит на своём месте:</p>
+                <pre class="step-output">tasks/
+    migrations/
+    templates/
+        tasks/
+            index.html
+    admin.py
+    models.py
+    views.py
+    …</pre>
+                <p>Команда <code>python manage.py check</code> снова должна ответить <code>System check identified no issues (0 silenced).</code> Пока задач нет, на шаге 6 главная страница покажет заголовок «Мои задачи» и строку «Задач пока нет — добавьте их в админке.»</p>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="5"> Шаг пройден</label>
             </li>
 
@@ -633,6 +806,11 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ["title"]</code></pre>
+              </div>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Страница пока не изменилась: форма появится, когда вы обновите представление и шаблон в шагах 8 и 9. Команда <code>python manage.py check</code> должна ответить:</p>
+                <pre class="step-output">System check identified no issues (0 silenced).</pre>
               </div>
               <label class="step-check"><input type="checkbox" data-step="7"> Шаг пройден</label>
             </li>
@@ -697,6 +875,10 @@ urlpatterns = [
 ]</code></pre>
                 </div>
               </div>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p><code>python manage.py check</code> снова отвечает <code>System check identified no issues (0 silenced).</code> Главная страница выглядит как раньше: представление уже передаёт форму, но старый шаблон её не выводит. Если сервер запущен, он перезапустится сам после сохранения файлов.</p>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="8"> Шаг пройден</label>
             </li>
 
@@ -738,6 +920,12 @@ urlpatterns = [
   {% endfor %}
 &lt;/ul&gt;</code></pre>
               </div>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Обновите страницу <code>http://127.0.0.1:8000/</code>: над списком появятся поле ввода и кнопка «Добавить». Поле Django построил по модели — в коде страницы (<kbd>Ctrl</kbd> + <kbd>U</kbd>, на macOS <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>U</kbd>) оно выглядит так:</p>
+                <pre class="step-output">&lt;input type="text" name="title" maxlength="200" required id="id_title"&gt;</pre>
+                <p class="step-result-note">Ограничение <code>maxlength="200"</code> взято из <code>max_length=200</code> в модели, а <code>required</code> — потому что поле обязательное. В каждой форме есть и скрытое поле <code>csrfmiddlewaretoken</code>: его добавляет тег <code>{% csrf_token %}</code>.</p>
+              </div>
               <label class="step-check"><input type="checkbox" data-step="9"> Шаг пройден</label>
             </li>
 
@@ -757,6 +945,75 @@ urlpatterns = [
               <label class="step-check"><input type="checkbox" data-step="10"> Шаг пройден</label>
             </li>
           </ol>
+
+          <div class="panel reveal stack-gap self-check">
+            <h3>Проверь себя</h3>
+            <p>Ответьте мысленно, затем откройте ответ.</p>
+            <details>
+              <summary>Что будет, если забыть добавить <code>'tasks'</code> в <code>INSTALLED_APPS</code>?</summary>
+              <p>Команда <code>makemigrations</code> ответит «No changes detected»: Django не знает о приложении, поэтому не видит его модели и не ищет шаблоны в его папке <code>templates</code>.</p>
+            </details>
+            <details>
+              <summary>Чем <code>makemigrations</code> отличается от <code>migrate</code>?</summary>
+              <p><code>makemigrations</code> сравнивает модели с прошлыми миграциями и записывает изменения в новый файл, например <code>tasks/migrations/0001_initial.py</code>. Это план. <code>migrate</code> выполняет такие планы в базе данных: создаёт и меняет таблицы. После правки модели нужны обе команды.</p>
+            </details>
+            <details>
+              <summary>Что случится, если убрать <code>{% csrf_token %}</code> из формы?</summary>
+              <p>Отправка формы закончится ошибкой «Forbidden (403) CSRF verification failed». Django проверяет, что форма пришла со страницы этого же сайта, а не с чужого, и без токена отклоняет любой POST-запрос.</p>
+            </details>
+            <details>
+              <summary>Зачем в пути шаблона дважды встречается <code>tasks</code>: <code>tasks/templates/tasks/index.html</code>?</summary>
+              <p>Django собирает шаблоны из папок <code>templates</code> всех приложений в один общий список. Вторая папка <code>tasks</code> работает как пространство имён: представление просит <code>"tasks/index.html"</code>, и шаблон не перепутается с <code>index.html</code> другого приложения.</p>
+            </details>
+
+            <div class="self-task">
+              <p class="step-result-title">Самостоятельное задание</p>
+              <p>Добавьте под списком кнопку «Удалить выполненные»: она удаляет все задачи, отмеченные кнопкой «Готово», и оставляет остальные. Данные должны меняться только отправкой формы с проверкой CSRF.</p>
+              <details class="self-solution">
+                <summary>Показать решение</summary>
+                <p>Нужны новое представление, маршрут и форма в шаблоне. Модель не меняется, поэтому миграции не нужны.</p>
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/views.py — добавить в конец</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>@require_POST
+def clear_done(request):
+    Task.objects.filter(done=True).delete()
+    return redirect("index")</code></pre>
+                </div>
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>mysite/urls.py — целиком</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>from django.contrib import admin
+from django.urls import path
+
+from tasks import views
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", views.index, name="index"),
+    path("tasks/&lt;int:pk&gt;/toggle/", views.toggle, name="toggle"),
+    path("tasks/&lt;int:pk&gt;/delete/", views.delete, name="delete"),
+    path("tasks/clear-done/", views.clear_done, name="clear_done"),
+]</code></pre>
+                </div>
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>tasks/templates/tasks/index.html — добавить в конец</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>&lt;form method="post" action="{% url 'clear_done' %}"&gt;
+  {% csrf_token %}
+  &lt;button&gt;Удалить выполненные&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                <p class="step-result-note">Проверка: добавьте три задачи, отметьте одну кнопкой «Готово» и нажмите «Удалить выполненные» — останутся две. Адрес <code>/tasks/clear-done/</code>, открытый в браузере, ответит 405.</p>
+              </details>
+            </div>
+          </div>
 
           <div class="panel reveal stack-gap">
             <h3>Что дальше</h3>
@@ -887,7 +1144,7 @@ urlpatterns = [
         <div><strong>Сайт</strong><ul><li><a href="course.html">Весь курс</a></li><li><a href="progress.html">Мой прогресс</a></li><li><a href="contacts.html">Контакты</a></li></ul></div>
       </div>
       <p class="footer-copy">© 2026 PyWeb Guide, учебный проект о Python в веб-разработке</p>
-      <p class="note footer-note">Автор: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Обновлено: <time datetime="2026-11-11">11.11.2026</time> · Версии в примерах: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Исходный код на GitHub</a></p>
+      <p class="note footer-note">Автор: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Обновлено: <time datetime="2026-11-17">17.11.2026</time> · Версии в примерах: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.162 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Исходный код на GitHub</a></p>
       <p class="note footer-note">Снимок: <a href="https://commons.wikimedia.org/wiki/File:Two_women_operating_ENIAC_(full_resolution).jpg" rel="noopener">ENIAC, армия США, 1946</a>.</p>
       <p class="note footer-note"><a href="privacy.html">Политика конфиденциальности</a> · <a href="terms.html">Условия использования</a></p>
       <p class="note footer-note">Сайт учебный. Сообщения с формы отправляются через публичный раздел Issues на GitHub. Без аккаунта GitHub можно <a href="contacts.html#no-github">написать напрямую</a>.</p>

@@ -1300,7 +1300,8 @@ th {
   background: var(--surface);
 }
 
-.faq summary {
+.faq summary,
+.self-check summary {
   cursor: pointer;
   font-weight: 700;
   list-style: none;
@@ -1311,11 +1312,13 @@ th {
   min-height: 32px;
 }
 
-.faq summary::-webkit-details-marker {
+.faq summary::-webkit-details-marker,
+.self-check summary::-webkit-details-marker {
   display: none;
 }
 
-.faq summary::after {
+.faq summary::after,
+.self-check summary::after {
   content: "+";
   flex: none;
   font-size: 1.5rem;
@@ -1324,7 +1327,8 @@ th {
   transition: transform 200ms var(--ease-out);
 }
 
-.faq details[open] summary::after {
+.faq details[open] summary::after,
+.self-check details[open] summary::after {
   transform: rotate(45deg);
 }
 
@@ -4540,6 +4544,85 @@ html[lang="kk"] .cta-open .band-title {
   margin-top: 8px;
   color: var(--muted);
   font-size: var(--fs-small);
+}
+
+/* «Ожидаемый результат» в шаге: черта слева цветом метки, вывод терминала — как блок кода */
+.step-result {
+  margin: 20px 0 8px;
+  padding-left: 16px;
+  border-left: 4px solid var(--mark);
+}
+
+.step-result-title {
+  margin: 0 0 8px;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.step-result p {
+  margin: 0 0 10px;
+}
+
+.step-result > :last-child {
+  margin-bottom: 0;
+}
+
+/* Вывод не прокручивается вбок: длинные строки переносятся, отступы дерева файлов сохраняются */
+.step-output {
+  margin: 0 0 10px;
+  padding: 12px 14px;
+  background: var(--code-bg);
+  color: var(--code-text);
+  color-scheme: dark;
+  font-family: var(--mono); /* taste-skill-ignore: моноширинный шрифт только для кода */
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.step-result-note {
+  color: var(--muted);
+  font-size: var(--fs-small);
+}
+
+/* «Проверь себя»: вопросы раскрываются как частые ошибки, но внутри панели — с чертой сверху */
+.self-check details {
+  padding: 12px 0;
+  border-top: 1px solid var(--line-strong);
+}
+
+/* В вопросах бывает <code>: при flex текст и код стали бы отдельными элементами и не переносились бы вместе */
+.self-check summary {
+  display: block;
+  position: relative;
+  padding-right: 36px;
+}
+
+.self-check summary::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.self-check details p {
+  margin: 10px 0 0;
+}
+
+.self-task {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 4px solid var(--mark);
+}
+
+.self-task > p {
+  margin: 0 0 10px;
+}
+
+.self-solution .code-block {
+  margin-top: 12px;
 }
 
 .download-row {

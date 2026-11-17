@@ -19,6 +19,14 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://pywebguide.github.io/"
 LANGS = ("ru", "kk", "en")
 UPDATED = date(2026, 11, 11)
+# Страницы, изменённые позже общей даты: своя дата «Обновлено» в подвале и в sitemap.xml на всех трёх языках
+UPDATED_PAGES = {
+    "project.html": date(2026, 11, 17),
+}
+
+
+def updated(slug):
+    return UPDATED_PAGES.get(slug, UPDATED)
 
 # Статистика GoatCounter без cookies (описана в privacy.html).
 # TODO(автор): проверьте код счётчика — адрес вида https://<код>.goatcounter.com.
@@ -213,7 +221,8 @@ def apply(path, text=None):
     alt = alternates_html(slug) if slug != "404.html" else ""
     if alt:
         new = re.sub(r'(  <link rel="canonical" href="[^"]+">)', lambda m: m.group(1) + "\n" + alt, new, count=1)
-    stamp = f'<time datetime="{UPDATED.isoformat()}">{UPDATED.strftime("%d.%m.%Y")}</time>'
+    day = updated(slug)
+    stamp = f'<time datetime="{day.isoformat()}">{day.strftime("%d.%m.%Y")}</time>'
     # «Жаңартылған күні» — подпись на страницах kk/, переведённых вручную
     new = re.sub("(" + "|".join((*UI["updated"], "Жаңартылған күні")) + r'): <time datetime="[^"]+">[^<]+</time>', lambda m: f"{m.group(1)}: {stamp}", new)
     new = relink_body(new, lang)
@@ -249,7 +258,7 @@ def sitemap_xml():
         for slug in slugs:
             if not exists(lang, slug):
                 continue
-            lines.append(f"  <url><loc>{url(lang, slug)}</loc><lastmod>{UPDATED.isoformat()}</lastmod>")
+            lines.append(f"  <url><loc>{url(lang, slug)}</loc><lastmod>{updated(slug).isoformat()}</lastmod>")
             langs = [l for l in LANGS if exists(l, slug)]
             if len(langs) > 1:
                 for other in langs:
