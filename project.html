@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Первый проект на Flask и Django — PyWeb Guide</title>
-
-  <meta name="description" content="Пошаговая инструкция: список задач на Flask 3.1 и на Django 6.1 — от установки до работающего приложения. Отмечайте пройденные шаги.">
+  <title>Первое приложение на Python: Flask и Django — PyWeb Guide</title>
+  <meta name="description" content="Первое приложение на Python шаг за шагом: список задач на Flask с нуля или на Django для начинающих. Вывод терминала и готовый код после каждого шага.">
   <link rel="canonical" href="https://pywebguide.github.io/project.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/project.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/project.html">
@@ -13,15 +12,20 @@
   <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/project.html">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="kk_KZ">
+  <meta property="og:locale:alternate" content="en_GB">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="Первый проект на Flask и Django — PyWeb Guide">
-  <meta property="og:description" content="Пошаговая инструкция: список задач на Flask 3.1 и на Django 6.1 — от установки до работающего приложения. Отмечайте пройденные шаги.">
+  <meta property="og:title" content="Первое приложение на Python: Flask и Django">
+  <meta property="og:description" content="Первое приложение на Python шаг за шагом: список задач на Flask с нуля или на Django для начинающих. Вывод терминала и готовый код после каждого шага.">
   <meta property="og:url" content="https://pywebguide.github.io/project.html">
-  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og/ru/project.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Плакат PyWeb Guide: первый сайт на Python, бесплатный курс для тех, кто никогда не программировал">
+  <meta property="og:image:alt" content="Первое приложение на Python — PyWeb Guide">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pywebguide.github.io/assets/og/ru/project.png">
+  <meta name="twitter:image:alt" content="Первое приложение на Python — PyWeb Guide">
   <meta name="theme-color" content="#ffd249">
 
 
@@ -47,20 +51,109 @@
   </script>
 
   <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@graph": [
     {
-      "@context": "https://schema.org",
-      "@type": "LearningResource",
-      "name": "Первый проект: список задач на Flask и Django",
-      "description": "Пошаговое создание списка задач на Flask 3.1 и Django 6.1: от установки до базы данных и формы.",
-      "url": "https://pywebguide.github.io/project.html",
-      "inLanguage": "ru",
-      "educationalLevel": "Начальный",
-      "learningResourceType": "Пошаговое руководство",
-      "timeRequired": "PT1H",
-      "dateModified": "2026-11-17",
-      "isPartOf": { "@type": "WebSite", "name": "PyWeb Guide", "url": "https://pywebguide.github.io/" },
-      "author": { "@type": "Person", "name": "Жангужин Е. Е." }
+     "@type": "LearningResource",
+     "@id": "https://pywebguide.github.io/project.html#resource",
+     "name": "Первый проект: список задач",
+     "description": "Первое приложение на Python шаг за шагом: список задач на Flask с нуля или на Django для начинающих. Вывод терминала и готовый код после каждого шага.",
+     "url": "https://pywebguide.github.io/project.html",
+     "inLanguage": "ru",
+     "educationalLevel": "Начальный",
+     "learningResourceType": "Пошаговое руководство",
+     "timeRequired": "PT2H",
+     "isAccessibleForFree": true,
+     "dateModified": "2026-11-17",
+     "image": "https://pywebguide.github.io/assets/og/ru/project.png",
+     "isPartOf": {
+      "@type": "WebSite",
+      "name": "PyWeb Guide",
+      "url": "https://pywebguide.github.io/"
+     },
+     "author": {
+      "@type": "Person",
+      "name": "Жангужин Е. Е.",
+      "url": "https://pywebguide.github.io/contacts.html"
+     }
+    },
+    {
+     "@type": "BreadcrumbList",
+     "@id": "https://pywebguide.github.io/project.html#breadcrumbs",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "https://pywebguide.github.io/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Первый проект",
+       "item": "https://pywebguide.github.io/project.html"
+      }
+     ]
+    },
+    {
+     "@type": "FAQPage",
+     "@id": "https://pywebguide.github.io/project.html#faq",
+     "url": "https://pywebguide.github.io/project.html",
+     "inLanguage": "ru",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "Команда python открывает Microsoft Store или пишет «Python was not found»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Python was not found; run without arguments to install from the Microsoft Store… Python не установлен или не добавлен в PATH, и Windows подставляет свою заглушку. Установите Python с python.org и отметьте пункт «Add python.exe to PATH». Если Python уже стоит, используйте команду py: py -m venv .venv. После активации окружения команда python заработает."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "PowerShell не даёт активировать окружение: «выполнение сценариев отключено»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Невозможно загрузить файл …\\.venv\\Scripts\\Activate.ps1, так как выполнение сценариев отключено в этой системе. В английской Windows: …Activate.ps1 cannot be loaded because running scripts is disabled on this system. Разрешите запуск локальных скриптов для своей учётной записи — один раз: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned. Другой вариант — открыть терминал «Командная строка» (cmd) вместо PowerShell."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "«flask» или «django-admin» не распознано как имя командлета",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Имя \"flask\" не распознано как имя командлета, функции, файла сценария или выполняемой программы. Окружение не активировано или пакет не установлен. Активируйте окружение (в начале строки терминала появится (.venv)) и повторите pip install flask или pip install django."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Django: «no such table: tasks_task»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "django.db.utils.OperationalError: no such table: tasks_task Таблица для модели ещё не создана. Выполните шаг 4: python manage.py makemigrations и python manage.py migrate. Если команда пишет «No changes detected», проверьте, что 'tasks' добавлено в INSTALLED_APPS (шаг 2)."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Django: «TemplateDoesNotExist at /»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TemplateDoesNotExist at / — tasks/index.html Django не нашёл шаблон. Путь должен быть точно таким: tasks/templates/tasks/index.html — папка tasks внутри templates повторяется намеренно. Также проверьте, что приложение есть в INSTALLED_APPS."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Django: «Forbidden (403) CSRF verification failed»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Forbidden (403) CSRF verification failed. Request aborted. В форме не хватает тега {% csrf_token %}. Он нужен в каждой форме с method=\"post\" — сравните свой шаблон с шагом 9."
+       }
+      }
+     ]
     }
+   ]
+  }
   </script>
 </head>
 

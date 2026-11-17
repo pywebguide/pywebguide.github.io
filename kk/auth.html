@@ -4,9 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Flask пен Django-дағы авторизация: құпиясөздер мен сессиялар — PyWeb Guide</title>
-
-  <meta name="description" content="Құпиясөздерді қалай қауіпсіз сақтауға болады, сессия деген не және Flask пен Django-да беттерге кіруді қалай шектеуге болады.">
+  <title>Flask пен Django-да тіркелу және кіру — PyWeb Guide</title>
+  <meta name="description" content="Құпиясөздерді қалай қауіпсіз сақтау керек, сессия деген не және Flask пен Django-да беттерді бөгде адамнан қалай жабу керек: хэштеу, login_required, рұқсаттар.">
   <link rel="canonical" href="https://pywebguide.github.io/kk/auth.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/auth.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/auth.html">
@@ -14,15 +13,20 @@
   <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/auth.html">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="kk_KZ">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="en_GB">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="Flask пен Django-дағы авторизация: құпиясөздер мен сессиялар — PyWeb Guide">
-  <meta property="og:description" content="Құпиясөздерді қалай қауіпсіз сақтауға болады, сессия деген не және Flask пен Django-да беттерге кіруді қалай шектеуге болады.">
+  <meta property="og:title" content="Flask пен Django-да тіркелу және кіру">
+  <meta property="og:description" content="Құпиясөздерді қалай қауіпсіз сақтау керек, сессия деген не және Flask пен Django-да беттерді бөгде адамнан қалай жабу керек: хэштеу, login_required, рұқсаттар.">
   <meta property="og:url" content="https://pywebguide.github.io/kk/auth.html">
-  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og/kk/auth.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta property="og:image:alt" content="Авторизация — PyWeb Guide">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pywebguide.github.io/assets/og/kk/auth.png">
+  <meta name="twitter:image:alt" content="Авторизация — PyWeb Guide">
   <meta name="theme-color" content="#ffd249">
 
 
@@ -47,6 +51,55 @@
       }
       document.documentElement.setAttribute("data-theme", theme);
     })();
+  </script>
+  <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@graph": [
+    {
+     "@type": "LearningResource",
+     "@id": "https://pywebguide.github.io/kk/auth.html#resource",
+     "name": "Сайт пайдаланушыны қалай таниды",
+     "description": "Құпиясөздерді қалай қауіпсіз сақтау керек, сессия деген не және Flask пен Django-да беттерді бөгде адамнан қалай жабу керек: хэштеу, login_required, рұқсаттар.",
+     "url": "https://pywebguide.github.io/kk/auth.html",
+     "inLanguage": "kk",
+     "educationalLevel": "Бастауыш",
+     "learningResourceType": "Сабақ",
+     "timeRequired": "PT40M",
+     "isAccessibleForFree": true,
+     "dateModified": "2026-11-11",
+     "image": "https://pywebguide.github.io/assets/og/kk/auth.png",
+     "isPartOf": {
+      "@type": "WebSite",
+      "name": "PyWeb Guide",
+      "url": "https://pywebguide.github.io/kk/"
+     },
+     "author": {
+      "@type": "Person",
+      "name": "Жангужин Е. Е.",
+      "url": "https://pywebguide.github.io/kk/contacts.html"
+     }
+    },
+    {
+     "@type": "BreadcrumbList",
+     "@id": "https://pywebguide.github.io/kk/auth.html#breadcrumbs",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Басты бет",
+       "item": "https://pywebguide.github.io/kk/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Авторизация",
+       "item": "https://pywebguide.github.io/kk/auth.html"
+      }
+     ]
+    }
+   ]
+  }
   </script>
 </head>
 

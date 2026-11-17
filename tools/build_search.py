@@ -74,7 +74,8 @@ LANGUAGES = {"ru": (ROOT, "search-index.js"), "kk": (ROOT / "kk", "search-index.
 def build(folder):
     items = []
     for path in sorted(folder.glob("*.html")):
-        if path.name in SKIP:
+        # SKIP — страница «не найдено»; google<код>.html и yandex_<код>.html — файлы подтверждения прав
+        if path.name in SKIP or re.match(r"(google[0-9a-f]+|yandex_[0-9a-f]+)\.html$", path.name):
             continue
         page = Page()
         page.feed(path.read_text(encoding="utf-8"))

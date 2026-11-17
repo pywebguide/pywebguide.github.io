@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Django дальше: связи моделей и представления на классах — PyWeb Guide</title>
-
-  <meta name="description" content="Продолжение первого проекта на Django 6.1: модель Category и ForeignKey, миграция, related_name, select_related, ListView и CreateView вместо функций и тесты к ним.">
+  <title>Django для начинающих: связи моделей и ListView</title>
+  <meta name="description" content="Продолжение первого проекта на Django 6.1: модель Category и ForeignKey, миграция, select_related, ListView и CreateView вместо функций и тесты к ним.">
   <link rel="canonical" href="https://pywebguide.github.io/django-next.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/django-next.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/django-next.html">
@@ -13,15 +12,20 @@
   <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/django-next.html">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="kk_KZ">
+  <meta property="og:locale:alternate" content="en_GB">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="Django дальше: связи моделей и представления на классах — PyWeb Guide">
-  <meta property="og:description" content="Продолжение первого проекта на Django 6.1: модель Category и ForeignKey, миграция, related_name, select_related, ListView и CreateView вместо функций и тесты к ним.">
+  <meta property="og:title" content="Django для начинающих: связи моделей и ListView">
+  <meta property="og:description" content="Продолжение первого проекта на Django 6.1: модель Category и ForeignKey, миграция, select_related, ListView и CreateView вместо функций и тесты к ним.">
   <meta property="og:url" content="https://pywebguide.github.io/django-next.html">
-  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og/ru/django-next.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Плакат PyWeb Guide: первый сайт на Python, бесплатный курс для тех, кто никогда не программировал">
+  <meta property="og:image:alt" content="Django дальше — PyWeb Guide">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pywebguide.github.io/assets/og/ru/django-next.png">
+  <meta name="twitter:image:alt" content="Django дальше — PyWeb Guide">
   <meta name="theme-color" content="#ffd249">
 
 
@@ -47,20 +51,117 @@
   </script>
 
   <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@graph": [
     {
-      "@context": "https://schema.org",
-      "@type": "LearningResource",
-      "name": "Django дальше: связи моделей и представления на классах",
-      "description": "Категории и ForeignKey, select_related, ListView и CreateView, тесты представлений на Django 6.1.",
-      "url": "https://pywebguide.github.io/django-next.html",
-      "inLanguage": "ru",
-      "educationalLevel": "Средний",
-      "learningResourceType": "Пошаговое руководство",
-      "timeRequired": "PT1H30M",
-      "dateModified": "2026-11-17",
-      "isPartOf": { "@type": "WebSite", "name": "PyWeb Guide", "url": "https://pywebguide.github.io/" },
-      "author": { "@type": "Person", "name": "Жангужин Е. Е." }
+     "@type": "LearningResource",
+     "@id": "https://pywebguide.github.io/django-next.html#resource",
+     "name": "Django дальше: связи и представления на классах",
+     "description": "Продолжение первого проекта на Django 6.1: модель Category и ForeignKey, миграция, select_related, ListView и CreateView вместо функций и тесты к ним.",
+     "url": "https://pywebguide.github.io/django-next.html",
+     "inLanguage": "ru",
+     "educationalLevel": "Начальный",
+     "learningResourceType": "Пошаговое руководство",
+     "timeRequired": "PT2H",
+     "isAccessibleForFree": true,
+     "dateModified": "2026-11-17",
+     "image": "https://pywebguide.github.io/assets/og/ru/django-next.png",
+     "isPartOf": {
+      "@type": "WebSite",
+      "name": "PyWeb Guide",
+      "url": "https://pywebguide.github.io/"
+     },
+     "author": {
+      "@type": "Person",
+      "name": "Жангужин Е. Е.",
+      "url": "https://pywebguide.github.io/contacts.html"
+     }
+    },
+    {
+     "@type": "BreadcrumbList",
+     "@id": "https://pywebguide.github.io/django-next.html#breadcrumbs",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Главная",
+       "item": "https://pywebguide.github.io/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Django дальше",
+       "item": "https://pywebguide.github.io/django-next.html"
+      }
+     ]
+    },
+    {
+     "@type": "FAQPage",
+     "@id": "https://pywebguide.github.io/django-next.html#faq",
+     "url": "https://pywebguide.github.io/django-next.html",
+     "inLanguage": "ru",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "«no such column: tasks_task.category_id»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "django.db.utils.OperationalError: no such column: tasks_task.category_id Модель уже знает о поле category, а в таблице базы столбца ещё нет. Выполните шаг 2: python manage.py makemigrations и python manage.py migrate."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "makemigrations: «It is impossible to add a non-nullable field 'category'»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is impossible to add a non-nullable field 'category' to task without specifying a default. This is because the database needs something to populate existing rows. У поля нет null=True, а в таблице уже есть задачи: базе нечего записать в их новый столбец. Выберите вариант 2 (Quit and manually define a default value in models.py), добавьте полю null=True, blank=True, как в шаге 1, и запустите makemigrations снова."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "«'Category' object has no attribute 'task_set'»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AttributeError: 'Category' object has no attribute 'task_set' Имя task_set Django даёт обратной связи, только пока у ForeignKey нет related_name. У нас related_name=\"tasks\", поэтому задачи категории — category.tasks.all()."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "«Method Not Allowed (POST): /» и ответ 405",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Method Not Allowed (POST): / Форма добавления отправляется на главную, а там теперь ListView, который принимает только GET. Проверьте в index.html строку формы: <form method=\"post\" action=\"{% url 'add' %}\"> (шаг 6)."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "«TemplateDoesNotExist: tasks/task_form.html»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "django.template.exceptions.TemplateDoesNotExist: tasks/task_form.html CreateView показывает этот шаблон, когда форма не прошла проверку, или при открытии /tasks/add/. Создайте файл tasks/templates/tasks/task_form.html из шага 6 — имя складывается из названия модели и окончания _form."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "«Reverse for 'add' not found»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "django.urls.exceptions.NoReverseMatch: Reverse for 'add' not found. 'add' is not a valid view function or pattern name. Шаблон ссылается на маршрут add, а в mysite/urls.py его нет. Добавьте строку path(\"tasks/add/\", views.TaskCreateView.as_view(), name=\"add\")."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Тест: «AssertionError: 15 != 3 : 15 queries executed, 3 expected»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AssertionError: 15 != 3 : 15 queries executed, 3 expected На главной снова проблема N+1: в get_queryset пропал select_related(\"category\"), или шаблон обращается к другой связи, которую не загрузили заранее. Верните select_related, как в шаге 7."
+       }
+      }
+     ]
     }
+   ]
+  }
   </script>
 </head>
 

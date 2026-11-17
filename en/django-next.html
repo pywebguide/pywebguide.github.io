@@ -4,9 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Django next steps: model relations and class-based views — PyWeb Guide</title>
-
-  <meta name="description" content="A continuation of the first Django 6.1 project: a Category model and a ForeignKey, a migration, related_name, select_related, ListView and CreateView instead of functions, and tests for them.">
+  <title>Django for beginners: model relations and ListView</title>
+  <meta name="description" content="The next step after your first Django 6.1 project: a Category model and ForeignKey, a migration, select_related, ListView and CreateView, and tests for them.">
   <link rel="canonical" href="https://pywebguide.github.io/en/django-next.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/django-next.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/django-next.html">
@@ -14,15 +13,20 @@
   <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/django-next.html">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="kk_KZ">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="Django next steps: model relations and class-based views — PyWeb Guide">
-  <meta property="og:description" content="A continuation of the first Django 6.1 project: a Category model and a ForeignKey, a migration, related_name, select_related, ListView and CreateView instead of functions, and tests for them.">
+  <meta property="og:title" content="Django for beginners: model relations and ListView">
+  <meta property="og:description" content="The next step after your first Django 6.1 project: a Category model and ForeignKey, a migration, select_related, ListView and CreateView, and tests for them.">
   <meta property="og:url" content="https://pywebguide.github.io/en/django-next.html">
-  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og/en/django-next.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PyWeb Guide poster: your first website with Python, a free course for people who have never programmed">
+  <meta property="og:image:alt" content="Django next steps — PyWeb Guide">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pywebguide.github.io/assets/og/en/django-next.png">
+  <meta name="twitter:image:alt" content="Django next steps — PyWeb Guide">
   <meta name="theme-color" content="#ffd249">
 
 
@@ -48,20 +52,117 @@
   </script>
 
   <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@graph": [
     {
-      "@context": "https://schema.org",
-      "@type": "LearningResource",
-      "name": "Django дальше: связи моделей и представления на классах",
-      "description": "Категории и ForeignKey, select_related, ListView и CreateView, тесты представлений на Django 6.1.",
-      "url": "https://pywebguide.github.io/django-next.html",
-      "inLanguage": "ru",
-      "educationalLevel": "Средний",
-      "learningResourceType": "Пошаговое руководство",
-      "timeRequired": "PT1H30M",
-      "dateModified": "2026-11-17",
-      "isPartOf": { "@type": "WebSite", "name": "PyWeb Guide", "url": "https://pywebguide.github.io/" },
-      "author": { "@type": "Person", "name": "Жангужин Е. Е." }
+     "@type": "LearningResource",
+     "@id": "https://pywebguide.github.io/en/django-next.html#resource",
+     "name": "Django next steps: relations and class-based views",
+     "description": "The next step after your first Django 6.1 project: a Category model and ForeignKey, a migration, select_related, ListView and CreateView, and tests for them.",
+     "url": "https://pywebguide.github.io/en/django-next.html",
+     "inLanguage": "en",
+     "educationalLevel": "Beginner",
+     "learningResourceType": "Step-by-step guide",
+     "timeRequired": "PT2H",
+     "isAccessibleForFree": true,
+     "dateModified": "2026-11-17",
+     "image": "https://pywebguide.github.io/assets/og/en/django-next.png",
+     "isPartOf": {
+      "@type": "WebSite",
+      "name": "PyWeb Guide",
+      "url": "https://pywebguide.github.io/en/"
+     },
+     "author": {
+      "@type": "Person",
+      "name": "E. Zhanguzhin",
+      "url": "https://pywebguide.github.io/en/contacts.html"
+     }
+    },
+    {
+     "@type": "BreadcrumbList",
+     "@id": "https://pywebguide.github.io/en/django-next.html#breadcrumbs",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Home",
+       "item": "https://pywebguide.github.io/en/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Django next steps",
+       "item": "https://pywebguide.github.io/en/django-next.html"
+      }
+     ]
+    },
+    {
+     "@type": "FAQPage",
+     "@id": "https://pywebguide.github.io/en/django-next.html#faq",
+     "url": "https://pywebguide.github.io/en/django-next.html",
+     "inLanguage": "en",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "«no such column: tasks_task.category_id»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "django.db.utils.OperationalError: no such column: tasks_task.category_id The model already knows about the category field, but the database table has no such column yet. Do step 2: python manage.py makemigrations and python manage.py migrate."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "makemigrations: «It is impossible to add a non-nullable field 'category'»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is impossible to add a non-nullable field 'category' to task without specifying a default. This is because the database needs something to populate existing rows. The field has no null=True, and the table already has tasks: the database has nothing to put into their new column. Choose option 2 (Quit and manually define a default value in models.py), add null=True, blank=True to the field as in step 1, and run makemigrations again."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "«'Category' object has no attribute 'task_set'»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AttributeError: 'Category' object has no attribute 'task_set' Django gives the reverse relation the name task_set only while the ForeignKey has no related_name. Ours has related_name=\"tasks\", so a category's tasks are category.tasks.all()."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "“Method Not Allowed (POST): /” and a 405 response",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Method Not Allowed (POST): / The add form is sent to the home page, which is now a ListView that accepts only GET. Check the form line in index.html: <form method=\"post\" action=\"{% url 'add' %}\"> (step 6)."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "«TemplateDoesNotExist: tasks/task_form.html»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "django.template.exceptions.TemplateDoesNotExist: tasks/task_form.html CreateView shows this template when the form fails validation or when /tasks/add/ is opened. Create tasks/templates/tasks/task_form.html from step 6 — the name is the model name plus the _form ending."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "«Reverse for 'add' not found»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "django.urls.exceptions.NoReverseMatch: Reverse for 'add' not found. 'add' is not a valid view function or pattern name. The template refers to the add route, but mysite/urls.py doesn't have it. Add the line path(\"tasks/add/\", views.TaskCreateView.as_view(), name=\"add\")."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Test: “AssertionError: 15 != 3 : 15 queries executed, 3 expected”",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AssertionError: 15 != 3 : 15 queries executed, 3 expected The home page has the N+1 problem again: select_related(\"category\") disappeared from get_queryset, or the template uses another relation that was not loaded in advance. Bring select_related back as in step 7."
+       }
+      }
+     ]
     }
+   ]
+  }
   </script>
 </head>
 

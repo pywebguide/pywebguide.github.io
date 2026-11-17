@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PyWeb Guide — первый сайт на Python с нуля</title>
-
-  <meta name="description" content="Бесплатный учебный сайт для тех, кто никогда не программировал: основы Python прямо в браузере и пошаговая сборка первого сайта.">
+  <title>Python для начинающих: первый сайт с нуля — PyWeb Guide</title>
+  <meta name="description" content="Бесплатный курс Python для начинающих: уроки прямо в браузере, задачи с автопроверкой и первое веб-приложение на Flask или Django шаг за шагом.">
   <link rel="canonical" href="https://pywebguide.github.io/">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/">
@@ -13,15 +12,20 @@
   <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="kk_KZ">
+  <meta property="og:locale:alternate" content="en_GB">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="PyWeb Guide — первый сайт на Python с нуля">
-  <meta property="og:description" content="Бесплатный учебный сайт для тех, кто никогда не программировал: основы Python прямо в браузере и пошаговая сборка первого сайта.">
+  <meta property="og:title" content="Python для начинающих: первый сайт с нуля">
+  <meta property="og:description" content="Бесплатный курс Python для начинающих: уроки прямо в браузере, задачи с автопроверкой и первое веб-приложение на Flask или Django шаг за шагом.">
   <meta property="og:url" content="https://pywebguide.github.io/">
-  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og/ru/index.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Плакат PyWeb Guide: первый сайт на Python, бесплатный курс для тех, кто никогда не программировал">
+  <meta property="og:image:alt" content="Первый сайт на Python — PyWeb Guide">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pywebguide.github.io/assets/og/ru/index.png">
+  <meta name="twitter:image:alt" content="Первый сайт на Python — PyWeb Guide">
   <meta name="theme-color" content="#ffd249">
 
 
@@ -57,15 +61,72 @@
   </script>
 
   <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@graph": [
     {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "PyWeb Guide",
-      "url": "https://pywebguide.github.io/",
-      "inLanguage": "ru",
-      "description": "Учебный ресурс о Python в веб-разработке: Django, Flask, базы данных и первый проект по шагам.",
-      "author": { "@type": "Person", "name": "Жангужин Е. Е." }
+     "@type": "WebSite",
+     "@id": "https://pywebguide.github.io/#website",
+     "name": "PyWeb Guide",
+     "url": "https://pywebguide.github.io/",
+     "inLanguage": "ru",
+     "description": "Бесплатный курс Python для начинающих: уроки прямо в браузере, задачи с автопроверкой и первое веб-приложение на Flask или Django шаг за шагом.",
+     "author": {
+      "@type": "Person",
+      "name": "Жангужин Е. Е.",
+      "url": "https://pywebguide.github.io/contacts.html"
+     }
+    },
+    {
+     "@type": "FAQPage",
+     "@id": "https://pywebguide.github.io/#faq",
+     "url": "https://pywebguide.github.io/",
+     "inLanguage": "ru",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "Я никогда не программировал. У меня получится?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. Начните с уроков «С нуля»: они не требуют ни опыта, ни установки программ."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Это платно?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет, весь сайт бесплатный."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Нужно ли сразу учить Django и Flask?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет. Лучше выбрать один фреймворк, сделать на нём простой проект и уже потом сравнивать со вторым."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Можно ли делать сайты без базы данных?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да, но большинство реальных проектов хранят пользователей, товары или контент, поэтому база данных быстро становится нужна."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Что важнее: теория или практика?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Практика. Теория помогает понимать, что происходит, но навык появляется только после написания кода и разбора ошибок."
+       }
+      }
+     ]
     }
+   ]
+  }
   </script>
 </head>
 

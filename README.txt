@@ -20,8 +20,10 @@ PyWeb Guide — учебный веб-ресурс о Python в веб-разр�
     styles.css                — оформление и медиазапросы
     script.js                 — меню, мини-тест, прогресс, форма
     assets/knowledge-map.svg  — схема пути запроса
-    assets/icon.svg, *.png    — иконки сайта и картинка превью для мессенджеров
-    sitemap.xml               — карта сайта для поисковых систем
+    assets/icon.svg, *.png    — иконки сайта
+    assets/og/<язык>/*.png    — картинки превью ссылок для мессенджеров (tools/build_og.py)
+    sitemap.xml, llms.txt     — карта сайта для поисковых систем и описание сайта для ИИ (tools/layout.py)
+    google782fb83ab40c9a14.html — подтверждение прав в Google Search Console (не удалять и не менять)
 
   Старые адреса ЛР3 (#/about, #/frameworks, #/contacts) перенаправляются
   на отдельные страницы.
@@ -223,3 +225,35 @@ PyWeb Guide — учебный веб-ресурс о Python в веб-разр�
     шрифт растёт с шириной экрана (17–21px), ширина берётся из свободного места слева от текста;
   - ссылки в «Источниках» django-next.html и fastapi.html открыты и проверены вместе с якорями;
     документация Pydantic переехала на pydantic.dev — ссылка обновлена; дата проверки на обеих страницах.
+
+ДОРАБОТКА 21 (17.11.2026, поиск в Google, Яндексе и ИИ-поисковиках)
+  - все настройки поиска в одном файле tools/seo.json: title (до 60 символов) и description (120–160)
+    каждой страницы на трёх языках, надпись на картинке превью, тип разметки и время на урок;
+    title и description переписаны под запросы новичков («python для начинающих», «первое приложение на python»,
+    «flask с нуля», «django для начинающих», «python үйрену», «django бастаушыларға») без повторов между страницами;
+  - tools/layout.py сам пишет <head>: title, description, canonical, hreflang, Open Graph с og:locale:alternate,
+    og:image и twitter:image; translate.py больше не переводит title и meta (их тексты теперь в seo.json);
+  - JSON-LD на всех 81 странице (кроме трёх 404): уроки, проекты, задачи, тест, шпаргалка, словарь и песочница —
+    LearningResource (educationalLevel, learningResourceType, timeRequired, inLanguage, dateModified, author),
+    course.html — Course со списком из 17 разделов программы, главная — WebSite, служебные — WebPage/ContactPage;
+    BreadcrumbList по видимым хлебным крошкам; FAQPage — из «Частых вопросов» (главная, «Фреймворки») и
+    «Частых ошибок» («Первый проект», «Django дальше», «FastAPI»): вопросы и ответы берутся из текста страницы;
+    у раздела «Частые вопросы» на frameworks.html появился якорь #faq;
+  - tools/build_og.py рисует картинку 1200×630 для каждой страницы (84 шт., 15–19 КБ): жёлтое поле, заголовок
+    шрифтом заголовков сайта (на kk/ — Fira Sans Extra Condensed), розовая полоса с PYWEB GUIDE и языком;
+    прежняя общая assets/og-image.png удалена;
+  - подтверждение в поисковиках: коды google и yandex в tools/seo.json → «verification», пустой код — тега нет;
+    теги выводятся на главных страницах трёх языков. Для Google уже лежит файл google782fb83ab40c9a14.html
+    в корне — инструменты его не трогают и не считают страницей;
+  - llms.txt в корне по llmstxt.org: что за сайт и для кого, разделы и все страницы трёх языков с описаниями;
+  - дата «Обновлено», lastmod в sitemap.xml и dateModified — день последнего коммита, изменившего <main> страницы
+    (правки меню, подвала и <head> дату не сдвигают); вместо ручного списка UPDATED_PAGES. Нужна полная история
+    git: в CI checkout с fetch-depth: 0. Если коммит сделан не в тот день, когда запускали layout.py,
+    CI попросит запустить python tools/layout.py ещё раз;
+  - 404.html на трёх языках: description, noindex, Open Graph и картинка превью;
+  - tools/check_seo.py проверяет длину title и description, повторы, canonical, hreflang на ru/kk/en/x-default,
+    og:image и twitter:image (файл есть, 1200×630, до 300 КБ), JSON-LD (разбор, обязательные и допустимые
+    свойства типов schema.org, вопросы FAQ есть в тексте страницы), sitemap.xml, noindex у 404 и llms.txt;
+    подключён в CI вместе с build_og.py --check; в tools/requirements.txt добавлен Pillow.
+  После правки tools/seo.json: python tools/layout.py && python tools/build_og.py && python tools/check_seo.py.
+  Казахские title и description не вычитаны носителем языка.

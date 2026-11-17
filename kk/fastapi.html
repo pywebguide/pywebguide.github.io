@@ -4,9 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FastAPI-дағы алғашқы API: тапсырмалар тізімі — PyWeb Guide</title>
-
-  <meta name="description" content="FastAPI 0.163-тегі тапсырмалар тізімінің REST API-і: Pydantic модельдері, GET, POST және DELETE маршруттары, 201, 204, 404 және 422 кодтары, /docs автоқұжаттамасы және TestClient тесттері.">
+  <title>FastAPI бастаушыларға: алғашқы REST API — PyWeb Guide</title>
+  <meta name="description" content="FastAPI 0.163-тегі тапсырмалар тізімінің REST API-і: Pydantic модельдері, GET, POST және DELETE, 201, 204, 404 және 422 кодтары, /docs және тесттер.">
   <link rel="canonical" href="https://pywebguide.github.io/kk/fastapi.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/fastapi.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/fastapi.html">
@@ -14,15 +13,20 @@
   <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/fastapi.html">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="kk_KZ">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="en_GB">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="FastAPI-дағы алғашқы API: тапсырмалар тізімі — PyWeb Guide">
-  <meta property="og:description" content="FastAPI 0.163-тегі тапсырмалар тізімінің REST API-і: Pydantic модельдері, GET, POST және DELETE маршруттары, 201, 204, 404 және 422 кодтары, /docs автоқұжаттамасы және TestClient тесттері.">
+  <meta property="og:title" content="FastAPI бастаушыларға: алғашқы REST API">
+  <meta property="og:description" content="FastAPI 0.163-тегі тапсырмалар тізімінің REST API-і: Pydantic модельдері, GET, POST және DELETE, 201, 204, 404 және 422 кодтары, /docs және тесттер.">
   <meta property="og:url" content="https://pywebguide.github.io/kk/fastapi.html">
-  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og/kk/fastapi.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta property="og:image:alt" content="FastAPI-дағы API — PyWeb Guide">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pywebguide.github.io/assets/og/kk/fastapi.png">
+  <meta name="twitter:image:alt" content="FastAPI-дағы API — PyWeb Guide">
   <meta name="theme-color" content="#ffd249">
 
 
@@ -49,20 +53,109 @@
   </script>
 
   <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@graph": [
     {
-      "@context": "https://schema.org",
-      "@type": "LearningResource",
-      "name": "Первое API на FastAPI: список задач",
-      "description": "REST API списка задач на FastAPI 0.163: модели Pydantic, коды ответа, автодокументация и тесты.",
-      "url": "https://pywebguide.github.io/fastapi.html",
-      "inLanguage": "ru",
-      "educationalLevel": "Средний",
-      "learningResourceType": "Пошаговое руководство",
-      "timeRequired": "PT40M",
-      "dateModified": "2026-11-17",
-      "isPartOf": { "@type": "WebSite", "name": "PyWeb Guide", "url": "https://pywebguide.github.io/" },
-      "author": { "@type": "Person", "name": "Жангужин Е. Е." }
+     "@type": "LearningResource",
+     "@id": "https://pywebguide.github.io/kk/fastapi.html#resource",
+     "name": "FastAPI-дағы алғашқы API",
+     "description": "FastAPI 0.163-тегі тапсырмалар тізімінің REST API-і: Pydantic модельдері, GET, POST және DELETE, 201, 204, 404 және 422 кодтары, /docs және тесттер.",
+     "url": "https://pywebguide.github.io/kk/fastapi.html",
+     "inLanguage": "kk",
+     "educationalLevel": "Бастауыш",
+     "learningResourceType": "Қадамдық нұсқаулық",
+     "timeRequired": "PT1H30M",
+     "isAccessibleForFree": true,
+     "dateModified": "2026-11-17",
+     "image": "https://pywebguide.github.io/assets/og/kk/fastapi.png",
+     "isPartOf": {
+      "@type": "WebSite",
+      "name": "PyWeb Guide",
+      "url": "https://pywebguide.github.io/kk/"
+     },
+     "author": {
+      "@type": "Person",
+      "name": "Жангужин Е. Е.",
+      "url": "https://pywebguide.github.io/kk/contacts.html"
+     }
+    },
+    {
+     "@type": "BreadcrumbList",
+     "@id": "https://pywebguide.github.io/kk/fastapi.html#breadcrumbs",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Басты бет",
+       "item": "https://pywebguide.github.io/kk/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "FastAPI-дағы API",
+       "item": "https://pywebguide.github.io/kk/fastapi.html"
+      }
+     ]
+    },
+    {
+     "@type": "FAQPage",
+     "@id": "https://pywebguide.github.io/kk/fastapi.html#faq",
+     "url": "https://pywebguide.github.io/kk/fastapi.html",
+     "inLanguage": "kk",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "«To use the fastapi command, please install \"fastapi[standard]\"»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To use the fastapi command, please install \"fastapi[standard]\" Тек FastAPI-дің өзі орнатылған, fastapi командасы мен сервер жоқ. Сол ортада pip install \"fastapi[standard]\" командасын — тырнақшамен — орындаңыз."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "422 «Input should be a valid integer»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{\"detail\":[{\"type\":\"int_parsing\",\"loc\":[\"path\",\"task_id\"],\"msg\":\"Input should be a valid integer, unable to parse string as an integer\",\"input\":\"abc\"}]} Мекенжайда тапсырма нөмірінің орнына мәтін тұр, мысалы /tasks/abc. task_id: int параметрі тек бүтін сандарды қабылдайды."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "405 «Method Not Allowed»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{\"detail\":\"Method Not Allowed\"} Мекенжай бар, бірақ басқа әдіспен. Мысалы, нөмірсіз DELETE /tasks: жою тек /tasks/{task_id} үшін жарияланған. Әдіс пен мекенжайды /docs ішінде тексеріңіз."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "500 қатесі және терминалдағы «ResponseValidationError»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "fastapi.exceptions.ResponseValidationError: 1 validation error: {'type': 'missing', 'loc': ('response', 'title'), 'msg': 'Field required', 'input': {'id': 1}} Функция -> Task сай келмейтін деректер қайтарды: мұнда title жоқ сөздік. 3-қадамдағыдай Task моделінің нысанын толығымен қайтарыңыз."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "pytest: «ModuleNotFoundError: No module named 'main'»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "E ModuleNotFoundError: No module named 'main' Тест main.py файлын таппады. main.py мен test_main.py файлдары бір бумада жатуы керек, ал pytest сол бумадан іске қосылады."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "/docs беті бос",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Swagger UI безендіруін браузер cdn.jsdelivr.net сайтынан жүктейді. Интернет болмаса немесе сайт бұғатталса, /docs пен /redoc бос қалады, ал /openapi.json және API-дің барлық маршруты жұмыс істейді. Интернетті тексеріңіз немесе 6-қадамдағыдай сұрауды тесттерден жіберіңіз."
+       }
+      }
+     ]
     }
+   ]
+  }
   </script>
 </head>
 

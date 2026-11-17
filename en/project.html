@@ -4,9 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>First project with Flask and Django — PyWeb Guide</title>
-
-  <meta name="description" content="A step-by-step guide: a to-do list with Flask 3.1 and with Django 6.1, from installation to a working app. Tick off the steps as you go.">
+  <title>Your first Python web app: Flask and Django — PyWeb Guide</title>
+  <meta name="description" content="Build your first Python web app step by step: a to-do list with Flask from scratch or Django for beginners, with terminal output and code after every step.">
   <link rel="canonical" href="https://pywebguide.github.io/en/project.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/project.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/project.html">
@@ -14,15 +13,20 @@
   <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/project.html">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="kk_KZ">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="First project with Flask and Django — PyWeb Guide">
-  <meta property="og:description" content="A step-by-step guide: a to-do list with Flask 3.1 and with Django 6.1, from installation to a working app. Tick off the steps as you go.">
+  <meta property="og:title" content="Your first Python web app: Flask and Django">
+  <meta property="og:description" content="Build your first Python web app step by step: a to-do list with Flask from scratch or Django for beginners, with terminal output and code after every step.">
   <meta property="og:url" content="https://pywebguide.github.io/en/project.html">
-  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og/en/project.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PyWeb Guide poster: your first website with Python, a free course for people who have never programmed">
+  <meta property="og:image:alt" content="Your first Python web app — PyWeb Guide">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pywebguide.github.io/assets/og/en/project.png">
+  <meta name="twitter:image:alt" content="Your first Python web app — PyWeb Guide">
   <meta name="theme-color" content="#ffd249">
 
 
@@ -48,20 +52,109 @@
   </script>
 
   <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@graph": [
     {
-      "@context": "https://schema.org",
-      "@type": "LearningResource",
-      "name": "Первый проект: список задач на Flask и Django",
-      "description": "Пошаговое создание списка задач на Flask 3.1 и Django 6.1: от установки до базы данных и формы.",
-      "url": "https://pywebguide.github.io/project.html",
-      "inLanguage": "ru",
-      "educationalLevel": "Начальный",
-      "learningResourceType": "Пошаговое руководство",
-      "timeRequired": "PT1H",
-      "dateModified": "2026-11-17",
-      "isPartOf": { "@type": "WebSite", "name": "PyWeb Guide", "url": "https://pywebguide.github.io/" },
-      "author": { "@type": "Person", "name": "Жангужин Е. Е." }
+     "@type": "LearningResource",
+     "@id": "https://pywebguide.github.io/en/project.html#resource",
+     "name": "First project: a to-do list",
+     "description": "Build your first Python web app step by step: a to-do list with Flask from scratch or Django for beginners, with terminal output and code after every step.",
+     "url": "https://pywebguide.github.io/en/project.html",
+     "inLanguage": "en",
+     "educationalLevel": "Beginner",
+     "learningResourceType": "Step-by-step guide",
+     "timeRequired": "PT2H",
+     "isAccessibleForFree": true,
+     "dateModified": "2026-11-17",
+     "image": "https://pywebguide.github.io/assets/og/en/project.png",
+     "isPartOf": {
+      "@type": "WebSite",
+      "name": "PyWeb Guide",
+      "url": "https://pywebguide.github.io/en/"
+     },
+     "author": {
+      "@type": "Person",
+      "name": "E. Zhanguzhin",
+      "url": "https://pywebguide.github.io/en/contacts.html"
+     }
+    },
+    {
+     "@type": "BreadcrumbList",
+     "@id": "https://pywebguide.github.io/en/project.html#breadcrumbs",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Home",
+       "item": "https://pywebguide.github.io/en/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "First project",
+       "item": "https://pywebguide.github.io/en/project.html"
+      }
+     ]
+    },
+    {
+     "@type": "FAQPage",
+     "@id": "https://pywebguide.github.io/en/project.html#faq",
+     "url": "https://pywebguide.github.io/en/project.html",
+     "inLanguage": "en",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "The python command opens the Microsoft Store or says “Python was not found”",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Python was not found; run without arguments to install from the Microsoft Store… Python is not installed or not on PATH, so Windows shows its own stub. Install Python from python.org and tick “Add python.exe to PATH”. If Python is already installed, use the py command: py -m venv .venv. Once the environment is activated, the python command works."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "PowerShell will not activate the environment: “running scripts is disabled”",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "…Activate.ps1 cannot be loaded because running scripts is disabled on this system. On Russian-language Windows the same error reads: Невозможно загрузить файл …\\.venv\\Scripts\\Activate.ps1, так как выполнение сценариев отключено в этой системе. Allow local scripts for your account, once: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned. Another option is to open Command Prompt (cmd) instead of PowerShell."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "“flask” or “django-admin” is not recognized as the name of a cmdlet",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "flask : The term 'flask' is not recognized as the name of a cmdlet, function, script file, or operable program. The environment is not activated or the package is not installed. Activate the environment ((.venv) appears at the start of the terminal line) and run pip install flask or pip install django again."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Django: «no such table: tasks_task»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "django.db.utils.OperationalError: no such table: tasks_task The table for the model has not been created yet. Do step 4: python manage.py makemigrations and python manage.py migrate. If the command says “No changes detected”, check that 'tasks' is in INSTALLED_APPS (step 2)."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Django: «TemplateDoesNotExist at /»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TemplateDoesNotExist at / — tasks/index.html Django could not find the template. The path must be exactly tasks/templates/tasks/index.html: the tasks folder inside templates is repeated on purpose. Also check that the app is in INSTALLED_APPS."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Django: «Forbidden (403) CSRF verification failed»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Forbidden (403) CSRF verification failed. Request aborted. The form is missing the {% csrf_token %} tag. It is needed in every form with method=\"post\": compare your template with step 9."
+       }
+      }
+     ]
     }
+   ]
+  }
   </script>
 </head>
 

@@ -4,9 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Flask пен Django-дағы алғашқы жоба — PyWeb Guide</title>
-
-  <meta name="description" content="Қадамдық нұсқаулық: Flask 3.1 және Django 6.1 бойынша тапсырмалар тізімі — орнатудан бастап жұмыс істейтін қосымшаға дейін. Өткен қадамдарды белгілеп отырыңыз.">
+  <title>Python-дағы алғашқы қосымша: Flask пен Django — PyWeb Guide</title>
+  <meta name="description" content="Python-дағы алғашқы қосымша қадам-қадаммен: Flask-та нөлден немесе Django бастаушыларға тапсырмалар тізімі. Терминал шығысы және әр қадамнан кейінгі код.">
   <link rel="canonical" href="https://pywebguide.github.io/kk/project.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/project.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/project.html">
@@ -14,15 +13,20 @@
   <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/project.html">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="kk_KZ">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="en_GB">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="Flask пен Django-дағы алғашқы жоба — PyWeb Guide">
-  <meta property="og:description" content="Қадамдық нұсқаулық: Flask 3.1 және Django 6.1 бойынша тапсырмалар тізімі — орнатудан бастап жұмыс істейтін қосымшаға дейін. Өткен қадамдарды белгілеп отырыңыз.">
+  <meta property="og:title" content="Python-дағы алғашқы қосымша: Flask пен Django">
+  <meta property="og:description" content="Python-дағы алғашқы қосымша қадам-қадаммен: Flask-та нөлден немесе Django бастаушыларға тапсырмалар тізімі. Терминал шығысы және әр қадамнан кейінгі код.">
   <meta property="og:url" content="https://pywebguide.github.io/kk/project.html">
-  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og/kk/project.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta property="og:image:alt" content="Алғашқы қосымша Python-да — PyWeb Guide">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pywebguide.github.io/assets/og/kk/project.png">
+  <meta name="twitter:image:alt" content="Алғашқы қосымша Python-да — PyWeb Guide">
   <meta name="theme-color" content="#ffd249">
 
 
@@ -49,20 +53,109 @@
   </script>
 
   <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@graph": [
     {
-      "@context": "https://schema.org",
-      "@type": "LearningResource",
-      "name": "Первый проект: список задач на Flask и Django",
-      "description": "Пошаговое создание списка задач на Flask 3.1 и Django 6.1: от установки до базы данных и формы.",
-      "url": "https://pywebguide.github.io/project.html",
-      "inLanguage": "ru",
-      "educationalLevel": "Начальный",
-      "learningResourceType": "Пошаговое руководство",
-      "timeRequired": "PT1H",
-      "dateModified": "2026-11-17",
-      "isPartOf": { "@type": "WebSite", "name": "PyWeb Guide", "url": "https://pywebguide.github.io/" },
-      "author": { "@type": "Person", "name": "Жангужин Е. Е." }
+     "@type": "LearningResource",
+     "@id": "https://pywebguide.github.io/kk/project.html#resource",
+     "name": "Алғашқы жоба: тапсырмалар тізімі",
+     "description": "Python-дағы алғашқы қосымша қадам-қадаммен: Flask-та нөлден немесе Django бастаушыларға тапсырмалар тізімі. Терминал шығысы және әр қадамнан кейінгі код.",
+     "url": "https://pywebguide.github.io/kk/project.html",
+     "inLanguage": "kk",
+     "educationalLevel": "Бастауыш",
+     "learningResourceType": "Қадамдық нұсқаулық",
+     "timeRequired": "PT2H",
+     "isAccessibleForFree": true,
+     "dateModified": "2026-11-17",
+     "image": "https://pywebguide.github.io/assets/og/kk/project.png",
+     "isPartOf": {
+      "@type": "WebSite",
+      "name": "PyWeb Guide",
+      "url": "https://pywebguide.github.io/kk/"
+     },
+     "author": {
+      "@type": "Person",
+      "name": "Жангужин Е. Е.",
+      "url": "https://pywebguide.github.io/kk/contacts.html"
+     }
+    },
+    {
+     "@type": "BreadcrumbList",
+     "@id": "https://pywebguide.github.io/kk/project.html#breadcrumbs",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Басты бет",
+       "item": "https://pywebguide.github.io/kk/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Алғашқы жоба",
+       "item": "https://pywebguide.github.io/kk/project.html"
+      }
+     ]
+    },
+    {
+     "@type": "FAQPage",
+     "@id": "https://pywebguide.github.io/kk/project.html#faq",
+     "url": "https://pywebguide.github.io/kk/project.html",
+     "inLanguage": "kk",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "python командасы Microsoft Store-ды ашады немесе «Python was not found» деп жазады",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Python was not found; run without arguments to install from the Microsoft Store… Python орнатылмаған немесе PATH-қа қосылмаған, сондықтан Windows өз бітеуішін қояды. Python-ды python.org сайтынан орнатып, «Add python.exe to PATH» тармағын белгілеңіз. Егер Python бұрыннан орнатылған болса, py командасын қолданыңыз: py -m venv .venv. Орта іске қосылғаннан кейін python командасы жұмыс істей бастайды."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "PowerShell ортаны іске қосуға мүмкіндік бермейді: «сценарийлерді орындау өшірілген»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Орыс тіліндегі Windows-та: Невозможно загрузить файл …\\.venv\\Scripts\\Activate.ps1, так как выполнение сценариев отключено в этой системе. Ағылшын тіліндегі Windows-та: …Activate.ps1 cannot be loaded because running scripts is disabled on this system. Өз тіркелгіңіз үшін жергілікті скриптерді іске қосуға бір рет рұқсат беріңіз: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned. Басқа жолы — PowerShell орнына «Пәрмен жолы» (cmd) терминалын ашу."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "«flask» немесе «django-admin» командлет атауы ретінде танылмады",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Орыс тіліндегі PowerShell-де: Имя \"flask\" не распознано как имя командлета, функции, файла сценария или выполняемой программы. Орта іске қосылмаған немесе пакет орнатылмаған. Ортаны іске қосыңыз (терминал жолының басында (.venv) пайда болады) да, pip install flask немесе pip install django командасын қайталаңыз."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Django: «no such table: tasks_task»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "django.db.utils.OperationalError: no such table: tasks_task Модельге арналған кесте әлі жасалмаған. 4-қадамды орындаңыз: python manage.py makemigrations және python manage.py migrate. Егер команда «No changes detected» деп жазса, 'tasks' INSTALLED_APPS тізіміне қосылғанын тексеріңіз (2-қадам)."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Django: «TemplateDoesNotExist at /»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TemplateDoesNotExist at / — tasks/index.html Django үлгіні таппады. Жол дәл осындай болуы керек: tasks/templates/tasks/index.html — templates ішіндегі tasks қалтасы әдейі қайталанады. Сондай-ақ қосымшаның INSTALLED_APPS тізімінде бар екенін тексеріңіз."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Django: «Forbidden (403) CSRF verification failed»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Forbidden (403) CSRF verification failed. Request aborted. Формада {% csrf_token %} тегі жетіспейді. Ол method=\"post\" бар әр формада қажет — үлгіңізді 9-қадаммен салыстырыңыз."
+       }
+      }
+     ]
     }
+   ]
+  }
   </script>
 </head>
 

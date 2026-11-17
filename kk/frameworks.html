@@ -4,9 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Django, Flask әлде FastAPI — PyWeb Guide</title>
-
-  <meta name="description" content="Django 6.1, Flask 3.1 және FastAPI салыстыру: критерийлер кестесі, әртүрлі фреймворктегі бір бет және алғашқы фреймворкті таңдауға арналған шағын тест.">
+  <title>Django әлде Flask: бастаушыға қайсысы — PyWeb Guide</title>
+  <meta name="description" content="Бастаушыларға Django 6.1, Flask 3.1 және FastAPI салыстыру: критерийлер кестесі, үш фреймворктегі бір бет және алғашқы фреймворкті таңдауға шағын тест.">
   <link rel="canonical" href="https://pywebguide.github.io/kk/frameworks.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/frameworks.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/frameworks.html">
@@ -14,15 +13,20 @@
   <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/frameworks.html">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="kk_KZ">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="en_GB">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="Django, Flask әлде FastAPI — PyWeb Guide">
-  <meta property="og:description" content="Django 6.1, Flask 3.1 және FastAPI салыстыру: критерийлер кестесі, әртүрлі фреймворктегі бір бет және алғашқы фреймворкті таңдауға арналған шағын тест.">
+  <meta property="og:title" content="Django әлде Flask: бастаушыға қайсысы">
+  <meta property="og:description" content="Бастаушыларға Django 6.1, Flask 3.1 және FastAPI салыстыру: критерийлер кестесі, үш фреймворктегі бір бет және алғашқы фреймворкті таңдауға шағын тест.">
   <meta property="og:url" content="https://pywebguide.github.io/kk/frameworks.html">
-  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og/kk/frameworks.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta property="og:image:alt" content="Фреймворктер — PyWeb Guide">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pywebguide.github.io/assets/og/kk/frameworks.png">
+  <meta name="twitter:image:alt" content="Фреймворктер — PyWeb Guide">
   <meta name="theme-color" content="#a4f6f8">
 
 
@@ -46,6 +50,87 @@
       }
       document.documentElement.setAttribute("data-theme", theme);
     })();
+  </script>
+  <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@graph": [
+    {
+     "@type": "LearningResource",
+     "@id": "https://pywebguide.github.io/kk/frameworks.html#resource",
+     "name": "Django әлде Flask: қайсысын таңдау керек",
+     "description": "Бастаушыларға Django 6.1, Flask 3.1 және FastAPI салыстыру: критерийлер кестесі, үш фреймворктегі бір бет және алғашқы фреймворкті таңдауға шағын тест.",
+     "url": "https://pywebguide.github.io/kk/frameworks.html",
+     "inLanguage": "kk",
+     "educationalLevel": "Бастауыш",
+     "learningResourceType": "Сабақ",
+     "timeRequired": "PT30M",
+     "isAccessibleForFree": true,
+     "dateModified": "2026-11-17",
+     "image": "https://pywebguide.github.io/assets/og/kk/frameworks.png",
+     "isPartOf": {
+      "@type": "WebSite",
+      "name": "PyWeb Guide",
+      "url": "https://pywebguide.github.io/kk/"
+     },
+     "author": {
+      "@type": "Person",
+      "name": "Жангужин Е. Е.",
+      "url": "https://pywebguide.github.io/kk/contacts.html"
+     }
+    },
+    {
+     "@type": "BreadcrumbList",
+     "@id": "https://pywebguide.github.io/kk/frameworks.html#breadcrumbs",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Басты бет",
+       "item": "https://pywebguide.github.io/kk/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Фреймворктер",
+       "item": "https://pywebguide.github.io/kk/frameworks.html"
+      }
+     ]
+    },
+    {
+     "@type": "FAQPage",
+     "@id": "https://pywebguide.github.io/kk/frameworks.html#faq",
+     "url": "https://pywebguide.github.io/kk/frameworks.html",
+     "inLanguage": "kk",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "Алдымен қайсысын үйрену оңайырақ?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Сервердің қалай жұмыс істейтінін тез түсінгіңіз келсе, Flask-тан бастаған дұрыс. Дайын әкімші панелі мен дерекқоры бар жоба керек болса — Django-дан бастау ыңғайлы."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "SQL-ды білу керек пе?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Білген жөн. ORM қолданғанда да SQL-ды негізінен түсіну деректермен жақсы жұмыс істеуге және сұрауларды жөндеуге көмектеседі."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Кейін Flask-тан Django-ға ауысуға бола ма?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Иә. Python сол күйі қалады, сондықтан ауысуға болады, бірақ жобаның басқа архитектурасын және Django-ның кірістірілген құралдарын үйренуге тура келеді."
+       }
+      }
+     ]
+    }
+   ]
+  }
   </script>
 </head>
 
@@ -516,7 +601,7 @@ def home():
         </div>
       </section>
 
-      <section class="section faq" aria-label="Жиі қойылатын сұрақтар">
+      <section class="section faq" id="faq" aria-label="Жиі қойылатын сұрақтар">
         <div class="container">
           <div class="section-head reveal">
             <h2>Жиі қойылатын сұрақтар</h2>

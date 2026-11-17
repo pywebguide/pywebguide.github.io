@@ -44,7 +44,8 @@ BLOCK = {"html", "head", "body", "title", "header", "footer", "main", "nav", "se
          "label", "button", "blockquote", "select", "option", "dialog", "canvas"}
 SKIP = {"script", "style", "pre", "textarea", "template", "svg", "noscript"}
 ATTRS = {"alt", "title", "aria-label", "placeholder"}
-META = {("name", "description"), ("property", "og:title"), ("property", "og:description"), ("property", "og:image:alt")}
+# <title>, description и Open Graph не переводятся здесь: их пишет tools/layout.py из tools/seo.json
+META = set()
 
 
 TIME = re.compile(r'<time datetime="[^"]*">[^<]*</time>')
@@ -82,7 +83,7 @@ class Units(HTMLParser):
         if not self.stack:
             return
         top = self.stack[-1]
-        if top[1] is not None and top[2] and not self.skip and not self.layout and not self.tasks:
+        if top[1] is not None and top[2] and not self.skip and not self.layout and not self.tasks and top[0] != "title":
             self.text_units.append((top[1], end, top[3]))
         top[1] = None
         top[2] = False

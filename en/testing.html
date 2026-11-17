@@ -4,9 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Testing Flask and Django: pytest and the test client — PyWeb Guide</title>
-
-  <meta name="description" content="Why tests are needed, how to write them with pytest and unittest, how to check pages and APIs in Flask and Django without starting a server.">
+  <title>Testing Flask and Django: pytest from scratch — PyWeb Guide</title>
+  <meta name="description" content="Why tests matter and how to write them with pytest and unittest: checking pages and APIs in Flask and Django with the test client, without starting a server.">
   <link rel="canonical" href="https://pywebguide.github.io/en/testing.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/testing.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/testing.html">
@@ -14,15 +13,20 @@
   <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/testing.html">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="kk_KZ">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="Testing Flask and Django: pytest and the test client — PyWeb Guide">
-  <meta property="og:description" content="Why tests are needed, how to write them with pytest and unittest, how to check pages and APIs in Flask and Django without starting a server.">
+  <meta property="og:title" content="Testing Flask and Django: pytest from scratch">
+  <meta property="og:description" content="Why tests matter and how to write them with pytest and unittest: checking pages and APIs in Flask and Django with the test client, without starting a server.">
   <meta property="og:url" content="https://pywebguide.github.io/en/testing.html">
-  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og/en/testing.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PyWeb Guide poster: your first website with Python, a free course for people who have never programmed">
+  <meta property="og:image:alt" content="Testing — PyWeb Guide">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pywebguide.github.io/assets/og/en/testing.png">
+  <meta name="twitter:image:alt" content="Testing — PyWeb Guide">
   <meta name="theme-color" content="#a4f6f8">
 
 
@@ -46,6 +50,55 @@
       }
       document.documentElement.setAttribute("data-theme", theme);
     })();
+  </script>
+  <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@graph": [
+    {
+     "@type": "LearningResource",
+     "@id": "https://pywebguide.github.io/en/testing.html#resource",
+     "name": "How to change code without breaking it",
+     "description": "Why tests matter and how to write them with pytest and unittest: checking pages and APIs in Flask and Django with the test client, without starting a server.",
+     "url": "https://pywebguide.github.io/en/testing.html",
+     "inLanguage": "en",
+     "educationalLevel": "Beginner",
+     "learningResourceType": "Lesson",
+     "timeRequired": "PT30M",
+     "isAccessibleForFree": true,
+     "dateModified": "2026-11-11",
+     "image": "https://pywebguide.github.io/assets/og/en/testing.png",
+     "isPartOf": {
+      "@type": "WebSite",
+      "name": "PyWeb Guide",
+      "url": "https://pywebguide.github.io/en/"
+     },
+     "author": {
+      "@type": "Person",
+      "name": "E. Zhanguzhin",
+      "url": "https://pywebguide.github.io/en/contacts.html"
+     }
+    },
+    {
+     "@type": "BreadcrumbList",
+     "@id": "https://pywebguide.github.io/en/testing.html#breadcrumbs",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Home",
+       "item": "https://pywebguide.github.io/en/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Testing",
+       "item": "https://pywebguide.github.io/en/testing.html"
+      }
+     ]
+    }
+   ]
+  }
   </script>
 </head>
 

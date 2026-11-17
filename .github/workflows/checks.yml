@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Вся история: дата изменения страницы (lastmod, «Обновлено») берётся из git
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
@@ -20,8 +23,12 @@ jobs:
         run: python tools/check_errors.py
       - name: Ссылки, заголовки, карта сайта
         run: python tools/check_site.py
-      - name: Шапка и подвал совпадают с tools/layout.py
+      - name: Шапка, подвал, <head>, JSON-LD, sitemap.xml и llms.txt совпадают с tools/layout.py и tools/seo.json
         run: python tools/layout.py --check
+      - name: Картинки превью ссылок (assets/og) актуальны
+        run: python tools/build_og.py --check
+      - name: Title, description, canonical, hreflang, og:image, JSON-LD, карта сайта
+        run: python tools/check_seo.py
       - name: Примеры кода
         run: python tools/check_examples.py
       - name: Эталонные решения задач проходят тесты

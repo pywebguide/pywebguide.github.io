@@ -1,0 +1,147 @@
+# PyWeb Guide
+
+> Бесплатный учебный сайт на трёх языках (русский, казахский, английский) для тех, кто никогда не программировал: Python с нуля прямо в браузере, затем веб-разработка на Flask, Django и FastAPI — от первого приложения до публикации в интернете.
+
+Для кого: школьники, студенты и взрослые без опыта программирования, которые хотят сделать свой первый сайт или веб-приложение на Python. Регистрация не нужна, прогресс хранится в браузере. Код примеров запускается на странице (Pyodide) и проверен на Python 3.13, Flask 3.1, Django 6.1 и FastAPI 0.163; у первого проекта есть готовый код после каждого шага, у «Django дальше» и API на FastAPI — итоговый код архивом. Автор курса — Жангужин Е. Е.
+
+Қазақша: Python-ды нөлден үйренуге және Flask, Django, FastAPI-да алғашқы сайт жасауға арналған тегін курс. Барлық беттер /kk/ бөлімінде.
+
+In English: a free course for complete beginners — Python from scratch in the browser, then a first web app with Flask, Django and FastAPI. All pages are under /en/.
+
+## Главная (русский)
+
+- [Python для начинающих: первый сайт с нуля — PyWeb Guide](https://pywebguide.github.io/): Бесплатный курс Python для начинающих: уроки прямо в браузере, задачи с автопроверкой и первое веб-приложение на Flask или Django шаг за шагом.
+
+## Начать (русский)
+
+- [Python с нуля](https://pywebguide.github.io/start.html): 13 уроков Python для тех, кто никогда не программировал: переменные, условия, циклы, функции и мини-проекты. Код запускается прямо на странице.
+- [HTML и CSS](https://pywebguide.github.io/html-css.html): Пять уроков HTML и CSS для тех, кто учит Python: теги, ссылки, формы, оформление и то, как Flask собирает страницу. Результат примеров видно сразу.
+- [Словарь](https://pywebguide.github.io/glossary.html): Что значат сервер, backend, фреймворк, база данных, API, маршрут и другие слова веб-разработки. Короткие объяснения для начинающих без жаргона.
+- [Песочница](https://pywebguide.github.io/playground.html): Запускайте код на Python прямо в браузере без установки: основы языка, база данных SQLite и приложение на Flask с тестовым клиентом.
+
+## Понять (русский)
+
+- [О Python](https://pywebguide.github.io/about.html): Что такое backend, как HTTP-запрос проходит от браузера до сервера и базы данных и почему Python удобен для веба. Примеры кода на Flask и SQLite.
+- [Фреймворки](https://pywebguide.github.io/frameworks.html): Сравнение Django 6.1, Flask 3.1 и FastAPI для начинающих: таблица по критериям, одна страница на трёх фреймворках и мини-тест для выбора первого.
+- [Базы данных](https://pywebguide.github.io/databases.html): Как сайт хранит данные: запросы SQL на примере SQLite, защита от SQL-инъекций, ORM и миграции в Django. С вопросами для самопроверки.
+- [Шаблоны и формы](https://pywebguide.github.io/templates.html): Как отделить HTML от кода: шаблоны Jinja, наследование, формы, проверка данных и защита от CSRF во Flask и Django. Примеры для начинающих.
+- [Авторизация](https://pywebguide.github.io/auth.html): Как безопасно хранить пароли, что такое сессия и как закрыть страницы от чужих во Flask и Django: хеширование паролей, login_required и права доступа.
+- [REST API](https://pywebguide.github.io/api.html): Что такое REST API, какие бывают методы и коды ответа HTTP, как сделать JSON API на Flask и Django и вызвать его со страницы через fetch.
+- [Тесты](https://pywebguide.github.io/testing.html): Зачем нужны тесты и как писать их на pytest и unittest: проверка страниц и API во Flask и Django через тестовый клиент, без запуска сервера.
+- [Git](https://pywebguide.github.io/git.html): Основы Git для веб-разработчика: коммиты, ветки, слияние, отмена изменений и работа с GitHub. Команды с объяснениями и разбор частых ошибок.
+
+## Сделать (русский)
+
+- [Подготовка компьютера](https://pywebguide.github.io/setup.html): Как установить Python и VS Code на Windows, macOS и Linux, создать виртуальное окружение и освоиться в терминале перед первым проектом на Flask.
+- [Первый проект](https://pywebguide.github.io/project.html): Первое приложение на Python шаг за шагом: список задач на Flask с нуля или на Django для начинающих. Вывод терминала и готовый код после каждого шага.
+- [Django дальше](https://pywebguide.github.io/django-next.html): Продолжение первого проекта на Django 6.1: модель Category и ForeignKey, миграция, select_related, ListView и CreateView вместо функций и тесты к ним.
+- [API на FastAPI](https://pywebguide.github.io/fastapi.html): Список задач как REST API на FastAPI 0.163: модели Pydantic, маршруты GET, POST и DELETE, коды 201, 204, 404 и 422, документация /docs и тесты.
+- [Второй проект](https://pywebguide.github.io/project2.html): Второй проект для тех, кто прошёл основы: REST API блога на Flask, база SQLite, проверка данных, тесты и страница на JavaScript, шаг за шагом.
+- [Публикация](https://pywebguide.github.io/deploy.html): Как бесплатно выложить приложение на Flask или Django в интернет: код на GitHub, хостинг PythonAnywhere, настройка WSGI и статических файлов.
+
+## Практика (русский)
+
+- [Задачи](https://pywebguide.github.io/practice.html): 40 задач по Python, HTTP, SQL, формам и Flask для начинающих: решаете прямо в браузере и сразу видите, прошли ли тесты. С подсказками.
+- [Шпаргалка](https://pywebguide.github.io/cheatsheet.html): Частые команды на одной странице: виртуальное окружение, Flask, Django, SQL, коды ответа HTTP и Git. Удобно держать под рукой и распечатать.
+- [Финальный тест](https://pywebguide.github.io/exam.html): Финальный тест курса: 20 вопросов по Python, HTTP, базам данных, Flask и Django с объяснениями. От 16 верных ответов — учебный сертификат.
+
+## Сайт (русский)
+
+- [Весь курс](https://pywebguide.github.io/course.html): Программа бесплатного курса: Python с нуля, HTML, базы данных, Flask и Django, REST API, тесты, Git и публикация. Прогресс сохраняется в браузере.
+
+## Басты бет (қазақша)
+
+- [Python үйрену нөлден: алғашқы сайт — PyWeb Guide](https://pywebguide.github.io/kk/): Python үйрену бұрын бағдарлама жазбағандарға арналған тегін курс: браузердегі сабақтар, автотексерілетін есептер және Flask пен Django-дағы алғашқы сайт.
+
+## Бастау (қазақша)
+
+- [Python нөлден](https://pywebguide.github.io/kk/start.html): Бағдарлама жазып көрмегендерге Python бойынша 13 сабақ: айнымалылар, шарттар, циклдер, функциялар және шағын жобалар. Код тікелей бетте іске қосылады.
+- [HTML және CSS](https://pywebguide.github.io/kk/html-css.html): Python үйреніп жүргендерге HTML және CSS бойынша бес сабақ: тегтер, сілтемелер, формалар, безендіру және Flask бетті қалай құрастырады. Нәтиже бірден көрінеді.
+- [Сөздік](https://pywebguide.github.io/kk/glossary.html): Сервер, backend, фреймворк, дерекқор, API, маршрут және веб-әзірлеудегі басқа сөздер нені білдіреді. Бастаушыларға арналған қысқа әрі түсінікті анықтамалар.
+- [Құмсалғыш](https://pywebguide.github.io/kk/playground.html): Python кодын орнатусыз тікелей браузерде іске қосыңыз: тілдің негіздері, SQLite дерекқоры және тесттік клиенті бар Flask қосымшасы.
+
+## Түсіну (қазақша)
+
+- [Python туралы](https://pywebguide.github.io/kk/about.html): Backend деген не, HTTP-сұрау браузерден серверге және дерекқорға қалай жетеді және Python веб үшін неге ыңғайлы. Flask пен SQLite кодының мысалдары.
+- [Фреймворктер](https://pywebguide.github.io/kk/frameworks.html): Бастаушыларға Django 6.1, Flask 3.1 және FastAPI салыстыру: критерийлер кестесі, үш фреймворктегі бір бет және алғашқы фреймворкті таңдауға шағын тест.
+- [Дерекқорлар](https://pywebguide.github.io/kk/databases.html): Сайт деректерді қалай сақтайды: SQLite мысалындағы SQL сұраулары, SQL-инъекциядан қорғану, Django-дағы ORM және миграциялар. Өзін-өзі тексеру сұрақтарымен.
+- [Үлгілер мен формалар](https://pywebguide.github.io/kk/templates.html): HTML-ді кодтан қалай бөлуге болады: Jinja үлгілері, мұрагерлік, формалар, деректерді тексеру және Flask пен Django-да CSRF-тен қорғану. Бастаушыларға мысалдар.
+- [Авторизация](https://pywebguide.github.io/kk/auth.html): Құпиясөздерді қалай қауіпсіз сақтау керек, сессия деген не және Flask пен Django-да беттерді бөгде адамнан қалай жабу керек: хэштеу, login_required, рұқсаттар.
+- [REST API](https://pywebguide.github.io/kk/api.html): REST API деген не, HTTP-дің қандай әдістері мен жауап кодтары бар, Flask пен Django-да JSON API-ды қалай жасап, оны беттен fetch арқылы шақыруға болады.
+- [Тесттер](https://pywebguide.github.io/kk/testing.html): Тесттер не үшін керек және оларды pytest пен unittest-те қалай жазу керек: Flask пен Django-да беттер мен API-ды тесттік клиентпен серверсіз тексеру.
+- [Git](https://pywebguide.github.io/kk/git.html): Веб-әзірлеушіге Git негіздері: коммиттер, тармақтар, біріктіру, өзгерістерді болдырмау және GitHub-пен жұмыс. Түсіндірмесі бар командалар мен жиі қателер.
+
+## Жасау (қазақша)
+
+- [Компьютерді дайындау](https://pywebguide.github.io/kk/setup.html): Windows, macOS және Linux жүйелеріне Python мен VS Code-ты орнату, виртуалды орта жасау және Flask-тағы алғашқы жобаға дейін терминалды меңгеру.
+- [Алғашқы жоба](https://pywebguide.github.io/kk/project.html): Python-дағы алғашқы қосымша қадам-қадаммен: Flask-та нөлден немесе Django бастаушыларға тапсырмалар тізімі. Терминал шығысы және әр қадамнан кейінгі код.
+- [Django: келесі қадам](https://pywebguide.github.io/kk/django-next.html): Django 6.1-дегі алғашқы жобаның жалғасы: Category моделі мен ForeignKey, миграция, select_related, функциялардың орнына ListView мен CreateView және тесттер.
+- [FastAPI-дағы API](https://pywebguide.github.io/kk/fastapi.html): FastAPI 0.163-тегі тапсырмалар тізімінің REST API-і: Pydantic модельдері, GET, POST және DELETE, 201, 204, 404 және 422 кодтары, /docs және тесттер.
+- [Екінші жоба](https://pywebguide.github.io/kk/project2.html): Негіздерді өткендерге екінші жоба: Flask-тағы блогтың REST API-ы, SQLite дерекқоры, деректерді тексеру, тесттер және JavaScript-тегі бет, қадам-қадаммен.
+- [Жариялау](https://pywebguide.github.io/kk/deploy.html): Flask немесе Django қосымшасын интернетке қалай тегін шығаруға болады: кодты GitHub-қа салу, PythonAnywhere хостингі, WSGI және статикалық файлдарды баптау.
+
+## Практика (қазақша)
+
+- [Есептер](https://pywebguide.github.io/kk/practice.html): Бастаушыларға Python, HTTP, SQL, формалар және Flask бойынша 40 есеп: тікелей браузерде шешесіз және тесттен өткеніңізді бірден көресіз. Кеңестері бар.
+- [Қысқаша анықтама](https://pywebguide.github.io/kk/cheatsheet.html): Жиі қолданылатын командалар бір бетте: виртуалды орта, Flask, Django, SQL, HTTP жауап кодтары және Git. Қол астында ұстауға және басып шығаруға ыңғайлы.
+- [Қорытынды тест](https://pywebguide.github.io/kk/exam.html): Курстың қорытынды тесті: Python, HTTP, дерекқорлар, Flask және Django бойынша түсіндірмесі бар 20 сұрақ. 16 дұрыс жауаптан бастап оқу сертификаты беріледі.
+
+## Сайт (қазақша)
+
+- [Бүкіл курс](https://pywebguide.github.io/kk/course.html): Тегін курс бағдарламасы: Python нөлден, HTML, дерекқорлар, Flask пен Django, REST API, тесттер, Git және жариялау. Прогресс браузерде сақталады.
+
+## Home (English)
+
+- [Learn Python from scratch: your first website — PyWeb Guide](https://pywebguide.github.io/en/): A free Python course for complete beginners: lessons in your browser, auto-checked exercises and your first web app with Flask or Django, step by step.
+
+## Start (English)
+
+- [Python from scratch](https://pywebguide.github.io/en/start.html): 13 Python lessons for people who have never programmed: variables, conditions, loops, functions and mini projects. The code runs right on the page.
+- [HTML and CSS](https://pywebguide.github.io/en/html-css.html): Five HTML and CSS lessons for people learning Python: tags, links, forms, styling and how Flask builds a page. You see the result of each example at once.
+- [Glossary](https://pywebguide.github.io/en/glossary.html): What server, backend, framework, database, API, route and other web development words mean. Short explanations for beginners, with no jargon.
+- [Sandbox](https://pywebguide.github.io/en/playground.html): Run Python code right in your browser with nothing to install: language basics, an SQLite database and a Flask app with the test client.
+
+## Understand (English)
+
+- [About Python](https://pywebguide.github.io/en/about.html): What a backend is, how an HTTP request travels from the browser to the server and the database, and why Python suits the web. Flask and SQLite examples.
+- [Frameworks](https://pywebguide.github.io/en/frameworks.html): Django 6.1, Flask 3.1 and FastAPI compared for beginners: a table by criteria, the same page in three frameworks and a mini quiz to pick your first one.
+- [Databases](https://pywebguide.github.io/en/databases.html): How a website stores data: SQL queries with SQLite as the example, protection from SQL injection, the ORM and migrations in Django. With a knowledge check.
+- [Templates and forms](https://pywebguide.github.io/en/templates.html): How to separate HTML from code: Jinja templates, inheritance, forms, data validation and CSRF protection in Flask and Django. Examples for beginners.
+- [Authentication](https://pywebguide.github.io/en/auth.html): How to store passwords safely, what a session is and how to protect pages from strangers in Flask and Django: password hashing, login_required and permissions.
+- [REST API](https://pywebguide.github.io/en/api.html): What a REST API is, which HTTP methods and status codes exist, how to build a JSON API with Flask and Django and call it from a page with fetch.
+- [Testing](https://pywebguide.github.io/en/testing.html): Why tests matter and how to write them with pytest and unittest: checking pages and APIs in Flask and Django with the test client, without starting a server.
+- [Git](https://pywebguide.github.io/en/git.html): Git basics for web developers: commits, branches, merging, undoing changes and working with GitHub. Commands with explanations and common mistakes.
+
+## Build (English)
+
+- [Setting up your computer](https://pywebguide.github.io/en/setup.html): How to install Python and VS Code on Windows, macOS and Linux, create a virtual environment and get comfortable with the terminal before your first Flask app.
+- [First project](https://pywebguide.github.io/en/project.html): Build your first Python web app step by step: a to-do list with Flask from scratch or Django for beginners, with terminal output and code after every step.
+- [Django next steps](https://pywebguide.github.io/en/django-next.html): The next step after your first Django 6.1 project: a Category model and ForeignKey, a migration, select_related, ListView and CreateView, and tests for them.
+- [API with FastAPI](https://pywebguide.github.io/en/fastapi.html): A to-do list REST API with FastAPI 0.163: Pydantic models, GET, POST and DELETE routes, the 201, 204, 404 and 422 codes, the /docs page and tests.
+- [Second project](https://pywebguide.github.io/en/project2.html): A second project for those who know the basics: a blog REST API with Flask, an SQLite database, data validation, tests and a JavaScript page, step by step.
+- [Deployment](https://pywebguide.github.io/en/deploy.html): How to put a Flask or Django app online for free: your code on GitHub, PythonAnywhere hosting, and setting up WSGI and static files, step by step.
+
+## Practice (English)
+
+- [Exercises](https://pywebguide.github.io/en/practice.html): 40 beginner exercises on Python, HTTP, SQL, forms and Flask: solve them right in the browser and see at once whether the tests pass. With hints.
+- [Cheat sheet](https://pywebguide.github.io/en/cheatsheet.html): Common commands on one page: virtual environments, Flask, Django, SQL, HTTP status codes and Git. Handy to keep open next to your editor or to print.
+- [Final test](https://pywebguide.github.io/en/exam.html): The final course test: 20 questions on Python, HTTP, databases, Flask and Django with explanations. Get 16 or more right to download a learning certificate.
+
+## Site (English)
+
+- [Full course](https://pywebguide.github.io/en/course.html): The free course syllabus: Python from scratch, HTML, databases, Flask and Django, REST APIs, tests, Git and deployment. Progress is kept in your browser.
+
+## Optional
+
+- [Мой прогресс (русский)](https://pywebguide.github.io/progress.html): Сводка по пройденным урокам, проектам, задачам и тесту, перенос прогресса на другое устройство файлом и учебный сертификат для печати или PDF.
+- [Менің прогресім (қазақша)](https://pywebguide.github.io/kk/progress.html): Өткен сабақтар, жобалар, есептер мен тест бойынша жиынтық, прогресті басқа құрылғыға файлмен көшіру және басып шығаруға немесе PDF-ке арналған сертификат.
+- [My progress (English)](https://pywebguide.github.io/en/progress.html): A summary of finished lessons, projects, exercises and the test, moving your progress to another device with a file, and a certificate to print or save as PDF.
+- [Контакты (русский)](https://pywebguide.github.io/contacts.html): Задайте вопрос автору PyWeb Guide или сообщите об ошибке в уроке или переводе через форму обратной связи. Кто делает курс и как с ним связаться.
+- [Байланыс (қазақша)](https://pywebguide.github.io/kk/contacts.html): PyWeb Guide авторына сұрақ қойыңыз немесе сабақтағы не аудармадағы қате туралы кері байланыс формасы арқылы жазыңыз. Курсты кім жасайды және байланыс жолдары.
+- [Contact (English)](https://pywebguide.github.io/en/contacts.html): Ask the author of PyWeb Guide a question or report a mistake in a lesson or translation with the feedback form. Who makes the course and how to get in touch.
+- [Политика конфиденциальности (русский)](https://pywebguide.github.io/privacy.html): Какие данные обрабатывает сайт PyWeb Guide: что хранится только в вашем браузере, что считает статистика GoatCounter без cookies и что видит хостинг.
+- [Құпиялылық саясаты (қазақша)](https://pywebguide.github.io/kk/privacy.html): PyWeb Guide сайты қандай деректерді өңдейді: браузеріңізде ғана не сақталады, cookies-сіз GoatCounter статистикасы нені санайды және хостинг нені көреді.
+- [Privacy policy (English)](https://pywebguide.github.io/en/privacy.html): What data the PyWeb Guide site processes: what stays only in your browser, what the cookie-free GoatCounter statistics count and what the hosting can see.
+- [Условия использования (русский)](https://pywebguide.github.io/terms.html): Условия использования учебного сайта PyWeb Guide: права на материалы и примеры кода, ограничение ответственности и правила для внешних ссылок.
+- [Пайдалану шарттары (қазақша)](https://pywebguide.github.io/kk/terms.html): PyWeb Guide оқу сайтын пайдалану шарттары: материалдар мен код мысалдарына құқықтар, жауапкершілікті шектеу және сыртқы сілтемелерге қатысты ережелер.
+- [Terms of use (English)](https://pywebguide.github.io/en/terms.html): Terms of use of the PyWeb Guide learning site: rights to the materials and code examples, limitation of liability and the rules for external links.

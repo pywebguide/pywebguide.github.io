@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PyWeb Guide — Python-да алғашқы сайт нөлден</title>
-
-  <meta name="description" content="Бұрын ешқашан бағдарлама жазбағандарға арналған тегін оқу сайты: Python негіздері тікелей браузерде және алғашқы сайтты қадам-қадаммен жасау.">
+  <title>Python үйрену нөлден: алғашқы сайт — PyWeb Guide</title>
+  <meta name="description" content="Python үйрену бұрын бағдарлама жазбағандарға арналған тегін курс: браузердегі сабақтар, автотексерілетін есептер және Flask пен Django-дағы алғашқы сайт.">
   <link rel="canonical" href="https://pywebguide.github.io/kk/">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/">
@@ -13,15 +12,20 @@
   <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="kk_KZ">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="en_GB">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="PyWeb Guide — Python-да алғашқы сайт нөлден">
-  <meta property="og:description" content="Бұрын ешқашан бағдарлама жазбағандарға арналған тегін оқу сайты: Python негіздері тікелей браузерде және алғашқы сайтты қадам-қадаммен жасау.">
+  <meta property="og:title" content="Python үйрену нөлден: алғашқы сайт">
+  <meta property="og:description" content="Python үйрену бұрын бағдарлама жазбағандарға арналған тегін курс: браузердегі сабақтар, автотексерілетін есептер және Flask пен Django-дағы алғашқы сайт.">
   <meta property="og:url" content="https://pywebguide.github.io/kk/">
-  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og/kk/index.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PyWeb Guide плакаты: Python-да алғашқы сайт, бағдарлама жазбағандарға арналған тегін курс">
+  <meta property="og:image:alt" content="Python-да алғашқы сайт — PyWeb Guide">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pywebguide.github.io/assets/og/kk/index.png">
+  <meta name="twitter:image:alt" content="Python-да алғашқы сайт — PyWeb Guide">
   <meta name="theme-color" content="#ffd249">
 
   <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
@@ -48,15 +52,72 @@
   </script>
 
   <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@graph": [
     {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "PyWeb Guide",
-      "url": "https://pywebguide.github.io/kk/",
-      "inLanguage": "kk",
-      "description": "Python-ның веб-әзірлеудегі рөлі туралы оқу ресурсы: Django, Flask, дерекқорлар және қадам-қадаммен алғашқы жоба.",
-      "author": { "@type": "Person", "name": "Жангужин Е. Е." }
+     "@type": "WebSite",
+     "@id": "https://pywebguide.github.io/kk/#website",
+     "name": "PyWeb Guide",
+     "url": "https://pywebguide.github.io/kk/",
+     "inLanguage": "kk",
+     "description": "Python үйрену бұрын бағдарлама жазбағандарға арналған тегін курс: браузердегі сабақтар, автотексерілетін есептер және Flask пен Django-дағы алғашқы сайт.",
+     "author": {
+      "@type": "Person",
+      "name": "Жангужин Е. Е.",
+      "url": "https://pywebguide.github.io/kk/contacts.html"
+     }
+    },
+    {
+     "@type": "FAQPage",
+     "@id": "https://pywebguide.github.io/kk/#faq",
+     "url": "https://pywebguide.github.io/kk/",
+     "inLanguage": "kk",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "Мен ешқашан бағдарлама жазған емеспін. Менде шыға ма?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Иә. «Нөлден» сабақтарынан бастаңыз: оларға тәжірибе де, бағдарлама орнату да қажет емес."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Бұл ақылы ма?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Жоқ, бүкіл сайт тегін."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Django мен Flask-ты бірден үйрену керек пе?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Жоқ. Бір фреймворкті таңдап, онда қарапайым жоба жасап, содан кейін ғана екіншісімен салыстырған дұрыс."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Дерекқорсыз сайт жасауға бола ма?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Иә, бірақ нақты жобалардың көбі пайдаланушыларды, тауарларды немесе контентті сақтайды, сондықтан дерекқор тез қажет болады."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Не маңыздырақ: теория ма, практика ма?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Практика. Теория не болып жатқанын түсінуге көмектеседі, бірақ дағды тек код жазып, қателерді талдағаннан кейін пайда болады."
+       }
+      }
+     ]
     }
+   ]
+  }
   </script>
 </head>
 

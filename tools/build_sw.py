@@ -39,7 +39,9 @@ def build():
         digest.update(rel.encode())
         digest.update((ROOT / rel).read_bytes().replace(b"\r\n", b"\n"))
     # Страницы «не найдено» (404.html, en/404.html, kk/404.html) не кэшируются: их отдаёт сервер на любой адрес
-    pages = [rel for rel in site_files() if rel.endswith(".html") and rel.rsplit("/", 1)[-1] != "404.html"]
+    # Файлы подтверждения прав в Google и Яндексе не нужны без сети
+    pages = [rel for rel in site_files() if rel.endswith(".html") and rel.rsplit("/", 1)[-1] != "404.html"
+             and not re.match(r"(google[0-9a-f]+|yandex_[0-9a-f]+)\.html$", rel)]
     precache = ["/", "/kk/", "/en/"] + ["/" + rel for rel in pages] + ["/" + rel for rel in CORE]
     text = (ROOT / "sw.js").read_text(encoding="utf-8")
     text = re.sub(r'const VERSION = "[^"]*";', f'const VERSION = "pyweb-{digest.hexdigest()[:10]}";', text, count=1)

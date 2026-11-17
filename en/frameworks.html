@@ -4,9 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Django, Flask or FastAPI — PyWeb Guide</title>
-
-  <meta name="description" content="Comparing Django 6.1, Flask 3.1 and FastAPI: tables by criteria, the same page in different frameworks and a mini quiz to choose your first framework.">
+  <title>Django or Flask: which to learn first — PyWeb Guide</title>
+  <meta name="description" content="Django 6.1, Flask 3.1 and FastAPI compared for beginners: a table by criteria, the same page in three frameworks and a mini quiz to pick your first one.">
   <link rel="canonical" href="https://pywebguide.github.io/en/frameworks.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/frameworks.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/frameworks.html">
@@ -14,15 +13,20 @@
   <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/frameworks.html">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="kk_KZ">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="Django, Flask or FastAPI — PyWeb Guide">
-  <meta property="og:description" content="Comparing Django 6.1, Flask 3.1 and FastAPI: tables by criteria, the same page in different frameworks and a mini quiz to choose your first framework.">
+  <meta property="og:title" content="Django or Flask: which to learn first">
+  <meta property="og:description" content="Django 6.1, Flask 3.1 and FastAPI compared for beginners: a table by criteria, the same page in three frameworks and a mini quiz to pick your first one.">
   <meta property="og:url" content="https://pywebguide.github.io/en/frameworks.html">
-  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og/en/frameworks.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PyWeb Guide poster: your first website with Python, a free course for people who have never programmed">
+  <meta property="og:image:alt" content="Frameworks — PyWeb Guide">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pywebguide.github.io/assets/og/en/frameworks.png">
+  <meta name="twitter:image:alt" content="Frameworks — PyWeb Guide">
   <meta name="theme-color" content="#a4f6f8">
 
 
@@ -45,6 +49,87 @@
       }
       document.documentElement.setAttribute("data-theme", theme);
     })();
+  </script>
+  <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@graph": [
+    {
+     "@type": "LearningResource",
+     "@id": "https://pywebguide.github.io/en/frameworks.html#resource",
+     "name": "Django or Flask: which to choose",
+     "description": "Django 6.1, Flask 3.1 and FastAPI compared for beginners: a table by criteria, the same page in three frameworks and a mini quiz to pick your first one.",
+     "url": "https://pywebguide.github.io/en/frameworks.html",
+     "inLanguage": "en",
+     "educationalLevel": "Beginner",
+     "learningResourceType": "Lesson",
+     "timeRequired": "PT30M",
+     "isAccessibleForFree": true,
+     "dateModified": "2026-11-17",
+     "image": "https://pywebguide.github.io/assets/og/en/frameworks.png",
+     "isPartOf": {
+      "@type": "WebSite",
+      "name": "PyWeb Guide",
+      "url": "https://pywebguide.github.io/en/"
+     },
+     "author": {
+      "@type": "Person",
+      "name": "E. Zhanguzhin",
+      "url": "https://pywebguide.github.io/en/contacts.html"
+     }
+    },
+    {
+     "@type": "BreadcrumbList",
+     "@id": "https://pywebguide.github.io/en/frameworks.html#breadcrumbs",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Home",
+       "item": "https://pywebguide.github.io/en/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Frameworks",
+       "item": "https://pywebguide.github.io/en/frameworks.html"
+      }
+     ]
+    },
+    {
+     "@type": "FAQPage",
+     "@id": "https://pywebguide.github.io/en/frameworks.html#faq",
+     "url": "https://pywebguide.github.io/en/frameworks.html",
+     "inLanguage": "en",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "Which is easier to learn first?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you want to understand quickly how a server works, start with Flask. If you need a project with a ready admin panel and a database, Django is a convenient start."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Do I need to know SQL?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It helps. Even with an ORM, a basic understanding of SQL makes it easier to work with data and debug queries."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Can I move from Flask to Django later?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Python stays the same, so the move is possible, but you will have to learn a different project architecture and Django's built-in tools."
+       }
+      }
+     ]
+    }
+   ]
+  }
   </script>
 </head>
 
@@ -515,7 +600,7 @@ def home():
         </div>
       </section>
 
-      <section class="section faq" aria-label="Frequently asked questions">
+      <section class="section faq" id="faq" aria-label="Frequently asked questions">
         <div class="container">
           <div class="section-head reveal">
             <h2>Frequently asked questions</h2>

@@ -7,6 +7,8 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "tools"))
+from layout import is_service  # noqa: E402  файлы подтверждения Google и Яндекса — не страницы
 
 
 class Page(HTMLParser):
@@ -77,6 +79,8 @@ def resolve(name, path):
 def main():
     pages = {}
     for path in sorted([*ROOT.glob("*.html"), *ROOT.glob("kk/*.html"), *ROOT.glob("en/*.html")]):
+        if is_service(path):
+            continue
         page = Page()
         page.feed(path.read_text(encoding="utf-8"))
         pages[path.relative_to(ROOT).as_posix()] = page

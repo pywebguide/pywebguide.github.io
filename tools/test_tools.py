@@ -53,7 +53,7 @@ class Layout(unittest.TestCase):
         self.assertEqual(layout.href("kk", "en", "a.html"), "../en/a.html")
 
     def test_every_page_has_a_name_in_three_languages(self):
-        for slug in (p.name for p in ROOT.glob("*.html") if p.name != "404.html"):
+        for slug in (p.name for p in ROOT.glob("*.html") if p.name != "404.html" and not layout.is_service(p)):
             self.assertIn(slug, layout.NAMES)
             self.assertEqual(len(layout.NAMES[slug]), 3)
 
@@ -62,6 +62,42 @@ class Layout(unittest.TestCase):
         _, once = layout.apply(path)
         _, twice = layout.apply(path, once)
         self.assertEqual(once, twice)
+
+    def test_verification_tags_only_when_code_is_set(self):
+        saved = dict(layout.SEO["verification"])
+        try:
+            layout.SEO["verification"].update(google="", yandex="")
+            self.assertNotIn("verification", layout.head_html("ru", "index.html"))
+            layout.SEO["verification"].update(google="abc123", yandex="")
+            head = layout.head_html("ru", "index.html")
+            self.assertIn('<meta name="google-site-verification" content="abc123">', head)
+            self.assertNotIn("yandex-verification", head)
+            self.assertNotIn("verification", layout.head_html("ru", "about.html"))
+        finally:
+            layout.SEO["verification"].update(saved)
+
+    def test_404_is_noindex_without_canonical(self):
+        head = layout.head_html("en", "404.html")
+        self.assertIn('<meta name="robots" content="noindex">', head)
+        self.assertNotIn("canonical", head)
+        self.assertIn("assets/og/en/404.png", head)
+
+    def test_faq_takes_visible_questions_and_answers(self):
+        page = ('<section class="section faq" id="errors"><details><summary>Ошибка <code>x</code></summary>'
+                '<p>Выполните <code>py -m venv .venv</code>, потом <a href="a.html">шаг 2</a>.</p></details></section>'
+                '<section class="section faq" aria-label="Словарь"><details><summary>Термин</summary><p>Не FAQ</p></details></section>')
+        self.assertEqual(layout.faq(page), [("Ошибка x", "Выполните py -m venv .venv, потом шаг 2.")])
+
+    def test_breadcrumbs_follow_visible_trail(self):
+        page = '<nav class="breadcrumb" aria-label="x"><a href="index.html">Басты бет</a><span aria-hidden="true">/</span><span>Git</span></nav>'
+        self.assertEqual(layout.breadcrumbs(page, "kk", "git.html"),
+                         [("Басты бет", "https://pywebguide.github.io/kk/"), ("Git", "https://pywebguide.github.io/kk/git.html")])
+
+    def test_service_files_are_not_pages(self):
+        self.assertTrue(layout.is_service("google782fb83ab40c9a14.html"))
+        self.assertTrue(layout.is_service("yandex_0123abcd.html"))
+        self.assertFalse(layout.is_service("glossary.html"))
+        self.assertFalse(any(layout.is_service(p) for p in layout.pages()))
 
 
 class Translate(unittest.TestCase):

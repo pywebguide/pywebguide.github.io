@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PyWeb Guide — your first website with Python, from scratch</title>
-
-  <meta name="description" content="A free learning site for people who have never programmed: Python basics right in the browser and a step-by-step build of your first website.">
+  <title>Learn Python from scratch: your first website — PyWeb Guide</title>
+  <meta name="description" content="A free Python course for complete beginners: lessons in your browser, auto-checked exercises and your first web app with Flask or Django, step by step.">
   <link rel="canonical" href="https://pywebguide.github.io/en/">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/">
@@ -13,15 +12,20 @@
   <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="kk_KZ">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="PyWeb Guide — your first website with Python, from scratch">
-  <meta property="og:description" content="A free learning site for people who have never programmed: Python basics right in the browser and a step-by-step build of your first website.">
+  <meta property="og:title" content="Learn Python from scratch: your first website">
+  <meta property="og:description" content="A free Python course for complete beginners: lessons in your browser, auto-checked exercises and your first web app with Flask or Django, step by step.">
   <meta property="og:url" content="https://pywebguide.github.io/en/">
-  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og/en/index.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PyWeb Guide poster: your first website with Python, a free course for people who have never programmed">
+  <meta property="og:image:alt" content="First website with Python — PyWeb Guide">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pywebguide.github.io/assets/og/en/index.png">
+  <meta name="twitter:image:alt" content="First website with Python — PyWeb Guide">
   <meta name="theme-color" content="#ffd249">
 
   <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
@@ -47,15 +51,72 @@
   </script>
 
   <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@graph": [
     {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "PyWeb Guide",
-      "url": "https://pywebguide.github.io/en/",
-      "inLanguage": "en",
-      "description": "A learning resource about Python in web development: Django, Flask, databases and a first project, step by step.",
-      "author": { "@type": "Person", "name": "E. Zhanguzhin" }
+     "@type": "WebSite",
+     "@id": "https://pywebguide.github.io/en/#website",
+     "name": "PyWeb Guide",
+     "url": "https://pywebguide.github.io/en/",
+     "inLanguage": "en",
+     "description": "A free Python course for complete beginners: lessons in your browser, auto-checked exercises and your first web app with Flask or Django, step by step.",
+     "author": {
+      "@type": "Person",
+      "name": "E. Zhanguzhin",
+      "url": "https://pywebguide.github.io/en/contacts.html"
+     }
+    },
+    {
+     "@type": "FAQPage",
+     "@id": "https://pywebguide.github.io/en/#faq",
+     "url": "https://pywebguide.github.io/en/",
+     "inLanguage": "en",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "I have never programmed. Can I do it?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Start with the from-scratch lessons: they need no experience and nothing to install."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Is it paid?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, the whole site is free."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Do I need to learn Django and Flask at once?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It's better to pick one framework, build a simple project with it and only then compare it with the other one."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Can I build websites without a database?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, but most real projects store users, products or content, so a database soon becomes necessary."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "What matters more: theory or practice?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Practice. Theory helps you understand what is going on, but the skill only comes from writing code and working through your mistakes."
+       }
+      }
+     ]
     }
+   ]
+  }
   </script>
 </head>
 

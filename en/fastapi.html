@@ -4,9 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>First API with FastAPI: a task list — PyWeb Guide</title>
-
-  <meta name="description" content="A task list REST API with FastAPI 0.163: Pydantic models, GET, POST and DELETE routes, the 201, 204, 404 and 422 codes, the /docs auto-documentation and tests with TestClient.">
+  <title>FastAPI for beginners: your first REST API — PyWeb Guide</title>
+  <meta name="description" content="A to-do list REST API with FastAPI 0.163: Pydantic models, GET, POST and DELETE routes, the 201, 204, 404 and 422 codes, the /docs page and tests.">
   <link rel="canonical" href="https://pywebguide.github.io/en/fastapi.html">
   <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/fastapi.html">
   <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/fastapi.html">
@@ -14,15 +13,20 @@
   <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/fastapi.html">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="kk_KZ">
   <meta property="og:site_name" content="PyWeb Guide">
-  <meta property="og:title" content="First API with FastAPI: a task list — PyWeb Guide">
-  <meta property="og:description" content="A task list REST API with FastAPI 0.163: Pydantic models, GET, POST and DELETE routes, the 201, 204, 404 and 422 codes, the /docs auto-documentation and tests with TestClient.">
+  <meta property="og:title" content="FastAPI for beginners: your first REST API">
+  <meta property="og:description" content="A to-do list REST API with FastAPI 0.163: Pydantic models, GET, POST and DELETE routes, the 201, 204, 404 and 422 codes, the /docs page and tests.">
   <meta property="og:url" content="https://pywebguide.github.io/en/fastapi.html">
-  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og/en/fastapi.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PyWeb Guide poster: your first website with Python, a free course for people who have never programmed">
+  <meta property="og:image:alt" content="API with FastAPI — PyWeb Guide">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pywebguide.github.io/assets/og/en/fastapi.png">
+  <meta name="twitter:image:alt" content="API with FastAPI — PyWeb Guide">
   <meta name="theme-color" content="#ffd249">
 
 
@@ -48,20 +52,109 @@
   </script>
 
   <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@graph": [
     {
-      "@context": "https://schema.org",
-      "@type": "LearningResource",
-      "name": "Первое API на FastAPI: список задач",
-      "description": "REST API списка задач на FastAPI 0.163: модели Pydantic, коды ответа, автодокументация и тесты.",
-      "url": "https://pywebguide.github.io/fastapi.html",
-      "inLanguage": "ru",
-      "educationalLevel": "Средний",
-      "learningResourceType": "Пошаговое руководство",
-      "timeRequired": "PT40M",
-      "dateModified": "2026-11-17",
-      "isPartOf": { "@type": "WebSite", "name": "PyWeb Guide", "url": "https://pywebguide.github.io/" },
-      "author": { "@type": "Person", "name": "Жангужин Е. Е." }
+     "@type": "LearningResource",
+     "@id": "https://pywebguide.github.io/en/fastapi.html#resource",
+     "name": "First API with FastAPI",
+     "description": "A to-do list REST API with FastAPI 0.163: Pydantic models, GET, POST and DELETE routes, the 201, 204, 404 and 422 codes, the /docs page and tests.",
+     "url": "https://pywebguide.github.io/en/fastapi.html",
+     "inLanguage": "en",
+     "educationalLevel": "Beginner",
+     "learningResourceType": "Step-by-step guide",
+     "timeRequired": "PT1H30M",
+     "isAccessibleForFree": true,
+     "dateModified": "2026-11-17",
+     "image": "https://pywebguide.github.io/assets/og/en/fastapi.png",
+     "isPartOf": {
+      "@type": "WebSite",
+      "name": "PyWeb Guide",
+      "url": "https://pywebguide.github.io/en/"
+     },
+     "author": {
+      "@type": "Person",
+      "name": "E. Zhanguzhin",
+      "url": "https://pywebguide.github.io/en/contacts.html"
+     }
+    },
+    {
+     "@type": "BreadcrumbList",
+     "@id": "https://pywebguide.github.io/en/fastapi.html#breadcrumbs",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Home",
+       "item": "https://pywebguide.github.io/en/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "API with FastAPI",
+       "item": "https://pywebguide.github.io/en/fastapi.html"
+      }
+     ]
+    },
+    {
+     "@type": "FAQPage",
+     "@id": "https://pywebguide.github.io/en/fastapi.html#faq",
+     "url": "https://pywebguide.github.io/en/fastapi.html",
+     "inLanguage": "en",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "«To use the fastapi command, please install \"fastapi[standard]\"»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To use the fastapi command, please install \"fastapi[standard]\" Only FastAPI itself is installed, without the fastapi command and the server. Run pip install \"fastapi[standard]\" — with the quotes — in the same environment."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "422 «Input should be a valid integer»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{\"detail\":[{\"type\":\"int_parsing\",\"loc\":[\"path\",\"task_id\"],\"msg\":\"Input should be a valid integer, unable to parse string as an integer\",\"input\":\"abc\"}]} The address has text instead of a task number, for example /tasks/abc. The task_id: int parameter accepts whole numbers only."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "405 «Method Not Allowed»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{\"detail\":\"Method Not Allowed\"} The address exists, but with a different method. For example, DELETE /tasks without a number: deleting is declared only for /tasks/{task_id}. Check the method and the address in /docs."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Error 500 and “ResponseValidationError” in the terminal",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "fastapi.exceptions.ResponseValidationError: 1 validation error: {'type': 'missing', 'loc': ('response', 'title'), 'msg': 'Field required', 'input': {'id': 1}} The function returned data that doesn't fit -> Task: here a dictionary without title. Return a whole Task model object, as in step 3."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "pytest: «ModuleNotFoundError: No module named 'main'»",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "E ModuleNotFoundError: No module named 'main' The test didn't find main.py. The files main.py and test_main.py must be in the same folder, and pytest must be run from it."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "The /docs page is blank",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The browser loads Swagger UI's look from cdn.jsdelivr.net. Without internet, or if the site is blocked, /docs and /redoc stay blank, while /openapi.json and all API routes work. Check the internet connection or send requests from the tests, as in step 6."
+       }
+      }
+     ]
     }
+   ]
+  }
   </script>
 </head>
 

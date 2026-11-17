@@ -1,0 +1,464 @@
+{
+ "_readme": "Настройки поиска. После правки: python tools/layout.py && python tools/build_og.py && python tools/check_seo.py. verification: коды из Google Search Console и Яндекс Вебмастера (только сам код из content=\"...\"); пустая строка — тег не выводится. pages: title до 60 символов, description 120–160, card — надпись на картинке превью (по умолчанию название страницы из меню), kind — тип разметки schema.org, time — сколько времени нужно (ISO 8601).",
+ "verification": {
+  "google": "",
+  "yandex": ""
+ },
+ "author": {
+  "ru": "Жангужин Е. Е.",
+  "kk": "Жангужин Е. Е.",
+  "en": "E. Zhanguzhin"
+ },
+ "pages": {
+  "index.html": {
+   "kind": "website",
+   "ru": {
+    "title": "Python для начинающих: первый сайт с нуля — PyWeb Guide",
+    "description": "Бесплатный курс Python для начинающих: уроки прямо в браузере, задачи с автопроверкой и первое веб-приложение на Flask или Django шаг за шагом.",
+    "card": "Первый сайт на Python"
+   },
+   "kk": {
+    "title": "Python үйрену нөлден: алғашқы сайт — PyWeb Guide",
+    "description": "Python үйрену бұрын бағдарлама жазбағандарға арналған тегін курс: браузердегі сабақтар, автотексерілетін есептер және Flask пен Django-дағы алғашқы сайт.",
+    "card": "Python-да алғашқы сайт"
+   },
+   "en": {
+    "title": "Learn Python from scratch: your first website — PyWeb Guide",
+    "description": "A free Python course for complete beginners: lessons in your browser, auto-checked exercises and your first web app with Flask or Django, step by step.",
+    "card": "First website with Python"
+   }
+  },
+  "start.html": {
+   "kind": "lesson",
+   "time": "PT5H",
+   "ru": {
+    "title": "Python с нуля: 13 уроков в браузере — PyWeb Guide",
+    "description": "13 уроков Python для тех, кто никогда не программировал: переменные, условия, циклы, функции и мини-проекты. Код запускается прямо на странице."
+   },
+   "kk": {
+    "title": "Python нөлден: браузердегі 13 сабақ — PyWeb Guide",
+    "description": "Бағдарлама жазып көрмегендерге Python бойынша 13 сабақ: айнымалылар, шарттар, циклдер, функциялар және шағын жобалар. Код тікелей бетте іске қосылады."
+   },
+   "en": {
+    "title": "Python from scratch: 13 lessons in a browser — PyWeb Guide",
+    "description": "13 Python lessons for people who have never programmed: variables, conditions, loops, functions and mini projects. The code runs right on the page."
+   }
+  },
+  "html-css.html": {
+   "kind": "lesson",
+   "time": "PT2H",
+   "ru": {
+    "title": "HTML и CSS для начинающих: основы вёрстки — PyWeb Guide",
+    "description": "Пять уроков HTML и CSS для тех, кто учит Python: теги, ссылки, формы, оформление и то, как Flask собирает страницу. Результат примеров видно сразу."
+   },
+   "kk": {
+    "title": "HTML және CSS бастаушыларға: негіздер — PyWeb Guide",
+    "description": "Python үйреніп жүргендерге HTML және CSS бойынша бес сабақ: тегтер, сілтемелер, формалар, безендіру және Flask бетті қалай құрастырады. Нәтиже бірден көрінеді."
+   },
+   "en": {
+    "title": "HTML and CSS for beginners: the basics — PyWeb Guide",
+    "description": "Five HTML and CSS lessons for people learning Python: tags, links, forms, styling and how Flask builds a page. You see the result of each example at once."
+   }
+  },
+  "setup.html": {
+   "kind": "lesson",
+   "time": "PT45M",
+   "ru": {
+    "title": "Как установить Python и VS Code новичку — PyWeb Guide",
+    "description": "Как установить Python и VS Code на Windows, macOS и Linux, создать виртуальное окружение и освоиться в терминале перед первым проектом на Flask."
+   },
+   "kk": {
+    "title": "Python мен VS Code-ты орнату: бастаушыға — PyWeb Guide",
+    "description": "Windows, macOS және Linux жүйелеріне Python мен VS Code-ты орнату, виртуалды орта жасау және Flask-тағы алғашқы жобаға дейін терминалды меңгеру."
+   },
+   "en": {
+    "title": "How to install Python and VS Code: a beginner guide",
+    "description": "How to install Python and VS Code on Windows, macOS and Linux, create a virtual environment and get comfortable with the terminal before your first Flask app."
+   }
+  },
+  "glossary.html": {
+   "kind": "glossary",
+   "time": "PT20M",
+   "ru": {
+    "title": "Словарь веб-разработки простым языком — PyWeb Guide",
+    "description": "Что значат сервер, backend, фреймворк, база данных, API, маршрут и другие слова веб-разработки. Короткие объяснения для начинающих без жаргона."
+   },
+   "kk": {
+    "title": "Веб-әзірлеу сөздігі қарапайым тілмен — PyWeb Guide",
+    "description": "Сервер, backend, фреймворк, дерекқор, API, маршрут және веб-әзірлеудегі басқа сөздер нені білдіреді. Бастаушыларға арналған қысқа әрі түсінікті анықтамалар."
+   },
+   "en": {
+    "title": "Web development glossary in plain words — PyWeb Guide",
+    "description": "What server, backend, framework, database, API, route and other web development words mean. Short explanations for beginners, with no jargon."
+   }
+  },
+  "playground.html": {
+   "kind": "tool",
+   "ru": {
+    "title": "Python онлайн в браузере без установки — PyWeb Guide",
+    "description": "Запускайте код на Python прямо в браузере без установки: основы языка, база данных SQLite и приложение на Flask с тестовым клиентом."
+   },
+   "kk": {
+    "title": "Python онлайн браузерде, орнатусыз — PyWeb Guide",
+    "description": "Python кодын орнатусыз тікелей браузерде іске қосыңыз: тілдің негіздері, SQLite дерекқоры және тесттік клиенті бар Flask қосымшасы."
+   },
+   "en": {
+    "title": "Run Python online in your browser — PyWeb Guide",
+    "description": "Run Python code right in your browser with nothing to install: language basics, an SQLite database and a Flask app with the test client."
+   }
+  },
+  "course.html": {
+   "kind": "course",
+   "time": "PT30H",
+   "ru": {
+    "title": "Курс Python для веб-разработки: программа — PyWeb Guide",
+    "description": "Программа бесплатного курса: Python с нуля, HTML, базы данных, Flask и Django, REST API, тесты, Git и публикация. Прогресс сохраняется в браузере."
+   },
+   "kk": {
+    "title": "Веб-әзірлеуге арналған Python курсы — PyWeb Guide",
+    "description": "Тегін курс бағдарламасы: Python нөлден, HTML, дерекқорлар, Flask пен Django, REST API, тесттер, Git және жариялау. Прогресс браузерде сақталады."
+   },
+   "en": {
+    "title": "Python web development course: syllabus — PyWeb Guide",
+    "description": "The free course syllabus: Python from scratch, HTML, databases, Flask and Django, REST APIs, tests, Git and deployment. Progress is kept in your browser."
+   }
+  },
+  "about.html": {
+   "kind": "lesson",
+   "time": "PT30M",
+   "ru": {
+    "title": "Как работает сайт на Python: backend и HTTP — PyWeb Guide",
+    "description": "Что такое backend, как HTTP-запрос проходит от браузера до сервера и базы данных и почему Python удобен для веба. Примеры кода на Flask и SQLite."
+   },
+   "kk": {
+    "title": "Python-дағы сайт қалай жұмыс істейді — PyWeb Guide",
+    "description": "Backend деген не, HTTP-сұрау браузерден серверге және дерекқорға қалай жетеді және Python веб үшін неге ыңғайлы. Flask пен SQLite кодының мысалдары."
+   },
+   "en": {
+    "title": "How a Python website works: backend and HTTP — PyWeb Guide",
+    "description": "What a backend is, how an HTTP request travels from the browser to the server and the database, and why Python suits the web. Flask and SQLite examples."
+   }
+  },
+  "frameworks.html": {
+   "kind": "lesson",
+   "time": "PT30M",
+   "ru": {
+    "title": "Django или Flask: что выбрать новичку — PyWeb Guide",
+    "description": "Сравнение Django 6.1, Flask 3.1 и FastAPI для начинающих: таблица по критериям, одна страница на трёх фреймворках и мини-тест для выбора первого."
+   },
+   "kk": {
+    "title": "Django әлде Flask: бастаушыға қайсысы — PyWeb Guide",
+    "description": "Бастаушыларға Django 6.1, Flask 3.1 және FastAPI салыстыру: критерийлер кестесі, үш фреймворктегі бір бет және алғашқы фреймворкті таңдауға шағын тест."
+   },
+   "en": {
+    "title": "Django or Flask: which to learn first — PyWeb Guide",
+    "description": "Django 6.1, Flask 3.1 and FastAPI compared for beginners: a table by criteria, the same page in three frameworks and a mini quiz to pick your first one."
+   }
+  },
+  "databases.html": {
+   "kind": "lesson",
+   "time": "PT45M",
+   "ru": {
+    "title": "Базы данных для начинающих: SQL, SQLite, ORM — PyWeb Guide",
+    "description": "Как сайт хранит данные: запросы SQL на примере SQLite, защита от SQL-инъекций, ORM и миграции в Django. С вопросами для самопроверки."
+   },
+   "kk": {
+    "title": "Дерекқорлар бастаушыларға: SQL, SQLite, ORM — PyWeb Guide",
+    "description": "Сайт деректерді қалай сақтайды: SQLite мысалындағы SQL сұраулары, SQL-инъекциядан қорғану, Django-дағы ORM және миграциялар. Өзін-өзі тексеру сұрақтарымен."
+   },
+   "en": {
+    "title": "Databases for beginners: SQL, SQLite and ORM — PyWeb Guide",
+    "description": "How a website stores data: SQL queries with SQLite as the example, protection from SQL injection, the ORM and migrations in Django. With a knowledge check."
+   }
+  },
+  "templates.html": {
+   "kind": "lesson",
+   "time": "PT40M",
+   "ru": {
+    "title": "Шаблоны Jinja и формы во Flask и Django — PyWeb Guide",
+    "description": "Как отделить HTML от кода: шаблоны Jinja, наследование, формы, проверка данных и защита от CSRF во Flask и Django. Примеры для начинающих."
+   },
+   "kk": {
+    "title": "Flask пен Django-дағы Jinja үлгілері мен формалар",
+    "description": "HTML-ді кодтан қалай бөлуге болады: Jinja үлгілері, мұрагерлік, формалар, деректерді тексеру және Flask пен Django-да CSRF-тен қорғану. Бастаушыларға мысалдар."
+   },
+   "en": {
+    "title": "Jinja templates and forms in Flask and Django — PyWeb Guide",
+    "description": "How to separate HTML from code: Jinja templates, inheritance, forms, data validation and CSRF protection in Flask and Django. Examples for beginners."
+   }
+  },
+  "auth.html": {
+   "kind": "lesson",
+   "time": "PT40M",
+   "ru": {
+    "title": "Регистрация и вход во Flask и Django — PyWeb Guide",
+    "description": "Как безопасно хранить пароли, что такое сессия и как закрыть страницы от чужих во Flask и Django: хеширование паролей, login_required и права доступа."
+   },
+   "kk": {
+    "title": "Flask пен Django-да тіркелу және кіру — PyWeb Guide",
+    "description": "Құпиясөздерді қалай қауіпсіз сақтау керек, сессия деген не және Flask пен Django-да беттерді бөгде адамнан қалай жабу керек: хэштеу, login_required, рұқсаттар."
+   },
+   "en": {
+    "title": "User login and sign-up in Flask and Django — PyWeb Guide",
+    "description": "How to store passwords safely, what a session is and how to protect pages from strangers in Flask and Django: password hashing, login_required and permissions."
+   }
+  },
+  "api.html": {
+   "kind": "lesson",
+   "time": "PT30M",
+   "ru": {
+    "title": "REST API на Flask и Django для начинающих — PyWeb Guide",
+    "description": "Что такое REST API, какие бывают методы и коды ответа HTTP, как сделать JSON API на Flask и Django и вызвать его со страницы через fetch."
+   },
+   "kk": {
+    "title": "Flask пен Django-дағы REST API бастаушыларға — PyWeb Guide",
+    "description": "REST API деген не, HTTP-дің қандай әдістері мен жауап кодтары бар, Flask пен Django-да JSON API-ды қалай жасап, оны беттен fetch арқылы шақыруға болады."
+   },
+   "en": {
+    "title": "REST API with Flask and Django for beginners — PyWeb Guide",
+    "description": "What a REST API is, which HTTP methods and status codes exist, how to build a JSON API with Flask and Django and call it from a page with fetch."
+   }
+  },
+  "testing.html": {
+   "kind": "lesson",
+   "time": "PT30M",
+   "ru": {
+    "title": "Тесты для Flask и Django: pytest с нуля — PyWeb Guide",
+    "description": "Зачем нужны тесты и как писать их на pytest и unittest: проверка страниц и API во Flask и Django через тестовый клиент, без запуска сервера."
+   },
+   "kk": {
+    "title": "Flask пен Django-ға тесттер: pytest нөлден — PyWeb Guide",
+    "description": "Тесттер не үшін керек және оларды pytest пен unittest-те қалай жазу керек: Flask пен Django-да беттер мен API-ды тесттік клиентпен серверсіз тексеру."
+   },
+   "en": {
+    "title": "Testing Flask and Django: pytest from scratch — PyWeb Guide",
+    "description": "Why tests matter and how to write them with pytest and unittest: checking pages and APIs in Flask and Django with the test client, without starting a server."
+   }
+  },
+  "git.html": {
+   "kind": "lesson",
+   "time": "PT30M",
+   "ru": {
+    "title": "Git и GitHub для начинающих: коммиты и ветки — PyWeb Guide",
+    "description": "Основы Git для веб-разработчика: коммиты, ветки, слияние, отмена изменений и работа с GitHub. Команды с объяснениями и разбор частых ошибок."
+   },
+   "kk": {
+    "title": "Git және GitHub бастаушыларға — PyWeb Guide",
+    "description": "Веб-әзірлеушіге Git негіздері: коммиттер, тармақтар, біріктіру, өзгерістерді болдырмау және GitHub-пен жұмыс. Түсіндірмесі бар командалар мен жиі қателер."
+   },
+   "en": {
+    "title": "Git and GitHub for beginners: commits — PyWeb Guide",
+    "description": "Git basics for web developers: commits, branches, merging, undoing changes and working with GitHub. Commands with explanations and common mistakes."
+   }
+  },
+  "project.html": {
+   "kind": "project",
+   "time": "PT2H",
+   "ru": {
+    "title": "Первое приложение на Python: Flask и Django — PyWeb Guide",
+    "description": "Первое приложение на Python шаг за шагом: список задач на Flask с нуля или на Django для начинающих. Вывод терминала и готовый код после каждого шага.",
+    "card": "Первое приложение на Python"
+   },
+   "kk": {
+    "title": "Python-дағы алғашқы қосымша: Flask пен Django — PyWeb Guide",
+    "description": "Python-дағы алғашқы қосымша қадам-қадаммен: Flask-та нөлден немесе Django бастаушыларға тапсырмалар тізімі. Терминал шығысы және әр қадамнан кейінгі код.",
+    "card": "Алғашқы қосымша Python-да"
+   },
+   "en": {
+    "title": "Your first Python web app: Flask and Django — PyWeb Guide",
+    "description": "Build your first Python web app step by step: a to-do list with Flask from scratch or Django for beginners, with terminal output and code after every step.",
+    "card": "Your first Python web app"
+   }
+  },
+  "django-next.html": {
+   "kind": "project",
+   "time": "PT2H",
+   "ru": {
+    "title": "Django для начинающих: связи моделей и ListView",
+    "description": "Продолжение первого проекта на Django 6.1: модель Category и ForeignKey, миграция, select_related, ListView и CreateView вместо функций и тесты к ним."
+   },
+   "kk": {
+    "title": "Django бастаушыларға: модель байланыстары — PyWeb Guide",
+    "description": "Django 6.1-дегі алғашқы жобаның жалғасы: Category моделі мен ForeignKey, миграция, select_related, функциялардың орнына ListView мен CreateView және тесттер."
+   },
+   "en": {
+    "title": "Django for beginners: model relations and ListView",
+    "description": "The next step after your first Django 6.1 project: a Category model and ForeignKey, a migration, select_related, ListView and CreateView, and tests for them."
+   }
+  },
+  "fastapi.html": {
+   "kind": "project",
+   "time": "PT1H30M",
+   "ru": {
+    "title": "FastAPI для начинающих: первое REST API — PyWeb Guide",
+    "description": "Список задач как REST API на FastAPI 0.163: модели Pydantic, маршруты GET, POST и DELETE, коды 201, 204, 404 и 422, документация /docs и тесты."
+   },
+   "kk": {
+    "title": "FastAPI бастаушыларға: алғашқы REST API — PyWeb Guide",
+    "description": "FastAPI 0.163-тегі тапсырмалар тізімінің REST API-і: Pydantic модельдері, GET, POST және DELETE, 201, 204, 404 және 422 кодтары, /docs және тесттер."
+   },
+   "en": {
+    "title": "FastAPI for beginners: your first REST API — PyWeb Guide",
+    "description": "A to-do list REST API with FastAPI 0.163: Pydantic models, GET, POST and DELETE routes, the 201, 204, 404 and 422 codes, the /docs page and tests."
+   }
+  },
+  "project2.html": {
+   "kind": "project",
+   "time": "PT2H",
+   "ru": {
+    "title": "Flask с нуля: API блога с SQLite и тестами — PyWeb Guide",
+    "description": "Второй проект для тех, кто прошёл основы: REST API блога на Flask, база SQLite, проверка данных, тесты и страница на JavaScript, шаг за шагом."
+   },
+   "kk": {
+    "title": "Flask нөлден: SQLite пен тесттері бар блог API",
+    "description": "Негіздерді өткендерге екінші жоба: Flask-тағы блогтың REST API-ы, SQLite дерекқоры, деректерді тексеру, тесттер және JavaScript-тегі бет, қадам-қадаммен."
+   },
+   "en": {
+    "title": "Flask from scratch: a blog API with SQLite — PyWeb Guide",
+    "description": "A second project for those who know the basics: a blog REST API with Flask, an SQLite database, data validation, tests and a JavaScript page, step by step."
+   }
+  },
+  "deploy.html": {
+   "kind": "lesson",
+   "time": "PT1H",
+   "ru": {
+    "title": "Как опубликовать сайт на Flask и Django бесплатно",
+    "description": "Как бесплатно выложить приложение на Flask или Django в интернет: код на GitHub, хостинг PythonAnywhere, настройка WSGI и статических файлов."
+   },
+   "kk": {
+    "title": "Flask пен Django сайтын тегін жариялау — PyWeb Guide",
+    "description": "Flask немесе Django қосымшасын интернетке қалай тегін шығаруға болады: кодты GitHub-қа салу, PythonAnywhere хостингі, WSGI және статикалық файлдарды баптау."
+   },
+   "en": {
+    "title": "Deploy a Flask or Django site for free — PyWeb Guide",
+    "description": "How to put a Flask or Django app online for free: your code on GitHub, PythonAnywhere hosting, and setting up WSGI and static files, step by step."
+   }
+  },
+  "practice.html": {
+   "kind": "exercise",
+   "time": "PT3H",
+   "ru": {
+    "title": "Задачи по Python с автопроверкой: 40 заданий — PyWeb Guide",
+    "description": "40 задач по Python, HTTP, SQL, формам и Flask для начинающих: решаете прямо в браузере и сразу видите, прошли ли тесты. С подсказками."
+   },
+   "kk": {
+    "title": "Автотексерілетін Python есептері: 40 есеп — PyWeb Guide",
+    "description": "Бастаушыларға Python, HTTP, SQL, формалар және Flask бойынша 40 есеп: тікелей браузерде шешесіз және тесттен өткеніңізді бірден көресіз. Кеңестері бар."
+   },
+   "en": {
+    "title": "Python exercises with auto-checking: 40 tasks — PyWeb Guide",
+    "description": "40 beginner exercises on Python, HTTP, SQL, forms and Flask: solve them right in the browser and see at once whether the tests pass. With hints."
+   }
+  },
+  "cheatsheet.html": {
+   "kind": "reference",
+   "time": "PT15M",
+   "ru": {
+    "title": "Шпаргалка: Python, Flask, Django, SQL, Git — PyWeb Guide",
+    "description": "Частые команды на одной странице: виртуальное окружение, Flask, Django, SQL, коды ответа HTTP и Git. Удобно держать под рукой и распечатать."
+   },
+   "kk": {
+    "title": "Анықтама: Python, Flask, Django, SQL, Git — PyWeb Guide",
+    "description": "Жиі қолданылатын командалар бір бетте: виртуалды орта, Flask, Django, SQL, HTTP жауап кодтары және Git. Қол астында ұстауға және басып шығаруға ыңғайлы."
+   },
+   "en": {
+    "title": "Cheat sheet: Python, Flask, Django, SQL, Git — PyWeb Guide",
+    "description": "Common commands on one page: virtual environments, Flask, Django, SQL, HTTP status codes and Git. Handy to keep open next to your editor or to print."
+   }
+  },
+  "exam.html": {
+   "kind": "quiz",
+   "time": "PT30M",
+   "ru": {
+    "title": "Тест по Python и веб-разработке с ответами — PyWeb Guide",
+    "description": "Финальный тест курса: 20 вопросов по Python, HTTP, базам данных, Flask и Django с объяснениями. От 16 верных ответов — учебный сертификат."
+   },
+   "kk": {
+    "title": "Python және веб-әзірлеу бойынша тест — PyWeb Guide",
+    "description": "Курстың қорытынды тесті: Python, HTTP, дерекқорлар, Flask және Django бойынша түсіндірмесі бар 20 сұрақ. 16 дұрыс жауаптан бастап оқу сертификаты беріледі."
+   },
+   "en": {
+    "title": "Python web development quiz with answers — PyWeb Guide",
+    "description": "The final course test: 20 questions on Python, HTTP, databases, Flask and Django with explanations. Get 16 or more right to download a learning certificate."
+   }
+  },
+  "progress.html": {
+   "kind": "page",
+   "ru": {
+    "title": "Мой прогресс и сертификат — PyWeb Guide",
+    "description": "Сводка по пройденным урокам, проектам, задачам и тесту, перенос прогресса на другое устройство файлом и учебный сертификат для печати или PDF."
+   },
+   "kk": {
+    "title": "Менің прогресім және сертификат — PyWeb Guide",
+    "description": "Өткен сабақтар, жобалар, есептер мен тест бойынша жиынтық, прогресті басқа құрылғыға файлмен көшіру және басып шығаруға немесе PDF-ке арналған сертификат."
+   },
+   "en": {
+    "title": "My progress and certificate — PyWeb Guide",
+    "description": "A summary of finished lessons, projects, exercises and the test, moving your progress to another device with a file, and a certificate to print or save as PDF."
+   }
+  },
+  "contacts.html": {
+   "kind": "contact",
+   "ru": {
+    "title": "Контакты: вопрос автору курса — PyWeb Guide",
+    "description": "Задайте вопрос автору PyWeb Guide или сообщите об ошибке в уроке или переводе через форму обратной связи. Кто делает курс и как с ним связаться."
+   },
+   "kk": {
+    "title": "Байланыс: курс авторына сұрақ — PyWeb Guide",
+    "description": "PyWeb Guide авторына сұрақ қойыңыз немесе сабақтағы не аудармадағы қате туралы кері байланыс формасы арқылы жазыңыз. Курсты кім жасайды және байланыс жолдары."
+   },
+   "en": {
+    "title": "Contact: ask the course author — PyWeb Guide",
+    "description": "Ask the author of PyWeb Guide a question or report a mistake in a lesson or translation with the feedback form. Who makes the course and how to get in touch."
+   }
+  },
+  "privacy.html": {
+   "kind": "page",
+   "ru": {
+    "title": "Политика конфиденциальности — PyWeb Guide",
+    "description": "Какие данные обрабатывает сайт PyWeb Guide: что хранится только в вашем браузере, что считает статистика GoatCounter без cookies и что видит хостинг."
+   },
+   "kk": {
+    "title": "Құпиялылық саясаты — PyWeb Guide",
+    "description": "PyWeb Guide сайты қандай деректерді өңдейді: браузеріңізде ғана не сақталады, cookies-сіз GoatCounter статистикасы нені санайды және хостинг нені көреді."
+   },
+   "en": {
+    "title": "Privacy policy — PyWeb Guide",
+    "description": "What data the PyWeb Guide site processes: what stays only in your browser, what the cookie-free GoatCounter statistics count and what the hosting can see."
+   }
+  },
+  "terms.html": {
+   "kind": "page",
+   "ru": {
+    "title": "Условия использования — PyWeb Guide",
+    "description": "Условия использования учебного сайта PyWeb Guide: права на материалы и примеры кода, ограничение ответственности и правила для внешних ссылок."
+   },
+   "kk": {
+    "title": "Пайдалану шарттары — PyWeb Guide",
+    "description": "PyWeb Guide оқу сайтын пайдалану шарттары: материалдар мен код мысалдарына құқықтар, жауапкершілікті шектеу және сыртқы сілтемелерге қатысты ережелер."
+   },
+   "en": {
+    "title": "Terms of use — PyWeb Guide",
+    "description": "Terms of use of the PyWeb Guide learning site: rights to the materials and code examples, limitation of liability and the rules for external links."
+   }
+  },
+  "404.html": {
+   "kind": "notfound",
+   "ru": {
+    "title": "Страница не найдена — PyWeb Guide",
+    "description": "Такой страницы на PyWeb Guide нет: возможно, ссылка устарела или в адресе опечатка. Начните с главной или откройте один из разделов курса.",
+    "card": "Страница не найдена"
+   },
+   "kk": {
+    "title": "Бет табылмады — PyWeb Guide",
+    "description": "PyWeb Guide сайтында мұндай бет жоқ: сілтеме ескірген немесе мекенжайда қате болуы мүмкін. Басты беттен бастаңыз немесе курс бөлімдерінің бірін ашыңыз.",
+    "card": "Бет табылмады"
+   },
+   "en": {
+    "title": "Page not found — PyWeb Guide",
+    "description": "There is no such page on PyWeb Guide: the link may be out of date or the address may have a typo. Start from the home page or open one of the course sections.",
+    "card": "Page not found"
+   }
+  }
+ }
+}
