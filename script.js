@@ -26,6 +26,7 @@
   function closeMenu() {
     if (!nav || !menuButton) return;
     nav.classList.remove("open");
+    document.documentElement.classList.remove("nav-open");
     menuButton.setAttribute("aria-expanded", "false");
     menuButton.setAttribute("aria-label", t("Открыть меню"));
   }
@@ -33,6 +34,8 @@
   if (menuButton && nav) {
     menuButton.addEventListener("click", function () {
       const isOpen = nav.classList.toggle("open");
+      // Страница под открытым меню не прокручивается: листается само меню
+      document.documentElement.classList.toggle("nav-open", isOpen);
       menuButton.setAttribute("aria-expanded", String(isOpen));
       menuButton.setAttribute("aria-label", isOpen ? t("Закрыть меню") : t("Открыть меню"));
     });

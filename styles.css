@@ -2054,6 +2054,9 @@ textarea[aria-invalid="true"] {
   display: none;
 }
 
+/* На широком экране содержание стоит слева от текста. Под ним при прокрутке проезжают и жёлтая шапка,
+   и белые разделы, поэтому у панели свой сплошной фон и основной цвет текста: контраст не зависит
+   от того, что под ней, и от темы. Ширина — свободное место слева от контейнера (1320px), шрифт растёт с экраном */
 @media (min-width: 1800px) {
   .page-rail {
     display: block;
@@ -2062,9 +2065,15 @@ textarea[aria-invalid="true"] {
     top: 96px;
     bottom: auto;
     max-height: calc(100vh - 120px);
-    width: 210px;
-    background: transparent;
-    box-shadow: none; /* taste-skill-ignore: тень есть только у всплывающего слоя */
+    width: clamp(200px, calc((100vw - 1320px) / 2 - 32px), 300px);
+    padding: 14px 10px;
+    background: var(--bg);
+    box-shadow: inset 0 0 0 1px var(--line); /* taste-skill-ignore: тонкая рамка вместо тени */
+    font-size: clamp(1.0625rem, 0.4rem + 0.6vw, 1.3rem);
+  }
+
+  .page-rail a {
+    color: var(--text);
   }
 
   .rail-toggle {
@@ -2537,6 +2546,20 @@ textarea[aria-invalid="true"] {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+  }
+
+  /* Меню висит под «липкой» шапкой: без ограничения высоты его низ уходил за край экрана
+     и не прокручивался. Теперь меню не выше экрана и листается само (шапка — 68px) */
+  .site-nav {
+    max-height: calc(100vh - 68px);
+    max-height: calc(100dvh - 68px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  /* Пока меню открыто, страница под ним стоит на месте (класс ставит script.js) */
+  html.nav-open {
+    overflow: hidden;
   }
 
   .nav-menu {
