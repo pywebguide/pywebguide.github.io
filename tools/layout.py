@@ -23,6 +23,9 @@ UPDATED = date(2026, 11, 11)
 UPDATED_PAGES = {
     "project.html": date(2026, 11, 17),
     "django-next.html": date(2026, 11, 17),
+    "fastapi.html": date(2026, 11, 17),
+    "api.html": date(2026, 11, 17),
+    "frameworks.html": date(2026, 11, 17),
     "course.html": date(2026, 11, 17),
     "index.html": date(2026, 11, 17),
 }
@@ -56,6 +59,7 @@ NAMES = {
     "git.html": ("Git", "Git", "Git"),
     "project.html": ("Первый проект", "Алғашқы жоба", "First project"),
     "django-next.html": ("Django дальше", "Django: келесі қадам", "Django next steps"),
+    "fastapi.html": ("API на FastAPI", "FastAPI-дағы API", "API with FastAPI"),
     "project2.html": ("Второй проект", "Екінші жоба", "Second project"),
     "deploy.html": ("Публикация", "Жариялау", "Deployment"),
     "practice.html": ("Задачи", "Есептер", "Exercises"),
@@ -80,7 +84,7 @@ TOP = [
 GROUPS = [
     (("Начать", "Бастау", "Start"), ["start.html", "html-css.html", "glossary.html", "playground.html"], False),
     (("Понять", "Түсіну", "Understand"), ["about.html", "frameworks.html", "databases.html", "templates.html", "auth.html", "api.html", "testing.html", "git.html"], True),
-    (("Сделать", "Жасау", "Build"), ["setup.html", "project.html", "django-next.html", "project2.html", "deploy.html"], True),
+    (("Сделать", "Жасау", "Build"), ["setup.html", "project.html", "django-next.html", "fastapi.html", "project2.html", "deploy.html"], True),
     (("Практика", "Практика", "Practice"), ["practice.html", "cheatsheet.html", "exam.html"], True),
     (("Сайт", "Сайт", "Site"), ["course.html", "progress.html", "contacts.html"], True),
 ]

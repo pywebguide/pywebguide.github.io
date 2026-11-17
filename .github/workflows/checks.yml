@@ -40,6 +40,10 @@ jobs:
         run: |
           python tools/check_django_next.py
           cd examples/django-next && python manage.py test
+      - name: «Первое API на FastAPI» — шаги страницы дают тот же вывод, итоговый код проходит тесты
+        run: |
+          python tools/check_fastapi.py
+          cd examples/fastapi-todo && python -m pytest -q
       - name: Переводы kk/ и en/ не отстали от русских страниц
         run: python tools/translate.py check
       - name: Версия кэша service worker актуальна

@@ -14,6 +14,7 @@
 Так же код раздела «Django дальше» (django-next.html) лежит в examples/django-next: файлы из блоков
 кода страницы (последний блок с подписью-файлом в списке шагов), миграция 0002 — от makemigrations.
 Что шаги страницы проходятся по порядку, проверяет tools/check_django_next.py.
+Код раздела «Первое API на FastAPI» (fastapi.html) — examples/fastapi-todo, его проверяет tools/check_fastapi.py.
 
     python tools/sync_examples.py           # обновить examples/, снимки, архивы и ссылки на странице
     python tools/sync_examples.py --check   # только проверить совпадение (для CI)
@@ -31,7 +32,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 EX = ROOT / "examples"
 PAGE = ROOT / "project.html"
-SKIP_PARTS = {"__pycache__", "steps"}
+SKIP_PARTS = {"__pycache__", "steps", ".pytest_cache"}
 
 # Подпись блока на странице -> файл в примере. Берётся последний блок с такой подписью в разделе.
 FLASK = {"app.py": "app.py"}
@@ -68,7 +69,10 @@ def section(page, name):
 NEXT_PAGE = ROOT / "django-next.html"
 NEXT_FILES = ["tasks/models.py", "tasks/admin.py", "tasks/forms.py", "tasks/views.py", "mysite/urls.py",
               "tasks/templates/tasks/index.html", "tasks/templates/tasks/task_form.html", "tasks/tests.py"]
-ARCHIVES = [*PROJECTS, "django-next"]
+# Страница «Первое API на FastAPI»: main.py и test_main.py в examples/fastapi-todo
+FASTAPI_PAGE = ROOT / "fastapi.html"
+FASTAPI_FILES = ["main.py", "test_main.py"]
+ARCHIVES = [*PROJECTS, "django-next", "fastapi-todo"]
 
 
 def expected():
@@ -84,6 +88,11 @@ def expected():
     found = blocks(page[start:page.index("</ol>", start)])
     for rel in NEXT_FILES:
         files[f"django-next/{rel}"] = found[rel]
+    page = FASTAPI_PAGE.read_text(encoding="utf-8")
+    start = page.index('data-progress-list="fastapi"')
+    found = blocks(page[start:page.index("</ol>", start)])
+    for rel in FASTAPI_FILES:
+        files[f"fastapi-todo/{rel}"] = found[rel]
     return files
 
 

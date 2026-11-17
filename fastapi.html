@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Первое API на FastAPI: список задач — PyWeb Guide</title>
+
+  <meta name="description" content="REST API списка задач на FastAPI 0.163: модели Pydantic, маршруты GET, POST и DELETE, коды 201, 204, 404 и 422, автодокументация /docs и тесты с TestClient.">
+  <link rel="canonical" href="https://pywebguide.github.io/fastapi.html">
+  <link rel="alternate" hreflang="ru" href="https://pywebguide.github.io/fastapi.html">
+  <link rel="alternate" hreflang="kk" href="https://pywebguide.github.io/kk/fastapi.html">
+  <link rel="alternate" hreflang="en" href="https://pywebguide.github.io/en/fastapi.html">
+  <link rel="alternate" hreflang="x-default" href="https://pywebguide.github.io/fastapi.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="PyWeb Guide">
+  <meta property="og:title" content="Первое API на FastAPI: список задач — PyWeb Guide">
+  <meta property="og:description" content="REST API списка задач на FastAPI 0.163: модели Pydantic, маршруты GET, POST и DELETE, коды 201, 204, 404 и 422, автодокументация /docs и тесты с TestClient.">
+  <meta property="og:url" content="https://pywebguide.github.io/fastapi.html">
+  <meta property="og:image" content="https://pywebguide.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Плакат PyWeb Guide: первый сайт на Python, бесплатный курс для тех, кто никогда не программировал">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffd249">
+
+
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <link rel="preload" href="assets/fonts/sofia-sans-extra-condensed-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    // Тема выбирается до отрисовки, чтобы страница не мигала
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem("pyweb_theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        // Выбора ещё не было: как в системе
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LearningResource",
+      "name": "Первое API на FastAPI: список задач",
+      "description": "REST API списка задач на FastAPI 0.163: модели Pydantic, коды ответа, автодокументация и тесты.",
+      "url": "https://pywebguide.github.io/fastapi.html",
+      "inLanguage": "ru",
+      "educationalLevel": "Средний",
+      "learningResourceType": "Пошаговое руководство",
+      "timeRequired": "PT40M",
+      "dateModified": "2026-11-17",
+      "isPartOf": { "@type": "WebSite", "name": "PyWeb Guide", "url": "https://pywebguide.github.io/" },
+      "author": { "@type": "Person", "name": "Жангужин Е. Е." }
+    }
+  </script>
+</head>
+
+<body data-band="yellow" id="top">
+  <div id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#content">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-text">PyWeb Guide</span>
+      </a>
+
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Основная навигация">
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="start.html">С нуля</a></li>
+          <li><a class="nav-link" href="course.html">Весь курс</a></li>
+          <li><a class="nav-link" href="project.html">Первый проект</a></li>
+          <li><a class="nav-link" href="playground.html">Песочница</a></li>
+          <li><a class="nav-link" href="glossary.html">Словарь</a></li>
+          <li class="nav-more"><details>
+          <summary class="nav-link active">Ещё <span class="caret" aria-hidden="true"></span></summary>
+          <div class="nav-more-list">
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-1">Понять</p><ul aria-labelledby="nav-group-1">
+              <li><a href="about.html">О Python</a></li>
+              <li><a href="frameworks.html">Фреймворки</a></li>
+              <li><a href="databases.html">Базы данных</a></li>
+              <li><a href="templates.html">Шаблоны и формы</a></li>
+              <li><a href="auth.html">Авторизация</a></li>
+              <li><a href="api.html">REST API</a></li>
+              <li><a href="testing.html">Тесты</a></li>
+              <li><a href="git.html">Git</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-2">Сделать</p><ul aria-labelledby="nav-group-2">
+              <li><a href="setup.html">Подготовка компьютера</a></li>
+              <li><a href="django-next.html">Django дальше</a></li>
+              <li><a href="fastapi.html" aria-current="page">API на FastAPI</a></li>
+              <li><a href="project2.html">Второй проект</a></li>
+              <li><a href="deploy.html">Публикация</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-3">Практика</p><ul aria-labelledby="nav-group-3">
+              <li><a href="practice.html">Задачи</a></li>
+              <li><a href="cheatsheet.html">Шпаргалка</a></li>
+              <li><a href="exam.html">Финальный тест</a></li>
+            </ul></div>
+            <div class="nav-group"><p class="nav-group-title" id="nav-group-4">Сайт</p><ul aria-labelledby="nav-group-4">
+              <li><a href="progress.html">Мой прогресс</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul></div>
+          </div>
+        </details></li>
+          <li class="nav-lang" aria-label="Язык сайта">
+            <a href="fastapi.html" hreflang="ru" lang="ru" aria-current="true">РУС</a>
+            <a href="kk/fastapi.html" hreflang="kk" lang="kk">ҚАЗ</a>
+            <a href="en/fastapi.html" hreflang="en" lang="en">ENG</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Светлая тема">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="content" data-pagefind-body class="page" tabindex="-1">
+      <div class="page-band"><div class="container page-hero page-hero--picture">
+        <nav class="breadcrumb" aria-label="Хлебные крошки">
+          <a href="index.html">Главная</a>
+          <span aria-hidden="true">/</span>
+          <span>API на FastAPI</span>
+        </nav>
+        <h1>Первое API на FastAPI</h1>
+        <p class="lead">
+          То же приложение «список задач», но без страниц: сервер принимает и отдаёт JSON. FastAPI проверяет данные по моделям Pydantic,
+          сам отвечает правильными кодами и строит документацию, в которой API можно попробовать. Около 40 минут.
+        </p>
+        <p class="note">Что такое методы HTTP, JSON и коды ответа, рассказано в разделе <a href="api.html">«REST API»</a> — загляните туда сначала.</p>
+
+        <nav class="page-toc" aria-label="Содержание страницы">
+          <a href="#prep">Что понадобится</a>
+          <a href="#steps">6 шагов</a>
+          <a href="#compare">Flask и FastAPI</a>
+          <a href="#errors">Частые ошибки</a>
+          <a href="#sources">Источники</a>
+        </nav>
+      <img class="band-picture" src="assets/img/switchboard.webp" width="900" height="715" alt="Телефонистки у международного коммутатора Bell System соединяют звонки" decoding="async" fetchpriority="high">
+</div></div>
+
+      <section class="section" id="prep" aria-labelledby="prep-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="prep-title">Что понадобится</h2>
+            <p>Проект начинается с пустой папки и не зависит от первого проекта.</p>
+            <p class="download-row"><a class="btn btn-secondary" href="examples/fastapi-todo.zip" download>Скачать готовый код (zip, 2 КБ)</a> <a href="https://github.com/pywebguide/pywebguide.github.io/tree/main/examples/fastapi-todo" rel="noopener">Посмотреть на GitHub</a></p>
+          </div>
+
+          <div class="panel reveal">
+            <ul class="check-list">
+              <li>Python 3.12 или новее: команда <code>python --version</code>.</li>
+              <li>Понимание методов GET, POST, DELETE и кодов 200, 201, 404 — раздел <a href="api.html">«REST API»</a>.</li>
+              <li>Пройденный <a href="project.html">первый проект</a> пригодится для сравнения, но не обязателен.</li>
+            </ul>
+          </div>
+
+          <p class="notice" role="note">
+            <strong>Запросы отправляем из браузера.</strong> Для GET хватит адресной строки, а POST и DELETE удобно отправлять со страницы <code>/docs</code>,
+            которую FastAPI создаёт сам, — так одинаково на Windows, macOS и Linux. Пройденные шаги сохраняются в этом браузере.
+          </p>
+        </div>
+      </section>
+
+      <section class="section project-track" id="steps" aria-labelledby="steps-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="steps-title">API списка задач</h2>
+            <p>Четыре маршрута: список, добавление, одна задача и удаление. Затем документация и тесты.</p>
+          </div>
+
+          <div class="progress-box reveal" data-progress="fastapi">
+            <p class="progress-label" role="status" aria-live="polite"><span data-progress-count>0</span> из 6 шагов пройдено</p>
+            <div class="progress-track" aria-hidden="true"><div class="progress-fill" data-progress-fill></div></div>
+            <button class="btn btn-secondary progress-reset" type="button" data-progress-reset hidden>Сбросить прогресс</button>
+          </div>
+
+          <ol class="project-steps" data-progress-list="fastapi">
+            <li class="project-step reveal">
+              <h3>Шаг 1. Создайте проект и установите FastAPI</h3>
+              <p>
+                Новая папка и своё виртуальное окружение, как в первом проекте. Слово <code>[standard]</code> в кавычках ставит вместе с FastAPI всё,
+                что понадобится дальше: команду <code>fastapi</code>, сервер <code>uvicorn</code> и библиотеку <code>httpx</code>, на которой работают тесты.
+              </p>
+              <div class="os-tabs" data-os-tabs>
+                <div class="os-tablist" role="tablist" aria-label="Система компьютера" hidden>
+                  <button type="button" role="tab" data-os="win">Windows</button>
+                  <button type="button" role="tab" data-os="unix">macOS и Linux</button>
+                </div>
+                <div role="tabpanel" data-os-panel="win">
+                  <p class="os-caption">Windows (PowerShell или командная строка)</p>
+                  <div class="code-block">
+                    <div class="code-head">
+                      <span>Терминал</span>
+                      <button class="copy-btn" type="button">Копировать</button>
+                    </div>
+                    <pre><code>mkdir fastapi-todo
+cd fastapi-todo
+python -m venv .venv
+.venv\Scripts\activate
+pip install "fastapi[standard]"</code></pre>
+                  </div>
+                </div>
+                <div role="tabpanel" data-os-panel="unix">
+                  <p class="os-caption">macOS и Linux (Терминал)</p>
+                  <div class="code-block">
+                    <div class="code-head">
+                      <span>Терминал</span>
+                      <button class="copy-btn" type="button">Копировать</button>
+                    </div>
+                    <pre><code>mkdir fastapi-todo
+cd fastapi-todo
+python3 -m venv .venv
+source .venv/bin/activate
+pip install "fastapi[standard]"</code></pre>
+                  </div>
+                </div>
+              </div>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Последняя строка установки длинная: в ней почти 60 пакетов, среди них <code>fastapi-0.163.1</code>, <code>pydantic-2.14.3</code>, <code>starlette-1.10.0</code> и <code>uvicorn-0.54.0</code>. Версию FastAPI покажет команда <code>pip show fastapi</code>:</p>
+                <pre class="step-output">Name: fastapi
+Version: 0.163.1
+Summary: FastAPI framework, high performance, easy to learn, fast to code, ready for production</pre>
+                <p class="step-result-note">Номер версии может быть новее — это нормально. Без кавычек вокруг <code>fastapi[standard]</code> некоторые терминалы (например, zsh на macOS) не поймут квадратные скобки.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="1"> Шаг пройден</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Шаг 2. Первый маршрут: список задач</h3>
+              <p>
+                Создайте файл <code>main.py</code>. Декоратор <code>@app.get("/tasks")</code> связывает адрес и метод GET с функцией — так же, как <code>@app.get</code> во Flask.
+                Разница в ответе: функция возвращает обычный список Python, а FastAPI сам превращает его в JSON. Задачи пока хранятся в памяти сервера.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>main.py</span>
+                  <button class="copy-btn" type="button">Копировать</button>
+                </div>
+                <pre><code>from fastapi import FastAPI
+
+app = FastAPI(title="Список задач")
+
+tasks = []
+
+@app.get("/tasks")
+def list_tasks():
+    return tasks</code></pre>
+              </div>
+              <p>Запустите сервер в режиме разработки: он перезапускается при каждом сохранении файла.</p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Копировать</button>
+                </div>
+                <pre><code>fastapi dev main.py</code></pre>
+              </div>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Терминал покажет адрес сервера и адрес документации и останется занятым сервером:</p>
+                <pre class="step-output" data-check="dev"> ⚡️ Starting FastAPI in development mode
+
+ 🐍 Using import string: main:app
+
+ 🌐 Server started at http://127.0.0.1:8000
+    Documentation at http://127.0.0.1:8000/docs
+
+  Logs:
+
+INFO:     Will watch for changes in these directories: ['…/fastapi-todo']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [629] using WatchFiles
+INFO:     Started server process [632]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.</pre>
+                <p>Адрес <code>http://127.0.0.1:8000/tasks</code> в браузере покажет пустой список в формате JSON: <code>[]</code>.</p>
+                <p class="step-result-note">В строке Will watch for changes будет полный путь к вашей папке (здесь его начало сокращено до …), номера процессов в квадратных скобках тоже будут другими. Не закрывайте это окно, команды вводите во втором окне терминала.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="2"> Шаг пройден</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Шаг 3. Модели Pydantic и добавление задачи</h3>
+              <p>
+                Замените весь <code>main.py</code>. Модели Pydantic описывают данные классами с подсказками типов, а FastAPI по ним проверяет запрос и строит ответ.
+                Моделей две, потому что данные в разные стороны разные: клиент присылает только название (<code>TaskCreate</code>), а номер и отметку «готово» назначает сервер (<code>Task</code>).
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>main.py</span>
+                  <button class="copy-btn" type="button">Копировать</button>
+                </div>
+                <pre><code>from itertools import count
+
+from fastapi import FastAPI
+from pydantic import BaseModel, ConfigDict, Field
+
+app = FastAPI(title="Список задач")
+
+class TaskCreate(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True)
+
+    title: str = Field(min_length=1, max_length=200)
+
+class Task(BaseModel):
+    id: int
+    title: str
+    done: bool = False
+
+tasks: dict[int, Task] = {}
+ids = count(1)
+
+@app.get("/tasks")
+def list_tasks() -&gt; list[Task]:
+    return list(tasks.values())
+
+@app.post("/tasks", status_code=201)
+def create_task(data: TaskCreate) -&gt; Task:
+    task = Task(id=next(ids), title=data.title)
+    tasks[task.id] = task
+    return task</code></pre>
+              </div>
+              <ul class="list">
+                <li><code>Field(min_length=1, max_length=200)</code> — ограничения названия, а <code>str_strip_whitespace=True</code> сначала убирает пробелы по краям. Название из одних пробелов станет пустым и не пройдёт проверку — как в первом проекте.</li>
+                <li><code>data: TaskCreate</code> в параметрах функции означает «прочитай тело запроса как JSON и проверь по модели». Если проверка не прошла, функция даже не вызывается: FastAPI сам отвечает кодом 422.</li>
+                <li><code>-&gt; Task</code> и <code>-&gt; list[Task]</code> — то, что функция возвращает. По этой подсказке FastAPI проверяет ответ и описывает его в документации.</li>
+                <li><code>status_code=201</code> — код «Created»: по правилам REST новая запись отвечает 201, а не 200.</li>
+                <li><code>count(1)</code> из модуля <code>itertools</code> выдаёт номера 1, 2, 3… по одному при каждом <code>next(ids)</code>.</li>
+              </ul>
+              <p>
+                Отправим запрос. Откройте <code>http://127.0.0.1:8000/docs</code>, раскройте строку <strong>POST /tasks</strong>, нажмите <strong>Try it out</strong>,
+                впишите в поле <strong>Request body</strong> текст <code>{"title": "Купить хлеб"}</code> и нажмите <strong>Execute</strong>. Затем отправьте так же <code>{"title": "   "}</code> — три пробела.
+              </p>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Первый запрос: код <code>201</code> и созданная задача в поле <strong>Response body</strong>:</p>
+                <pre class="step-output" data-check="http" data-request="POST /tasks {&quot;title&quot;: &quot;Купить хлеб&quot;}" data-code="201">{
+  "id": 1,
+  "title": "Купить хлеб",
+  "done": false
+}</pre>
+                <p>Второй запрос: код <code>422</code>. Это ответ Pydantic, функция <code>create_task</code> не вызывалась:</p>
+                <pre class="step-output" data-check="http" data-request="POST /tasks {&quot;title&quot;: &quot;   &quot;}" data-code="422">{
+  "detail": [
+    {
+      "type": "string_too_short",
+      "loc": [
+        "body",
+        "title"
+      ],
+      "msg": "String should have at least 1 character",
+      "input": "   ",
+      "ctx": {
+        "min_length": 1
+      }
+    }
+  ]
+}</pre>
+                <p class="step-result-note">В <code>loc</code> указано, где ошибка: в теле запроса, поле <code>title</code>; в <code>msg</code> — что не так. В <code>input</code> видно присланное значение с пробелами, хотя проверялась уже пустая строка. Каждый раз, когда вы сохраняете <code>main.py</code>, сервер перезапускается и список задач снова пуст: он живёт в памяти.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="3"> Шаг пройден</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Шаг 4. Одна задача, удаление и код 404</h3>
+              <p>
+                Добавим чтение одной задачи и удаление. Замените <code>main.py</code> целиком: новые части — функция <code>find</code> и два маршрута в конце.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>main.py</span>
+                  <button class="copy-btn" type="button">Копировать</button>
+                </div>
+                <pre><code>from itertools import count
+
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel, ConfigDict, Field
+
+app = FastAPI(title="Список задач")
+
+class TaskCreate(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True)
+
+    title: str = Field(min_length=1, max_length=200)
+
+class Task(BaseModel):
+    id: int
+    title: str
+    done: bool = False
+
+tasks: dict[int, Task] = {}
+ids = count(1)
+
+def find(task_id: int) -&gt; Task:
+    if task_id not in tasks:
+        raise HTTPException(status_code=404, detail="Задача не найдена")
+    return tasks[task_id]
+
+@app.get("/tasks")
+def list_tasks() -&gt; list[Task]:
+    return list(tasks.values())
+
+@app.post("/tasks", status_code=201)
+def create_task(data: TaskCreate) -&gt; Task:
+    task = Task(id=next(ids), title=data.title)
+    tasks[task.id] = task
+    return task
+
+@app.get("/tasks/{task_id}")
+def get_task(task_id: int) -&gt; Task:
+    return find(task_id)
+
+@app.delete("/tasks/{task_id}", status_code=204)
+def delete_task(task_id: int) -&gt; None:
+    del tasks[find(task_id).id]</code></pre>
+              </div>
+              <ul class="list">
+                <li><code>{task_id}</code> в адресе — параметр пути. Подсказка <code>task_id: int</code> заставляет FastAPI превратить его в число; адрес <code>/tasks/abc</code> получит 422.</li>
+                <li><code>HTTPException(status_code=404, …)</code> прерывает функцию и отвечает клиенту кодом и сообщением. Поиск вынесен в <code>find</code>, чтобы не повторять проверку в каждом маршруте.</li>
+                <li>Удаление отвечает <code>204 No Content</code>: всё получилось, а показывать нечего, поэтому тела у ответа нет. Об этом говорит и <code>-&gt; None</code>.</li>
+              </ul>
+              <p>В <code>/docs</code> добавьте две задачи («Купить хлеб» и «Выучить FastAPI»), затем откройте <strong>GET /tasks/{task_id}</strong> с номером 1 и с номером 99, удалите задачу 1 через <strong>DELETE</strong> и снова запросите весь список.</p>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <p>Добавление вернёт задачи с номерами 1 и 2 (код <code>201</code>):</p>
+                <pre class="step-output" data-check="http" data-request="POST /tasks {&quot;title&quot;: &quot;Купить хлеб&quot;}" data-code="201">{
+  "id": 1,
+  "title": "Купить хлеб",
+  "done": false
+}</pre>
+                <pre class="step-output" data-check="http" data-request="POST /tasks {&quot;title&quot;: &quot;Выучить FastAPI&quot;}" data-code="201">{
+  "id": 2,
+  "title": "Выучить FastAPI",
+  "done": false
+}</pre>
+                <p>Задача 1 — код <code>200</code>:</p>
+                <pre class="step-output" data-check="http" data-request="GET /tasks/1" data-code="200">{
+  "id": 1,
+  "title": "Купить хлеб",
+  "done": false
+}</pre>
+                <p>Задачи 99 нет — код <code>404</code> и сообщение из <code>HTTPException</code>:</p>
+                <pre class="step-output" data-check="http" data-request="GET /tasks/99" data-code="404">{
+  "detail": "Задача не найдена"
+}</pre>
+                <p>Удаление — код <code>204</code>, тела нет, Swagger покажет только заголовки ответа:</p>
+                <pre class="step-output" data-check="http" data-request="DELETE /tasks/1" data-code="204">Code 204</pre>
+                <p>В списке осталась одна задача:</p>
+                <pre class="step-output" data-check="http" data-request="GET /tasks" data-code="200">[
+  {
+    "id": 2,
+    "title": "Выучить FastAPI",
+    "done": false
+  }
+]</pre>
+                <p class="step-result-note">У ответа 404 Swagger пишет «Undocumented»: в описании маршрута этот код не объявлен. Объявить его можно параметром <code>responses</code> у декоратора, на работу API это не влияет.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="4"> Шаг пройден</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Шаг 5. Изучите автодокументацию</h3>
+              <p>
+                Страницу <code>/docs</code> вы не писали: FastAPI собрал её из кода. Маршруты, параметры, модели и коды ответа он описывает в стандарте OpenAPI —
+                это файл <code>/openapi.json</code>, а <code>/docs</code> (Swagger UI) и <code>/redoc</code> (ReDoc) — две оболочки для чтения этого файла.
+                Подписи вроде «List Tasks» взяты из имён функций, а «Список задач» — из <code>FastAPI(title=…)</code>. Раскройте внизу раздел <strong>Schemas</strong>: там модели <code>Task</code> и <code>TaskCreate</code> с их ограничениями.
+              </p>
+              <figure class="shot">
+                <p class="shot-title">Как должно выглядеть</p>
+                <img src="assets/img/project/fastapi-docs.webp" width="1120" height="464" alt="Страница /docs: заголовок «Список задач», версия 0.1.0, OAS 3.1 и четыре маршрута — GET /tasks, POST /tasks, GET /tasks/{task_id}, DELETE /tasks/{task_id}" loading="lazy" decoding="async">
+                <figcaption>Swagger UI по адресу /docs: четыре маршрута из main.py. Ссылка /openapi.json под заголовком открывает описание API в формате JSON.</figcaption>
+              </figure>
+              <p class="step-result-note">Оформление <code>/docs</code> и <code>/redoc</code> браузер загружает из интернета, с сайта cdn.jsdelivr.net. Без интернета эти страницы будут пустыми, хотя само API работает.</p>
+              <label class="step-check"><input type="checkbox" data-step="5"> Шаг пройден</label>
+            </li>
+
+            <li class="project-step reveal">
+              <h3>Шаг 6. Проверьте API тестами</h3>
+              <p>
+                Рядом с <code>main.py</code> создайте <code>test_main.py</code> и поставьте pytest. <code>TestClient</code> отправляет запросы прямо в приложение, без запущенного сервера.
+                Фикстура с <code>autouse=True</code> очищает список перед каждым тестом, чтобы тесты не зависели друг от друга.
+              </p>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>test_main.py</span>
+                  <button class="copy-btn" type="button">Копировать</button>
+                </div>
+                <pre><code>import pytest
+from fastapi.testclient import TestClient
+
+import main
+
+client = TestClient(main.app)
+
+@pytest.fixture(autouse=True)
+def empty_list():
+    main.tasks.clear()
+
+def test_create_and_list():
+    response = client.post("/tasks", json={"title": "Купить хлеб"})
+    assert response.status_code == 201
+    task = response.json()
+    assert task["title"] == "Купить хлеб"
+    assert task["done"] is False
+    assert client.get("/tasks").json() == [task]
+
+def test_empty_title_is_rejected():
+    response = client.post("/tasks", json={"title": "   "})
+    assert response.status_code == 422
+    assert client.get("/tasks").json() == []
+
+def test_missing_task_is_404():
+    response = client.get("/tasks/999")
+    assert response.status_code == 404
+    assert response.json() == {"detail": "Задача не найдена"}
+
+def test_delete():
+    task_id = client.post("/tasks", json={"title": "Удалить меня"}).json()["id"]
+    assert client.delete(f"/tasks/{task_id}").status_code == 204
+    assert client.get(f"/tasks/{task_id}").status_code == 404
+
+def test_id_must_be_a_number():
+    assert client.get("/tasks/abc").status_code == 422</code></pre>
+              </div>
+              <div class="code-block">
+                <div class="code-head">
+                  <span>Терминал</span>
+                  <button class="copy-btn" type="button">Копировать</button>
+                </div>
+                <pre><code>pip install pytest
+pytest -q</code></pre>
+              </div>
+              <ul class="list">
+                <li>Тесты проверяют и успешные ответы (201, 200, 204), и ошибки: пустое название — 422, нет задачи — 404, номер не числом — 422.</li>
+                <li>Номер задачи берётся из ответа (<code>.json()["id"]</code>), а не пишется в тесте числом: счётчик не сбрасывается между тестами.</li>
+                <li>Флаг <code>-q</code> печатает коротко: точку за каждый пройденный тест.</li>
+              </ul>
+              <div class="step-result">
+                <p class="step-result-title">Ожидаемый результат</p>
+                <pre class="step-output" data-check="pytest">.....                                                                    [100%]
+5 passed in 0.31s</pre>
+                <p class="step-result-note">Время у вас будет другим. Если убрать из <code>TaskCreate</code> строку <code>str_strip_whitespace=True</code>, упадёт тест <code>test_empty_title_is_rejected</code>: три пробела станут допустимым названием.</p>
+              </div>
+              <label class="step-check"><input type="checkbox" data-step="6"> Шаг пройден</label>
+            </li>
+          </ol>
+
+          <div class="panel reveal stack-gap self-check">
+            <h3>Проверь себя</h3>
+            <p>Ответьте мысленно, затем откройте ответ.</p>
+            <details>
+              <summary>Зачем две модели, <code>TaskCreate</code> и <code>Task</code>, если поля почти одинаковые?</summary>
+              <p>Они описывают разные стороны обмена. Клиент присылает только название — номер и отметку «готово» он выбирать не должен, поэтому в <code>TaskCreate</code> их нет. Сервер отдаёт задачу целиком — это <code>Task</code>. Если бы приём шёл через <code>Task</code>, клиент мог бы сам прислать любой <code>id</code>.</p>
+            </details>
+            <details>
+              <summary>Почему на пустое название сервер ответил 422, а не 400?</summary>
+              <p>Код 422 Unprocessable Content значит: запрос правильный по форме (это настоящий JSON), но данные в нём не подходят. Так FastAPI отвечает на любую ошибку проверки Pydantic. Код 400 обычно означает, что запрос испорчен целиком, например, вместо JSON пришёл обрывок текста.</p>
+            </details>
+            <details>
+              <summary>Что станет с задачами после перезапуска сервера?</summary>
+              <p>Они пропадут: словарь <code>tasks</code> живёт в памяти программы, как список в шаге 2 первого проекта на Flask. Чтобы данные сохранялись, нужна база данных — например, SQLite, как во <a href="project2.html">втором проекте</a>.</p>
+            </details>
+            <details>
+              <summary>Почему у удаления код 204 и пустой ответ?</summary>
+              <p>204 No Content — «всё получилось, и больше сказать нечего». Задачи уже нет, возвращать нечего, а клиенту достаточно кода. Поэтому у функции <code>-&gt; None</code>, а у декоратора <code>status_code=204</code>.</p>
+            </details>
+            <details>
+              <summary>Что даёт подсказка <code>-&gt; Task</code> после функции?</summary>
+              <p>FastAPI проверяет ответ по модели и пропускает только её поля. Если функция по ошибке вернёт неполные данные, сервер ответит ошибкой 500, а в терминале появится <code>ResponseValidationError</code> — ошибка не дойдёт до клиента молча. Ещё по этой подсказке в <code>/docs</code> появляется пример ответа.</p>
+            </details>
+
+            <div class="self-task">
+              <p class="step-result-title">Самостоятельное задание</p>
+              <p>Добавьте маршрут <code>PATCH /tasks/{task_id}</code>, который отмечает задачу выполненной или снимает отметку. В теле запроса приходит <code>{"done": true}</code> или <code>{"done": false}</code>, ответ — изменённая задача, для несуществующей задачи — 404. Напишите к нему тест.</p>
+              <details class="self-solution">
+                <summary>Показать решение</summary>
+                <p>Нужна модель для тела запроса и новый маршрут. Функция <code>find</code> из шага 4 уже отвечает 404.</p>
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>main.py — добавить в конец</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>class TaskUpdate(BaseModel):
+    done: bool
+
+@app.patch("/tasks/{task_id}")
+def update_task(task_id: int, data: TaskUpdate) -&gt; Task:
+    task = find(task_id)
+    task.done = data.done
+    return task</code></pre>
+                </div>
+                <div class="code-block">
+                  <div class="code-head">
+                    <span>test_main.py — добавить в конец</span>
+                    <button class="copy-btn" type="button">Копировать</button>
+                  </div>
+                  <pre><code>def test_mark_done():
+    task_id = client.post("/tasks", json={"title": "Сделать"}).json()["id"]
+    response = client.patch(f"/tasks/{task_id}", json={"done": True})
+    assert response.status_code == 200
+    assert response.json()["done"] is True
+    assert client.get(f"/tasks/{task_id}").json()["done"] is True
+    assert client.patch("/tasks/999", json={"done": True}).status_code == 404</code></pre>
+                </div>
+                <p class="step-result-note">Проверка: <code>pytest -q</code> покажет <code>6 passed</code>. В <code>/docs</code> появится зелёная строка <strong>PATCH /tasks/{task_id}</strong>.</p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="compare" aria-labelledby="compare-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="compare-title">Flask и FastAPI</h2>
+            <p>Принципы REST одинаковые. Разница в том, сколько работы фреймворк делает сам. Пример API на Flask — в разделе <a href="api.html#flask-title">«REST API»</a>.</p>
+          </div>
+
+          <div class="table-wrap reveal" tabindex="0" role="region" aria-label="Таблица: API на Flask и на FastAPI">
+            <table>
+              <caption>Одно и то же API на двух фреймворках</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Что нужно</th>
+                  <th scope="col">Flask</th>
+                  <th scope="col">FastAPI</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Прочитать JSON из запроса</td>
+                  <td><code>request.get_json()</code> вручную</td>
+                  <td>параметр функции с моделью Pydantic</td>
+                </tr>
+                <tr>
+                  <td>Проверить данные</td>
+                  <td>своими <code>if</code>, ответ 400 тоже вручную</td>
+                  <td>ограничения в модели, ответ 422 автоматически</td>
+                </tr>
+                <tr>
+                  <td>Превратить ответ в JSON</td>
+                  <td><code>jsonify(…)</code> или словарь</td>
+                  <td>любой объект модели, список или словарь</td>
+                </tr>
+                <tr>
+                  <td>Документация</td>
+                  <td>пишется отдельно</td>
+                  <td><code>/docs</code> и <code>/redoc</code> из кода</td>
+                </tr>
+                <tr>
+                  <td>Сервер для разработки</td>
+                  <td><code>flask run --debug</code></td>
+                  <td><code>fastapi dev</code> (внутри — uvicorn)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section faq" id="errors" aria-labelledby="errors-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 id="errors-title">Частые ошибки и как их исправить</h2>
+            <p>Сообщения приведены так, как их показывают FastAPI 0.163 и pytest. Нажмите на ошибку, чтобы увидеть решение.</p>
+          </div>
+
+          <details class="reveal">
+            <summary>«To use the fastapi command, please install "fastapi[standard]"»</summary>
+            <p>
+              <code class="error-text">To use the fastapi command, please install "fastapi[standard]"</code>
+              Установлен только сам FastAPI, без команды <code>fastapi</code> и сервера. Выполните <code>pip install "fastapi[standard]"</code> — с кавычками — в том же окружении.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>422 «Input should be a valid integer»</summary>
+            <p>
+              <code class="error-text">{"detail":[{"type":"int_parsing","loc":["path","task_id"],"msg":"Input should be a valid integer, unable to parse string as an integer","input":"abc"}]}</code>
+              В адресе вместо номера задачи стоит текст, например <code>/tasks/abc</code>. Параметр <code>task_id: int</code> принимает только целые числа.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>405 «Method Not Allowed»</summary>
+            <p>
+              <code class="error-text">{"detail":"Method Not Allowed"}</code>
+              Адрес есть, но с другим методом. Например, <code>DELETE /tasks</code> без номера: удаление объявлено только для <code>/tasks/{task_id}</code>. Проверьте метод и адрес в <code>/docs</code>.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>Ошибка 500 и «ResponseValidationError» в терминале</summary>
+            <p>
+              <code class="error-text">fastapi.exceptions.ResponseValidationError: 1 validation error: {'type': 'missing', 'loc': ('response', 'title'), 'msg': 'Field required', 'input': {'id': 1}}</code>
+              Функция вернула данные, которые не подходят под <code>-&gt; Task</code>: здесь словарь без <code>title</code>. Возвращайте объект модели <code>Task</code> целиком, как в шаге 3.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>pytest: «ModuleNotFoundError: No module named 'main'»</summary>
+            <p>
+              <code class="error-text">E   ModuleNotFoundError: No module named 'main'</code>
+              Тест не нашёл <code>main.py</code>. Файлы <code>main.py</code> и <code>test_main.py</code> должны лежать в одной папке, и <code>pytest</code> запускается из неё.
+            </p>
+          </details>
+
+          <details class="reveal">
+            <summary>Страница /docs пустая</summary>
+            <p>
+              Оформление Swagger UI браузер загружает с cdn.jsdelivr.net. Без интернета или если сайт заблокирован, <code>/docs</code> и <code>/redoc</code> остаются пустыми,
+              а <code>/openapi.json</code> и все маршруты API работают. Проверьте интернет или отправьте запрос из тестов, как в шаге 6.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="sources" aria-labelledby="sources-title">
+        <div class="container">
+          <div class="panel sources reveal">
+            <h2 id="sources-title">Источники</h2>
+            <p class="note">Код рассчитан на FastAPI 0.163 и Pydantic 2. Все шаги выполнены на Python 3.13, FastAPI 0.163.1 и Pydantic 2.14.3 <time datetime="2026-11-17">17.11.2026</time>.</p>
+            <ul class="list">
+              <li><a href="https://fastapi.tiangolo.com/tutorial/first-steps/" rel="noopener">FastAPI: первые шаги</a> — приложение, маршрут, <code>fastapi dev</code></li>
+              <li><a href="https://fastapi.tiangolo.com/tutorial/body/" rel="noopener">FastAPI: тело запроса</a> — модели Pydantic</li>
+              <li><a href="https://fastapi.tiangolo.com/tutorial/path-params/" rel="noopener">FastAPI: параметры пути</a> — <code>task_id: int</code></li>
+              <li><a href="https://fastapi.tiangolo.com/tutorial/response-model/" rel="noopener">FastAPI: модель ответа</a> — подсказка <code>-&gt; Task</code></li>
+              <li><a href="https://fastapi.tiangolo.com/tutorial/response-status-code/" rel="noopener">FastAPI: код ответа</a> — <code>status_code=201</code></li>
+              <li><a href="https://fastapi.tiangolo.com/tutorial/handling-errors/" rel="noopener">FastAPI: обработка ошибок</a> — <code>HTTPException</code></li>
+              <li><a href="https://fastapi.tiangolo.com/tutorial/testing/" rel="noopener">FastAPI: тесты</a> — <code>TestClient</code></li>
+              <li><a href="https://docs.pydantic.dev/latest/concepts/fields/" rel="noopener">Pydantic: поля и ограничения</a> — <code>Field(min_length=…)</code></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Дальше">
+        <div class="container">
+          <div class="cta-panel reveal">
+            <div>
+              <h2>Что дальше</h2>
+              <p class="lead cta-lead">
+                Задачи пока живут в памяти. Как хранить данные API в SQLite и проверять их тестами, показывает второй проект — там API блога на Flask.
+                Правила REST из этого раздела подходят к нему без изменений.
+              </p>
+            </div>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="project2.html">Второй проект</a>
+              <a class="btn btn-secondary" href="api.html">REST API</a>
+            </div>
+          </div>
+        </div>
+      </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="mark reveal" aria-hidden="true"><span>P</span><span>Y</span><span>W</span><span>E</span><span>B</span><span>G</span><span>U</span><span>I</span><span>D</span><span>E</span></div>
+      <div class="footer-links">
+        <div><strong>Начать</strong><ul><li><a href="start.html">Python с нуля</a></li><li><a href="html-css.html">HTML и CSS</a></li><li><a href="glossary.html">Словарь</a></li><li><a href="playground.html">Песочница</a></li></ul></div>
+        <div><strong>Понять</strong><ul><li><a href="about.html">О Python</a></li><li><a href="frameworks.html">Фреймворки</a></li><li><a href="databases.html">Базы данных</a></li><li><a href="templates.html">Шаблоны и формы</a></li><li><a href="auth.html">Авторизация</a></li><li><a href="api.html">REST API</a></li><li><a href="testing.html">Тесты</a></li><li><a href="git.html">Git</a></li></ul></div>
+        <div><strong>Сделать</strong><ul><li><a href="setup.html">Подготовка компьютера</a></li><li><a href="project.html">Первый проект</a></li><li><a href="django-next.html">Django дальше</a></li><li><a href="fastapi.html">API на FastAPI</a></li><li><a href="project2.html">Второй проект</a></li><li><a href="deploy.html">Публикация</a></li></ul></div>
+        <div><strong>Практика</strong><ul><li><a href="practice.html">Задачи</a></li><li><a href="cheatsheet.html">Шпаргалка</a></li><li><a href="exam.html">Финальный тест</a></li></ul></div>
+        <div><strong>Сайт</strong><ul><li><a href="course.html">Весь курс</a></li><li><a href="progress.html">Мой прогресс</a></li><li><a href="contacts.html">Контакты</a></li></ul></div>
+      </div>
+      <p class="footer-copy">© 2026 PyWeb Guide, учебный проект о Python в веб-разработке</p>
+      <p class="note footer-note">Автор: <a href="contacts.html#authors">Жангужин Е. Е.</a> · Обновлено: <time datetime="2026-11-17">17.11.2026</time> · Версии в примерах: Python 3.12+, Django 6.1, Flask 3.1, FastAPI 0.163 · <a href="https://github.com/pywebguide/pywebguide.github.io" rel="noopener">Исходный код на GitHub</a></p>
+      <p class="note footer-note">Снимок: <a href="https://commons.wikimedia.org/wiki/File:Photograph_of_Women_Working_at_a_Bell_System_Telephone_Switchboard_(3660047829).jpg" rel="noopener">коммутатор Bell System, Национальный архив США</a>.</p>
+      <p class="note footer-note"><a href="privacy.html">Политика конфиденциальности</a> · <a href="terms.html">Условия использования</a></p>
+      <p class="note footer-note">Сайт учебный. Сообщения с формы отправляются через публичный раздел Issues на GitHub. Без аккаунта GitHub можно <a href="contacts.html#no-github">написать напрямую</a>.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Прокрутить наверх">↑</button>
+
+  <script data-goatcounter="https://pywebguide.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" crossorigin="anonymous" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"></script>
+
+  <script src="script.js"></script>
+  <script src="features.js"></script>
+</body>
+</html>

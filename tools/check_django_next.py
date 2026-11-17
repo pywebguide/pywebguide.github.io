@@ -54,7 +54,9 @@ class Project:
         self.dir = Path(folder)
 
     def run(self, *args, ok=True, black=False):
-        env = {**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONDONTWRITEBYTECODE": "1"}
+        # PYTHONUNBUFFERED: без него stdout в канал буферизуется и строки stdout и stderr
+        # приходят не в том порядке, что в терминале (так было в CI на GitHub)
+        env = {**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONDONTWRITEBYTECODE": "1", "PYTHONUNBUFFERED": "1"}
         if not black:
             env["PATH"] = ""  # без black: makemigrations пишет файл так же, как у ученика без форматтера
         # stderr в тот же поток, что stdout: строки идут в том же порядке, что в терминале

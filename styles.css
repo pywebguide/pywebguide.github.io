@@ -436,14 +436,27 @@ main:focus {
   padding: 0;
 }
 
+/* Заголовок группы — тёмная плашка, как у кнопок: его не спутать с пунктом меню */
 .nav-group-title {
-  margin: 0;
-  padding: 10px 12px 4px;
-  color: var(--muted);
+  display: inline-block;
+  margin: 10px 12px 6px;
+  padding: 3px 7px;
+  background: var(--text);
+  color: var(--bg);
   font-size: 0.75rem;
   font-weight: 700;
+  line-height: 1.3;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+}
+
+/* Группы, которые идут друг под другом, разделены линией */
+.nav-group + .nav-group {
+  border-top: 2px solid var(--line);
+}
+
+.nav-more-list .nav-group:nth-child(2) {
+  border-top: 0;
 }
 
 /* Пункт ведёт на русскую страницу: перевода пока нет */
